@@ -229,7 +229,7 @@ function formatNumberWithThousandDelimiters(
 
 function formatNumberWithLimitedSigFig(
   value: number,
-  decimals: number,
+  decimals: ?number,
   numSigFigs: number,
 ): string {
   // First make the number sufficiently integer-like.
@@ -247,6 +247,13 @@ function formatNumberWithLimitedSigFig(
   // Bring it back to whatever the number's magnitude was before.
   if (power < numSigFigs) {
     truncatedValue /= Math.pow(10, -power + numSigFigs);
+    // Determine number of decimals based on sig figs
+    if (decimals == null) {
+      return formatNumberWithThousandDelimiters(
+        truncatedValue,
+        numSigFigs - power - 1,
+      );
+    }
   }
   // Decimals
   return formatNumberWithThousandDelimiters(truncatedValue, decimals);
