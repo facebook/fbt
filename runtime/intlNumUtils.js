@@ -15,7 +15,9 @@
  * @emails oncall+internationalization
  */
 
-var NumberFormatConfig = require('NumberFormatConfig');
+const IntlViewerContext = require('IntlViewerContext');
+const NumberFormatConsts = require('NumberFormatConsts');
+const NumberFormatConfig = NumberFormatConsts.get(IntlViewerContext.locale);
 
 var escapeRegex = require('escapeRegex');
 

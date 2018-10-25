@@ -9,7 +9,7 @@
 
 /* eslint-disable fb-www/dot-notation, fb-www/fbt-no-project */
 
-jest.enableAutomock();
+jest.enableAutomock().unmock('NumberFormatConsts');
 
 var FbtNumberType = require('FbtNumberType');
 var fbtRuntime = jest.requireActual('fbt');

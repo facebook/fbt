@@ -13,6 +13,7 @@ jest
   .unmock('intlNumUtils')
   .unmock('IntlPunctuation')
   .unmock('IntlPhonologicalRewrites')
+  .unmock('NumberFormatConsts')
   .mock('FbtNumberType');
 
 var WRAPPER = '__FBT__';
