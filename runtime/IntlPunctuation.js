@@ -23,7 +23,8 @@
  *  Note: Please keep this in sync with www/html/js/mobile/lib/intl-core.js.
  */
 
-const IntlPhonologicalRules = require('IntlPhonologicalRules');
+const IntlPhonologicalRewrites = require('IntlPhonologicalRewrites');
+const IntlViewerContext = require('IntlViewerContext');
 
 /**
  * Regular expression snippet containing all the characters that we
@@ -77,22 +78,35 @@ const ENDS_IN_PUNCT_REGEXP = new RegExp(
     ']*$',
 );
 
-const _rules = [];
-// Pre-process the patterns and replacements by applying metaclasses.
-for (let pattern in IntlPhonologicalRules.patterns) {
-  let replacement = IntlPhonologicalRules.patterns[pattern];
-  // "Metaclasses" are shorthand for larger character classes. For example,
-  // _C may refer to consonants and _V to vowels for a locale.
-  for (const metaclass in IntlPhonologicalRules.meta) {
-    const metaclassRegexp = new RegExp(metaclass.slice(1, -1), 'g');
-    const characterClass = IntlPhonologicalRules.meta[metaclass];
-    pattern = pattern.replace(metaclassRegexp, characterClass);
-    replacement = replacement.replace(metaclassRegexp, characterClass);
+let _rules = [];
+let _lastLocale = null;
+let _rewrites = IntlPhonologicalRewrites.get(IntlViewerContext.locale);
+
+function _getRules(): Array<[RegExp, (string => string) | string]> {
+  if (IntlViewerContext.locale && IntlViewerContext.locale !== _lastLocale) {
+    _rules = [];
+    _lastLocale = IntlViewerContext.locale;
+    _rewrites = IntlPhonologicalRewrites.get(_lastLocale);
   }
-  if (replacement === 'javascript') {
-    replacement = match => match.slice(1).toLowerCase();
+  if (!_rules.length) {
+    // Process the patterns and replacements by applying metaclasses.
+    for (let pattern in _rewrites.patterns) {
+      let replacement = _rewrites.patterns[pattern];
+      // "Metaclasses" are shorthand for larger character classes. For example,
+      // _C may refer to consonants and _V to vowels for a locale.
+      for (const metaclass in _rewrites.meta) {
+        const metaclassRegexp = new RegExp(metaclass.slice(1, -1), 'g');
+        const characterClass = _rewrites.meta[metaclass];
+        pattern = pattern.replace(metaclassRegexp, characterClass);
+        replacement = replacement.replace(metaclassRegexp, characterClass);
+      }
+      if (replacement === 'javascript') {
+        replacement = match => match.slice(1).toLowerCase();
+      }
+      _rules.push([new RegExp(pattern.slice(1, -1), 'g'), replacement]);
+    }
   }
-  _rules.push([new RegExp(pattern.slice(1, -1), 'g'), replacement]);
+  return _rules;
 }
 
 /**
@@ -101,15 +115,14 @@ for (let pattern in IntlPhonologicalRules.patterns) {
  * For languages like Turkish, we allow translators to use shorthand
  * for a pattern of inflection (a suffix like '(y)i becomes 'i or 'yi or 'a or
  * 'ye, etc. depending on context).
- * TODO: add unit test (watir)
  *
- * @param str   Translated string with each {token} substituted with
- *              "\x01value\x01" (e.g., "\x01Ozgur\x01(y)i..." which was
- *              "{name}(y)i...")
- * @return str  String with phonological rules applied (e.g., "Ozguri...")
+ * Input: Translated string with each {token} substituted with
+ *        "\x01value\x01" (e.g., "\x01Ozgur\x01(y)i..." which was
+ *        "{name}(y)i...")
+ * Returns: String with phonological rules applied (e.g., "Ozguri...")
  */
 function applyPhonologicalRules(text: string): string {
-  const rules = _rules;
+  const rules = _getRules();
 
   for (let i = 0; i < rules.length; i++) {
     const [regexp, replacement] = rules[i];
