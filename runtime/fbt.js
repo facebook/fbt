@@ -25,9 +25,6 @@
 /* eslint "fb-www/require-flow-strict-local": "off" */
 
 const Banzai = require('Banzai');
-/* $FlowFixMe(>=0.82.0 site=mobile) This comment suppresses an error found when
- * Flow v0.82 was deployed. To see the error delete this comment and run Flow.
- */
 const {logger} = require('FbtLogger');
 const {overrides} = require('FbtQTOverrides');
 const FbtResult = require('FbtResult');
