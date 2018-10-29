@@ -14,6 +14,7 @@
  */
 
 jest.disableAutomock();
+console.error = jest.fn();
 
 var FbtResult = require('FbtResult');
 var React = require('React');
@@ -54,6 +55,8 @@ describe('FbtResult', function() {
   it('implements common string methods', function() {
     var result = new FbtResult(['kombucha'], false, 'kombucha', null);
     expect(result.startsWith('kom')).toBe(true);
+    expect(console.error.mock.calls.length).toBe(1);
     expect(result.slice(1, 3)).toBe('om');
+    expect(console.error.mock.calls.length).toBe(2);
   });
 });
