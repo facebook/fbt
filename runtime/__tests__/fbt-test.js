@@ -11,15 +11,15 @@
 
 jest.enableAutomock().unmock('NumberFormatConsts');
 
-var FbtNumberType = require('FbtNumberType');
-var fbtRuntime = jest.requireActual('fbt');
-var fbt = require('fbt');
-var flowCast = jest.requireActual('flowCast');
+const FbtNumberType = require('FbtNumberType');
+const fbtRuntime = jest.requireActual('fbt');
+const fbt = require('fbt');
 const intlNumUtils = jest.requireActual('intlNumUtils');
-var IntlVariations = jest.requireActual('IntlVariations');
-var IntlViewerContext = require('IntlViewerContext');
-var React = require('React');
-var ReactDOM = require('ReactDOM');
+const IntlVariations = jest.requireActual('IntlVariations');
+const IntlViewerContext = require('IntlViewerContext');
+const invariant = require('invariant');
+const React = require('React');
+const ReactDOM = require('ReactDOM');
 const TAAL = require('TAAL');
 
 describe('fbt', function() {
@@ -169,10 +169,9 @@ describe('fbt', function() {
   var container = document.createElement('div');
 
   function renderAndExtractChildDivs(component) {
-    // TODO T21716504:  flow thinks ReactDOM.findDOMNode returns Text...
-    const node = flowCast.toObject(
-      ReactDOM.findDOMNode(ReactDOM.render(component, container)),
-    );
+    const node = ReactDOM.findDOMNode(ReactDOM.render(component, container));
+    // TODO T21716504: flow thinks ReactDOM.findDOMNode returns Text...
+    invariant(node instanceof Element, 'Expected node to be an Element');
     var resultingElements = node && node.getElementsByTagName('div');
     return Array.prototype.slice.call(resultingElements, 0);
   }
