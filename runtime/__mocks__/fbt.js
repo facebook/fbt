@@ -5,16 +5,18 @@
  * @emails oncall+internationalization
  */
 
-var fbt = jest.fn();
-var fbtRuntime = jest.requireActual('fbt');
-
 jest
   .unmock('substituteTokens')
   .unmock('intlNumUtils')
   .unmock('IntlPunctuation')
   .unmock('IntlPhonologicalRewrites')
   .unmock('NumberFormatConsts')
+  .unmock('IntlVariationResolver')
+  .unmock('IntlVariationResolverImpl')
   .mock('FbtNumberType');
+
+var fbt = jest.fn();
+var fbtRuntime = jest.requireActual('fbt');
 
 var WRAPPER = '__FBT__';
 

@@ -43,6 +43,10 @@ const IntlViewerContext = require('IntlViewerContext');
 const intlNumUtils = require('intlNumUtils');
 const invariant = require('invariant');
 const substituteTokens = require('substituteTokens');
+const {
+  getNumberVariations,
+  getGenderVariations,
+} = require('IntlVariationResolver');
 
 // Used only in React Native
 let jsonExportMode = false;
@@ -68,8 +72,6 @@ const PRONOUN_USAGE = {
   REFLEXIVE: 2,
   SUBJECT: 3,
 };
-
-const EXACTLY_ONE = '_1';
 
 var _cachedFbtResults = {};
 
@@ -133,7 +135,7 @@ fbt._ = function(table, args, options) {
 
   if (table.__vcg) {
     args = args || [];
-    args.unshift([_getGenderVariation(IntlViewerContext.GENDER), null]);
+    args.unshift([getGenderVariations(IntlViewerContext.GENDER), null]);
   }
 
   if (args) {
@@ -283,38 +285,6 @@ fbt._accessTable = function(table, substitutions, args, argsIndex) {
 };
 
 /**
- * Wrapper around FbtNumberType.getVariation that special cases our EXACTLY_ONE
- * value to accommodate the singular form of fbt:plural
- *
- * @param {number} number
- */
-function _getNumberVariations(number) {
-  /* eslint-disable no-bitwise */
-  if (IntlHoldoutGK.inIntlHoldout) {
-    return number === 1 ? [EXACTLY_ONE, '*'] : ['*'];
-  }
-  const numType = IntlNumberType.get(IntlViewerContext.locale).getVariation(
-    number,
-  );
-  invariant(numType & IntlVariations.BITMASK_NUMBER, 'Invalid number provided');
-  return number === 1 ? [EXACTLY_ONE, numType, '*'] : [numType, '*'];
-}
-
-/**
- * Wrapper to validate gender.
- *
- * @param {number} gender
- */
-function _getGenderVariation(gender) {
-  /* eslint-disable no-bitwise */
-  if (IntlHoldoutGK.inIntlHoldout) {
-    return ['*'];
-  }
-  invariant(gender & IntlVariations.BITMASK_GENDER, 'Invalid gender provided');
-  return [gender, '*'];
-}
-
-/**
  * fbt._enum() takes an enum value and returns a tuple in the format:
  * [value, null]
  * @param {string|number} value - Example: "id1"
@@ -338,7 +308,7 @@ fbt._enum = function(value, range) {
  * @param {number} value - Example: "16777216"
  */
 fbt._subject = function(value) {
-  return [_getGenderVariation(value), null];
+  return [getGenderVariations(value), null];
 };
 
 /**
@@ -357,11 +327,11 @@ fbt._param = function(label, value, variations) {
     if (variations[0] === VARIATIONS.NUMBER) {
       var number = variations.length > 1 ? variations[1] : value;
       invariant(typeof number === 'number', 'fbt.param expected number');
-      variation = _getNumberVariations(number);
+      variation = getNumberVariations(number);
       format_as_number = true;
     } else if (variations[0] === VARIATIONS.GENDER) {
       invariant(variations.length > 1, 'expected gender value');
-      variation = _getGenderVariation(variations[1]);
+      variation = getGenderVariations(variations[1]);
     } else {
       invariant(false, 'Unknown invariant mask');
     }
@@ -385,7 +355,7 @@ fbt._param = function(label, value, variations) {
  *   - The value to use (instead of count) for replacing {label}
  */
 fbt._plural = function(count, label, value) {
-  const variation = _getNumberVariations(count);
+  const variation = getNumberVariations(count);
   const substitution = {};
   if (label) {
     if (typeof value === 'number') {
@@ -461,7 +431,7 @@ function getPronounGenderKey(usage, gender) {
  * @param {number} gender - Example: "IntlVariations.GENDER_FEMALE"
  */
 fbt._name = function(label, value, gender) {
-  const variation = _getGenderVariation(gender);
+  const variation = getGenderVariations(gender);
   const substitution = {};
   substitution[label] = value;
   return [variation, substitution];
