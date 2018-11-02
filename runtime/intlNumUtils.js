@@ -213,6 +213,15 @@ function formatNumberWithThousandDelimiters(
 }
 
 /**
+ * Calculate how many powers of 10 there are in a given number
+ * I.e. 1.23 has 0, 100 and 999 have 2, and 1000 has 3.
+ * Used in the inflation and rounding calculations below.
+ */
+function _getNumberOfPowersOfTen(value: number): number {
+  return value && Math.floor(Math.log10(Math.abs(value)));
+}
+
+/**
  * Format a number for string output.
  *
  * This will format a given number according to the specified significant
@@ -228,14 +237,13 @@ function formatNumberWithThousandDelimiters(
  * > formatNumberWithLimitedSigFig(1.23456789, 2, 2)
  * "1.20"
  */
-
 function formatNumberWithLimitedSigFig(
   value: number,
   decimals: ?number,
   numSigFigs: number,
 ): string {
   // First make the number sufficiently integer-like.
-  var power = Math.floor(Math.log(value) / Math.LN10);
+  var power = _getNumberOfPowersOfTen(value);
   var inflatedValue = value;
   if (power < numSigFigs) {
     inflatedValue = value * Math.pow(10, -power + numSigFigs);
@@ -243,7 +251,7 @@ function formatNumberWithLimitedSigFig(
   // Now that we have a large enough integer, round to cut off some digits.
   var roundTo = Math.pow(
     10,
-    Math.floor(Math.log(inflatedValue) / Math.LN10) - numSigFigs + 1,
+    _getNumberOfPowersOfTen(inflatedValue) - numSigFigs + 1,
   );
   var truncatedValue = Math.round(inflatedValue / roundTo) * roundTo;
   // Bring it back to whatever the number's magnitude was before.
@@ -266,7 +274,7 @@ function _roundNumber(valueParam: number, decimalsParam?: number): string {
   var pow = Math.pow(10, decimals);
   var value = valueParam;
   value = Math.round(value * pow) / pow;
-  value = value + '';
+  value += '';
   if (!decimals) {
     return value;
   }

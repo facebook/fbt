@@ -250,6 +250,8 @@ describe('intlNumUtils.formatNumberWithLimitedSigFig', function() {
       '120,000,000',
     );
     expect(u.formatNumberWithLimitedSigFig(1.23456789, 2, 2)).toBe('1.20');
+    expect(u.formatNumberWithLimitedSigFig(-12.345, 3, 3)).toBe('-12.300');
+    expect(u.formatNumberWithLimitedSigFig(0, null, 3)).toBe('0.00');
   });
 });
 
