@@ -563,6 +563,10 @@ BabelPluginFbt.getChildToParentRelationships = function() {
   return childToParent || {};
 };
 
+BabelPluginFbt.getDefaultOptions = function() {
+  return defaultOptions;
+};
+
 function initExtraOptions(state) {
   Object.assign(ValidFbtOptions, state.opts.extraOptions || {});
 }

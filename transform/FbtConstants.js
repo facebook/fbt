@@ -63,10 +63,12 @@ const ValidFbtOptions = {
   preserveWhitespace: true,
   subject: true,
   common: true,
+  doNotExtract: true,
 };
 
 const FbtBooleanOptions = {
   preserveWhitespace: true,
+  doNotExtract: true,
 };
 
 const FbtRequiredAttributes = {

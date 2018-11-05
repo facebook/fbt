@@ -59,6 +59,39 @@ describe('collectFBT', () => {
     expect(actual).toEqual(expected);
   });
 
+  it('should still extract strings if doNotExtract is set to false', () => {
+    var res = collect(
+      [
+        '// @fbt {"project": "someproject", "doNotExtract": false}',
+        "const fbt = require('fbt');",
+        '<fbt desc="foo">bar</fbt>',
+      ].join('\n'),
+    );
+
+    var expected = {
+      type: 'text',
+      desc: 'foo',
+      jsfbt: 'bar',
+    };
+
+    var actual = {};
+    Object.keys(expected).map(key => (actual[key] = res.phrases[0][key]));
+
+    expect(actual).toEqual(expected);
+  });
+
+  it('should not extract strings if doNotExtract is set to true', () => {
+    var res = collect(
+      [
+        '// @fbt {"project": "someproject", "doNotExtract": true}',
+        "const fbt = require('fbt');",
+        '<fbt desc="foo">bar</fbt>',
+      ].join('\n'),
+    );
+
+    expect(res.phrases.length).toEqual(0);
+  });
+
   it('should not throw because of CSX', () => {
     var res = collect(
       [
