@@ -258,6 +258,10 @@ function BabelPluginFbt(babel) {
           }
         }
 
+        if (options.doNotExtract) {
+          return;
+        }
+
         if (isTable) {
           texts = normalizeTableTexts(
             extractTableTexts(
