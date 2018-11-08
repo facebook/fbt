@@ -295,7 +295,7 @@ function BabelPluginFbt(babel) {
             type: 'subject',
           });
 
-          runtimeArgs.push(
+          runtimeArgs.unshift(
             t.callExpression(
               t.memberExpression(
                 t.identifier(moduleName),

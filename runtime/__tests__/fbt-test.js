@@ -296,6 +296,16 @@ describe('fbt', function() {
     ).toEqual("This isn't");
   });
 
+  it('should access table with multiple tokens containing subject', function() {
+    expect(
+      fbt(
+        'Invited by ' + fbt.plural('friend', 1, {showCount: 'yes'}) + '.',
+        'Test Description',
+        {subject: IntlVariations.GENDER_UNKNOWN},
+      ),
+    ).toEqual('Invited by 1 friend.');
+  });
+
   it('should access table with fallback logic', function() {
     var table = {
       __vcg: 1, // viewer-context gender
