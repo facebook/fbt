@@ -27,6 +27,7 @@
 const Banzai = require('Banzai');
 const {logger} = require('FbtLogger');
 const {overrides} = require('FbtQTOverrides');
+const FbtTableAccessor = require('FbtTableAccessor');
 const FbtResult = require('FbtResult');
 const FbtResultGK = require('FbtResultGK');
 const GenderConst = require('GenderConst');
@@ -35,9 +36,6 @@ const {
   isComponentScript,
 } = require('FbtNativeTranslations');
 const InlineFbtResult = require('InlineFbtResult');
-const IntlHoldoutGK = require('IntlHoldoutGK');
-const IntlNumberType = require('IntlNumberType');
-const IntlVariations = require('IntlVariations');
 const IntlViewerContext = require('IntlViewerContext');
 
 const intlNumUtils = require('intlNumUtils');
@@ -139,7 +137,15 @@ fbt._ = function(table, args, options) {
   }
 
   if (args) {
-    pattern = this._accessTable(table, allSubstitutions, args, 0);
+    if (typeof pattern !== 'string') {
+      // On mobile, table can be accessed at the native layer when fetching
+      // translations. If pattern is not a string here, table has not been accessed
+      pattern = this._accessTable(table, args, 0);
+    }
+    allSubstitutions = Object.assign(
+      {},
+      ...args.map(arg => arg[ARG.SUBSTITUTION] || {}),
+    );
     invariant(pattern !== null, 'Table access failed');
   }
 
@@ -248,11 +254,10 @@ fbt._hasKeys = function(o) {
  * table['*'][PLURAL][POST].  ALSO undefined. Deduped to '*'
  * table['*']['*'][POST].  There it is.
  *
- * @param {object} substitutions Holds the parameter token substitutions here
  * @param {array}  args          fbt runtime arguments
  * @param {number} argsIndex     argument index we're currently visiting
  */
-fbt._accessTable = function(table, substitutions, args, argsIndex) {
+fbt._accessTable = function(table, args, argsIndex) {
   // Either we've reached the end of our arguments at a valid entry, in which
   // case table is now a string (leaf) or we've accessed a key that didn't exist
   // in the table, in which case we return null
@@ -269,17 +274,14 @@ fbt._accessTable = function(table, substitutions, args, argsIndex) {
   if (Array.isArray(tableIndex)) {
     for (var k = 0; k < tableIndex.length; ++k) {
       var subTable = table[tableIndex[k]];
-      pattern = this._accessTable(subTable, substitutions, args, argsIndex + 1);
+      pattern = this._accessTable(subTable, args, argsIndex + 1);
       if (pattern != null) {
         break;
       }
     }
   } else {
     table = tableIndex !== null ? table[tableIndex] : table;
-    pattern = this._accessTable(table, substitutions, args, argsIndex + 1);
-  }
-  if (pattern != null) {
-    Object.assign(substitutions, arg[ARG.SUBSTITUTION]);
+    pattern = this._accessTable(table, args, argsIndex + 1);
   }
   return pattern;
 };
@@ -294,12 +296,7 @@ fbt._enum = function(value, range) {
   if (__DEV__) {
     invariant(value in range, 'invalid value: %s', value);
   }
-  // _enum marker is used in React Native, so that enum args can be removed
-  // when an enum-less translation payload is fetched.
-  // $FlowFixMe
-  return Object.assign([value, null], {
-    _enum: true,
-  });
+  return FbtTableAccessor.getEnumResult(value);
 };
 
 /**
@@ -308,7 +305,11 @@ fbt._enum = function(value, range) {
  * @param {number} value - Example: "16777216"
  */
 fbt._subject = function(value) {
-  return [getGenderVariations(value), null];
+  return FbtTableAccessor.getGenderResult(
+    getGenderVariations(value),
+    null,
+    value,
+  );
 };
 
 /**
@@ -321,27 +322,31 @@ fbt._subject = function(value) {
  *   - E.g. [0], [0,count], or [0,foo.someNumber() + 1]
  */
 fbt._param = function(label, value, variations) {
-  var variation = null;
-  var format_as_number = false;
+  let variation = null;
+  const substitution = {[label]: value};
   if (variations) {
     if (variations[0] === VARIATIONS.NUMBER) {
       var number = variations.length > 1 ? variations[1] : value;
       invariant(typeof number === 'number', 'fbt.param expected number');
+
       variation = getNumberVariations(number);
-      format_as_number = true;
+      if (typeof value === 'number') {
+        substitution[label] = intlNumUtils.formatNumberWithThousandDelimiters(
+          value,
+        );
+      }
+      return FbtTableAccessor.getNumberResult(variation, substitution, number);
     } else if (variations[0] === VARIATIONS.GENDER) {
       invariant(variations.length > 1, 'expected gender value');
-      variation = getGenderVariations(variations[1]);
+      const gender = variations[1];
+      variation = getGenderVariations(gender);
+      return FbtTableAccessor.getGenderResult(variation, substitution, gender);
     } else {
       invariant(false, 'Unknown invariant mask');
     }
+  } else {
+    return [variation, substitution];
   }
-  var substitution = {};
-  substitution[label] =
-    format_as_number && typeof value === 'number'
-      ? intlNumUtils.formatNumberWithThousandDelimiters(value)
-      : value;
-  return [variation, substitution];
 };
 
 /**
@@ -367,7 +372,7 @@ fbt._plural = function(count, label, value) {
         value || intlNumUtils.formatNumberWithThousandDelimiters(count);
     }
   }
-  return [variation, substitution];
+  return FbtTableAccessor.getNumberResult(variation, substitution, count);
 };
 
 /**
@@ -384,7 +389,7 @@ fbt._pronoun = function(usage, gender, options) {
   );
 
   const genderKey = getPronounGenderKey(usage, gender);
-  return [[genderKey, '*'], null];
+  return FbtTableAccessor.getPronounResult(genderKey);
 };
 
 // See JSFbtTable::getPronounGenderKey().
@@ -434,7 +439,7 @@ fbt._name = function(label, value, gender) {
   const variation = getGenderVariations(gender);
   const substitution = {};
   substitution[label] = value;
-  return [variation, substitution];
+  return FbtTableAccessor.getGenderResult(variation, substitution, gender);
 };
 
 /**

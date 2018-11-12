@@ -13,6 +13,7 @@ jest
   .unmock('NumberFormatConsts')
   .unmock('IntlVariationResolver')
   .unmock('IntlVariationResolverImpl')
+  .unmock('FbtTableAccessor')
   .mock('FbtNumberType');
 
 var fbt = jest.fn();
