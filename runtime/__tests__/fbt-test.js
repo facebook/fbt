@@ -23,7 +23,6 @@ const IntlViewerContext = require('IntlViewerContext');
 const invariant = require('invariant');
 const React = require('React');
 const ReactDOM = require('ReactDOM');
-const TAAL = require('TAAL');
 
 describe('fbt', function() {
   // Use a locale that has FEW.
@@ -285,9 +284,7 @@ describe('fbt', function() {
       [IntlVariations.GENDER_MALE, '*'],
       null,
     ]);
-    expect(() => fbtRuntime._subject(0)).toThrow(
-      new Error(TAAL.blameToPreviousFrame('Invalid gender provided')),
-    );
+    expect(() => fbtRuntime._subject(0)).toThrow('Invalid gender provided');
   });
 
   it('should leave non-QuickTranslation strings alone', function() {
