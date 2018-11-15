@@ -10,27 +10,29 @@
  *   js1 upgrade www-shared -p fbt --remote localhost:~/www
  *
  * @format
- * @flow
+ * @flow strict-local
  * @emails oncall+internationalization
  */
+
+import type {NestedContentItems} from 'FbtResultBase';
 
 const FbtReactUtil = require('FbtReactUtil');
 const FbtResultBase = require('FbtResultBase');
 
-const FbtComponent = props => props.content;
+const FbtComponent = (props: Props): mixed => props.content;
 
 type Props = {
-  content: Array<any>,
+  content: NestedContentItems,
 };
 
 class FbtResult extends FbtResultBase {
-  $$typeof: typeof FbtReactUtil.REACT_ELEMENT_TYPE;
+  $$typeof = FbtReactUtil.REACT_ELEMENT_TYPE;
   key: ?string = null;
   props: Props;
-  ref: ?React$Ref<*> = null;
-  type: (props: Props) => mixed;
+  ref: ?React$Ref<React$ElementType> = null;
+  type = FbtComponent;
 
-  constructor(contents: Array<any>) {
+  constructor(contents: NestedContentItems) {
     super(contents);
     /* eslint-disable fb-www/react-state-props-mutation */
     this.props = {
@@ -42,8 +44,5 @@ class FbtResult extends FbtResultBase {
     }
   }
 }
-
-FbtResult.prototype.type = FbtComponent;
-FbtResult.prototype.$$typeof = FbtReactUtil.REACT_ELEMENT_TYPE;
 
 module.exports = FbtResult;

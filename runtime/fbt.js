@@ -183,7 +183,7 @@ fbt._ = function(table, args, options) {
     return cachedFbt;
   } else {
     const fbtContent = substituteTokens(patternString, allSubstitutions);
-    const result = wrapContent(fbtContent, patternString, patternHash);
+    const result = this._wrapContent(fbtContent, patternString, patternHash);
     if (!hasSubstitutions) {
       _cachedFbtResults[patternString] = result;
     }
@@ -459,8 +459,8 @@ fbt.logQTImpression = function(hash) {
   return hash;
 };
 
-function wrapContent(fbtContent, patternString, patternHash) {
-  // TODO #20587740: Remove this conditional block.  Currently unit tests rely
+fbt._wrapContent = (fbtContent, patternString, patternHash) => {
+  // TODO #20587740: Remove this conditional block. Currently unit tests rely
   // on shouldReturnFbtResult being mocked to false and results being unwrapped.
   if (
     !FbtResultGK.shouldReturnFbtResult &&
@@ -479,7 +479,7 @@ function wrapContent(fbtContent, patternString, patternHash) {
     );
   }
   return new FbtResult(contents);
-}
+};
 
 fbt.enableJsonExportMode = function() {
   jsonExportMode = true;

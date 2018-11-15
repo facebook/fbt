@@ -2,9 +2,11 @@
  * Copyright 2015-present Facebook. All Rights Reserved.
  *
  * @format
- * @flow
+ * @flow strict-local
  * @emails oncall+internationalization
  */
+
+import type {NestedContentItems} from 'FbtResultBase';
 
 const FbtReactUtil = require('FbtReactUtil');
 const FbtResultBase = require('FbtResultBase');
@@ -15,7 +17,7 @@ function em(content, inlineMode, translation, hash) {
   // TODO: in the future, might depend on the translation status of the
   // string to decide on the proper inline mode.
   let className = cx('intlInlineMode/normal');
-  if (hash) {
+  if (hash != null && hash != '') {
     if (inlineMode === 'TRANSLATION') {
       className = cx('intlInlineMode/translatable');
     } else if (inlineMode === 'APPROVE') {
@@ -47,25 +49,25 @@ function em(content, inlineMode, translation, hash) {
   };
 }
 
-const InlineFbtComponent = (props: Props) =>
+const InlineFbtComponent = (props: Props): mixed =>
   em(props.content, props.inlineMode, props.translation, props.hash);
 
 type Props = {
-  content: Array<any>,
+  content: NestedContentItems,
   inlineMode: boolean,
   translation: string,
   hash: ?string,
 };
 
 class InlineFbtResult extends FbtResultBase {
-  $$typeof: typeof FbtReactUtil.REACT_ELEMENT_TYPE;
+  $$typeof = FbtReactUtil.REACT_ELEMENT_TYPE;
   key: ?string = null;
   props: Props;
-  ref: ?React$Ref<*> = null;
-  type: (props: Props) => mixed;
+  ref: ?React$Ref<React$ElementType> = null;
+  type = InlineFbtComponent;
 
   constructor(
-    contents: Array<any>,
+    contents: NestedContentItems,
     inlineMode: boolean,
     translation: string,
     hash: ?string,
@@ -83,7 +85,5 @@ class InlineFbtResult extends FbtResultBase {
     }
   }
 }
-InlineFbtResult.prototype.type = InlineFbtComponent;
-InlineFbtResult.prototype.$$typeof = FbtReactUtil.REACT_ELEMENT_TYPE;
 
 module.exports = InlineFbtResult;

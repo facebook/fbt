@@ -48,7 +48,7 @@ function logErrorUseStringMethod(methodName: string): void {
 }
 
 class FbtResultBaseImpl implements IFbtResultBase {
-  _contents: Array<any>;
+  _contents: NestedContentItems;
   _stringValue: ?string;
 
   // Declare that we'll implement these methods
@@ -92,7 +92,7 @@ class FbtResultBaseImpl implements IFbtResultBase {
   trimLeft: $PropertyType<IFbtResultBase, 'trimLeft'>;
   trimRight: $PropertyType<IFbtResultBase, 'trimRight'>;
 
-  constructor(contents: Array<any>) {
+  constructor(contents: NestedContentItems) {
     this._contents = contents;
     this._stringValue = null;
   }
