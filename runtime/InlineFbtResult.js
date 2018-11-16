@@ -60,12 +60,11 @@ type Props = {
 };
 
 class InlineFbtResult extends FbtResultBase {
-  $$typeof: Symbol | $TEMPORARY$number<0xeac7> =
-    FbtReactUtil.REACT_ELEMENT_TYPE;
+  $$typeof = FbtReactUtil.REACT_ELEMENT_TYPE;
   key: ?string = null;
   props: Props;
   ref: ?React$Ref<React$ElementType> = null;
-  type: (props: Props) => mixed = InlineFbtComponent;
+  type = InlineFbtComponent;
 
   constructor(
     contents: NestedContentItems,
