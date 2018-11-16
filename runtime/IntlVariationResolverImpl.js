@@ -18,7 +18,19 @@ const VariationResolverImpl = {
    * Wrapper around FbtNumberType.getVariation that special cases our EXACTLY_ONE
    * value to accommodate the singular form of fbt:plural
    */
-  getNumberVariations(number: number) {
+  getNumberVariations(
+    number: number,
+  ): /* $FlowFixMe(>=0.86.0 site=www) This comment suppresses an error found
+     * when automatically adding a type annotation with the codemod
+     * Komodo/Annotate_exports. To see the error delete this comment and run
+     * Flow. */
+
+    | Array<any | $TEMPORARY$string<'*'> | $TEMPORARY$string<'_1'>>
+    /* $FlowFixMe(>=0.86.0 site=www) This comment suppresses an error found
+     * when automatically adding a type annotation with the codemod
+     * Komodo/Annotate_exports. To see the error delete this comment and run
+     * Flow. */
+    | Array<any | $TEMPORARY$string<'*'>> {
     /* eslint-disable no-bitwise */
     const numType = IntlNumberType.get(IntlViewerContext.locale).getVariation(
       number,
@@ -27,13 +39,17 @@ const VariationResolverImpl = {
       numType & IntlVariations.BITMASK_NUMBER,
       'Invalid number provided',
     );
+    /* $FlowFixMe(>=0.86.0 site=www) This comment suppresses an error found
+     * when automatically adding a type annotation with the codemod
+     * Komodo/Annotate_exports. To see the error delete this comment and run
+     * Flow. */
     return number === 1 ? [EXACTLY_ONE, numType, '*'] : [numType, '*'];
   },
 
   /**
    * Wrapper to validate gender.
    */
-  getGenderVariations(gender: number) {
+  getGenderVariations(gender: number): Array<$TEMPORARY$string<'*'> | number> {
     /* eslint-disable no-bitwise */
     invariant(
       gender & IntlVariations.BITMASK_GENDER,

@@ -427,7 +427,40 @@ function parseNumber(text: string): ?number {
   );
 }
 
-var intlNumUtils = {
+var intlNumUtils: {|
+  formatNumber: (value: number, decimals?: ?number) => string,
+  formatNumberRaw: (
+    value: any,
+    decimals?: ?number,
+    thousandDelimiter?: string,
+    decimalDelimiter?: string,
+    minDigitsForThousandDelimiter?: number,
+    standardPatternInfo?: StandardDecimalPatternInfo,
+    numberingSystemData?: ?NumberingSystemData,
+  ) => string,
+  formatNumberWithLimitedSigFig: (
+    value: number,
+    decimals: ?number,
+    numSigFigs: number,
+  ) => string,
+  formatNumberWithThousandDelimiters: (
+    value: number,
+    decimals?: ?number,
+  ) => string,
+  getFloatString: (
+    num: string | number,
+    thousandDelimiter: string,
+    decimalDelimiter: string,
+  ) => string,
+  getIntegerString: (num: string | number, thousandDelimiter: string) => string,
+  parseNumber: (text: string) => ?number,
+  parseNumberRaw: (
+    text: string,
+    decimalDelimiter: string,
+    numberDelimiter?: string,
+  ) => ?number,
+  truncateLongNumber: (number: string, decimals?: number) => string,
+|} = {
   formatNumber: formatNumber,
   formatNumberRaw: formatNumberRaw,
   formatNumberWithThousandDelimiters: formatNumberWithThousandDelimiters,

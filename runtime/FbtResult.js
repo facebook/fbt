@@ -26,11 +26,12 @@ type Props = {
 };
 
 class FbtResult extends FbtResultBase {
-  $$typeof = FbtReactUtil.REACT_ELEMENT_TYPE;
+  $$typeof: Symbol | $TEMPORARY$number<0xeac7> =
+    FbtReactUtil.REACT_ELEMENT_TYPE;
   key: ?string = null;
   props: Props;
   ref: ?React$Ref<React$ElementType> = null;
-  type = FbtComponent;
+  type: (props: Props) => mixed = FbtComponent;
 
   constructor(contents: NestedContentItems) {
     super(contents);

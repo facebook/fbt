@@ -306,6 +306,10 @@ fbt._enum = function(value, range) {
  */
 fbt._subject = function(value) {
   return FbtTableAccessor.getGenderResult(
+    /* $FlowFixMe(>=0.86.0 site=www) This comment suppresses an error found
+     * when automatically adding a type annotation with the codemod
+     * Komodo/Annotate_exports. To see the error delete this comment and run
+     * Flow. */
     getGenderVariations(value),
     null,
     value,
@@ -335,6 +339,10 @@ fbt._param = function(label, value, variations) {
           value,
         );
       }
+      /* $FlowFixMe(>=0.86.0 site=www) This comment suppresses an error found
+       * when automatically adding a type annotation with the codemod
+       * Komodo/Annotate_exports. To see the error delete this comment and run
+       * Flow. */
       return FbtTableAccessor.getNumberResult(variation, substitution, number);
     } else if (variations[0] === VARIATIONS.GENDER) {
       invariant(variations.length > 1, 'expected gender value');
