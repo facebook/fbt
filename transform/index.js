@@ -82,6 +82,7 @@ function BabelPluginFbt(babel) {
   return {
     pre() {
       this.opts.fbtSentinel = this.opts.fbtSentinel || '__FBT__';
+      this.opts.fbtBase64 = this.opts.fbtBase64;
       fbtMethodCallVisitors.setEnumManifest(this.opts.fbtEnumManifest);
       initExtraOptions(this);
       initDefaultOptions(this);
@@ -175,7 +176,7 @@ function BabelPluginFbt(babel) {
        *
        * fbt._(
        *   fbtSentinel +
-       *   JSON.strinfigy({
+       *   JSON.stringify({
        *     type: "text",
        *     texts: ["text"],
        *     desc: "desc",
@@ -326,18 +327,18 @@ function BabelPluginFbt(babel) {
           }
         }
 
-        const argsOutput = {
+        const argsOutput = JSON.stringify({
           type: phrase.type,
           jsfbt: phrase.jsfbt,
           desc: phrase.desc,
           project: phrase.project,
-        };
-
+        });
+        const encodedOutput = visitor.opts.fbtBase64
+          ? Buffer.from(argsOutput).toString('base64')
+          : argsOutput;
         const args = [
           t.stringLiteral(
-            visitor.opts.fbtSentinel +
-              JSON.stringify(argsOutput) +
-              visitor.opts.fbtSentinel,
+            visitor.opts.fbtSentinel + encodedOutput + visitor.opts.fbtSentinel,
           ),
         ];
 
