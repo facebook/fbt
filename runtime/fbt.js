@@ -71,9 +71,9 @@ const PRONOUN_USAGE = {
   SUBJECT: 3,
 };
 
-var _cachedFbtResults = {};
+const _cachedFbtResults = {};
 
-var fbt = function() {};
+const fbt = function() {};
 
 /**
  * fbt._() iterates through all indices provided in `args` and accesses
@@ -128,8 +128,8 @@ fbt._ = function(table, args, options) {
   // At this point we assume that table is a hash (possibly nested) that we
   // need to traverse in order to pick the correct string, based on the
   // args that follow.
-  var allSubstitutions = {};
-  var pattern = table;
+  let allSubstitutions = {};
+  let pattern = table;
 
   if (table.__vcg) {
     args = args || [];
@@ -149,8 +149,8 @@ fbt._ = function(table, args, options) {
     invariant(pattern !== null, 'Table access failed');
   }
 
-  var patternString = pattern;
-  var patternHash = null;
+  let patternString = pattern;
+  let patternHash = null;
 
   const csError = isComponentScript()
     ? '\nNote: Certain fbt constructs such as fbt.plural() and the third ' +
@@ -170,15 +170,15 @@ fbt._ = function(table, args, options) {
     patternHash = pattern[1];
     // Append '1_' for appid's prepended to our i18n hash
     // (see intl_get_application_id)
-    var stringID = '1_' + patternHash;
+    const stringID = '1_' + patternHash;
     patternString = overrides[stringID] || patternString;
     if (overrides[stringID]) {
       fbt.logQTImpression(patternHash);
     }
     fbt.logImpression(patternHash);
   }
-  var cachedFbt = _cachedFbtResults[patternString];
-  var hasSubstitutions = this._hasKeys(allSubstitutions);
+  const cachedFbt = _cachedFbtResults[patternString];
+  const hasSubstitutions = this._hasKeys(allSubstitutions);
   if (cachedFbt && !hasSubstitutions) {
     return cachedFbt;
   } else {
@@ -203,7 +203,7 @@ if (__DEV__) {
  */
 
 fbt._hasKeys = function(o) {
-  for (var k in o) {
+  for (const k in o) {
     return true;
   }
   return false;
@@ -266,14 +266,14 @@ fbt._accessTable = function(table, args, argsIndex) {
   } else if (table == null) {
     return null;
   }
-  var pattern = null;
-  var arg = args[argsIndex];
-  var tableIndex = arg[ARG.INDEX];
+  let pattern = null;
+  const arg = args[argsIndex];
+  const tableIndex = arg[ARG.INDEX];
 
   // Do we have a variation? Attempt table access in variation order
   if (Array.isArray(tableIndex)) {
-    for (var k = 0; k < tableIndex.length; ++k) {
-      var subTable = table[tableIndex[k]];
+    for (let k = 0; k < tableIndex.length; ++k) {
+      const subTable = table[tableIndex[k]];
       pattern = this._accessTable(subTable, args, argsIndex + 1);
       if (pattern != null) {
         break;
@@ -326,7 +326,7 @@ fbt._param = function(label, value, variations) {
   const substitution = {[label]: value};
   if (variations) {
     if (variations[0] === VARIATIONS.NUMBER) {
-      var number = variations.length > 1 ? variations[1] : value;
+      const number = variations.length > 1 ? variations[1] : value;
       invariant(typeof number === 'number', 'fbt.param expected number');
 
       variation = getNumberVariations(number);
