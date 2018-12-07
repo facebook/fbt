@@ -25,8 +25,8 @@
 // throw out the baby with the bath water and disable the whole shebang.
 /* eslint fb-www/comma-dangle: "off" */
 
-const {isRequireAlias} = require('../babel-plugin-fb-module/require-check');
 const docblock = require('../util/docblock');
+const {isRequireAlias} = require('../util/require-check');
 const autoWrap = require('./fbt-auto-wrap');
 const fbtMethodCallVisitors = require('./fbt-method-call-visitors');
 const namespacedElementsArgsHandler = require('./fbt-namespaced-args-handler');

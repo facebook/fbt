@@ -11,7 +11,7 @@ const invariant = require('invariant');
 
 const EXACTLY_ONE = '_1';
 
-const VariationResolverImpl = {
+const IntlVariationResolverImpl = {
   EXACTLY_ONE: EXACTLY_ONE,
 
   /**
@@ -43,4 +43,4 @@ const VariationResolverImpl = {
   },
 };
 
-module.exports = VariationResolverImpl;
+module.exports = IntlVariationResolverImpl;

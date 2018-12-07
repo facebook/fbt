@@ -29,9 +29,8 @@ class TranslationData {
   }
 
   // Makes a best effort attempt at finding the default translation.
-  // Fallback to first entry if we can't find such a translation.
   getDefaultTranslation(config) {
-    if (!this._defaultTranslation) {
+    if (this._defaultTranslation === undefined) {
       for (let i = 0; i < this.translations.length; ++i) {
         const trans = this.translations[i];
         let isDefault = true;
@@ -45,7 +44,7 @@ class TranslationData {
           return (this._defaultTranslation = trans.translation);
         }
       }
-      this._defaultTranslation = this.translations[0].translation;
+      this._defaultTranslation = null;
     }
     return this._defaultTranslation;
   }

@@ -9,7 +9,6 @@ const {hasKeys} = require('../FbtUtil');
 const IntlVariations = require('./IntlVariations');
 const TranslationData = require('./TranslationData');
 const invariant = require('fbjs/lib/invariant');
-const memoize = require('lodash/memoize');
 const {EXACTLY_ONE, isValidValue, Mask} = IntlVariations;
 const {FbtSiteMetaEntry} = require('./FbtSite.js');
 
@@ -32,7 +31,7 @@ class TranslationBuilder {
     this._tableOrHash = fbtSite.getTableOrHash();
     this._hasVCGenderVariation = this._findVCGenderVariation();
     this._hasTranslations = this._translationsExist();
-    this._getConstraintMap = memoize(_getConstraintMap);
+    this._getConstraintMap = _getConstraintMap();
     this._inclHash = inclHash;
 
     // If a gender variation exists, add it to our table
@@ -187,7 +186,8 @@ class TranslationBuilder {
       // getDefaultTranslation() method to get the translation (we hope), or use
       // original text if no translation exist.
       const source = this._fbtSite.getHashToText()[hash];
-      const defTranslation = transData.getDefaultTranslation(this._config);
+      const defTranslation =
+        transData && transData.getDefaultTranslation(this._config);
       translation = hasKeys(tokenConstraints)
         ? this.getConstrainedTranslation(hash, tokenConstraints)
         : // If no translation available, use the English source text
@@ -275,8 +275,9 @@ class TranslationBuilder {
 
 /**
  * Populates our variation constraint map.  The map is of all possible
- * variation combinations to the appropriate translation.  For example,
- * JavaScript like:
+ * variation combinations (serialized as a string) to the appropriate
+ * translation.  For example, JavaScript like:
+ *
  *   fbt('Hi ' + fbt.param('user', viewer.name, {gender: viewer.gender}) +
  *       ', would you like to play ' +
  *        fbt.param('count', gameCount, {number: true}) +
@@ -307,9 +308,9 @@ class TranslationBuilder {
  *
  *  Note we have duplicate translations in this map.  As an example, the
  *  following keys map to the same translation
- *    'user%*:count%*'         (default - default)
- *    'user%3:count%*'         (unknown - default)
- *    'user%3:count%805306368' (unknown - plural)
+ *    'user%*:count%*'  (default - default)
+ *    'user%3:count%*'  (unknown - default)
+ *    'user%3:count%24' (unknown - other)
  *
  *  These translations are deduped later in getConstrainedTranslation such
  *  that only the 'user%*:count%*' in our tree is in the JSON map.  i.e.
@@ -325,57 +326,67 @@ class TranslationBuilder {
  *    ...
  *  }
  */
-function _getConstraintMap(
-  hash, // string
-) {
-  // Memoization on a per-hash basis
-  const constraintMap = {};
-  const transData = this._translations[hash];
-  if (!transData) {
-    return constraintMap;
-  }
+function _getConstraintMap() {
+  // Yes this is hand-rolled memoization :(
+  // TODO: T37795723 - Pull in a lightweight (not bloated) memoization library
+  const _mem = {};
 
-  // For every possible variation combination, create a mapping to its
-  // corresponding translation
-  transData.translations.forEach(translation => {
-    const constraints = {};
-    for (const idx in translation.variations) {
-      const variation = translation.variations[idx];
-      // We prune entries that contain non-default variations
-      // for tokens we haven't specified.
-      const token = transData.tokens[idx];
-      if (
-        // Token variation type not specified
-        !this._tokenMasks[token] ||
-        // Translated variation type is different than token variation type
-        this._tokenMasks[token] !== transData.types[idx]
-      ) {
-        // Only add default tokens we haven't specified.
-        if (!this._config.isDefaultVariation(variation)) {
-          return;
+  return function getConstraintMap(
+    hash, // string
+  ) {
+    if (_mem[hash]) {
+      return _mem[hash];
+    }
+
+    const constraintMap = {};
+    const transData = this._translations[hash];
+    if (!transData) {
+      // No translation? No constraints.
+      return (_mem[hash] = constraintMap);
+    }
+
+    // For every possible variation combination, create a mapping to its
+    // corresponding translation
+    transData.translations.forEach(translation => {
+      const constraints = {};
+      for (const idx in translation.variations) {
+        const variation = translation.variations[idx];
+        // We prune entries that contain non-default variations
+        // for tokens we haven't specified.
+        const token = transData.tokens[idx];
+        if (
+          // Token variation type not specified
+          !this._tokenMasks[token] ||
+          // Translated variation type is different than token variation type
+          this._tokenMasks[token] !== transData.types[idx]
+        ) {
+          // Only add default tokens we haven't specified.
+          if (!this._config.isDefaultVariation(variation)) {
+            return;
+          }
         }
+        constraints[token] = variation;
       }
-      constraints[token] = variation;
-    }
-    // A note about fbt:plurals.  They can introduce global token
-    // discrepancies between leaf nodes.  Singular translations don't have
-    // number tokens, but their plural counterparts can (when showCount =
-    // "ifMany" or "yes").  If we are dealing with the singular leaf of an
-    // fbt:plural, since it has a unique hash, we can let it masquerade as
-    // default: '*', since no such variation actually exists for a
-    // non-existent token
-    const constraintKeys = [];
-    for (const k in this._tokenMasks) {
-      constraintKeys.push([k, constraints[k] || '*']);
-    }
-    this._insertConstraint(
-      constraintKeys,
-      constraintMap,
-      translation.translation,
-      0,
-    );
-  });
-  return constraintMap;
+      // A note about fbt:plurals.  They can introduce global token
+      // discrepancies between leaf nodes.  Singular translations don't have
+      // number tokens, but their plural counterparts can (when showCount =
+      // "ifMany" or "yes").  If we are dealing with the singular leaf of an
+      // fbt:plural, since it has a unique hash, we can let it masquerade as
+      // default: '*', since no such variation actually exists for a
+      // non-existent token
+      const constraintKeys = [];
+      for (const k in this._tokenMasks) {
+        constraintKeys.push([k, constraints[k] || '*']);
+      }
+      this._insertConstraint(
+        constraintKeys,
+        constraintMap,
+        translation.translation,
+        0,
+      );
+    });
+    return (_mem[hash] = constraintMap);
+  };
 }
 
 function shouldStore(branch) {
@@ -393,17 +404,18 @@ function buildConstraintKey(
 }
 
 const G = IntlVariations.Gender;
-const _getTypesFromMask = memoize(function(mask) {
+const _numbers = [];
+for (const k in IntlVariations.Number) {
+  _numbers.push(IntlVariations.Number[k]);
+}
+
+const _getTypesFromMask = function(mask) {
   const type = IntlVariations.getType(mask);
   if (type === Mask.NUMBER) {
-    const numbers = [];
-    for (const k in IntlVariations.Number) {
-      numbers.push(IntlVariations.Number[k]);
-    }
-    return numbers;
+    return _numbers;
   } else {
     return [G.MALE, G.FEMALE, G.UNKNOWN];
   }
-});
+};
 
 module.exports = TranslationBuilder;
