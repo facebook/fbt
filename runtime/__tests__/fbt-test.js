@@ -30,10 +30,10 @@ describe('fbt', function() {
     'IntlCLDRNumberType19',
   ).getVariation;
 
-  var ONE = IntlVariations.NUMBER_ONE;
-  var FEW = IntlVariations.NUMBER_FEW;
-  var MALE = IntlVariations.GENDER_MALE;
-  var FEMALE = IntlVariations.GENDER_FEMALE;
+  const ONE = IntlVariations.NUMBER_ONE;
+  const FEW = IntlVariations.NUMBER_FEW;
+  const MALE = IntlVariations.GENDER_MALE;
+  const FEMALE = IntlVariations.GENDER_FEMALE;
 
   it('should memoize new strings', function() {
     expect(fbtRuntime._getCachedFbt('sample string')).toEqual(undefined);
@@ -94,12 +94,12 @@ describe('fbt', function() {
   it('should support objects as token values', function() {
     // We expect that this returns an opaque React fragment instead of an array.
     // We use this to preserve identity of nested React elements.
-    var argument = <div />;
-    var fragment = fbt(
+    const argument = <div />;
+    const fragment = fbt(
       'with token ' + fbt.param('token', argument) + ' here',
       'test',
     );
-    var items = [];
+    const items = [];
     React.Children.forEach(fragment, function(item) {
       items.push(item);
     });
@@ -168,19 +168,19 @@ describe('fbt', function() {
     ).toEqual('A total amount is 10000');
   });
 
-  var container = document.createElement('div');
+  const container = document.createElement('div');
 
   function renderAndExtractChildDivs(component) {
     const node = ReactDOM.findDOMNode(ReactDOM.render(component, container));
     // TODO T21716504: flow thinks ReactDOM.findDOMNode returns Text...
     invariant(node instanceof Element, 'Expected node to be an Element');
-    var resultingElements = node && node.getElementsByTagName('div');
+    const resultingElements = node && node.getElementsByTagName('div');
     return Array.prototype.slice.call(resultingElements, 0);
   }
 
   it('should not warn when unkeyed React components are params', function() {
     jest.spyOn(console, 'warn').mockImplementation(() => {});
-    var nodes = renderAndExtractChildDivs(
+    const nodes = renderAndExtractChildDivs(
       <TestComponent value="A" childA={<div />} childB={<div />} />,
     );
     expect(nodes.length).toBe(2);
@@ -188,10 +188,10 @@ describe('fbt', function() {
   });
 
   function expectChildSetsToRetainIdentity(setA, setB) {
-    var nodesA = renderAndExtractChildDivs(
+    const nodesA = renderAndExtractChildDivs(
       <TestComponent value="A" childA={setA} childB={setB} />,
     );
-    var nodesB = renderAndExtractChildDivs(
+    const nodesB = renderAndExtractChildDivs(
       <TestComponent value="B" childA={setA} childB={setB} />,
     );
 
@@ -237,7 +237,7 @@ describe('fbt', function() {
   });
 
   it('should replace QuickTranslation "trees"', function() {
-    var runtimeArg = {
+    const runtimeArg = {
       s: ['This is a QT with a {param}', 'fakeHash1'],
       p: ['These are QTs with a {param}', 'fakeHash2'],
     };
@@ -304,7 +304,7 @@ describe('fbt', function() {
   });
 
   it('should access table with fallback logic', function() {
-    var table = {
+    const table = {
       __vcg: 1, // viewer-context gender
       '*': {},
     };
@@ -323,15 +323,15 @@ describe('fbt', function() {
     // table[female]['B'][ONE] = fallback to other ^^^
     // table[female]['A'] = fallback to unknown gender ^^^
 
-    var few = fbtRuntime._param('num', 10, [0] /*Variations.NUMBER*/);
-    var other = fbtRuntime._param('num', 20, [0]);
-    var one = fbtRuntime._param('num', 1, [0]);
-    var A = fbtRuntime._enum('A', {A: 'A', B: 'B'});
-    var B = fbtRuntime._enum('B', {A: 'A', B: 'B'});
-    var name = fbtRuntime._param('name', 'Bob');
+    const few = fbtRuntime._param('num', 10, [0] /*Variations.NUMBER*/);
+    const other = fbtRuntime._param('num', 20, [0]);
+    const one = fbtRuntime._param('num', 1, [0]);
+    const A = fbtRuntime._enum('A', {A: 'A', B: 'B'});
+    const B = fbtRuntime._enum('B', {A: 'A', B: 'B'});
+    const name = fbtRuntime._param('name', 'Bob');
 
     // GENDER UNKNOWN
-    var tests = [
+    let tests = [
       {arg: [A, few, name], expected: 'A,UNKNOWN,FEW Bob has 10'},
       {arg: [A, one, name], expected: 'A,UNKNOWN,ONE Bob has 1'},
       {arg: [A, other, name], expected: 'A,UNKNOWN,OTHER Bob has 20'},
@@ -339,7 +339,7 @@ describe('fbt', function() {
       {arg: [B, one, name], expected: 'B,UNKNOWN,ONE Bob has 1'},
       {arg: [B, other, name], expected: 'B,UNKNOWN,OTHER Bob has 20'},
     ];
-    var runTest = function(test) {
+    const runTest = function(test) {
       expect(fbtRuntime._(table, test.arg)).toBe(test.expected);
     };
     tests.forEach(runTest);
