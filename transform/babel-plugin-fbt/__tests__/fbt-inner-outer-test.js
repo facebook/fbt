@@ -13,20 +13,9 @@
  * @format
  */
 
+const {transform} = require('../FbtTestUtil');
 const {transformSync: babelTransform} = require('@babel/core');
 const assert = require('assert');
-
-function transform(source, pluginOptions) {
-  return babelTransform(source, {
-    ast: false,
-    plugins: [
-      require('@babel/plugin-syntax-jsx'),
-      require('@babel/plugin-transform-react-jsx'),
-      [require('../index'), pluginOptions],
-    ],
-    sourceType: 'module',
-  }).code;
-}
 
 function testChildToParentRelationships(testData, expected) {
   const fbt = require('../index');

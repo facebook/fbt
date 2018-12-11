@@ -15,24 +15,8 @@
  */
 
 const testUtil = require('../../util/test-util');
+const {payload, transform} = require('../FbtTestUtil');
 const {transformSync: babelTransform} = require('@babel/core');
-
-function transform(source, pluginOptions) {
-  return babelTransform(source, {
-    ast: false,
-    plugins: [
-      require('@babel/plugin-syntax-jsx'),
-      require('@babel/plugin-transform-react-jsx'),
-      [require('../index'), pluginOptions],
-    ],
-    sourceType: 'module',
-  }).code;
-}
-
-function payload(obj) {
-  obj.project = obj.project || '';
-  return JSON.stringify(`__FBT__${JSON.stringify(obj)}__FBT__`);
-}
 
 const testData = {
   'should auto wrap a simple test with one level': {
