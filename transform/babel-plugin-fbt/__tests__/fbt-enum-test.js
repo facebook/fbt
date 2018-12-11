@@ -22,22 +22,7 @@ const {transformSync: babelTransform} = require('@babel/core');
 
 const testUtils = require('../../util/test-util');
 
-function transform(source, pluginOptions) {
-  return babelTransform(source, {
-    ast: false,
-    plugins: [
-      require('@babel/plugin-syntax-jsx'),
-      require('@babel/plugin-transform-react-jsx'),
-      [require('../index'), pluginOptions],
-    ],
-    sourceType: 'module',
-  }).code;
-}
-
-function payload(obj) {
-  obj.project = obj.project || '';
-  return JSON.stringify(`__FBT__${JSON.stringify(obj)}__FBT__`);
-}
+const {payload, transform} = require('../FbtTestUtil');
 
 function runTest(data) {
   testUtils.assertSourceAstEqual(

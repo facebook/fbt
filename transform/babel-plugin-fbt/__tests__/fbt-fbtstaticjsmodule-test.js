@@ -17,20 +17,8 @@
 jest.autoMockOff();
 
 const testUtils = require('../../util/test-util');
+const {payload, transform} = require('../FbtTestUtil');
 const {transformSync: babelTransform} = require('@babel/core');
-
-function transform(source, pluginOptions) {
-  return babelTransform(source, {
-    ast: false,
-    plugins: [[require('../index'), pluginOptions]],
-    sourceType: 'module',
-  }).code;
-}
-
-function payload(obj) {
-  obj.project = obj.project || '';
-  return JSON.stringify(`__FBT__${JSON.stringify(obj)}__FBT__`);
-}
 
 function runTest(data, extra) {
   var expected = data.output;

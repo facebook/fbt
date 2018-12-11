@@ -20,6 +20,11 @@
 
 const {transformSync} = require('@babel/core');
 
+function payload(obj) {
+  obj.project = obj.project || '';
+  return JSON.stringify(`__FBT__${JSON.stringify(obj)}__FBT__`);
+}
+
 function transform(
   source /*: string */,
   pluginOptions /*: $FlowFixMe */,
@@ -36,5 +41,6 @@ function transform(
 }
 
 module.exports = {
+  payload,
   transform,
 };
