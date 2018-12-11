@@ -19,9 +19,8 @@ const IntlViewerContext = require('IntlViewerContext');
 const NumberFormatConsts = require('NumberFormatConsts');
 const NumberFormatConfig = NumberFormatConsts.get(IntlViewerContext.locale);
 
-var escapeRegex = require('escapeRegex');
+const escapeRegex = require('escapeRegex');
 
-var EXPONENT_PATTERN = /(\d)(\d\d\d)($|\D)/;
 const DEFAULT_GROUPING_SIZE = 3;
 import type {
   StandardDecimalPatternInfo,
@@ -60,7 +59,7 @@ const CURRENCIES_WITH_DOTS = [
   'S/.',
 ];
 
-var _regexCache = {};
+const _regexCache = {};
 function _buildRegex(pattern: string): RegExp {
   if (!_regexCache[pattern]) {
     _regexCache[pattern] = new RegExp(pattern, 'i');
@@ -243,17 +242,17 @@ function formatNumberWithLimitedSigFig(
   numSigFigs: number,
 ): string {
   // First make the number sufficiently integer-like.
-  var power = _getNumberOfPowersOfTen(value);
-  var inflatedValue = value;
+  const power = _getNumberOfPowersOfTen(value);
+  let inflatedValue = value;
   if (power < numSigFigs) {
     inflatedValue = value * Math.pow(10, -power + numSigFigs);
   }
   // Now that we have a large enough integer, round to cut off some digits.
-  var roundTo = Math.pow(
+  const roundTo = Math.pow(
     10,
     _getNumberOfPowersOfTen(inflatedValue) - numSigFigs + 1,
   );
-  var truncatedValue = Math.round(inflatedValue / roundTo) * roundTo;
+  let truncatedValue = Math.round(inflatedValue / roundTo) * roundTo;
   // Bring it back to whatever the number's magnitude was before.
   if (power < numSigFigs) {
     truncatedValue /= Math.pow(10, -power + numSigFigs);
@@ -270,9 +269,9 @@ function formatNumberWithLimitedSigFig(
 }
 
 function _roundNumber(valueParam: number, decimalsParam?: number): string {
-  var decimals = decimalsParam == null ? 0 : decimalsParam;
-  var pow = Math.pow(10, decimals);
-  var value = valueParam;
+  const decimals = decimalsParam == null ? 0 : decimalsParam;
+  const pow = Math.pow(10, decimals);
+  let value = valueParam;
   value = Math.round(value * pow) / pow;
   value += '';
   if (!decimals) {
@@ -286,31 +285,31 @@ function _roundNumber(valueParam: number, decimalsParam?: number): string {
     return value;
   }
 
-  var pos = value.indexOf('.');
-  var zeros = 0;
+  const pos = value.indexOf('.');
+  let zeros = 0;
   if (pos == -1) {
     value += '.';
     zeros = decimals;
   } else {
     zeros = decimals - (value.length - pos - 1);
   }
-  for (var i = 0, l = zeros; i < l; i++) {
+  for (let i = 0, l = zeros; i < l; i++) {
     value += '0';
   }
   return value;
 }
 
-var addZeros = (x, count) => {
-  for (var i = 0; i < count; i++) {
+const addZeros = (x, count) => {
+  for (let i = 0; i < count; i++) {
     x += '0';
   }
   return x;
 };
 
 function truncateLongNumber(number: string, decimals?: number): string {
-  var pos = number.indexOf('.');
-  var dividend = pos === -1 ? number : number.slice(0, pos);
-  var remainder = pos === -1 ? '' : number.slice(pos + 1);
+  const pos = number.indexOf('.');
+  const dividend = pos === -1 ? number : number.slice(0, pos);
+  const remainder = pos === -1 ? '' : number.slice(pos + 1);
 
   return decimals
     ? dividend +
@@ -319,8 +318,8 @@ function truncateLongNumber(number: string, decimals?: number): string {
     : dividend;
 }
 
-var _decimalSeparatorRegexCache = {};
-var decimalSeparatorRegex = separator => {
+const _decimalSeparatorRegexCache = {};
+const decimalSeparatorRegex = separator => {
   if (!_decimalSeparatorRegexCache[separator]) {
     _decimalSeparatorRegexCache[separator] = new RegExp(
       '([^\\/p]|^)' + escapeRegex(separator) + '(\\d*).*',
@@ -361,21 +360,21 @@ function parseNumberRaw(
 
   numberDelimiter = numberDelimiter || '';
 
-  var decimalExp = escapeRegex(decimalDelimiter);
-  var numberExp = escapeRegex(numberDelimiter);
+  const decimalExp = escapeRegex(decimalDelimiter);
+  const numberExp = escapeRegex(numberDelimiter);
 
-  var isThereADecimalSeparatorInBetween = _buildRegex(
+  const isThereADecimalSeparatorInBetween = _buildRegex(
     '^[^\\d]*\\d.*' + decimalExp + '.*\\d[^\\d]*$',
   );
   if (!isThereADecimalSeparatorInBetween.test(text)) {
-    var isValidWithDecimalBeforeHand = _buildRegex(
+    const isValidWithDecimalBeforeHand = _buildRegex(
       '(^[^\\d]*)' + decimalExp + '(\\d*[^\\d]*$)',
     );
     if (isValidWithDecimalBeforeHand.test(text)) {
       text = text.replace(isValidWithDecimalBeforeHand, '$1\u0001$2');
       return _parseCodifiedNumber(text);
     }
-    var isValidWithoutDecimal = _buildRegex(
+    const isValidWithoutDecimal = _buildRegex(
       '^[^\\d]*[\\d ' + escapeRegex(numberExp) + ']*[^\\d]*$',
     );
     if (!isValidWithoutDecimal.test(text)) {
@@ -383,7 +382,7 @@ function parseNumberRaw(
     }
     return _parseCodifiedNumber(text);
   }
-  var isValid = _buildRegex(
+  const isValid = _buildRegex(
     '(^[^\\d]*[\\d ' + numberExp + ']*)' + decimalExp + '(\\d*[^\\d]*$)',
   );
   text = isValid.test(text) ? text.replace(isValid, '$1\u0001$2') : '';
@@ -400,7 +399,7 @@ function _parseCodifiedNumber(text: string): ?number {
     // decimal separator and negative sign
     .replace('\u0001', '.') // restore decimal separator
     .replace('\u0002', '-'); // restore negative sign
-  var value = Number(text);
+  const value = Number(text);
   return text === '' || isNaN(value) ? null : value;
 }
 
@@ -427,7 +426,7 @@ function parseNumber(text: string): ?number {
   );
 }
 
-var intlNumUtils = {
+const intlNumUtils = {
   formatNumber: formatNumber,
   formatNumberRaw: formatNumberRaw,
   formatNumberWithThousandDelimiters: formatNumberWithThousandDelimiters,
@@ -449,10 +448,10 @@ var intlNumUtils = {
     thousandDelimiter: string,
     decimalDelimiter: string,
   ): string {
-    var str = String(num);
-    var pieces = str.split('.');
+    const str = String(num);
+    const pieces = str.split('.');
 
-    var intPart = intlNumUtils.getIntegerString(pieces[0], thousandDelimiter);
+    const intPart = intlNumUtils.getIntegerString(pieces[0], thousandDelimiter);
     if (pieces.length === 1) {
       return intPart;
     }
@@ -476,8 +475,8 @@ var intlNumUtils = {
       thousandDelimiter = ',';
     }
 
-    var str = String(num);
-    var regex = /(\d+)(\d{3})/;
+    let str = String(num);
+    const regex = /(\d+)(\d{3})/;
     while (regex.test(str)) {
       str = str.replace(regex, '$1' + thousandDelimiter + '$2');
     }
