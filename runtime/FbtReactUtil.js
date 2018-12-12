@@ -14,9 +14,10 @@
  * @emails oncall+internationalization
  */
 
-const REACT_ELEMENT_TYPE =
-  (typeof Symbol === 'function' && Symbol.for && Symbol.for('react.element')) ||
-  0xeac7;
+const REACT_ELEMENT_TYPE = ((typeof Symbol === 'function' &&
+  Symbol.for &&
+  Symbol.for('react.element')) ||
+  0xeac7: Symbol | $TEMPORARY$number<0xeac7>);
 
 let canDefineProperty = false;
 if (__DEV__) {
