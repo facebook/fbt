@@ -30,18 +30,17 @@ const IntlViewerContext = require('IntlViewerContext');
  * Regular expression snippet containing all the characters that we
  * count as sentence-final punctuation.
  */
-const PUNCT_CHAR_CLASS =
-  '[.!?' +
-  '\u3002' + // Chinese/Japanese period
-  '\uFF01' + // Fullwidth exclamation point
-  '\uFF1F' + // Fullwidth question mark
-  '\u0964' + // Hindi "full stop"
-  '\u2026' + // Chinese ellipsis
-  '\u0EAF' + // Laotian ellipsis
-  '\u1801' + // Mongolian ellipsis
-  '\u0E2F' + // Thai ellipsis
-  '\uFF0E' + // Fullwidth full stop
-  ']';
+const PUNCT_CHAR_CLASS = ('[.!?' +
+'\u3002' + // Chinese/Japanese period
+'\uFF01' + // Fullwidth exclamation point
+'\uFF1F' + // Fullwidth question mark
+'\u0964' + // Hindi "full stop"
+'\u2026' + // Chinese ellipsis
+'\u0EAF' + // Laotian ellipsis
+'\u1801' + // Mongolian ellipsis
+'\u0E2F' + // Thai ellipsis
+'\uFF0E' + // Fullwidth full stop
+  ']': string);
 
 const ENDS_IN_PUNCT_REGEXP = new RegExp(
   PUNCT_CHAR_CLASS +
