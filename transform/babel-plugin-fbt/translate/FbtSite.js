@@ -37,9 +37,6 @@ class FbtSite {
     this._type = type;
     this._hashToText = hashToText;
     if (hasTableData) {
-      // When deserializing from a call to serialize, these remain the
-      // same.  When creating from a scan (text collection),
-      // _tableOrHash are processed further in fromScan
       this._tableOrHash = tableData.t;
       this._metadata = FbtSiteMetadata.wrap(tableData.m);
     }
@@ -73,22 +70,20 @@ class FbtSite {
   }
 
   // Replaces leaves in our table with corresponding hashes
-  hashifyLeaves(
+  static _hashifyLeaves(
     entry, // Represents a recursive descent into the table
     textToHash, // Reverse mapping of hashToText for leaf lookups
-    key, // Last key in table that led us to `entry`
-    level, // Level i.e. current depth in table (index into metadata)
   ) {
     return typeof entry === 'string'
       ? textToHash[entry]
       : objMap(entry, (branch, key) =>
-          this.hashifyLeaves(branch, textToHash, key, level + 1),
+          FbtSite._hashifyLeaves(branch, textToHash),
         );
   }
 
   /**
-   * From a run of collectFbt using TextPackager.  Note that this is
-   * not the output of serialize
+   * From a run of collectFbt using TextPackager.  NOTE: this is NOT
+   * the output of serialize
    *
    * Relevant keys processed:
    * {
@@ -101,24 +96,28 @@ class FbtSite {
    * }
    */
   static fromScan(json) {
-    const fbtSite = new FbtSite(
-      json.type,
-      json.hashToText,
-      json.jsfbt,
-      json.project,
-    );
+    let tableData = json.jsfbt;
     if (json.type === FbtType.TABLE) {
       const textToHash = {};
       for (const k in json.hashToText) {
-        textToHash[json.hashToText[k]] = k;
+        const text = json.hashToText[k];
+        invariant(
+          textToHash[text] === undefined,
+          "Duplicate texts pointing to different hashes shouldn't be possible",
+        );
+        textToHash[text] = k;
       }
-      fbtSite._tableOrHash = fbtSite.hashifyLeaves(
-        json.jsfbt.t,
-        textToHash,
-        null,
-        0,
-      );
+      tableData = {
+        t: FbtSite._hashifyLeaves(json.jsfbt.t, textToHash),
+        m: json.jsfbt.m,
+      };
     }
+    const fbtSite = new FbtSite(
+      json.type,
+      json.hashToText,
+      tableData,
+      json.project,
+    );
     return fbtSite;
   }
 
