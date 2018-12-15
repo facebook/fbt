@@ -20,7 +20,7 @@ function transform(source, pluginOptions) {
       require('@babel/plugin-syntax-jsx'),
       require('@babel/plugin-transform-react-jsx'),
       [require('../../babel-plugin-fbt/index'), pluginOptions],
-      require('../index'),
+      [require('../index'), pluginOptions],
     ],
     sourceType: 'module',
   }).code;

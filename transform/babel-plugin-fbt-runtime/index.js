@@ -14,11 +14,11 @@
 /* eslint max-len: ["warn", 120] */
 /* jslint node: true */
 
-const fbtHashKey = require('../babel-plugin-fbt/fbt-hash-key');
+const jenkinsHashKey = require('../babel-plugin-fbt/fbt-hash-key');
+const {shiftEnumsToTop} = require('../babel-plugin-fbt/fbt-shift-enums.js');
 const invariant = require('invariant');
 
-const {shiftEnumsToTop} = require('../babel-plugin-fbt/fbt-shift-enums.js');
-
+let fbtHashKey = jenkinsHashKey;
 module.exports = function fbtRuntime(babel) {
   const t = babel.types;
 
@@ -46,6 +46,9 @@ module.exports = function fbtRuntime(babel) {
   return {
     pre() {
       this.opts.fbtSentinel = this.opts.fbtSentinel || '__FBT__';
+      if (this.opts.fbtHashKeyModule) {
+        fbtHashKey = require(this.opts.fbtHashKeyModule);
+      }
     },
 
     name: 'fbt-runtime',
@@ -103,7 +106,11 @@ module.exports = function fbtRuntime(babel) {
           'Expecting options to be the third param',
         );
 
-        const {shiftedJsfbt, enumCount} = shiftEnumsToTop(phrase.jsfbt);
+        let shiftedJsfbt;
+        let enumCount = 0;
+        if (this.opts.reactNativeMode) {
+          ({shiftedJsfbt, enumCount} = shiftEnumsToTop(phrase.jsfbt));
+        }
 
         if (enumCount > 0) {
           path.parentPath.node.arguments.push(

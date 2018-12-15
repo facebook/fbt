@@ -4,7 +4,7 @@
 const IntlVariations = require('IntlVariations');
 
 const IntlViewerContext = {
-  gender: IntlVariations.GENDER_UNKNOWN,
+  GENDER: IntlVariations.GENDER_UNKNOWN,
   locale: 'en_US',
 };
 

@@ -24,6 +24,7 @@ const PhrasePackager = require('./PhrasePackager');
 const TextPackager = require('./TextPackager');
 const fs = require('fs');
 const optimist = require('optimist');
+const path = require('path');
 
 const argv = optimist
   .usage('Collect fbt instances from source:\n$0 [options]')
@@ -98,7 +99,7 @@ function processJsonSource(source) {
     let manifest = {};
     if (fs.existsSync(manifest_path)) {
       // $FlowFixMe
-      manifest = require(manifest_path);
+      manifest = require(path.resolve(process.cwd(), manifest_path));
     }
     fbtCollector.collectFromFiles(json[manifest_path], manifest);
   });

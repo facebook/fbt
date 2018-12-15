@@ -31,10 +31,7 @@ const FbtTableAccessor = require('FbtTableAccessor');
 const FbtResult = require('FbtResult');
 const FbtResultGK = require('FbtResultGK');
 const GenderConst = require('GenderConst');
-const {
-  getTranslatedPayload,
-  isComponentScript,
-} = require('FbtNativeTranslations');
+const {getTranslatedPayload, isComponentScript} = require('FbtTranslations');
 const InlineFbtResult = require('InlineFbtResult');
 const IntlViewerContext = require('IntlViewerContext');
 
