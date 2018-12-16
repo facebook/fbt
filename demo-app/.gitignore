@@ -1,0 +1,7 @@
+.babelrc
+.flowconfig
+node_modules
+output
+source_strings.json
+src/translatedFbts.json
+yarn.lock

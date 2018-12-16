@@ -16,7 +16,7 @@
 
 const jenkinsHashKey = require('../babel-plugin-fbt/fbt-hash-key');
 const {shiftEnumsToTop} = require('../babel-plugin-fbt/fbt-shift-enums.js');
-const invariant = require('invariant');
+const invariant = require('fbjs/lib/invariant');
 
 let fbtHashKey = jenkinsHashKey;
 module.exports = function fbtRuntime(babel) {

@@ -1,0 +1,20 @@
+{
+  "//": "Copyright (c) Facebook, Inc. and its affiliates. All rights reserved.",
+  "name": "fbt",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "@babel/core": "7.2.2",
+    "@babel/node": "7.2.2",
+    "babel-core": "7.0.0-bridge.0",
+    "flow-remove-types": "^1.2.3",
+    "invariant": "^2.2.4"
+  },
+  "dependencies": {
+    "@babel/plugin-transform-runtime": "7.2.0",
+    "babel-plugin-minify-replace": "0.5.0",
+    "fbjs": "1.0.0",
+    "npm": "^6.4.1",
+    "optimist": "^0.6.1"
+  }
+}
