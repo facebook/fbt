@@ -15,6 +15,9 @@ module.exports = {
   },
   mode: process.env.NODE_ENV || 'development',
   resolve: {
+    alias: {
+      invariant: path.resolve(__dirname, 'node_modules/fbjs/lib/invariant.js'),
+    },
     modules: [
       path.resolve(__dirname, 'src'),
       path.resolve(__dirname, 'src/example'),
