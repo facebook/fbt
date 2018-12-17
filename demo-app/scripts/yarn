@@ -1,3 +1,0 @@
-#!/usr/bin/env node
-// Script used by automation to run the checked-in version of Yarn
-require('./bin/yarn-1.12.3.js');
