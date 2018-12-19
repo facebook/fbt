@@ -3,13 +3,13 @@
   "name": "fbt-example",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "UNLICENSED",
+  "license": "BSD-3-Clause",
   "scripts": {
-    "build": "babel-node  ./node_modules/webpack/bin/webpack",
+    "build": "babel-node  ../node_modules/webpack/bin/webpack",
     "collect-fbts": "babel-node ../transform/babel-plugin-fbt/bin/collectFBT --hash-module './tigerTexts.js' --json-input < src-manifest.json > source_strings.json",
     "translate-fbts": "babel-node ../transform/babel-plugin-fbt/bin/translate.js --jenkins < ./translation_input.json > src/translatedFbts.json",
-    "start": "babel-node  ./node_modules/webpack-dev-server/bin/webpack-dev-server --open",
-    "test": "babel-node  ./node_modules/jest/bin/jest --config ./jest.config.json"
+    "start": "babel-node  ../node_modules/webpack-dev-server/bin/webpack-dev-server --open",
+    "test": "babel-node  ../node_modules/jest/bin/jest --config ./jest.config.json"
   },
   "devDependencies": {
     "@babel/core": "7.2.2",

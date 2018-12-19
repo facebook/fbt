@@ -3,6 +3,7 @@
   "name": "fbt",
   "version": "1.0.0",
   "main": "index.js",
+  "license": "BSD-3-Clause",
   "devDependencies": {
     "@babel/core": "7.2.2",
     "@babel/node": "7.2.2",
