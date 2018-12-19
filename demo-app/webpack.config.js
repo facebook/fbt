@@ -1,11 +1,11 @@
 /**
- * Copyright (c) Facebook, Inc. and its affiliates. All rights reserved.
+ * Copyright 2004-present Facebook. All Rights Reserved.
  *
  * @flow
  */
 
-let path = require('path');
-let HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 module.exports = {
   entry: path.join(__dirname, 'src', 'root.js'),
@@ -16,7 +16,10 @@ module.exports = {
   mode: process.env.NODE_ENV || 'development',
   resolve: {
     alias: {
-      invariant: path.resolve(__dirname, '../node_modules/fbjs/lib/invariant.js'),
+      invariant: path.resolve(
+        __dirname,
+        '../node_modules/fbjs/lib/invariant.js'
+      ),
     },
     modules: [
       path.resolve(__dirname, 'src'),
@@ -39,12 +42,12 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           plugins: [
-            ["minify-replace", {
-              "replacements": [{
-                "identifierName": "__DEV__",
-                "replacement": {
-                  "type": "booleanLiteral",
-                  "value": true
+            ['minify-replace', {
+              'replacements': [{
+                'identifierName': '__DEV__',
+                'replacement': {
+                  'type': 'booleanLiteral',
+                  'value': true
                 }
               }]
             }],
@@ -63,8 +66,8 @@ module.exports = {
       {
         test: /\.(css)$/,
         use: [
-          "style-loader",
-          "css-loader"
+          'style-loader',
+          'css-loader'
         ]
       },
       {

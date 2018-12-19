@@ -23,10 +23,10 @@ exports[`Example.react renders the example 1`] = `
     >
       <fieldset>
         <span
-          className="example__row"
+          className="example_row"
         >
           <span
-            className="example__input--30"
+            className="example_input--30"
           >
             <select
               className="neatoSelect"
@@ -58,10 +58,10 @@ exports[`Example.react renders the example 1`] = `
       </fieldset>
       <fieldset>
         <span
-          className="example__row example__row--multi"
+          className="example_row example_row--multi"
         >
           <span
-            className="example__input example__input--40"
+            className="example_input example_input--40"
           >
             <input
               name="name"
@@ -75,12 +75,11 @@ exports[`Example.react renders the example 1`] = `
                   }
                 />
               }
-              tabIndex={1}
               type="text"
             />
           </span>
           <span
-            className="example__input example__input--30"
+            className="example_input example_input--30"
           >
             <input
               name="count"
@@ -94,12 +93,11 @@ exports[`Example.react renders the example 1`] = `
                   }
                 />
               }
-              tabIndex={1}
               type="number"
             />
           </span>
           <span
-            className="example__row"
+            className="example_row"
           >
             <select
               className="neatoSelect"
@@ -131,7 +129,7 @@ exports[`Example.react renders the example 1`] = `
       </fieldset>
       <fieldset>
         <span
-          className="sentence example__row"
+          className="sentence example_row"
         >
           
           <b
@@ -151,10 +149,10 @@ exports[`Example.react renders the example 1`] = `
       </fieldset>
       <fieldset>
         <span
-          className="example__row example__row--multi"
+          className="example_row example_row--multi"
         >
           <span
-            className="example__input example__input--40"
+            className="example_input example_input--40"
           >
             <input
               name="ex2Name"
@@ -168,12 +166,11 @@ exports[`Example.react renders the example 1`] = `
                   }
                 />
               }
-              tabIndex={1}
               type="text"
             />
           </span>
           <span
-            className="example__input example__input--20"
+            className="example_input example_input--20"
           >
             <select
               className="neatoSelect"
@@ -207,7 +204,7 @@ exports[`Example.react renders the example 1`] = `
             </select>
           </span>
           <span
-            className="example__row example__input--20"
+            className="example_row example_input--20"
           >
             <select
               className="neatoSelect"
@@ -249,7 +246,7 @@ exports[`Example.react renders the example 1`] = `
       </fieldset>
       <fieldset>
         <span
-          className="sentence example__row"
+          className="sentence example_row"
         >
           
           <b
@@ -278,11 +275,11 @@ exports[`Example.react renders the example 1`] = `
       </fieldset>
       <fieldset>
         <span
-          className="example__row"
+          className="example_row"
         >
           <button
             className="bottom"
-            tabIndex={1}
+            onClick={[Function]}
             type="submit"
           >
             Try it out!
@@ -305,7 +302,6 @@ exports[`Example.react renders the example 1`] = `
       <a
         href="#fb_HX"
         onClick={[Function]}
-        tabIndex={2}
       >
         l33t 5p34k
       </a>
@@ -316,7 +312,6 @@ exports[`Example.react renders the example 1`] = `
       <a
         href="#es_LA"
         onClick={[Function]}
-        tabIndex={2}
       >
         Español
       </a>
@@ -327,7 +322,6 @@ exports[`Example.react renders the example 1`] = `
       <a
         href="#ar_AR"
         onClick={[Function]}
-        tabIndex={2}
       >
         العربية
       </a>
@@ -338,7 +332,6 @@ exports[`Example.react renders the example 1`] = `
       <a
         href="#he_IL"
         onClick={[Function]}
-        tabIndex={2}
       >
         עברית
       </a>
@@ -349,7 +342,6 @@ exports[`Example.react renders the example 1`] = `
       <a
         href="#ja_JP"
         onClick={[Function]}
-        tabIndex={2}
       >
         日本語
       </a>
