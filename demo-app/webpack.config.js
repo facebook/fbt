@@ -16,7 +16,7 @@ module.exports = {
   mode: process.env.NODE_ENV || 'development',
   resolve: {
     alias: {
-      invariant: path.resolve(__dirname, 'node_modules/fbjs/lib/invariant.js'),
+      invariant: path.resolve(__dirname, '../node_modules/fbjs/lib/invariant.js'),
     },
     modules: [
       path.resolve(__dirname, 'src'),
@@ -26,7 +26,7 @@ module.exports = {
       path.resolve(__dirname, '../runtime/shared/FbtNumber'),
       path.resolve(__dirname, '../runtime/nonfb'),
       path.resolve(__dirname, '../runtime/nonfb/mocks'),
-      'node_modules'
+      '../node_modules'
     ]
   },
   devServer: {
@@ -36,7 +36,6 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
           plugins: [
