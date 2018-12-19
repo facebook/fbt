@@ -1,16 +1,14 @@
 /**
- * Copyright (c) Facebook, Inc. and its affiliates. All rights reserved.
+ * Copyright 2004-present Facebook. All Rights Reserved.
  *
  * @flow strict-local
  */
 
+import './css/root.css';
+import Example from './example/Example.react';
+import 'normalize.css';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-
-import Example from './example/Example.react';
-
-import 'normalize.css';
-import './css/root.css';
 
 const root = document.getElementById('root');
 

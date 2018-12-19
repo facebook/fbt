@@ -1,19 +1,22 @@
 /**
  * Copyright (c) Facebook, Inc. and its affiliates. All rights reserved.
+ * @format
  */
+
+/* stylelint-disable fb-www/use-variables */
 
 .warning {
   background-color: #be4b49;
   border-radius: 2px;
-  box-shadow: 0 0 0 1px rgba(139, 3, 0, .75), 0 1px 10px rgba(0, 0, 0, .35);
+  box-shadow: 0 0 0 1px rgba(139, 3, 0, 0.75), 0 1px 10px rgba(0, 0, 0, 0.35);
   box-sizing: border-box;
   color: #fff;
   display: block;
   font-size: 1.6rem;
   line-height: 1.2;
   margin: 0 0 20px 0;
-  text-align: center;
   padding: 20px;
+  text-align: center;
 }
 
 .example {
@@ -23,7 +26,7 @@
   box-sizing: border-box;
   margin: 0 auto;
   padding: 20px;
-  width: 440px;
+  width: 480px;
 }
 
 .example h1 {
@@ -58,11 +61,9 @@
   outline: none;
 }
 
-.example input[type="number"],
-.example input[type="text"],
-.example input[type="password"] {
-  -webkit-appearance: none;
-  -webkit-border-radius: 0;
+.example input[type='number'],
+.example input[type='text'],
+.example input[type='password'] {
   border: 1px solid #bdc7d8;
   border-radius: 3px;
   box-sizing: border-box;
@@ -78,7 +79,7 @@
   display: none;
 }
 
-.example input[type="radio"] {
+.example input[type='radio'] {
   margin: 0 8px 0 0;
 }
 
@@ -91,7 +92,6 @@
 }
 
 .example select {
-  -webkit-border-radius: 0;
   border: 1px solid #bdc7d8;
   border-radius: 3px;
   box-sizing: border-box;
@@ -123,11 +123,11 @@
   padding: 8px 20px;
   position: relative;
   text-align: center;
-  text-shadow: 0 1px 2px rgba(0,0,0,.5);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .example button:hover {
-  background: linear-gradient(#79bc64, #578843)
+  background: linear-gradient(#79bc64, #578843);
 }
 
 .example button:active {
@@ -163,7 +163,7 @@
   margin: 4px 20px 4px 4px;
 }
 
-.example__row {
+.example_row {
   align-items: flex-start;
   display: flex;
   flex-direction: row;
@@ -173,49 +173,49 @@
 }
 
 .sentence {
-  font-size: 1.5rem;
-  background: linear-gradient(#cccce8, #aaaacc);
-  border-radius: 2px;
-  box-shadow: 0 0 0 1px rgba(139, 3, 0, .75), 0 1px 10px rgba(0, 0, 0, .35);
+  background: linear-gradient(#dddde8, #ccccdd);
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px rgba(139, 3, 0, 0.75), 0 1px 10px rgba(0, 0, 0, 0.35);
   box-sizing: border-box;
-  padding: .2em;
+  font-size: 1.5rem;
+  padding: 0.5em;
   position: relative;
 }
 
-.example__row--multi {
+.example_row--multi {
   justify-content: space-between;
 }
 
-.example__input {
+.example_input {
   display: block;
 }
 
-.example__input--half {
+.example_input--half {
   width: calc(50% - 4px);
 }
 
-.example__input--20 {
+.example_input--20 {
   width: calc(20% - 4px);
 }
 
-.example__input--30 {
+.example_input--30 {
   width: calc(30% - 4px);
 }
 
-.example__input--40 {
+.example_input--40 {
   width: calc(40% - 4px);
 }
 
 .languages {
   border-bottom: 1px solid #dddfe2;
   color: #737373;
-  list-style: none;
-  margin: 24px 0;
-  padding: 0 20px 8px 20px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
+  list-style: none;
+  margin: 24px 0;
+  padding: 0 20px 8px 20px;
   white-space: nowrap;
 }
 
@@ -251,17 +251,17 @@
 
 .neatoLink {
   font-weight: bold;
-  padding-left: .3em;
-  padding-right: .3em;
+  padding-left: 0.3em;
+  padding-right: 0.3em;
 }
 
 .padRight {
-  padding-right: .3em;
+  padding-right: 0.3em;
 }
 
 .pad {
-  padding-left: .3em;
-  padding-right: .3em;
+  padding-left: 0.3em;
+  padding-right: 0.3em;
 }
 
 button.bottom {

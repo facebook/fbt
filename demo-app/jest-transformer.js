@@ -1,4 +1,6 @@
-module.exports = require("babel-jest").createTransformer({
+// Copyright 2004-present Facebook. All Rights Reserved.
+
+module.exports = require('babel-jest').createTransformer({
   plugins:[
     '@babel/plugin-proposal-class-properties',
     '@babel/plugin-proposal-object-rest-spread',

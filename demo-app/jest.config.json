@@ -9,8 +9,8 @@
   "modulePaths": [
     "src",
     "src/example",
-    "../runtime",
-    "../runtime/FbtNumber",
+    "../runtime/shared",
+    "../runtime/shared/FbtNumber",
     "../runtime/nonfb",
     "../runtime/nonfb/mocks",
     "node_modules"
