@@ -22,7 +22,8 @@ module.exports = {
       path.resolve(__dirname, 'src'),
       path.resolve(__dirname, 'src/example'),
       path.resolve(__dirname, '../runtime'),
-      path.resolve(__dirname, '../runtime/FbtNumber'),
+      path.resolve(__dirname, '../runtime/shared'),
+      path.resolve(__dirname, '../runtime/shared/FbtNumber'),
       path.resolve(__dirname, '../runtime/nonfb'),
       path.resolve(__dirname, '../runtime/nonfb/mocks'),
       'node_modules'
