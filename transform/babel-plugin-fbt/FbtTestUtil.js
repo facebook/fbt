@@ -20,7 +20,7 @@
 
 const {transformSync} = require('@babel/core');
 
-function payload(obj) {
+function payload(obj: {project: string}) {
   obj.project = obj.project || '';
   return JSON.stringify(`__FBT__${JSON.stringify(obj)}__FBT__`);
 }
