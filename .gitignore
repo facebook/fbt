@@ -7,4 +7,4 @@ demo-app/yarn.lock
 demo-app/output
 demo-app/source_strings.json
 demo-app/src/translatedFbts.json
-demo-app/node_modules
+demo-app/node_modules/*
