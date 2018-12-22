@@ -1,0 +1,29 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Blog · FBT</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="An internationalization framework"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Blog · FBT"/><meta property="og:type" content="website"/><meta property="og:url" content="https://facebookincubator.github.io/fbt/index.html"/><meta property="og:description" content="An internationalization framework"/><meta property="og:image" content="https://facebookincubator.github.io/fbt/img/fbt.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://facebookincubator.github.io/fbt/img/fbt.png"/><link rel="shortcut icon" href="/fbt/img/favicon_blue.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/fbt/css/main.css"/></head><body class="blog"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/fbt/"><img class="logo" src="/fbt/img/fbt.png" alt="FBT"/><h2 class="headerTitleWithLogo">FBT</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/fbt/docs/getting_started" target="_self">Docs</a></li><li class=""><a href="/fbt/help" target="_self">Help</a></li><li class=""><a href="https://github.com/facebookincubator/fbt" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Recent Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Recent Posts</h3><ul><li class="navListItem"><a class="navItem" href="/fbt/blog/2018/01/03/blog-post">Release</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="posts"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/fbt/blog/2018/01/03/blog-post">Release</a></h1><p class="post-meta">January 3, 2018</p><div class="authorBlock"><p class="post-authorName"><a href="https://github.com/jrwats" target="_blank" rel="noreferrer noopener">John Watson</a></p><div class="authorPhoto"><a href="https://github.com/jrwats" target="_blank" rel="noreferrer noopener"><img src="https://graph.facebook.com/10105763/picture/?height=200&amp;width=200" alt="John Watson"/></a></div></div></header><article class="post-content"><div><span><p>The FBT i18n framework is released!  Go try it!</p>
+</span></div></article></div><div class="docs-prevnext"></div></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/fbt/" class="nav-home"><img src="/fbt/img/fbt.png" alt="FBT" height="50"/></a><div><h5>Docs</h5><a href="/fbt/docs/en/getting_started">Getting Started</a><a href="/fbt/en/help">Help</a><a href="/fbt/docs/en/api_intro">API Reference</a></div><div><h5>Community</h5><a href="/fbt/en/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/fbt" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://fbtjs.slack.com/">Slack Channel</a><a href="https://twitter.com/fbt_js" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/fbt/blog">Blog</a><a href="https://github.com/facebookincubator/fbt">GitHub</a><a class="github-button" href="https://github.com/facebookincubator/fbt" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://code.facebook.com/projects/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/fbt/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2018 Facebook</section></footer></div></body></html>

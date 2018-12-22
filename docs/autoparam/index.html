@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Auto-parameterization · FBT</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;&lt;code&gt;&amp;lt;fbt&amp;gt;&lt;/code&gt; will automatically wrap any non-fbt children in the top-level&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Auto-parameterization · FBT"/><meta property="og:type" content="website"/><meta property="og:url" content="https://facebookincubator.github.io/fbt/index.html"/><meta property="og:description" content="&lt;p&gt;&lt;code&gt;&amp;lt;fbt&amp;gt;&lt;/code&gt; will automatically wrap any non-fbt children in the top-level&lt;/p&gt;
+"/><meta property="og:image" content="https://facebookincubator.github.io/fbt/img/fbt.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://facebookincubator.github.io/fbt/img/fbt.png"/><link rel="shortcut icon" href="/fbt/img/favicon_blue.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/fbt/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/fbt/"><img class="logo" src="/fbt/img/fbt.png" alt="FBT"/><h2 class="headerTitleWithLogo">FBT</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/fbt/docs/getting_started" target="_self">Docs</a></li><li class=""><a href="/fbt/help" target="_self">Help</a></li><li class=""><a href="https://github.com/facebookincubator/fbt" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>API</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting started</h3><ul><li class="navListItem"><a class="navItem" href="/fbt/docs/getting_started">Getting Started</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API</h3><ul><li class="navListItem"><a class="navItem" href="/fbt/docs/api_intro">Introduction</a></li><li class="navListItem"><a class="navItem" href="/fbt/docs/params">Parameters (interpolation)</a></li><li class="navListItem"><a class="navItem" href="/fbt/docs/implicit_params">Implicit parameters</a></li><li class="navListItem"><a class="navItem" href="/fbt/docs/plurals">Plurals</a></li><li class="navListItem"><a class="navItem" href="/fbt/docs/enums">Enumerations</a></li><li class="navListItem"><a class="navItem" href="/fbt/docs/pronouns">Pronouns</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/fbt/docs/autoparam">Auto-parameterization</a></li><li class="navListItem"><a class="navItem" href="/fbt/docs/utilities">Runtime Utilities</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">JS Transforms</h3><ul><li class="navListItem"><a class="navItem" href="/fbt/docs/transform">Babel Transforms</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Collection</h3><ul><li class="navListItem"><a class="navItem" href="/fbt/docs/collection">Extracting translatable texts</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Translating</h3><ul><li class="navListItem"><a class="navItem" href="/fbt/docs/translating">Translating FBTs</a></li><li class="navListItem"><a class="navItem" href="/fbt/docs/standards">On i18n standards</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Auto-parameterization</h1></header><article><div><span><p><code>&lt;fbt&gt;</code> will automatically wrap any non-fbt children in the top-level
+<code>&lt;fbt&gt;</code> as though they were written with an <code>&lt;fbt:param&gt;</code> where it's
+param <code>name</code> is the value of the child texts.  It will pull any child
+text into the parameter name, including those of recursive structures.<br>
+<span style="color:red"> <strong>Note this is inherently not available to
+the <code>fbt(...)</code> API</strong> </span></p>
+<pre><code class="hljs css language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">fbt</span> <span class="hljs-attr">desc</span>=<span class="hljs-string">"auto-wrap example"</span>&gt;</span>
+  Go on an
+  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>awesome<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> vacation
+  <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">fbt</span>&gt;</span>
+</code></pre>
+<p>When extracted for translation, the result is</p>
+<pre><code class="hljs">{
+  <span class="hljs-string">"phrases"</span>: [
+    {
+      <span class="hljs-string">"hashToText"</span>: {
+        <span class="hljs-string">"6b034a8291e7e7a8241fe7b914106066"</span>: <span class="hljs-string">"Go on an {=awesome vacation}"</span>
+      },
+      <span class="hljs-string">"desc"</span>: <span class="hljs-string">"auto-wrap example"</span>,
+      ...,
+    },
+    {
+      <span class="hljs-string">"hashToText"</span>: {
+        <span class="hljs-string">"e9b2d1a9d1ae7961c40dfac907d50d64"</span>: <span class="hljs-string">"{=awesome} vacation"</span>
+      },
+      <span class="hljs-string">"desc"</span>: <span class="hljs-string">"In the phrase: \"</span>Go on an {=awesome vacation}\<span class="hljs-string">""</span>,
+      ...,
+    },
+    {
+      <span class="hljs-string">"hashToText"</span>: {
+        <span class="hljs-string">"63a89a77a42a9681b88086dc938ec5e3"</span>: <span class="hljs-string">"awesome"</span>
+      },
+      <span class="hljs-string">"desc"</span>: <span class="hljs-string">"In the phrase: \"</span>Go on an {=awesome} vacation\<span class="hljs-string">""</span>,
+      ...,
+    }
+  ],
+  <span class="hljs-string">"childParentMappings"</span>: {
+    <span class="hljs-string">"1"</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-string">"2"</span>: <span class="hljs-number">1</span>
+  }
+}
+</code></pre>
+<p>Notice the description for &quot;vacation&quot; is auto-generated with an <code>&quot;In the phrase: ...&quot;</code> prefix.  Additionally we use a convention of an <code>=</code>
+prefix in the interpolation <code>{=awesome vacation}</code> to signal to the
+translator that this exact word or phrase goes in the associated outer
+sentence.</p>
+<p>Furthermore, we provide a mapping <code>{&lt;childIndex&gt;: &lt;parentIndex&gt;}</code> in
+the collection output <code>childParentMappings</code>.  At Facebook, we use
+these to display all relevant inner and outer strings when translating
+any given piece of text.  We recommend you do the same in whatever
+translation framework you use.  Context is crucial for accurate
+translations.</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 12/21/2018 by John Watson</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/fbt/docs/pronouns"><span class="arrow-prev">← </span><span>Pronouns</span></a><a class="docs-next button" href="/fbt/docs/utilities"><span>Runtime Utilities</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/fbt/" class="nav-home"><img src="/fbt/img/fbt.png" alt="FBT" height="50"/></a><div><h5>Docs</h5><a href="/fbt/docs/en/getting_started">Getting Started</a><a href="/fbt/en/help">Help</a><a href="/fbt/docs/en/api_intro">API Reference</a></div><div><h5>Community</h5><a href="/fbt/en/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/fbt" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://fbtjs.slack.com/">Slack Channel</a><a href="https://twitter.com/fbt_js" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/fbt/blog">Blog</a><a href="https://github.com/facebookincubator/fbt">GitHub</a><a class="github-button" href="https://github.com/facebookincubator/fbt" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://code.facebook.com/projects/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/fbt/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2018 Facebook</section></footer></div></body></html>

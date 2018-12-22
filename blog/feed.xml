@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>FBT Blog</title>
+        <link>https://facebookincubator.github.io/fbt/blog</link>
+        <description>The best place to stay up-to-date with the latest FBT news and events.</description>
+        <lastBuildDate>Wed, 03 Jan 2018 06:00:00 GMT</lastBuildDate>
+        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <generator>Feed for Node.js</generator>
+        <image>
+            <title>FBT Blog</title>
+            <url>https://facebookincubator.github.io/fbt/img/fbt.png</url>
+            <link>https://facebookincubator.github.io/fbt/blog</link>
+        </image>
+        <copyright>Copyright © 2018 Facebook</copyright>
+        <item>
+            <title><![CDATA[Release]]></title>
+            <link>https://facebookincubator.github.io/fbt/blog/2018/01/03/blog-post.html</link>
+            <guid>https://facebookincubator.github.io/fbt/blog/2018/01/03/blog-post.html</guid>
+            <pubDate>Wed, 03 Jan 2018 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>The FBT i18n framework is released! Go try it!</p> ]]></description>
+        </item>
+    </channel>
+</rss>
