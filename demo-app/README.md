@@ -7,5 +7,5 @@
 * `yarn build` to generate static files in `./output/`.
   * The commands above are required to run this step
 * `yarn start` to run a local server with hot reloading.
-* `yarn test ./src` to run unit tests.
+* `yarn test` to run unit tests.
 

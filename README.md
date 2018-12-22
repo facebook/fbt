@@ -1,17 +1,16 @@
 # fbt 
-FBT is an internationalization framework designed to be both intuitive and powerful, but also flexible and complete.  It the following problems:
+FBT is an internationalization framework designed to be both intuitive and simple, but also powerful and flexible.  It the following problems:
 * Organizing your source text for translation
-* Composing grammatically correct UI
-* i18n-driven source-code bloat
-* 
+* Composing grammatically correct translatable UI
+* Source-code bloat from generating similarly constructed UI
 
 ## Examples
-[See here](https://github.com/facebook/fbt)
+[See our demo here](https://github.com/facebookincubator/fbtblob/master/demo-app/src/example/Example.react.js)
 
 ## Requirements
-* [node](https://nodejs.org/)
-* [yarn](https://yarnpkg.com/)
-* [babel](https://babeljs.io/)
+* [Node.js](https://nodejs.org/)
+* [Yarn](https://yarnpkg.com/)
+* [Babel](https://babeljs.io/)
 
 ## Building fbt
 ```
@@ -21,7 +20,7 @@ yarn install;
 ```
 
 ## Installing fbt
-We have plans to make the transform and runtime installable as an npm package. Until then,
+We will make the transform and runtime installable as an npm package soon. Until then,
 See how to use the source directly with Babel and Webpack in our demo-app:
 
 ```
@@ -34,7 +33,7 @@ yarn start;
 ```
 
 ## How FBT works
-FBT works by transforming your `<fbt>` and `fbt(...)` constructs in
+FBT works by transforming your `<fbt>` and `fbt(...)` constructs via
 Babel plugins.  These plugins serve to extract strings from source and
 lookup translate payloads generated at build-time.  FBT creates tables
 of all possible variations for the given fbt phrase and accesses this
@@ -44,9 +43,10 @@ at runtime
 https://facebook.github.io/fbt
 
 ## Join the fbt community
-* Website: https://facebook.github.io/fbt
-* Facebook page: m.me/sjtbf
-* Slack: https://fbtjs.slack.com
+* [Website](https://facebook.github.io/fbt)
+* [Facebook group](https://www.facebook.com/groups/498204277369868)
+* [Slack Channel](https://fbtjs.slack.com)
+* [Twitter](https://twitter.com/fbt_js)
 See the CONTRIBUTING file for how to help out.
 
 ## License
