@@ -1,10 +1,10 @@
 node_modules/*
-yarn.lock
 yarn-error.log
 
-demo-app/yarn-error.log
-demo-app/yarn.lock
+demo-app/.enum_manifest.json
+demo-app/.src_manifest.json
+demo-app/node_modules/*
 demo-app/output
 demo-app/source_strings.json
 demo-app/src/translatedFbts.json
-demo-app/node_modules/*
+demo-app/yarn-error.log

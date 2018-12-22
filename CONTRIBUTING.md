@@ -1,4 +1,4 @@
-# Contributing to **fbt**x
+# Contributing to **fbt**
 We want to make contributing to this project as easy and transparent as
 possible.
 
