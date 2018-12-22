@@ -22,8 +22,8 @@ const GITHUB = 'https://github.com/facebookincubator/fbt'
 const siteConfig = {
   title: 'FBT',
   tagline: 'An internationalization framework',
-  url: 'https://github.com/facebookincbuator',
-  baseUrl: '/', // Base URL for your project */
+  url: 'https://facebook.github.io',
+  baseUrl: '/fbt/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   // url: 'https://facebook.github.io',
   // baseUrl: '/fbt/',
