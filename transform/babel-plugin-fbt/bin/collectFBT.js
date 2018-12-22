@@ -67,8 +67,8 @@ const argv = optimist
   .boolean('json-input')
   .describe(
     'json-input',
-    'Interpret stdin as JSON expect a "files" array and optional' +
-      ' "projects" map. Otherwise stdin itself will be parsed',
+    'Interpret stdin as JSON map of {<enum-manifest-file>: ' +
+      '[<source_file1>, ...]}. Otherwise STDIN itself will be parsed',
   )
   .string('options')
   .describe(

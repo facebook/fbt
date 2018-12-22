@@ -4,6 +4,11 @@
 
 /**
  * JS-specific i18n hash that mimics FB php internals.
+ *
+ * !!!!!! NOTE !!!!!!
+ * This is not valid PHP. It requires hhvm to run it and the the custom
+ * `tiger128,3-fb` hash algorithm
+ *
  * @emails oncall+internationalization
  */
 function intl_js_hash_babel7(

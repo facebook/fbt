@@ -13,7 +13,7 @@
 }
 
 .fixedHeaderContainer header img {
-  height: 48px;
+  height: 42px;
 }
 
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
