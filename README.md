@@ -47,6 +47,7 @@ https://facebook.github.io/fbt
 * [Facebook group](https://www.facebook.com/groups/498204277369868)
 * [Slack Channel](https://fbtjs.slack.com)
 * [Twitter](https://twitter.com/fbt_js)
+
 See the CONTRIBUTING file for how to help out.
 
 ## License
