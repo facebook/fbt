@@ -8,3 +8,5 @@ demo-app/output
 demo-app/source_strings.json
 demo-app/src/translatedFbts.json
 demo-app/yarn-error.log
+website/build/
+website/node_modules/
