@@ -40,11 +40,11 @@ of all possible variations for the given fbt phrase and accesses this
 at runtime
 
 ## Full documentation
-https://facebook.github.io/fbt
+https://facebookincubator.github.io/fbt
 
 ## Join the fbt community
-* [Website](https://facebook.github.io/fbt)
-* [Facebook group](https://www.facebook.com/groups/498204277369868)
+* [Website](https://facebookincubator.github.io/fbt)
+* [Facebook group](https://www.facebookincubator.com/groups/498204277369868)
 * [Slack Channel](https://fbtjs.slack.com)
 * [Twitter](https://twitter.com/fbt_js)
 
