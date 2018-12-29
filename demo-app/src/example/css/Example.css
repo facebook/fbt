@@ -259,6 +259,10 @@
   padding-right: 0.3em;
 }
 
+.rtl .padRight {
+  padding-left: 0.3em;
+}
+
 .pad {
   padding-left: 0.3em;
   padding-right: 0.3em;

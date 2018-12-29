@@ -310,7 +310,7 @@ export default class Example extends React.Component<Props, State> {
                   className="bottom"
                   type="submit"
                   onClick={e => {
-                    window.open('https://github.com/facebook/fbt', '_blank');
+                    window.open('https://github.com/facebookincubator/fbt', '_blank');
                   }}>
                   {fbt('Try it out!', 'Sign up button')}
                 </button>
