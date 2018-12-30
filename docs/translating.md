@@ -10,7 +10,7 @@ alongside the relevant translations for a given locale.
 
 In addition to the below example, the `translation_input.json`
 provided in our [GitHub demo
-app](https://github.com/facebook/fbt/blob/master/demo-app/translation_input.json)
+app](https://github.com/facebookincubator/fbt/blob/master/demo-app/translation_input.json)
 is a good reference on the "schema" used for the translations.
 
 ```js
