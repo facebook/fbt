@@ -14,7 +14,7 @@ FBT is an internationalization framework designed to be both intuitive and simpl
 
 ## Building fbt
 ```
-git clone git@github.com:facebook/fbt.git;
+git clone git@github.com:facebookincubator/fbt.git;
 cd fbt;
 yarn install;
 ```
