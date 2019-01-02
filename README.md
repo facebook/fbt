@@ -1,4 +1,4 @@
-# fbt 
+# FBT 
 FBT is an internationalization framework designed to be both intuitive and simple, but also powerful and flexible.  It the following problems:
 * Organizing your source text for translation
 * Composing grammatically correct translatable UI
@@ -44,7 +44,7 @@ https://facebookincubator.github.io/fbt
 
 ## Join the fbt community
 * [Website](https://facebookincubator.github.io/fbt)
-* [Facebook group](https://www.facebookincubator.com/groups/498204277369868)
+* [Facebook group](https://www.facebook.com/groups/498204277369868)
 * [Slack Channel](https://fbtjs.slack.com)
 * [Twitter](https://twitter.com/fbt_js)
 
