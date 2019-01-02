@@ -8,22 +8,24 @@
 // See https://docusaurus.io/docs/site-config for all the possible
 // site configuration options.
 
+const BASE_URL = '/fbt/'; // Base URL for project
+const GITHUB = 'https://github.com/facebookincubator/fbt';
+
 // List of projects/orgs using your project for the users page.
 const users = [
   {
     caption: 'Facebook',
-    image: '/img/flogo_RGB_HEX-72.svg',
+    image: BASE_URL + 'img/flogo_RGB_HEX-72.svg',
     infoLink: 'https://www.facebook.com',
     pinned: true,
   },
 ];
-const GITHUB = 'https://github.com/facebookincubator/fbt'
 
 const siteConfig = {
   title: 'FBT',
   tagline: 'An internationalization framework',
   url: 'https://facebookincubator.github.io',
-  baseUrl: '/fbt/', // Base URL for your project */
+  baseUrl: BASE_URL,
   // For github.io type URLs, you would set the url and baseUrl like:
   // url: 'https://facebook.github.io',
   // baseUrl: '/fbt/',
