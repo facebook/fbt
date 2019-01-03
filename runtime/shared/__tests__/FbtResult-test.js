@@ -10,26 +10,15 @@
  *   js1 upgrade www-shared -p fbt --remote localhost:~/www
  *
  * @format
- * @emails i18n-tests@fb.com
+ * @emails oncall+internationalization
  */
 
 jest.disableAutomock();
 console.error = jest.fn();
 
-var FbtResult = require('FbtResult');
-var React = require('React');
-var ReactTestUtils = require('ReactTestUtils');
+const FbtResult = require('FbtResult');
 
 describe('FbtResult', function() {
-  it('Behaves like a React element & works w/ React rendering', function() {
-    var result = new FbtResult(['hippopotamus']);
-    expect(React.isValidElement(result)).toBe(true);
-    expect(result.toString()).toBe('hippopotamus');
-
-    var div = ReactTestUtils.renderIntoDocument(<div>{result}</div>);
-    expect(div.textContent).toBe('hippopotamus');
-  });
-
   it('can be flattened into array', function() {
     var obj1 = new FbtResult(['prefix']);
 
@@ -58,5 +47,12 @@ describe('FbtResult', function() {
     expect(console.error.mock.calls.length).toBe(1);
     expect(result.slice(1, 3)).toBe('om');
     expect(console.error.mock.calls.length).toBe(2);
+  });
+
+  it('does not invoke onStringSerializationError() when being serialized with valid-FBT contents', function() {
+    const result = new FbtResult(['hello', new FbtResult('world')]);
+    result.onStringSerializationError = jest.fn();
+    result.toString();
+    expect(result.onStringSerializationError).not.toHaveBeenCalled();
   });
 });

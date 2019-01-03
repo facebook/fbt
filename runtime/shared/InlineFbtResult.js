@@ -6,10 +6,10 @@
  * @emails oncall+internationalization
  */
 
-import type {NestedContentItems} from 'FbtResultBase';
+import type {NestedFbtContentItems} from 'FbtResultBase';
 
 const FbtReactUtil = require('FbtReactUtil');
-const FbtResultBase = require('FbtResultBase');
+const FbtResultBaseImpl = require('FbtResultBaseImpl');
 
 const cx = require('cx');
 
@@ -53,13 +53,13 @@ const InlineFbtComponent = (props: Props): mixed =>
   em(props.content, props.inlineMode, props.translation, props.hash);
 
 type Props = {
-  content: NestedContentItems,
+  content: NestedFbtContentItems,
   inlineMode: boolean,
   translation: string,
   hash: ?string,
 };
 
-class InlineFbtResult extends FbtResultBase {
+class InlineFbtResult extends FbtResultBaseImpl {
   $$typeof: Symbol | $TEMPORARY$number<0xeac7> =
     FbtReactUtil.REACT_ELEMENT_TYPE;
   key: ?string = null;
@@ -68,7 +68,7 @@ class InlineFbtResult extends FbtResultBase {
   type: (props: Props) => mixed = InlineFbtComponent;
 
   constructor(
-    contents: NestedContentItems,
+    contents: NestedFbtContentItems,
     inlineMode: boolean,
     translation: string,
     hash: ?string,

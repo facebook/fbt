@@ -14,18 +14,18 @@
  * @emails oncall+internationalization
  */
 
-import type {NestedContentItems} from 'FbtResultBase';
+import type {NestedFbtContentItems} from 'FbtResultBase';
 
 const FbtReactUtil = require('FbtReactUtil');
-const FbtResultBase = require('FbtResultBase');
+const FbtResultBaseImpl = require('FbtResultBaseImpl');
 
 const FbtComponent = (props: Props): mixed => props.content;
 
 type Props = {
-  content: NestedContentItems,
+  content: NestedFbtContentItems,
 };
 
-class FbtResult extends FbtResultBase {
+class FbtResult extends FbtResultBaseImpl {
   $$typeof: Symbol | $TEMPORARY$number<0xeac7> =
     FbtReactUtil.REACT_ELEMENT_TYPE;
   key: ?string = null;
@@ -33,7 +33,7 @@ class FbtResult extends FbtResultBase {
   ref: ?React$Ref<React$ElementType> = null;
   type: (props: Props) => mixed = FbtComponent;
 
-  constructor(contents: NestedContentItems) {
+  constructor(contents: NestedFbtContentItems) {
     super(contents);
     /* eslint-disable fb-www/react-state-props-mutation */
     this.props = {

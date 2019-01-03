@@ -9,46 +9,38 @@
  * Run the following command to sync the change from www to fbsource.
  *   js1 upgrade www-shared -p fbt --remote localhost:~/www
  *
- * @flow
  * @format
+ * @flow
  * @emails oncall+internationalization
  */
 
 'use strict';
 
+const invariant = require('invariant');
+
 // Similar to React$Node without `Iterable<React$Node>`
-type ContentItem =
+export type FbtContentItem =
   | boolean
   | FbtElement
   | FbtPureStringResult
   | FbtString
   | null
   | number
+  // $FlowFixMe It's ok to get any React element
   | React$Element<any>
   | React$Portal
   | string
   | void;
-export type NestedContentItems = Array<ContentItem | NestedContentItems>;
 
-const FBLogger = require('FBLogger');
+export type NestedFbtContentItems = Array<
+  FbtContentItem | NestedFbtContentItems,
+>;
 
-const killswitch = require('killswitch');
+let hasImplementedStringishMethods = false;
 
-function logErrorUseStringMethod(methodName: string): void {
-  // If the contents is array of length greater than one, then use the string
-  // method will cause error
-  FBLogger('fbt')
-    .blameToPreviousFile()
-    .mustfix(
-      'Error using fbt string. Used method %s' +
-        ' on Fbt string. Fbt string is designed to be immutable ' +
-        'and should not be manipulated.',
-      methodName,
-    );
-}
-
-class FbtResultBaseImpl implements IFbtResultBase {
-  _contents: NestedContentItems;
+// Named _FbtResultBase to avoid colliding with `FbtResultBase` class definition in Flow
+class _FbtResultBase implements IFbtResultBase {
+  _contents: NestedFbtContentItems;
   _stringValue: ?string;
 
   // Declare that we'll implement these methods
@@ -92,17 +84,25 @@ class FbtResultBaseImpl implements IFbtResultBase {
   trimLeft: $PropertyType<IFbtResultBase, 'trimLeft'>;
   trimRight: $PropertyType<IFbtResultBase, 'trimRight'>;
 
-  constructor(contents: NestedContentItems) {
+  constructor(contents: NestedFbtContentItems) {
+    invariant(
+      hasImplementedStringishMethods,
+      'Stringish methods must be implemented. See `usingStringProxyMethod`.',
+    );
     this._contents = contents;
     this._stringValue = null;
   }
 
-  flattenToArray(): Array<ContentItem> {
-    return FbtResultBaseImpl.flattenToArray(this._contents);
+  flattenToArray(): Array<FbtContentItem> {
+    return _FbtResultBase.flattenToArray(this._contents);
   }
 
   getContents() {
     return this._contents;
+  }
+
+  onStringSerializationError(content: FbtContentItem): void {
+    throw new Error('This method needs to be overridden by a child class');
   }
 
   toString(): string {
@@ -113,24 +113,10 @@ class FbtResultBaseImpl implements IFbtResultBase {
     const contents = this.flattenToArray();
     for (let ii = 0; ii < contents.length; ++ii) {
       const content = contents[ii];
-      if (typeof content === 'string' || content instanceof FbtResultBaseImpl) {
+      if (typeof content === 'string' || content instanceof _FbtResultBase) {
         stringValue += content.toString();
       } else {
-        let details = 'Context not logged.';
-        if (!killswitch('JS_RELIABILITY_FBT_LOGGING')) {
-          try {
-            details = JSON.stringify(content).substr(0, 250);
-          } catch (err) {
-            // Catching circular reference error
-            details = err.message;
-          }
-        }
-        FBLogger('fbt')
-          .blameToPreviousFile()
-          .mustfix(
-            'Converting to a string will drop content data. %s',
-            details,
-          );
+        this.onStringSerializationError(content);
       }
     }
     if (!Object.isFrozen(this)) {
@@ -143,13 +129,15 @@ class FbtResultBaseImpl implements IFbtResultBase {
     return this.toString();
   }
 
-  static flattenToArray(contents: NestedContentItems): Array<ContentItem> {
+  static flattenToArray(
+    contents: NestedFbtContentItems,
+  ): Array<FbtContentItem> {
     const result = [];
     for (let ii = 0; ii < contents.length; ++ii) {
       const content = contents[ii];
       if (Array.isArray(content)) {
-        result.push.apply(result, FbtResultBaseImpl.flattenToArray(content));
-      } else if (content instanceof FbtResultBaseImpl) {
+        result.push.apply(result, _FbtResultBase.flattenToArray(content));
+      } else if (content instanceof _FbtResultBase) {
         result.push.apply(result, content.flattenToArray());
       } else {
         result.push(content);
@@ -157,60 +145,65 @@ class FbtResultBaseImpl implements IFbtResultBase {
     }
     return result;
   }
+
+  static usingStringProxyMethod(
+    // $FlowFixMe We can't easily map the string method name to its corresponding signature
+    stringProxyFn: (stringMethodName: $Keys<IFbtStringish>) => Function,
+  ): Class<_FbtResultBase> {
+    const currentClass = this;
+    // Warning: The following methods are only appplicable during the transition
+    // period for some existing code that uses string method on Fbt string.
+    // The fbt string should be considered as the final string to be displayed
+    // and therefore should not be manipulated.
+    // The following methods are expected not to be supported soon.
+    [
+      'anchor',
+      'big',
+      'blink',
+      'bold',
+      'charAt',
+      'charCodeAt',
+      'codePointAt',
+      'contains',
+      'endsWith',
+      'fixed',
+      'fontcolor',
+      'fontsize',
+      'includes',
+      'indexOf',
+      'italics',
+      'lastIndexOf',
+      'link',
+      'localeCompare',
+      'match',
+      'normalize',
+      'repeat',
+      'replace',
+      'search',
+      'slice',
+      'small',
+      'split',
+      'startsWith',
+      'strike',
+      'sub',
+      'substr',
+      'substring',
+      'sup',
+      'toLocaleLowerCase',
+      'toLocaleUpperCase',
+      'toLowerCase',
+      'toUpperCase',
+      'trim',
+      'trimLeft',
+      'trimRight',
+    ].forEach(methodName => {
+      /* eslint-disable fb-www/should-use-class */
+      // $FlowFixMe Mock stringish methods
+      currentClass.prototype[methodName] = stringProxyFn(methodName);
+    });
+    hasImplementedStringishMethods = true;
+    return currentClass;
+  }
 }
 
-// Warning: The following methods are only appplicable during the transition
-// period for some existing code that uses string method on Fbt string.
-// The fbt string should be considered as the final string to be displayed
-// and therefore should not be manipulated.
-// The following methods are expected not to be supported soon.
-[
-  'anchor',
-  'big',
-  'blink',
-  'bold',
-  'charAt',
-  'charCodeAt',
-  'codePointAt',
-  'contains',
-  'endsWith',
-  'fixed',
-  'fontcolor',
-  'fontsize',
-  'includes',
-  'indexOf',
-  'italics',
-  'lastIndexOf',
-  'link',
-  'localeCompare',
-  'match',
-  'normalize',
-  'repeat',
-  'replace',
-  'search',
-  'slice',
-  'small',
-  'split',
-  'startsWith',
-  'strike',
-  'sub',
-  'substr',
-  'substring',
-  'sup',
-  'toLocaleLowerCase',
-  'toLocaleUpperCase',
-  'toLowerCase',
-  'toUpperCase',
-  'trim',
-  'trimLeft',
-  'trimRight',
-].forEach(methodName => {
-  /* eslint-disable fb-www/should-use-class */
-  // $FlowFixMe Mock stringish methods
-  FbtResultBaseImpl.prototype[methodName] = function() {
-    logErrorUseStringMethod(methodName);
-    return this.toString()[methodName].apply(this, arguments);
-  };
-});
-
-module.exports = ((FbtResultBaseImpl: $FlowFixMe): Class<FbtResultBase>);
+module.exports = ((_FbtResultBase: $FlowFixMe): Class<FbtResultBase>);
