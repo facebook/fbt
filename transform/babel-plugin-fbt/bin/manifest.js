@@ -73,7 +73,7 @@ const lines = newlined =>
 
 // Find enum files
 const enumFiles = lines(
-  execSync("find -type f -iname '*$FbtEnum.js'", {
+  execSync("find . -type f -iname '*$FbtEnum.js'", {
     cwd: argv.src,
   }),
 );
