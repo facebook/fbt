@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -164,7 +164,7 @@ const Description = () => (
   <Block background="dark">
     {[
       {
-        content: "FBT is a framework for internationalizing  user interfaces.  It is designed to be not only powerful and flexible, but also simple and intuitive.  Getting grammatically correct translated texts in dynamic applications is hard.  Let FBT do the hard work for you.",
+        content: "FBT is a framework for internationalizing user interfaces.  It is designed to be not only powerful and flexible, but also simple and intuitive.  Getting grammatically correct translated texts in dynamic applications is hard.  Let FBT do the hard work for you.",
         image: imgUrl('fbt.png'),
         imageAlign: 'right',
         title: "Why FBT?",
