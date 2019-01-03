@@ -14,9 +14,9 @@ FBT is an internationalization framework designed to be both powerful and flexib
 
 ## Building fbt
 ```
-git clone git@github.com:facebookincubator/fbt.git;
-cd fbt;
-yarn install;
+git clone https://github.com/facebookincubator/fbt
+cd fbt
+yarn install
 ```
 
 ## Installing fbt
@@ -24,12 +24,12 @@ We will make the transform and runtime installable as an npm package soon. Until
 See how to use the source directly with Babel and Webpack in our demo-app:
 
 ```
-cd demo-app; # from fbt repo
-yarn install;
-yarn manifest;
-yarn collect-fbts;
-yarn translate-fbts;
-yarn start;
+cd demo-app # from fbt repo
+yarn install
+yarn manifest
+yarn collect-fbts
+yarn translate-fbts
+yarn start
 ```
 
 ## How FBT works
