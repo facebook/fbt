@@ -31,7 +31,7 @@ Turn this off by setting this to `true`
 ## "Vanilla" `fbt(...)` API
 
 ```js
-fbt('Hello, World, 'a simple example', {project:"foo"})
+fbt('Hello, World', 'a simple example', {project:"foo"})
 ```
 #### Required arguments
 1. Text to translate
