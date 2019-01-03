@@ -5,7 +5,7 @@ FBT is an internationalization framework designed to be both powerful and flexib
 * Source-code bloat from generating similarly constructed UI
 
 ## Examples
-[See our demo here](https://github.com/facebookincubator/fbt/blob/master/demo-app/src/example/Example.react.js)
+[See our demo here](demo-app/src/example/Example.react.js)
 
 ## Requirements
 * [Node.js](https://nodejs.org/)
@@ -48,7 +48,7 @@ https://facebookincubator.github.io/fbt
 * [Slack Channel](https://fbtjs.slack.com)
 * [Twitter](https://twitter.com/fbt_js)
 
-See the CONTRIBUTING file for how to help out.
+See the [CONTRIBUTING](CONTRIBUTING.md) file for how to help out.
 
 ## License
-FBT is MIT licensed, as found in the LICENSE file.
+FBT is MIT licensed, as found in the [LICENSE](LICENSE) file.
