@@ -108,7 +108,7 @@ const Features = () => (
       {
         content: 'Compose translatable text inline with your source: <br />' +
           '<MarkdownBlock>\n```\n' +
-          '<a href="#"><fbt desc="eg">text</fbt></a>\n' +
+          '<button><fbt desc="eg">text</fbt></button>\n' +
           '```\n</MarkdownBlock>\n',
         title: 'Inlined translatable text',
       },
@@ -127,7 +127,7 @@ const Features = () => (
       {
         content: 'Easily pull translations into your app' +
           '<MarkdownBlock>\n```\n' +
-          '<a href="#">szöveg</a>\n' +
+          '<button>szöveg</button>\n' +
           '```\n</MarkdownBlock>\n',
         title: 'Integrated translations',
       },
