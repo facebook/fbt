@@ -164,7 +164,7 @@ const Description = () => (
   <Block background="dark">
     {[
       {
-        content: "FBT is a framework for internationalizing  user interfaces.  It is designed to be not only powerful and complete, but also simple and intuitive.  Getting grammatically correct translated texts in dynamic applications is hard.  Let FBT do the hard work for you.",
+        content: "FBT is a framework for internationalizing  user interfaces.  It is designed to be not only powerful and flexible, but also simple and intuitive.  Getting grammatically correct translated texts in dynamic applications is hard.  Let FBT do the hard work for you.",
         image: imgUrl('fbt.png'),
         imageAlign: 'right',
         title: "Why FBT?",
