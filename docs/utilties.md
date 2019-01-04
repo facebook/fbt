@@ -43,6 +43,6 @@ You can override this behavior in `fbt:param` by setting the
 string in the replacement.
 
 You can override this in `fbt.plural` [by providing the `value`
-option](http://localhost:3000/docs/plurals#optional-arguments)
+option](plurals#optional-arguments)
 
 
