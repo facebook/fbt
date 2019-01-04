@@ -5,8 +5,8 @@ sidebar_label: Auto-parameterization
 ---
 
 `<fbt>` will automatically wrap any non-fbt children in the top-level
-`<fbt>` as though they were written with an `<fbt:param>` where it's
-param `name` is the value of the child texts.  It will pull any child
+`<fbt>` as though they were written with an `<fbt:param>` with a
+`name` attribute containing the child's text.  It will pull any child
 text into the parameter name, including those of recursive structures.   
 <span style="color:red"> **Note this is inherently not available to
 the `fbt(...)` API** </span>
