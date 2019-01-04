@@ -4,7 +4,7 @@ title: Runtime Utilities
 sidebar_label: Runtime Utilities
 ---
 
-Bundled with fbt comes a few useful utilites for constructing strings.
+Bundled with fbt come a few useful utilites for constructing strings.
 ### intlList(...)
 `intlList` creates `fbt` instances with selectable conjunctions given an array.
 
@@ -29,20 +29,20 @@ produces the fbt
   <fbt:param name="following items">{items[i]}</fbt:param>
 </fbt>
 ```
-recursively combining fbt's.  
+recursively combining fbts.  
 **Note that genders are not used in this `fbt:param` instances, so they default to `UNKNOWN`**
 
 ### intlNumUtils and intlSummarizeNumber
 There are a few utilities in both `intlNumUtils` and
-`intlSummarizeNumber` that are documented in source.
+`intlSummarizeNumber` that are documented in the source.
 
 In fact `fbt.param` and `fbt.plural` default to displaying numbers
 using `intlNumUtils.formatNumberWithThousandDelimiters`.   
-You can override this behavior by in `fbt:param` by setting the
+You can override this behavior in `fbt:param` by setting the
 [number option](params#optional-attributes) and using your own
 string in the replacement.
 
-You can ovveride this in `fbt.plural` [by providing the `value`
+You can override this in `fbt.plural` [by providing the `value`
 option](http://localhost:3000/docs/plurals#optional-arguments)
 
 
