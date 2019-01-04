@@ -12,7 +12,7 @@ As an example
 ```js
 const intlList = require('intlList');
 const CONJUNCTIONS = intlList.CONJUNCTIONS;
-const DELIMTER = intlList.DELIMITER;
+const DELIMITER = intlList.DELIMITER;
 let people = ['Adam', 'Becky', fbt('4 others', 'last item')]
 intlList(people, CONJUNCTIONS.AND, DELIMITER.COMMA);
 ```
