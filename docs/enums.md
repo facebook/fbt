@@ -88,7 +88,7 @@ const Example$FbtEnum = {
 // Demo.react.js
 const ExampleEnum = require('ExampleEnum');
 <fbt desc="Example enum">
-  <fbt:param name="name">this.state.ex2Name</fbt:param>
+  <fbt:param name="name">{this.state.ex2Name}</fbt:param>
   has a
   <fbt:enum
     enum-range={ExampleEnum}
