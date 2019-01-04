@@ -61,7 +61,7 @@ Both the above examples generate the following during [collection](collection).
 #### Optional arguments:
 * **many** `string`: Represents the plural form of the string in English.  Default is `{singular} + 's'`
 * **showCount** `"yes"|"no"|"ifMany"`: Whether to show the `{number}` in the string.   
-*Note that the singular phrase never has a token, but inlines to `1`. This is to account for languages like Hebrew for whom showing the actual number isn't appropriate*
+*Note that the singular phrase never has a token, but inlines to `1`. This is to account for languages like Hebrew for which showing the actual number isn't appropriate*
 
   * **"no"**: (*DEFAULT*) Don't show the count
   * **"ifMany"**: Show the count only in plural case
