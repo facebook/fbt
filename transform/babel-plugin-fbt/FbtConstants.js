@@ -105,11 +105,17 @@ const JSModuleName = {
   FBS: 'fbs',
 };
 
+// Used to help detect the usage of the JS fbt/fbs API inside a JS file
+const ModuleNameRegExp = new RegExp(
+  `\\b(?:${Object.values(JSModuleName).join('|')})\\b`,
+);
+
 module.exports = {
   FbtBooleanOptions,
   FbtRequiredAttributes,
   FbtType,
   JSModuleName,
+  ModuleNameRegExp,
   PLURAL_PARAM_TOKEN,
   PluralOptions,
   PluralRequiredAttributes,
