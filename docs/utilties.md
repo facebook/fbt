@@ -42,7 +42,7 @@ You can override this behavior by in `fbt:param` by setting the
 [number option](params#optional-attributes) and using your own
 string in the replacement.
 
-You can ovverride this in `fbt.plural` [by providing the `value`
+You can ovveride this in `fbt.plural` [by providing the `value`
 option](plurals#optional-arguments)
 
 
