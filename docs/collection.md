@@ -29,7 +29,7 @@ The enum-manifest should be a `"JSON.parseable"` mapping from all known enums in
   },
 }
 ```
-We've provdied `manifest.js` as an easy way to generate this manifest from a given source tree
+We've provided `manifest.js` as an easy way to generate this manifest from a given source tree
 
 `collectFbts.js` will output a JSON object in the following format:
 
