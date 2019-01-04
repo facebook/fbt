@@ -43,7 +43,7 @@ fbt('Hello, World', 'a simple example', {project:"foo"})
 --------------------------------------------------------------------------------
 ## Docblock defaults
 Defaults for the above optional attributes may be provided in the
-doblock with the `@fbt` pragma.  It uses a straight `JSON.parse` to
+docblock with the `@fbt` pragma.  It uses a straight `JSON.parse` to
 interpret this, so you'll have to make sure your object is parseable. (i.e. keys should be wrapped in `"double quotes"`)
 
 E.g
