@@ -11,9 +11,9 @@ We provide `collectFbts.js` as a utility for collecting strings.  It expects a J
   ]
 }
 ```
-`enumManifestPath` doesnt not need to point to a valid enum manifest, but if you use a [shared enum](enums#shared-enums) it's required.
+`enumManifestPath` doesn't need to point to a valid enum manifest, but if you use a [shared enum](enums#shared-enums) it's required.
 
-The enum-manifest should be a `"JSON.parseable"` mapping from all known enums in your app to their key/value pairs they respectively represent:
+The enum-manifest should be a `"JSON.parseable"` mapping from all known enums in your app to the key/value pairs they respectively represent:
 ```
 {
  "EnumA": {
@@ -70,13 +70,13 @@ with their identifying hash.  You can provide a custom hash module to
 ### A note on hashes
 
 In the FBT framework, there are 2 main places we uses hashes for
-identification: **text** and **fbt callsite**.  The hashToText mapping
+identification: **text** and **fbt callsite**.  The `hashToText` mapping
 above represents the hash (using whichever algorithm was chosen in
 `collectFbt`) of the **text** and its **description**.  This is used
 when *building* the translated payloads
 
 The hash of the callsite (defaulting to `jenkins` hash) is used to
-lookup the payload in `FbtTranslations`.  This is basically the has of
+look up the payload in `FbtTranslations`.  This is basically the hash of
 the object you see in `jsfbt`.
 
 See [Translating FBTs](translating) for getting your translations in
