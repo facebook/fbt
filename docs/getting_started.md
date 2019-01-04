@@ -9,7 +9,7 @@ The following assumes you have [node](https://nodejs.org) and [yarn](https://yar
 ```bash
 git clone git@github.com:facebookincubator/fbt.git;
 cd fbt/demo-app;
-yarn install; # pull in depencies
+yarn install; # pull in dependencies
 yarn manifest; # generate fbt enum manifests and source manifests
 yarn collect-fbts; # Collect all fbt phrases from source
 yarn translate-fbts; # Generate the translation payloads
