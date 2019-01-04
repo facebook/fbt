@@ -7,7 +7,7 @@ sidebar_label: Implicit parameters
 ## Viewer Gender
 ### The hidden `__viewing_user__` token
 
-If a token of `__viewing_user__`, it is expected to have the
+If a token of `__viewing_user__` is provided, it is expected to have the
 corresponding [`type`](translation) of `IntlVariations.GENDER*`. When
 provided, at [translation](translation) time, `JSFbtBuilder` will
 create a special key in its table payload which signals to the runtime
