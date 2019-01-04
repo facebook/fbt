@@ -14,7 +14,9 @@
  */
 
 'use strict';
-const {FBS, FBT} = require('./FbtConstants').JSModuleName;
+
+const {JSModuleName, ModuleNameRegExp} = require('./FbtConstants');
+const {FBS, FBT} = JSModuleName;
 
 function normalizeSpaces(value, options) {
   if (options && options.preserveWhitespace) {
@@ -393,6 +395,10 @@ function assertModuleName(moduleName /*: string */) /*: 'fbt' | 'fbs' */ {
   throw new Error(`Unsupported module name: "${moduleName}"`);
 }
 
+function textContainsFbtLikeModule(text /*: string */) /*: boolean */ {
+  return ModuleNameRegExp.test(text);
+}
+
 module.exports = {
   assertModuleName,
   checkOption,
@@ -410,6 +416,7 @@ module.exports = {
   nest,
   normalizeSpaces,
   objMap,
+  textContainsFbtLikeModule,
   throwAt,
   validateNamespacedFbtElement,
   verifyUniqueToken,
