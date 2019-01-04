@@ -5,12 +5,12 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "babel-node  ../node_modules/webpack/bin/webpack",
+    "build": "babel-node ../node_modules/webpack/bin/webpack",
     "manifest": "babel-node ../transform/babel-plugin-fbt/bin/manifest --src src",
     "collect-fbts": "babel-node ../transform/babel-plugin-fbt/bin/collectFBT --json-input < .src_manifest.json > source_strings.json",
     "translate-fbts": "babel-node ../transform/babel-plugin-fbt/bin/translate.js --jenkins < ./translation_input.json > src/translatedFbts.json",
     "clean-fbts": "rm .enum_manifest.json .src_manifest.json source_strings.json src/translatedFbts.json 2&> /dev/null || exit 0",
-    "start": "babel-node  ../node_modules/webpack-dev-server/bin/webpack-dev-server --open",
+    "start": "babel-node ../node_modules/webpack-dev-server/bin/webpack-dev-server --open",
     "test": "babel-node ../node_modules/jest/bin/jest --config ./jest.config.json"
   },
   "devDependencies": {
