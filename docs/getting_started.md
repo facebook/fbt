@@ -4,9 +4,8 @@ title: Getting Started
 sidebar_label: Getting Started
 ---
 
-Check out our [github](https://github.com/facebookincubator/fbt) repository like the following
-
-The following assumes you have [node](https://nodejs.org) and [yarn](https://yarnpkg.com) installed
+Check out our [github](https://github.com/facebookincubator/fbt) repository and run the demo.
+The following assumes you have [node](https://nodejs.org) and [yarn](https://yarnpkg.com) installed.
 ```bash
 git clone git@github.com:facebookincubator/fbt.git;
 cd fbt/demo-app;
