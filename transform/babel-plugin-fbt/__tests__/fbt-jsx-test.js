@@ -17,7 +17,8 @@
 jest.autoMockOff();
 
 const testUtil = require('../../util/test-util');
-const {payload, transform, transformKeepJsx} = require('../FbtTestUtil');
+const {payload, transform} = require('../FbtTestUtil');
+const {transformSync: babelTransform} = require('@babel/core');
 
 const FbtVariationType = {
   GENDER: 1,
@@ -835,31 +836,3 @@ const testData = {
 
 describe('Test declarative (jsx) fbt syntax translation', () =>
   testUtil.testSection(testData, transform));
-
-describe('Test fbt transforms without the jsx transform', () => {
-  it('not nested', () => {
-    expect(
-      transformKeepJsx(`
-        const fbt = require("fbt");
-        let x =
-          <fbt desc="nested!">
-            A nested string
-          </fbt>;
-      `),
-    ).toMatchSnapshot(); // Should be like fbt._()
-  });
-
-  it('nested in div', () => {
-    expect(
-      transformKeepJsx(`
-        const fbt = require("fbt");
-        let x =
-          <div>
-            <fbt desc="nested!">
-              A nested string
-            </fbt>
-          </div>;
-      `),
-    ).toMatchSnapshot(); // Should be like <div>{fbt._()}</div>
-  });
-});
