@@ -40,22 +40,7 @@ function transform(
   }).code;
 }
 
-function transformKeepJsx(
-  source /*: string */,
-  pluginOptions /*: $FlowFixMe */,
-): string {
-  return transformSync(source, {
-    ast: false,
-    plugins: [
-      require('@babel/plugin-syntax-jsx'),
-      [require('./index'), pluginOptions],
-    ],
-    sourceType: 'module',
-  }).code;
-}
-
 module.exports = {
   payload,
   transform,
-  transformKeepJsx,
 };
