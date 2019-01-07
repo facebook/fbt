@@ -54,7 +54,7 @@ class Footer extends React.Component {
               rel="noreferrer noopener">
               Stack Overflow
             </a>
-            <a href={this.props.config.slackUrl}>Slack Channel</a>
+            <a href={this.props.config.discordUrl}>Discord Channel</a>
             <a
               href="https://twitter.com/fbt_js"
               target="_blank"

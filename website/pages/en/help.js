@@ -30,7 +30,7 @@ class Help extends React.Component {
         title: 'Browse Docs',
       },
       {
-        content: `Join us in our [Slack Channel](${siteConfig.slackUrl}) and our [Facebook group](https://www.facebook.com/groups/498204277369868/). Ask questions about the documentation and project`,
+        content: `Join us in our [Discord channel](${siteConfig.discordUrl}) and our [Facebook group](https://www.facebook.com/groups/498204277369868/). Ask questions about the documentation and project`,
         title: 'Join the community',
       },
       {
