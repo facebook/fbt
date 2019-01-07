@@ -58,7 +58,7 @@
     "style-loader": "0.23.1",
     "webpack": "^4.26.1",
     "webpack-cli": "3.1.2",
-    "webpack-dev-server": "3.1.10"
+    "webpack-dev-server": "^3.1.11"
   },
   "dependencies": {
     "@babel/plugin-syntax-nullish-coalescing-operator": "^7.2.0",
