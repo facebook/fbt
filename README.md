@@ -45,7 +45,7 @@ https://facebookincubator.github.io/fbt
 ## Join the fbt community
 * [Website](https://facebookincubator.github.io/fbt)
 * [Facebook group](https://www.facebook.com/groups/498204277369868)
-* [Slack Channel](https://fbtjs.slack.com)
+* [Discord #fbt channel in reactiflux](https://discord.gg/cQvXZr5)
 * [Twitter](https://twitter.com/fbt_js)
 
 See the [CONTRIBUTING](CONTRIBUTING.md) file for how to help out.

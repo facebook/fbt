@@ -101,7 +101,7 @@ const siteConfig = {
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
   repoUrl: GITHUB,
-  slackUrl: "https://fbtjs.slack.com/",
+  discordUrl: "https://discord.gg/cQvXZr5",
 };
 
 module.exports = siteConfig;
