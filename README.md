@@ -1,8 +1,8 @@
 # FBT
-FBT is an internationalization framework designed to be both powerful and flexible, but also simple and intuitive.  It helps with the following:
+FBT is an internationalization framework for JavaScript designed to be both powerful and flexible, but also simple and intuitive.  It helps with the following:
 * Organizing your source text for translation
 * Composing grammatically correct translatable UI
-* Source-code bloat from generating similarly constructed UI
+* Eliminating verbose boilerplate for generating UI
 
 ## Examples
 [See our demo here](demo-app/src/example/Example.react.js)
