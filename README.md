@@ -52,3 +52,12 @@ See the [CONTRIBUTING](CONTRIBUTING.md) file for how to help out.
 
 ## License
 FBT is MIT licensed, as found in the [LICENSE](LICENSE) file.
+
+### Code Visualization:
+
+Here is a cool visualization of the code evolution
+
+ [![Watch the video](https://img.youtube.com/vi/wESu8hSEvJ4/0.jpg)](https://www.youtube.com/watch?v=wESu8hSEvJ4)
+
+ [https://www.youtube.com/watch?v=wESu8hSEvJ4](https://www.youtube.com/watch?v=wESu8hSEvJ4)
+
