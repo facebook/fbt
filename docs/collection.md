@@ -3,7 +3,9 @@ id: collection
 title: Extracting FBTs
 sidebar_label: Extracting translatable texts
 ---
-We provide `collectFbts.js` as a utility for collecting strings.  It expects a JSON input of:
+We provide
+[`collectFbt.js`](https://github.com/facebookincubator/fbt/blob/master/transform/babel-plugin-fbt/bin/collectFBT.js)
+as a utility for collecting strings.  It expects a JSON input of:
 ```
 {
   <enumManifestPath>: [
