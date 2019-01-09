@@ -81,11 +81,6 @@ class FbtCollector {
 
     transform(source, options);
 
-    const defaults = fbt.getDefaultOptions();
-    if (defaults.doNotExtract) {
-      return;
-    }
-
     let newPhrases = fbt.getExtractedStrings();
     if (this._config.reactNativeMode) {
       newPhrases = extractEnumsAndFlattenPhrases(newPhrases);
