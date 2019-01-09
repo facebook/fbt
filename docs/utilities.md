@@ -4,7 +4,7 @@ title: Runtime Utilities
 sidebar_label: Runtime Utilities
 ---
 
-Bundled with fbt come a few useful utilites for constructing strings.
+Bundled with fbt come a few useful utilities for constructing strings.
 ### intlList(...)
 `intlList` creates `fbt` instances with selectable conjunctions given an array.
 
