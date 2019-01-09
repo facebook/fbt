@@ -259,10 +259,6 @@ function BabelPluginFbt(babel) {
           }
         }
 
-        if (options.doNotExtract) {
-          return;
-        }
-
         if (isTable) {
           texts = normalizeTableTexts(
             extractTableTexts(
@@ -315,7 +311,7 @@ function BabelPluginFbt(babel) {
           visitor.opts.reactNativeMode,
         );
 
-        if (visitor.opts.collectFbt) {
+        if (visitor.opts.collectFbt && !phrase.doNotExtract) {
           if (visitor.opts.auxiliaryTexts) {
             phrase.texts = texts;
           }
@@ -566,10 +562,6 @@ BabelPluginFbt.getExtractedStrings = function() {
 
 BabelPluginFbt.getChildToParentRelationships = function() {
   return childToParent || {};
-};
-
-BabelPluginFbt.getDefaultOptions = function() {
-  return defaultOptions;
 };
 
 function initExtraOptions(state) {
