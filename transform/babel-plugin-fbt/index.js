@@ -25,7 +25,6 @@
 // throw out the baby with the bath water and disable the whole shebang.
 /* eslint fb-www/comma-dangle: "off" */
 
-const docblock = require('../util/docblock');
 const {isRequireAlias} = require('../util/require-check');
 const autoWrap = require('./fbt-auto-wrap');
 const fbtMethodCallVisitors = require('./fbt-method-call-visitors');
@@ -60,6 +59,7 @@ const {
 const JSFbtBuilder = require('./js-fbt-builder');
 const fbtChecker = FbtNodeChecker.forModule(FBT);
 const fbsChecker = FbtNodeChecker.forModule(FBS);
+const {parse: parseDocblock} = require('jest-docblock');
 
 /**
  * Default options passed from a docblock.
@@ -570,7 +570,9 @@ function initExtraOptions(state) {
 
 function initDefaultOptions(state) {
   defaultOptions = {};
-  const fbtDocblockOptions = docblock.getFromState(state).fbt;
+  const comment = state.file.ast.comments[0];
+  const docblock = (comment && comment.value) || '';
+  const fbtDocblockOptions = parseDocblock(docblock).fbt;
   if (fbtDocblockOptions) {
     defaultOptions = JSON.parse(fbtDocblockOptions);
     Object.keys(defaultOptions).forEach(o => checkOption(o, ValidFbtOptions));
