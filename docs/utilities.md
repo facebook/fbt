@@ -29,7 +29,7 @@ produces the fbt
   <fbt:param name="following items">{items[i]}</fbt:param>
 </fbt>
 ```
-recursively combining fbts.
+recursively combining fbts.  
 **Note that genders are not used in this `fbt:param` instances, so they default to `UNKNOWN`**
 
 ### intlNumUtils and intlSummarizeNumber
@@ -37,7 +37,7 @@ There are a few utilities in both `intlNumUtils` and
 `intlSummarizeNumber` that are documented in the source.
 
 In fact `fbt.param` and `fbt.plural` default to displaying numbers
-using `intlNumUtils.formatNumberWithThousandDelimiters`.
+using `intlNumUtils.formatNumberWithThousandDelimiters`.   
 You can override this behavior in `fbt:param` by setting the
 [number option](params#optional-attributes) and using your own
 string in the replacement.
