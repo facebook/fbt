@@ -16,13 +16,13 @@ Interpolation of dynamic text and other markup is accomplished in the FBT framew
 fbt('Hello, ' + fbt.param('name', person.getName()), 'param example')
 ```
 
-These both [extract](collection.md) to the same following text
+These both [extract](collection.md) to the same following text:
 
 ```
 "Hello, {name}"
 ```
 
-Tokens are delimited with the braces above and translations are expected to keep the same total token *count* and same token *names* for any given `fbt` callsite
+Tokens are delimited with the braces above and translations are expected to keep the same total token *count* and same token *names* for any given `fbt` callsite.
 
 ### Required attributes
 * **name** `string`: Name of the token
