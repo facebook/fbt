@@ -52,7 +52,7 @@ as a utility for collecting strings.  It expects a JSON input of:</p>
   },
 }
 </code></pre>
-<p>We've provided <code>manifest.js</code> as an easy way to generate this manifest from a given source tree</p>
+<p>We've provided <code>manifest.js</code> as an easy way to generate this manifest from a given source tree.</p>
 <p><code>collectFbts.js</code> will output a JSON object in the following format:</p>
 <pre><code class="hljs css language-js">{
   <span class="hljs-string">"phrases"</span>: [
@@ -79,7 +79,7 @@ as a utility for collecting strings.  It expects a JSON input of:</p>
 <p><code>phrases</code> here represents all the <em>source</em> information we need to
 process and produce an <code>fbt._(...)</code> callsite's final payload.  When
 combined with corresponding translations to each <code>hashToText</code> entry we
-can produce the translated payloads <code>fbt._()</code> expects</p>
+can produce the translated payloads <code>fbt._()</code> expects.</p>
 <p>When it comes to moving from source text to translations, what is most
 pertinent is the <code>hashToText</code> payload containing all relevant texts
 with their identifying hash.  You can provide a custom hash module to
@@ -89,10 +89,10 @@ with their identifying hash.  You can provide a custom hash module to
 identification: <strong>text</strong> and <strong>fbt callsite</strong>.  The <code>hashToText</code> mapping
 above represents the hash (using whichever algorithm was chosen in
 <code>collectFbt</code>) of the <strong>text</strong> and its <strong>description</strong>.  This is used
-when <em>building</em> the translated payloads</p>
+when <em>building</em> the translated payloads.</p>
 <p>The hash of the callsite (defaulting to <code>jenkins</code> hash) is used to
 look up the payload in <code>FbtTranslations</code>.  This is basically the hash of
 the object you see in <code>jsfbt</code>.</p>
 <p>See <a href="translating">Translating FBTs</a> for getting your translations in
 the right format.</p>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 1/8/2019 by John Watson</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/fbt/docs/transform"><span class="arrow-prev">← </span><span>Babel Transforms</span></a><a class="docs-next button" href="/fbt/docs/translating"><span>Translating FBTs</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/fbt/" class="nav-home"><img src="/fbt/img/fbt.png" alt="FBT" height="50"/></a><div><h5>Docs</h5><a href="/fbt/docs/getting_started">Getting Started</a><a href="/fbt/en/help">Help</a><a href="/fbt/docs/api_intro">API Reference</a></div><div><h5>Community</h5><a href="/fbt/en/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/fbt" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discord.gg/cQvXZr5">Discord Channel</a><a href="https://twitter.com/fbt_js" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/fbt/blog">Blog</a><a href="https://github.com/facebookincubator/fbt">GitHub</a><a class="github-button" href="https://github.com/facebookincubator/fbt" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://code.facebook.com/projects/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/fbt/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2019 Facebook</section></footer></div></body></html>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 1/10/2019 by Ethan Maynard</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/fbt/docs/transform"><span class="arrow-prev">← </span><span>Babel Transforms</span></a><a class="docs-next button" href="/fbt/docs/translating"><span>Translating FBTs</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/fbt/" class="nav-home"><img src="/fbt/img/fbt.png" alt="FBT" height="50"/></a><div><h5>Docs</h5><a href="/fbt/docs/getting_started">Getting Started</a><a href="/fbt/en/help">Help</a><a href="/fbt/docs/api_intro">API Reference</a></div><div><h5>Community</h5><a href="/fbt/en/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/fbt" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discord.gg/cQvXZr5">Discord Channel</a><a href="https://twitter.com/fbt_js" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/fbt/blog">Blog</a><a href="https://github.com/facebookincubator/fbt">GitHub</a><a class="github-button" href="https://github.com/facebookincubator/fbt" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://code.facebook.com/projects/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/fbt/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2019 Facebook</section></footer></div></body></html>
