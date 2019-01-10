@@ -21,7 +21,7 @@ const fbt = require('fbt');
 const LOCALES = Object.freeze({
   en_US: Object.freeze({
     bcp47: 'en-US',
-    displayName: 'English (US)',
+    displayName: 'English (US)\u200e',
     englishName: 'English (US)',
     rtl: false,
   }),
@@ -165,9 +165,8 @@ export default class Example extends React.Component<Props, State> {
                     name="count"
                     placeholder={fbt('count', 'count field')}
                     onChange={(event: SyntheticUIEvent<>) => {
-                      this.setState({
-                        ex1Count: parseInt(event.target.value, 10) || 1,
-                      });
+                      const val = parseInt(event.target.value, 10);
+                      this.setState({ex1Count: isNaN(val) ? 1 : val});
                     }}
                     type="number"
                   />
@@ -310,7 +309,10 @@ export default class Example extends React.Component<Props, State> {
                   className="bottom"
                   type="submit"
                   onClick={e => {
-                    window.open('https://github.com/facebookincubator/fbt', '_blank');
+                    window.open(
+                      'https://github.com/facebookincubator/fbt',
+                      '_blank',
+                    );
                   }}>
                   {fbt('Try it out!', 'Sign up button')}
                 </button>
