@@ -10,8 +10,8 @@
     "collect-fbts": "babel-node ../transform/babel-plugin-fbt/bin/collectFBT --json-input < .src_manifest.json > source_strings.json",
     "translate-fbts": "babel-node ../transform/babel-plugin-fbt/bin/translate.js --jenkins < ./translation_input.json > src/translatedFbts.json",
     "clean-fbts": "rm .enum_manifest.json .src_manifest.json source_strings.json src/translatedFbts.json 2&> /dev/null || exit 0",
-    "start": "babel-node ../node_modules/webpack-dev-server/bin/webpack-dev-server --open",
-    "test": "babel-node ../node_modules/jest/bin/jest --config ./jest.config.json"
+    "start": "babel-node node_modules/webpack-dev-server/bin/webpack-dev-server --open",
+    "test": "babel-node node_modules/jest/bin/jest --config ./jest.config.json"
   },
   "devDependencies": {
     "@babel/core": "7.2.2",

@@ -17,6 +17,7 @@
     "@babel/plugin-syntax-optional-chaining": "^7.2.0",
     "babel-core": "7.0.0-bridge.0",
     "flow-remove-types": "^1.2.3",
+    "graceful-fs": "^4.1.15",
     "invariant": "^2.2.4",
     "jest-docblock": "^22.2.0"
   },
