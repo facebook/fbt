@@ -5,7 +5,7 @@ sidebar_label: Introduction
 ---
 The fbt framework has two (mostly) equivalent APIs: A declarative JSX-style `<fbt>` tag API and a "vanilla" or "functional" `fbt(...)` API that more closely resembles standard JavaScript.  In general, you can compose your translatable text in either format.  As the following example illustrates, the child of the `<fbt>` tag shows up as the first argument to `fbt` and any attributes show up in the optional third argument parameter.  The `desc` (text description) argument is the exception to this rule because it is a *required* parameter and attribute in `fbt(...)` and `<fbt>` respectively.
 
-Let's start with a simple example
+Let's start with a simple example:
 
 ## JSX `<fbt />` API
 ```
@@ -46,7 +46,7 @@ Defaults for the above optional attributes may be provided in the
 docblock with the `@fbt` pragma.  It uses a straight `JSON.parse` to
 interpret this, so you'll have to make sure your object is parseable. (i.e. keys should be wrapped in `"double quotes"`)
 
-E.g
+E.g.
 ```
 /**
  * @fbt {"author": "me", "project": "awesome sauce"}

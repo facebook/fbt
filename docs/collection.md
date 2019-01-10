@@ -31,7 +31,7 @@ The enum-manifest should be a `"JSON.parseable"` mapping from all known enums in
   },
 }
 ```
-We've provided `manifest.js` as an easy way to generate this manifest from a given source tree
+We've provided `manifest.js` as an easy way to generate this manifest from a given source tree.
 
 `collectFbts.js` will output a JSON object in the following format:
 
@@ -62,7 +62,7 @@ We've provided `manifest.js` as an easy way to generate this manifest from a giv
 `phrases` here represents all the *source* information we need to
 process and produce an `fbt._(...)` callsite's final payload.  When
 combined with corresponding translations to each `hashToText` entry we
-can produce the translated payloads `fbt._()` expects
+can produce the translated payloads `fbt._()` expects.
 
 When it comes to moving from source text to translations, what is most
 pertinent is the `hashToText` payload containing all relevant texts
@@ -75,7 +75,7 @@ In the FBT framework, there are 2 main places we uses hashes for
 identification: **text** and **fbt callsite**.  The `hashToText` mapping
 above represents the hash (using whichever algorithm was chosen in
 `collectFbt`) of the **text** and its **description**.  This is used
-when *building* the translated payloads
+when *building* the translated payloads.
 
 The hash of the callsite (defaulting to `jenkins` hash) is used to
 look up the payload in `FbtTranslations`.  This is basically the hash of

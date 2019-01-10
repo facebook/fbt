@@ -7,7 +7,7 @@ sidebar_label: Enumerations
 Enumerations eliminate a lot of UI code duplication while enabling accurate translations.  `<fbt:enum>` and `fbt.enum` both provide the ability to add your ad-hoc or pre-defined and shared enumerations.
 
 ## Adhoc enums
-Adhoc enums can be provided inline to the `enum-range` attribute or as the second parameter to `fbt.enum`
+Adhoc enums can be provided inline to the `enum-range` attribute or as the second parameter to `fbt.enum`.
 ### Enum map
 ```
 <fbt desc="buy prompt">
@@ -33,7 +33,7 @@ fbt(
 ```
 
 ### Shorthand array (keys = values)
-The shorthand array adhoc enum functions as though you had a `{value: value}` map
+The shorthand array adhoc enum functions as though you had a `{value: value}` map.
 ```
 <fbt desc="buy prompt">
   Buy a new
@@ -69,7 +69,7 @@ All the above examples [extract](collection.md) the same 4 separate strings for 
 
 ## Shared enums
 
-If you need to use same enum multiple times, you can use a pre-defined
+If you need to use the same enum multiple times, you can use a pre-defined
 enum. These enums need to be able to be `"JSON.stringifiable"` and
 should have simple key/value structures. They also require a separate
 build step to generate an enum-manifest and source manifest that makes
