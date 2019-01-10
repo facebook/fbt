@@ -21,7 +21,7 @@ the `fbt(...)` API** </span>
 </fbt>
 ```
 
-When extracted for translation, the result is
+When extracted for translation, the result is:
 
 ```
 {
@@ -56,7 +56,7 @@ When extracted for translation, the result is
 ```
 
 Notice the description for "vacation" is auto-generated with an `"In
-the phrase: ..."` prefix.  Additionally we use a convention of an `=`
+the phrase: ..."` prefix.  Additionally, we use a convention of an `=`
 prefix in the interpolation `{=awesome vacation}` to signal to the
 translator that this exact word or phrase goes in the associated outer
 sentence.
