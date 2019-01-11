@@ -59,7 +59,7 @@ const LOCALES = Object.freeze({
 
 type Locale = $Keys<typeof LOCALES>;
 type Variation = $Values<typeof IntlVariations>;
-type SharedObj = $Keys<typeof ExamplEnum>;
+type SharedObj = $Keys<typeof ExampleEnum>;
 type PronounGender = $Keys<typeof GenderConst>;
 
 type Props = $ReadOnly<{||}>;
