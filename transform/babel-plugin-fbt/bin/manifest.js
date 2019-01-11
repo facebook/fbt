@@ -21,6 +21,7 @@ const {execSync} = require('child_process');
 const fs = require('fs');
 const optimist = require('optimist');
 const path = require('path');
+const shell = require('shelljs');
 
 const argv = optimist
   .usage(
@@ -34,12 +35,6 @@ const argv = optimist
     'src',
     'The source folder in which to look for JS source containing fbt and ' +
       'files with the $FbtEnum.js suffix. Defaults to CWD',
-  )
-  .default('root', process.cwd())
-  .describe(
-    'root',
-    'The folder from which to make source paths relative. ' +
-      "e.g. '/' for absolute paths.  Defaults to CWD",
   )
   .default('enum-manifest', '.enum_manifest.json')
   .describe(
@@ -64,36 +59,26 @@ require('@babel/register')({
   ],
 });
 
-// Take newline delimitted output and return an array of lines
-const lines = newlined =>
-  newlined
-    .toString()
-    .trim()
-    .split('\n');
-
 // Find enum files
-const enumFiles = lines(
-  execSync("find . -type f -iname '*$FbtEnum.js'", {
-    cwd: argv.src,
-  }),
-);
+const enumFiles = shell
+  .find(argv.src)
+  .filter(path => /\$FbtEnum\.js/i.test(path));
 
 // Write enum manfiest
 const enumManifest = {};
 for (const filepath of enumFiles) {
   // Infer module name from filename.
   const name = path.parse(filepath).name;
-  enumManifest[name] = require(path.resolve(argv.src, filepath));
+  enumManifest[name] = require(path.resolve(filepath));
 }
 fs.writeFileSync(argv['enum-manifest'], JSON.stringify(enumManifest));
 
 // Find source files that are fbt-containing candidates
-const srcFiles = lines(
-  execSync(
-    "find . -type f -iname '*.js' | xargs grep -E -l '\\b[Ff]b[st]\\b'",
-    {cwd: argv.src},
-  ),
-).map(relpath => path.relative(argv.root, path.resolve(argv.src, relpath)));
+const jsFiles = shell.find(argv.src).filter(path => /\.js$/.test(path));
+const srcFiles = shell
+  .grep('-l', '\\b[Ff]b[st]\\b', jsFiles)
+  .trim()
+  .split('\n');
 
 fs.writeFileSync(
   argv['src-manifest'],
