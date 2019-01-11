@@ -13,7 +13,7 @@ provided in our [GitHub demo
 app](https://github.com/facebookincubator/fbt/blob/master/demo-app/translation_input.json)
 is a good reference on the "schema" used for the translations.
 
-```js
+```json
 {
   "phrases": [
     "hashToText": {
