@@ -13,24 +13,24 @@ provided in our [GitHub demo
 app](https://github.com/facebookincubator/fbt/blob/master/demo-app/translation_input.json)
 is a good reference on the "schema" used for the translations.
 
-```js
+```json
 {
-  phrases: [
+  "phrases": [
     "hashToText": {
       <text_hash>: <text>,
       ...
     },
-    jsfbt: string|{t:<table>, m:<metadata>}
+    "jsfbt": string|{t:<table>, m:<metadata>}
   ],
   ...
-  translationGroups: [{
-    "fb-locale": "xx_XX"
+  "translationGroups": [{
+    "fb-locale": "xx_XX",
     "translations": {
       <translation_hash>: {
         "tokens": [<token1>, ..., <tokenN>],
-        "types": [<variationType1>, ..., <variationTypeN>],
+        "types": [<variationType1>, ..., <variationTypeN>]
         "translations": [{
-            "translation": <translation1>
+            "translation": <translation1>,
             "variations": [variationValue1,...,variationValueN]
           },
           ...,
