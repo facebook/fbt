@@ -28,10 +28,10 @@ is a good reference on the "schema" used for the translations.
     "translations": {
       <translation_hash>: {
         "tokens": [<token1>, ..., <tokenN>],
-        "types": [<variationType1>, ..., <variationTypeN>],
+        "types": [<variationType1>, ..., <variationTypeN>]
         "translations": [{
             "translation": <translation1>,
-            "variations": [variationValue1,...,variationValueN],
+            "variations": [variationValue1,...,variationValueN]
           },
           ...,
         ]
