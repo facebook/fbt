@@ -15,23 +15,23 @@ is a good reference on the "schema" used for the translations.
 
 ```js
 {
-  phrases: [
+  "phrases": [
     "hashToText": {
       <text_hash>: <text>,
       ...
     },
-    jsfbt: string|{t:<table>, m:<metadata>}
+    "jsfbt": string|{t:<table>, m:<metadata>}
   ],
   ...
-  translationGroups: [{
-    "fb-locale": "xx_XX"
+  "translationGroups": [{
+    "fb-locale": "xx_XX",
     "translations": {
       <translation_hash>: {
         "tokens": [<token1>, ..., <tokenN>],
         "types": [<variationType1>, ..., <variationTypeN>],
         "translations": [{
-            "translation": <translation1>
-            "variations": [variationValue1,...,variationValueN]
+            "translation": <translation1>,
+            "variations": [variationValue1,...,variationValueN],
           },
           ...,
         ]
