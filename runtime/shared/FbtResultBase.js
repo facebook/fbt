@@ -26,7 +26,6 @@ export type FbtContentItem =
   | FbtString
   | null
   | number
-  // $FlowFixMe It's ok to get any React element
   | React$Element<any>
   | React$Portal
   | string
@@ -147,7 +146,6 @@ class _FbtResultBase implements IFbtResultBase {
   }
 
   static usingStringProxyMethod(
-    // $FlowFixMe We can't easily map the string method name to its corresponding signature
     stringProxyFn: (stringMethodName: $Keys<IFbtStringish>) => Function,
   ): Class<_FbtResultBase> {
     const currentClass = this;
