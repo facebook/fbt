@@ -78,8 +78,9 @@ above represents the hash (using whichever algorithm was chosen in
 when *building* the translated payloads.
 
 The hash of the callsite (defaulting to `jenkins` hash) is used to
-look up the payload in `FbtTranslations`.  This is basically the hash of
-the object you see in `jsfbt`.
+look up the payload in
+[`FbtTranslations`](https://github.com/facebookincubator/fbt/blob/master/runtime/nonfb/FbtTranslations.js).
+This is basically the hash of the object you see in `jsfbt`.
 
 See [Translating FBTs](translating) for getting your translations in
 the right format.

@@ -34,7 +34,7 @@ Tokens are delimited with the braces above and translations are expected to keep
   * Passing a value of type `number` into the `number` option uses that
 value as the input for which we determine the [CLDR plural
 value](http://cldr.unicode.org/index/cldr-spec/plural-rules).
-  * You can pass `true` to simply use the parameter value (the same value that replaces the token). You'll need to take care to pass in a `number` type here
+  * You can pass `true` to simply use the parameter value (the same value that replaces the token).
 
 --------------------------------------------------------------------------------
 
@@ -77,7 +77,7 @@ second token.
 
 fbt(
   fbt.name(
-    'name', 
+    'name',
      <a href="#">{name}</a>,
      {gender: gender}
    ) +

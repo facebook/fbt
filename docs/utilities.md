@@ -6,7 +6,7 @@ sidebar_label: Runtime Utilities
 
 Bundled with fbt come a few useful utilities for constructing strings.
 ### intlList(...)
-`intlList` creates `fbt` instances with selectable conjunctions given an array.
+[`intlList`](https://github.com/facebookincubator/fbt/blob/master/runtime/shared/intlList.js) creates `fbt` instances with selectable conjunctions given an array.
 
 As an example
 ```js
@@ -29,7 +29,7 @@ produces the fbt
   <fbt:param name="following items">{items[i]}</fbt:param>
 </fbt>
 ```
-recursively combining fbts.  
+recursively combining fbts.
 **Note that genders are not used in this `fbt:param` instances, so they default to `UNKNOWN`**
 
 ### intlNumUtils and intlSummarizeNumber
@@ -37,12 +37,10 @@ There are a few utilities in both `intlNumUtils` and
 `intlSummarizeNumber` that are documented in the source.
 
 In fact `fbt.param` and `fbt.plural` default to displaying numbers
-using `intlNumUtils.formatNumberWithThousandDelimiters`.   
+using `intlNumUtils.formatNumberWithThousandDelimiters`.
 You can override this behavior in `fbt:param` by setting the
 [number option](params#optional-attributes) and using your own
 string in the replacement.
 
 You can override this in `fbt.plural` [by providing the `value`
 option](plurals#optional-arguments).
-
-

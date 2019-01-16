@@ -108,7 +108,8 @@ const Features = () => (
       {
         content: 'Compose translatable text inline with your source: <br />' +
           '<MarkdownBlock>\n```\n' +
-          '<button><fbt desc="eg">text</fbt></button>\n' +
+          '<button>\n  <fbt desc="Canonical intro text">\n    ' +
+          'Hello, World!\n  </fbt>\n</button>\n' +
           '```\n</MarkdownBlock>\n',
         title: 'Inlined translatable text',
       },
@@ -117,17 +118,18 @@ const Features = () => (
           '<MarkdownBlock>\n```\n' +
           '{\n' +
           '  "hashToText":{\n' + // ` + <br />' +
-          '    "ni7kanCF2RfGZAS9mDOToQ==": "text"\n' + //`<br />' +
+          '    "ni7kanCF2RfGZAS9mDOToQ==":\n' +
+          '     "Hello, World!"\n' + //`<br />' +
           '  },\n' +
           '  ...,\n' +
-          '  "desc": "eg"\n}\n' +
+          '  "desc": "Canonical intro text"\n}\n' +
           '```\n</MarkdownBlock>\n',
         title: 'Seamless text collection',
       },
       {
         content: 'Easily pull translations into your app' +
           '<MarkdownBlock>\n```\n' +
-          '<button>szöveg</button>\n' +
+          '<button>Hello, Byd!</button>\n' +
           '```\n</MarkdownBlock>\n',
         title: 'Integrated translations',
       },
