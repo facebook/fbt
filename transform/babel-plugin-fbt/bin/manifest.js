@@ -17,7 +17,7 @@
 
 'use strict';
 
-const {execSync} = require('child_process');
+const FbtConstants = require('../FbtConstants');
 const fs = require('fs');
 const optimist = require('optimist');
 const path = require('path');
@@ -76,7 +76,7 @@ fs.writeFileSync(argv['enum-manifest'], JSON.stringify(enumManifest));
 // Find source files that are fbt-containing candidates
 const jsFiles = shell.find(argv.src).filter(path => /\.js$/.test(path));
 const srcFiles = shell
-  .grep('-l', '\\b[Ff]b[st]\\b', jsFiles)
+  .grep('-l', FbtConstants.ModuleNameRegExp, jsFiles)
   .trim()
   .split('\n');
 
