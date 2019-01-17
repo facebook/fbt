@@ -16,14 +16,14 @@
 
 jest.autoMockOff();
 
-const testUtils = require('../../util/test-util');
+const {TestUtil} = require('fb-babel-plugin-utils');
 const {payload, transform} = require('../FbtTestUtil');
 const {transformSync: babelTransform} = require('@babel/core');
 
 function runTest(data, extra) {
   var expected = data.output;
   var actual = transform(data.input, extra);
-  testUtils.assertSourceAstEqual(expected, actual);
+  TestUtil.assertSourceAstEqual(expected, actual);
 }
 
 describe('fbt preserveWhitespace argument', () => {

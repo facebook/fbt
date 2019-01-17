@@ -20,12 +20,12 @@ const TestFbtEnumManifest = require('TestFbtEnumManifest');
 
 const {transformSync: babelTransform} = require('@babel/core');
 
-const testUtils = require('../../util/test-util');
+const {TestUtil} = require('fb-babel-plugin-utils');
 
 const {payload, transform} = require('../FbtTestUtil');
 
 function runTest(data) {
-  testUtils.assertSourceAstEqual(
+  TestUtil.assertSourceAstEqual(
     transform(data.input, {fbtEnumManifest: TestFbtEnumManifest}),
     data.output,
   );

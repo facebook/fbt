@@ -25,7 +25,8 @@
 // throw out the baby with the bath water and disable the whole shebang.
 /* eslint fb-www/comma-dangle: "off" */
 
-const {isRequireAlias} = require('../util/require-check');
+const {RequireCheck} = require('fb-babel-plugin-utils');
+const {isRequireAlias} = RequireCheck;
 const autoWrap = require('./fbt-auto-wrap');
 const fbtMethodCallVisitors = require('./fbt-method-call-visitors');
 const namespacedElementsArgsHandler = require('./fbt-namespaced-args-handler');
@@ -56,6 +57,8 @@ const {
   throwAt,
   validateNamespacedFbtElement,
 } = require('./FbtUtil');
+const fbtHashKey = require('./fbt-hash-key');
+const FbtShiftEnums = require('./fbt-shift-enums');
 const JSFbtBuilder = require('./js-fbt-builder');
 const fbtChecker = FbtNodeChecker.forModule(FBT);
 const fbsChecker = FbtNodeChecker.forModule(FBS);
@@ -690,5 +693,8 @@ function addEnclosingString(childIdx, parentIdx) {
 function getUnknownCommonStringErrorMessage(moduleName, text) {
   return `Unknown string "${text}" for <${moduleName} common={true}>`;
 }
+
+BabelPluginFbt.fbtHashKey = fbtHashKey;
+BabelPluginFbt.FbtShiftEnums = FbtShiftEnums;
 
 module.exports = BabelPluginFbt;

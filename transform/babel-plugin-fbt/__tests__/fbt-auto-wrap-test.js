@@ -14,7 +14,7 @@
  * @format
  */
 
-const testUtil = require('../../util/test-util');
+const {TestUtil} = require('fb-babel-plugin-utils');
 const {payload, transform} = require('../FbtTestUtil');
 const {transformSync: babelTransform} = require('@babel/core');
 
@@ -93,7 +93,7 @@ const testData = {
 };
 
 describe('Test jsx auto-wrapping of implicit parameters', () =>
-  testUtil.testSection(testData, transform));
+  TestUtil.testSection(testData, transform));
 
 describe('Equality between auto-wrapped and manually wrapped params', () => {
   it('should wrap a single unwrapped <fbt> child and a string above', () => {
