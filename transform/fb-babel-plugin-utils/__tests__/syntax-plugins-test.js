@@ -8,12 +8,12 @@
 jest.autoMockOff();
 
 const babel = require('@babel/core');
-const syntaxPlugins = require('../syntax-plugins');
+const SyntaxPlugins = require('../SyntaxPlugins');
 
 test('syntax-plugins list', () => {
   function transform(source) {
     babel.transformSync(source, {
-      plugins: syntaxPlugins.list,
+      plugins: SyntaxPlugins.list,
     });
   }
 
