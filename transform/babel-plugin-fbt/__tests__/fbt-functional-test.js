@@ -16,7 +16,7 @@
 
 jest.autoMockOff();
 
-const testUtil = require('../../util/test-util');
+const {TestUtil} = require('fb-babel-plugin-utils');
 const {payload, transform} = require('../FbtTestUtil');
 const {transformSync: babelTransform} = require('@babel/core');
 const assert = require('assert');
@@ -718,7 +718,7 @@ const testData = {
 };
 
 describe('Test functional fbt syntax translation', () =>
-  testUtil.testSection(testData, transform));
+  TestUtil.testSection(testData, transform));
 
 describe('Test fbt meta-data collection', () => {
   function testFbtMetadata(expected, options = {}) {

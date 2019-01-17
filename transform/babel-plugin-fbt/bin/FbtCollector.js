@@ -18,10 +18,10 @@
 
 'use strict';
 
-const syntaxPlugins = require('../../util/syntax-plugins');
 const {extractEnumsAndFlattenPhrases} = require('../fbt-shift-enums');
 const fbt = require('../index');
 const babel = require('@babel/core');
+const {SyntaxPlugins} = require('fb-babel-plugin-utils');
 const fs = require('graceful-fs');
 
 /*::
@@ -41,7 +41,7 @@ function transform(code /*: string*/, options /*: TransformOptions*/)/*: void*/ 
   babel.transformSync(code, {
     ast: false,
     code: false,
-    plugins: syntaxPlugins.list.concat([[fbt, options]]),
+    plugins: SyntaxPlugins.list.concat([[fbt, options]]),
     sourceType: 'unambiguous',
   });
 }

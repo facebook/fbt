@@ -16,12 +16,12 @@
 
 jest.autoMockOff();
 
-const testUtils = require('../../util/test-util');
+const {TestUtil} = require('fb-babel-plugin-utils');
 const {payload, transform} = require('../FbtTestUtil');
 const {transformSync: babelTransform} = require('@babel/core');
 
 function runTest(data, extra) {
-  testUtils.assertSourceAstEqual(transform(data.input, extra), data.output);
+  TestUtil.assertSourceAstEqual(transform(data.input, extra), data.output);
 }
 
 describe('Test extraOptions', () => {

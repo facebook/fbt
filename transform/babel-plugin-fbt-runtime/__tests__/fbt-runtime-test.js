@@ -11,7 +11,7 @@ jest.autoMockOff();
 
 const {transformSync: babelTransform} = require('@babel/core');
 
-const testUtils = require('../../util/test-util');
+const {TestUtil} = require('fb-babel-plugin-utils')
 
 function transform(source, pluginOptions) {
   return babelTransform(source, {
@@ -19,7 +19,7 @@ function transform(source, pluginOptions) {
     plugins: [
       require('@babel/plugin-syntax-jsx'),
       require('@babel/plugin-transform-react-jsx'),
-      [require('../../babel-plugin-fbt/index'), pluginOptions],
+      [require('babel-plugin-fbt'), pluginOptions],
       [require('../index'), pluginOptions],
     ],
     sourceType: 'module',
@@ -27,7 +27,7 @@ function transform(source, pluginOptions) {
 }
 
 function runTest(data, isRN) {
-  testUtils.assertSourceAstEqual(
+  TestUtil.assertSourceAstEqual(
     data.output,
     transform(data.input, {reactNativeMode: isRN}),
   );
