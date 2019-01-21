@@ -165,12 +165,22 @@ function BabelPluginFbt(babel) {
           );
         }
 
-        const callNode = t.callExpression(t.identifier(moduleName), args);
+        let callNode = t.callExpression(t.identifier(moduleName), args);
 
         callNode.loc = node.loc;
         if (node.parentIndex !== undefined) {
           callNode.parentIndex = node.parentIndex;
         }
+
+        if (t.isJSXElement(path.parent)) {
+          callNode = t.jsxExpressionContainer(callNode);
+
+          callNode.loc = node.loc;
+          if (node.parentIndex !== undefined) {
+            callNode.parentIndex = node.parentIndex;
+          }
+        }
+
         path.replaceWith(callNode);
       },
 
