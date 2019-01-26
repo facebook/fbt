@@ -15,7 +15,12 @@
     "@babel/plugin-syntax-numeric-separator": "^7.2.0",
     "@babel/plugin-syntax-object-rest-spread": "^7.2.0",
     "@babel/plugin-syntax-optional-catch-binding": "^7.2.0",
-    "@babel/plugin-syntax-optional-chaining": "^7.2.0"
+    "@babel/plugin-syntax-optional-chaining": "^7.2.0",
+    "babel-core": "7.0.0-bridge.0",
+    "flow-remove-types": "^1.2.3",
+    "invariant": "^2.2.4",
+    "jest-docblock": "^22.2.0",
+    "yargs": "^12.0.5"
   },
   "dependencies": {
     "@babel/plugin-transform-runtime": "7.2.0",

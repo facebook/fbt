@@ -294,7 +294,7 @@ exports[`Example.react renders the example 1`] = `
     <li
       value="en_US"
     >
-      English (US)
+      English (US)‎
     </li>
     <li
       value="fb_HX"
