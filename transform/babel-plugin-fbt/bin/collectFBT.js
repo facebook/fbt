@@ -70,6 +70,9 @@ const argv = optimist
     'Interpret stdin as JSON map of {<enum-manifest-file>: ' +
       '[<source_file1>, ...]}. Otherwise STDIN itself will be parsed',
   )
+  .boolean('pretty')
+  .default('pretty', false)
+  .describe('pretty', 'Pretty-print the JSON output')
   .string('options')
   .describe(
     'options',
@@ -107,11 +110,15 @@ function processJsonSource(source) {
 
 function writeOutput() {
   const phrases = fbtCollector.getPhrases();
+  const args = argv.pretty ? [null, ' '] : [];
   process.stdout.write(
-    JSON.stringify({
-      phrases: getPackager().pack(phrases),
-      childParentMappings: fbtCollector.getChildParentMappings(),
-    }),
+    JSON.stringify(
+      {
+        phrases: getPackager().pack(phrases),
+        childParentMappings: fbtCollector.getChildParentMappings(),
+      },
+      ...args,
+    ),
   );
   process.stdout.write('\n');
 
