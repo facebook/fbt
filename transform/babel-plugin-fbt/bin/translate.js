@@ -87,12 +87,13 @@ const fs = require('fs');
 const yargs = require('yargs');
 
 const args = {
-  STDIN: 'stdin',
   HASH: 'fbt-hash-module',
+  HELP: 'h',
   JENKINS: 'jenkins',
-  TRANSLATIONS: 'translations',
   PRETTY: 'pretty',
   SRC: 'source-strings',
+  STDIN: 'stdin',
+  TRANSLATIONS: 'translations',
 };
 
 const argv = yargs
@@ -129,17 +130,17 @@ const argv = yargs
     args.SRC,
     'The file containing source strings, as collected by collectFbt.js',
   )
-  .array('translations')
-  .default('translations', null)
+  .array(args.TRANSLATIONS)
+  .default(args.TRANSLATIONS, null)
   .describe(
-    'translations',
+    args.TRANSLATIONS,
     'The translation files containing translations corresponding to source-strings',
   )
   .boolean(args.PRETTY)
   .default(args.PRETTY, false)
   .describe(args.PRETTY, 'pretty print the translation output')
-  .describe('h', 'Display usage message')
-  .alias('h', 'help').argv;
+  .describe(args.HELP, 'Display usage message')
+  .alias(args.HELP, 'help').argv;
 
 function processFiles(
   stringFile /*: string */,
@@ -176,7 +177,7 @@ function processTranslations(fbtSites, group) {
 
 function processGroups(phrases, translatedGroups) {
   let fbtHash = null;
-  if (yargs.argv.jenkins) {
+  if (yargs.argv[args.JENKINS]) {
     fbtHash = require('../fbt-hash-key');
   } else if (yargs.argv[args.HASH]) {
     fbtHash = require(yargs.argv[args.HASH]);
@@ -199,17 +200,13 @@ function processGroups(phrases, translatedGroups) {
   return localeToHashToFbt;
 }
 
-function writeOutput(json) {
-  process.stdout.write(JSON.stringify(json));
-}
-
-if (argv.help) {
+if (argv[args.HELP]) {
   yargs.showHelp();
   process.exit(0);
 }
 
 const output = argv[args.STDIN]
   ? processJSON(JSON.parse(fs.readFileSync('/dev/stdin', 'utf8')))
-  : processFiles(argv[args.SRC], argv.translations);
-const json = JSON.stringify(output, ...(argv.pretty ? [null, ' '] : []));
+  : processFiles(argv[args.SRC], argv[args.TRANSLATIONS]);
+const json = JSON.stringify(output, ...(argv[args.PRETTY] ? [null, ' '] : []));
 process.stdout.write(json);

@@ -26,22 +26,34 @@ const fs = require('fs');
 const optimist = require('optimist');
 const path = require('path');
 
+const args = {
+  AUXILIARY_TEXTS: 'auxiliary-texts',
+  HASH: 'hash-module',
+  HELP: 'h',
+  OPTIONS: 'options',
+  PACKAGER: 'packager',
+  PRETTY: 'pretty',
+  REACT_NATIVE_MODE: 'react-native-mode',
+  STDIN: 'stdin',
+  TERSE: 'terse',
+};
+
 const argv = optimist
   .usage('Collect fbt instances from source:\n$0 [options]')
-  .default('hash-module', __dirname + '/md5Texts')
-  .describe('hash-module', 'Path to hashing module to use in text packager.')
-  .default('packager', 'text')
+  .default(args.HASH, __dirname + '/md5Texts')
+  .describe(args.HASH, 'Path to hashing module to use in text packager.')
+  .default(args.PACKAGER, 'text')
   .describe(
-    'packager',
+    args.PACKAGER,
     'Packager to use.  Choices are:\n' +
       "  'text' - hashing is done at the text-level (more granular)\n" +
       "'phrase' - hashing is done at the phrase-level (less granular)\n" +
       "  'noop' - No hashing or massaging of phrase data\n",
   )
-  .boolean('terse')
-  .default('terse', false)
+  .boolean(args.TERSE)
+  .default(args.TERSE, false)
   .describe(
-    'terse',
+    args.TERSE,
     'By default, we output the entirety of the fbt callsite including ' +
       'auxiliary jsfbt table and metadata.  Set to to true to output only ' +
       'hashes, texts, and descriptions of the fbt callsite. The goal being ' +
@@ -49,40 +61,40 @@ const argv = optimist
       'into a data store to share with translators, where this auxiliary data ' +
       "isn't necessary.",
   )
-  .boolean('react-native-mode')
-  .default('react-native-mode', false)
+  .boolean(args.REACT_NATIVE_MODE)
+  .default(args.REACT_NATIVE_MODE, false)
   .describe(
     'By default, we include enums in the jsfbt payload we produce. However, ' +
       'Flatbuffer language packs only work with predefined keys, so we need to ' +
       'move enums out of the jsfbt payload and output leaf payloads instead.',
   )
-  .describe('h', 'Display usage message')
-  .alias('h', 'help')
-  .boolean('auxiliary-texts')
+  .describe(args.HELP, 'Display usage message')
+  .alias(args.HELP, 'help')
+  .boolean(args.AUXILIARY_TEXTS)
   .describe(
-    'auxiliary-texts',
+    args.AUXILIARY_TEXTS,
     'Include auxiliary intermediary data-structure `texts` that includes the ' +
       'list of constructs passed to the fbt instance.',
   )
-  .boolean('json-input')
+  .boolean(args.STDIN)
   .describe(
-    'json-input',
+    args.STDIN,
     'Interpret stdin as JSON map of {<enum-manifest-file>: ' +
       '[<source_file1>, ...]}. Otherwise STDIN itself will be parsed',
   )
-  .boolean('pretty')
-  .default('pretty', false)
-  .describe('pretty', 'Pretty-print the JSON output')
-  .string('options')
+  .boolean(args.PRETTY)
+  .default(args.PRETTY, false)
+  .describe(args.PRETTY, 'Pretty-print the JSON output')
+  .string(args.OPTIONS)
   .describe(
-    'options',
+    args.OPTIONS,
     'additional options that fbt(..., {can: "take"}).  ' +
-      'i.e. --options "locale,qux,id"',
+      `i.e. --${args.OPTIONS} "locale,qux,id"`,
   ).argv;
 
 const extraOptions = {};
-if (argv.options) {
-  const opts = argv.options.split(',');
+if (argv[args.OPTIONS]) {
+  const opts = argv[args.OPTIONS].split(',');
   for (let ii = 0; ii < opts.length; ++ii) {
     extraOptions[opts[ii]] = true;
   }
@@ -90,8 +102,8 @@ if (argv.options) {
 
 const fbtCollector = new FbtCollector(
   {
-    auxiliaryTexts: argv['auxiliary-texts'],
-    reactNativeMode: argv['react-native-mode'],
+    auxiliaryTexts: argv[args.AUXILIARY_TEXTS],
+    reactNativeMode: argv[args.REACT_NATIVE_MODE],
   },
   extraOptions,
 );
@@ -110,14 +122,13 @@ function processJsonSource(source) {
 
 function writeOutput() {
   const phrases = fbtCollector.getPhrases();
-  const args = argv.pretty ? [null, ' '] : [];
   process.stdout.write(
     JSON.stringify(
       {
         phrases: getPackager().pack(phrases),
         childParentMappings: fbtCollector.getChildParentMappings(),
       },
-      ...args,
+      ...(argv[args.PRETTY] ? [null, ' '] : []),
     ),
   );
   process.stdout.write('\n');
@@ -133,7 +144,7 @@ function writeOutput() {
 }
 
 function processSource(source, filepath) {
-  if (argv['json-input']) {
+  if (argv[args.STDIN]) {
     processJsonSource(source);
   } else {
     fbtCollector.collectFromOneFile(source, filepath);
@@ -141,12 +152,12 @@ function processSource(source, filepath) {
 }
 
 function getPackager() {
-  switch (argv.packager) {
+  switch (argv[args.PACKAGER]) {
     case 'text':
       // $FlowFixMe
-      return new TextPackager(require(argv['hash-module']), argv.terse);
+      return new TextPackager(require(argv[args.HASH]), argv[args.TERSE]);
     case 'phrase':
-      return new PhrasePackager(argv.terse);
+      return new PhrasePackager(argv[args.TERSE]);
     case 'noop':
       return {pack: phrases => phrases};
     default:
@@ -154,7 +165,7 @@ function getPackager() {
   }
 }
 
-if (argv.help) {
+if (argv[args.HELP]) {
   optimist.showHelp();
 } else if (!argv._.length) {
   // No files given, read stdin as the sole input.
