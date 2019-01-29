@@ -7,7 +7,7 @@
   "scripts": {
     "build": "babel-node ../node_modules/webpack/bin/webpack",
     "manifest": "babel-node ../transform/babel-plugin-fbt/bin/manifest --src src",
-    "collect-fbts": "babel-node ../transform/babel-plugin-fbt/bin/collectFBT --pretty --json-input < .src_manifest.json > .source_strings.json",
+    "collect-fbts": "babel-node ../transform/babel-plugin-fbt/bin/collectFBT --pretty --stdin < .src_manifest.json > .source_strings.json",
     "translate-fbts": "babel-node ../transform/babel-plugin-fbt/bin/translate.js --translations translations/*.json --jenkins > src/translatedFbts.json",
     "translate-fbts-single-file": "babel-node ../transform/babel-plugin-fbt/bin/translate.js --jenkins --stdin < translation_input.json > src/translatedFbts.json",
     "clean-fbts": "rm .enum_manifest.json .src_manifest.json .source_strings.json src/translatedFbts.json 2&> /dev/null || exit 0",
