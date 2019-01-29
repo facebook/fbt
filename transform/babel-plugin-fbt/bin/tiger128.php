@@ -19,7 +19,7 @@ function intl_js_hash_babel7(
   return PHP\hash('tiger128,3-fb', $text.':::'.$desc.':');
 }
 
-function tiger128_main() {
+function tiger128_main(): void {
   $stdin = PHP\file_get_contents("php://stdin");
   $phrase_hashes = vec[];
   foreach (PHP\json_decode($stdin) as $phrase) {
