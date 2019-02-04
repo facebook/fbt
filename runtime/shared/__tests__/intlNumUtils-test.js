@@ -12,65 +12,94 @@ describe('intlNumUtils:', () => {
   // Ensures intlNumUtils and this test have the same instance of
   // NumberFormatConfig and that our prepare* functions override as
   // expected
-  jest.mock('NumberFormatConsts');
-  const NumberFormatConsts = require('NumberFormatConsts');
-  const NumberFormatConfig = NumberFormatConsts.get('');
+  let _overrides = {};
+
+  function setup() {
+    const NumberFormatConsts = require('NumberFormatConsts');
+    const _originalConfig = NumberFormatConsts.get();
+
+    NumberFormatConsts.get = jest.fn(() => {
+      return Object.assign({}, _originalConfig, _overrides);
+    });
+  }
+
   var u = require('intlNumUtils');
 
+  function override(config) {
+    setup();
+    _overrides = config;
+  }
+
   function prepareForAmericanFormat() {
-    NumberFormatConfig.decimalSeparator = '.';
-    NumberFormatConfig.numberDelimiter = ',';
-    NumberFormatConfig.minDigitsForThousandsSeparator = 4;
-    NumberFormatConfig.standardDecimalPatternInfo = {
-      primaryGroupSize: 3,
-      secondaryGroupSize: 3,
-    };
-    NumberFormatConfig.numberingSystemData = null;
+    override({
+      decimalSeparator: '.',
+      numberDelimiter: ',',
+      minDigitsForThousandsSeparator: 4,
+      standardDecimalPatternInfo: {
+        primaryGroupSize: 3,
+        secondaryGroupSize: 3,
+      },
+      numberingSystemData: null,
+    });
   }
 
   function prepareForBrazilianFormat() {
-    NumberFormatConfig.decimalSeparator = ',';
-    NumberFormatConfig.numberDelimiter = '.';
-    NumberFormatConfig.minDigitsForThousandsSeparator = 4;
-    NumberFormatConfig.standardDecimalPatternInfo = {
-      primaryGroupSize: 3,
-      secondaryGroupSize: 3,
-    };
-    NumberFormatConfig.numberingSystemData = null;
+    override({
+      decimalSeparator: ',',
+      numberDelimiter: '.',
+      minDigitsForThousandsSeparator: 4,
+      standardDecimalPatternInfo: {
+        primaryGroupSize: 3,
+        secondaryGroupSize: 3,
+      },
+      numberingSystemData: null,
+    });
   }
 
-  function prepareForHindiLatinFormat() {
-    NumberFormatConfig.decimalSeparator = '.';
-    NumberFormatConfig.numberDelimiter = ',';
-    NumberFormatConfig.minDigitsForThousandsSeparator = 4;
-    NumberFormatConfig.standardDecimalPatternInfo = {
+  const _hindiFormat = {
+    decimalSeparator: '.',
+    numberDelimiter: ',',
+    minDigitsForThousandsSeparator: 4,
+    standardDecimalPatternInfo: {
       primaryGroupSize: 3,
       secondaryGroupSize: 2,
-    };
-    NumberFormatConfig.numberingSystemData = null;
+    },
+    numberingSystemData: null,
+  };
+
+  function prepareForHindiLatinFormat() {
+    override(_hindiFormat);
   }
 
   function prepareForHindiDevanagariFormat() {
-    prepareForHindiLatinFormat();
-    NumberFormatConfig.numberingSystemData = {
-      digits: '\u0966\u0967\u0968\u0969\u096A\u096B\u096C\u096D\u096E\u096F',
-    };
+    override(
+      Object.assign({}, _hindiFormat, {
+        numberingSystemData: {
+          digits:
+            '\u0966\u0967\u0968\u0969\u096A\u096B\u096C\u096D\u096E\u096F',
+        },
+      }),
+    );
   }
 
   function prepareForArabicFormat() {
-    NumberFormatConfig.decimalSeparator = '\u066B';
-    NumberFormatConfig.numberDelimiter = '\u066C';
-    NumberFormatConfig.numberingSystemData = {
-      digits: '\u0660\u0661\u0662\u0663\u0664\u0665\u0666\u0667\u0668\u0669',
-    };
+    override({
+      decimalSeparator: '\u066B',
+      numberDelimiter: '\u066C',
+      numberingSystemData: {
+        digits: '\u0660\u0661\u0662\u0663\u0664\u0665\u0666\u0667\u0668\u0669',
+      },
+    });
   }
 
   function prepareForPersianFormat() {
-    NumberFormatConfig.decimalSeparator = '\u066B';
-    NumberFormatConfig.numberDelimiter = '\u066C';
-    NumberFormatConfig.numberingSystemData = {
-      digits: '\u06F0\u06F1\u06F2\u06F3\u06F4\u06F5\u06F6\u06F7\u06F8\u06F9',
-    };
+    override({
+      decimalSeparator: '\u066B',
+      numberDelimiter: '\u066C',
+      numberingSystemData: {
+        digits: '\u06F0\u06F1\u06F2\u06F3\u06F4\u06F5\u06F6\u06F7\u06F8\u06F9',
+      },
+    });
   }
 
   describe('intNumUtils.formatNumberRaw', function() {
@@ -165,9 +194,11 @@ describe('intlNumUtils:', () => {
     });
 
     it('Should respect user locale for number formatting', function() {
-      NumberFormatConfig.decimalSeparator = '#';
-      NumberFormatConfig.numberDelimiter = '/';
-      NumberFormatConfig.minDigitsForThousandsSeparator = 6;
+      override({
+        decimalSeparator: '#',
+        numberDelimiter: '/',
+        minDigitsForThousandsSeparator: 6,
+      });
 
       // Below the thousand separator threshold. No thousand separator.
       expect(u.formatNumber(1234.1, 1)).toBe('1234#1');
@@ -249,9 +280,11 @@ describe('intlNumUtils:', () => {
     });
 
     it('Should respect user locale for number formatting', function() {
-      NumberFormatConfig.decimalSeparator = '#';
-      NumberFormatConfig.numberDelimiter = '/';
-      NumberFormatConfig.minDigitsForThousandsSeparator = 6;
+      override({
+        decimalSeparator: '#',
+        numberDelimiter: '/',
+        minDigitsForThousandsSeparator: 6,
+      });
 
       // Below the thousand separator threshold. No thousand separator.
       expect(u.formatNumberWithThousandDelimiters(1234.1, 1)).toBe('1234#1');

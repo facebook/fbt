@@ -33,7 +33,7 @@
   "workspaces": {
     "packages": [
       "demo-app",
-      "runtime",
+      "fbt-runtime",
       "transform/*",
       "website"
     ]
