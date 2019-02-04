@@ -12,25 +12,37 @@
 
 const IntlViewerContext = require('IntlViewerContext');
 
-const translatedFbts = require('translatedFbts.json');
+let _translatedFbts = null;
 
-function getTranslatedPayload(
-  hashKey: ?string,
-  enumHashKey: $FlowFixMe,
-  args: Array<$FlowFixMe>,
-): $FlowFixMe {
-  const table = translatedFbts && translatedFbts[IntlViewerContext.locale];
-  if (!table || !table[hashKey]) {
-    return null;
-  }
-  return {
-    table: table[hashKey],
-    args: args,
-  };
-}
+const FbtTranslations = {
+  getTranslatedPayload(
+    hashKey: ?string,
+    enumHashKey: $FlowFixMe,
+    args: Array<$FlowFixMe>,
+  ): $FlowFixMe {
+    const table = _translatedFbts && _translatedFbts[IntlViewerContext.locale];
+    if (__DEV__) {
+      if (!table) {
+        console.warn('Translations have not been provided');
+      }
+    }
 
-function isComponentScript(): boolean {
-  return false;
-}
+    if (!table || !table[hashKey]) {
+      return null;
+    }
+    return {
+      table: table[hashKey],
+      args: args,
+    };
+  },
 
-module.exports = {getTranslatedPayload, isComponentScript};
+  isComponentScript() {
+    return false;
+  },
+
+  registerTranslations(translations) {
+    _translatedFbts = translations;
+  },
+};
+
+module.exports = FbtTranslations;

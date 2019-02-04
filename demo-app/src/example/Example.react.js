@@ -3,6 +3,7 @@
  *
  * Copyright (c) Facebook, Inc. and its affiliates. All rights reserved.
  *
+ * @format
  * @flow strict-local
  * @fbt {"project": "fbt-demo-project"}
  */
@@ -16,7 +17,10 @@ const GenderConst = require('GenderConst');
 const IntlVariations = require('IntlVariations');
 const IntlViewerContext = require('IntlViewerContext');
 
+// TODO T39893211 - use NPM module instead of source.
 const fbt = require('fbt');
+const init = require('fbtInit');
+init({translations: require('../translatedFbts.json')});
 
 const LOCALES = Object.freeze({
   en_US: Object.freeze({
