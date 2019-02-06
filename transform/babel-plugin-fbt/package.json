@@ -2,7 +2,7 @@
   "license": "MIT",
   "main": "index.js",
   "name": "babel-plugin-fbt",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "devDependencies": {
     "jest-docblock": "^22.2.0"
   },

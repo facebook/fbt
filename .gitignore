@@ -2,6 +2,9 @@
 node_modules
 yarn-error.log
 
+# NPM "fbt-runtime" package folder for publishing
+./fbt-runtime
+
 # MacOS
 .DS_Store
 
