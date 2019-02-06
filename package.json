@@ -7,6 +7,7 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "7.2.2",
+    "@babel/generator": "^7.3.0",
     "@babel/node": "7.2.2",
     "@babel/plugin-syntax-class-properties": "^7.2.0",
     "@babel/plugin-syntax-flow": "^7.2.0",
@@ -17,9 +18,24 @@
     "@babel/plugin-syntax-optional-catch-binding": "^7.2.0",
     "@babel/plugin-syntax-optional-chaining": "^7.2.0",
     "babel-core": "7.0.0-bridge.0",
+    "babel-preset-fbjs": "^3.1.2",
+    "fbjs-scripts": "^1.0.1",
     "flow-remove-types": "^1.2.3",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean-css": "^4.0.0",
+    "gulp-concat-css": "^3.1.0",
+    "gulp-derequire": "^2.1.0",
+    "gulp-flatten": "^0.4.0",
+    "gulp-header": "^2.0.7",
+    "gulp-if": "^2.0.2",
+    "gulp-rename": "^1.4.0",
+    "gulp-util": "^3.0.8",
     "invariant": "^2.2.4",
     "jest-docblock": "^22.2.0",
+    "uglifyjs-webpack-plugin": "^2.1.1",
+    "webpack": "^4.0.0",
+    "webpack-stream": "^5.2.1",
     "yargs": "^12.0.5"
   },
   "dependencies": {
@@ -29,6 +45,9 @@
     "npm": "^6.4.1",
     "optimist": "^0.6.1",
     "shelljs": "^0.8.3"
+  },
+  "scripts": {
+    "build-runtime": "gulp lib"
   },
   "workspaces": {
     "packages": [

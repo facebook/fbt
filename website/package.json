@@ -1,4 +1,6 @@
 {
+  "private": true,
+  "name": "fbt-documentation-website",
   "license": "MIT",
   "scripts": {
     "examples": "docusaurus-examples",
