@@ -1,0 +1,40 @@
+{
+  "//": "Not meant to be published as-is. See gulpfile",
+  "private": "true",
+  "name": "fbt",
+  "description": "The fbt i18n framework JS runtime.",
+  "version": "0.9.5",
+  "keywords": [
+    "facebook",
+    "fbt",
+    "globalization",
+    "i18n",
+    "internationalization",
+    "l10n",
+    "localization",
+    "react"
+  ],
+  "homepage": "https://facebookincubator.github.io/fbt/",
+  "bugs": "https://github.com/facebookincubator/fbt/issues",
+  "files": [
+    "dist/",
+    "lib/",
+    "LICENSE"
+  ],
+  "main": "lib/FbtPublic.js",
+  "style": "dist/fbt.css",
+  "repository": "facebookincubator/fbt",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "peerDependencies": {
+    "babel-plugin-fbt": "0.9.1",
+    "babel-plugin-fbt-runtime": "0.9.1"
+  },
+  "devDependencies": {
+  },
+  "devEngines": {
+    "node": "6.x || 7.x || 8.x || 9.x || 10.x || 11.x",
+    "npm": "6.x"
+  }
+}
