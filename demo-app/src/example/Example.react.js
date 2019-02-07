@@ -13,13 +13,8 @@ import classNames from 'classnames';
 import * as React from 'react';
 
 const ExampleEnum = require('Example$FbtEnum');
-const GenderConst = require('GenderConst');
-const IntlVariations = require('IntlVariations');
-const IntlViewerContext = require('IntlViewerContext');
 
-// TODO T39893211 - use NPM module instead of source.
-const fbt = require('fbt');
-const init = require('fbtInit');
+import fbt, {GenderConst, IntlVariations, IntlViewerContext, init} from 'fbt';
 init({translations: require('../translatedFbts.json')});
 
 const LOCALES = Object.freeze({
