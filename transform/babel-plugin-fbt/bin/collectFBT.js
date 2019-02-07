@@ -23,8 +23,8 @@ const FbtCollector = require('./FbtCollector');
 const PhrasePackager = require('./PhrasePackager');
 const TextPackager = require('./TextPackager');
 const fs = require('fs');
-const optimist = require('optimist');
 const path = require('path');
+const yargs = require('yargs');
 
 const args = {
   AUXILIARY_TEXTS: 'auxiliary-texts',
@@ -38,7 +38,7 @@ const args = {
   TERSE: 'terse',
 };
 
-const argv = optimist
+const argv = yargs
   .usage('Collect fbt instances from source:\n$0 [options]')
   .default(args.HASH, __dirname + '/md5Texts')
   .describe(args.HASH, 'Path to hashing module to use in text packager.')
@@ -46,8 +46,8 @@ const argv = optimist
   .describe(
     args.PACKAGER,
     'Packager to use.  Choices are:\n' +
-      "  'text' - hashing is done at the text-level (more granular)\n" +
-      "'phrase' - hashing is done at the phrase-level (less granular)\n" +
+      "  'text' - hashing is done at the text (or leaf) level (more granular)\n" +
+      "'phrase' - hashing is done at the phrase level (less granular)\n" +
       "  'noop' - No hashing or massaging of phrase data\n",
   )
   .boolean(args.TERSE)
@@ -166,7 +166,7 @@ function getPackager() {
 }
 
 if (argv[args.HELP]) {
-  optimist.showHelp();
+  yargs.showHelp();
 } else if (!argv._.length) {
   // No files given, read stdin as the sole input.
   const stream = process.stdin;

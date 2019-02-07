@@ -19,11 +19,11 @@
 
 const FbtConstants = require('../FbtConstants');
 const fs = require('fs');
-const optimist = require('optimist');
 const path = require('path');
 const shell = require('shelljs');
+const yargs = require('yargs');
 
-const argv = optimist
+const argv = yargs
   .usage(
     'Generate the enum manifest and its corresponding source manifest ' +
       'intended for consumption by the fbt transform and collectFbt',
@@ -47,7 +47,7 @@ const argv = optimist
   .argv;
 
 if (argv.help) {
-  optimist.showHelp();
+  yargs.showHelp();
   process.exit(0);
 }
 
