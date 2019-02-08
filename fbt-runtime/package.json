@@ -1,6 +1,6 @@
 {
-  "//": "Not meant to be published as-is. See gulpfile",
-  "private": "true",
+  "//": "Copyright (c) Facebook, Inc. and its affiliates.",
+  "private": "false",
   "name": "fbt",
   "description": "The fbt i18n framework JS runtime.",
   "version": "0.9.5",

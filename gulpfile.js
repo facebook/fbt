@@ -26,7 +26,6 @@ const webpackStream = require('webpack-stream');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const paths = {
-  pkg: 'runtime/package.json',
   published: 'fbt-runtime',
   dist: 'fbt-runtime/dist',
   lib: 'fbt-runtime/lib',
@@ -95,28 +94,6 @@ gulp.task(
   'license',
   gulp.series(function() {
     return gulp.src(paths.license).pipe(gulp.dest(paths.published));
-  }),
-);
-
-/**
- * Copy package.json over to published folder. Make it public and
- * replace comment with copyright.
- */
-gulp.task(
-  'pkg',
-  gulp.series(function() {
-    return gulp
-      .src(paths.pkg)
-      .pipe(
-        through.obj(function(file, _, cb) {
-          let pkg = JSON.parse(file.contents.toString());
-          pkg.private = false;
-          pkg['//'] = COPYRIGHT;
-          file.contents = Buffer.from(JSON.stringify(pkg, null, ' '));
-          cb(null, file);
-        }),
-      )
-      .pipe(gulp.dest(paths.published));
   }),
 );
 
@@ -199,7 +176,10 @@ gulp.task(
 gulp.task(
   'clean',
   gulp.series(function() {
-    return del([paths.published]);
+    return del([
+      paths.published + '/*',
+      '!' + paths.published + '/package.json',
+    ]);
   }),
 );
 
@@ -207,7 +187,7 @@ gulp.task(
   'lib',
   gulp.series(
     'clean',
-    gulp.parallel('license', 'pkg', 'modules', 'flow'),
+    gulp.parallel('license', 'modules', 'flow'),
     gulp.series('dist', 'dist:min'),
   ),
 );

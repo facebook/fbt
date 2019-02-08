@@ -17,7 +17,7 @@ demo-app/src/translatedFbts.json
 demo-app/yarn-error.log
 
 # Publisehd NPM modules
-fbt-runtime
+fbt-runtime/**
 
 # documentation build artifacts
 website/build/
