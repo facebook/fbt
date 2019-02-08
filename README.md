@@ -23,12 +23,11 @@ yarn install
 ```
 
 ## Installing fbt
-We will make the transform and runtime installable as an npm package soon. Until then,
 See how to use the source directly with Babel and Webpack in our demo-app:
 
 ```
-cd demo-app # from fbt repo
-yarn install
+yarn install # from fbt repo
+cd demo-app
 yarn manifest
 yarn collect-fbts
 yarn translate-fbts

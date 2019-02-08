@@ -1,7 +1,7 @@
 {
   "private": true,
   "//": "Copyright (c) Facebook, Inc. and its affiliates. All rights reserved.",
-  "name": "fbt",
+  "name": "fbt-top-level-repo",
   "version": "0.9.0",
   "main": "index.js",
   "license": "MIT",
@@ -19,6 +19,7 @@
     "@babel/plugin-syntax-optional-chaining": "^7.2.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-preset-fbjs": "^3.1.2",
+    "del": "^3.0.0",
     "fbjs-scripts": "^1.0.1",
     "flow-remove-types": "^1.2.3",
     "gulp": "^4.0.0",
@@ -46,16 +47,16 @@
     "shelljs": "^0.8.3"
   },
   "scripts": {
+    "clean": "gulp clean",
+    "postinstall": "yarn build-runtime",
     "build-runtime": "gulp lib"
   },
-  "workspaces": {
-    "packages": [
-      "demo-app",
-      "fbt-runtime",
-      "transform/*",
-      "website"
-    ]
-  },
+  "workspaces": [
+    "demo-app",
+    "fbt-runtime",
+    "transform/*",
+    "website"
+  ],
   "engines": {
     "node": ">= 6"
   }
