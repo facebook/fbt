@@ -18,8 +18,8 @@
 
 const {FbtType} = require('./FbtConstants');
 const {normalizeSpaces, objMap} = require('./FbtUtil');
-const {GENDER_CONST} = require('./gender-const');
-const genderConst = require('./gender-const');
+const Gender = require('./Gender');
+const {GENDER_CONST} = Gender;
 const {
   EXACTLY_ONE,
   FbtVariationType,
@@ -194,7 +194,7 @@ class JSFbtBuilder {
           const genderKey = this.getPronounGenderKey(item.usage, gender);
           const pivotKey =
             genderKey === GENDER_CONST.UNKNOWN_PLURAL ? '*' : genderKey;
-          const word = genderConst.getData(genderKey, item.usage);
+          const word = Gender.getData(genderKey, item.usage);
           textSegments[pivotKey] = item.capitalize
             ? word.charAt(0).toUpperCase() + word.substr(1)
             : word;

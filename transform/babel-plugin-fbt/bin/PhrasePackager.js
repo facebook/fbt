@@ -25,8 +25,8 @@ class PhrasePackager {
     this._terse = terse;
     // The following 2 modules are not necessarily in the file-tree in repos where
     // this isn't used.  Blow up hard and early if we try to use PhrasePackager
-    this._hashKey = require('../fbt-hash-key');
-    this._jenkinsHash = require('../fbt-jenkins-hash');
+    this._hashKey = require('../fbtHashKey');
+    this._jenkinsHash = require('../fbtJenkinsHash');
   }
 
   pack(phrases) {

@@ -27,9 +27,9 @@
 
 const {RequireCheck} = require('fb-babel-plugin-utils');
 const {isRequireAlias} = RequireCheck;
-const autoWrap = require('./fbt-auto-wrap');
-const fbtMethodCallVisitors = require('./fbt-method-call-visitors');
-const namespacedElementsArgsHandler = require('./fbt-namespaced-args-handler');
+const FbtAutoWrap = require('./FbtAutoWrap');
+const FbtMethodCallVisitors = require('./FbtMethodCallVisitors');
+const getNamespacedArgs = require('./getNamespacedArgs');
 const FbtCommonConstants = require('./FbtCommonConstants');
 const {
   FbtBooleanOptions,
@@ -57,9 +57,9 @@ const {
   throwAt,
   validateNamespacedFbtElement,
 } = require('./FbtUtil');
-const fbtHashKey = require('./fbt-hash-key');
-const FbtShiftEnums = require('./fbt-shift-enums');
-const JSFbtBuilder = require('./js-fbt-builder');
+const fbtHashKey = require('./fbtHashKey');
+const FbtShiftEnums = require('./FbtShiftEnums');
+const JSFbtBuilder = require('./JSFbtBuilder');
 const fbtChecker = FbtNodeChecker.forModule(FBT);
 const fbsChecker = FbtNodeChecker.forModule(FBS);
 const {parse: parseDocblock} = require('jest-docblock');
@@ -86,7 +86,7 @@ function BabelPluginFbt(babel) {
     pre() {
       this.opts.fbtSentinel = this.opts.fbtSentinel || '__FBT__';
       this.opts.fbtBase64 = this.opts.fbtBase64;
-      fbtMethodCallVisitors.setEnumManifest(this.opts.fbtEnumManifest);
+      FbtMethodCallVisitors.setEnumManifest(this.opts.fbtEnumManifest);
       initExtraOptions(this);
       initDefaultOptions(this);
       phrases = [];
@@ -112,7 +112,7 @@ function BabelPluginFbt(babel) {
         FbtNodeChecker.forModule(moduleName).assertNoNestedFbts(node);
 
         if (!node.implicitFbt) {
-          autoWrap.createImplicitDescriptions(moduleName, node);
+          FbtAutoWrap.createImplicitDescriptions(moduleName, node);
         }
 
         giveParentPhraseLocation(node, phrases.length);
@@ -216,7 +216,7 @@ function BabelPluginFbt(babel) {
           if (isRequireAlias(path.parentPath)) {
             const _moduleName = node.arguments[0].value;
             const alias = path.parentPath.node.id.name;
-            fbtMethodCallVisitors.setFbtEnumRequireMap(alias, _moduleName);
+            FbtMethodCallVisitors.setFbtEnumRequireMap(alias, _moduleName);
           }
           return;
         }
@@ -244,12 +244,12 @@ function BabelPluginFbt(babel) {
           paramSet: {},
           runtimeArgs,
           variations,
-          hasTable: false, // can be mutated during `fbtMethodCallVisitors`.
+          hasTable: false, // can be mutated during `FbtMethodCallVisitors`.
           enumManifest: visitor.opts.fbtEnumManifest,
           src: visitor.file.code,
         };
 
-        path.traverse(fbtMethodCallVisitors.call(t, moduleName), methodsState);
+        path.traverse(FbtMethodCallVisitors.call(t, moduleName), methodsState);
 
         let texts;
         const optionsNode = node.arguments[2];
@@ -391,9 +391,7 @@ function BabelPluginFbt(babel) {
       moduleName,
       node.openingElement.name,
     );
-    const args = namespacedElementsArgsHandler
-      .getArgs(moduleName, t)
-      [name](node);
+    const args = getNamespacedArgs(moduleName, t)[name](node);
     if (name == 'implicitParamMarker') {
       name = 'param';
     }
