@@ -19,7 +19,7 @@
 /* eslint fb-www/comma-dangle: "off" */
 // See explaination in /js/fb-transforms/babel-7/babel-plugin-fbt/index.js
 
-const autoWrap = require('./fbt-auto-wrap');
+const FbtAutoWrap = require('./FbtAutoWrap');
 const {
   PluralOptions,
   PluralRequiredAttributes,
@@ -38,14 +38,14 @@ const {
   throwAt,
 } = require('./FbtUtil');
 
-const getArgs = function(moduleName, t) {
+const getNamespacedArgs = function(moduleName, t) {
   return {
     /**
      * Node that is a child of a <fbt> node that should be handled as
      * <fbt:param>
      */
     implicitParamMarker(node) {
-      const newNode = autoWrap.wrapImplicitFBTParam(moduleName, t, node);
+      const newNode = FbtAutoWrap.wrapImplicitFBTParam(moduleName, t, node);
       return [t.stringLiteral('=' + newNode.paramName), newNode];
     },
 
@@ -271,4 +271,4 @@ const getArgs = function(moduleName, t) {
   };
 };
 
-module.exports.getArgs = getArgs;
+module.exports = getNamespacedArgs;

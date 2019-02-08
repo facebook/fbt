@@ -7,7 +7,7 @@
 
 'use strict';
 
-const fbtJenkinsHash = require('./fbt-jenkins-hash');
+const fbtJenkinsHash = require('./fbtJenkinsHash');
 
 const BaseNSymbols =
   '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

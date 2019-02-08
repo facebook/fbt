@@ -15,11 +15,11 @@
 
 'use strict';
 
+const {FbtType} = require('../FbtConstants.js');
 const {
   extractEnumsAndFlattenPhrases,
   shiftEnumsToTop,
-} = require('../fbt-shift-enums.js');
-const {FbtType} = require('../FbtConstants.js');
+} = require('../FbtShiftEnums.js');
 
 const FbtVariationType = {
   GENDER: 1,

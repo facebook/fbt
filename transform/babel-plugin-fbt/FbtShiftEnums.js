@@ -20,7 +20,7 @@ const invariant = require('fbjs/lib/invariant');
 
 /**
  * Used by collectFBT to output multiple phrases in a flat array.
- * See fbt-shift-enums-test for example input and output.
+ * See FbtShiftEnumsTest for example input and output.
  */
 function extractEnumsAndFlattenPhrases(phrases) {
   return _flatMap(phrases, phrase => {
@@ -55,7 +55,7 @@ function extractEnumsAndFlattenPhrases(phrases) {
 
 /**
  * Used by fbt-runtime babel plugin to build a table of enums to hashes of leaf
- * tables. See fbt-shift-enums-test for example input and output.
+ * tables. See FbtShiftEnumsTest for example input and output.
  */
 function shiftEnumsToTop(jsfbt) {
   if (typeof jsfbt === 'string') {

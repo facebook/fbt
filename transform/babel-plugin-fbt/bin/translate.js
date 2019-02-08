@@ -178,7 +178,7 @@ function processTranslations(fbtSites, group) {
 function processGroups(phrases, translatedGroups) {
   let fbtHash = null;
   if (yargs.argv[args.JENKINS]) {
-    fbtHash = require('../fbt-hash-key');
+    fbtHash = require('../fbtHashKey');
   } else if (yargs.argv[args.HASH]) {
     fbtHash = require(yargs.argv[args.HASH]);
   }

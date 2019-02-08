@@ -18,7 +18,7 @@
 
 'use strict';
 
-const {extractEnumsAndFlattenPhrases} = require('../fbt-shift-enums');
+const {extractEnumsAndFlattenPhrases} = require('../FbtShiftEnums');
 const fbt = require('../index');
 const babel = require('@babel/core');
 const {SyntaxPlugins} = require('fb-babel-plugin-utils');
