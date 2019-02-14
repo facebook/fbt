@@ -13,8 +13,7 @@
  * @format
  */
 
-const {transform} = require('../FbtTestUtil');
-const {transformSync: babelTransform} = require('@babel/core');
+const {transform, withFbtRequireStatement} = require('../FbtTestUtil');
 const assert = require('assert');
 
 function testChildToParentRelationships(testData, expected) {
@@ -52,95 +51,75 @@ function testChildToParentRelationships(testData, expected) {
 const testData = [
   {
     'should find the parent for a simple level': {
-      input:
-        'const fbt = require("fbt");\n' +
-        '<fbt desc="d">\n' +
-        '<link href="#">\n' +
-        'Your friends\n' +
-        '</link>\n' +
-        'liked your video\n' +
-        '</fbt>;',
+      input: withFbtRequireStatement(
+        `<fbt desc="d">
+            <link href="#">Your friends</link>
+            liked your video
+          </fbt>;`,
+      ),
     },
   },
   {
     'should find the parents for a nested level': {
-      input:
-        'const fbt = require("fbt");\n' +
-        '<fbt desc="d">\n' +
-        '<Link href="#">\n' +
-        'Your friends\n' +
-        '<b>\n' +
-        'liked\n' +
-        '</b>\n' +
-        '</Link>\n' +
-        'your video\n' +
-        '</fbt>;',
+      input: withFbtRequireStatement(
+        `<fbt desc="d">
+            <Link href="#">
+              Your friends
+              <b>liked</b>
+            </Link>
+            your video
+          </fbt>;`,
+      ),
     },
   },
   {
     'should find the parents for a multi-nested level': {
-      input:
-        'const fbt = require("fbt");\n' +
-        '<fbt desc="phrase 0">\n' +
-        '<div>\n' +
-        'phrase 1\n' +
-        '<div>\n' +
-        'phrase 2\n' +
-        '</div>\n' +
-        '</div>\n' +
-        '<div>\n' +
-        'phrase 3\n' +
-        '<div>\n' +
-        'phrase 4\n' +
-        '</div>\n' +
-        '</div>\n' +
-        '</fbt>;',
+      input: withFbtRequireStatement(
+        `<fbt desc="phrase 0">
+            <div>
+              phrase 1<div>phrase 2</div>
+            </div>
+            <div>
+              phrase 3<div>phrase 4</div>
+            </div>
+          </fbt>;`,
+      ),
     },
   },
   {
     'should not count an explicit fbt:param as a child': {
-      input:
-        'const fbt = require("fbt");\n' +
-        '<fbt desc="phrase 0">\n' +
-        '<fbt:param name="should not be a child">\n' +
-        '<div href="#">\n' +
-        '<fbt desc="phrase 1">\n' +
-        'should not be a child\n' +
-        '</fbt>\n' +
-        '</div>\n' +
-        '</fbt:param>\n' +
-        '<fbt:param name="also should not be a child">\n' +
-        '<div href="#">\n' +
-        '<fbt desc="phrase 2">\n' +
-        'also should not be a child\n' +
-        '<div href="#">\n' +
-        'a child!\n' +
-        '</div>\n' +
-        '</fbt>\n' +
-        '</div>\n' +
-        '</fbt:param>\n' +
-        '<div href="#">\n' +
-        'another child!\n' +
-        '</div>\n' +
-        '</fbt>;',
+      input: withFbtRequireStatement(
+        `<fbt desc="phrase 0">
+            <fbt:param name="should not be a child">
+              <div href="#">
+                <fbt desc="phrase 1">should not be a child</fbt>
+              </div>
+            </fbt:param>
+            <fbt:param name="also should not be a child">
+              <div href="#">
+                <fbt desc="phrase 2">
+                  also should not be a child
+                  <div href="#">a child!</div>
+                </fbt>
+              </div>
+            </fbt:param>
+            <div href="#">another child!</div>
+          </fbt>;`,
+      ),
     },
   },
   {
     'should work with children with multiple fbt calls in one file': {
-      input:
-        'const fbt = require("fbt");\n' +
-        '<div>\n' +
-        '<fbt desc="phrase 0">\n' +
-        '<div href="#">\n' +
-        'phrase 1\n' +
-        '</div>\n' +
-        '</fbt>\n' +
-        '<fbt desc="phrase 2">\n' +
-        '<div href="#">\n' +
-        'phrase 3\n' +
-        '</div>\n' +
-        '</fbt>\n' +
-        '</div>;',
+      input: withFbtRequireStatement(
+        `<div>
+            <fbt desc="phrase 0">
+              <div href="#">phrase 1</div>
+            </fbt>
+            <fbt desc="phrase 2">
+              <div href="#">phrase 3</div>
+            </fbt>
+          </div>;`,
+      ),
     },
   },
 ];
