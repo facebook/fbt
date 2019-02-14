@@ -75,7 +75,11 @@ const buildDist = function(opts) {
         debug: opts.debug,
       }),
     ],
+    optimization: {
+      minimize: !opts.debug,
+    },
   };
+
   if (!opts.debug) {
     webpackOpts.plugins.push(new UglifyJsPlugin());
   }
