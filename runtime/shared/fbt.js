@@ -486,4 +486,4 @@ fbt.disableJsonExportMode = function() {
   jsonExportMode = false;
 };
 
-module.exports = ((fbt: $FlowFixMe): _FbtFactory_DO_NOT_USE);
+module.exports = ((fbt: $FlowFixMe): $FbtFunctionAPI);

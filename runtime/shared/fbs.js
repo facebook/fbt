@@ -18,11 +18,7 @@ const FbsImpl = {
   /**
    * @see fbt._param()
    */
-  _param(
-    label: string,
-    value: _FbsParam_DO_NOT_USE,
-    variations: [number, number],
-  ) {
+  _param(label: string, value: $FbsParamInput, variations: [number, number]) {
     // TODO(T36305131) Returning implicit Flow type until fbt.js is typed properly
     invariant(
       typeof value === 'string' || value instanceof FbtPureStringResult,
@@ -41,4 +37,4 @@ const FbsImpl = {
   },
 };
 
-module.exports = ((FbsImpl: $FlowFixMe): _FbsFactory_DO_NOT_USE);
+module.exports = ((FbsImpl: $FlowFixMe): $FbsFunctionAPI);
