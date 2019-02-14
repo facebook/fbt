@@ -20,12 +20,7 @@ const {
   extractEnumsAndFlattenPhrases,
   shiftEnumsToTop,
 } = require('../FbtShiftEnums.js');
-
-const FbtVariationType = {
-  GENDER: 1,
-  NUMBER: 2,
-  PRONOUN: 3,
-};
+const {FbtVariationType} = require('../translate/IntlVariations.js');
 
 const extractEnumsAndFlattenPhrasesTestData = [
   {

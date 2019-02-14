@@ -9,22 +9,15 @@
  * Run the following command to sync the change from www to fbsource.
  *   js1 upgrade www-shared -p babel_plugin_fbt --remote localhost:~/www
  *
- * @nolint
  * @emails oncall+internationalization
  * @format
  */
 
 jest.autoMockOff();
 
-const {TestUtil} = require('fb-babel-plugin-utils');
 const {payload, transform} = require('../FbtTestUtil');
-const {transformSync: babelTransform} = require('@babel/core');
-
-const FbtVariationType = {
-  GENDER: 1,
-  NUMBER: 2,
-  PRONOUN: 3,
-};
+const {FbtVariationType} = require('../translate/IntlVariations.js');
+const {TestUtil} = require('fb-babel-plugin-utils');
 
 function runTest(data, extra) {
   var expected = data.output;
@@ -42,6 +35,7 @@ describe('fbt pronoun support', () => {
   it('"capitalize" option accepts boolean literal true', () => {
     runTest({
       input:
+        // eslint-disable-next-line fb-www/gender-neutral-language
         // I.e. Her birthday is today.
         "const fbt = require('fbt');" +
         'var x =' +
@@ -141,6 +135,7 @@ describe('fbt pronoun support (react native)', () => {
   it('"capitalize" option accepts boolean literal true', () => {
     runTestForReactNative({
       input:
+        // eslint-disable-next-line fb-www/gender-neutral-language
         // I.e. Her birthday is today.
         "const fbt = require('fbt');" +
         'var x =' +
