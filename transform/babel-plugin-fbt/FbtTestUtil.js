@@ -54,8 +54,20 @@ function transformKeepJsx(
   }).code;
 }
 
+function withFbsRequireStatement(code: string): string {
+  return `const fbs = require("fbs");
+  ${code}`;
+}
+
+function withFbtRequireStatement(code: string): string {
+  return `const fbt = require("fbt");
+  ${code}`;
+}
+
 module.exports = {
   payload,
   transform,
   transformKeepJsx,
+  withFbsRequireStatement,
+  withFbtRequireStatement,
 };
