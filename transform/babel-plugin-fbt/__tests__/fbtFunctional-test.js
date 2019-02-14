@@ -9,23 +9,16 @@
  * Run the following command to sync the change from www to fbsource.
  *   js1 upgrade www-shared -p babel_plugin_fbt --remote localhost:~/www
  *
- * @nolint
  * @emails oncall+internationalization
  * @format
  */
 
 jest.autoMockOff();
 
-const {TestUtil} = require('fb-babel-plugin-utils');
 const {payload, transform} = require('../FbtTestUtil');
-const {transformSync: babelTransform} = require('@babel/core');
+const {FbtVariationType} = require('../translate/IntlVariations.js');
 const assert = require('assert');
-
-const FbtVariationType = {
-  GENDER: 1,
-  NUMBER: 2,
-  PRONOUN: 3,
-};
+const {TestUtil} = require('fb-babel-plugin-utils');
 
 const testData = {
   'should convert simple strings': {
@@ -544,6 +537,7 @@ const testData = {
 
   'should handle object pronoun': {
     input:
+      // eslint-disable-next-line fb-www/gender-neutral-language
       // I.e. You wished her a happy birthday.
       'const fbt = require("fbt");\n' +
       'var x =' +
@@ -572,6 +566,7 @@ const testData = {
 
   'should handle subject and reflexive pronouns': {
     input:
+      // eslint-disable-next-line fb-www/gender-neutral-language
       // I.e. He wished himself a happy birthday.
       'const fbt = require("fbt");\n' +
       'var x =' +
@@ -616,6 +611,7 @@ const testData = {
 
   'should handle possessive pronoun': {
     input:
+      // eslint-disable-next-line fb-www/gender-neutral-language
       // I.e. It is her birthday.
       'const fbt = require("fbt");\n' +
       'var x =' +
@@ -739,14 +735,14 @@ describe('Test fbt meta-data collection', () => {
           .join('\n')
       );
     }, "const fbt = require('fbt');\n");
-    let pluginOptions = {collectFbt: true};
+    const pluginOptions = {collectFbt: true};
     pluginOptions.reactNativeMode = options.reactNativeMode || false;
     transform(body, pluginOptions);
     expected = expected.map(e => (e.filepath = undefined) || e);
     fbtTransform.getExtractedStrings().forEach((actual, idx) => {
       try {
         assert.deepEqual(actual, expected[idx]);
-      } catch (e) {
+      } catch {
         throw new Error(
           'Actual:\n' +
             JSON.stringify(actual, null, ' ') +
@@ -760,7 +756,7 @@ describe('Test fbt meta-data collection', () => {
   }
 
   it('should collect correct meta data', () => {
-    let expected = [
+    const expected = [
       {
         line_beg: 2,
         col_beg: 8,
@@ -1188,7 +1184,7 @@ describe('Test fbt meta-data collection', () => {
   });
 
   it('should collect correct meta data (react native)', () => {
-    let expected = [
+    const expected = [
       {
         line_beg: 2,
         col_beg: 8,
