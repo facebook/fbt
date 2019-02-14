@@ -17,12 +17,7 @@
 
 jest.autoMockOff();
 
-const {transform} = require('../FbtTestUtil');
-
-function withFbsRequireStatement(code) {
-  return `const fbs = require("fbs");
-  ${code}`;
-}
+const {transform, withFbsRequireStatement} = require('../FbtTestUtil');
 
 describe('Test declarative (jsx) <fbs> syntax translation', () => {
   it('should convert a simple string', () => {

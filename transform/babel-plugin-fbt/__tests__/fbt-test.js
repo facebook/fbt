@@ -17,7 +17,7 @@
 jest.autoMockOff();
 
 const {TestUtil} = require('fb-babel-plugin-utils');
-const {payload, transform} = require('../FbtTestUtil');
+const {payload, transform, withFbtRequireStatement} = require('../FbtTestUtil');
 const {transformSync: babelTransform} = require('@babel/core');
 
 function runTest(data, extra) {
@@ -28,18 +28,18 @@ describe('Test extraOptions', () => {
   it('should accept "locale" extra option', () => {
     runTest(
       {
-        input:
-          "const fbt = require('fbt');" +
-          'fbt("Foo", "Bar", {locale: locale.data});',
-        output:
-          "const fbt = require('fbt');" +
-          'fbt._(' +
-          payload({
-            type: 'text',
-            jsfbt: 'Foo',
-            desc: 'Bar',
-          }) +
-          ')',
+        input: withFbtRequireStatement(
+          `fbt("Foo", "Bar", {locale: locale.data});`,
+        ),
+        output: withFbtRequireStatement(
+          `fbt._(
+            ${payload({
+              type: 'text',
+              jsfbt: 'Foo',
+              desc: 'Bar',
+            })}
+          )`,
+        ),
       },
       {
         extraOptions: {locale: true},
@@ -51,43 +51,49 @@ describe('Test extraOptions', () => {
 describe('Test FBT subject', () => {
   it('should accept "subject" as a parameter', () => {
     runTest({
-      input:
-        "const fbt = require('fbt');" + 'fbt("Foo", "Bar", {subject: foo});',
-      output:
-        "const fbt = require('fbt');" +
-        'fbt._(' +
-        payload({
-          type: 'table',
-          jsfbt: {
-            t: {'*': 'Foo'},
-            m: [{token: '__subject__', type: 1}],
-          },
-          desc: 'Bar',
-          project: '',
-        }) +
-        ', [fbt._subject(foo)])',
+      input: withFbtRequireStatement(`
+        fbt("Foo", "Bar", {subject: foo});
+      `),
+      output: withFbtRequireStatement(
+        `fbt._(
+          ${payload({
+            type: 'table',
+            jsfbt: {
+              t: {'*': 'Foo'},
+              m: [{token: '__subject__', type: 1}],
+            },
+            desc: 'Bar',
+            project: '',
+          })},
+          [
+            fbt._subject(foo)
+          ]
+        )`,
+      ),
     });
   });
 });
 
-describe('Test FBT subject with templates', () => {
+describe('Test FBT subject with string templates', () => {
   it('should accept "subject" as a parameter', () => {
     runTest({
-      input:
-        "const fbt = require('fbt');" + 'fbt(`Foo`, "Bar", {subject: foo});',
-      output:
-        "const fbt = require('fbt');" +
-        'fbt._(' +
-        payload({
-          type: 'table',
-          jsfbt: {
-            t: {'*': 'Foo'},
-            m: [{token: '__subject__', type: 1}],
-          },
-          desc: 'Bar',
-          project: '',
-        }) +
-        ', [fbt._subject(foo)])',
+      input: withFbtRequireStatement('fbt(`Foo`, "Bar", {subject: foo});'),
+      output: withFbtRequireStatement(
+        `fbt._(
+          ${payload({
+            type: 'table',
+            jsfbt: {
+              t: {'*': 'Foo'},
+              m: [{token: '__subject__', type: 1}],
+            },
+            desc: 'Bar',
+            project: '',
+          })},
+          [
+            fbt._subject(foo)
+          ]
+        )`,
+      ),
     });
   });
 });
@@ -95,37 +101,43 @@ describe('Test FBT subject with templates', () => {
 describe('Test double-lined params', () => {
   it('should remove the new line for param names that are two lines', () => {
     runTest({
-      input:
-        "const fbt = require('fbt');" +
-        '<fbt desc="d">\n' +
-        '<fbt:param name="two\n' +
-        'lines">\n' +
-        '<b>\n' +
-        '<fbt desc="test">\n' +
-        'simple\n' +
-        '</fbt>\n' +
-        '</b>\n' +
-        '</fbt:param>\n' +
-        'test\n' +
-        '</fbt>;',
-
-      output:
-        "const fbt = require('fbt');" +
-        'fbt._(' +
-        payload({
-          type: 'text',
-          jsfbt: '{two lines} test',
-          desc: 'd',
-        }) +
-        ',[\n\nfbt._param("two lines",' +
-        'React.createElement("b", null, fbt._( ' +
-        payload({
-          type: 'text',
-          jsfbt: 'simple',
-          desc: 'test',
-        }) +
-        ') )' +
-        ')]\n\n);',
+      input: withFbtRequireStatement(
+        `<fbt desc="d">
+          <fbt:param
+            name="two
+                  lines">
+            <b>
+              <fbt desc="test">simple</fbt>
+            </b>
+          </fbt:param>
+          test
+        </fbt>`,
+      ),
+      output: withFbtRequireStatement(
+        `fbt._(
+          ${payload({
+            type: 'text',
+            jsfbt: '{two lines} test',
+            desc: 'd',
+          })},
+          [
+            fbt._param(
+              "two lines",
+              React.createElement(
+                "b",
+                null,
+                fbt._(
+                  ${payload({
+                    type: 'text',
+                    jsfbt: 'simple',
+                    desc: 'test',
+                  })}
+                )
+              )
+            )
+          ]
+        );`,
+      ),
     });
   });
 });
