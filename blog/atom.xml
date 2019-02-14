@@ -2,12 +2,24 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://facebookincubator.github.io/fbt/blog</id>
     <title>FBT Blog</title>
-    <updated>2018-01-03T06:00:00Z</updated>
+    <updated>2018-02-14T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://facebookincubator.github.io/fbt/blog"/>
     <subtitle>The best place to stay up-to-date with the latest FBT news and events.</subtitle>
     <logo>https://facebookincubator.github.io/fbt/img/fbt.png</logo>
     <rights>Copyright © 2019 Facebook</rights>
+    <entry>
+        <title type="html"><![CDATA[What does FBT mean?]]></title>
+        <id>https://facebookincubator.github.io/fbt/blog/2018/02/14/blog-post.html</id>
+        <link href="https://facebookincubator.github.io/fbt/blog/2018/02/14/blog-post.html">
+        </link>
+        <updated>2018-02-14T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p><em>Probably</em> <strong>F</strong>ace<strong>b</strong>ook <strong>T</strong>ranslation?<br> However, even internally, we never use that terminology. It's always just referred to as &quot;FBT&quot;.</p> ]]></summary>
+        <author>
+            <name>John Watson</name>
+            <uri>https://github.com/jrwats</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Release]]></title>
         <id>https://facebookincubator.github.io/fbt/blog/2018/01/03/blog-post.html</id>

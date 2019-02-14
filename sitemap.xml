@@ -3,6 +3,7 @@
 <url> <loc>https://facebookincubator.github.io/fbt/help</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://facebookincubator.github.io/fbt/en/help" /> </url>
 <url> <loc>https://facebookincubator.github.io/fbt/index</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://facebookincubator.github.io/fbt/en/index" /> </url>
 <url> <loc>https://facebookincubator.github.io/fbt/users</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://facebookincubator.github.io/fbt/en/users" /> </url>
+<url> <loc>https://facebookincubator.github.io/fbt/blog/2018/02/14/blog-post</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
 <url> <loc>https://facebookincubator.github.io/fbt/blog/2018/01/03/blog-post</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
 <url> <loc>https://facebookincubator.github.io/fbt/docs/api_intro</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://facebookincubator.github.io/fbt/docs/api_intro" /> </url>
 <url> <loc>https://facebookincubator.github.io/fbt/docs/autoparam</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://facebookincubator.github.io/fbt/docs/autoparam" /> </url>
