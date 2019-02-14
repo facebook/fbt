@@ -9,16 +9,14 @@
  * Run the following command to sync the change from www to fbsource.
  *   js1 upgrade www-shared -p babel_plugin_fbt --remote localhost:~/www
  *
- * @nolint
  * @emails oncall+internationalization
  * @format
  */
 
 jest.autoMockOff();
 
-const {TestUtil} = require('fb-babel-plugin-utils');
 const {payload, transform, withFbtRequireStatement} = require('../FbtTestUtil');
-const {transformSync: babelTransform} = require('@babel/core');
+const {TestUtil} = require('fb-babel-plugin-utils');
 
 function runTest(data, extra) {
   TestUtil.assertSourceAstEqual(transform(data.input, extra), data.output);

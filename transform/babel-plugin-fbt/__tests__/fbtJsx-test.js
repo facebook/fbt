@@ -9,827 +9,863 @@
  * Run the following command to sync the change from www to fbsource.
  *   js1 upgrade www-shared -p babel_plugin_fbt --remote localhost:~/www
  *
- * @nolint
  * @emails oncall+internationalization
  * @format
  */
 
 jest.autoMockOff();
 
+const {
+  payload,
+  transform,
+  transformKeepJsx,
+  withFbtRequireStatement,
+} = require('../FbtTestUtil');
+const {FbtVariationType} = require('../translate/IntlVariations.js');
 const {TestUtil} = require('fb-babel-plugin-utils');
-const {payload, transform, transformKeepJsx} = require('../FbtTestUtil');
-
-const FbtVariationType = {
-  GENDER: 1,
-  NUMBER: 2,
-  PRONOUN: 3,
-};
 
 const testData = {
   'should convert simple strings': {
-    input:
-      'const fbt = require("fbt");\n' +
-      'var x = <fbt desc="It\'s simple">A simple string</fbt>;',
+    input: withFbtRequireStatement(
+      `var x = <fbt desc="It's simple">A simple string</fbt>;`,
+    ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'var x = fbt._(' +
-      payload({
-        type: 'text',
-        jsfbt: 'A simple string',
-        desc: "It's simple",
-      }) +
-      ');',
+    output: withFbtRequireStatement(
+      `var x = fbt._(
+        ${payload({
+          type: 'text',
+          jsfbt: 'A simple string',
+          desc: "It's simple",
+        })}
+      );`,
+    ),
   },
 
   'should filter comment and empty expressions from children': {
-    input:
-      'const fbt = require("fbt");\n' +
-      'var x = <fbt desc="It\'s simple">{\n}A sim{/*\nignore\n\nme\n*/}ple s{ }tri{}ng{/*ignore me*/}</fbt>;',
+    input: withFbtRequireStatement(
+      `var x = <fbt desc="It's simple">
+        {
+        }A sim{/*
+          ignore
+          me
+          */}ple s{ }tri{}ng{/*ignore me*/}</fbt>;`,
+    ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'var x = fbt._(' +
-      payload({
-        type: 'text',
-        jsfbt: 'A simple string',
-        desc: "It's simple",
-      }) +
-      ');',
+    output: withFbtRequireStatement(
+      `var x = fbt._(
+        ${payload({
+          type: 'text',
+          jsfbt: 'A simple string',
+          desc: "It's simple",
+        })}
+      );`,
+    ),
   },
 
   'should strip out newlines': {
-    input:
-      'const fbt = require("fbt");\n' +
-      'var x = ' +
-      '<fbt desc="Test trailing space when not last child">\n' +
-      '  Preamble ' +
-      '  <fbt:param name="parm">{blah}</fbt:param>\n' +
-      '</fbt>;\n' +
-      'baz();',
+    input: withFbtRequireStatement(
+      `var x =
+        <fbt desc="Test trailing space when not last child">
+          Preamble
+          <fbt:param name="parm">{blah}</fbt:param>
+        </fbt>;
+      baz();`,
+    ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'var x = fbt._(' +
-      payload({
-        type: 'text',
-        jsfbt: 'Preamble {parm}',
-        desc: 'Test trailing space when not last child',
-      }) +
-      ',[\nfbt._param("parm",blah)]\n);\nbaz();',
+    output: withFbtRequireStatement(
+      `var x = fbt._(
+        ${payload({
+          type: 'text',
+          jsfbt: 'Preamble {parm}',
+          desc: 'Test trailing space when not last child',
+        })}, [
+          fbt._param("parm",blah)
+        ]
+      );
+      baz();`,
+    ),
   },
 
   'should strip out newlines in Reactish <Fbt>': {
-    input:
-      'const fbt = require("fbt");\n' +
-      'var x = ' +
-      '<Fbt desc="Test trailing space when not last child">\n' +
-      '  Preamble ' +
-      '  <FbtParam name="parm">{blah}</FbtParam>\n' +
-      '</Fbt>;\n' +
-      'baz();',
+    input: withFbtRequireStatement(
+      `var x =
+        <Fbt desc="Test trailing space when not last child">
+          Preamble <FbtParam name="parm">{blah}</FbtParam>
+        </Fbt>;
+      baz();`,
+    ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'var x = fbt._(' +
-      payload({
-        type: 'text',
-        jsfbt: 'Preamble {parm}',
-        desc: 'Test trailing space when not last child',
-      }) +
-      ',[\nfbt._param("parm",blah)]\n);\nbaz();',
+    output: withFbtRequireStatement(
+      `var x = fbt._(
+        ${payload({
+          type: 'text',
+          jsfbt: 'Preamble {parm}',
+          desc: 'Test trailing space when not last child',
+        })}, [
+          fbt._param("parm",blah)
+        ]);
+        baz();`,
+    ),
   },
 
   'should strip out more newlines': {
-    input:
-      'const fbt = require("fbt");\n' +
-      'var x = ' +
-      '<fbt desc="moar lines">\n' +
-      '  A simple string...\n' +
-      '  with some other stuff.\n' +
-      '</fbt>;\n' +
-      'baz();',
+    input: withFbtRequireStatement(
+      `var x =
+        <fbt desc="moar lines">
+          A simple string...
+          with some other stuff.
+        </fbt>;
+        baz();`,
+    ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'var x = fbt._(' +
-      payload({
-        type: 'text',
-        jsfbt: 'A simple string... with some other stuff.',
-        desc: 'moar lines',
-      }) +
-      ');\nbaz();',
+    output: withFbtRequireStatement(
+      `var x = fbt._(
+        ${payload({
+          type: 'text',
+          jsfbt: 'A simple string... with some other stuff.',
+          desc: 'moar lines',
+        })});
+        baz();`,
+    ),
   },
 
   'Squelch whitespace when in an expression': {
-    input:
-      'const fbt = require("fbt");\n' +
-      'var x = ' +
-      '<fbt desc="squelched">\n' +
-      '  {"Squelched white space... "}\n' +
-      '  with some\n' +
-      ' {` other stuff.`}\n' +
-      '</fbt>;\n' +
-      'baz();',
+    input: withFbtRequireStatement(
+      `var x =
+        <fbt desc="squelched">
+          {"Squelched white space... "}
+          with some
+          {' other stuff.'}
+        </fbt>;
+        baz();`,
+    ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'var x = fbt._(' +
-      payload({
-        type: 'text',
-        jsfbt: 'Squelched white space... with some other stuff.',
-        desc: 'squelched',
-      }) +
-      '\n\n\n);\nbaz();',
+    output: withFbtRequireStatement(
+      `var x = fbt._(
+        ${payload({
+          type: 'text',
+          jsfbt: 'Squelched white space... with some other stuff.',
+          desc: 'squelched',
+        })});
+        baz();`,
+    ),
   },
 
   'Enable explicit whitespace': {
-    input:
-      'const fbt = require("fbt");\n' +
-      'var x = ' +
-      '<fbt desc="squelched">\n' +
-      '  <fbt:param name="one">{one}</fbt:param>\n' +
-      '  {" "}\n' +
-      '  <fbt:param name="two">{two}</fbt:param>\n' +
-      '  {` `}\n' +
-      '  <fbt:param name="three">{three}</fbt:param>\n' +
-      '</fbt>;',
+    input: withFbtRequireStatement(
+      `var x = <fbt desc="squelched">
+        <fbt:param name="one">{one}</fbt:param>
+        {" "}
+        <fbt:param name="two">{two}</fbt:param>
+        {\` \`}
+        <fbt:param name="three">{three}</fbt:param>
+      </fbt>;`,
+    ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'var x = fbt._(' +
-      payload({
-        type: 'text',
-        jsfbt: '{one} {two} {three}',
-        desc: 'squelched',
-      }) +
-      ',[\nfbt._param("one",one),\n\n' +
-      'fbt._param("two",two),\n' +
-      'fbt._param("three",three)]\n);',
+    output: withFbtRequireStatement(
+      `var x = fbt._(
+        ${payload({
+          type: 'text',
+          jsfbt: '{one} {two} {three}',
+          desc: 'squelched',
+        })}, [
+          fbt._param("one",one),
+          fbt._param("two",two),
+          fbt._param("three",three)
+        ]);`,
+    ),
   },
 
   'should handle params': {
-    input:
-      'const fbt = require("fbt");\n' +
-      'var x = ' +
-      '<fbt desc="a message!">\n' +
-      '  A parameterized message to:\n' +
-      '  <fbt:param name="personName">{theName}</fbt:param>\n' +
-      '</fbt>;',
+    input: withFbtRequireStatement(
+      `var x = <fbt desc="a message!">
+          A parameterized message to:
+          <fbt:param name="personName">{theName}</fbt:param>
+        </fbt>;`,
+    ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'var x = fbt._(' +
-      payload({
-        type: 'text',
-        jsfbt: 'A parameterized message to: {personName}',
-        desc: 'a message!',
-      }) +
-      ',[\n\nfbt._param("personName",theName)]\n);',
+    output: withFbtRequireStatement(
+      `var x = fbt._(
+        ${payload({
+          type: 'text',
+          jsfbt: 'A parameterized message to: {personName}',
+          desc: 'a message!',
+        })}, [
+          fbt._param("personName",theName)
+        ]);`,
+    ),
   },
 
   'should handle empty string': {
-    input:
-      'const fbt = require("fbt");\n' +
-      'var x = ' +
-      '<fbt desc="a message!">\n' +
-      '  A parameterized message to:\n' +
-      '  <fbt:param name="emptyString"> </fbt:param>\n' +
-      '</fbt>;',
+    input: withFbtRequireStatement(
+      `var x = <fbt desc="a message!">
+        A parameterized message to:
+        <fbt:param name="emptyString"> </fbt:param>
+      </fbt>;`,
+    ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'var x = fbt._(' +
-      payload({
-        type: 'text',
-        jsfbt: 'A parameterized message to: {emptyString}',
-        desc: 'a message!',
-      }) +
-      ',[\n\nfbt._param("emptyString",\' \')]\n);',
+    output: withFbtRequireStatement(
+      `var x = fbt._(
+        ${payload({
+          type: 'text',
+          jsfbt: 'A parameterized message to: {emptyString}',
+          desc: 'a message!',
+        })}, [
+          fbt._param("emptyString", ' ')
+        ]);`,
+    ),
   },
 
   'should handle concatenated descriptions': {
-    input:
-      'const fbt = require("fbt");\n' +
-      '<fbt desc={"A very long description " + "that we will concatenate " + ' +
-      '"a few times"}\n project={"With" + "a" + "project"}>\n' +
-      '  Here it is\n' +
-      '</fbt>;',
+    input: withFbtRequireStatement(
+      `<fbt desc={"A very long description " + "that we will concatenate " +
+        "a few times"}
+        project={"With" + "a" + "project"}>
+        Here it is
+      </fbt>;`,
+    ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'fbt._(' +
-      payload({
-        type: 'text',
-        jsfbt: 'Here it is',
-        desc: 'A very long description that we will concatenate a few times',
-        project: 'Withaproject',
-      }) +
-      '\n);',
+    output: withFbtRequireStatement(
+      `fbt._(
+        ${payload({
+          type: 'text',
+          jsfbt: 'Here it is',
+          desc: 'A very long description that we will concatenate a few times',
+          project: 'Withaproject',
+        })}
+      );`,
+    ),
   },
 
   'should handle template descriptions': {
-    input:
-      'const fbt = require("fbt");\n' +
-      '<fbt desc={`A very long description\n  that will be a \n template across ' +
-      'multiple lines`}\n project={"With" + "a" + "project"}>\n' +
-      '  Here it is\n' +
-      '</fbt>;',
+    input: withFbtRequireStatement(
+      `<fbt desc={\`A very long description
+        that will be a
+        template across multiple lines\`}
+        project={"With" + "a" + "project"}>
+        Here it is
+      </fbt>;`,
+    ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'fbt._(' +
-      payload({
-        type: 'text',
-        jsfbt: 'Here it is',
-        desc:
-          'A very long description that will be a template across multiple lines',
-        project: 'Withaproject',
-      }) +
-      '\n);',
+    output: withFbtRequireStatement(
+      `fbt._(
+        ${payload({
+          type: 'text',
+          jsfbt: 'Here it is',
+          desc:
+            'A very long description that will be a template across multiple lines',
+          project: 'Withaproject',
+        })}
+      );`,
+    ),
   },
 
   'should be able to nest within React nodes': {
-    input:
-      'const fbt = require("fbt");\n' +
-      'var x = ' +
-      '  <div>\n' +
-      '    <fbt desc="nested!">\n' +
-      '      A nested string\n' +
-      '    </fbt>\n' +
-      '  </div>;',
+    input: withFbtRequireStatement(
+      `var x = <div>
+        <fbt desc="nested!">
+          A nested string
+        </fbt>
+      </div>;`,
+    ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'var x =   React.createElement("div", null,   fbt._(' +
-      payload({
-        type: 'text',
-        jsfbt: 'A nested string',
-        desc: 'nested!',
-      }) +
-      ') );',
+    output: withFbtRequireStatement(
+      `var x = React.createElement("div", null, fbt._(
+        ${payload({
+          type: 'text',
+          jsfbt: 'A nested string',
+          desc: 'nested!',
+        })}
+      ));`,
+    ),
   },
 
   'should be able to house arbitrary markup within fbt:param nodes': {
-    input:
-      'const fbt = require("fbt");\n' +
-      '<div>\n' +
-      '  <fbt desc="...">\n' +
-      '    <fbt:param name="time">{formatDate(date, "F d, Y")}</fbt:param>\n' +
-      '     by \n' +
-      '    <fbt:param name="user name">\n' +
-      '      <Link href={{url:user.link}}>\n' +
-      '        {user.name}\n' +
-      '      </Link>\n' +
-      '    </fbt:param>\n' +
-      '  </fbt>\n' +
-      '</div>;',
+    input: withFbtRequireStatement(
+      `<div>
+        <fbt desc="...">
+          <fbt:param name="time">{formatDate(date, "F d, Y")}</fbt:param>
+           by
+          <fbt:param name="user name">
+            <Link href={{url:user.link}}>
+              {user.name}
+            </Link>
+          </fbt:param>
+        </fbt>
+      </div>;`,
+    ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'React.createElement("div", null, \n  ' +
-      'fbt._(' +
-      payload({
-        type: 'text',
-        jsfbt: '{time} by {user name}',
-        desc: '...',
-      }) +
-      ',[\n' +
-      'fbt._param("time",formatDate(date, "F d, Y")),\n\n' +
-      'fbt._param("user name",\n' +
-      'React.createElement(Link, {href: {url:user.link}}, \n' +
-      '        user.name\n' +
-      '      ))]\n\n' +
-      ')\n);',
+    output: withFbtRequireStatement(
+      `React.createElement("div", null,
+        fbt._(
+          ${payload({
+            type: 'text',
+            jsfbt: '{time} by {user name}',
+            desc: '...',
+          })}, [
+          fbt._param("time",formatDate(date, "F d, Y")),
+          fbt._param("user name",
+          React.createElement(Link, {href: {url:user.link}},
+            user.name
+          ))
+        ])
+      );`,
+    ),
   },
 
   'should handle enums (with array values)': {
-    input:
-      'const fbt = require("fbt");\n' +
-      'var x = ' +
-      '  <fbt desc="enums!">\n' +
-      '    Click to see\n' +
-      '    <fbt:enum enum-range={{id1:"groups",\n' +
-      '                           id2:"photos",\n' +
-      '                           id3:"videos"}}\n' +
-      '              value={id} />\n' +
-      '  </fbt>;',
+    input: withFbtRequireStatement(
+      `var x = <fbt desc="enums!">
+        Click to see
+        <fbt:enum enum-range={{
+          id1:"groups",
+          id2:"photos",
+          id3:"videos"}}
+          value={id}
+        />
+      </fbt>;`,
+    ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'var x = ' +
-      '  fbt._(' +
-      payload({
-        type: 'table',
-        jsfbt: {
-          t: {
-            id1: 'Click to see groups',
-            id2: 'Click to see photos',
-            id3: 'Click to see videos',
+    output: withFbtRequireStatement(
+      `var x = fbt._(
+        ${payload({
+          type: 'table',
+          jsfbt: {
+            t: {
+              id1: 'Click to see groups',
+              id2: 'Click to see photos',
+              id3: 'Click to see videos',
+            },
+            m: [null],
           },
-          m: [null],
-        },
-        desc: 'enums!',
-      }) +
-      ',[\n\nfbt._enum(id,' +
-      '{"id1":"groups","id2":"photos","id3":"videos"})]);',
+          desc: 'enums!',
+        })}, [
+          fbt._enum(id, {"id1":"groups","id2":"photos","id3":"videos"})
+        ]
+      );`,
+    ),
   },
 
   'should handle enums with more text': {
-    input:
-      'const fbt = require("fbt");\n' +
-      'var x = ' +
-      '  <fbt desc="enums!">\n' +
-      '    Click to see\n' +
-      '    <fbt:enum enum-range={{id1:"groups",\n' +
-      '                           id2:"photos",\n' +
-      '                           id3:"videos"}}\n' +
-      '              value={id} />\n' +
-      '    Hey-hey!\n' +
-      '  </fbt>;',
+    input: withFbtRequireStatement(
+      `var x = <fbt desc="enums!">
+        Click to see
+        <fbt:enum enum-range={{
+          id1:"groups",
+          id2:"photos",
+          id3:"videos"}}
+          value={id}
+        />
+        Hey-hey!
+      </fbt>;`,
+    ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'var x = ' +
-      '  fbt._(' +
-      payload({
-        type: 'table',
-        jsfbt: {
-          t: {
-            id1: 'Click to see groups Hey-hey!',
-            id2: 'Click to see photos Hey-hey!',
-            id3: 'Click to see videos Hey-hey!',
+    output: withFbtRequireStatement(
+      `var x = fbt._(
+        ${payload({
+          type: 'table',
+          jsfbt: {
+            t: {
+              id1: 'Click to see groups Hey-hey!',
+              id2: 'Click to see photos Hey-hey!',
+              id3: 'Click to see videos Hey-hey!',
+            },
+            m: [null],
           },
-          m: [null],
-        },
-        desc: 'enums!',
-      }) +
-      ',[\n\nfbt._enum(id,' +
-      '{"id1":"groups","id2":"photos","id3":"videos"})]);',
+          desc: 'enums!',
+        })}, [
+          fbt._enum(id, {"id1":"groups","id2":"photos","id3":"videos"})
+        ]
+      );`,
+    ),
   },
 
   'should handle variations': {
-    input:
-      'const fbt = require("fbt");\n' +
-      'var x = ' +
-      '  <fbt desc="variations!">\n' +
-      '    Click to see\n' +
-      '   <fbt:param name="count" number="true">{c}</fbt:param>\n' +
-      '  links\n' +
-      '  </fbt>;',
+    input: withFbtRequireStatement(
+      `var x = <fbt desc="variations!">
+        Click to see
+        <fbt:param name="count" number="true">{c}</fbt:param>
+        links
+      </fbt>;`,
+    ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'var x =   fbt._(' +
-      payload({
-        type: 'table',
-        jsfbt: {
-          t: {
-            '*': 'Click to see {count} links',
-          },
-          m: [
-            {
-              token: 'count',
-              type: FbtVariationType.NUMBER,
+    output: withFbtRequireStatement(
+      `var x = fbt._(
+        ${payload({
+          type: 'table',
+          jsfbt: {
+            t: {
+              '*': 'Click to see {count} links',
             },
-          ],
-        },
-        desc: 'variations!',
-      }) +
-      ',[\n\nfbt._param("count",c, [0])]\n\n);',
+            m: [
+              {
+                token: 'count',
+                type: FbtVariationType.NUMBER,
+              },
+            ],
+          },
+          desc: 'variations!',
+        })}, [
+          fbt._param("count", c, [0])
+        ]
+      );`,
+    ),
   },
 
   'should handle number={true} - (same output as above test)': {
-    input:
-      'const fbt = require("fbt");\n' +
-      'var x = ' +
-      '  <fbt desc="variations!">\n' +
-      '    Click to see\n' +
-      '   <fbt:param name="count" number={true}>{c}</fbt:param>\n' +
-      '  links\n' +
-      '  </fbt>;',
+    input: withFbtRequireStatement(
+      `var x = <fbt desc="variations!">
+        Click to see
+        <fbt:param name="count" number={true}>{c}</fbt:param>
+        links
+      </fbt>;`,
+    ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'var x =   fbt._(' +
-      payload({
-        type: 'table',
-        jsfbt: {
-          t: {
-            '*': 'Click to see {count} links',
-          },
-          m: [
-            {
-              token: 'count',
-              type: FbtVariationType.NUMBER,
+    output: withFbtRequireStatement(
+      `var x = fbt._(
+        ${payload({
+          type: 'table',
+          jsfbt: {
+            t: {
+              '*': 'Click to see {count} links',
             },
-          ],
-        },
-        desc: 'variations!',
-      }) +
-      ',[\n\nfbt._param("count",c, [0])]\n\n);',
+            m: [
+              {
+                token: 'count',
+                type: FbtVariationType.NUMBER,
+              },
+            ],
+          },
+          desc: 'variations!',
+        })},[
+          fbt._param("count", c, [0])
+        ]
+      );`,
+    ),
   },
 
   'should correctly destruct expression values in options': {
-    input:
-      'const fbt = require("fbt");\n' +
-      '<fbt desc="d">str\n' +
-      '  <fbt:param name="count" number={someNum}>\n' +
-      '    {getNum()}\n' +
-      '  </fbt:param>' +
-      '</fbt>',
+    input: withFbtRequireStatement(
+      `<fbt desc="d">str
+        <fbt:param name="count" number={someNum}>
+          {getNum()}
+        </fbt:param>
+      </fbt>`,
+    ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'fbt._(' +
-      payload({
-        type: 'table',
-        jsfbt: {
-          t: {
-            '*': 'str {count}',
-          },
-          m: [
-            {
-              token: 'count',
-              type: FbtVariationType.NUMBER,
+    output: withFbtRequireStatement(
+      `fbt._(
+        ${payload({
+          type: 'table',
+          jsfbt: {
+            t: {
+              '*': 'str {count}',
             },
-          ],
-        },
-        desc: 'd',
-      }) +
-      ',[\nfbt._param("count",\ngetNum(),[0,someNum])]\n)',
+            m: [
+              {
+                token: 'count',
+                type: FbtVariationType.NUMBER,
+              },
+            ],
+          },
+          desc: 'd',
+        })}, [
+          fbt._param("count", getNum(), [0, someNum])
+        ]
+      )`,
+    ),
   },
 
   'should insert param value for same-param': {
-    input:
-      'const fbt = require("fbt");\n' +
-      '<fbt desc="d">str\n' +
-      '  <fbt:param name="foo">{Bar}</fbt:param> and ' +
-      '  <fbt:same-param name="foo"/>' +
-      '</fbt>',
+    input: withFbtRequireStatement(
+      `<fbt desc="d">str
+        <fbt:param name="foo">{Bar}</fbt:param> and
+        <fbt:same-param name="foo"/>
+      </fbt>`,
+    ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'fbt._(' +
-      payload({
-        type: 'text',
-        jsfbt: 'str {foo} and {foo}',
-        desc: 'd',
-      }) +
-      ',[fbt._param("foo",Bar)])',
+    output: withFbtRequireStatement(
+      `fbt._(
+        ${payload({
+          type: 'text',
+          jsfbt: 'str {foo} and {foo}',
+          desc: 'd',
+        })}, [
+          fbt._param("foo",Bar)
+        ]
+      )`,
+    ),
   },
 
   'should treat multiline descs as a single line': {
-    input: [
-      'const fbt = require("fbt");\n' + '<fbt ',
-      'desc="hi how are you today im doing well i guess',
-      'how is your mother is she well yeah why not lets go',
-      'home and never come back.">',
-      'lol',
-      '</fbt>',
-    ].join('\n'),
+    input: withFbtRequireStatement(
+      `<fbt desc="hi how are you today im doing well i guess
+        how is your mother is she well yeah why not lets go
+        home and never come back.">
+        lol
+      </fbt>`,
+    ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'fbt._(' +
-      payload({
-        type: 'text',
-        jsfbt: 'lol',
-        desc:
-          'hi how are you today im doing well i guess how is your ' +
-          'mother is she well yeah why not lets go home and never come back.',
-      }) +
-      ')',
+    output: withFbtRequireStatement(
+      `fbt._(
+        ${payload({
+          type: 'text',
+          jsfbt: 'lol',
+          desc:
+            'hi how are you today im doing well i guess how is your ' +
+            'mother is she well yeah why not lets go home and never come back.',
+        })}
+      )`,
+    ),
   },
 
   'should not insert extra space': {
-    input: [
-      'const fbt = require("fbt");\n' + '<fbt desc="Greating in i18n demo">',
-      '  Hello, <fbt:param name="guest">',
-      '  {guest}',
-      '</fbt:param>!',
-      '</fbt>',
-    ].join('\n'),
+    input: withFbtRequireStatement(
+      `<fbt desc="Greating in i18n demo">
+        Hello, <fbt:param name="guest">
+          {guest}
+        </fbt:param>!
+      </fbt>`,
+    ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'fbt._(' +
-      payload({
-        type: 'text',
-        jsfbt: 'Hello, {guest}!',
-        desc: 'Greating in i18n demo',
-        project: '',
-      }) +
-      ', [fbt._param("guest",guest)])',
+    output: withFbtRequireStatement(
+      `fbt._(
+        ${payload({
+          type: 'text',
+          jsfbt: 'Hello, {guest}!',
+          desc: 'Greating in i18n demo',
+          project: '',
+        })}, [
+          fbt._param("guest", guest)
+        ]
+      )`,
+    ),
   },
 
-  'should handle single expression with binary': {
-    input: [
-      'const fbt = require("fbt");\n' + '<fbt desc="foo">',
-      '  {"foo" + "bar"}',
-      '</fbt>',
-    ].join('\n'),
+  'should handle single expression with concentated strings': {
+    input: withFbtRequireStatement(
+      `<fbt desc="foo">
+        {"foo" + "bar"}
+      </fbt>`,
+    ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'fbt._(' +
-      payload({
-        type: 'text',
-        jsfbt: 'foobar',
-        desc: 'foo',
-        project: '',
-      }) +
-      ')',
+    output: withFbtRequireStatement(
+      `fbt._(
+        ${payload({
+          type: 'text',
+          jsfbt: 'foobar',
+          desc: 'foo',
+          project: '',
+        })})`,
+    ),
   },
 
   'should throw on invalid attributes in fbt:param': {
-    input:
-      'const fbt = require("fbt");\n' +
-      '<fbt desc="some-desc">\n' +
-      '  <fbt:param name="foo" qux="foo" desc="foo-desc">\n' +
-      '    {foo}\n' +
-      '  </fbt:param>\n' +
-      '</fbt>',
+    input: withFbtRequireStatement(
+      `<fbt desc="some-desc">
+        <fbt:param name="foo" qux="foo" desc="foo-desc">
+          {foo}
+        </fbt:param>
+      </fbt>`,
+    ),
 
     throws: true,
   },
 
   'should ignore non-expression children in fbt:param': {
-    input:
-      'const fbt = require("fbt");\n' +
-      '<fbt desc="some-desc">\n' +
-      '  <fbt:param name="foo">\n' +
-      '    !{foo}!\n' +
-      '  </fbt:param>\n' +
-      '</fbt>',
+    input: withFbtRequireStatement(
+      `<fbt desc="some-desc">
+        <fbt:param name="foo">
+          !{foo}!
+        </fbt:param>
+      </fbt>`,
+    ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'fbt._(' +
-      payload({
-        type: 'text',
-        jsfbt: '{foo}',
-        desc: 'some-desc',
-      }) +
-      ', [fbt._param("foo", foo)]);',
+    output: withFbtRequireStatement(
+      `fbt._(
+        ${payload({
+          type: 'text',
+          jsfbt: '{foo}',
+          desc: 'some-desc',
+        })}, [fbt._param("foo", foo)]);`,
+    ),
   },
 
   'should maintain order of params and enums': {
-    input:
-      'const fbt = require("fbt");\n' +
-      '<fbt desc="some-desc">\n' +
-      '  Hello, \n' +
-      '  <fbt:param name="foo">\n' +
-      '    {foo}\n' +
-      '  </fbt:param>\n' +
-      '  <fbt:enum enum-range={["x", "y"]} value={x} />\n' +
-      '  <fbt:param name="bar" number={n}>\n' +
-      '    {bar}\n' +
-      '  </fbt:param>\n' +
-      '</fbt>',
+    input: withFbtRequireStatement(
+      `<fbt desc="some-desc">
+        Hello,
+        <fbt:param name="foo">
+          {foo}
+        </fbt:param>
+        <fbt:enum enum-range={["x", "y"]} value={x} />
+        <fbt:param name="bar" number={n}>
+          {bar}
+        </fbt:param>
+      </fbt>`,
+    ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'fbt._(' +
-      payload({
-        type: 'table',
-        jsfbt: {
-          t: {
-            x: {
-              '*': 'Hello, {foo}x{bar}',
+    output: withFbtRequireStatement(
+      `fbt._(
+        ${payload({
+          type: 'table',
+          jsfbt: {
+            t: {
+              x: {
+                '*': 'Hello, {foo}x{bar}',
+              },
+              y: {
+                '*': 'Hello, {foo}y{bar}',
+              },
             },
-            y: {
-              '*': 'Hello, {foo}y{bar}',
-            },
+            m: [
+              null,
+              {
+                token: 'bar',
+                type: FbtVariationType.NUMBER,
+              },
+            ],
           },
-          m: [
-            null,
-            {
-              token: 'bar',
-              type: FbtVariationType.NUMBER,
-            },
-          ],
-        },
-        desc: 'some-desc',
-      }) +
-      ', [fbt._param("foo", foo), ' +
-      'fbt._enum(x, {"x": "x", "y": "y"}), fbt._param("bar", bar, [0, n])]);',
+          desc: 'some-desc',
+        })}, [
+          fbt._param("foo", foo),
+          fbt._enum(x, {"x": "x", "y": "y"}),
+          fbt._param("bar", bar, [0, n])
+        ]
+      );`,
+    ),
   },
 
   'should support html escapes': {
-    input: [
-      'const fbt = require("fbt");\n' + '<fbt desc="foo">&times;</fbt>',
-    ].join('\n'),
+    input: withFbtRequireStatement(
+      `<fbt desc="foo &quot;bar&quot;">&times;</fbt>`,
+    ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'fbt._(' +
-      payload({
-        type: 'text',
-        jsfbt: '\xD7',
-        desc: 'foo',
-        project: '',
-      }) +
-      ')',
+    output: withFbtRequireStatement(
+      `fbt._(
+        ${payload({
+          type: 'text',
+          jsfbt: '\xD7',
+          desc: 'foo "bar"',
+          project: '',
+        })})`,
+    ),
   },
 
   'should handle object pronoun': {
     input:
+      // eslint-disable-next-line fb-www/gender-neutral-language
       // Wish her a happy birthday.
-      'const fbt = require("fbt");\n' +
-      '<fbt desc={"d"} project={"p"}>\n' +
-      'Wish <fbt:pronoun type="object" gender={gender}/> a happy birthday.\n' +
-      '</fbt>;\n',
+      withFbtRequireStatement(
+        `<fbt desc={"d"} project={"p"}>
+          Wish <fbt:pronoun type="object" gender={gender}/> a happy birthday.
+        </fbt>;`,
+      ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'fbt._(' +
-      payload({
-        type: 'table',
-        jsfbt: {
-          t: {
-            '1': 'Wish her a happy birthday.',
-            '2': 'Wish him a happy birthday.',
-            '*': 'Wish them a happy birthday.',
+    output: withFbtRequireStatement(
+      `fbt._(
+        ${payload({
+          type: 'table',
+          jsfbt: {
+            t: {
+              '1': 'Wish her a happy birthday.',
+              '2': 'Wish him a happy birthday.',
+              '*': 'Wish them a happy birthday.',
+            },
+            m: [null],
           },
-          m: [null],
-        },
-        desc: 'd',
-        project: 'p',
-      }) +
-      ', [fbt._pronoun(0,gender)]);',
+          desc: 'd',
+          project: 'p',
+        })}, [
+          fbt._pronoun(0, gender)
+        ]
+      );`,
+    ),
   },
 
   'should handle object pronoun (react native)': {
     input:
+      // eslint-disable-next-line fb-www/gender-neutral-language
       // Wish her a happy birthday.
-      'const fbt = require("fbt");\n' +
-      '<fbt desc={"d"} project={"p"}>\n' +
-      'Wish <fbt:pronoun type="object" gender={gender}/> a happy birthday.\n' +
-      '</fbt>;\n',
+      withFbtRequireStatement(
+        `<fbt desc={"d"} project={"p"}>
+          Wish <fbt:pronoun type="object" gender={gender}/> a happy birthday.
+        </fbt>;`,
+      ),
 
     options: {
       reactNativeMode: true,
     },
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'fbt._(' +
-      payload({
-        type: 'table',
-        jsfbt: {
-          t: {
-            '1': 'Wish her a happy birthday.',
-            '2': 'Wish him a happy birthday.',
-            '*': 'Wish them a happy birthday.',
-          },
-          m: [
-            {
-              type: FbtVariationType.PRONOUN,
+    output: withFbtRequireStatement(
+      `fbt._(
+        ${payload({
+          type: 'table',
+          jsfbt: {
+            t: {
+              '1': 'Wish her a happy birthday.',
+              '2': 'Wish him a happy birthday.',
+              '*': 'Wish them a happy birthday.',
             },
-          ],
-        },
-        desc: 'd',
-        project: 'p',
-      }) +
-      ', [fbt._pronoun(0,gender)]);',
+            m: [
+              {
+                type: FbtVariationType.PRONOUN,
+              },
+            ],
+          },
+          desc: 'd',
+          project: 'p',
+        })}, [
+          fbt._pronoun(0, gender)
+        ]
+      );`,
+    ),
   },
 
   'should handle subject+reflexive pronouns': {
     input:
+      // eslint-disable-next-line fb-www/gender-neutral-language
       // She wished herself a happy birthday.
-      'const fbt = require("fbt");\n' +
-      '<fbt desc={"d"} project={"p"}>\n' +
-      '<fbt:pronoun type="subject" gender={gender} capitalize={true}/>' +
-      ' wished ' +
-      '<fbt:pronoun type="reflexive" gender={gender}/>' +
-      ' a happy birthday.\n' +
-      '</fbt>;\n',
+      withFbtRequireStatement(
+        `<fbt desc={"d"} project={"p"}>
+          <fbt:pronoun type="subject" gender={gender} capitalize={true} />
+          wished <fbt:pronoun type="reflexive" gender={gender}/> a happy birthday.
+        </fbt>;`,
+      ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'fbt._(' +
-      payload({
-        type: 'table',
-        jsfbt: {
-          t: {
-            '1': {
-              '0': 'She wished themself a happy birthday.',
-              '1': 'She wished herself a happy birthday.',
-              '2': 'She wished himself a happy birthday.',
-              '*': 'She wished themselves a happy birthday.',
+    output: withFbtRequireStatement(
+      `fbt._(
+        ${payload({
+          type: 'table',
+          jsfbt: {
+            t: {
+              '1': {
+                '0': 'She wished themself a happy birthday.',
+                '1': 'She wished herself a happy birthday.',
+                '2': 'She wished himself a happy birthday.',
+                '*': 'She wished themselves a happy birthday.',
+              },
+              '2': {
+                '0': 'He wished themself a happy birthday.',
+                '1': 'He wished herself a happy birthday.',
+                '2': 'He wished himself a happy birthday.',
+                '*': 'He wished themselves a happy birthday.',
+              },
+              '*': {
+                '0': 'They wished themself a happy birthday.',
+                '1': 'They wished herself a happy birthday.',
+                '2': 'They wished himself a happy birthday.',
+                '*': 'They wished themselves a happy birthday.',
+              },
             },
-            '2': {
-              '0': 'He wished themself a happy birthday.',
-              '1': 'He wished herself a happy birthday.',
-              '2': 'He wished himself a happy birthday.',
-              '*': 'He wished themselves a happy birthday.',
-            },
-            '*': {
-              '0': 'They wished themself a happy birthday.',
-              '1': 'They wished herself a happy birthday.',
-              '2': 'They wished himself a happy birthday.',
-              '*': 'They wished themselves a happy birthday.',
-            },
+            m: [null, null],
           },
-          m: [null, null],
-        },
-        desc: 'd',
-        project: 'p',
-      }) +
-      ', [fbt._pronoun(3,gender),fbt._pronoun(2,gender)]);',
+          desc: 'd',
+          project: 'p',
+        })}, [
+          fbt._pronoun(3, gender), fbt._pronoun(2,gender)
+        ]
+      );`,
+    ),
   },
 
   'should handle subject+reflexive pronouns (react native)': {
     input:
+      // eslint-disable-next-line fb-www/gender-neutral-language
       // She wished herself a happy birthday.
-      'const fbt = require("fbt");\n' +
-      '<fbt desc={"d"} project={"p"}>\n' +
-      '<fbt:pronoun type="subject" gender={gender} capitalize={true}/>' +
-      ' wished ' +
-      '<fbt:pronoun type="reflexive" gender={gender}/>' +
-      ' a happy birthday.\n' +
-      '</fbt>;\n',
+      withFbtRequireStatement(
+        `<fbt desc={"d"} project={"p"}>
+          <fbt:pronoun type="subject" gender={gender} capitalize={true}/>
+          wished
+          <fbt:pronoun type="reflexive" gender={gender}/>
+          a happy birthday.
+        </fbt>;`,
+      ),
 
     options: {
       reactNativeMode: true,
     },
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'fbt._(' +
-      payload({
-        type: 'table',
-        jsfbt: {
-          t: {
-            '1': {
-              '0': 'She wished themself a happy birthday.',
-              '1': 'She wished herself a happy birthday.',
-              '2': 'She wished himself a happy birthday.',
-              '*': 'She wished themselves a happy birthday.',
+    output: withFbtRequireStatement(
+      `fbt._(
+        ${payload({
+          type: 'table',
+          jsfbt: {
+            t: {
+              '1': {
+                '0': 'She wished themself a happy birthday.',
+                '1': 'She wished herself a happy birthday.',
+                '2': 'She wished himself a happy birthday.',
+                '*': 'She wished themselves a happy birthday.',
+              },
+              '2': {
+                '0': 'He wished themself a happy birthday.',
+                '1': 'He wished herself a happy birthday.',
+                '2': 'He wished himself a happy birthday.',
+                '*': 'He wished themselves a happy birthday.',
+              },
+              '*': {
+                '0': 'They wished themself a happy birthday.',
+                '1': 'They wished herself a happy birthday.',
+                '2': 'They wished himself a happy birthday.',
+                '*': 'They wished themselves a happy birthday.',
+              },
             },
-            '2': {
-              '0': 'He wished themself a happy birthday.',
-              '1': 'He wished herself a happy birthday.',
-              '2': 'He wished himself a happy birthday.',
-              '*': 'He wished themselves a happy birthday.',
-            },
-            '*': {
-              '0': 'They wished themself a happy birthday.',
-              '1': 'They wished herself a happy birthday.',
-              '2': 'They wished himself a happy birthday.',
-              '*': 'They wished themselves a happy birthday.',
-            },
+            m: [
+              {
+                type: FbtVariationType.PRONOUN,
+              },
+              {
+                type: FbtVariationType.PRONOUN,
+              },
+            ],
           },
-          m: [
-            {
-              type: FbtVariationType.PRONOUN,
-            },
-            {
-              type: FbtVariationType.PRONOUN,
-            },
-          ],
-        },
-        desc: 'd',
-        project: 'p',
-      }) +
-      ', [fbt._pronoun(3,gender),fbt._pronoun(2,gender)]);',
+          desc: 'd',
+          project: 'p',
+        })}, [
+          fbt._pronoun(3, gender),
+          fbt._pronoun(2, gender)
+        ]
+      );`,
+    ),
   },
 
   'fbt:param with multiple children should error': {
-    input:
-      'const fbt = require("fbt");\n' +
-      '<fbt desc="some-desc">\n' +
-      '  <fbt:param name="foo">\n' +
-      '    {foo}\n' +
-      '    {bar}\n' +
-      '  </fbt:param>\n' +
-      '</fbt>\n',
+    input: withFbtRequireStatement(
+      `<fbt desc="some-desc">
+        <fbt:param name="foo">
+          {foo}
+          {bar}
+        </fbt:param>
+      </fbt>`,
+    ),
 
     throws: true,
   },
 
   'fbt:param with multiple empty expression containers should be ok': {
-    input:
-      'const fbt = require("fbt");\n' +
-      '<fbt desc="some-desc">\n' +
-      '  <fbt:param name="foo">\n' +
-      '    {}\n' +
-      '    {/* comment */}\n' +
-      '    {foo}\n' +
-      '    {}\n' +
-      '  </fbt:param>\n' +
-      '</fbt>\n',
+    input: withFbtRequireStatement(
+      `<fbt desc="some-desc">
+        <fbt:param name="foo">
+          {}
+          {/* comment */}
+          {foo}
+          {}
+        </fbt:param>
+      </fbt>`,
+    ),
 
-    output:
-      'const fbt = require("fbt");\n' +
-      'fbt._(' +
-      payload({
-        type: 'text',
-        jsfbt: '{foo}',
-        desc: 'some-desc',
-      }) +
-      ',[fbt._param("foo",foo)])',
+    output: withFbtRequireStatement(
+      `fbt._(
+        ${payload({
+          type: 'text',
+          jsfbt: '{foo}',
+          desc: 'some-desc',
+        })}, [
+          fbt._param("foo", foo)
+        ]
+      )`,
+    ),
   },
 };
 
