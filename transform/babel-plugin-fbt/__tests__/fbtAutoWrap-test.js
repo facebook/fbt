@@ -9,86 +9,102 @@
  * Run the following command to sync the change from www to fbsource.
  *   js1 upgrade www-shared -p babel_plugin_fbt --remote localhost:~/www
  *
- * @nolint
  * @emails oncall+internationalization
  * @format
  */
 
+const {payload, transform, withFbtRequireStatement} = require('../FbtTestUtil');
 const {TestUtil} = require('fb-babel-plugin-utils');
-const {payload, transform} = require('../FbtTestUtil');
-const {transformSync: babelTransform} = require('@babel/core');
 
 const testData = {
   'should auto wrap a simple test with one level': {
-    input:
-      "const fbt = require('fbt');" +
-      '<fbt desc="d">\n' +
-      '<link href="#">\n' +
-      'Your friends\n' +
-      '</link>\n' +
-      'liked your video\n' +
-      '</fbt>;',
+    input: withFbtRequireStatement(
+      `<fbt desc="d">
+          <link href="#">Your friends</link>
+          liked your video
+        </fbt>;`,
+    ),
 
-    output:
-      "const fbt = require('fbt');" +
-      'fbt._(' +
-      payload({
-        type: 'text',
-        jsfbt: '{=Your friends} liked your video',
-        desc: 'd',
-      }) +
-      ',[\n\nfbt._param("=Your friends",' +
-      'React.createElement("link", { href: "#" },   fbt._( ' +
-      payload({
-        type: 'text',
-        jsfbt: 'Your friends',
-        desc: 'In the phrase: "{=Your friends} liked your video"',
-      }) +
-      ') )' +
-      ')]\n\n);',
+    output: withFbtRequireStatement(
+      `fbt._(
+        ${payload({
+          type: 'text',
+          jsfbt: '{=Your friends} liked your video',
+          desc: 'd',
+        })},
+        [
+          fbt._param(
+            '=Your friends',
+            React.createElement(
+              'link',
+              {href: '#'},
+              fbt._(
+                ${payload({
+                  type: 'text',
+                  jsfbt: 'Your friends',
+                  desc: 'In the phrase: "{=Your friends} liked your video"',
+                })},
+              ),
+            ),
+          ),
+        ],
+      );`,
+    ),
   },
 
   'should auto wrap a simple test with a nested level': {
-    input:
-      "const fbt = require('fbt');" +
-      '<fbt desc="d">\n' +
-      '<Link href="#">\n' +
-      'Your friends\n' +
-      '<b>\n' +
-      'liked\n' +
-      '</b>\n' +
-      '</Link>\n' +
-      'your video\n' +
-      '</fbt>;',
+    input: withFbtRequireStatement(
+      `<fbt desc="d">
+          <Link href="#">
+            Your friends
+            <b>liked</b>
+          </Link>
+          your video
+        </fbt>;`,
+    ),
 
-    output:
-      "const fbt = require('fbt');" +
-      'fbt._(' +
-      payload({
-        type: 'text',
-        jsfbt: '{=Your friends liked} your video',
-        desc: 'd',
-      }) +
-      ',[\n\nfbt._param("=Your friends liked",' +
-      'React.createElement( ' +
-      'Link, { href: "#" },   fbt._( ' +
-      payload({
-        type: 'text',
-        jsfbt: 'Your friends {=liked}',
-        desc: 'In the phrase: "{=Your friends liked} your video"',
-      }) +
-      ',[\n\nfbt._param("=liked", ' +
-      'React.createElement("b", null, fbt._( ' +
-      payload({
-        type: 'text',
-        jsfbt: 'liked',
-        desc: 'In the phrase: "Your friends {=liked} your video"',
-      }) +
-      ') ' +
-      ')' +
-      ')])' +
-      ')' +
-      ')]\n\n);',
+    output: withFbtRequireStatement(
+      `fbt._(
+          ${payload({
+            type: 'text',
+            jsfbt: '{=Your friends liked} your video',
+            desc: 'd',
+          })},
+          [
+            fbt._param(
+              '=Your friends liked',
+              React.createElement(
+                Link,
+                {href: '#'},
+                fbt._(
+                  ${payload({
+                    type: 'text',
+                    jsfbt: 'Your friends {=liked}',
+                    desc: 'In the phrase: "{=Your friends liked} your video"',
+                  })},
+                  [
+                    fbt._param(
+                      '=liked',
+                      React.createElement(
+                        'b',
+                        null,
+                        fbt._(
+                          ${payload({
+                            type: 'text',
+                            jsfbt: 'liked',
+                            desc:
+                              'In the phrase: "Your friends {=liked} your video"',
+                          })},
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        );`,
+    ),
   },
 };
 
@@ -99,39 +115,37 @@ describe('Equality between auto-wrapped and manually wrapped params', () => {
   it('should wrap a single unwrapped <fbt> child and a string above', () => {
     expect(
       transform(
-        "const fbt = require('fbt');" +
-          '<fbt desc="d">\n' +
-          '<fbt:param name="=This is a nested">\n' +
-          '<b>\n' +
-          '<fbt desc="In the phrase: ' +
-          '&quot;{=This is a nested} test&quot;">\n' +
-          'This is\n' +
-          '<fbt:param name="=a nested">\n' +
-          '<link href="#">\n' +
-          '<fbt desc="In the phrase: ' +
-          '&quot;This is {=a nested} test&quot;">\n' +
-          'a nested\n' +
-          '</fbt>\n' +
-          '</link>\n' +
-          '</fbt:param>\n' +
-          '</fbt>\n' +
-          '</b>\n' +
-          '</fbt:param>\n' +
-          'test\n' +
-          '</fbt>;',
+        withFbtRequireStatement(
+          `<fbt desc="d">
+              <fbt:param name="=This is a nested">
+                <b>
+                  <fbt desc='In the phrase: "{=This is a nested} test"'>
+                    This is
+                    <fbt:param name="=a nested">
+                      <link href="#">
+                        <fbt desc='In the phrase: "This is {=a nested} test"'>
+                          a nested
+                        </fbt>
+                      </link>
+                    </fbt:param>
+                  </fbt>
+                </b>
+              </fbt:param>
+              test
+            </fbt>;`,
+        ),
       ),
     ).toEqual(
       transform(
-        "const fbt = require('fbt');" +
-          '<fbt desc="d">\n' +
-          '<b>\n' +
-          'This is\n' +
-          '<link href="#">\n' +
-          'a nested\n' +
-          '</link>\n' +
-          '</b>\n' +
-          'test\n' +
-          '</fbt>;',
+        withFbtRequireStatement(
+          `<fbt desc="d">
+              <b>
+                This is
+                <link href="#">a nested</link>
+              </b>
+              test
+            </fbt>;`,
+        ),
       ),
     );
   });
@@ -139,28 +153,27 @@ describe('Equality between auto-wrapped and manually wrapped params', () => {
   it('should wrap a single unwrapped <fbt> child and a string below', () => {
     expect(
       transform(
-        "const fbt = require('fbt');" +
-          '<fbt desc="d">\n' +
-          '<div href="#">\n' +
-          'this is\n' +
-          '</div>\n' +
-          'a singly nested test\n' +
-          '</fbt>;',
+        withFbtRequireStatement(
+          `<fbt desc="d">
+              <div href="#">this is</div>
+              a singly nested test
+            </fbt>;`,
+        ),
       ),
     ).toEqual(
       transform(
-        "const fbt = require('fbt');" +
-          '<fbt desc="d">\n' +
-          '<fbt:param name="=this is">\n' +
-          '<div href="#">\n' +
-          '<fbt desc=' +
-          '"In the phrase: &quot;{=this is} a singly nested test&quot;">\n' +
-          'this is\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          'a singly nested test\n' +
-          '</fbt>;',
+        withFbtRequireStatement(
+          `<fbt desc="d">
+              <fbt:param name="=this is">
+                <div href="#">
+                  <fbt desc='In the phrase: "{=this is} a singly nested test"'>
+                    this is
+                  </fbt>
+                </div>
+              </fbt:param>
+              a singly nested test
+            </fbt>;`,
+        ),
       ),
     );
   });
@@ -168,37 +181,33 @@ describe('Equality between auto-wrapped and manually wrapped params', () => {
   it('should wrap two unwrapped <fbt> children', () => {
     expect(
       transform(
-        "const fbt = require('fbt');" +
-          '<fbt desc="d">\n' +
-          '<div>\n' +
-          'wrap once\n' +
-          '</div>\n' +
-          '<div>\n' +
-          'wrap twice\n' +
-          '</div>\n' +
-          '</fbt>;',
+        withFbtRequireStatement(
+          `<fbt desc="d">
+              <div>wrap once</div>
+              <div>wrap twice</div>
+            </fbt>;`,
+        ),
       ),
     ).toEqual(
       transform(
-        "const fbt = require('fbt');" +
-          '<fbt desc="d">\n' +
-          '<fbt:param name="=wrap once">\n' +
-          '<div>\n' +
-          '<fbt desc=' +
-          '"In the phrase: &quot;{=wrap once}{=wrap twice}&quot;">\n' +
-          'wrap once\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          '<fbt:param name="=wrap twice">\n' +
-          '<div>\n' +
-          '<fbt desc=' +
-          '"In the phrase: &quot;{=wrap once}{=wrap twice}&quot;">\n' +
-          'wrap twice\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          '</fbt>;',
+        withFbtRequireStatement(
+          `<fbt desc="d">
+              <fbt:param name="=wrap once">
+                <div>
+                  <fbt desc='In the phrase: "{=wrap once}{=wrap twice}"'>
+                    wrap once
+                  </fbt>
+                </div>
+              </fbt:param>
+              <fbt:param name="=wrap twice">
+                <div>
+                  <fbt desc='In the phrase: "{=wrap once}{=wrap twice}"'>
+                    wrap twice
+                  </fbt>
+                </div>
+              </fbt:param>
+            </fbt>;`,
+        ),
       ),
     );
   });
@@ -206,50 +215,45 @@ describe('Equality between auto-wrapped and manually wrapped params', () => {
   it('should wrap two unwrapped <fbt> children and 1 nested', () => {
     expect(
       transform(
-        "const fbt = require('fbt');" +
-          '<fbt desc="d">\n' +
-          '<div>\n' +
-          'wrap once\n' +
-          '<div>\n' +
-          'and also\n' +
-          '</div>\n' +
-          '</div>\n' +
-          '<div>\n' +
-          'wrap twice\n' +
-          '</div>\n' +
-          'complicated\n' +
-          '</fbt>;',
+        withFbtRequireStatement(
+          `<fbt desc="d">
+              <div>
+                wrap once
+                <div>and also</div>
+              </div>
+              <div>wrap twice</div>
+              complicated
+            </fbt>;`,
+        ),
       ),
     ).toEqual(
       transform(
-        "const fbt = require('fbt');" +
-          '<fbt desc="d">\n' +
-          '<fbt:param name="=wrap once and also">\n' +
-          '<div>\n' +
-          '<fbt desc="In the phrase: &quot;{=wrap once and also}' +
-          '{=wrap twice} complicated&quot;">\n' +
-          'wrap once\n' +
-          '<fbt:param name="=and also">\n' +
-          '<div>\n' +
-          '<fbt desc="In the phrase: &quot;wrap once ' +
-          '{=and also}{=wrap twice} complicated&quot;">\n' +
-          'and also\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          '<fbt:param name="=wrap twice">\n' +
-          '<div>\n' +
-          '<fbt desc="In the phrase: ' +
-          '&quot;{=wrap once and also}{=wrap twice} complicated&quot;">\n' +
-          'wrap twice\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          'complicated\n' +
-          '</fbt>;',
+        withFbtRequireStatement(
+          `<fbt desc="d">
+              <fbt:param name="=wrap once and also">
+                <div>
+                  <fbt desc='In the phrase: "{=wrap once and also}{=wrap twice} complicated"'>
+                    wrap once
+                    <fbt:param name="=and also">
+                      <div>
+                        <fbt desc='In the phrase: "wrap once {=and also}{=wrap twice} complicated"'>
+                          and also
+                        </fbt>
+                      </div>
+                    </fbt:param>
+                  </fbt>
+                </div>
+              </fbt:param>
+              <fbt:param name="=wrap twice">
+                <div>
+                  <fbt desc='In the phrase: "{=wrap once and also}{=wrap twice} complicated"'>
+                    wrap twice
+                  </fbt>
+                </div>
+              </fbt:param>
+              complicated
+            </fbt>;`,
+        ),
       ),
     );
   });
@@ -257,39 +261,37 @@ describe('Equality between auto-wrapped and manually wrapped params', () => {
   it('should wrap an outer and inner child', () => {
     expect(
       transform(
-        "const fbt = require('fbt');" +
-          '<fbt desc="d">\n' +
-          '<div href="#">\n' +
-          '<div href="#">\n' +
-          'this is\n' +
-          '</div>\n' +
-          'a doubly\n' +
-          '</div>\n' +
-          'nested test\n' +
-          '</fbt>;',
+        withFbtRequireStatement(
+          `<fbt desc="d">
+              <div href="#">
+                <div href="#">this is</div>
+                a doubly
+              </div>
+              nested test
+            </fbt>;`,
+        ),
       ),
     ).toEqual(
       transform(
-        "const fbt = require('fbt');" +
-          '<fbt desc="d">\n' +
-          '<fbt:param name="=this is a doubly">\n' +
-          '<div href="#">\n' +
-          '<fbt desc=' +
-          '"In the phrase: &quot;{=this is a doubly} nested test&quot;">\n' +
-          '<fbt:param name="=this is">\n' +
-          '<div href="#">\n' +
-          '<fbt desc="In the phrase: ' +
-          '&quot;{=this is} a doubly nested test&quot;">\n' +
-          'this is\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          'a doubly\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          'nested test\n' +
-          '</fbt>;',
+        withFbtRequireStatement(
+          `<fbt desc="d">
+              <fbt:param name="=this is a doubly">
+                <div href="#">
+                  <fbt desc='In the phrase: "{=this is a doubly} nested test"'>
+                    <fbt:param name="=this is">
+                      <div href="#">
+                        <fbt desc='In the phrase: "{=this is} a doubly nested test"'>
+                          this is
+                        </fbt>
+                      </div>
+                    </fbt:param>
+                    a doubly
+                  </fbt>
+                </div>
+              </fbt:param>
+              nested test
+            </fbt>;`,
+        ),
       ),
     );
   });
@@ -297,50 +299,45 @@ describe('Equality between auto-wrapped and manually wrapped params', () => {
   it('should wrap two children with one nested level', () => {
     expect(
       transform(
-        "const fbt = require('fbt');" +
-          '<fbt desc="d">\n' +
-          '<div href="#">\n' +
-          '<div href="#">\n' +
-          'this is\n' +
-          '</div>\n' +
-          'a doubly\n' +
-          '</div>\n' +
-          'nested test\n' +
-          '<div href="#">\n' +
-          'with an additional level\n' +
-          '</div>\n' +
-          '</fbt>;',
+        withFbtRequireStatement(
+          `<fbt desc="d">
+              <div href="#">
+                <div href="#">this is</div>
+                a doubly
+              </div>
+              nested test
+              <div href="#">with an additional level</div>
+            </fbt>;`,
+        ),
       ),
     ).toEqual(
       transform(
-        "const fbt = require('fbt');" +
-          '<fbt desc="d">\n' +
-          '<fbt:param name="=this is a doubly">\n' +
-          '<div href="#">\n' +
-          '<fbt desc="In the phrase: &quot;{=this is a doubly} ' +
-          'nested test {=with an additional level}&quot;">\n' +
-          '<fbt:param name="=this is">\n' +
-          '<div href="#">\n' +
-          '<fbt desc="In the phrase: &quot;{=this is} ' +
-          'a doubly nested test {=with an additional level}&quot;">\n' +
-          'this is\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          'a doubly\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          'nested test\n' +
-          '<fbt:param name="=with an additional level">\n' +
-          '<div href="#">\n' +
-          '<fbt desc="In the phrase: &quot;{=this is a doubly}' +
-          ' nested test {=with an additional level}&quot;">\n' +
-          'with an additional level\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          '</fbt>;',
+        withFbtRequireStatement(
+          `<fbt desc="d">
+              <fbt:param name="=this is a doubly">
+                <div href="#">
+                  <fbt desc='In the phrase: "{=this is a doubly} nested test {=with an additional level}"'>
+                    <fbt:param name="=this is">
+                      <div href="#">
+                        <fbt desc='In the phrase: "{=this is} a doubly nested test {=with an additional level}"'>
+                          this is
+                        </fbt>
+                      </div>
+                    </fbt:param>
+                    a doubly
+                  </fbt>
+                </div>
+              </fbt:param>
+              nested test
+              <fbt:param name="=with an additional level">
+                <div href="#">
+                  <fbt desc='In the phrase: "{=this is a doubly} nested test {=with an additional level}"'>
+                    with an additional level
+                  </fbt>
+                </div>
+              </fbt:param>
+            </fbt>;`,
+        ),
       ),
     );
   });
@@ -348,40 +345,35 @@ describe('Equality between auto-wrapped and manually wrapped params', () => {
   it('should wrap a <fbt> child next to an explicit <fbt:param>', () => {
     expect(
       transform(
-        "const fbt = require('fbt');" +
-          '<fbt desc="d">\n' +
-          '<fbt:param name="explicit param next to">\n' +
-          '<div>\n' +
-          '<fbt desc="d2">\n' +
-          'explicit param next to\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          '<div>\n' +
-          'an implicit param\n' +
-          '</div>\n' +
-          '</fbt>;',
+        withFbtRequireStatement(
+          `<fbt desc="d">
+              <fbt:param name="explicit param next to">
+                <div>
+                  <fbt desc="d2">explicit param next to</fbt>
+                </div>
+              </fbt:param>
+              <div>an implicit param</div>
+            </fbt>;`,
+        ),
       ),
     ).toEqual(
       transform(
-        "const fbt = require('fbt');" +
-          '<fbt desc="d">\n' +
-          '<fbt:param name="explicit param next to">\n' +
-          '<div>\n' +
-          '<fbt desc="d2">\n' +
-          'explicit param next to\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          '<fbt:param name="=an implicit param">\n' +
-          '<div>\n' +
-          '<fbt desc="In the phrase: ' +
-          '&quot;{=explicit param next to}{=an implicit param}&quot;">\n' +
-          'an implicit param\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          '</fbt>;',
+        withFbtRequireStatement(
+          `<fbt desc="d">
+              <fbt:param name="explicit param next to">
+                <div>
+                  <fbt desc="d2">explicit param next to</fbt>
+                </div>
+              </fbt:param>
+              <fbt:param name="=an implicit param">
+                <div>
+                  <fbt desc='In the phrase: "{=explicit param next to}{=an implicit param}"'>
+                    an implicit param
+                  </fbt>
+                </div>
+              </fbt:param>
+            </fbt>;`,
+        ),
       ),
     );
   });
@@ -389,40 +381,39 @@ describe('Equality between auto-wrapped and manually wrapped params', () => {
   it('should wrap a <fbt> child nested in an explicit <fbt:param>', () => {
     expect(
       transform(
-        "const fbt = require('fbt');" +
-          '<fbt desc="d">\n' +
-          '<fbt:param name="explicit fbt param">\n' +
-          '<div>\n' +
-          '<fbt desc="d2">\n' +
-          'explicit fbt param\n' +
-          '<div>\n' +
-          'with a nested implicit param\n' +
-          '</div>\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          '</fbt>;',
+        withFbtRequireStatement(
+          `<fbt desc="d">
+              <fbt:param name="explicit fbt param">
+                <div>
+                  <fbt desc="d2">
+                    explicit fbt param
+                    <div>with a nested implicit param</div>
+                  </fbt>
+                </div>
+              </fbt:param>
+            </fbt>;`,
+        ),
       ),
     ).toEqual(
       transform(
-        "const fbt = require('fbt');" +
-          '<fbt desc="d">\n' +
-          '<fbt:param name="explicit fbt param">\n' +
-          '<div>\n' +
-          '<fbt desc="d2">\n' +
-          'explicit fbt param\n' +
-          '<fbt:param name="=with a nested implicit param">\n' +
-          '<div>\n' +
-          '<fbt desc="In the phrase: &quot;explicit fbt param ' +
-          '{=with a nested implicit param}&quot;">\n' +
-          'with a nested implicit param\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          '</fbt>;',
+        withFbtRequireStatement(
+          `<fbt desc="d">
+              <fbt:param name="explicit fbt param">
+                <div>
+                  <fbt desc="d2">
+                    explicit fbt param
+                    <fbt:param name="=with a nested implicit param">
+                      <div>
+                        <fbt desc='In the phrase: "explicit fbt param {=with a nested implicit param}"'>
+                          with a nested implicit param
+                        </fbt>
+                      </div>
+                    </fbt:param>
+                  </fbt>
+                </div>
+              </fbt:param>
+            </fbt>;`,
+        ),
       ),
     );
   });
@@ -433,42 +424,41 @@ describe('Equality between auto-wrapped and manually wrapped params', () => {
     () => {
       expect(
         transform(
-          "const fbt = require('fbt');" +
-            '<fbt desc="d">\n' +
-            'outer string that should not appear in inner desc\n' +
-            '<fbt:param name="explicit fbt param">\n' +
-            '<div>\n' +
-            '<fbt desc="d2">\n' +
-            'explicit fbt param\n' +
-            '<div>\n' +
-            'with a nested implicit param\n' +
-            '</div>\n' +
-            '</fbt>\n' +
-            '</div>\n' +
-            '</fbt:param>\n' +
-            '</fbt>;',
+          withFbtRequireStatement(
+            `<fbt desc="d">
+                outer string that should not appear in inner desc
+                <fbt:param name="explicit fbt param">
+                  <div>
+                    <fbt desc="d2">
+                      explicit fbt param
+                      <div>with a nested implicit param</div>
+                    </fbt>
+                  </div>
+                </fbt:param>
+              </fbt>;`,
+          ),
         ),
       ).toEqual(
         transform(
-          "const fbt = require('fbt');" +
-            '<fbt desc="d">\n' +
-            'outer string that should not appear in inner desc\n' +
-            '<fbt:param name="explicit fbt param">\n' +
-            '<div>\n' +
-            '<fbt desc="d2">\n' +
-            'explicit fbt param\n' +
-            '<fbt:param name="=with a nested implicit param">\n' +
-            '<div>\n' +
-            '<fbt desc="In the phrase: &quot;explicit fbt param ' +
-            '{=with a nested implicit param}&quot;">\n' +
-            'with a nested implicit param\n' +
-            '</fbt>\n' +
-            '</div>\n' +
-            '</fbt:param>\n' +
-            '</fbt>\n' +
-            '</div>\n' +
-            '</fbt:param>\n' +
-            '</fbt>;',
+          withFbtRequireStatement(
+            `<fbt desc="d">
+                outer string that should not appear in inner desc
+                <fbt:param name="explicit fbt param">
+                  <div>
+                    <fbt desc="d2">
+                      explicit fbt param
+                      <fbt:param name="=with a nested implicit param">
+                        <div>
+                          <fbt desc='In the phrase: "explicit fbt param {=with a nested implicit param}"'>
+                            with a nested implicit param
+                          </fbt>
+                        </div>
+                      </fbt:param>
+                    </fbt>
+                  </div>
+                </fbt:param>
+              </fbt>;`,
+          ),
         ),
       );
     },
@@ -477,49 +467,41 @@ describe('Equality between auto-wrapped and manually wrapped params', () => {
   it('should work with multiple <fbt> calls in one file', () => {
     expect(
       transform(
-        "const fbt = require('fbt');" +
-          '<div>\n' +
-          '<fbt desc="one">\n' +
-          '<div href="#">\n' +
-          'first\n' +
-          '</div>\n' +
-          'fbt call\n' +
-          '</fbt>\n' +
-          '<fbt desc="two">\n' +
-          '<div href="#">\n' +
-          'second\n' +
-          '</div>\n' +
-          'test\n' +
-          '</fbt>\n' +
-          '</div>;',
+        withFbtRequireStatement(
+          `<div>
+              <fbt desc="one">
+                <div href="#">first</div>
+                fbt call
+              </fbt>
+              <fbt desc="two">
+                <div href="#">second</div>
+                test
+              </fbt>
+            </div>;`,
+        ),
       ),
     ).toEqual(
       transform(
-        "const fbt = require('fbt');" +
-          '<div>\n' +
-          '<fbt desc="one">\n' +
-          '<fbt:param name="=first">\n' +
-          '<div href="#">\n' +
-          '<fbt desc=' +
-          '"In the phrase: &quot;{=first} fbt call&quot;">\n' +
-          'first\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          'fbt call\n' +
-          '</fbt>\n' +
-          '<fbt desc="two">\n' +
-          '<fbt:param name="=second">\n' +
-          '<div href="#">\n' +
-          '<fbt desc=' +
-          '"In the phrase: &quot;{=second} test&quot;">\n' +
-          'second\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          'test\n' +
-          '</fbt>\n' +
-          '</div>;',
+        withFbtRequireStatement(
+          `<div>
+              <fbt desc="one">
+                <fbt:param name="=first">
+                  <div href="#">
+                    <fbt desc='In the phrase: "{=first} fbt call"'>first</fbt>
+                  </div>
+                </fbt:param>
+                fbt call
+              </fbt>
+              <fbt desc="two">
+                <fbt:param name="=second">
+                  <div href="#">
+                    <fbt desc='In the phrase: "{=second} test"'>second</fbt>
+                  </div>
+                </fbt:param>
+                test
+              </fbt>
+            </div>;`,
+        ),
       ),
     );
   });
@@ -527,59 +509,53 @@ describe('Equality between auto-wrapped and manually wrapped params', () => {
   it('should wrap two nested next to each other', () => {
     expect(
       transform(
-        "const fbt = require('fbt');" +
-          '<fbt desc="d">\n' +
-          '<div href="#">\n' +
-          'one\n' +
-          '<div href="#">\n' +
-          'two\n' +
-          '</div>\n' +
-          '</div>\n' +
-          '<div href="#">\n' +
-          'three\n' +
-          '<div href="#">\n' +
-          'four\n' +
-          '</div>\n' +
-          '</div>\n' +
-          '</fbt>;',
+        withFbtRequireStatement(
+          `<fbt desc="d">
+              <div href="#">
+                one
+                <div href="#">two</div>
+              </div>
+              <div href="#">
+                three
+                <div href="#">four</div>
+              </div>
+            </fbt>;`,
+        ),
       ),
     ).toEqual(
       transform(
-        "const fbt = require('fbt');" +
-          '<fbt desc="d">\n' +
-          '<fbt:param name="=one two">\n' +
-          '<div href="#">\n' +
-          '<fbt desc=' +
-          '"In the phrase: &quot;{=one two}{=three four}&quot;">\n' +
-          'one\n' +
-          '<fbt:param name="=two">\n' +
-          '<div href="#">\n' +
-          '<fbt desc=' +
-          '"In the phrase: &quot;one {=two}{=three four}&quot;">\n' +
-          'two\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          '<fbt:param name="=three four">\n' +
-          '<div href="#">\n' +
-          '<fbt desc=' +
-          '"In the phrase: &quot;{=one two}{=three four}&quot;">\n' +
-          'three\n' +
-          '<fbt:param name="=four">\n' +
-          '<div href="#">\n' +
-          '<fbt desc=' +
-          '"In the phrase: &quot;{=one two}three {=four}&quot;">\n' +
-          'four\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          '</fbt>;',
+        withFbtRequireStatement(
+          `<fbt desc="d">
+              <fbt:param name="=one two">
+                <div href="#">
+                  <fbt desc='In the phrase: "{=one two}{=three four}"'>
+                    one
+                    <fbt:param name="=two">
+                      <div href="#">
+                        <fbt desc='In the phrase: "one {=two}{=three four}"'>
+                          two
+                        </fbt>
+                      </div>
+                    </fbt:param>
+                  </fbt>
+                </div>
+              </fbt:param>
+              <fbt:param name="=three four">
+                <div href="#">
+                  <fbt desc='In the phrase: "{=one two}{=three four}"'>
+                    three
+                    <fbt:param name="=four">
+                      <div href="#">
+                        <fbt desc='In the phrase: "{=one two}three {=four}"'>
+                          four
+                        </fbt>
+                      </div>
+                    </fbt:param>
+                  </fbt>
+                </div>
+              </fbt:param>
+            </fbt>;`,
+        ),
       ),
     );
   });
@@ -587,73 +563,63 @@ describe('Equality between auto-wrapped and manually wrapped params', () => {
   it('should wrap two nested next to each other with an extra level', () => {
     expect(
       transform(
-        "const fbt = require('fbt');" +
-          '<fbt desc="d">\n' +
-          '<div href="#">\n' +
-          'one\n' +
-          '<div href="#">\n' +
-          'two\n' +
-          '<div href="#">\n' +
-          'test\n' +
-          '</div>\n' +
-          '</div>\n' +
-          '</div>\n' +
-          '<div href="#">\n' +
-          'three\n' +
-          '<div href="#">\n' +
-          'four\n' +
-          '</div>\n' +
-          '</div>\n' +
-          '</fbt>;',
+        withFbtRequireStatement(
+          `<fbt desc="d">
+              <div href="#">
+                one
+                <div href="#">
+                  two
+                  <div href="#">test</div>
+                </div>
+              </div>
+              <div href="#">
+                three
+                <div href="#">four</div>
+              </div>
+            </fbt>;`,
+        ),
       ),
     ).toEqual(
       transform(
-        "const fbt = require('fbt');" +
-          '<fbt desc="d">\n' +
-          '<fbt:param name="=one two test">\n' +
-          '<div href="#">\n' +
-          '<fbt desc=' +
-          '"In the phrase: &quot;{=one two test}{=three four}&quot;">\n' +
-          'one\n' +
-          '<fbt:param name="=two test">\n' +
-          '<div href="#">\n' +
-          '<fbt desc=' +
-          '"In the phrase: &quot;one {=two test}' +
-          '{=three four}&quot;">\n' +
-          'two\n' +
-          '<fbt:param name="=test">\n' +
-          '<div href="#">\n' +
-          '<fbt desc=' +
-          '"In the phrase: &quot;one two {=test}' +
-          '{=three four}&quot;">\n' +
-          'test\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          '<fbt:param name="=three four">\n' +
-          '<div href="#">\n' +
-          '<fbt desc=' +
-          '"In the phrase: &quot;{=one two test}{=three four}&quot;">\n' +
-          'three\n' +
-          '<fbt:param name="=four">\n' +
-          '<div href="#">\n' +
-          '<fbt desc=' +
-          '"In the phrase: &quot;{=one two test}' +
-          'three {=four}&quot;">\n' +
-          'four\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          '</fbt>;',
+        withFbtRequireStatement(
+          `<fbt desc="d">
+            <fbt:param name="=one two test">
+              <div href="#">
+                <fbt desc='In the phrase: "{=one two test}{=three four}"'>
+                  one
+                  <fbt:param name="=two test">
+                    <div href="#">
+                      <fbt desc='In the phrase: "one {=two test}{=three four}"'>
+                        two
+                        <fbt:param name="=test">
+                          <div href="#">
+                            <fbt desc='In the phrase: "one two {=test}{=three four}"'>
+                              test
+                            </fbt>
+                          </div>
+                        </fbt:param>
+                      </fbt>
+                    </div>
+                  </fbt:param>
+                </fbt>
+              </div>
+            </fbt:param>
+            <fbt:param name="=three four">
+              <div href="#">
+                <fbt desc='In the phrase: "{=one two test}{=three four}"'>
+                  three
+                  <fbt:param name="=four">
+                    <div href="#">
+                      <fbt desc='In the phrase: "{=one two test}three {=four}"'>
+                        four
+                      </fbt>
+                    </div>
+                  </fbt:param>
+                </fbt>
+              </div>
+            </fbt:param>
+          </fbt>;`,
+        ),
       ),
     );
   });
@@ -661,39 +627,37 @@ describe('Equality between auto-wrapped and manually wrapped params', () => {
   it('should wrap a single unwrapped <fbt> child and a string above', () => {
     expect(
       transform(
-        "const fbt = require('fbt');" +
-          '<fbt desc="d">\n' +
-          '<fbt:param name="=This is a nested">\n' +
-          '<b>\n' +
-          '<fbt desc="In the phrase: ' +
-          '&quot;{=This is a nested} test&quot;">\n' +
-          'This is\n' +
-          '<fbt:param name="=a nested">\n' +
-          '<link href="#">\n' +
-          '<fbt desc="In the phrase: ' +
-          '&quot;This is {=a nested} test&quot;">\n' +
-          'a nested\n' +
-          '</fbt>\n' +
-          '</link>\n' +
-          '</fbt:param>\n' +
-          '</fbt>\n' +
-          '</b>\n' +
-          '</fbt:param>\n' +
-          'test\n' +
-          '</fbt>;',
+        withFbtRequireStatement(
+          `<fbt desc="d">
+              <fbt:param name="=This is a nested">
+                <b>
+                  <fbt desc='In the phrase: "{=This is a nested} test"'>
+                    This is
+                    <fbt:param name="=a nested">
+                      <link href="#">
+                        <fbt desc='In the phrase: "This is {=a nested} test"'>
+                          a nested
+                        </fbt>
+                      </link>
+                    </fbt:param>
+                  </fbt>
+                </b>
+              </fbt:param>
+              test
+            </fbt>;`,
+        ),
       ),
     ).toEqual(
       transform(
-        "const fbt = require('fbt');" +
-          '<fbt desc="d">\n' +
-          '<b>\n' +
-          'This is\n' +
-          '<link href="#">\n' +
-          'a nested\n' +
-          '</link>\n' +
-          '</b>\n' +
-          'test\n' +
-          '</fbt>;',
+        withFbtRequireStatement(
+          `<fbt desc="d">
+              <b>
+                This is
+                <link href="#">a nested</link>
+              </b>
+              test
+            </fbt>;`,
+        ),
       ),
     );
   });
@@ -701,95 +665,77 @@ describe('Equality between auto-wrapped and manually wrapped params', () => {
   it('should wrap explicit params nested in implicit params with []', () => {
     expect(
       transform(
-        "const fbt = require('fbt');" +
-          '<fbt desc="d">\n' +
-          '<div>\n' +
-          'this is a test\n' +
-          '<fbt:param name="to make sure that explicit params under an ' +
-          'implicit node">\n' +
-          '<link>\n' +
-          '<fbt desc="d2">\n' +
-          'to make sure that explicit tags\n' +
-          '<b>\n' +
-          'under an implicit node\n' +
-          '</b>\n' +
-          '</fbt>\n' +
-          '</link>\n' +
-          '</fbt:param>\n' +
-          '<fbt:param name="and ones that are next to each other">\n' +
-          '<link>\n' +
-          '<fbt desc="d3">\n' +
-          'and ones that are next\n' +
-          '<b>\n' +
-          'to each other\n' +
-          '</b>\n' +
-          '</fbt>\n' +
-          '</link>\n' +
-          '</fbt:param>\n' +
-          'under an implicit tag are wrapped with [ ]\n' +
-          '</div>\n' +
-          '<fbt:param name="but free standing ones are not">\n' +
-          '<link>\n' +
-          '<fbt desc="d3">\n' +
-          'but free standing ones\n' +
-          '<b>\n' +
-          'are not\n' +
-          '</b>\n' +
-          '</fbt>\n' +
-          '</link>\n' +
-          '</fbt:param>\n' +
-          '</fbt>;',
+        withFbtRequireStatement(
+          `<fbt desc="d">
+              <div>
+                this is a test
+                <fbt:param name="to make sure that explicit params under an implicit node">
+                  <link>
+                    <fbt desc="d2">
+                      to make sure that explicit tags
+                      <b>under an implicit node</b>
+                    </fbt>
+                  </link>
+                </fbt:param>
+                <fbt:param name="and ones that are next to each other">
+                  <link>
+                    <fbt desc="d3">
+                      and ones that are next
+                      <b>to each other</b>
+                    </fbt>
+                  </link>
+                </fbt:param>
+                under an implicit tag are wrapped with [ ]
+              </div>
+              <fbt:param name="but free standing ones are not">
+                <link>
+                  <fbt desc="d3">
+                    but free standing ones
+                    <b>are not</b>
+                  </fbt>
+                </link>
+              </fbt:param>
+            </fbt>;`,
+        ),
       ),
     ).toEqual(
       transform(
-        "const fbt = require('fbt');" +
-          '<fbt desc="d">\n' +
-          '<fbt:param name="=this is a test [to make sure that explicit ' +
-          'params under an implicit node][and ones that are next to each other]' +
-          ' under an implicit tag are wrapped with [ ]">\n' +
-          '<div>\n' +
-          '<fbt desc=' +
-          '"In the phrase: &quot;{=this is a test [to make sure that ' +
-          'explicit params under an implicit node][and ones that are next' +
-          ' to each other] under an implicit tag are wrapped with [ ]}' +
-          '{=but free standing ones are not}&quot;">\n' +
-          'this is a test\n' +
-          '<fbt:param name="to make sure that explicit params under an ' +
-          'implicit node">\n' +
-          '<link>\n' +
-          '<fbt desc="d2">\n' +
-          'to make sure that explicit tags\n' +
-          '<b>\n' +
-          'under an implicit node\n' +
-          '</b>\n' +
-          '</fbt>\n' +
-          '</link>\n' +
-          '</fbt:param>\n' +
-          '<fbt:param name="and ones that are next to each other">\n' +
-          '<link>\n' +
-          '<fbt desc="d3">\n' +
-          'and ones that are next\n' +
-          '<b>\n' +
-          'to each other\n' +
-          '</b>\n' +
-          '</fbt>\n' +
-          '</link>\n' +
-          '</fbt:param>\n' +
-          'under an implicit tag are wrapped with [ ]\n' +
-          '</fbt>\n' +
-          '</div>\n' +
-          '</fbt:param>\n' +
-          '<fbt:param name="but free standing ones are not">\n' +
-          '<link>\n' +
-          '<fbt desc="d3">\n' +
-          'but free standing ones\n' +
-          '<b>\n' +
-          'are not\n' +
-          '</b>\n' +
-          '</fbt>\n' +
-          '</link>\n' +
-          '</fbt:param>\n' +
-          '</fbt>;',
+        withFbtRequireStatement(
+          `<fbt desc="d">
+            <fbt:param name="=this is a test [to make sure that explicit params under an implicit node][and ones that are next to each other] under an implicit tag are wrapped with [ ]">
+              <div>
+                <fbt desc='In the phrase: "{=this is a test [to make sure that explicit params under an implicit node][and ones that are next to each other] under an implicit tag are wrapped with [ ]}{=but free standing ones are not}"'>
+                  this is a test
+                  <fbt:param name="to make sure that explicit params under an implicit node">
+                    <link>
+                      <fbt desc="d2">
+                        to make sure that explicit tags
+                        <b>under an implicit node</b>
+                      </fbt>
+                    </link>
+                  </fbt:param>
+                  <fbt:param name="and ones that are next to each other">
+                    <link>
+                      <fbt desc="d3">
+                        and ones that are next
+                        <b>to each other</b>
+                      </fbt>
+                    </link>
+                  </fbt:param>
+                  under an implicit tag are wrapped with [ ]
+                </fbt>
+              </div>
+            </fbt:param>
+            <fbt:param name="but free standing ones are not">
+              <link>
+                <fbt desc="d3">
+                  but free standing ones
+                  <b>are not</b>
+                </fbt>
+              </link>
+            </fbt:param>
+          </fbt>;`,
+        ),
       ),
     );
   });
