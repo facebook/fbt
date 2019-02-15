@@ -8,6 +8,7 @@ Check out our [github](https://github.com/facebookincubator/fbt) repository and 
 The following assumes you have [node](https://nodejs.org) and [yarn](https://yarnpkg.com) installed.
 ```bash
 git clone git@github.com:facebookincubator/fbt.git;
+yarn install
 cd fbt/demo-app;
 yarn install; # pull in dependencies
 yarn manifest; # generate fbt enum manifests and source manifests
