@@ -3,10 +3,10 @@
   "version": "0.9.1",
   "license": "MIT",
   "devDependencies": {
-    "fb-babel-plugin-utils": "0.9.0"
+    "fb-babel-plugin-utils": "^0.9.0"
   },
   "dependencies": {
-    "@babel/core": "^7.2.2"
+    "@babel/core": "^7.0.0"
   },
   "peerDependencies": {
     "babel-plugin-fbt": "0.9.1"

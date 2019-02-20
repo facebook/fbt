@@ -64,6 +64,7 @@ const argv = yargs
   .boolean(args.REACT_NATIVE_MODE)
   .default(args.REACT_NATIVE_MODE, false)
   .describe(
+    args.REACT_NATIVE_MODE,
     'By default, we include enums in the jsfbt payload we produce. However, ' +
       'Flatbuffer language packs only work with predefined keys, so we need to ' +
       'move enums out of the jsfbt payload and output leaf payloads instead.',
@@ -93,14 +94,17 @@ const argv = yargs
   ).argv;
 
 const extraOptions = {};
-if (argv[args.OPTIONS]) {
-  const opts = argv[args.OPTIONS].split(',');
+const cliExtraOptions = argv[args.OPTIONS];
+if (cliExtraOptions) {
+  // $FlowFixMe
+  const opts = cliExtraOptions.split(',');
   for (let ii = 0; ii < opts.length; ++ii) {
     extraOptions[opts[ii]] = true;
   }
 }
 
 const fbtCollector = new FbtCollector(
+  // $FlowFixMe
   {
     auxiliaryTexts: argv[args.AUXILIARY_TEXTS],
     reactNativeMode: argv[args.REACT_NATIVE_MODE],
