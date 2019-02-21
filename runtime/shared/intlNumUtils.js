@@ -9,7 +9,7 @@
  * Run the following command to sync the change from www to fbsource.
  *   js1 upgrade www-shared -p fbt --remote localhost:~/www
  *
- * @flow
+ * @flow strict
  * @typechecks
  * @format
  * @emails oncall+internationalization
@@ -80,36 +80,33 @@ const matchCurrenciesWithDots = _buildRegex(
  * `formatNumberWithThousandDelimiters` below.
  */
 function formatNumberRaw(
-  value: any,
+  value: number | string,
   decimals?: ?number,
-  thousandDelimiter?: string,
-  decimalDelimiter?: string,
-  minDigitsForThousandDelimiter?: number,
-  standardPatternInfo?: StandardDecimalPatternInfo,
-  numberingSystemData?: ?NumberingSystemData,
-): string {
-  thousandDelimiter = thousandDelimiter || '';
-  decimalDelimiter = decimalDelimiter || '.';
-  minDigitsForThousandDelimiter = minDigitsForThousandDelimiter || 0;
-  standardPatternInfo = standardPatternInfo || {
+  thousandDelimiter: string = '',
+  decimalDelimiter: string = '.',
+  minDigitsForThousandDelimiter: number = 0,
+  standardPatternInfo: StandardDecimalPatternInfo = {
     primaryGroupSize: DEFAULT_GROUPING_SIZE,
     secondaryGroupSize: DEFAULT_GROUPING_SIZE,
-  };
+  },
+  numberingSystemData?: ?NumberingSystemData,
+): string {
   const primaryGroupingSize =
     standardPatternInfo.primaryGroupSize || DEFAULT_GROUPING_SIZE;
   const secondaryGroupingSize =
     standardPatternInfo.secondaryGroupSize || primaryGroupingSize;
 
   const digits = numberingSystemData && numberingSystemData.digits;
-  if (decimals === undefined || decimals === null) {
-    value = value.toString();
+  let v;
+  if (decimals == null) {
+    v = value.toString();
   } else if (typeof value === 'string') {
-    value = truncateLongNumber(value, decimals);
+    v = truncateLongNumber(value, decimals);
   } else {
-    value = _roundNumber(value, decimals);
+    v = _roundNumber(value, decimals);
   }
 
-  const valueParts = value.toString().split('.');
+  const valueParts = v.split('.');
   let wholeNumber = valueParts[0];
   let decimal = valueParts[1];
 
@@ -139,7 +136,7 @@ function formatNumberRaw(
       }
     }
   }
-  if (digits) {
+  if (digits != null) {
     wholeNumber = _replaceWithNativeDigits(wholeNumber, digits);
     decimal = decimal && _replaceWithNativeDigits(decimal, digits);
   }
@@ -301,10 +298,11 @@ function _roundNumber(valueParam: number, decimalsParam?: number): string {
 }
 
 const addZeros = (x, count) => {
+  let result = x;
   for (let i = 0; i < count; i++) {
-    x += '0';
+    result += '0';
   }
-  return x;
+  return result;
 };
 
 function truncateLongNumber(number: string, decimals?: number): string {
@@ -312,23 +310,12 @@ function truncateLongNumber(number: string, decimals?: number): string {
   const dividend = pos === -1 ? number : number.slice(0, pos);
   const remainder = pos === -1 ? '' : number.slice(pos + 1);
 
-  return decimals
+  return decimals != null
     ? dividend +
         '.' +
         addZeros(remainder.slice(0, decimals), decimals - remainder.length)
     : dividend;
 }
-
-const _decimalSeparatorRegexCache = {};
-const decimalSeparatorRegex = separator => {
-  if (!_decimalSeparatorRegexCache[separator]) {
-    _decimalSeparatorRegexCache[separator] = new RegExp(
-      '([^\\/p]|^)' + escapeRegex(separator) + '(\\d*).*',
-      'i',
-    );
-  }
-  return _decimalSeparatorRegexCache[separator];
-};
 
 /**
  * Parse a number.
@@ -344,22 +331,21 @@ const decimalSeparatorRegex = separator => {
 function parseNumberRaw(
   text: string,
   decimalDelimiter: string,
-  numberDelimiter?: string,
+  numberDelimiter: string = '',
 ): ?number {
   // Replace numerals based on current locale data
   const digitsMap = _getNativeDigitsMap();
+  let _text = text;
   if (digitsMap) {
-    text = text
+    _text = text
       .split('')
       .map((/*string*/ character) => digitsMap[character] || character)
       .join('')
       .trim();
   }
 
-  text = text.replace(/^[^\d]*\-/, '\u0002'); // preserve negative sign
-  text = text.replace(matchCurrenciesWithDots, ''); // remove some currencies
-
-  numberDelimiter = numberDelimiter || '';
+  _text = _text.replace(/^[^\d]*\-/, '\u0002'); // preserve negative sign
+  _text = _text.replace(matchCurrenciesWithDots, ''); // remove some currencies
 
   const decimalExp = escapeRegex(decimalDelimiter);
   const numberExp = escapeRegex(numberDelimiter);
@@ -367,27 +353,27 @@ function parseNumberRaw(
   const isThereADecimalSeparatorInBetween = _buildRegex(
     '^[^\\d]*\\d.*' + decimalExp + '.*\\d[^\\d]*$',
   );
-  if (!isThereADecimalSeparatorInBetween.test(text)) {
+  if (!isThereADecimalSeparatorInBetween.test(_text)) {
     const isValidWithDecimalBeforeHand = _buildRegex(
       '(^[^\\d]*)' + decimalExp + '(\\d*[^\\d]*$)',
     );
-    if (isValidWithDecimalBeforeHand.test(text)) {
-      text = text.replace(isValidWithDecimalBeforeHand, '$1\u0001$2');
-      return _parseCodifiedNumber(text);
+    if (isValidWithDecimalBeforeHand.test(_text)) {
+      _text = _text.replace(isValidWithDecimalBeforeHand, '$1\u0001$2');
+      return _parseCodifiedNumber(_text);
     }
     const isValidWithoutDecimal = _buildRegex(
       '^[^\\d]*[\\d ' + escapeRegex(numberExp) + ']*[^\\d]*$',
     );
-    if (!isValidWithoutDecimal.test(text)) {
-      text = '';
+    if (!isValidWithoutDecimal.test(_text)) {
+      _text = '';
     }
-    return _parseCodifiedNumber(text);
+    return _parseCodifiedNumber(_text);
   }
   const isValid = _buildRegex(
     '(^[^\\d]*[\\d ' + numberExp + ']*)' + decimalExp + '(\\d*[^\\d]*$)',
   );
-  text = isValid.test(text) ? text.replace(isValid, '$1\u0001$2') : '';
-  return _parseCodifiedNumber(text);
+  _text = isValid.test(_text) ? _text.replace(isValid, '$1\u0001$2') : '';
+  return _parseCodifiedNumber(_text);
 }
 
 /**
@@ -395,13 +381,13 @@ function parseNumberRaw(
  * \u0002 in the place of a negative sign.
  */
 function _parseCodifiedNumber(text: string): ?number {
-  text = text
+  const _text = text
     .replace(/[^0-9\u0001\u0002]/g, '') // remove everything but numbers,
     // decimal separator and negative sign
     .replace('\u0001', '.') // restore decimal separator
     .replace('\u0002', '-'); // restore negative sign
-  const value = Number(text);
-  return text === '' || isNaN(value) ? null : value;
+  const value = Number(_text);
+  return _text === '' || isNaN(value) ? null : value;
 }
 
 function _getNativeDigitsMap(): ?{[string]: string} {
@@ -410,7 +396,7 @@ function _getNativeDigitsMap(): ?{[string]: string} {
   const digits =
     NumberFormatConfig.numberingSystemData &&
     NumberFormatConfig.numberingSystemData.digits;
-  if (!digits) {
+  if (digits == null) {
     return null;
   }
   for (let i = 0; i < digits.length; i++) {
@@ -471,17 +457,18 @@ const intlNumUtils = {
    *
    */
   getIntegerString(num: string | number, thousandDelimiter: string): string {
-    if (thousandDelimiter === '') {
+    let delim = thousandDelimiter;
+    if (delim === '') {
       if (__DEV__) {
         throw new Error('thousandDelimiter cannot be empty string!');
       }
-      thousandDelimiter = ',';
+      delim = ',';
     }
 
     let str = String(num);
     const regex = /(\d+)(\d{3})/;
     while (regex.test(str)) {
-      str = str.replace(regex, '$1' + thousandDelimiter + '$2');
+      str = str.replace(regex, '$1' + delim + '$2');
     }
     return str;
   },
