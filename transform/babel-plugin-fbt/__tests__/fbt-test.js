@@ -139,3 +139,33 @@ describe('Test double-lined params', () => {
     });
   });
 });
+
+describe('fbt variable binding detection', () => {
+  function describeFbtBindingTestCase(requireStatement) {
+    return {
+      input: `${requireStatement};
+        fbt("Foo", "Bar");`,
+      output: `${requireStatement};
+        fbt._(
+          ${payload({
+            type: 'text',
+            jsfbt: 'Foo',
+            desc: 'Bar',
+          })}
+        )`,
+    };
+  }
+
+  it(`should handle commonJS require()`, () => {
+    runTest(describeFbtBindingTestCase(`const fbt = require('fbt')`));
+  });
+
+  describe('using ES6', () => {
+    it(`should handle fbt default export`, () => {
+      runTest(describeFbtBindingTestCase(`import fbt from 'fbt'`));
+    });
+    it(`should handle the named fbt export`, () => {
+      runTest(describeFbtBindingTestCase(`import {fbt} from 'fbt'`));
+    });
+  });
+});
