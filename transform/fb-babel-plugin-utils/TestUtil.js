@@ -9,10 +9,10 @@
 
 /*global expect, it, describe*/
 
-const assert = require('assert');
 const babel = require('@babel/core');
-const babylon = require('babylon');
 const generate = require('@babel/generator').default;
+const assert = require('assert');
+const babylon = require('babylon');
 
 const IGNORE_KEYS = [
   '__clone',
@@ -65,6 +65,16 @@ function prettyPrint(input) {
   return generate(parse(input), {comments: true}, input).code.trim();
 }
 
+function firstCommonSubstring(left, right) {
+  let i = 0;
+  for (i = 0; i < left.length && i < right.length; i++) {
+    if (left.charAt(i) !== right.charAt(i)) {
+      break;
+    }
+  }
+  return left.substr(0, i);
+}
+
 module.exports = {
   assertSourceAstEqual(expected, actual, options) {
     const expectedTree = stripMeta(parse(expected).program, options);
@@ -72,15 +82,43 @@ module.exports = {
     try {
       assert.deepEqual(actualTree, expectedTree);
     } catch (e) {
-      console.log('Expected:', prettyPrint(expected));
-      console.log('Actual:  ', prettyPrint(actual));
+      const expectedFormattedCode = prettyPrint(expected);
+      const actualFormattedCode = prettyPrint(actual);
+      const commonStr = firstCommonSubstring(
+        expectedFormattedCode,
+        actualFormattedCode,
+      );
+      const excerptLength = 60;
+      const excerptDiffFromExpected = expectedFormattedCode.substr(
+        commonStr.length,
+        excerptLength,
+      );
+      const excerptDiffFromActual = actualFormattedCode.substr(
+        commonStr.length,
+        excerptLength,
+      );
+
+      console.log(`Expected: ${expectedFormattedCode}`);
+      console.log(`Actual  : ${actualFormattedCode}`);
+      console.log(`First common string: ${commonStr}`);
+      console.log(`The first difference is (${excerptLength} chars max): `);
+      console.log(`Expected: ${excerptDiffFromExpected}`);
+      console.log(`Actual  : ${excerptDiffFromActual}`);
+
       const err = new Error([
         'deepEqual node AST assert failed for the following code:',
-        '  expected output:',
-        prettyPrint(expected),
+        '  Expected output:',
+        expectedFormattedCode,
         '',
-        '  actual output:',
-        prettyPrint(actual),
+        '  Actual output:',
+        actualFormattedCode,
+        '',
+        '  First common string:',
+        commonStr,
+        '',
+        `  The first difference is (${excerptLength} chars max): `,
+        `  Expected: ${excerptDiffFromExpected}`,
+        `  Actual  : ${excerptDiffFromActual}`,
         '',
       ].join('\n'));
       err.stack = e.stack;
