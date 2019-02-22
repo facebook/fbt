@@ -34,7 +34,7 @@ const args = {
   PACKAGER: 'packager',
   PRETTY: 'pretty',
   REACT_NATIVE_MODE: 'react-native-mode',
-  STDIN: 'stdin',
+  MANIFEST: 'manifest',
   TERSE: 'terse',
 };
 
@@ -77,11 +77,12 @@ const argv = yargs
     'Include auxiliary intermediary data-structure `texts` that includes the ' +
       'list of constructs passed to the fbt instance.',
   )
-  .boolean(args.STDIN)
+  .boolean(args.MANIFEST)
+  .default(args.MANIFEST, false)
   .describe(
-    args.STDIN,
+    args.MANIFEST,
     'Interpret stdin as JSON map of {<enum-manifest-file>: ' +
-      '[<source_file1>, ...]}. Otherwise STDIN itself will be parsed',
+      '[<source_file1>, ...]}. Otherwise stdin itself will be parsed',
   )
   .boolean(args.PRETTY)
   .default(args.PRETTY, false)
@@ -148,7 +149,7 @@ function writeOutput() {
 }
 
 function processSource(source, filepath) {
-  if (argv[args.STDIN]) {
+  if (argv[args.MANIFEST]) {
     processJsonSource(source);
   } else {
     fbtCollector.collectFromOneFile(source, filepath);
