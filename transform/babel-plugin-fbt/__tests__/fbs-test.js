@@ -131,4 +131,21 @@ describe('Test functional fbs() syntax translation', () => {
       `fbs only accepts plain strings with params wrapped in fbs.param.`,
     );
   });
+
+  it('should throw when using fbs() and the fbs variable is not bound', () => {
+    expect(() =>
+      transform(
+        `const fbsCall = fbs(
+          'basic',
+          'str_description'
+        );`,
+      ),
+    ).toThrow(`fbs is not bound. Did you forget to require('fbs')?`);
+  });
+
+  it('should throw when using <fbs> and the fbs variable is not bound', () => {
+    expect(() =>
+      transform(`const fbsCall = <fbs desc="str_description">basic</fbs>;`),
+    ).toThrow(`fbs is not bound. Did you forget to require('fbs')?`);
+  });
 });

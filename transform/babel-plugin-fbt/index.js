@@ -15,21 +15,7 @@
 
 'use strict';
 
-/* eslint consistent-return: 0 */
-/* eslint max-len: ["warn", 120] */
-
-// fb-www/comma-dangle checks that various multi-line "list" constructs have trailing commas. Unfortunately, the in-use
-// version of Node breaks when such syntax is used in arguments lists for function invocations, the rule implementation
-// does not provide a way to override the check for particular grammar elements (like current ESLint's built-in rule),
-// and there are quite a few instances in this file where the rule applies. Rather than disabling on a one-by-one basis,
-// throw out the baby with the bath water and disable the whole shebang.
-/* eslint fb-www/comma-dangle: "off" */
-
-const {RequireCheck} = require('fb-babel-plugin-utils');
-const {isRequireAlias} = RequireCheck;
 const FbtAutoWrap = require('./FbtAutoWrap');
-const FbtMethodCallVisitors = require('./FbtMethodCallVisitors');
-const getNamespacedArgs = require('./getNamespacedArgs');
 const FbtCommonConstants = require('./FbtCommonConstants');
 const {
   FbtBooleanOptions,
@@ -41,7 +27,10 @@ const {
   ValidPluralOptions,
   ValidPronounOptions,
 } = require('./FbtConstants');
+const fbtHashKey = require('./fbtHashKey');
+const FbtMethodCallVisitors = require('./FbtMethodCallVisitors');
 const FbtNodeChecker = require('./FbtNodeChecker');
+const FbtShiftEnums = require('./FbtShiftEnums');
 const {
   checkOption,
   collectOptions,
@@ -57,9 +46,11 @@ const {
   throwAt,
   validateNamespacedFbtElement,
 } = require('./FbtUtil');
-const fbtHashKey = require('./fbtHashKey');
-const FbtShiftEnums = require('./FbtShiftEnums');
+const getNamespacedArgs = require('./getNamespacedArgs');
 const JSFbtBuilder = require('./JSFbtBuilder');
+const {
+  RequireCheck: {isRequireAlias},
+} = require('fb-babel-plugin-utils');
 const fbtChecker = FbtNodeChecker.forModule(FBT);
 const fbsChecker = FbtNodeChecker.forModule(FBS);
 const {parse: parseDocblock} = require('jest-docblock');
@@ -221,10 +212,10 @@ function BabelPluginFbt(babel) {
           return;
         }
 
-        if (moduleName === FBT && !checker.isJSModuleBound(path)) {
+        if (!checker.isJSModuleBound(path)) {
           throwAt(
             path.node,
-            "`fbt` is not bound. Did you forget to require('fbt')?",
+            `${moduleName} is not bound. Did you forget to require('${moduleName}')?`,
           );
         }
 
