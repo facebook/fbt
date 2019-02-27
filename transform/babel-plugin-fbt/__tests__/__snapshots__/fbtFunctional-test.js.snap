@@ -4,13 +4,13 @@ exports[`Test fbt meta-data collection should collect correct meta data (react n
 Array [
   Object {
     "author": "jwatson",
-    "col_beg": 0,
-    "col_end": 89,
+    "col_beg": 2,
+    "col_end": 10,
     "desc": "options!",
     "filepath": undefined,
     "jsfbt": "A string that moved files",
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 5,
     "project": "Super Secret",
     "type": "text",
   },
@@ -20,13 +20,13 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should allow description concatenation" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 27,
+    "col_beg": 10,
+    "col_end": 7,
     "desc": "With a ridiculously long description that requires concatenation",
     "filepath": undefined,
     "jsfbt": "A short string",
     "line_beg": 2,
-    "line_end": 3,
+    "line_end": 6,
     "project": "",
     "type": "text",
   },
@@ -36,13 +36,13 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should be able to nest within React nodes" 1`] = `
 Array [
   Object {
-    "col_beg": 5,
-    "col_end": 38,
+    "col_beg": 20,
+    "col_end": 53,
     "desc": "nested!",
     "filepath": undefined,
     "jsfbt": "A nested string",
-    "line_beg": 4,
-    "line_end": 4,
+    "line_beg": 3,
+    "line_end": 3,
     "project": "",
     "type": "text",
   },
@@ -52,8 +52,8 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should convert simple strings" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 45,
+    "col_beg": 10,
+    "col_end": 47,
     "desc": "It's simple",
     "filepath": undefined,
     "jsfbt": "A simple string",
@@ -65,11 +65,42 @@ Array [
 ]
 `;
 
+exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should deduplicate branches when fbt.enum() calls share the same key in string templates" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "enums!",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "range": Array [
+            "groups",
+            "photos",
+            "videos",
+          ],
+        },
+      ],
+      "t": Object {
+        "groups": "Look! Groups and groups!",
+        "photos": "Look! Photos and photos!",
+        "videos": "Look! Videos and videos!",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 13,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
 exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should get project from docblock" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 48,
+    "col_beg": 10,
+    "col_end": 50,
     "desc": "It's simple",
     "filepath": undefined,
     "jsfbt": "Also simple string",
@@ -81,42 +112,11 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handle duplicate enums in templates" 1`] = `
-Array [
-  Object {
-    "col_beg": 8,
-    "col_end": 194,
-    "desc": "enums!",
-    "filepath": undefined,
-    "jsfbt": Object {
-      "m": Array [
-        Object {
-          "range": Array [
-            "groups",
-            "photos",
-            "videos",
-          ],
-        },
-      ],
-      "t": Object {
-        "groups": "Look! Groups and groups!",
-        "photos": "Look! Photos and photos!",
-        "videos": "Look! Videos and videos!",
-      },
-    },
-    "line_beg": 2,
-    "line_end": 2,
-    "project": "",
-    "type": "table",
-  },
-]
-`;
-
 exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handle duplicate enums" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 201,
+    "col_beg": 10,
+    "col_end": 7,
     "desc": "enums!",
     "filepath": undefined,
     "jsfbt": Object {
@@ -136,7 +136,7 @@ Array [
       },
     },
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 17,
     "project": "",
     "type": "table",
   },
@@ -146,8 +146,8 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handle enums (with array values)" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 91,
+    "col_beg": 10,
+    "col_end": 7,
     "desc": "enums!",
     "filepath": undefined,
     "jsfbt": Object {
@@ -167,7 +167,7 @@ Array [
       },
     },
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 5,
     "project": "",
     "type": "table",
   },
@@ -177,8 +177,8 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handle enums (with value map)" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 98,
+    "col_beg": 10,
+    "col_end": 7,
     "desc": "enums!",
     "filepath": undefined,
     "jsfbt": Object {
@@ -198,7 +198,7 @@ Array [
       },
     },
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 6,
     "project": "",
     "type": "table",
   },
@@ -208,8 +208,8 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handle enums with more text after" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 91,
+    "col_beg": 10,
+    "col_end": 7,
     "desc": "enums!",
     "filepath": undefined,
     "jsfbt": Object {
@@ -229,7 +229,7 @@ Array [
       },
     },
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 5,
     "project": "",
     "type": "table",
   },
@@ -239,8 +239,8 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handle multiple plurals with no showCount (i.e. no named params)" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 143,
+    "col_beg": 10,
+    "col_end": 7,
     "desc": "plurals",
     "filepath": undefined,
     "jsfbt": Object {
@@ -266,7 +266,7 @@ Array [
       },
     },
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 7,
     "project": "",
     "type": "table",
   },
@@ -276,8 +276,8 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handle names" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 81,
+    "col_beg": 10,
+    "col_end": 7,
     "desc": "names",
     "filepath": undefined,
     "jsfbt": Object {
@@ -292,7 +292,7 @@ Array [
       },
     },
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 5,
     "project": "",
     "type": "table",
   },
@@ -302,8 +302,8 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handle object pronoun" 1`] = `
 Array [
   Object {
-    "col_beg": 9,
-    "col_end": 109,
+    "col_beg": 10,
+    "col_end": 9,
     "desc": "object pronoun",
     "filepath": undefined,
     "jsfbt": Object {
@@ -319,7 +319,7 @@ Array [
       },
     },
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 7,
     "project": "",
     "type": "table",
   },
@@ -329,13 +329,13 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handle params" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 110,
+    "col_beg": 10,
+    "col_end": 7,
     "desc": "Moar params",
     "filepath": undefined,
     "jsfbt": "A parameterized message to {personName}",
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 6,
     "project": "",
     "type": "text",
   },
@@ -345,8 +345,8 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handle plurals" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 162,
+    "col_beg": 10,
+    "col_end": 7,
     "desc": "plurals",
     "filepath": undefined,
     "jsfbt": Object {
@@ -372,7 +372,7 @@ Array [
       },
     },
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 7,
     "project": "",
     "type": "table",
   },
@@ -382,8 +382,8 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handle possessive pronoun" 1`] = `
 Array [
   Object {
-    "col_beg": 9,
-    "col_end": 104,
+    "col_beg": 10,
+    "col_end": 9,
     "desc": "possessive pronoun",
     "filepath": undefined,
     "jsfbt": Object {
@@ -399,7 +399,7 @@ Array [
       },
     },
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 5,
     "project": "",
     "type": "table",
   },
@@ -409,8 +409,8 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handle subject and reflexive pronouns" 1`] = `
 Array [
   Object {
-    "col_beg": 9,
-    "col_end": 176,
+    "col_beg": 10,
+    "col_end": 9,
     "desc": "subject+reflexive pronouns",
     "filepath": undefined,
     "jsfbt": Object {
@@ -444,7 +444,7 @@ Array [
       },
     },
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 8,
     "project": "",
     "type": "table",
   },
@@ -454,8 +454,8 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handle variations + same param" 1`] = `
 Array [
   Object {
-    "col_beg": 0,
-    "col_end": 171,
+    "col_beg": 6,
+    "col_end": 7,
     "desc": "test variations + sameParam",
     "filepath": undefined,
     "jsfbt": Object {
@@ -470,7 +470,7 @@ Array [
       },
     },
     "line_beg": 3,
-    "line_end": 3,
+    "line_end": 10,
     "project": "",
     "type": "table",
   },
@@ -480,8 +480,8 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handle variations" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 94,
+    "col_beg": 10,
+    "col_end": 7,
     "desc": "variations!",
     "filepath": undefined,
     "jsfbt": Object {
@@ -496,7 +496,7 @@ Array [
       },
     },
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 5,
     "project": "",
     "type": "table",
   },
@@ -506,8 +506,8 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handler wrapping parens" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 50,
+    "col_beg": 10,
+    "col_end": 52,
     "desc": "desc",
     "filepath": undefined,
     "jsfbt": "foobarbazqux",
@@ -517,8 +517,8 @@ Array [
     "type": "text",
   },
   Object {
-    "col_beg": 8,
-    "col_end": 52,
+    "col_beg": 14,
+    "col_end": 58,
     "desc": "desc",
     "filepath": undefined,
     "jsfbt": "foobarbazqux",
@@ -528,8 +528,8 @@ Array [
     "type": "text",
   },
   Object {
-    "col_beg": 8,
-    "col_end": 52,
+    "col_beg": 14,
+    "col_end": 56,
     "desc": "desc",
     "filepath": undefined,
     "jsfbt": "foobarbazqux",
@@ -539,8 +539,8 @@ Array [
     "type": "text",
   },
   Object {
-    "col_beg": 8,
-    "col_end": 54,
+    "col_beg": 14,
+    "col_end": 58,
     "desc": "desc",
     "filepath": undefined,
     "jsfbt": "foobarbazqux",
@@ -555,13 +555,13 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should insert param in place of fbt.sameParam if it exists" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 76,
+    "col_beg": 10,
+    "col_end": 7,
     "desc": "d",
     "filepath": undefined,
     "jsfbt": "{name1} and {name1}",
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 5,
     "project": "",
     "type": "text",
   },
@@ -571,29 +571,29 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should maintain intra-argument newlines" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 1,
+    "col_beg": 10,
+    "col_end": 7,
     "desc": "a",
     "filepath": undefined,
     "jsfbt": "{name1} blah {name2}",
     "line_beg": 2,
-    "line_end": 9,
+    "line_end": 16,
     "project": "",
     "type": "text",
   },
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should maintain newlines when using templates" 1`] = `
+exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should maintain newlines when using string templates" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
+    "col_beg": 10,
     "col_end": 9,
     "desc": "blah",
     "filepath": undefined,
     "jsfbt": "A simple string... with some other stuff.",
     "line_beg": 2,
-    "line_end": 5,
+    "line_end": 6,
     "project": "",
     "type": "text",
   },
@@ -603,13 +603,13 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should maintain newlines within arguments" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 1,
+    "col_beg": 10,
+    "col_end": 7,
     "desc": "a",
     "filepath": undefined,
     "jsfbt": "a b {name1} c d {name2} e",
     "line_beg": 2,
-    "line_end": 11,
+    "line_end": 12,
     "project": "",
     "type": "text",
   },
@@ -619,13 +619,13 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should maintain newlines" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 9,
+    "col_beg": 10,
+    "col_end": 71,
     "desc": "blah",
     "filepath": undefined,
     "jsfbt": "A simple string... with some other stuff.",
     "line_beg": 2,
-    "line_end": 5,
+    "line_end": 2,
     "project": "",
     "type": "text",
   },
@@ -636,13 +636,13 @@ exports[`Test fbt meta-data collection should collect correct meta data for scen
 Array [
   Object {
     "author": "jwatson",
-    "col_beg": 0,
-    "col_end": 89,
+    "col_beg": 2,
+    "col_end": 10,
     "desc": "options!",
     "filepath": undefined,
     "jsfbt": "A string that moved files",
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 5,
     "project": "Super Secret",
     "type": "text",
   },
@@ -652,13 +652,13 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data for scenario "should allow description concatenation" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 27,
+    "col_beg": 10,
+    "col_end": 7,
     "desc": "With a ridiculously long description that requires concatenation",
     "filepath": undefined,
     "jsfbt": "A short string",
     "line_beg": 2,
-    "line_end": 3,
+    "line_end": 6,
     "project": "",
     "type": "text",
   },
@@ -668,13 +668,13 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data for scenario "should be able to nest within React nodes" 1`] = `
 Array [
   Object {
-    "col_beg": 5,
-    "col_end": 38,
+    "col_beg": 20,
+    "col_end": 53,
     "desc": "nested!",
     "filepath": undefined,
     "jsfbt": "A nested string",
-    "line_beg": 4,
-    "line_end": 4,
+    "line_beg": 3,
+    "line_end": 3,
     "project": "",
     "type": "text",
   },
@@ -684,8 +684,8 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data for scenario "should convert simple strings" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 45,
+    "col_beg": 10,
+    "col_end": 47,
     "desc": "It's simple",
     "filepath": undefined,
     "jsfbt": "A simple string",
@@ -697,11 +697,36 @@ Array [
 ]
 `;
 
+exports[`Test fbt meta-data collection should collect correct meta data for scenario "should deduplicate branches when fbt.enum() calls share the same key in string templates" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "enums!",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        null,
+      ],
+      "t": Object {
+        "groups": "Look! Groups and groups!",
+        "photos": "Look! Photos and photos!",
+        "videos": "Look! Videos and videos!",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 13,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
 exports[`Test fbt meta-data collection should collect correct meta data for scenario "should get project from docblock" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 48,
+    "col_beg": 10,
+    "col_end": 50,
     "desc": "It's simple",
     "filepath": undefined,
     "jsfbt": "Also simple string",
@@ -713,36 +738,11 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handle duplicate enums in templates" 1`] = `
-Array [
-  Object {
-    "col_beg": 8,
-    "col_end": 194,
-    "desc": "enums!",
-    "filepath": undefined,
-    "jsfbt": Object {
-      "m": Array [
-        null,
-      ],
-      "t": Object {
-        "groups": "Look! Groups and groups!",
-        "photos": "Look! Photos and photos!",
-        "videos": "Look! Videos and videos!",
-      },
-    },
-    "line_beg": 2,
-    "line_end": 2,
-    "project": "",
-    "type": "table",
-  },
-]
-`;
-
 exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handle duplicate enums" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 201,
+    "col_beg": 10,
+    "col_end": 7,
     "desc": "enums!",
     "filepath": undefined,
     "jsfbt": Object {
@@ -756,7 +756,7 @@ Array [
       },
     },
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 17,
     "project": "",
     "type": "table",
   },
@@ -766,8 +766,8 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handle enums (with array values)" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 91,
+    "col_beg": 10,
+    "col_end": 7,
     "desc": "enums!",
     "filepath": undefined,
     "jsfbt": Object {
@@ -781,7 +781,7 @@ Array [
       },
     },
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 5,
     "project": "",
     "type": "table",
   },
@@ -791,8 +791,8 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handle enums (with value map)" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 98,
+    "col_beg": 10,
+    "col_end": 7,
     "desc": "enums!",
     "filepath": undefined,
     "jsfbt": Object {
@@ -806,7 +806,7 @@ Array [
       },
     },
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 6,
     "project": "",
     "type": "table",
   },
@@ -816,8 +816,8 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handle enums with more text after" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 91,
+    "col_beg": 10,
+    "col_end": 7,
     "desc": "enums!",
     "filepath": undefined,
     "jsfbt": Object {
@@ -831,7 +831,7 @@ Array [
       },
     },
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 5,
     "project": "",
     "type": "table",
   },
@@ -841,8 +841,8 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handle multiple plurals with no showCount (i.e. no named params)" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 143,
+    "col_beg": 10,
+    "col_end": 7,
     "desc": "plurals",
     "filepath": undefined,
     "jsfbt": Object {
@@ -866,7 +866,7 @@ Array [
       },
     },
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 7,
     "project": "",
     "type": "table",
   },
@@ -876,8 +876,8 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handle names" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 81,
+    "col_beg": 10,
+    "col_end": 7,
     "desc": "names",
     "filepath": undefined,
     "jsfbt": Object {
@@ -892,7 +892,7 @@ Array [
       },
     },
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 5,
     "project": "",
     "type": "table",
   },
@@ -902,8 +902,8 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handle object pronoun" 1`] = `
 Array [
   Object {
-    "col_beg": 9,
-    "col_end": 109,
+    "col_beg": 10,
+    "col_end": 9,
     "desc": "object pronoun",
     "filepath": undefined,
     "jsfbt": Object {
@@ -917,7 +917,7 @@ Array [
       },
     },
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 7,
     "project": "",
     "type": "table",
   },
@@ -927,13 +927,13 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handle params" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 110,
+    "col_beg": 10,
+    "col_end": 7,
     "desc": "Moar params",
     "filepath": undefined,
     "jsfbt": "A parameterized message to {personName}",
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 6,
     "project": "",
     "type": "text",
   },
@@ -943,8 +943,8 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handle plurals" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 162,
+    "col_beg": 10,
+    "col_end": 7,
     "desc": "plurals",
     "filepath": undefined,
     "jsfbt": Object {
@@ -968,7 +968,7 @@ Array [
       },
     },
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 7,
     "project": "",
     "type": "table",
   },
@@ -978,8 +978,8 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handle possessive pronoun" 1`] = `
 Array [
   Object {
-    "col_beg": 9,
-    "col_end": 104,
+    "col_beg": 10,
+    "col_end": 9,
     "desc": "possessive pronoun",
     "filepath": undefined,
     "jsfbt": Object {
@@ -993,7 +993,7 @@ Array [
       },
     },
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 5,
     "project": "",
     "type": "table",
   },
@@ -1003,8 +1003,8 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handle subject and reflexive pronouns" 1`] = `
 Array [
   Object {
-    "col_beg": 9,
-    "col_end": 176,
+    "col_beg": 10,
+    "col_end": 9,
     "desc": "subject+reflexive pronouns",
     "filepath": undefined,
     "jsfbt": Object {
@@ -1034,7 +1034,7 @@ Array [
       },
     },
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 8,
     "project": "",
     "type": "table",
   },
@@ -1044,8 +1044,8 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handle variations + same param" 1`] = `
 Array [
   Object {
-    "col_beg": 0,
-    "col_end": 171,
+    "col_beg": 6,
+    "col_end": 7,
     "desc": "test variations + sameParam",
     "filepath": undefined,
     "jsfbt": Object {
@@ -1060,7 +1060,7 @@ Array [
       },
     },
     "line_beg": 3,
-    "line_end": 3,
+    "line_end": 10,
     "project": "",
     "type": "table",
   },
@@ -1070,8 +1070,8 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handle variations" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 94,
+    "col_beg": 10,
+    "col_end": 7,
     "desc": "variations!",
     "filepath": undefined,
     "jsfbt": Object {
@@ -1086,7 +1086,7 @@ Array [
       },
     },
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 5,
     "project": "",
     "type": "table",
   },
@@ -1096,8 +1096,8 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handler wrapping parens" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 50,
+    "col_beg": 10,
+    "col_end": 52,
     "desc": "desc",
     "filepath": undefined,
     "jsfbt": "foobarbazqux",
@@ -1107,8 +1107,8 @@ Array [
     "type": "text",
   },
   Object {
-    "col_beg": 8,
-    "col_end": 52,
+    "col_beg": 14,
+    "col_end": 58,
     "desc": "desc",
     "filepath": undefined,
     "jsfbt": "foobarbazqux",
@@ -1118,8 +1118,8 @@ Array [
     "type": "text",
   },
   Object {
-    "col_beg": 8,
-    "col_end": 52,
+    "col_beg": 14,
+    "col_end": 56,
     "desc": "desc",
     "filepath": undefined,
     "jsfbt": "foobarbazqux",
@@ -1129,8 +1129,8 @@ Array [
     "type": "text",
   },
   Object {
-    "col_beg": 8,
-    "col_end": 54,
+    "col_beg": 14,
+    "col_end": 58,
     "desc": "desc",
     "filepath": undefined,
     "jsfbt": "foobarbazqux",
@@ -1145,13 +1145,13 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data for scenario "should insert param in place of fbt.sameParam if it exists" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 76,
+    "col_beg": 10,
+    "col_end": 7,
     "desc": "d",
     "filepath": undefined,
     "jsfbt": "{name1} and {name1}",
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 5,
     "project": "",
     "type": "text",
   },
@@ -1161,29 +1161,29 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data for scenario "should maintain intra-argument newlines" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 1,
+    "col_beg": 10,
+    "col_end": 7,
     "desc": "a",
     "filepath": undefined,
     "jsfbt": "{name1} blah {name2}",
     "line_beg": 2,
-    "line_end": 9,
+    "line_end": 16,
     "project": "",
     "type": "text",
   },
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data for scenario "should maintain newlines when using templates" 1`] = `
+exports[`Test fbt meta-data collection should collect correct meta data for scenario "should maintain newlines when using string templates" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
+    "col_beg": 10,
     "col_end": 9,
     "desc": "blah",
     "filepath": undefined,
     "jsfbt": "A simple string... with some other stuff.",
     "line_beg": 2,
-    "line_end": 5,
+    "line_end": 6,
     "project": "",
     "type": "text",
   },
@@ -1193,13 +1193,13 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data for scenario "should maintain newlines within arguments" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 1,
+    "col_beg": 10,
+    "col_end": 7,
     "desc": "a",
     "filepath": undefined,
     "jsfbt": "a b {name1} c d {name2} e",
     "line_beg": 2,
-    "line_end": 11,
+    "line_end": 12,
     "project": "",
     "type": "text",
   },
@@ -1209,13 +1209,13 @@ Array [
 exports[`Test fbt meta-data collection should collect correct meta data for scenario "should maintain newlines" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 9,
+    "col_beg": 10,
+    "col_end": 71,
     "desc": "blah",
     "filepath": undefined,
     "jsfbt": "A simple string... with some other stuff.",
     "line_beg": 2,
-    "line_end": 5,
+    "line_end": 2,
     "project": "",
     "type": "text",
   },
