@@ -19,10 +19,19 @@ const {payload, transform, withFbtRequireStatement} = require('../FbtTestUtil');
 const {FbtVariationType} = require('../translate/IntlVariations.js');
 const {TestUtil} = require('fb-babel-plugin-utils');
 
-const testData = {
+const generalTestData = {
   'should convert simple strings': {
     input: withFbtRequireStatement(
       `var x = fbt('A simple string', "It's simple");`,
+    ),
+
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var x = fbt(
+        [
+          'A simple string',
+        ],
+        "It's simple",
+      );`,
     ),
 
     output: withFbtRequireStatement(
@@ -80,14 +89,28 @@ const testData = {
     input: withFbtRequireStatement(
       `var z = fbt(
         'a' +
-          ' b ' +
-          fbt.param('name1', val1) +
-          ' c ' +
-          // comments
-          ' d ' +
-          fbt.param('name2', val2) +
-          ' e ',
+        ' b ' +
+        fbt.param('name1', val1) +
+        ' c ' +
+        // comments
+        ' d ' +
+        fbt.param('name2', val2) +
+        ' e ',
         'a',
+      );`,
+    ),
+
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var z = fbt([
+          'a' +
+          ' b ',
+          fbt.param('name1', val1),
+          ' c ',
+          // comments
+          ' d ',
+          fbt.param('name2', val2),
+          ' e ',
+        ], 'a',
       );`,
     ),
 
@@ -123,6 +146,24 @@ const testData = {
       );`,
     ),
 
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var z = fbt([
+          fbt.param(
+            'name1',
+            foo ? (
+              <a>
+                bar
+              </a>
+            ) : (
+              qux
+            ),
+          ),
+          ' blah ',
+          fbt.param('name2', qux),
+        ], 'a',
+      );`,
+    ),
+
     output: withFbtRequireStatement(
       `var z = fbt._(
         ${payload({
@@ -153,6 +194,11 @@ const testData = {
       var x = <div>{fbt('A nested string', 'nested!')}</div>;`,
     ),
 
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var React = require('react');
+      var x = <div>{fbt(['A nested string'], 'nested!')}</div>;`,
+    ),
+
     output: withFbtRequireStatement(
       `var React = require('react');
       var x = React.createElement(
@@ -169,11 +215,88 @@ const testData = {
     ),
   },
 
+  'should handle a JSX fragment nested with fbt.param as an argument': {
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var React = require('react');
+      var x = fbt(
+        [
+          'A1',
+          <a>
+            B1
+            <b>
+              C1
+              {fbt.jsxParam("paramName", paramValue)}
+              C2
+            </b>
+            B2
+          </a>,
+          'A2',
+        ], 'nested!'
+      );`,
+    ),
+
+    output: withFbtRequireStatement(
+      `var React = require('react');
+      var x = fbt._(
+        ${payload({
+          type: 'text',
+          jsfbt: 'A1 {=B1 C1 [paramName] C2 B2} A2',
+          desc: 'nested!',
+        })},
+        [
+          fbt._param(
+            '=B1 C1 [paramName] C2 B2',
+            React.createElement(
+              'a',
+              null,
+              fbt._(
+                ${payload({
+                  type: 'text',
+                  jsfbt: 'B1 {=C1 [paramName] C2} B2',
+                  desc: 'In the phrase: "A1 {=B1 C1 [paramName] C2 B2} A2"',
+                })},
+                [
+                  fbt._param(
+                    '=C1 [paramName] C2',
+                    React.createElement(
+                      'b',
+                      null,
+                      fbt._(
+                        ${payload({
+                          type: 'text',
+                          jsfbt: 'C1 {paramName} C2',
+                          desc:
+                            'In the phrase: "A1 B1 {=C1 [paramName] C2} B2 A2"',
+                        })},
+                        [
+                          fbt._param('paramName', paramValue)
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      )`,
+    ),
+  },
+
   'should handle params': {
     input: withFbtRequireStatement(
       `var x = fbt(
         'A parameterized message to ' +
           fbt.param('personName', truthy ? ifTrue : ifFalse),
+        'Moar params',
+      );`,
+    ),
+
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var x = fbt([
+          'A parameterized message to ',
+          fbt.param('personName', truthy ? ifTrue : ifFalse),
+        ],
         'Moar params',
       );`,
     ),
@@ -198,6 +321,13 @@ const testData = {
         });`,
     ),
 
+    inputWithArraySyntax: withFbtRequireStatement(
+      `fbt(['A string that moved files'], 'options!', {
+          author: 'jwatson',
+          project: 'Super Secret',
+        });`,
+    ),
+
     output: withFbtRequireStatement(
       `fbt._(
         ${payload({
@@ -215,6 +345,16 @@ const testData = {
       `var x = fbt(
         'Click to see ' + fbt.enum('groups', ['groups', 'photos', 'videos']),
         'enums!',
+      );`,
+    ),
+
+    inputWithArraySyntax: withFbtRequireStatement(
+      `fbt(
+        [
+          'Click to see ',
+          fbt.enum('groups', ['groups', 'photos', 'videos']),
+        ],
+        'enum as an array',
       );`,
     ),
 
@@ -249,6 +389,16 @@ const testData = {
         'Click to see ' +
           fbt.enum('id1', {id1: 'groups', id2: 'photos', id3: 'videos'}),
         'enums!',
+      );`,
+    ),
+
+    inputWithArraySyntax: withFbtRequireStatement(
+      `fbt(
+        [
+          'Click to see ',
+          fbt.enum('id1', {id1: 'groups', id2: 'photos', id3: 'videos'}),
+        ],
+        'enum as an object',
       );`,
     ),
 
@@ -288,6 +438,17 @@ const testData = {
       );`,
     ),
 
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var x = fbt(
+        [
+          'There ',
+          fbt.plural('was ', count, {showCount: 'no', many: 'were '}),
+          fbt.plural('a like', count, {showCount: 'ifMany', many: 'likes'}),
+        ],
+        'plurals',
+      )`,
+    ),
+
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
@@ -323,9 +484,18 @@ const testData = {
     input: withFbtRequireStatement(
       `var x = fbt(
         'There ' +
-          fbt.plural('is ', count, {many: 'are '}) +
-          fbt.plural('a like', count, {showCount: 'ifMany', many: 'likes'}),
+        fbt.plural('is ', count, {many: 'are '}) +
+        fbt.plural('a like', count, {showCount: 'ifMany', many: 'likes'}),
         'plurals',
+      );`,
+    ),
+
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var x = fbt([
+        'There ',
+        fbt.plural('is ', count, {many: 'are '}),
+        fbt.plural('a like', count, {showCount: 'ifMany', many: 'likes'}),
+        ], 'plurals',
       );`,
     ),
 
@@ -367,6 +537,15 @@ const testData = {
         'plurals',
       );`,
     ),
+
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var x = fbt([
+          'There were ',
+          fbt.plural('a like', count, {showCount: 'badkey'}),
+        ], 'plurals',
+      );`,
+    ),
+
     throws: true,
   },
 
@@ -377,6 +556,15 @@ const testData = {
         'plurals',
       );`,
     ),
+
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var x = fbt([
+          'There were ',
+          fbt.plural('a like', count, {whatisthis: 'huh?'}),
+        ], 'plurals',
+      );`,
+    ),
+
     throws: true,
   },
 
@@ -387,6 +575,15 @@ const testData = {
         'names',
       );`,
     ),
+
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var x = fbt([
+          'You just friended ',
+          fbt.name('name', personname, gender),
+        ], 'names',
+      );`,
+    ),
+
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
@@ -414,6 +611,14 @@ const testData = {
       `var x = fbt(
         'Click to see ' + fbt.param('count', c, {number: true}) + ' links',
         'variations!',
+      );`,
+    ),
+
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var x = fbt([
+          'Click to see ',
+          fbt.param('count', c, {number: true}) + ' links',
+        ], 'variations!',
       );`,
     ),
 
@@ -447,6 +652,15 @@ const testData = {
       );`,
     ),
 
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var z = fbt([
+          fbt.param('name1', val1),
+          ' and ',
+          fbt.sameParam('name1'),
+        ], 'd',
+      );`,
+    ),
+
     output: withFbtRequireStatement(
       `var z = fbt._(
         ${payload({
@@ -464,11 +678,23 @@ const testData = {
       `var val = 42;
       fbt(
         'You have ' +
-          fbt.param('count', val, {number: true}) +
-          ' likes. Comment on it to get more than ' +
-          fbt.sameParam('count') +
-          ' likes',
+        fbt.param('count', val, {number: true}) +
+        ' likes. Comment on it to get more than ' +
+        fbt.sameParam('count') +
+        ' likes',
         'test variations + sameParam',
+      );`,
+    ),
+
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var val = 42;
+      fbt([
+          'You have ',
+          fbt.param('count', val, {number: true}),
+          ' likes. Comment on it to get more than ',
+          fbt.sameParam('count'),
+          ' likes',
+        ], 'test variations + sameParam',
       );`,
     ),
 
@@ -502,6 +728,11 @@ const testData = {
         `var x = fbt('Also simple string', "It's simple");`,
       )}`,
 
+    inputWithArraySyntax: `/** @fbt {"project": "dev"}*/
+      ${withFbtRequireStatement(
+        `var x = fbt(['Also simple string'], "It's simple");`,
+      )}`,
+
     output: `/** @fbt {"project": "dev"}*/
       ${withFbtRequireStatement(
         `var x = fbt._(
@@ -519,8 +750,22 @@ const testData = {
     input: withFbtRequireStatement(
       `var x = fbt('foo' + 'bar' + 'baz' + 'qux', 'desc');
       var y = fbt('foo' + ('bar' + 'baz' + 'qux'), 'desc');
-      var z = fbt('foo' + 'bar' + 'baz' + 'qux', 'desc');
       var q = fbt('foo' + 'bar' + ('baz' + 'qux'), 'desc');`,
+    ),
+
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var x = fbt([
+        'foo' + 'bar',
+        'baz' + 'qux'
+      ], 'desc');
+      var y = fbt([
+        'foo',
+        ('bar' + 'baz' + 'qux'),
+      ], 'desc');
+      var q = fbt([
+        'foo',
+        'bar' + ('baz' + 'qux'),
+      ], 'desc');`,
     ),
 
     output: withFbtRequireStatement(
@@ -532,13 +777,6 @@ const testData = {
         })},
       );
       var y = fbt._(
-        ${payload({
-          type: 'text',
-          jsfbt: 'foobarbazqux',
-          desc: 'desc',
-        })},
-      );
-      var z = fbt._(
         ${payload({
           type: 'text',
           jsfbt: 'foobarbazqux',
@@ -560,6 +798,15 @@ const testData = {
       `var x = fbt(
         'Hello, ' + fbt.enum('groups', ['groups', 'photos', 'videos']) + '!',
         'enums!',
+      );`,
+    ),
+
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var x = fbt([
+          'Hello, ',
+          fbt.enum('groups', ['groups', 'photos', 'videos']),
+          '!',
+        ], 'enums!',
       );`,
     ),
 
@@ -608,6 +855,27 @@ const testData = {
       );`,
     ),
 
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var x = fbt(
+        [
+          'Look! ',
+          fbt.enum('groups', {
+            groups: 'Groups',
+            photos: 'Photos',
+            videos: 'Videos',
+          }),
+          ' and ',
+          fbt.enum('groups', {
+            groups: 'groups',
+            photos: 'photos',
+            videos: 'videos',
+          }),
+          '!',
+        ],
+        'enums!',
+      );`,
+    ),
+
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
@@ -646,6 +914,19 @@ const testData = {
         );`,
       ),
 
+    inputWithArraySyntax:
+      // eslint-disable-next-line fb-www/gender-neutral-language
+      // I.e. You wished her a happy birthday.
+      withFbtRequireStatement(
+        `var x = fbt([
+            'You wished ',
+            fbt.pronoun('object', gender),
+            ' a happy birthday.'
+          ],
+          'object pronoun',
+        );`,
+      ),
+
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
@@ -676,6 +957,19 @@ const testData = {
             fbt.pronoun('reflexive', gender) +
             ' a happy birthday.',
           'subject+reflexive pronouns',
+        );`,
+      ),
+
+    inputWithArraySyntax:
+      // eslint-disable-next-line fb-www/gender-neutral-language
+      // I.e. He wished himself a happy birthday.
+      withFbtRequireStatement(
+        `var x = fbt([
+            fbt.pronoun('subject', gender, {capitalize: true}),
+            ' wished ',
+            fbt.pronoun('reflexive', gender),
+            ' a happy birthday.'
+          ], 'subject+reflexive pronouns',
         );`,
       ),
 
@@ -724,6 +1018,18 @@ const testData = {
         );`,
       ),
 
+    inputWithArraySyntax:
+      // eslint-disable-next-line fb-www/gender-neutral-language
+      // I.e. It is her birthday.
+      withFbtRequireStatement(
+        `var x = fbt([
+            'It is ',
+            fbt.pronoun('possessive', gender),
+            ' birthday.'
+          ], 'possessive pronoun',
+        );`,
+      ),
+
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
@@ -754,6 +1060,18 @@ const testData = {
         );`,
       ),
 
+    inputWithArraySyntax:
+      // Note use of variable for pronoun usage.
+      withFbtRequireStatement(
+        `var u = 'possessive';
+        var x = fbt([
+            'It is ',
+            fbt.pronoun(u, gender),
+            ' birthday.',
+          ], 'throw not StringLiteral',
+        );`,
+      ),
+
     throws: true,
   },
 
@@ -761,9 +1079,11 @@ const testData = {
     input:
       // Note 'possession' instead of 'possessive'.
       withFbtRequireStatement(
-        `var x = fbt(
-          'It is ' + fbt.pronoun('possession', gender) + ' birthday.',
-          'throw not StringLiteral',
+        `var x = fbt([
+            'It is ',
+            fbt.pronoun('possession', gender),
+            ' birthday.'
+          ], 'throw not StringLiteral',
         );`,
       ),
 
@@ -775,11 +1095,20 @@ const testData = {
   'should maintain newlines when using string templates': {
     input: withFbtRequireStatement(
       `var x = fbt(
-          \`A simple string...
+        \`A simple string...
 with some other stuff.\`,
-          'blah',
-        );
-        baz();`,
+        'blah',
+      );
+      baz();`,
+    ),
+
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var x = fbt([
+        \`A simple string...
+with some other stuff.\`
+        ], 'blah',
+      );
+      baz();`,
     ),
 
     output: withFbtRequireStatement(
@@ -797,16 +1126,80 @@ with some other stuff.\`,
   'should deduplicate branches when fbt.enum() calls share the same key in string templates': {
     input: withFbtRequireStatement(
       `var x = fbt(
-        \`Look!  \${fbt.enum('groups', {
+          \`Look!  \${fbt.enum('groups', {
+            groups: 'Groups',
+            photos: 'Photos',
+            videos: 'Videos',
+          })}  and  \${fbt.enum('groups', {
+          "groups": 'groups',
+          "photos": 'photos',
+          "videos": 'videos',
+        })}!\`,
+        'enums!',
+      );`,
+    ),
+
+    output: withFbtRequireStatement(
+      `var x = fbt._(
+        ${payload({
+          type: 'table',
+          jsfbt: {
+            t: {
+              groups: 'Look! Groups and groups!',
+              photos: 'Look! Photos and photos!',
+              videos: 'Look! Videos and videos!',
+            },
+            m: [null],
+          },
+          desc: 'enums!',
+        })},
+        [
+          fbt._enum('groups', {
+            "groups": 'Groups',
+            "photos": 'Photos',
+            "videos": 'Videos',
+          }),
+        ],
+      );`,
+    ),
+  },
+
+  'should deduplicate branches when fbt.enum() calls share the same key': {
+    input: withFbtRequireStatement(
+      `var x = fbt(
+        'Look! ' +
+          fbt.enum('groups', {
+            groups: 'Groups',
+            photos: 'Photos',
+            videos: 'Videos',
+          }) +
+          ' and ' +
+          fbt.enum('groups', {
+            groups: 'groups',
+            photos: 'photos',
+            videos: 'videos',
+          }) +
+          '!',
+        'enums!',
+      );`,
+    ),
+
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var x = fbt([
+        'Look! ',
+        fbt.enum('groups', {
           groups: 'Groups',
           photos: 'Photos',
           videos: 'Videos',
-        })}  and  \${fbt.enum('groups', {
-        "groups": 'groups',
-        "photos": 'photos',
-        "videos": 'videos',
-      })}!\`,
-        'enums!',
+        }),
+        ' and ',
+        fbt.enum('groups', {
+          groups: 'groups',
+          photos: 'photos',
+          videos: 'videos',
+        }),
+        '!'
+        ], 'enums!',
       );`,
     ),
 
@@ -836,45 +1229,73 @@ with some other stuff.\`,
   },
 };
 
-describe('Test functional fbt syntax translation', () =>
-  TestUtil.testSection(testData, transform));
-
-describe('Test fbt meta-data collection', () => {
-  const fbtTransform = require('../index');
-
-  function testFbtMetadata(options = {}) {
-    for (const title in testData) {
-      defineSingleTest(title, testData[title], options);
-    }
-  }
-
-  function defineSingleTest(title, singleTestData, options) {
-    // Skip scenarios that test an error
-    if (singleTestData.throws) {
-      return;
-    }
-
-    it(`for scenario "${title}"`, () => {
-      // Drop docblock
-      const cleanedCode = singleTestData.input.replace(
-        /\/\*\*(?:\/|[^*]|\*+[^*\/])*\*+\/\n/,
-        '',
-      );
-
-      const pluginOptions = {
-        collectFbt: true,
-        reactNativeMode: options.reactNativeMode || false,
+function prepareTestDataForInputKey(inputKeyName) {
+  const testData = {};
+  for (const title in generalTestData) {
+    const testCase = generalTestData[title];
+    const input = testCase[inputKeyName];
+    if (input != null) {
+      testData[title] = {
+        ...testCase,
+        input,
       };
-      transform(cleanedCode, pluginOptions);
-      expect(fbtTransform.getExtractedStrings()).toMatchSnapshot();
-    });
+    }
   }
+  return testData;
+}
 
-  describe('should collect correct meta data', () => {
-    testFbtMetadata();
+function describeTestScenarios(testData) {
+  describe('Translation transform', () =>
+    TestUtil.testSection(testData, transform));
+
+  describe('Meta-data collection', () => {
+    const fbtTransform = require('../index');
+
+    function testFbtMetadata(options = {}) {
+      for (const title in testData) {
+        defineSingleTest(title, testData[title], options);
+      }
+    }
+
+    function defineSingleTest(title, singleTestData, options) {
+      // Skip scenarios that test an error
+      if (singleTestData.throws) {
+        return;
+      }
+
+      it(`for scenario "${title}"`, () => {
+        // Drop docblock
+        const cleanedCode = singleTestData.input.replace(
+          /\/\*\*(?:\/|[^*]|\*+[^*\/])*\*+\/\n/,
+          '',
+        );
+
+        const pluginOptions = {
+          collectFbt: true,
+          reactNativeMode: options.reactNativeMode || false,
+        };
+        transform(cleanedCode, pluginOptions);
+        expect(fbtTransform.getExtractedStrings()).toMatchSnapshot();
+      });
+    }
+
+    describe('should collect correct meta data', () => {
+      testFbtMetadata();
+    });
+
+    describe('should collect correct meta data (react native)', () => {
+      testFbtMetadata({reactNativeMode: true});
+    });
+  });
+}
+
+describe('Functional FBT API', () => {
+  describe('using string-concatenated arguments:', () => {
+    describeTestScenarios(prepareTestDataForInputKey('input'));
   });
 
-  describe('should collect correct meta data (react native)', () => {
-    testFbtMetadata({reactNativeMode: true});
+  // eslint-disable-next-line jest/no-disabled-tests
+  xdescribe('using array arguments:', () => {
+    describeTestScenarios(prepareTestDataForInputKey('inputWithArraySyntax'));
   });
 });

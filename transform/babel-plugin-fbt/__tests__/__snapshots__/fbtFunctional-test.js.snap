@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should accept well-formed options" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should accept well-formed options" 1`] = `
 Array [
   Object {
     "author": "jwatson",
@@ -17,7 +17,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should allow description concatenation" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should allow description concatenation" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -33,7 +33,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should be able to nest within React nodes" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should be able to nest within React nodes" 1`] = `
 Array [
   Object {
     "col_beg": 20,
@@ -49,7 +49,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should convert simple strings" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should convert simple strings" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -65,7 +65,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should deduplicate branches when fbt.enum() calls share the same key in string templates" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should deduplicate branches when fbt.enum() calls share the same key in string templates" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -96,23 +96,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should get project from docblock" 1`] = `
-Array [
-  Object {
-    "col_beg": 10,
-    "col_end": 50,
-    "desc": "It's simple",
-    "filepath": undefined,
-    "jsfbt": "Also simple string",
-    "line_beg": 2,
-    "line_end": 2,
-    "project": "",
-    "type": "text",
-  },
-]
-`;
-
-exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handle duplicate enums" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should deduplicate branches when fbt.enum() calls share the same key" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -143,7 +127,54 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handle enums (with array values)" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should get project from docblock" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 50,
+    "desc": "It's simple",
+    "filepath": undefined,
+    "jsfbt": "Also simple string",
+    "line_beg": 2,
+    "line_end": 2,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle duplicate enums" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "enums!",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "range": Array [
+            "groups",
+            "photos",
+            "videos",
+          ],
+        },
+      ],
+      "t": Object {
+        "groups": "Look! Groups and groups!",
+        "photos": "Look! Photos and photos!",
+        "videos": "Look! Videos and videos!",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 17,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle enums (with array values)" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -174,7 +205,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handle enums (with value map)" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle enums (with value map)" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -205,7 +236,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handle enums with more text after" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle enums with more text after" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -236,7 +267,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handle multiple plurals with no showCount (i.e. no named params)" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle multiple plurals with no showCount (i.e. no named params)" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -273,7 +304,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handle names" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle names" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -299,7 +330,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handle object pronoun" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle object pronoun" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -326,7 +357,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handle params" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle params" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -342,7 +373,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handle plurals" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle plurals" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -379,7 +410,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handle possessive pronoun" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle possessive pronoun" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -406,7 +437,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handle subject and reflexive pronouns" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle subject and reflexive pronouns" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -451,7 +482,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handle variations + same param" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle variations + same param" 1`] = `
 Array [
   Object {
     "col_beg": 6,
@@ -477,7 +508,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handle variations" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle variations" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -503,7 +534,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should handler wrapping parens" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handler wrapping parens" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -529,7 +560,7 @@ Array [
   },
   Object {
     "col_beg": 14,
-    "col_end": 56,
+    "col_end": 58,
     "desc": "desc",
     "filepath": undefined,
     "jsfbt": "foobarbazqux",
@@ -538,21 +569,10 @@ Array [
     "project": "",
     "type": "text",
   },
-  Object {
-    "col_beg": 14,
-    "col_end": 58,
-    "desc": "desc",
-    "filepath": undefined,
-    "jsfbt": "foobarbazqux",
-    "line_beg": 5,
-    "line_end": 5,
-    "project": "",
-    "type": "text",
-  },
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should insert param in place of fbt.sameParam if it exists" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should insert param in place of fbt.sameParam if it exists" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -568,7 +588,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should maintain intra-argument newlines" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should maintain intra-argument newlines" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -584,11 +604,11 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should maintain newlines when using string templates" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should maintain newlines when using string templates" 1`] = `
 Array [
   Object {
     "col_beg": 10,
-    "col_end": 9,
+    "col_end": 7,
     "desc": "blah",
     "filepath": undefined,
     "jsfbt": "A simple string... with some other stuff.",
@@ -600,7 +620,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should maintain newlines within arguments" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should maintain newlines within arguments" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -616,7 +636,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data (react native) for scenario "should maintain newlines" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should maintain newlines" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -632,7 +652,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data for scenario "should accept well-formed options" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should accept well-formed options" 1`] = `
 Array [
   Object {
     "author": "jwatson",
@@ -649,7 +669,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data for scenario "should allow description concatenation" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should allow description concatenation" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -665,7 +685,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data for scenario "should be able to nest within React nodes" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should be able to nest within React nodes" 1`] = `
 Array [
   Object {
     "col_beg": 20,
@@ -681,7 +701,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data for scenario "should convert simple strings" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should convert simple strings" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -697,7 +717,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data for scenario "should deduplicate branches when fbt.enum() calls share the same key in string templates" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should deduplicate branches when fbt.enum() calls share the same key in string templates" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -722,23 +742,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data for scenario "should get project from docblock" 1`] = `
-Array [
-  Object {
-    "col_beg": 10,
-    "col_end": 50,
-    "desc": "It's simple",
-    "filepath": undefined,
-    "jsfbt": "Also simple string",
-    "line_beg": 2,
-    "line_end": 2,
-    "project": "",
-    "type": "text",
-  },
-]
-`;
-
-exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handle duplicate enums" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should deduplicate branches when fbt.enum() calls share the same key" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -763,7 +767,48 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handle enums (with array values)" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should get project from docblock" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 50,
+    "desc": "It's simple",
+    "filepath": undefined,
+    "jsfbt": "Also simple string",
+    "line_beg": 2,
+    "line_end": 2,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle duplicate enums" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "enums!",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        null,
+      ],
+      "t": Object {
+        "groups": "Look! Groups and groups!",
+        "photos": "Look! Photos and photos!",
+        "videos": "Look! Videos and videos!",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 17,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle enums (with array values)" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -788,7 +833,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handle enums (with value map)" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle enums (with value map)" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -813,7 +858,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handle enums with more text after" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle enums with more text after" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -838,7 +883,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handle multiple plurals with no showCount (i.e. no named params)" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle multiple plurals with no showCount (i.e. no named params)" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -873,7 +918,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handle names" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle names" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -899,7 +944,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handle object pronoun" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle object pronoun" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -924,7 +969,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handle params" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle params" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -940,7 +985,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handle plurals" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle plurals" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -975,7 +1020,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handle possessive pronoun" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle possessive pronoun" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -1000,7 +1045,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handle subject and reflexive pronouns" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle subject and reflexive pronouns" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -1041,7 +1086,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handle variations + same param" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle variations + same param" 1`] = `
 Array [
   Object {
     "col_beg": 6,
@@ -1067,7 +1112,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handle variations" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle variations" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -1093,7 +1138,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data for scenario "should handler wrapping parens" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handler wrapping parens" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -1119,7 +1164,7 @@ Array [
   },
   Object {
     "col_beg": 14,
-    "col_end": 56,
+    "col_end": 58,
     "desc": "desc",
     "filepath": undefined,
     "jsfbt": "foobarbazqux",
@@ -1128,21 +1173,10 @@ Array [
     "project": "",
     "type": "text",
   },
-  Object {
-    "col_beg": 14,
-    "col_end": 58,
-    "desc": "desc",
-    "filepath": undefined,
-    "jsfbt": "foobarbazqux",
-    "line_beg": 5,
-    "line_end": 5,
-    "project": "",
-    "type": "text",
-  },
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data for scenario "should insert param in place of fbt.sameParam if it exists" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should insert param in place of fbt.sameParam if it exists" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -1158,7 +1192,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data for scenario "should maintain intra-argument newlines" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should maintain intra-argument newlines" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -1174,11 +1208,11 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data for scenario "should maintain newlines when using string templates" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should maintain newlines when using string templates" 1`] = `
 Array [
   Object {
     "col_beg": 10,
-    "col_end": 9,
+    "col_end": 7,
     "desc": "blah",
     "filepath": undefined,
     "jsfbt": "A simple string... with some other stuff.",
@@ -1190,7 +1224,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data for scenario "should maintain newlines within arguments" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should maintain newlines within arguments" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -1206,7 +1240,7 @@ Array [
 ]
 `;
 
-exports[`Test fbt meta-data collection should collect correct meta data for scenario "should maintain newlines" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should maintain newlines" 1`] = `
 Array [
   Object {
     "col_beg": 10,
