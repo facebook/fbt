@@ -27,6 +27,7 @@ const {
   ValidPluralOptions,
   ValidPronounOptions,
 } = require('./FbtConstants');
+const FbtEnumRegistrar = require('./FbtEnumRegistrar');
 const fbtHashKey = require('./fbtHashKey');
 const FbtMethodCallVisitors = require('./FbtMethodCallVisitors');
 const FbtNodeChecker = require('./FbtNodeChecker');
@@ -205,9 +206,9 @@ function BabelPluginFbt(babel) {
 
         if (!checker.isModuleCall(node)) {
           if (isRequireAlias(path.parentPath)) {
-            const _moduleName = node.arguments[0].value;
-            const alias = path.parentPath.node.id.name;
-            FbtMethodCallVisitors.setFbtEnumRequireMap(alias, _moduleName);
+            const jsModuleName = node.arguments[0].value;
+            const jsVarName = path.parentPath.node.id.name;
+            FbtEnumRegistrar.setModuleAlias(jsVarName, jsModuleName);
           }
           return;
         }
