@@ -22,76 +22,76 @@ function runTest(data, extra) {
   TestUtil.assertSourceAstEqual(transform(data.input, extra), data.output);
 }
 
-describe('Test extraOptions', () => {
-  it('should accept "locale" extra option', () => {
-    runTest(
-      {
-        input: withFbtRequireStatement(
-          `fbt("Foo", "Bar", {locale: locale.data});`,
-        ),
+describe('fbt() API: ', () => {
+  describe('using extraOptions', () => {
+    it('should accept "locale" extra option', () => {
+      runTest(
+        {
+          input: withFbtRequireStatement(
+            `fbt("Foo", "Bar", {locale: locale.data});`,
+          ),
+          output: withFbtRequireStatement(
+            `fbt._(
+              ${payload({
+                type: 'text',
+                jsfbt: 'Foo',
+                desc: 'Bar',
+              })}
+            )`,
+          ),
+        },
+        {
+          extraOptions: {locale: true},
+        },
+      );
+    });
+  });
+
+  describe('using FBT subject', () => {
+    it('should accept "subject" as a parameter', () => {
+      runTest({
+        input: withFbtRequireStatement(`fbt("Foo", "Bar", {subject: foo});`),
         output: withFbtRequireStatement(
           `fbt._(
             ${payload({
-              type: 'text',
-              jsfbt: 'Foo',
+              type: 'table',
+              jsfbt: {
+                t: {'*': 'Foo'},
+                m: [{token: '__subject__', type: 1}],
+              },
               desc: 'Bar',
-            })}
+              project: '',
+            })},
+            [
+              fbt._subject(foo)
+            ]
           )`,
         ),
-      },
-      {
-        extraOptions: {locale: true},
-      },
-    );
-  });
-});
-
-describe('Test FBT subject', () => {
-  it('should accept "subject" as a parameter', () => {
-    runTest({
-      input: withFbtRequireStatement(`
-        fbt("Foo", "Bar", {subject: foo});
-      `),
-      output: withFbtRequireStatement(
-        `fbt._(
-          ${payload({
-            type: 'table',
-            jsfbt: {
-              t: {'*': 'Foo'},
-              m: [{token: '__subject__', type: 1}],
-            },
-            desc: 'Bar',
-            project: '',
-          })},
-          [
-            fbt._subject(foo)
-          ]
-        )`,
-      ),
+      });
     });
   });
-});
 
-describe('Test FBT subject with string templates', () => {
-  it('should accept "subject" as a parameter', () => {
-    runTest({
-      input: withFbtRequireStatement('fbt(`Foo`, "Bar", {subject: foo});'),
-      output: withFbtRequireStatement(
-        `fbt._(
-          ${payload({
-            type: 'table',
-            jsfbt: {
-              t: {'*': 'Foo'},
-              m: [{token: '__subject__', type: 1}],
-            },
-            desc: 'Bar',
-            project: '',
-          })},
-          [
-            fbt._subject(foo)
-          ]
-        )`,
-      ),
+  describe('using FBT subject with string templates', () => {
+    it('should accept "subject" as a parameter', () => {
+      runTest({
+        input: withFbtRequireStatement('fbt(`Foo`, "Bar", {subject: foo});'),
+        output: withFbtRequireStatement(
+          `fbt._(
+            ${payload({
+              type: 'table',
+              jsfbt: {
+                t: {'*': 'Foo'},
+                m: [{token: '__subject__', type: 1}],
+              },
+              desc: 'Bar',
+              project: '',
+            })},
+            [
+              fbt._subject(foo)
+            ]
+          )`,
+        ),
+      });
     });
   });
 });
