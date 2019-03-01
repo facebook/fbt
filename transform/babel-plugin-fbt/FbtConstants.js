@@ -110,7 +110,10 @@ const ModuleNameRegExp = new RegExp(
   `\\b(?:${Object.values(JSModuleName).join('|')})\\b`,
 );
 
+const FBT_ENUM_MODULE_SUFFIX = '$FbtEnum';
+
 module.exports = {
+  FBT_ENUM_MODULE_SUFFIX,
   FbtBooleanOptions,
   FbtRequiredAttributes,
   FbtType,

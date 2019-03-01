@@ -20,13 +20,14 @@
 'use strict';
 
 /* eslint fb-www/comma-dangle: "off" */
-// See explaination in /js/fb-transforms/babel-7/babel-plugin-fbt/index.js
+// See explanation in /js/fb-transforms/babel-7/babel-plugin-fbt/index.js
 
 const {
   ValidPluralOptions,
   ValidPronounOptions,
   ValidPronounUsages,
 } = require('./FbtConstants');
+const FbtEnumRegistrar = require('./FbtEnumRegistrar');
 const FbtNodeChecker = require('./FbtNodeChecker');
 const {
   collectOptions,
@@ -47,19 +48,10 @@ const Variation = {
   gender: 1,
 };
 
-/**
- * Map of alias to module name.
- */
-const fbtEnumRequireMap = {};
-
 let enumManifest;
 
 function setEnumManifest(manifest) {
   enumManifest = manifest;
-}
-
-function setFbtEnumRequireMap(alias, moduleName) {
-  fbtEnumRequireMap[alias] = moduleName;
 }
 
 const call = function(t, moduleName) {
@@ -164,11 +156,12 @@ const call = function(t, moduleName) {
           });
           runtimeRange = t.objectExpression(rangeProps);
         } else if (t.isIdentifier(rangeArg)) {
-          const enumModule = fbtEnumRequireMap[rangeArg.name];
-          rangeProps = Object.keys(enumManifest[enumModule]).map(key => {
+          const enumModule = FbtEnumRegistrar.getModuleName(rangeArg.name);
+          const manifest = enumManifest[enumModule];
+          rangeProps = Object.keys(manifest).map(key => {
             return t.objectProperty(
               t.stringLiteral(key),
-              t.stringLiteral(enumManifest[enumModule][key]),
+              t.stringLiteral(manifest[key]),
             );
           });
         } else {
@@ -296,6 +289,5 @@ const call = function(t, moduleName) {
 
 module.exports = {
   setEnumManifest,
-  setFbtEnumRequireMap,
   call,
 };

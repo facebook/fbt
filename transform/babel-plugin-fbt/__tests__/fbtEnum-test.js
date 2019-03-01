@@ -118,13 +118,14 @@ describe('Test Fbt Enum', () => {
   });
 
   it('should throw when enum values are not strings', () => {
-    const badCase = withFbtRequireStatement(
-      `let aEnum = require('Test$FbtEnum');
-      var x = fbt('This is ' + fbt.enum(id, {bad: \`egg\`}), 'enums!');`,
-    );
-
     expect(() =>
-      transform(badCase, {fbtEnumManifest: TestFbtEnumManifest}),
+      transform(
+        withFbtRequireStatement(
+          `let aEnum = require('Test$FbtEnum');
+          var x = fbt('This is ' + fbt.enum(id, {bad: \`egg\`}), 'enums!');`,
+        ),
+        {fbtEnumManifest: TestFbtEnumManifest},
+      ),
     ).toThrowError(
       'fbt enum range values must be StringLiteral, got TemplateLiteral',
     );
