@@ -11,8 +11,8 @@
 
 const babel = require('@babel/core');
 const generate = require('@babel/generator').default;
+const babelParser = require('@babel/parser');
 const assert = require('assert');
-const babylon = require('babylon');
 
 const IGNORE_KEYS = [
   '__clone',
@@ -52,12 +52,9 @@ function getDefaultTransformForPlugins(plugins) {
 }
 
 function parse(code) {
-  return babylon.parse(code, {
+  return babelParser.parse(code, {
     sourceType: 'module',
-    plugins: [
-      'flow',
-      'jsx',
-    ],
+    plugins: ['flow', 'jsx'],
   });
 }
 
@@ -105,22 +102,24 @@ module.exports = {
       console.log(`Expected: ${excerptDiffFromExpected}`);
       console.log(`Actual  : ${excerptDiffFromActual}`);
 
-      const err = new Error([
-        'deepEqual node AST assert failed for the following code:',
-        '  Expected output:',
-        expectedFormattedCode,
-        '',
-        '  Actual output:',
-        actualFormattedCode,
-        '',
-        '  First common string:',
-        commonStr,
-        '',
-        `  The first difference is (${excerptLength} chars max): `,
-        `  Expected: ${excerptDiffFromExpected}`,
-        `  Actual  : ${excerptDiffFromActual}`,
-        '',
-      ].join('\n'));
+      const err = new Error(
+        [
+          'deepEqual node AST assert failed for the following code:',
+          '  Expected output:',
+          expectedFormattedCode,
+          '',
+          '  Actual output:',
+          actualFormattedCode,
+          '',
+          '  First common string:',
+          commonStr,
+          '',
+          `  The first difference is (${excerptLength} chars max): `,
+          `  Expected: ${excerptDiffFromExpected}`,
+          `  Actual  : ${excerptDiffFromActual}`,
+          '',
+        ].join('\n'),
+      );
       err.stack = e.stack;
       throw err;
     }
@@ -133,7 +132,9 @@ module.exports = {
         if (testInfo.throws === true) {
           expect(() => transform(testInfo.input, testInfo.options)).toThrow();
         } else if (typeof testInfo.throws === 'string') {
-          expect(() => transform(testInfo.input, testInfo.options)).toThrow(testInfo.throws);
+          expect(() => transform(testInfo.input, testInfo.options)).toThrow(
+            testInfo.throws,
+          );
         } else if (testInfo.throws === false) {
           transform(testInfo.input, testInfo.options);
         } else {
@@ -150,9 +151,8 @@ module.exports = {
   },
 
   testCase(name, plugins, testData, options) {
-    describe(
-      name,
-      () => this.testSection(
+    describe(name, () =>
+      this.testSection(
         testData,
         getDefaultTransformForPlugins(plugins),
         options,
