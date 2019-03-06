@@ -457,10 +457,8 @@ const generalTestData = {
             t: {
               '*': {
                 '*': 'There were {number} likes',
-                _1: 'There were a like',
               },
               _1: {
-                '*': 'There was {number} likes',
                 _1: 'There was a like',
               },
             },
@@ -507,10 +505,8 @@ const generalTestData = {
             t: {
               '*': {
                 '*': 'There are {number} likes',
-                _1: 'There are a like',
               },
               _1: {
-                '*': 'There is {number} likes',
                 _1: 'There is a like',
               },
             },

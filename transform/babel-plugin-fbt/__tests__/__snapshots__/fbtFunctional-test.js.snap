@@ -288,10 +288,8 @@ Array [
       "t": Object {
         "*": Object {
           "*": "There are {number} likes",
-          "_1": "There are a like",
         },
         "_1": Object {
-          "*": "There is {number} likes",
           "_1": "There is a like",
         },
       },
@@ -394,10 +392,8 @@ Array [
       "t": Object {
         "*": Object {
           "*": "There were {number} likes",
-          "_1": "There were a like",
         },
         "_1": Object {
-          "*": "There was {number} likes",
           "_1": "There was a like",
         },
       },
@@ -902,10 +898,8 @@ Array [
       "t": Object {
         "*": Object {
           "*": "There are {number} likes",
-          "_1": "There are a like",
         },
         "_1": Object {
-          "*": "There is {number} likes",
           "_1": "There is a like",
         },
       },
@@ -1004,10 +998,8 @@ Array [
       "t": Object {
         "*": Object {
           "*": "There were {number} likes",
-          "_1": "There were a like",
         },
         "_1": Object {
-          "*": "There was {number} likes",
           "_1": "There was a like",
         },
       },

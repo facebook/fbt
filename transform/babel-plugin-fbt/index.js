@@ -476,6 +476,7 @@ function BabelPluginFbt(babel) {
             showCount: 'no',
             name: defaultToken,
             singular: singular,
+            value: getRawSource(src, node.arguments[1]),
             many: singular + 's',
             ...opts,
           };
