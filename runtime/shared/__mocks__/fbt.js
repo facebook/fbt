@@ -64,4 +64,8 @@ fbt._subject = function(value) {
   return fbtRuntime._subject(value);
 };
 
+fbt._name = function(...whateveryo) {
+  return fbtRuntime._name(...whateveryo);
+};
+
 module.exports = fbt;
