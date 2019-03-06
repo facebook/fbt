@@ -205,7 +205,7 @@ class JSFbtBuilder {
         return table;
 
       case 'pronoun':
-        Object.keys(GENDER_CONST).forEach(function(key) {
+        Object.keys(GENDER_CONST).forEach(key => {
           const gender = GENDER_CONST[key];
           if (gender === GENDER_CONST.NOT_A_PERSON && !item.human) {
             return;
@@ -217,7 +217,7 @@ class JSFbtBuilder {
           textSegments[pivotKey] = item.capitalize
             ? word.charAt(0).toUpperCase() + word.substr(1)
             : word;
-        }, this);
+        });
         break;
 
       case 'enum':
@@ -241,7 +241,7 @@ class JSFbtBuilder {
           this.usedEnums[enumArg] = key;
           return this._buildTable(prefix + val, texts, idx + 1);
         });
-        delete this.usedEnums[item.value];
+        delete this.usedEnums[enumArg];
         return result;
       default:
         break;
