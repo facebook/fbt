@@ -27,6 +27,11 @@ const {
 } = require('./translate/IntlVariations');
 const invariant = require('fbjs/lib/invariant');
 
+const PLURAL_KEY_TO_TYPE = {
+  '*': 'many',
+  [EXACTLY_ONE]: 'singular',
+};
+
 class JSFbtBuilder {
   static build(type, texts, reactNativeMode) {
     const builder = new JSFbtBuilder(reactNativeMode);
@@ -47,6 +52,7 @@ class JSFbtBuilder {
 
   constructor(reactNativeMode) {
     this.usedEnums = {};
+    this.usedPlurals = {};
     this.reactNativeMode = reactNativeMode;
   }
 
@@ -157,17 +163,17 @@ class JSFbtBuilder {
   //     ...
   //   }
   buildTable(texts) {
-    return this.buildTableRecursively('', texts, 0);
+    return this._buildTable('', texts, 0);
   }
 
-  buildTableRecursively(prefix, texts, idx, metadata) {
+  _buildTable(prefix, texts, idx) {
     if (idx === texts.length) {
       return normalizeSpaces(prefix);
     }
 
     const item = texts[idx];
     if (typeof item === 'string') {
-      return this.buildTableRecursively(prefix + texts[idx], texts, idx + 1);
+      return this._buildTable(prefix + item, texts, idx + 1);
     }
 
     const textSegments = {};
@@ -181,9 +187,22 @@ class JSFbtBuilder {
         break;
 
       case 'plural':
-        textSegments['*'] = item.many;
-        textSegments[EXACTLY_ONE] = item.singular;
-        break;
+        const pluralVal = item.value;
+        if (pluralVal in this.usedPlurals) {
+          // Constrain our plural value ('many'/'singular') BUT still add a
+          // single level.  We don't currently prune runtime args like we do
+          // with enums, but we ought to...
+          // TODO T41100260
+          const key = this.usedPlurals[pluralVal];
+          const val = item[PLURAL_KEY_TO_TYPE[key]];
+          return {[key]: this._buildTable(prefix + val, texts, idx + 1)};
+        }
+        const table = objMap(PLURAL_KEY_TO_TYPE, (type, key) => {
+          this.usedPlurals[pluralVal] = key;
+          return this._buildTable(prefix + item[type], texts, idx + 1);
+        });
+        delete this.usedPlurals[pluralVal];
+        return table;
 
       case 'pronoun':
         Object.keys(GENDER_CONST).forEach(function(key) {
@@ -216,11 +235,11 @@ class JSFbtBuilder {
             );
           }
           const val = item.range[enumKey];
-          return this.buildTableRecursively(prefix + val, texts, idx + 1);
+          return this._buildTable(prefix + val, texts, idx + 1);
         }
         const result = objMap(item.range, (val, key) => {
           this.usedEnums[enumArg] = key;
-          return this.buildTableRecursively(prefix + val, texts, idx + 1);
+          return this._buildTable(prefix + val, texts, idx + 1);
         });
         delete this.usedEnums[item.value];
         return result;
@@ -229,7 +248,7 @@ class JSFbtBuilder {
     }
 
     return objMap(textSegments, v =>
-      this.buildTableRecursively(prefix + v, texts, idx + 1),
+      this._buildTable(prefix + v, texts, idx + 1),
     );
   }
 
