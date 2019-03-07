@@ -138,30 +138,36 @@ class JSFbtBuilder {
     return metadata;
   }
 
-  // Build a tree and set of all the strings - A (potentially multi-level)
-  // dictionary of keys of various FBT components (enum, plural, etc) to their
-  // string leaves or the next level of the tree.
-  //
-  // Example (probably a bad example of when to use an enum):
-  //   ['Click ',
-  //    {
-  //      'type' => 'enum',
-  //      'values' => array('here', 'there', 'anywhere')
-  //    }
-  //    ' to see ',
-  //    {
-  //     'type' => 'number',
-  //     'token' => 'count',
-  //     'type' => FbtVariationType.NUMBER,
-  //    },
-  //    'things'
-  // )
-  // becomes
-  //   {
-  //     'here' => {'*' => 'Click here to see {count} things'}
-  //     'there' => {'*' => 'Click there to see {count} things'}
-  //     ...
-  //   }
+  /**
+   * Build a tree and set of all the strings - A (potentially multi-level)
+   * dictionary of keys of various FBT components (enum, plural, etc) to their
+   * string leaves or the next level of the tree.
+   *
+   * Example (probably a bad example of when to use an enum):
+   *
+   *   buildTable([
+   *     'Click ',
+   *     {
+   *       'type': 'enum',
+   *       'values': ['here', 'there', 'anywhere']
+   *     },
+   *     ' to see ',
+   *     {
+   *      'type': 'number',
+   *      'token': 'count',
+   *      'type': FbtVariationType.NUMBER,
+   *     },
+   *     'things'
+   *   ])
+   *
+   * Returns:
+   *
+   *   {
+   *     'here': {'*': 'Click here to see {count} things'}
+   *     'there': {'*': 'Click there to see {count} things'}
+   *     ...
+   *   }
+   */
   buildTable(texts) {
     return this._buildTable('', texts, 0);
   }
