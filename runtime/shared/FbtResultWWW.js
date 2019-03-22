@@ -41,10 +41,10 @@ class FbtResultWWW extends FbtResultBase {
     let details = 'Context not logged.';
     if (!killswitch('JS_RELIABILITY_FBT_LOGGING')) {
       try {
-        /* $FlowFixMe(>=0.95.0 site=www,mobile) This comment suppresses an
-         * error found when Flow v0.95 was deployed. To see the error, delete
-         * this comment and run Flow. */
-        details = JSON.stringify(content).substr(0, 250);
+        const contentStr = JSON.stringify(content);
+        if (contentStr != null) {
+          details = contentStr.substr(0, 250);
+        }
       } catch (err) {
         // Catching circular reference error
         details = err.message;
