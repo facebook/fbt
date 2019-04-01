@@ -52,7 +52,9 @@ module.exports = {
             '@babel/plugin-proposal-optional-chaining',
             '@babel/plugin-transform-flow-strip-types',
             ['../transform/babel-plugin-fbt/index.js', {
-              fbtEnumManifest: require('./.enum_manifest.json')
+              // We can also provide the fbt enum manifest directly as a JS variable
+              // fbtEnumManifest: require('./.enum_manifest.json'),
+              fbtEnumPath: path.join(__dirname, '.enum_manifest.json')
             }],
             '../transform/babel-plugin-fbt-runtime/index.js',
           ]
