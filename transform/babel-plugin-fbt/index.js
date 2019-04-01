@@ -78,7 +78,8 @@ function BabelPluginFbt(babel) {
     pre() {
       this.opts.fbtSentinel = this.opts.fbtSentinel || '__FBT__';
       this.opts.fbtBase64 = this.opts.fbtBase64;
-      FbtMethodCallVisitors.setEnumManifest(this.opts.fbtEnumManifest);
+
+      FbtMethodCallVisitors.setEnumManifest(getEnumManifest(this.opts));
       initExtraOptions(this);
       initDefaultOptions(this);
       phrases = [];
@@ -237,7 +238,7 @@ function BabelPluginFbt(babel) {
           runtimeArgs,
           variations,
           hasTable: false, // can be mutated during `FbtMethodCallVisitors`.
-          enumManifest: visitor.opts.fbtEnumManifest,
+          enumManifest: getEnumManifest(visitor.opts),
           src: visitor.file.code,
         };
 
@@ -693,6 +694,16 @@ function addEnclosingString(childIdx, parentIdx) {
 
 function getUnknownCommonStringErrorMessage(moduleName, text) {
   return `Unknown string "${text}" for <${moduleName} common={true}>`;
+}
+
+function getEnumManifest(opts) {
+  const {fbtEnumManifest, fbtEnumPath} = opts;
+  if (fbtEnumManifest != null) {
+    return fbtEnumManifest;
+  } else if (fbtEnumPath != null) {
+    return require(fbtEnumPath);
+  }
+  return null;
 }
 
 BabelPluginFbt.fbtHashKey = fbtHashKey;
