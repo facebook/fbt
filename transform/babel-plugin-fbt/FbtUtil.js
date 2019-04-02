@@ -295,7 +295,7 @@ function getVariationValue(moduleName, variationName, variationInfo) {
 function getAttributeByNameOrThrow(attributes, name) {
   const attr = getAttributeByName(attributes, name);
   if (attr === undefined) {
-    throw new Error(`Unable to find attribute ${name}.`);
+    throw new Error(`Unable to find attribute "${name}".`);
   }
   return attr;
 }
