@@ -24,7 +24,7 @@ function logErrorUseStringMethod(methodName: string): void {
   // If the contents is array of length greater than one, then use the string
   // method will cause error
   FBLogger('fbt')
-    .blameToPreviousFile()
+    .blameToPreviousDirectory()
     .mustfix(
       'Error using fbt string. Used method %s' +
         ' on Fbt string. Fbt string is designed to be immutable ' +
@@ -51,7 +51,7 @@ class FbtResultWWW extends FbtResultBase {
       }
     }
     FBLogger('fbt')
-      .blameToPreviousFile()
+      .blameToPreviousDirectory()
       .mustfix('Converting to a string will drop content data. %s', details);
   }
 }
