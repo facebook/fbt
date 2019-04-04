@@ -15,24 +15,22 @@ FBT is an internationalization framework for JavaScript designed to be both powe
 * [Yarn](https://yarnpkg.com/)
 * [Babel](https://babeljs.io/)
 
-## Building fbt
+## Building the fbt library
 ```
 git clone git@github.com:facebookincubator/fbt.git
 cd fbt
 yarn install
 ```
 
-## Installing fbt
-See how to use the source directly with Babel and Webpack in our demo-app:
+**NOTE:** if you make changes to the fbt runtime that you'd like to
+test in the demo-app, be sure to run this command to rebuild the JS code:
 
 ```
-yarn install # from fbt repo
-cd demo-app
-yarn manifest
-yarn collect-fbts
-yarn translate-fbts
-yarn start
+yarn build-runtime
 ```
+
+## Using fbt
+See how to use the source directly with Babel and Webpack in [our demo-app](demo-app#babelwebpackreact-oss-fbt-demo).
 
 ## How FBT works
 FBT works by transforming your `<fbt>` and `fbt(...)` constructs via
