@@ -4,7 +4,7 @@
   "name": "babel-plugin-fbt",
   "version": "0.9.1",
   "devDependencies": {
-    "jest-docblock": "24.0.0",
+    "jest-docblock": "^24.3.0",
     "yargs": "^9.0.0"
   },
   "dependencies": {
