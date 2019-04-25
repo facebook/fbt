@@ -1,0 +1,2398 @@
+{
+  "phrases": [
+    {
+      "hashToText": {
+        "40bd5bc10bd59fe020569068cfd7d814": "Your FBT Demo"
+      },
+      "filepath": "src/example/Example.react.js",
+      "line_beg": 110,
+      "col_beg": 12,
+      "line_end": 110,
+      "col_end": 49,
+      "type": "text",
+      "desc": "title",
+      "project": "fbt-demo-project",
+      "jsfbt": "Your FBT Demo"
+    },
+    {
+      "hashToText": {
+        "f75b97a97fa3772468477f17e0c0a160": "Construct sentences"
+      },
+      "filepath": "src/example/Example.react.js",
+      "line_beg": 112,
+      "col_beg": 14,
+      "line_end": 112,
+      "col_end": 58,
+      "type": "text",
+      "desc": "header",
+      "project": "fbt-demo-project",
+      "jsfbt": "Construct sentences"
+    },
+    {
+      "hashToText": {
+        "26d8c764cc951266855af9e375d97105": "Use the form below to see FBT in action."
+      },
+      "filepath": "src/example/Example.react.js",
+      "line_beg": 113,
+      "col_beg": 14,
+      "line_end": 113,
+      "col_end": 91,
+      "type": "text",
+      "desc": "yet another header",
+      "project": "fbt-demo-project",
+      "jsfbt": "Use the form below to see FBT in action."
+    },
+    {
+      "hashToText": {
+        "1893f1dc2ad543b243fec0c5c22cb782": "Your Gender:"
+      },
+      "filepath": "src/example/Example.react.js",
+      "line_beg": 125,
+      "col_beg": 20,
+      "line_end": 125,
+      "col_end": 70,
+      "type": "text",
+      "desc": "Gender Select label",
+      "project": "fbt-demo-project",
+      "jsfbt": "Your Gender:"
+    },
+    {
+      "hashToText": {
+        "bf9bf2f7d22fa776eaf7838a6dc2da9f": "Unknown"
+      },
+      "filepath": "src/example/Example.react.js",
+      "line_beg": 128,
+      "col_beg": 20,
+      "line_end": 128,
+      "col_end": 60,
+      "type": "text",
+      "desc": "Unknown gender",
+      "project": "fbt-demo-project",
+      "jsfbt": "Unknown"
+    },
+    {
+      "hashToText": {
+        "ab362a612bbbb45450265125792a837f": "Male"
+      },
+      "filepath": "src/example/Example.react.js",
+      "line_beg": 131,
+      "col_beg": 20,
+      "line_end": 131,
+      "col_end": 54,
+      "type": "text",
+      "desc": "Male gender",
+      "project": "fbt-demo-project",
+      "jsfbt": "Male"
+    },
+    {
+      "hashToText": {
+        "643b77298eef5a450d56374ae678e8d1": "Female"
+      },
+      "filepath": "src/example/Example.react.js",
+      "line_beg": 134,
+      "col_beg": 20,
+      "line_end": 134,
+      "col_end": 58,
+      "type": "text",
+      "desc": "Female gender",
+      "project": "fbt-demo-project",
+      "jsfbt": "Female"
+    },
+    {
+      "hashToText": {
+        "025316323d5bb7597ad78e39d37772aa": "name"
+      },
+      "filepath": "src/example/Example.react.js",
+      "line_beg": 151,
+      "col_beg": 33,
+      "line_end": 151,
+      "col_end": 58,
+      "type": "text",
+      "desc": "name field",
+      "project": "fbt-demo-project",
+      "jsfbt": "name"
+    },
+    {
+      "hashToText": {
+        "37d0e6c1db7414fee2ef94bc7b5f1575": "count"
+      },
+      "filepath": "src/example/Example.react.js",
+      "line_beg": 167,
+      "col_beg": 33,
+      "line_end": 167,
+      "col_end": 60,
+      "type": "text",
+      "desc": "count field",
+      "project": "fbt-demo-project",
+      "jsfbt": "count"
+    },
+    {
+      "hashToText": {
+        "ce5f268d53706acc64dd5e59430be1c8": "Gender:"
+      },
+      "filepath": "src/example/Example.react.js",
+      "line_beg": 181,
+      "col_beg": 22,
+      "line_end": 181,
+      "col_end": 67,
+      "type": "text",
+      "desc": "Gender Select label",
+      "project": "fbt-demo-project",
+      "jsfbt": "Gender:"
+    },
+    {
+      "hashToText": {
+        "bf9bf2f7d22fa776eaf7838a6dc2da9f": "Unknown"
+      },
+      "filepath": "src/example/Example.react.js",
+      "line_beg": 184,
+      "col_beg": 22,
+      "line_end": 184,
+      "col_end": 62,
+      "type": "text",
+      "desc": "Unknown gender",
+      "project": "fbt-demo-project",
+      "jsfbt": "Unknown"
+    },
+    {
+      "hashToText": {
+        "ab362a612bbbb45450265125792a837f": "Male"
+      },
+      "filepath": "src/example/Example.react.js",
+      "line_beg": 187,
+      "col_beg": 22,
+      "line_end": 187,
+      "col_end": 56,
+      "type": "text",
+      "desc": "Male gender",
+      "project": "fbt-demo-project",
+      "jsfbt": "Male"
+    },
+    {
+      "hashToText": {
+        "643b77298eef5a450d56374ae678e8d1": "Female"
+      },
+      "filepath": "src/example/Example.react.js",
+      "line_beg": 190,
+      "col_beg": 22,
+      "line_end": 190,
+      "col_end": 60,
+      "type": "text",
+      "desc": "Female gender",
+      "project": "fbt-demo-project",
+      "jsfbt": "Female"
+    },
+    {
+      "hashToText": {
+        "e2a294efdf88fa51379667ac368953f7": "{name} has shared {=a photo} with you"
+      },
+      "filepath": "src/example/Example.react.js",
+      "line_beg": 199,
+      "col_beg": 16,
+      "line_end": 210,
+      "col_end": 22,
+      "type": "table",
+      "desc": "example 1",
+      "project": "fbt-demo-project",
+      "jsfbt": {
+        "t": {
+          "*": "{name} has shared {=a photo} with you"
+        },
+        "m": [
+          {
+            "token": "name",
+            "type": 1
+          }
+        ]
+      }
+    },
+    {
+      "hashToText": {
+        "d47b9415c39a6e5e042244d77c23bb13": "{number} photos",
+        "4a7e4b119044b338d8b41fab78778d05": " a photo"
+      },
+      "filepath": "src/example/Example.react.js",
+      "line_beg": 204,
+      "col_beg": 18,
+      "line_end": 208,
+      "col_end": 22,
+      "type": "table",
+      "desc": "In the phrase: \"{=} has shared {=a photo} with you\"",
+      "project": "fbt-demo-project",
+      "jsfbt": {
+        "t": {
+          "*": "{number} photos",
+          "_1": " a photo"
+        },
+        "m": [
+          {
+            "token": "number",
+            "type": 2,
+            "singular": true
+          }
+        ]
+      }
+    },
+    {
+      "hashToText": {
+        "025316323d5bb7597ad78e39d37772aa": "name"
+      },
+      "filepath": "src/example/Example.react.js",
+      "line_beg": 224,
+      "col_beg": 33,
+      "line_end": 224,
+      "col_end": 58,
+      "type": "text",
+      "desc": "name field",
+      "project": "fbt-demo-project",
+      "jsfbt": "name"
+    },
+    {
+      "hashToText": {
+        "ce5f268d53706acc64dd5e59430be1c8": "Gender:"
+      },
+      "filepath": "src/example/Example.react.js",
+      "line_beg": 252,
+      "col_beg": 22,
+      "line_end": 252,
+      "col_end": 67,
+      "type": "text",
+      "desc": "Gender Select label",
+      "project": "fbt-demo-project",
+      "jsfbt": "Gender:"
+    },
+    {
+      "hashToText": {
+        "1b2ec97fa79c3d163cac76346422f8b1": "Not a person"
+      },
+      "filepath": "src/example/Example.react.js",
+      "line_beg": 255,
+      "col_beg": 22,
+      "line_end": 255,
+      "col_end": 72,
+      "type": "text",
+      "desc": "Gender Select label",
+      "project": "fbt-demo-project",
+      "jsfbt": "Not a person"
+    },
+    {
+      "hashToText": {
+        "c63ed212602077b1dd58db087991b5af": "Unknown (Plural)"
+      },
+      "filepath": "src/example/Example.react.js",
+      "line_beg": 258,
+      "col_beg": 22,
+      "line_end": 258,
+      "col_end": 76,
+      "type": "text",
+      "desc": "Gender Select label",
+      "project": "fbt-demo-project",
+      "jsfbt": "Unknown (Plural)"
+    },
+    {
+      "hashToText": {
+        "6a24311c8064b857c0fd320be01f7fb6": "Unknown (singular)"
+      },
+      "filepath": "src/example/Example.react.js",
+      "line_beg": 261,
+      "col_beg": 22,
+      "line_end": 261,
+      "col_end": 78,
+      "type": "text",
+      "desc": "Gender Select label",
+      "project": "fbt-demo-project",
+      "jsfbt": "Unknown (singular)"
+    },
+    {
+      "hashToText": {
+        "370370d4d03578bda451f99b8c6a3287": "Male (singular)"
+      },
+      "filepath": "src/example/Example.react.js",
+      "line_beg": 264,
+      "col_beg": 22,
+      "line_end": 264,
+      "col_end": 75,
+      "type": "text",
+      "desc": "Gender Select label",
+      "project": "fbt-demo-project",
+      "jsfbt": "Male (singular)"
+    },
+    {
+      "hashToText": {
+        "88a1bc74298abc6f3824ac4dd56135a0": "Female (singular)"
+      },
+      "filepath": "src/example/Example.react.js",
+      "line_beg": 267,
+      "col_beg": 22,
+      "line_end": 267,
+      "col_end": 77,
+      "type": "text",
+      "desc": "Gender Select label",
+      "project": "fbt-demo-project",
+      "jsfbt": "Female (singular)"
+    },
+    {
+      "hashToText": {
+        "ea428b598a1c30f60c9d213822b75ba3": "{name} has a link to share! {=View} her link.",
+        "209fd17e3aef1719fadda2f0208fb688": "{name} has a link to share! {=View} his link.",
+        "3ff45e45732c2df5e1febc2c643d369d": "{name} has a link to share! {=View} their link.",
+        "1315810748fa63a66b18bf9d64032e2e": "{name} has a page to share! {=View} her page.",
+        "aba87fbe4df14211e8943f721fa3f563": "{name} has a page to share! {=View} his page.",
+        "a9ea27109d11f0318948298570055b3f": "{name} has a page to share! {=View} their page.",
+        "e776d21e0dd182ddd172f444407eb40c": "{name} has a photo to share! {=View} her photo.",
+        "fb144ab202738a4ba0ad63f4c116a982": "{name} has a photo to share! {=View} his photo.",
+        "575a12521c252c5571a66d1995504c83": "{name} has a photo to share! {=View} their photo.",
+        "23cbcf81d14c2294ba230b45d95ccf56": "{name} has a post to share! {=View} her post.",
+        "863fc7cde353c97be1f72eb3f3f06bc2": "{name} has a post to share! {=View} his post.",
+        "a3567d2b112704bff1048a49b93064a2": "{name} has a post to share! {=View} their post.",
+        "0f4ef5ee61e8dbeacc42549ac24f676f": "{name} has a video to share! {=View} her video.",
+        "a95747637ba6cbeeaeef48a2879b1f32": "{name} has a video to share! {=View} his video.",
+        "9837339cf62c9262f4d20c0d7999ff93": "{name} has a video to share! {=View} their video."
+      },
+      "filepath": "src/example/Example.react.js",
+      "line_beg": 275,
+      "col_beg": 16,
+      "line_end": 286,
+      "col_end": 22,
+      "type": "table",
+      "desc": "Example enum & pronoun",
+      "project": "fbt-demo-project",
+      "jsfbt": {
+        "t": {
+          "LINK": {
+            "1": "{name} has a link to share! {=View} her link.",
+            "2": "{name} has a link to share! {=View} his link.",
+            "*": "{name} has a link to share! {=View} their link."
+          },
+          "PAGE": {
+            "1": "{name} has a page to share! {=View} her page.",
+            "2": "{name} has a page to share! {=View} his page.",
+            "*": "{name} has a page to share! {=View} their page."
+          },
+          "PHOTO": {
+            "1": "{name} has a photo to share! {=View} her photo.",
+            "2": "{name} has a photo to share! {=View} his photo.",
+            "*": "{name} has a photo to share! {=View} their photo."
+          },
+          "POST": {
+            "1": "{name} has a post to share! {=View} her post.",
+            "2": "{name} has a post to share! {=View} his post.",
+            "*": "{name} has a post to share! {=View} their post."
+          },
+          "VIDEO": {
+            "1": "{name} has a video to share! {=View} her video.",
+            "2": "{name} has a video to share! {=View} his video.",
+            "*": "{name} has a video to share! {=View} their video."
+          }
+        },
+        "m": [
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "hashToText": {
+        "5739394f06e7e659ebe5ad02ef4d427c": "{=View}"
+      },
+      "filepath": "src/example/Example.react.js",
+      "line_beg": 282,
+      "col_beg": 18,
+      "line_end": 282,
+      "col_end": 46,
+      "type": "text",
+      "desc": "In the phrase: \"{=} has a to share!{=View}.\"",
+      "project": "fbt-demo-project",
+      "jsfbt": "{=View}"
+    },
+    {
+      "hashToText": {
+        "d1021dd603ef7ed4073bee3d498ccb83": "View"
+      },
+      "filepath": "src/example/Example.react.js",
+      "line_beg": 282,
+      "col_beg": 21,
+      "line_end": 282,
+      "col_end": 42,
+      "type": "text",
+      "desc": "In the phrase: \"{=} has a to share!{=View}.\"",
+      "project": "fbt-demo-project",
+      "jsfbt": "View"
+    },
+    {
+      "hashToText": {
+        "604b966f4a1948aa1efbd6e5c183b3d8": "Try it out!"
+      },
+      "filepath": "src/example/Example.react.js",
+      "line_beg": 290,
+      "col_beg": 50,
+      "line_end": 290,
+      "col_end": 82,
+      "type": "text",
+      "desc": "Sign up button",
+      "project": "fbt-demo-project",
+      "jsfbt": "Try it out!"
+    }
+  ],
+  "translationGroups": [
+    {
+      "fb-locale": "fb_HX",
+      "translations": {
+        "40bd5bc10bd59fe020569068cfd7d814": {
+          "tokens": [
+            "__viewing_user__"
+          ],
+          "types": [
+            3
+          ],
+          "translations": [
+            {
+              "translation": "Y0u\u042f \u2132\u0411\u30c6 D3m0",
+              "variations": [
+                1
+              ]
+            },
+            {
+              "translation": "Y0ur \ua76d\u00df\u30c6 D3m0",
+              "variations": [
+                2
+              ]
+            },
+            {
+              "translation": "Y()u\u042f \ua77c\u00df\u30c6 D3m0",
+              "variations": [
+                3
+              ]
+            }
+          ]
+        },
+        "f75b97a97fa3772468477f17e0c0a160": {
+          "tokens": [
+            "__viewing_user__"
+          ],
+          "types": [
+            3
+          ],
+          "translations": [
+            {
+              "translation": "(0n5+ruc+ 53nt3n<35",
+              "variations": [
+                1
+              ]
+            },
+            {
+              "translation": "C0n$7ruc7 $3nt3nc3$",
+              "variations": [
+                2
+              ]
+            },
+            {
+              "translation": "C()n57ruc7 53nt3nc35",
+              "variations": [
+                3
+              ]
+            }
+          ]
+        },
+        "26d8c764cc951266855af9e375d97105": {
+          "tokens": [
+            "__viewing_user__"
+          ],
+          "types": [
+            3
+          ],
+          "translations": [
+            {
+              "translation": "|_|53 +h3 ph0\u042f/X\\ |o310w +0 533 \u2132\u0411\u30c6 in 4c+10n.",
+              "variations": [
+                1
+              ]
+            },
+            {
+              "translation": "|_|53 +h3 \ua76d0\u042fM |o310w +0 533 \ua76d\u00df\u30c6 in 4c+10n.",
+              "variations": [
+                2
+              ]
+            },
+            {
+              "translation": "|_|53 +h3 ph0\u042f/X\\ |o310w +0 533 \ua77c\u00df\u30c6 in 4c+10n.",
+              "variations": [
+                3
+              ]
+            }
+          ]
+        },
+        "1893f1dc2ad543b243fec0c5c22cb782": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "Your Gender:",
+              "variations": []
+            }
+          ]
+        },
+        "bf9bf2f7d22fa776eaf7838a6dc2da9f": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "Unknown",
+              "variations": []
+            }
+          ]
+        },
+        "ab362a612bbbb45450265125792a837f": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "Male",
+              "variations": []
+            }
+          ]
+        },
+        "643b77298eef5a450d56374ae678e8d1": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "Female",
+              "variations": []
+            }
+          ]
+        },
+        "025316323d5bb7597ad78e39d37772aa": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "name",
+              "variations": []
+            }
+          ]
+        },
+        "37d0e6c1db7414fee2ef94bc7b5f1575": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "count",
+              "variations": []
+            }
+          ]
+        },
+        "ce5f268d53706acc64dd5e59430be1c8": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "Gender:",
+              "variations": []
+            }
+          ]
+        },
+        "e2a294efdf88fa51379667ac368953f7": {
+          "tokens": [
+            "name"
+          ],
+          "types": [
+            3
+          ],
+          "translations": [
+            {
+              "translation": "{name} h45 5h4r3d {=a photo} w1th y0u",
+              "variations": []
+            }
+          ]
+        },
+        "4a7e4b119044b338d8b41fab78778d05": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": " a photo",
+              "variations": []
+            }
+          ]
+        },
+        "1b2ec97fa79c3d163cac76346422f8b1": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "Not a person",
+              "variations": []
+            }
+          ]
+        },
+        "c63ed212602077b1dd58db087991b5af": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "Unknown (Plural)",
+              "variations": []
+            }
+          ]
+        },
+        "6a24311c8064b857c0fd320be01f7fb6": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "Unknown (singular)",
+              "variations": []
+            }
+          ]
+        },
+        "370370d4d03578bda451f99b8c6a3287": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "Male (singular)",
+              "variations": []
+            }
+          ]
+        },
+        "88a1bc74298abc6f3824ac4dd56135a0": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "Female (singular)",
+              "variations": []
+            }
+          ]
+        },
+        "ea428b598a1c30f60c9d213822b75ba3": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "{name} h@5 a link to 5h@r3! {=View} her link.",
+              "variations": []
+            }
+          ]
+        },
+        "209fd17e3aef1719fadda2f0208fb688": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "{name} h@5 a link to 5h@r3! {=View} his link.",
+              "variations": []
+            }
+          ]
+        },
+        "3ff45e45732c2df5e1febc2c643d369d": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "{name} h@5 a link to 5h@r3! {=View} their link.",
+              "variations": []
+            }
+          ]
+        },
+        "1315810748fa63a66b18bf9d64032e2e": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "{name} h@5 a page to 5h@r3! {=View} her page.",
+              "variations": []
+            }
+          ]
+        },
+        "aba87fbe4df14211e8943f721fa3f563": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "{name} h@5 a page to 5h@r3! {=View} his page.",
+              "variations": []
+            }
+          ]
+        },
+        "a9ea27109d11f0318948298570055b3f": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "{name} h@5 a page to 5h@r3! {=View} their page.",
+              "variations": []
+            }
+          ]
+        },
+        "e776d21e0dd182ddd172f444407eb40c": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "{name} h@5 a photo to 5h@r3! {=View} her photo.",
+              "variations": []
+            }
+          ]
+        },
+        "fb144ab202738a4ba0ad63f4c116a982": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "{name} h@5 a photo to 5h@r3! {=View} his photo.",
+              "variations": []
+            }
+          ]
+        },
+        "575a12521c252c5571a66d1995504c83": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "{name} h@5 a photo to 5h@r3! {=View} their photo.",
+              "variations": []
+            }
+          ]
+        },
+        "23cbcf81d14c2294ba230b45d95ccf56": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "{name} h@5 a post to 5h@r3! {=View} her post.",
+              "variations": []
+            }
+          ]
+        },
+        "863fc7cde353c97be1f72eb3f3f06bc2": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "{name} h@5 a post to 5h@r3! {=View} his post.",
+              "variations": []
+            }
+          ]
+        },
+        "a3567d2b112704bff1048a49b93064a2": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "{name} h@5 a post to 5h@r3! {=View} their post.",
+              "variations": []
+            }
+          ]
+        },
+        "0f4ef5ee61e8dbeacc42549ac24f676f": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "{name} h@5 a video to 5h@r3! {=View} her video.",
+              "variations": []
+            }
+          ]
+        },
+        "a95747637ba6cbeeaeef48a2879b1f32": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "{name} h@5 a video to 5h@r3! {=View} his video.",
+              "variations": []
+            }
+          ]
+        },
+        "9837339cf62c9262f4d20c0d7999ff93": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "{name} h4s 4 v1d30 t0 5h4r3! {=View} th31r v1d3e0.",
+              "variations": []
+            }
+          ]
+        },
+        "d1021dd603ef7ed4073bee3d498ccb83": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "V13w",
+              "variations": []
+            }
+          ]
+        },
+        "604b966f4a1948aa1efbd6e5c183b3d8": {
+          "tokens": {},
+          "types": {},
+          "translations": [
+            {
+              "translation": "7r`/ 1+ 0u+!",
+              "variations": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fb-locale": "he_IL",
+      "translations": {
+        "025316323d5bb7597ad78e39d37772aa": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05e9\u05dd",
+              "variations": {}
+            }
+          ]
+        },
+        "0f4ef5ee61e8dbeacc42549ac24f676f": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05dc{name} \u05d9\u05e9 \u05e1\u05e8\u05d8\u05d5\u05df \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d4.",
+              "variations": {}
+            }
+          ]
+        },
+        "1315810748fa63a66b18bf9d64032e2e": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05dc{name} \u05d9\u05e9 \u05d3\u05e3 \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d4.",
+              "variations": {}
+            }
+          ]
+        },
+        "1893f1dc2ad543b243fec0c5c22cb782": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05d4\u05de\u05d9\u05df \u05e9\u05dc\u05da:",
+              "variations": {}
+            }
+          ]
+        },
+        "1b2ec97fa79c3d163cac76346422f8b1": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05dc\u05d0 \u05d0\u05d3\u05dd",
+              "variations": {}
+            }
+          ]
+        },
+        "209fd17e3aef1719fadda2f0208fb688": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05dc{name} \u05d9\u05e9 \u05e7\u05d9\u05e9\u05d5\u05e8 \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d5.",
+              "variations": {}
+            }
+          ]
+        },
+        "23cbcf81d14c2294ba230b45d95ccf56": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05dc{name} \u05d9\u05e9 \u05e4\u05d5\u05e1\u05d8 \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d4.",
+              "variations": {}
+            }
+          ]
+        },
+        "26d8c764cc951266855af9e375d97105": {
+          "tokens": [
+            "__viewing_user__"
+          ],
+          "types": [
+            3
+          ],
+          "translations": [
+            {
+              "translation": "\u05d4\u05e9\u05ea\u05de\u05e9/\u05d9 \u05d1\u05d8\u05d5\u05e4\u05e1 \u05dc\u05de\u05d8\u05d4 \u05db\u05d3\u05d9 \u05dc\u05e8\u05d0\u05d5\u05ea \u05d0\u05ea FBT \u05d1\u05e4\u05e2\u05d5\u05dc\u05d4.",
+              "variations": {
+                "0": 3
+              }
+            },
+            {
+              "translation": "\u05d4\u05e9\u05ea\u05de\u05e9\u05d9 \u05d1\u05d8\u05d5\u05e4\u05e1 \u05dc\u05de\u05d8\u05d4 \u05db\u05d3\u05d9 \u05dc\u05e8\u05d0\u05d5\u05ea \u05d0\u05ea FBT \u05d1\u05e4\u05e2\u05d5\u05dc\u05d4.",
+              "variations": {
+                "0": 2
+              }
+            },
+            {
+              "translation": "\u05d4\u05e9\u05ea\u05de\u05e9 \u05d1\u05d8\u05d5\u05e4\u05e1 \u05dc\u05de\u05d8\u05d4 \u05db\u05d3\u05d9 \u05dc\u05e8\u05d0\u05d5\u05ea \u05d0\u05ea FBT \u05d1\u05e4\u05e2\u05d5\u05dc\u05d4.",
+              "variations": {
+                "0": 1
+              }
+            }
+          ]
+        },
+        "370370d4d03578bda451f99b8c6a3287": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05d6\u05db\u05e8 (\u05d9\u05d7\u05d9\u05d3)",
+              "variations": {}
+            }
+          ]
+        },
+        "37d0e6c1db7414fee2ef94bc7b5f1575": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05e1\u05e4\u05d9\u05e8\u05d4",
+              "variations": {}
+            }
+          ]
+        },
+        "3ff45e45732c2df5e1febc2c643d369d": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05dc{name} \u05d9\u05e9 \u05e7\u05d9\u05e9\u05d5\u05e8 \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d5/\u05e9\u05dc\u05d4.",
+              "variations": {}
+            }
+          ]
+        },
+        "40bd5bc10bd59fe020569068cfd7d814": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05d4\u05d3\u05d2\u05de\u05ea \u05d4-FBT \u05e9\u05dc\u05da",
+              "variations": {}
+            }
+          ]
+        },
+        "4a7e4b119044b338d8b41fab78778d05": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05ea\u05de\u05d5\u05e0\u05d4",
+              "variations": {}
+            }
+          ]
+        },
+        "5739394f06e7e659ebe5ad02ef4d427c": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{=View}",
+              "variations": {}
+            }
+          ]
+        },
+        "575a12521c252c5571a66d1995504c83": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05dc{name} \u05d9\u05e9 \u05ea\u05de\u05d5\u05e0\u05d4 \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d5/\u05e9\u05dc\u05d4.",
+              "variations": {}
+            }
+          ]
+        },
+        "604b966f4a1948aa1efbd6e5c183b3d8": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05db\u05d3\u05d0\u05d9 \u05dc\u05e0\u05e1\u05d5\u05ea!",
+              "variations": {}
+            }
+          ]
+        },
+        "643b77298eef5a450d56374ae678e8d1": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05e0\u05e7\u05d1\u05d4",
+              "variations": {}
+            }
+          ]
+        },
+        "6a24311c8064b857c0fd320be01f7fb6": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05dc\u05d0 \u05d9\u05d3\u05d5\u05e2 (\u05d9\u05d7\u05d9\u05d3)",
+              "variations": {}
+            }
+          ]
+        },
+        "863fc7cde353c97be1f72eb3f3f06bc2": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05dc{name} \u05d9\u05e9 \u05e4\u05d5\u05e1\u05d8 \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d5.",
+              "variations": {}
+            }
+          ]
+        },
+        "88a1bc74298abc6f3824ac4dd56135a0": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05e0\u05e7\u05d1\u05d4 (\u05d9\u05d7\u05d9\u05d3)",
+              "variations": {}
+            }
+          ]
+        },
+        "9837339cf62c9262f4d20c0d7999ff93": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05dc{name} \u05d9\u05e9 \u05e1\u05e8\u05d8\u05d5\u05df \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d5/\u05e9\u05dc\u05d4.",
+              "variations": {}
+            }
+          ]
+        },
+        "a3567d2b112704bff1048a49b93064a2": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05dc{name} \u05d9\u05e9 \u05e4\u05d5\u05e1\u05d8 \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d5/\u05e9\u05dc\u05d4.",
+              "variations": {}
+            }
+          ]
+        },
+        "a95747637ba6cbeeaeef48a2879b1f32": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05dc{name} \u05d9\u05e9 \u05e1\u05e8\u05d8\u05d5\u05df \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d5.",
+              "variations": {}
+            }
+          ]
+        },
+        "a9ea27109d11f0318948298570055b3f": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05dc{name} \u05d9\u05e9 \u05d3\u05e3 \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d5/\u05e9\u05dc\u05d4.",
+              "variations": {}
+            }
+          ]
+        },
+        "ab362a612bbbb45450265125792a837f": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05d6\u05db\u05e8",
+              "variations": {}
+            }
+          ]
+        },
+        "aba87fbe4df14211e8943f721fa3f563": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05dc{name} \u05d9\u05e9 \u05d3\u05e3 \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d5.",
+              "variations": {}
+            }
+          ]
+        },
+        "bf9bf2f7d22fa776eaf7838a6dc2da9f": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05dc\u05d0 \u05d9\u05d3\u05d5\u05e2",
+              "variations": {}
+            }
+          ]
+        },
+        "c63ed212602077b1dd58db087991b5af": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05dc\u05d0 \u05d9\u05d3\u05d5\u05e2 (\u05e8\u05d1\u05d9\u05dd)",
+              "variations": {}
+            }
+          ]
+        },
+        "ce5f268d53706acc64dd5e59430be1c8": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05de\u05d9\u05df:",
+              "variations": {}
+            }
+          ]
+        },
+        "d1021dd603ef7ed4073bee3d498ccb83": {
+          "tokens": [
+            "__viewing_user__"
+          ],
+          "types": [
+            3
+          ],
+          "translations": [
+            {
+              "translation": "\u05e6\u05e4\u05d9",
+              "variations": {
+                "0": 2
+              }
+            },
+            {
+              "translation": "\u05e6\u05e4\u05d4",
+              "variations": {
+                "0": 1
+              }
+            },
+            {
+              "translation": "\u05e6\u05e4\u05d4/\u05e6\u05e4\u05d9",
+              "variations": {
+                "0": 3
+              }
+            }
+          ]
+        },
+        "d47b9415c39a6e5e042244d77c23bb13": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{number} \u05ea\u05de\u05d5\u05e0\u05d5\u05ea",
+              "variations": {}
+            }
+          ]
+        },
+        "e2a294efdf88fa51379667ac368953f7": {
+          "tokens": [
+            "name"
+          ],
+          "types": [
+            3
+          ],
+          "translations": [
+            {
+              "translation": "{name} \u05e9\u05d9\u05ea\u05e4\u05d4 \u05d0\u05d9\u05ea\u05da {=a photo}",
+              "variations": {
+                "0": 2
+              }
+            },
+            {
+              "translation": "{name} \u05e9\u05d9\u05ea\u05e3 \u05d0\u05d9\u05ea\u05da {=a photo}",
+              "variations": {
+                "0": 1
+              }
+            },
+            {
+              "translation": "{name} \u05e9\u05d9\u05ea\u05e3/\u05e9\u05d9\u05ea\u05e4\u05d4 \u05d0\u05d9\u05ea\u05da {=a photo}",
+              "variations": {
+                "0": 3
+              }
+            }
+          ]
+        },
+        "e776d21e0dd182ddd172f444407eb40c": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05dc{name} \u05d9\u05e9 \u05ea\u05de\u05d5\u05e0\u05d4 \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d4.",
+              "variations": {}
+            }
+          ]
+        },
+        "ea428b598a1c30f60c9d213822b75ba3": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05dc{name} \u05d9\u05e9 \u05e7\u05d9\u05e9\u05d5\u05e8 \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d4.",
+              "variations": {}
+            }
+          ]
+        },
+        "f75b97a97fa3772468477f17e0c0a160": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05d1\u05e0\u05d9\u05d9\u05ea \u05de\u05e9\u05e4\u05d8\u05d9\u05dd",
+              "variations": {}
+            }
+          ]
+        },
+        "fb144ab202738a4ba0ad63f4c116a982": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u05dc{name} \u05d9\u05e9 \u05ea\u05de\u05d5\u05e0\u05d4 \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d5.",
+              "variations": {}
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fb-locale": "ja_JP",
+      "translations": {
+        "025316323d5bb7597ad78e39d37772aa": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u540d\u524d",
+              "variations": {}
+            }
+          ]
+        },
+        "0f4ef5ee61e8dbeacc42549ac24f676f": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name}\u3055\u3093\u304c\u52d5\u753b\u3092\u30b7\u30a7\u30a2\u3057\u3066\u3044\u307e\u3059\uff01\u52d5\u753b\u3092{=View}",
+              "variations": {}
+            }
+          ]
+        },
+        "1315810748fa63a66b18bf9d64032e2e": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name}\u3055\u3093\u304c\u30da\u30fc\u30b8\u3092\u30b7\u30a7\u30a2\u3057\u3066\u3044\u307e\u3059\uff01\u30da\u30fc\u30b8\u3092{=View}",
+              "variations": {}
+            }
+          ]
+        },
+        "1893f1dc2ad543b243fec0c5c22cb782": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u6027\u5225:",
+              "variations": {}
+            }
+          ]
+        },
+        "1b2ec97fa79c3d163cac76346422f8b1": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u975e\u4eba\u79f0",
+              "variations": {}
+            }
+          ]
+        },
+        "209fd17e3aef1719fadda2f0208fb688": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name}\u3055\u3093\u304c\u30ea\u30f3\u30af\u3092\u30b7\u30a7\u30a2\u3057\u3066\u3044\u307e\u3059\uff01\u30ea\u30f3\u30af\u3092{=View}",
+              "variations": {}
+            }
+          ]
+        },
+        "23cbcf81d14c2294ba230b45d95ccf56": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name}\u3055\u3093\u304c\u6295\u7a3f\u3092\u30b7\u30a7\u30a2\u3057\u3066\u3044\u307e\u3059\uff01\u6295\u7a3f\u3092{=View}",
+              "variations": {}
+            }
+          ]
+        },
+        "26d8c764cc951266855af9e375d97105": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u4e0b\u306e\u30d5\u30a9\u30fc\u30e0\u3092\u4f7f\u7528\u3057\u3066\u5b9f\u969b\u306eFBT\u3092\u78ba\u8a8d\u3057\u307e\u3059",
+              "variations": {}
+            }
+          ]
+        },
+        "370370d4d03578bda451f99b8c6a3287": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u7537\u6027(\u5358\u6570)",
+              "variations": {}
+            }
+          ]
+        },
+        "37d0e6c1db7414fee2ef94bc7b5f1575": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u4eba\u6570",
+              "variations": {}
+            }
+          ]
+        },
+        "3ff45e45732c2df5e1febc2c643d369d": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name}\u3055\u3093\u304c\u30ea\u30f3\u30af\u3092\u30b7\u30a7\u30a2\u3057\u3066\u3044\u307e\u3059\uff01\u30ea\u30f3\u30af\u3092{=View}",
+              "variations": {}
+            }
+          ]
+        },
+        "40bd5bc10bd59fe020569068cfd7d814": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "FBT\u30c7\u30e2",
+              "variations": {}
+            }
+          ]
+        },
+        "4a7e4b119044b338d8b41fab78778d05": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u5199\u771f1\u679a",
+              "variations": {}
+            }
+          ]
+        },
+        "5739394f06e7e659ebe5ad02ef4d427c": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{=View}",
+              "variations": {}
+            }
+          ]
+        },
+        "575a12521c252c5571a66d1995504c83": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name}\u3055\u3093\u304c\u5199\u771f\u3092\u30b7\u30a7\u30a2\u3057\u3066\u3044\u307e\u3059\uff01\u5199\u771f\u3092{=View}",
+              "variations": {}
+            }
+          ]
+        },
+        "604b966f4a1948aa1efbd6e5c183b3d8": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u8a66\u3059",
+              "variations": {}
+            }
+          ]
+        },
+        "643b77298eef5a450d56374ae678e8d1": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u5973\u6027",
+              "variations": {}
+            }
+          ]
+        },
+        "6a24311c8064b857c0fd320be01f7fb6": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u4e0d\u660e(\u5358\u6570)",
+              "variations": {}
+            }
+          ]
+        },
+        "863fc7cde353c97be1f72eb3f3f06bc2": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name}\u3055\u3093\u304c\u6295\u7a3f\u3092\u30b7\u30a7\u30a2\u3057\u3066\u3044\u307e\u3059\uff01\u6295\u7a3f\u3092{=View}",
+              "variations": {}
+            }
+          ]
+        },
+        "88a1bc74298abc6f3824ac4dd56135a0": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u5973\u6027(\u5358\u6570)",
+              "variations": {}
+            }
+          ]
+        },
+        "9837339cf62c9262f4d20c0d7999ff93": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name}\u3055\u3093\u304c\u52d5\u753b\u3092\u30b7\u30a7\u30a2\u3057\u3066\u3044\u307e\u3059\uff01\u52d5\u753b\u3092{=View}",
+              "variations": {}
+            }
+          ]
+        },
+        "a3567d2b112704bff1048a49b93064a2": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name}\u3055\u3093\u304c\u6295\u7a3f\u3092\u30b7\u30a7\u30a2\u3057\u3066\u3044\u307e\u3059\uff01\u6295\u7a3f\u3092{=View}",
+              "variations": {}
+            }
+          ]
+        },
+        "a95747637ba6cbeeaeef48a2879b1f32": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name}\u3055\u3093\u304c\u52d5\u753b\u3092\u30b7\u30a7\u30a2\u3057\u3066\u3044\u307e\u3059\uff01\u52d5\u753b\u3092{=View}",
+              "variations": {}
+            }
+          ]
+        },
+        "a9ea27109d11f0318948298570055b3f": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name}\u3055\u3093\u304c\u30da\u30fc\u30b8\u3092\u30b7\u30a7\u30a2\u3057\u3066\u3044\u307e\u3059\uff01\u30da\u30fc\u30b8\u3092{=View}",
+              "variations": {}
+            }
+          ]
+        },
+        "ab362a612bbbb45450265125792a837f": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u7537\u6027",
+              "variations": {}
+            }
+          ]
+        },
+        "aba87fbe4df14211e8943f721fa3f563": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name}\u3055\u3093\u304c\u30da\u30fc\u30b8\u3092\u30b7\u30a7\u30a2\u3057\u3066\u3044\u307e\u3059\uff01\u30da\u30fc\u30b8\u3092{=View}",
+              "variations": {}
+            }
+          ]
+        },
+        "bf9bf2f7d22fa776eaf7838a6dc2da9f": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u4e0d\u660e",
+              "variations": {}
+            }
+          ]
+        },
+        "c63ed212602077b1dd58db087991b5af": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u4e0d\u660e(\u8907\u6570)",
+              "variations": {}
+            }
+          ]
+        },
+        "ce5f268d53706acc64dd5e59430be1c8": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u6027\u5225:",
+              "variations": {}
+            }
+          ]
+        },
+        "d1021dd603ef7ed4073bee3d498ccb83": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u898b\u308b",
+              "variations": {}
+            }
+          ]
+        },
+        "d47b9415c39a6e5e042244d77c23bb13": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u5199\u771f{number}\u679a",
+              "variations": {}
+            }
+          ]
+        },
+        "e2a294efdf88fa51379667ac368953f7": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name}\u3055\u3093\u304c{=a photo}\u3092\u30b7\u30a7\u30a2\u3057\u307e\u3057\u305f",
+              "variations": {}
+            }
+          ]
+        },
+        "e776d21e0dd182ddd172f444407eb40c": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name}\u3055\u3093\u304c\u5199\u771f\u3092\u30b7\u30a7\u30a2\u3057\u3066\u3044\u307e\u3059\uff01\u5199\u771f\u3092{=View}",
+              "variations": {}
+            }
+          ]
+        },
+        "ea428b598a1c30f60c9d213822b75ba3": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name}\u3055\u3093\u304c\u30ea\u30f3\u30af\u3092\u30b7\u30a7\u30a2\u3057\u3066\u3044\u307e\u3059\uff01\u30ea\u30f3\u30af\u3092{=View}",
+              "variations": {}
+            }
+          ]
+        },
+        "f75b97a97fa3772468477f17e0c0a160": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u6587\u306e\u751f\u6210",
+              "variations": {}
+            }
+          ]
+        },
+        "fb144ab202738a4ba0ad63f4c116a982": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name}\u3055\u3093\u304c\u5199\u771f\u3092\u30b7\u30a7\u30a2\u3057\u3066\u3044\u307e\u3059\uff01\u5199\u771f\u3092{=View}",
+              "variations": {}
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fb-locale": "ar_AR",
+      "translations": {
+        "025316323d5bb7597ad78e39d37772aa": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u0627\u0644\u0627\u0633\u0645",
+              "variations": {}
+            }
+          ]
+        },
+        "0f4ef5ee61e8dbeacc42549ac24f676f": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u0644\u062f\u0649 {name} \u0641\u064a\u062f\u064a\u0648 \u0644\u0645\u0634\u0627\u0631\u0643\u062a\u0647! \u064a\u0645\u0643\u0646\u0643 {=View} \u0627\u0644\u0641\u064a\u062f\u064a\u0648 \u0627\u0644\u062e\u0627\u0635 \u0628\u0647\u0627.",
+              "variations": {}
+            }
+          ]
+        },
+        "1315810748fa63a66b18bf9d64032e2e": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u0644\u062f\u0649 {name} \u0635\u0641\u062d\u0629 \u0644\u0645\u0634\u0627\u0631\u0643\u062a\u0647\u0627! \u064a\u0645\u0643\u0646\u0643 {=View} \u0635\u0641\u062d\u062a\u0647\u0627.",
+              "variations": {}
+            }
+          ]
+        },
+        "1893f1dc2ad543b243fec0c5c22cb782": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u062c\u0646\u0633\u0643:",
+              "variations": {}
+            }
+          ]
+        },
+        "1b2ec97fa79c3d163cac76346422f8b1": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u0644\u064a\u0633 \u0634\u062e\u0635\u064b\u0627",
+              "variations": {}
+            }
+          ]
+        },
+        "209fd17e3aef1719fadda2f0208fb688": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u0644\u062f\u0649 {name} \u0631\u0627\u0628\u0637 \u0644\u0645\u0634\u0627\u0631\u0643\u062a\u0647! \u064a\u0645\u0643\u0646\u0643 {=View} \u0627\u0644\u0631\u0627\u0628\u0637 \u0627\u0644\u062e\u0627\u0635 \u0628\u0647.",
+              "variations": {}
+            }
+          ]
+        },
+        "23cbcf81d14c2294ba230b45d95ccf56": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u0644\u062f\u0649 {name} \u0645\u0646\u0634\u0648\u0631 \u0644\u0645\u0634\u0627\u0631\u0643\u062a\u0647! \u064a\u0645\u0643\u0646\u0643 {=View} \u0645\u0646\u0634\u0648\u0631\u0647\u0627.",
+              "variations": {}
+            }
+          ]
+        },
+        "26d8c764cc951266855af9e375d97105": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u064a\u0645\u0643\u0646\u0643 \u0627\u0633\u062a\u062e\u062f\u0627\u0645 \u0627\u0644\u0646\u0645\u0648\u0630\u062c \u0623\u062f\u0646\u0627\u0647 \u0644\u0631\u0624\u064a\u0629 FBT \u0623\u062b\u0646\u0627\u0621 \u0627\u0644\u0639\u0645\u0644.",
+              "variations": {}
+            }
+          ]
+        },
+        "370370d4d03578bda451f99b8c6a3287": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u0630\u0643\u0631 (\u0645\u0641\u0631\u062f)",
+              "variations": {}
+            }
+          ]
+        },
+        "37d0e6c1db7414fee2ef94bc7b5f1575": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u0627\u0644\u0639\u062f\u062f",
+              "variations": {}
+            }
+          ]
+        },
+        "3ff45e45732c2df5e1febc2c643d369d": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u0644\u062f\u0649 {name} \u0631\u0627\u0628\u0637 \u0644\u0645\u0634\u0627\u0631\u0643\u062a\u0647! \u064a\u0645\u0643\u0646\u0643 {=View} \u0627\u0644\u0631\u0627\u0628\u0637 \u0627\u0644\u062e\u0627\u0635 \u0628\u0647.",
+              "variations": {}
+            }
+          ]
+        },
+        "40bd5bc10bd59fe020569068cfd7d814": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u0639\u0631\u0636 \u062a\u0648\u0636\u064a\u062d\u064a \u0644\u0640 FBT",
+              "variations": {}
+            }
+          ]
+        },
+        "4a7e4b119044b338d8b41fab78778d05": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u0635\u0648\u0631\u0629",
+              "variations": {}
+            }
+          ]
+        },
+        "5739394f06e7e659ebe5ad02ef4d427c": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{=View}",
+              "variations": {}
+            }
+          ]
+        },
+        "575a12521c252c5571a66d1995504c83": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u0644\u062f\u0649 {name} \u0635\u0648\u0631\u0629 \u0644\u0645\u0634\u0627\u0631\u0643\u062a\u0647\u0627! \u064a\u0645\u0643\u0646\u0643 {=View} \u0635\u0648\u0631\u062a\u0647.",
+              "variations": {}
+            }
+          ]
+        },
+        "604b966f4a1948aa1efbd6e5c183b3d8": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u064a\u0645\u0643\u0646\u0643 \u0627\u0644\u062a\u062c\u0631\u0628\u0629!",
+              "variations": {}
+            }
+          ]
+        },
+        "643b77298eef5a450d56374ae678e8d1": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u0623\u064e\u0646\u062b\u0649",
+              "variations": {}
+            }
+          ]
+        },
+        "6a24311c8064b857c0fd320be01f7fb6": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u063a\u064a\u0631 \u0645\u0639\u0631\u0648\u0641 (\u0645\u0641\u0631\u062f)",
+              "variations": {}
+            }
+          ]
+        },
+        "863fc7cde353c97be1f72eb3f3f06bc2": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u0644\u062f\u0649 {name} \u0645\u0646\u0634\u0648\u0631 \u0644\u0645\u0634\u0627\u0631\u0643\u062a\u0647! \u064a\u0645\u0643\u0646\u0643 {=View} \u0645\u0646\u0634\u0648\u0631\u0647.",
+              "variations": {}
+            }
+          ]
+        },
+        "88a1bc74298abc6f3824ac4dd56135a0": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u0623\u0646\u062b\u0649 (\u0645\u0641\u0631\u062f)",
+              "variations": {}
+            }
+          ]
+        },
+        "9837339cf62c9262f4d20c0d7999ff93": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u0644\u062f\u0649 {name} \u0641\u064a\u062f\u064a\u0648 \u0644\u0645\u0634\u0627\u0631\u0643\u062a\u0647! \u064a\u0645\u0643\u0646\u0643 {=View} \u0627\u0644\u0641\u064a\u062f\u064a\u0648 \u0627\u0644\u062e\u0627\u0635 \u0628\u0647.",
+              "variations": {}
+            }
+          ]
+        },
+        "a3567d2b112704bff1048a49b93064a2": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u0644\u062f\u0649 {name} \u0645\u0646\u0634\u0648\u0631 \u0644\u0645\u0634\u0627\u0631\u0643\u062a\u0647! \u064a\u0645\u0643\u0646\u0643 {=View} \u0645\u0646\u0634\u0648\u0631\u0647.",
+              "variations": {}
+            }
+          ]
+        },
+        "a95747637ba6cbeeaeef48a2879b1f32": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u0644\u062f\u0649 {name} \u0641\u064a\u062f\u064a\u0648 \u0644\u0645\u0634\u0627\u0631\u0643\u062a\u0647! \u064a\u0645\u0643\u0646\u0643 {=View} \u0627\u0644\u0641\u064a\u062f\u064a\u0648 \u0627\u0644\u062e\u0627\u0635 \u0628\u0647.",
+              "variations": {}
+            }
+          ]
+        },
+        "a9ea27109d11f0318948298570055b3f": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u0644\u062f\u0649 {name} \u0635\u0641\u062d\u0629 \u0644\u0645\u0634\u0627\u0631\u0643\u062a\u0647\u0627! \u064a\u0645\u0643\u0646\u0643 {=View} \u0635\u0641\u062d\u062a\u0647.",
+              "variations": {}
+            }
+          ]
+        },
+        "ab362a612bbbb45450265125792a837f": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u0630\u0643\u0631",
+              "variations": {}
+            }
+          ]
+        },
+        "aba87fbe4df14211e8943f721fa3f563": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u0644\u062f\u0649 {name} \u0635\u0641\u062d\u0629 \u0644\u0645\u0634\u0627\u0631\u0643\u062a\u0647\u0627! \u064a\u0645\u0643\u0646\u0643 {=View} \u0635\u0641\u062d\u062a\u0647.",
+              "variations": {}
+            }
+          ]
+        },
+        "bf9bf2f7d22fa776eaf7838a6dc2da9f": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u063a\u064a\u0631 \u0645\u0639\u0631\u0648\u0641",
+              "variations": {}
+            }
+          ]
+        },
+        "c63ed212602077b1dd58db087991b5af": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u063a\u064a\u0631 \u0645\u0639\u0631\u0648\u0641 (\u062c\u0645\u0639)",
+              "variations": {}
+            }
+          ]
+        },
+        "ce5f268d53706acc64dd5e59430be1c8": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u0627\u0644\u062c\u0646\u0633:",
+              "variations": {}
+            }
+          ]
+        },
+        "d1021dd603ef7ed4073bee3d498ccb83": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u0645\u0634\u0627\u0647\u062f\u0629",
+              "variations": {}
+            }
+          ]
+        },
+        "d47b9415c39a6e5e042244d77c23bb13": {
+          "tokens": [
+            "number"
+          ],
+          "types": [
+            28
+          ],
+          "translations": [
+            {
+              "translation": "{number} \u0635\u0648\u0631\u0629",
+              "id": 110154509,
+              "variations": {
+                "0": 24
+              }
+            },
+            {
+              "translation": "{number} \u0635\u0648\u0631",
+              "id": 110154499,
+              "variations": {
+                "0": 20
+              }
+            },
+            {
+              "translation": "{number} \u0635\u0648\u0631\u0629",
+              "id": 110154500,
+              "variations": {
+                "0": 12
+              }
+            },
+            {
+              "translation": "\u0635\u0648\u0631\u0629 \u0648\u0627\u062d\u062f\u0629",
+              "id": 110154465,
+              "variations": {
+                "0": 4
+              }
+            },
+            {
+              "translation": "{number} \u0635\u0648\u0631\u0629",
+              "id": 110154464,
+              "variations": {
+                "0": 16
+              }
+            },
+            {
+              "translation": "\u0635\u0648\u0631\u062a\u064a\u0646",
+              "id": 110154497,
+              "variations": {
+                "0": 8
+              }
+            }
+          ]
+        },
+        "e2a294efdf88fa51379667ac368953f7": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u062a\u0645\u062a \u0645\u0634\u0627\u0631\u0643\u0629 {=a photo} \u0645\u0639\u0643 \u0628\u0648\u0627\u0633\u0637\u0629 {name}",
+              "variations": {}
+            }
+          ]
+        },
+        "e776d21e0dd182ddd172f444407eb40c": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u0644\u062f\u0649 {name} \u0635\u0648\u0631\u0629 \u0644\u0645\u0634\u0627\u0631\u0643\u062a\u0647\u0627! \u064a\u0645\u0643\u0646\u0643 {=View} \u0635\u0648\u0631\u062a\u0647\u0627.",
+              "variations": {}
+            }
+          ]
+        },
+        "ea428b598a1c30f60c9d213822b75ba3": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u0644\u062f\u0649 {name} \u0631\u0627\u0628\u0637 \u0644\u0645\u0634\u0627\u0631\u0643\u062a\u0647! \u064a\u0645\u0643\u0646\u0643 {=View} \u0627\u0644\u0631\u0627\u0628\u0637 \u0627\u0644\u062e\u0627\u0635 \u0628\u0647\u0627.",
+              "variations": {}
+            }
+          ]
+        },
+        "f75b97a97fa3772468477f17e0c0a160": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u062a\u0643\u0648\u064a\u0646 \u062c\u0645\u0644",
+              "variations": {}
+            }
+          ]
+        },
+        "fb144ab202738a4ba0ad63f4c116a982": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u0644\u062f\u0649 {name} \u0635\u0648\u0631\u0629 \u0644\u0645\u0634\u0627\u0631\u0643\u062a\u0647\u0627! \u064a\u0645\u0643\u0646\u0643 {=View} \u0635\u0648\u0631\u062a\u0647.",
+              "variations": {}
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fb-locale": "es_LA",
+      "translations": {
+        "025316323d5bb7597ad78e39d37772aa": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "nombre",
+              "variations": {}
+            }
+          ]
+        },
+        "0f4ef5ee61e8dbeacc42549ac24f676f": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name} tiene un video para compartir. {=View} el video.",
+              "variations": {}
+            }
+          ]
+        },
+        "1315810748fa63a66b18bf9d64032e2e": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name} tiene una p\u00e1gina para compartir. {=View} la p\u00e1gina.",
+              "variations": {}
+            }
+          ]
+        },
+        "1893f1dc2ad543b243fec0c5c22cb782": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "Tu sexo:",
+              "variations": {}
+            }
+          ]
+        },
+        "1b2ec97fa79c3d163cac76346422f8b1": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "No es una persona",
+              "variations": {}
+            }
+          ]
+        },
+        "209fd17e3aef1719fadda2f0208fb688": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name} tiene un enlace para compartir. {=View} el enlace.",
+              "variations": {}
+            }
+          ]
+        },
+        "23cbcf81d14c2294ba230b45d95ccf56": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name} tiene una publicaci\u00f3n para compartir. {=View} la publicaci\u00f3n.",
+              "variations": {}
+            }
+          ]
+        },
+        "26d8c764cc951266855af9e375d97105": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "Usa el siguiente formulario  para ver FBT en acci\u00f3n.",
+              "variations": {}
+            }
+          ]
+        },
+        "370370d4d03578bda451f99b8c6a3287": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "Hombre (singular)",
+              "variations": {}
+            }
+          ]
+        },
+        "37d0e6c1db7414fee2ef94bc7b5f1575": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "n\u00famero",
+              "variations": {}
+            }
+          ]
+        },
+        "3ff45e45732c2df5e1febc2c643d369d": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name} tiene un enlace para compartir. {=View} el enlace.",
+              "variations": {}
+            }
+          ]
+        },
+        "40bd5bc10bd59fe020569068cfd7d814": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "Tu demo de FBT",
+              "variations": {}
+            }
+          ]
+        },
+        "4a7e4b119044b338d8b41fab78778d05": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "una foto",
+              "variations": {}
+            }
+          ]
+        },
+        "5739394f06e7e659ebe5ad02ef4d427c": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{=View}",
+              "variations": {}
+            }
+          ]
+        },
+        "575a12521c252c5571a66d1995504c83": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name} tiene una foto para compartir. {=View} la foto.",
+              "variations": {}
+            }
+          ]
+        },
+        "604b966f4a1948aa1efbd6e5c183b3d8": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "\u00a1Pru\u00e9balo!",
+              "variations": {}
+            }
+          ]
+        },
+        "643b77298eef5a450d56374ae678e8d1": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "Mujer",
+              "variations": {}
+            }
+          ]
+        },
+        "6a24311c8064b857c0fd320be01f7fb6": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "Desconocido (singular)",
+              "variations": {}
+            }
+          ]
+        },
+        "863fc7cde353c97be1f72eb3f3f06bc2": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name} tiene una publicaci\u00f3n para compartir. {=View} la publicaci\u00f3n.",
+              "variations": {}
+            }
+          ]
+        },
+        "88a1bc74298abc6f3824ac4dd56135a0": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "Mujer (singular)",
+              "variations": {}
+            }
+          ]
+        },
+        "9837339cf62c9262f4d20c0d7999ff93": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name} tiene un video para compartir. {=View} el video.",
+              "variations": {}
+            }
+          ]
+        },
+        "a3567d2b112704bff1048a49b93064a2": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name} tiene una publicaci\u00f3n para compartir. {=View} la publicaci\u00f3n.",
+              "variations": {}
+            }
+          ]
+        },
+        "a95747637ba6cbeeaeef48a2879b1f32": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name} tiene un video para compartir. {=View} el video.",
+              "variations": {}
+            }
+          ]
+        },
+        "a9ea27109d11f0318948298570055b3f": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name} tiene una p\u00e1gina para compartir. {=View} la p\u00e1gina.",
+              "variations": {}
+            }
+          ]
+        },
+        "ab362a612bbbb45450265125792a837f": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "Hombre",
+              "variations": {}
+            }
+          ]
+        },
+        "aba87fbe4df14211e8943f721fa3f563": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name} tiene una p\u00e1gina para compartir. {=View} la p\u00e1gina.",
+              "variations": {}
+            }
+          ]
+        },
+        "bf9bf2f7d22fa776eaf7838a6dc2da9f": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "Desconocido",
+              "variations": {}
+            }
+          ]
+        },
+        "c63ed212602077b1dd58db087991b5af": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "Desconocido (plural)",
+              "variations": {}
+            }
+          ]
+        },
+        "ce5f268d53706acc64dd5e59430be1c8": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "Sexo:",
+              "variations": {}
+            }
+          ]
+        },
+        "d1021dd603ef7ed4073bee3d498ccb83": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "Mira",
+              "variations": {}
+            }
+          ]
+        },
+        "d47b9415c39a6e5e042244d77c23bb13": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{number} fotos",
+              "variations": {}
+            }
+          ]
+        },
+        "e2a294efdf88fa51379667ac368953f7": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name} comparti\u00f3 {=a photo} contigo",
+              "variations": {}
+            }
+          ]
+        },
+        "e776d21e0dd182ddd172f444407eb40c": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name} tiene una foto para compartir. {=View} la foto.",
+              "variations": {}
+            }
+          ]
+        },
+        "ea428b598a1c30f60c9d213822b75ba3": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name} tiene un enlace para compartir. {=View} el enlace.",
+              "variations": {}
+            }
+          ]
+        },
+        "f75b97a97fa3772468477f17e0c0a160": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "Construye oraciones",
+              "variations": {}
+            }
+          ]
+        },
+        "fb144ab202738a4ba0ad63f4c116a982": {
+          "tokens": [],
+          "types": [],
+          "translations": [
+            {
+              "translation": "{name} tiene una foto para compartir. {=View} la foto.",
+              "variations": {}
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

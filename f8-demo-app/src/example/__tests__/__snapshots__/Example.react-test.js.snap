@@ -1,0 +1,356 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Example.react renders the example 1`] = `
+<div>
+  <div
+    className="example"
+  >
+    <div
+      className="warning"
+    >
+      Your FBT Demo
+    </div>
+    <h1>
+      Construct sentences
+    </h1>
+    <h2>
+      Use the form below to see FBT in action.
+    </h2>
+    <form
+      action=""
+      method="get"
+      onSubmit={[Function]}
+    >
+      <fieldset>
+        <span
+          className="example_row"
+        >
+          <span
+            className="example_input--30"
+          >
+            <select
+              className="neatoSelect"
+              onChange={[Function]}
+            >
+              <option
+                value={3}
+              >
+                Your Gender:
+              </option>
+              <option
+                value={3}
+              >
+                Unknown
+              </option>
+              <option
+                value={1}
+              >
+                Male
+              </option>
+              <option
+                value={2}
+              >
+                Female
+              </option>
+            </select>
+          </span>
+        </span>
+      </fieldset>
+      <fieldset>
+        <span
+          className="example_row example_row--multi"
+        >
+          <span
+            className="example_input example_input--40"
+          >
+            <input
+              name="name"
+              onChange={[Function]}
+              placeholder={
+                <FbtComponent
+                  content={
+                    Array [
+                      "name",
+                    ]
+                  }
+                />
+              }
+              type="text"
+            />
+          </span>
+          <span
+            className="example_input example_input--30"
+          >
+            <input
+              name="count"
+              onChange={[Function]}
+              placeholder={
+                <FbtComponent
+                  content={
+                    Array [
+                      "count",
+                    ]
+                  }
+                />
+              }
+              type="number"
+            />
+          </span>
+          <span
+            className="example_row"
+          >
+            <select
+              className="neatoSelect"
+              onChange={[Function]}
+            >
+              <option
+                value={3}
+              >
+                Gender:
+              </option>
+              <option
+                value={3}
+              >
+                Unknown
+              </option>
+              <option
+                value={1}
+              >
+                Male
+              </option>
+              <option
+                value={2}
+              >
+                Female
+              </option>
+            </select>
+          </span>
+        </span>
+      </fieldset>
+      <fieldset>
+        <span
+          className="sentence example_row"
+        >
+          
+          <b
+            className="padRight"
+          >
+            Someone
+          </b>
+           has shared 
+          <a
+            className="neatoLink"
+            href="#"
+          >
+             a photo
+          </a>
+           with you
+        </span>
+      </fieldset>
+      <fieldset>
+        <span
+          className="example_row example_row--multi"
+        >
+          <span
+            className="example_input example_input--40"
+          >
+            <input
+              name="ex2Name"
+              onChange={[Function]}
+              placeholder={
+                <FbtComponent
+                  content={
+                    Array [
+                      "name",
+                    ]
+                  }
+                />
+              }
+              type="text"
+            />
+          </span>
+          <span
+            className="example_input example_input--20"
+          >
+            <select
+              className="neatoSelect"
+              onChange={[Function]}
+            >
+              <option
+                value="LINK"
+              >
+                link
+              </option>
+              <option
+                value="PAGE"
+              >
+                page
+              </option>
+              <option
+                value="PHOTO"
+              >
+                photo
+              </option>
+              <option
+                value="POST"
+              >
+                post
+              </option>
+              <option
+                value="VIDEO"
+              >
+                video
+              </option>
+            </select>
+          </span>
+          <span
+            className="example_row example_input--20"
+          >
+            <select
+              className="neatoSelect"
+              onChange={[Function]}
+            >
+              <option
+                value={11}
+              >
+                Gender:
+              </option>
+              <option
+                value={0}
+              >
+                Not a person
+              </option>
+              <option
+                value={11}
+              >
+                Unknown (Plural)
+              </option>
+              <option
+                value={7}
+              >
+                Unknown (singular)
+              </option>
+              <option
+                value={2}
+              >
+                Male (singular)
+              </option>
+              <option
+                value={1}
+              >
+                Female (singular)
+              </option>
+            </select>
+          </span>
+        </span>
+      </fieldset>
+      <fieldset>
+        <span
+          className="sentence example_row"
+        >
+          
+          <b
+            className="padRight"
+          >
+            <a
+              href="#"
+            >
+              Someone
+            </a>
+          </b>
+           has a link to share! 
+          <b
+            className="pad"
+          >
+            
+            <a
+              href="#"
+            >
+              View
+            </a>
+            
+          </b>
+           their link.
+        </span>
+      </fieldset>
+      <fieldset>
+        <span
+          className="example_row"
+        >
+          <button
+            className="bottom"
+            onClick={[Function]}
+            type="submit"
+          >
+            Try it out!
+          </button>
+        </span>
+      </fieldset>
+    </form>
+  </div>
+  <ul
+    className="languages"
+  >
+    <li
+      value="en_US"
+    >
+      English (US)‎
+    </li>
+    <li
+      value="fb_HX"
+    >
+      <a
+        href="#fb_HX"
+        onClick={[Function]}
+      >
+        l33t 5p34k
+      </a>
+    </li>
+    <li
+      value="es_LA"
+    >
+      <a
+        href="#es_LA"
+        onClick={[Function]}
+      >
+        Español
+      </a>
+    </li>
+    <li
+      value="ar_AR"
+    >
+      <a
+        href="#ar_AR"
+        onClick={[Function]}
+      >
+        العربية
+      </a>
+    </li>
+    <li
+      value="he_IL"
+    >
+      <a
+        href="#he_IL"
+        onClick={[Function]}
+      >
+        עברית
+      </a>
+    </li>
+    <li
+      value="ja_JP"
+    >
+      <a
+        href="#ja_JP"
+        onClick={[Function]}
+      >
+        日本語
+      </a>
+    </li>
+  </ul>
+  <p
+    className="copyright"
+  >
+    Facebook © 2018
+  </p>
+</div>
+`;
