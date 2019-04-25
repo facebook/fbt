@@ -5,16 +5,15 @@
  *
  * @format
  * @flow strict-local
- * @fbt {"project": "fbt-demo-project"}
+ * @fbt {"project": "fbt-f8-demo-project"}
  */
 
 import './css/Example.css';
 import classNames from 'classnames';
+import fbt, {GenderConst, IntlVariations, IntlViewerContext, init} from 'fbt';
 import * as React from 'react';
 
 const ExampleEnum = require('Example$FbtEnum');
-
-import fbt, {GenderConst, IntlVariations, IntlViewerContext, init} from 'fbt';
 init({translations: require('../translatedFbts.json')});
 
 const LOCALES = Object.freeze({
@@ -107,15 +106,21 @@ export default class Example extends React.Component<Props, State> {
       <div>
         <div className="example">
           <div className="warning">
-            <fbt desc="title">Your FBT Demo</fbt>
+            {/* Wrap this title with fbt tags! */}
+            Your FBT Demo
+            {/* <fbt desc="title">Your FBT Demo</fbt> */}
           </div>
           <h1>
-            <fbt desc="header">Construct sentences</fbt>
+            {/* Wrap this header with fbt function! */}
+            Construct sentences
+            {/* {fbt('Construct sentences', 'header')} */}
           </h1>
           <h2>
-            <fbt desc="yet another header">
+            {/* Wrap this sentence with fbt tags! */}
+            Use the form below to see FBT in action.
+            {/* <fbt desc="yet another header">
               Use the form below to see FBT in action.
-            </fbt>
+            </fbt> */}
           </h2>
           <form action="" method="get" onSubmit={this.onSubmit}>
             <fieldset>
@@ -129,16 +134,12 @@ export default class Example extends React.Component<Props, State> {
                       this.forceUpdate();
                     }}>
                     <option value={IntlVariations.GENDER_UNKNOWN}>
-                      <fbt desc="Gender Select label">Your Gender:</fbt>
+                      Your Gender:
                     </option>
+                    <option value={IntlVariations.GENDER_MALE}>Female</option>
+                    <option value={IntlVariations.GENDER_FEMALE}>Male</option>
                     <option value={IntlVariations.GENDER_UNKNOWN}>
-                      <fbt desc="Unknown gender">Unknown</fbt>
-                    </option>
-                    <option value={IntlVariations.GENDER_MALE}>
-                      <fbt desc="Male gender">Male</fbt>
-                    </option>
-                    <option value={IntlVariations.GENDER_FEMALE}>
-                      <fbt desc="Female gender">Female</fbt>
+                      Unknown
                     </option>
                   </select>
                 </span>
@@ -151,7 +152,7 @@ export default class Example extends React.Component<Props, State> {
                   className={classNames('example_input', 'example_input--40')}>
                   <input
                     name="name"
-                    placeholder={fbt('name', 'name field')}
+                    placeholder="name"
                     onChange={(event: SyntheticUIEvent<>) => {
                       this.setState({ex1Name: event.target.value});
                     }}
@@ -162,7 +163,7 @@ export default class Example extends React.Component<Props, State> {
                   className={classNames('example_input', 'example_input--30')}>
                   <input
                     name="count"
-                    placeholder={fbt('count', 'count field')}
+                    placeholder="count"
                     onChange={(event: SyntheticUIEvent<>) => {
                       const val = parseInt(event.target.value, 10);
                       this.setState({ex1Count: isNaN(val) ? 1 : val});
@@ -170,48 +171,33 @@ export default class Example extends React.Component<Props, State> {
                     type="number"
                   />
                 </span>
-                <span className="example_row">
-                  <select
-                    className="neatoSelect"
-                    onChange={(event: SyntheticUIEvent<>) => {
-                      this.setState({
-                        ex1Gender: parseInt(event.target.value, 10),
-                      });
-                    }}>
-                    <option value={IntlVariations.GENDER_UNKNOWN}>
-                      <fbt desc="Gender Select label">Gender:</fbt>
-                    </option>
-                    <option value={IntlVariations.GENDER_UNKNOWN}>
-                      <fbt desc="Unknown gender">Unknown</fbt>
-                    </option>
-                    <option value={IntlVariations.GENDER_MALE}>
-                      <fbt desc="Male gender">Male</fbt>
-                    </option>
-                    <option value={IntlVariations.GENDER_FEMALE}>
-                      <fbt desc="Female gender">Female</fbt>
-                    </option>
-                  </select>
-                </span>
               </span>
             </fieldset>
 
             <fieldset>
               <span className="sentence example_row">
-                <fbt desc="example 1">
+                {/* Use <fbt:plural> tags to express plurality */}
+                {this.state.ex1Count === 1 ? (
+                  <div>{this.state.ex1Name} has shared a photo with you.</div>
+                ) : (
+                  <div>
+                    {this.state.ex1Name} has shared {this.state.ex1Count} photos
+                    with you.
+                  </div>
+                )}
+                {/* <fbt desc="example 1">
                   <fbt:param name="name" gender={this.state.ex1Gender}>
-                    <b className="padRight">{this.state.ex1Name}</b>
+                    {this.state.ex1Name}
                   </fbt:param>
                   has shared
-                  <a className="neatoLink" href="#">
-                    <fbt:plural
-                      many="photos"
-                      showCount="ifMany"
-                      count={this.state.ex1Count}>
-                      a photo
-                    </fbt:plural>
-                  </a>
-                  with you
-                </fbt>
+                  <fbt:plural
+                    many="photos"
+                    showCount="ifMany"
+                    count={this.state.ex1Count}>
+                    a photo
+                  </fbt:plural>
+                  with you.
+                </fbt> */}
               </span>
             </fieldset>
 
@@ -221,7 +207,7 @@ export default class Example extends React.Component<Props, State> {
                   className={classNames('example_input', 'example_input--40')}>
                   <input
                     name="ex2Name"
-                    placeholder={fbt('name', 'name field')}
+                    placeholder="name"
                     onChange={(event: SyntheticUIEvent<>) => {
                       this.setState({ex2Name: event.target.value});
                     }}
@@ -251,23 +237,21 @@ export default class Example extends React.Component<Props, State> {
                         ex2Pronoun: parseInt(event.target.value, 10),
                       });
                     }}>
-                    <option value={GenderConst.UNKNOWN_PLURAL}>
-                      <fbt desc="Gender Select label">Gender:</fbt>
-                    </option>
-                    <option value={GenderConst.NOT_A_PERSON}>
-                      <fbt desc="Gender Select label">Not a person</fbt>
-                    </option>
-                    <option value={GenderConst.UNKNOWN_PLURAL}>
-                      <fbt desc="Gender Select label">Unknown (Plural)</fbt>
-                    </option>
-                    <option value={GenderConst.UNKNOWN_SINGULAR}>
-                      <fbt desc="Gender Select label">Unknown (singular)</fbt>
+                    <option value={GenderConst.UNKNOWN_PLURAL}>Gender:</option>
+                    <option value={GenderConst.FEMALE_SINGULAR}>
+                      Female (Singular)
                     </option>
                     <option value={GenderConst.MALE_SINGULAR}>
-                      <fbt desc="Gender Select label">Male (singular)</fbt>
+                      Male (Singular)
                     </option>
-                    <option value={GenderConst.FEMALE_SINGULAR}>
-                      <fbt desc="Gender Select label">Female (singular)</fbt>
+                    <option value={GenderConst.NOT_A_PERSON}>
+                      Not a person
+                    </option>
+                    <option value={GenderConst.UNKNOWN_PLURAL}>
+                      Unknown (Plural)
+                    </option>
+                    <option value={GenderConst.UNKNOWN_SINGULAR}>
+                      Unknown (Singular)
                     </option>
                   </select>
                 </span>
@@ -275,7 +259,40 @@ export default class Example extends React.Component<Props, State> {
             </fieldset>
             <fieldset>
               <span className="sentence example_row">
-                <fbt desc="Example enum & pronoun">
+                {/* Use <fbt:enum> and <fbt:pronoun> for a complex sentence */}
+                {this.state.ex2Name} has a {ExampleEnum[this.state.ex2Object]}{' '}
+                to share!
+                {/* <fbt desc="Example enum & pronoun">
+                  <fbt:param name="name">
+                    {this.state.ex2Name}
+                  </fbt:param>
+                  has a
+                  <fbt:enum
+                    enum-range={ExampleEnum}
+                    value={this.state.ex2Object}
+                  />
+                  to share!
+                </fbt> */}
+                {/* <fbt desc="Example enum & pronoun">
+                  <fbt:param name="name">{this.state.ex2Name}</fbt:param>
+                  has a
+                  <fbt:enum
+                    enum-range={ExampleEnum}
+                    value={this.state.ex2Object}
+                  />
+                  to share! View
+                  <fbt:pronoun
+                    type="possessive"
+                    gender={this.state.ex2Pronoun}
+                    human="true"
+                  />{' '}
+                  <fbt:enum
+                    enum-range={ExampleEnum}
+                    value={this.state.ex2Object}
+                  />.
+                </fbt> */}
+                {/* Auto-parameterization */}
+                {/* <fbt desc="Example enum & pronoun">
                   <fbt:param name="name">
                     <b className="padRight">
                       <a href="#">{this.state.ex2Name}</a>
@@ -299,7 +316,7 @@ export default class Example extends React.Component<Props, State> {
                     enum-range={ExampleEnum}
                     value={this.state.ex2Object}
                   />.
-                </fbt>
+                </fbt> */}
               </span>
             </fieldset>
             <fieldset>
@@ -313,7 +330,8 @@ export default class Example extends React.Component<Props, State> {
                       '_blank',
                     );
                   }}>
-                  {fbt('Try it out!', 'Sign up button')}
+                  Try it out!
+                  {/* {fbt('Try it out!', 'Sign up button')} */}
                 </button>
               </span>
             </fieldset>
