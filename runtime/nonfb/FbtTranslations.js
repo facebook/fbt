@@ -19,6 +19,7 @@ const FbtTranslations = {
     hashKey: ?string,
     enumHashKey: $FlowFixMe,
     args: Array<$FlowFixMe>,
+    _table: string | Object,
   ): $FlowFixMe {
     const table = _translatedFbts && _translatedFbts[IntlViewerContext.locale];
     if (__DEV__) {
