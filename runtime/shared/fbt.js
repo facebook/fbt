@@ -111,7 +111,12 @@ fbt._ = function(table, args, options) {
       };
     }
 
-    ({table, args} = getTranslatedPayload(options.hk, options.ehk, args) || {
+    ({table, args} = getTranslatedPayload(
+      options.hk,
+      options.ehk,
+      args,
+      table,
+    ) || {
       table,
       args,
     });
