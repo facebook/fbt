@@ -23,12 +23,6 @@ const LOCALES = Object.freeze({
     englishName: 'English (US)',
     rtl: false,
   }),
-  fb_HX: Object.freeze({
-    bcp47: 'fb-HX',
-    displayName: 'l33t 5p34k',
-    englishName: 'FB H4x0r',
-    rtl: false,
-  }),
   es_LA: Object.freeze({
     bcp47: 'es-419',
     displayName: 'Espa\u00F1ol',
