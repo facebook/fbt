@@ -170,6 +170,10 @@ describe('intlNumUtils:', () => {
   });
 
   describe('intNumUtils.formatNumber', function() {
+    beforeEach(function() {
+      prepareForAmericanFormat();
+    });
+
     it('Should work with integer input', function() {
       expect(u.formatNumber(5)).toBe('5');
       expect(u.formatNumber(5, 3)).toBe('5.000');
