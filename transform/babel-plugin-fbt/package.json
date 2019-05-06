@@ -4,13 +4,13 @@
   "name": "babel-plugin-fbt",
   "version": "0.9.1",
   "devDependencies": {
-    "jest-docblock": "^24.3.0",
     "yargs": "^9.0.0"
   },
   "dependencies": {
     "@babel/core": "^7.0.0",
     "@babel/generator": "^7.0.0",
     "fb-babel-plugin-utils": "^0.9.0",
+    "jest-docblock": "^24.3.0",
     "fbjs": "^1.0.0",
     "shelljs": "^0.7.8"
   }

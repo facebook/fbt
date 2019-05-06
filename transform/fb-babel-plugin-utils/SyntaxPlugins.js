@@ -10,8 +10,10 @@
 
 'use strict';
 
+const SyntaxPluginsConfig = require('./SyntaxPluginsConfig');
+
 // Keep these require's explicit for grep friendliness.
-const SYNTAX_PLUGINS_MAP = {
+const SYNTAX_PLUGINS_MAP /*: {[string]: ?Object} */ = {
   '@babel/plugin-syntax-class-properties': require('@babel/plugin-syntax-class-properties'),
   '@babel/plugin-syntax-flow': require('@babel/plugin-syntax-flow'),
   '@babel/plugin-syntax-jsx': require('@babel/plugin-syntax-jsx'),
@@ -20,13 +22,18 @@ const SYNTAX_PLUGINS_MAP = {
   '@babel/plugin-syntax-optional-chaining': require('@babel/plugin-syntax-optional-chaining'),
   '@babel/plugin-syntax-nullish-coalescing-operator': require('@babel/plugin-syntax-nullish-coalescing-operator'),
   '@babel/plugin-syntax-optional-catch-binding': require('@babel/plugin-syntax-optional-catch-binding'),
-  // This file in fbsource has the following enabled.
-  // '@babel/plugin-syntax-dynamic-import': require('@babel/plugin-syntax-dynamic-import'),
 };
 
-const SYNTAX_PLUGINS = Object.keys(SYNTAX_PLUGINS_MAP).map(function(name) {
-  return SYNTAX_PLUGINS_MAP[name];
-});
+if (SyntaxPluginsConfig.shouldEnableFBSourcePlugins) {
+  SYNTAX_PLUGINS_MAP[
+    '@babel/plugin-syntax-dynamic-import'
+  ] = require('@babel/plugin-syntax-dynamic-import');
+}
+
+const SYNTAX_PLUGINS = [];
+for (const pluginName in SYNTAX_PLUGINS_MAP) {
+  SYNTAX_PLUGINS.push(SYNTAX_PLUGINS_MAP[pluginName]);
+}
 
 module.exports = {
   list: SYNTAX_PLUGINS,
