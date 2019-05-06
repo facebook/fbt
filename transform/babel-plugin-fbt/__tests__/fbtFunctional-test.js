@@ -427,8 +427,64 @@ const generalTestData = {
     ),
   },
 
-  // TODO: T14482415 Consolidate duplicate plural/param values
-  'should handle plurals': {
+  'should handle plurals that have different count variables': {
+    input: withFbtRequireStatement(
+      `var x = fbt(
+        fbt.plural('cat', catCount, {name: 'cat_token', showCount: 'yes'}) +
+        ' and ' +
+        fbt.plural('dog', dogCount, {name: 'dog_token', showCount: 'yes'}),
+        'plurals',
+      );`,
+    ),
+
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var x = fbt(
+        [
+          fbt.plural('cat', catCount, {name: 'cat_token', showCount: 'yes'}),
+          ' and ',
+          fbt.plural('dog', dogCount, {name: 'dog_token', showCount: 'yes'}),
+        ],
+        'plurals',
+      )`,
+    ),
+
+    output: withFbtRequireStatement(
+      `var x = fbt._(
+        ${payload({
+          type: 'table',
+          jsfbt: {
+            t: {
+              '*': {
+                '*': '{cat_token} cats and {dog_token} dogs',
+                _1: '{cat_token} cats and 1 dog',
+              },
+              _1: {'*': '1 cat and {dog_token} dogs', _1: '1 cat and 1 dog'},
+            },
+            m: [
+              {
+                token: 'cat_token',
+                type: FbtVariationType.NUMBER,
+                singular: true,
+              },
+              {
+                token: 'dog_token',
+                type: FbtVariationType.NUMBER,
+                singular: true,
+              },
+            ],
+          },
+          desc: 'plurals',
+          project: '',
+        })},
+        [
+          fbt._plural(catCount, 'cat_token'),
+          fbt._plural(dogCount, 'dog_token'),
+        ],
+      );`,
+    ),
+  },
+
+  'should handle plurals that share the same count variable': {
     input: withFbtRequireStatement(
       `var x = fbt(
         'There ' +

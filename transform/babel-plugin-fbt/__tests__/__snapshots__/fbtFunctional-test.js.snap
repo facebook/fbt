@@ -371,7 +371,46 @@ Array [
 ]
 `;
 
-exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle plurals" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle plurals that have different count variables" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "plurals",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "singular": true,
+          "token": "cat_token",
+          "type": 2,
+        },
+        Object {
+          "singular": true,
+          "token": "dog_token",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": "{cat_token} cats and {dog_token} dogs",
+          "_1": "{cat_token} cats and 1 dog",
+        },
+        "_1": Object {
+          "*": "1 cat and {dog_token} dogs",
+          "_1": "1 cat and 1 dog",
+        },
+      },
+    },
+    "line_beg": 2,
+    "line_end": 7,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle plurals that share the same count variable" 1`] = `
 Array [
   Object {
     "col_beg": 10,
@@ -979,7 +1018,46 @@ Array [
 ]
 `;
 
-exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle plurals" 1`] = `
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle plurals that have different count variables" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "plurals",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "singular": true,
+          "token": "cat_token",
+          "type": 2,
+        },
+        Object {
+          "singular": true,
+          "token": "dog_token",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": "{cat_token} cats and {dog_token} dogs",
+          "_1": "{cat_token} cats and 1 dog",
+        },
+        "_1": Object {
+          "*": "1 cat and {dog_token} dogs",
+          "_1": "1 cat and 1 dog",
+        },
+      },
+    },
+    "line_beg": 2,
+    "line_end": 7,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle plurals that share the same count variable" 1`] = `
 Array [
   Object {
     "col_beg": 10,
