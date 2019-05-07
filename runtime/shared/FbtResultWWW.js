@@ -56,7 +56,7 @@ class FbtResultWWW extends FbtResultBase {
   }
 }
 
-const FbtResultWWWWithStringishMethods = FbtResultWWW.usingStringProxyMethod(
+const FbtResultWWWWithStringishMethods: Class<FbtResultBase> = FbtResultWWW.usingStringProxyMethod(
   (methodName: $Keys<IFbtStringish>) => {
     return function() {
       logErrorUseStringMethod(methodName);
