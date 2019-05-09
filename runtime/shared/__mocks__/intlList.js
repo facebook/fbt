@@ -6,7 +6,20 @@
  * @emails oncall+internationalization
  */
 
-const intlList = jest.fn<$ReadOnlyArray<*>, string>(
+const intlList: JestMockFn<
+  $ReadOnlyArray<
+    ?$Keys<
+      $TEMPORARY$object<{|
+        COMMA: $TEMPORARY$string<'COMMA'>,
+        SEMICOLON: $TEMPORARY$string<'SEMICOLON'>,
+      |}>,
+    > &
+      any &
+      $ReadOnlyArray<React$Node> &
+      ?$Keys<$TEMPORARY$object<{|AND: string, NONE: string, OR: string|}>>,
+  >,
+  string,
+> = jest.fn<$ReadOnlyArray<*>, string>(
   (
     items: $ReadOnlyArray<React$Node>,
     conjunction: ?$Keys<typeof CONJUNCTIONS>,
