@@ -46,6 +46,7 @@ const {
 // Used only in React Native
 let jsonExportMode = false;
 
+const BINAST_STRING_MAGIC_CODE = 'B!N@$T';
 /**
  * fbt.XXX calls return arguments in the form of
  * [<INDEX>, <SUBSTITUTION>] to be processed by fbt._
@@ -69,6 +70,7 @@ const PRONOUN_USAGE = {
 };
 
 const _cachedFbtResults = {};
+const _parsedFbtStrings = {};
 
 const fbt = function() {};
 
@@ -102,6 +104,16 @@ const fbt = function() {};
  * to look up enum-less translated payload.
  */
 fbt._ = function(table, args, options) {
+  if (typeof table === 'string' && table.startsWith(BINAST_STRING_MAGIC_CODE)) {
+    // This is a BinAST escaped string
+    if (!(table in _parsedFbtStrings)) {
+      _parsedFbtStrings[table] = JSON.parse(
+        table.substring(BINAST_STRING_MAGIC_CODE.length),
+      );
+    }
+    table = _parsedFbtStrings[table];
+  }
+
   if (options && (options.hk || options.ehk)) {
     if (jsonExportMode) {
       return {
