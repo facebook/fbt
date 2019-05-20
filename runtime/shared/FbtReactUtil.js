@@ -24,7 +24,7 @@ if (__DEV__) {
   try {
     Object.defineProperty({}, 'x', {});
     canDefineProperty = true;
-  } catch {
+  } catch(e) {
     // IE will fail on defineProperty
   }
 }
