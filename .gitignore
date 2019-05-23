@@ -16,6 +16,13 @@ demo-app/output
 demo-app/src/translatedFbts.json
 demo-app/yarn-error.log
 
+live-demo-app/.enum_manifest.json
+live-demo-app/.source_strings.json
+live-demo-app/.src_manifest.json
+live-demo-app/output
+live-demo-app/src/translatedFbts.json
+live-demo-app/yarn-error.log
+
 # Publisehd NPM modules
 fbt-runtime/**
 

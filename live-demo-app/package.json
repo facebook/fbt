@@ -1,6 +1,6 @@
 {
   "//": "Copyright (c) Facebook, Inc. and its affiliates. All rights reserved.",
-  "name": "fbt-example",
+  "name": "live-demo-app",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
