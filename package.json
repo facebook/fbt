@@ -53,6 +53,7 @@
   },
   "workspaces": [
     "demo-app",
+    "live-demo-app",
     "fbt-runtime",
     "transform/*",
     "website"
