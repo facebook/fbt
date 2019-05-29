@@ -184,6 +184,9 @@ describe('fbt', function() {
       <TestComponent value="A" childA={<div />} childB={<div />} />,
     );
     expect(nodes.length).toBe(2);
+    /* $FlowFixMe(>=0.99.0 site=www) This comment suppresses an error found
+     * when Flow v0.99 was deployed. To see the error delete this comment and
+     * run Flow. */
     expect(console.warn.mock.calls.length).toBe(0);
   });
 
