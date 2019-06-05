@@ -1,5 +1,5 @@
 #!/usr/local/bin/php
-<?hh // partial
+<?hh // strict
 // Copyright 2004-present Facebook. All Rights Reserved.
 
 /**
@@ -19,6 +19,7 @@ function intl_js_hash_babel7(
   return PHP\hash('tiger128,3-fb', $text.':::'.$desc.':');
 }
 
+<<__EntryPoint>>
 function tiger128_main(): void {
   $stdin = PHP\file_get_contents("php://stdin");
   $phrase_hashes = vec[];
@@ -32,5 +33,3 @@ function tiger128_main(): void {
   echo PHP\json_encode($phrase_hashes);
   exit(0);
 }
-
-tiger128_main();
