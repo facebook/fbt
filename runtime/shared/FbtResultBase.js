@@ -31,7 +31,7 @@ export type FbtContentItem =
   | string
   | void;
 
-export type NestedFbtContentItems = Array<
+export type NestedFbtContentItems = $ReadOnlyArray<
   FbtContentItem | NestedFbtContentItems,
 >;
 
