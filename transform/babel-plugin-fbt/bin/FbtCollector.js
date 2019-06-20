@@ -43,6 +43,7 @@ function transform(code /*: string*/, options /*: TransformOptions*/)/*: void*/ 
     code: false,
     plugins: SyntaxPlugins.list.concat([[fbt, options]]),
     sourceType: 'unambiguous',
+    filename: options.filepath,
   });
 }
 
