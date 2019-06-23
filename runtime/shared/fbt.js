@@ -487,6 +487,7 @@ fbt._wrapContent = (fbtContent, patternString, patternHash) => {
   if (FbtResultGK.inlineMode && FbtResultGK.inlineMode !== 'NO_INLINE') {
     return new InlineFbtResult(
       contents,
+      // $FlowFixMe expected boolean but this is a string
       FbtResultGK.inlineMode,
       patternString,
       patternHash,
