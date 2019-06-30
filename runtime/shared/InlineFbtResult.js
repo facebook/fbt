@@ -54,7 +54,7 @@ const InlineFbtComponent = (props: Props): mixed =>
 
 type Props = {
   content: NestedFbtContentItems,
-  inlineMode: boolean,
+  inlineMode: string,
   translation: string,
   hash: ?string,
 };
@@ -69,12 +69,12 @@ class InlineFbtResult extends FbtResultBaseImpl {
 
   constructor(
     contents: NestedFbtContentItems,
-    inlineMode: boolean,
+    inlineMode: string,
     translation: string,
     hash: ?string,
   ) {
     super(contents);
-    /* eslint-disable fb-www/react-state-props-mutation */
+    // eslint-disable-next-line fb-www/react-state-props-mutation
     this.props = {
       content: contents,
       inlineMode,
