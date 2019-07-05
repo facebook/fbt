@@ -34,17 +34,26 @@ export type Errors = {[file: string]: Error};
 export type ExtraOptions = {[prop: string]: boolean};
 export type FbtEnumManifest = {};
 export type Phrase = {[prop: string]: mixed};
-export type TransformOptions = {[prop: string]: mixed};
+export type TransformOptions = {|
+  collectFbt?: boolean,
+  soureType?: string,
+  filename?: string,
+  extraOptions?: mixed,
+  fbtEnumManifest?: FbtEnumManifest,
+  auxiliaryTexts?: boolean,
+  reactNativeMode?: boolean,
+|}
 */
 
 function transform(code /*: string*/, options /*: TransformOptions*/)/*: void*/ {
-  babel.transformSync(code, {
+  const opts = {
     ast: false,
     code: false,
+    filename: options.filename,
     plugins: SyntaxPlugins.list.concat([[fbt, options]]),
     sourceType: 'unambiguous',
-    filename: options.filepath,
-  });
+  };
+  babel.transformSync(code, opts);
 }
 
 class FbtCollector {
@@ -63,18 +72,19 @@ class FbtCollector {
 
   collectFromOneFile(
     source /*: string*/,
-    filepath /*: ?string*/,
+    filename /*: ?string*/,
     fbtEnumManifest /*::?: FbtEnumManifest*/,
   ) /*: void*/ {
-    const options = {
+    const options /*: TransformOptions*/ = {
       collectFbt: true,
-      sourceType: 'nonStrictModule',
-      filepath,
       extraOptions: this._extraOptions,
       fbtEnumManifest,
       auxiliaryTexts: this._config.auxiliaryTexts,
       reactNativeMode: this._config.reactNativeMode,
     };
+    if (filename != null) {
+      options.filename = filename;
+    }
 
     if (!/<[Ff]bt|fbt(\.c)?\s*\(/.test(source)) {
       return;

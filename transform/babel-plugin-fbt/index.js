@@ -679,7 +679,7 @@ function giveParentPhraseLocation(parentNode, parentIdx) {
 
 function addPhrase(node, phrase, state) {
   phrases.push({
-    filepath: state.opts.filepath,
+    filepath: state.opts.filename,
     line_beg: node.loc.start.line,
     col_beg: node.loc.start.column,
     line_end: node.loc.end.line,
