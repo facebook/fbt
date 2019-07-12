@@ -148,11 +148,11 @@ function writeOutput() {
   }
 }
 
-function processSource(source, filepath) {
+function processSource(source) {
   if (argv[args.MANIFEST]) {
     processJsonSource(source);
   } else {
-    fbtCollector.collectFromOneFile(source, filepath);
+    fbtCollector.collectFromOneFile(source);
   }
 }
 

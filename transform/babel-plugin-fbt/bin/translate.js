@@ -206,7 +206,7 @@ if (argv[args.HELP]) {
 }
 
 const output = argv[args.STDIN]
-  ? processJSON(JSON.parse(fs.readFileSync('/dev/stdin', 'utf8')))
+  ? processJSON(JSON.parse(fs.readFileSync(process.stdin.fd, 'utf8')))
   : processFiles(argv[args.SRC], argv[args.TRANSLATIONS]);
 const json = JSON.stringify(output, ...(argv[args.PRETTY] ? [null, ' '] : []));
 process.stdout.write(json);

@@ -27,6 +27,6 @@
   "transform": {
     "\\.(bmp|gif|jpg|jpeg|png|psd|svg|webp|ttf|ktx|wav|ogg|mp4|webm)$":
       "<rootDir>/jest/assets.js",
-    ".*": "<rootDir>/jest-transformer"
+    "\\.js$": "<rootDir>/jest-transformer"
   }
 }

@@ -38,19 +38,19 @@ exports[`Example.react renders the example 1`] = `
                 Your Gender:
               </option>
               <option
-                value={3}
-              >
-                Unknown
-              </option>
-              <option
                 value={1}
               >
-                Male
+                Female
               </option>
               <option
                 value={2}
               >
-                Female
+                Male
+              </option>
+              <option
+                value={3}
+              >
+                Unknown
               </option>
             </select>
           </span>
@@ -66,15 +66,7 @@ exports[`Example.react renders the example 1`] = `
             <input
               name="name"
               onChange={[Function]}
-              placeholder={
-                <FbtComponent
-                  content={
-                    Array [
-                      "name",
-                    ]
-                  }
-                />
-              }
+              placeholder="name"
               type="text"
             />
           </span>
@@ -84,46 +76,9 @@ exports[`Example.react renders the example 1`] = `
             <input
               name="count"
               onChange={[Function]}
-              placeholder={
-                <FbtComponent
-                  content={
-                    Array [
-                      "count",
-                    ]
-                  }
-                />
-              }
+              placeholder="count"
               type="number"
             />
-          </span>
-          <span
-            className="example_row"
-          >
-            <select
-              className="neatoSelect"
-              onChange={[Function]}
-            >
-              <option
-                value={3}
-              >
-                Gender:
-              </option>
-              <option
-                value={3}
-              >
-                Unknown
-              </option>
-              <option
-                value={1}
-              >
-                Male
-              </option>
-              <option
-                value={2}
-              >
-                Female
-              </option>
-            </select>
           </span>
         </span>
       </fieldset>
@@ -131,20 +86,10 @@ exports[`Example.react renders the example 1`] = `
         <span
           className="sentence example_row"
         >
-          
-          <b
-            className="padRight"
-          >
+          <div>
             Someone
-          </b>
-           has shared 
-          <a
-            className="neatoLink"
-            href="#"
-          >
-             a photo
-          </a>
-           with you
+             has shared a photo with you.
+          </div>
         </span>
       </fieldset>
       <fieldset>
@@ -157,15 +102,7 @@ exports[`Example.react renders the example 1`] = `
             <input
               name="ex2Name"
               onChange={[Function]}
-              placeholder={
-                <FbtComponent
-                  content={
-                    Array [
-                      "name",
-                    ]
-                  }
-                />
-              }
+              placeholder="name"
               type="text"
             />
           </span>
@@ -216,6 +153,16 @@ exports[`Example.react renders the example 1`] = `
                 Gender:
               </option>
               <option
+                value={1}
+              >
+                Female (Singular)
+              </option>
+              <option
+                value={2}
+              >
+                Male (Singular)
+              </option>
+              <option
                 value={0}
               >
                 Not a person
@@ -228,17 +175,7 @@ exports[`Example.react renders the example 1`] = `
               <option
                 value={7}
               >
-                Unknown (singular)
-              </option>
-              <option
-                value={2}
-              >
-                Male (singular)
-              </option>
-              <option
-                value={1}
-              >
-                Female (singular)
+                Unknown (Singular)
               </option>
             </select>
           </span>
@@ -248,29 +185,11 @@ exports[`Example.react renders the example 1`] = `
         <span
           className="sentence example_row"
         >
-          
-          <b
-            className="padRight"
-          >
-            <a
-              href="#"
-            >
-              Someone
-            </a>
-          </b>
-           has a link to share! 
-          <b
-            className="pad"
-          >
-            
-            <a
-              href="#"
-            >
-              View
-            </a>
-            
-          </b>
-           their link.
+          Someone
+           has a 
+          link
+           
+          to share!
         </span>
       </fieldset>
       <fieldset>
@@ -295,16 +214,6 @@ exports[`Example.react renders the example 1`] = `
       value="en_US"
     >
       English (US)‎
-    </li>
-    <li
-      value="fb_HX"
-    >
-      <a
-        href="#fb_HX"
-        onClick={[Function]}
-      >
-        l33t 5p34k
-      </a>
     </li>
     <li
       value="es_LA"

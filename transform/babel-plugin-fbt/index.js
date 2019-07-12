@@ -44,6 +44,7 @@ const {
   getOptionsFromAttributes,
   getRawSource,
   normalizeSpaces,
+  objMap,
   throwAt,
   validateNamespacedFbtElement,
 } = require('./FbtUtil');
@@ -238,7 +239,6 @@ function BabelPluginFbt(babel) {
           runtimeArgs,
           variations,
           hasTable: false, // can be mutated during `FbtMethodCallVisitors`.
-          enumManifest: getEnumManifest(visitor.opts),
           src: visitor.file.code,
         };
 
@@ -679,7 +679,7 @@ function giveParentPhraseLocation(parentNode, parentIdx) {
 
 function addPhrase(node, phrase, state) {
   phrases.push({
-    filepath: state.opts.filepath,
+    filepath: state.opts.filename,
     line_beg: node.loc.start.line,
     col_beg: node.loc.start.column,
     line_end: node.loc.end.line,
@@ -697,11 +697,14 @@ function getUnknownCommonStringErrorMessage(moduleName, text) {
 }
 
 function getEnumManifest(opts) {
-  const {fbtEnumManifest, fbtEnumPath} = opts;
+  const {fbtEnumManifest, fbtEnumPath, fbtEnumToPath} = opts;
   if (fbtEnumManifest != null) {
     return fbtEnumManifest;
   } else if (fbtEnumPath != null) {
     return require(fbtEnumPath);
+  } else if (fbtEnumToPath != null) {
+    const loadEnum = opts.fbtEnumLoader ? require(opts.fbtEnumLoader) : require;
+    return objMap(opts.fbtEnumToPath, loadEnum);
   }
   return null;
 }

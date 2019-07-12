@@ -1,7 +1,12 @@
 {
   "presets": [
     "@babel/env",
-    "@babel/react",
+    [
+      "@babel/react",
+      {
+        "throwIfNamespace": false
+      }
+    ],
     "@babel/flow"
   ],
   "plugins": [
