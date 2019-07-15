@@ -11,11 +11,24 @@ class FBLogMessage {
   warn() {}
   info() {}
   debug() {}
-  catching() {}
-  blameToPreviousFile() {}
-  blameToPreviousFrame() {}
-  blameToPreviousDirectory() {}
-  addMetadata() {}
+  catching() {
+    return this;
+  }
+  blameToPreviousFile() {
+    return this;
+  }
+  blameToPreviousFrame() {
+    return this;
+  }
+  blameToPreviousDirectory() {
+    return this;
+  }
+  addToCategoryKey() {
+    return this;
+  }
+  addMetadata() {
+    return this;
+  }
 }
 
 module.exports = FBLogMessage;
