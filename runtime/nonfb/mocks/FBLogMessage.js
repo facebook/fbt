@@ -7,6 +7,7 @@
 // No-op class implementation for Open Source
 class FBLogMessage {
   constructor(_) {}
+  fatal() {}
   mustfix() {}
   warn() {}
   info() {}
