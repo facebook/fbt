@@ -30,10 +30,10 @@ describe('fbt', function() {
     'IntlCLDRNumberType19',
   ).getVariation;
 
-  const ONE = IntlVariations.NUMBER_ONE;
-  const FEW = IntlVariations.NUMBER_FEW;
-  const MALE = IntlVariations.GENDER_MALE;
-  const FEMALE = IntlVariations.GENDER_FEMALE;
+  const ONE = String(IntlVariations.NUMBER_ONE);
+  const FEW = String(IntlVariations.NUMBER_FEW);
+  const MALE = String(IntlVariations.GENDER_MALE);
+  const FEMALE = String(IntlVariations.GENDER_FEMALE);
 
   it('should memoize new strings', function() {
     expect(fbtRuntime._getCachedFbt('sample string')).toEqual(undefined);
@@ -347,7 +347,7 @@ describe('fbt', function() {
     };
     tests.forEach(runTest);
 
-    IntlViewerContext.GENDER = MALE;
+    IntlViewerContext.GENDER = IntlVariations.GENDER_MALE;
     tests = [
       {arg: [A, few, name], expected: 'A,MALE,OTHER Bob has 10'},
       {arg: [A, one, name], expected: 'A,MALE,ONE Bob has 1'},
@@ -358,7 +358,7 @@ describe('fbt', function() {
     ];
     tests.forEach(runTest);
 
-    IntlViewerContext.GENDER = FEMALE;
+    IntlViewerContext.GENDER = IntlVariations.GENDER_FEMALE;
     tests = [
       {arg: [A, few, name], expected: 'A,UNKNOWN,FEW Bob has 10'},
       {arg: [A, one, name], expected: 'A,UNKNOWN,ONE Bob has 1'},
