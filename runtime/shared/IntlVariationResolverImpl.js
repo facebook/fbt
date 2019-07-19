@@ -12,7 +12,7 @@ const invariant = require('invariant');
 const EXACTLY_ONE = '_1';
 
 const IntlVariationResolverImpl = {
-  EXACTLY_ONE: EXACTLY_ONE,
+  EXACTLY_ONE,
 
   /**
    * Wrapper around FbtNumberType.getVariation that special cases our EXACTLY_ONE
