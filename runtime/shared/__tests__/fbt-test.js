@@ -24,7 +24,7 @@ const invariant = require('invariant');
 const React = require('React');
 const ReactDOM = require('ReactDOM');
 
-describe('fbt', function() {
+describe('fbt', () => {
   // Use a locale that has FEW.
   FbtNumberType.getVariation = jest.requireActual(
     'IntlCLDRNumberType19',
@@ -368,5 +368,15 @@ describe('fbt', function() {
       {arg: [B, other, name], expected: 'B,FEMALE,OTHER Bob has 20'},
     ];
     tests.forEach(runTest);
+  });
+
+  it('should have a return type compatible with the public Fbt type', () => {
+    const fbtFunctionalResult = fbt('test', 'foo');
+    (fbtFunctionalResult: Fbt);
+    (fbtFunctionalResult: FbtWithoutString);
+
+    const fbtJSXResult = <fbt desc="blah">test</fbt>;
+    (fbtJSXResult: Fbt);
+    (fbtJSXResult: FbtWithoutString);
   });
 });
