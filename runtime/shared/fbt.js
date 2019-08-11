@@ -27,6 +27,7 @@
 const Banzai = require('Banzai');
 const {logger} = require('FbtLogger');
 const {overrides} = require('FbtQTOverrides');
+const FbtResultBase = require('FbtResultBase');
 const FbtTableAccessor = require('FbtTableAccessor');
 const FbtResult = require('FbtResult');
 const FbtResultGK = require('FbtResultGK');
@@ -501,6 +502,10 @@ fbt.enableJsonExportMode = function() {
 
 fbt.disableJsonExportMode = function() {
   jsonExportMode = false;
+};
+
+fbt.isFbtInstance = function(value: mixed): boolean {
+  return value instanceof FbtResultBase;
 };
 
 module.exports = ((fbt: $FlowFixMe): $FbtFunctionAPI);
