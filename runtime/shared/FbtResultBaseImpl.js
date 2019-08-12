@@ -8,7 +8,7 @@
  * When you change this file on www, please make sure you apply
  * similar (relevant) changes on the fbsource version.
  *
- * @flow
+ * @flow strict-local
  * @format
  * @emails oncall+internationalization
  */
