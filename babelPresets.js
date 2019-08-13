@@ -4,11 +4,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @format
+ * @format strict-local
  */
 'use strict';
 
-let moduleMap = Object.assign(
+const moduleMap = Object.assign(
   {},
   require('fbjs/module-map'),
   require('fbjs-scripts/third-party-module-map'),
@@ -18,7 +18,7 @@ let moduleMap = Object.assign(
 // Depends on https://github.com/facebookincubator/fbt/issues/40
 module.exports = function babelPresets(opts) {
   opts = opts || {};
-  let plugins = [
+  const plugins = [
     require('@babel/plugin-syntax-class-properties'),
     require('@babel/plugin-syntax-flow'),
     require('@babel/plugin-syntax-jsx'),
