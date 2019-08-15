@@ -10,38 +10,51 @@
 
 'use strict';
 
-const IntlViewerContext = require('IntlViewerContext');
+const FbtI18nAssets = require("./FbtI18nNativeAssets");
 
-let _translatedFbts = null;
+let _translatedFbts: {[hashKey: string]: string} = {};
 
 const FbtTranslations = {
   getTranslatedPayload(
     hashKey: ?string,
-    enumHashKey: $FlowFixMe,
-    args: Array<$FlowFixMe>,
+    enumHashKey: ?Object,
+    args: Array<any>,
     _table: string | Object,
-  ): $FlowFixMe {
-    const table = _translatedFbts && _translatedFbts[IntlViewerContext.locale];
-    if (__DEV__) {
-      if (!table) {
-        console.warn('Translations have not been provided');
-      }
-    }
-
-    if (!table || !table[hashKey]) {
+  ): ?Object {
+    if (FbtI18nAssets === null) {
       return null;
     }
-    return {
-      table: table[hashKey],
-      args: args,
-    };
+
+    if (hashKey !== null) {
+      let translatedPayload;
+      if (args == null || args.length === 0) {
+        // Only caches translations for simple strings with no variations
+        if (_translatedFbts.hasOwnProperty(hashKey)) {
+          translatedPayload = _translatedFbts[hashKey];
+        } else {
+          translatedPayload = FbtI18nAssets.getString(hashKey);
+          _translatedFbts[hashKey] = translatedPayload;
+        }
+      } else {
+        translatedPayload = FbtI18nAssets.getString(hashKey);
+        if (translatedPayload) {
+          translatedPayload = JSON.parse(translatedPayload);
+        }
+      }
+
+      return translatedPayload != null && translatedPayload !== ''
+        ? {table: translatedPayload, args}
+        : null;
+    }
+
+    return null;
   },
 
-  isComponentScript() {
+  isComponentScript(): boolean {
     return false;
   },
 
-  registerTranslations(translations) {
+  registerTranslations(translations: {[hashKey: string]: string}) {
     _translatedFbts = translations;
   },
 };
