@@ -1,5 +1,6 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
+ * @noflow
  */
 const Example$FbtEnum = {
   LINK: 'link',
