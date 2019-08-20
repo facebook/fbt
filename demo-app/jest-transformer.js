@@ -1,4 +1,5 @@
 // Copyright 2004-present Facebook. All Rights Reserved.
+// @noflow
 
 module.exports = require('babel-jest').createTransformer({
   plugins:[
