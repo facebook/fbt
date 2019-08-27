@@ -8,8 +8,15 @@
  */
 
 const FbtTranslations = require('FbtTranslations');
-function fbtInit(opts) {
-  FbtTranslations.registerTranslations(opts.translations);
+
+function fbtInit({translations, customTranslationPayloadGetter__EXPERIMENTAL}) {
+  FbtTranslations.registerTranslations(translations);
+
+  if (customTranslationPayloadGetter__EXPERIMENTAL != null) {
+    FbtTranslations.setCustomTranslationPayloadGetter__EXPERIMENTAL(
+      customTranslationPayloadGetter__EXPERIMENTAL,
+    );
+  }
 }
 
 module.exports = fbtInit;
