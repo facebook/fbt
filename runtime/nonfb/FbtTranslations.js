@@ -10,9 +10,13 @@
 
 'use strict';
 
+type CustomTranslationPayloadGetter = typeof FbtTranslations.getTranslatedPayload;
+
 const IntlViewerContext = require('IntlViewerContext');
 
-let _translatedFbts = null;
+let translatedFbts = null;
+
+let customTranslationPayloadGetter: ?CustomTranslationPayloadGetter = null;
 
 const FbtTranslations = {
   getTranslatedPayload(
@@ -20,8 +24,13 @@ const FbtTranslations = {
     enumHashKey: $FlowFixMe,
     args: Array<$FlowFixMe>,
     _table: string | Object,
-  ): $FlowFixMe {
-    const table = _translatedFbts && _translatedFbts[IntlViewerContext.locale];
+  ): ?{table: $FlowFixMe, args: Array<$FlowFixMe>} {
+    if (customTranslationPayloadGetter != null) {
+      return customTranslationPayloadGetter(hashKey, enumHashKey, args, _table);
+    }
+
+    const table =
+      translatedFbts != null && translatedFbts[IntlViewerContext.locale];
     if (__DEV__) {
       if (!table) {
         console.warn('Translations have not been provided');
@@ -37,12 +46,33 @@ const FbtTranslations = {
     };
   },
 
-  isComponentScript() {
-    return false;
+  /**
+   * WARNING: this is an experimental feature to help get translation payloads
+   * within a React Native environment.
+   *
+   * We could imagine that the overall web app has a way to load translations
+   * on the fly (through its own logic) and it'll be responsible for exposing
+   * translations to the FBT OSS library with an API like this.
+   * This is more flexible than just relying on basic hashmap like `translatedFbts`.
+   *
+   * This method overrides the translation payload getter implementation from
+   * (#getTranslatedPayload). You can give it a `null` argument to restore
+   * the default payload getter behavior.
+   */
+  setCustomTranslationPayloadGetter__EXPERIMENTAL(
+    getter: CustomTranslationPayloadGetter,
+  ): this {
+    customTranslationPayloadGetter = getter;
+    return this;
   },
 
-  registerTranslations(translations) {
-    _translatedFbts = translations;
+  registerTranslations(translations): this {
+    translatedFbts = translations;
+    return this;
+  },
+
+  isComponentScript(): boolean {
+    return false;
   },
 };
 
