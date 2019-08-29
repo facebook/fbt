@@ -55,7 +55,7 @@ function transform(
     ast: false,
     code: false,
     filename: options.filename,
-    plugins: SyntaxPlugins.list.concat(plugins || [], [[fbt, options]]),
+    plugins: SyntaxPlugins.list.concat(plugins, [[fbt, options]]),
     sourceType: 'unambiguous',
   };
   babel.transformSync(code, opts);
