@@ -32,6 +32,7 @@ const args = {
   HELP: 'h',
   OPTIONS: 'options',
   PACKAGER: 'packager',
+  PLUGINS: 'plugins',
   PRETTY: 'pretty',
   REACT_NATIVE_MODE: 'react-native-mode',
   MANIFEST: 'manifest',
@@ -87,6 +88,14 @@ const argv = yargs
   .boolean(args.PRETTY)
   .default(args.PRETTY, false)
   .describe(args.PRETTY, 'Pretty-print the JSON output')
+  .string(args.PLUGINS)
+  .default(args.PLUGINS, '')
+  .describe(
+    args.PLUGINS,
+    'Comma-delimitted list of auxiliary Babel plugins to enable for parsing ' +
+      "source. \n E.g. --plugins '@babel/plugin-syntax-dynamic-import," +
+      "@babel/plugin-syntax-numeric-separator'",
+  )
   .string(args.OPTIONS)
   .describe(
     args.OPTIONS,
@@ -108,6 +117,7 @@ const fbtCollector = new FbtCollector(
   // $FlowFixMe
   {
     auxiliaryTexts: argv[args.AUXILIARY_TEXTS],
+    plugins: argv[args.PLUGINS].split(','),
     reactNativeMode: argv[args.REACT_NATIVE_MODE],
   },
   extraOptions,

@@ -27,6 +27,7 @@ const fs = require('graceful-fs');
 /*::
 type CollectorConfig = {|
   auxiliaryTexts: boolean,
+  plugins?: Array<string>,
   reactNativeMode?: boolean,
 |};
 export type ChildParentMappings = {[prop: number]: number}
@@ -45,12 +46,16 @@ export type TransformOptions = {|
 |}
 */
 
-function transform(code /*: string*/, options /*: TransformOptions*/)/*: void*/ {
+function transform(
+  code /*: string*/,
+  options /*: TransformOptions*/,
+  plugins /*: Array<string>*/,
+)/*: void*/ {
   const opts = {
     ast: false,
     code: false,
     filename: options.filename,
-    plugins: SyntaxPlugins.list.concat([[fbt, options]]),
+    plugins: SyntaxPlugins.list.concat(plugins || [], [[fbt, options]]),
     sourceType: 'unambiguous',
   };
   babel.transformSync(code, opts);
@@ -90,7 +95,7 @@ class FbtCollector {
       return;
     }
 
-    transform(source, options);
+    transform(source, options, this._config.plugins);
 
     let newPhrases = fbt.getExtractedStrings();
     if (this._config.reactNativeMode) {
