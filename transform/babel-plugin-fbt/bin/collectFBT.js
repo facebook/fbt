@@ -30,12 +30,12 @@ const args = {
   AUXILIARY_TEXTS: 'auxiliary-texts',
   HASH: 'hash-module',
   HELP: 'h',
+  MANIFEST: 'manifest',
   OPTIONS: 'options',
   PACKAGER: 'packager',
   PLUGINS: 'plugins',
   PRETTY: 'pretty',
   REACT_NATIVE_MODE: 'react-native-mode',
-  MANIFEST: 'manifest',
   TERSE: 'terse',
 };
 
@@ -88,13 +88,12 @@ const argv = yargs
   .boolean(args.PRETTY)
   .default(args.PRETTY, false)
   .describe(args.PRETTY, 'Pretty-print the JSON output')
-  .string(args.PLUGINS)
-  .default(args.PLUGINS, '')
+  .array(args.PLUGINS)
+  .default(args.PLUGINS, [])
   .describe(
     args.PLUGINS,
-    'Comma-delimitted list of auxiliary Babel plugins to enable for parsing ' +
-      "source. \n E.g. --plugins '@babel/plugin-syntax-dynamic-import," +
-      "@babel/plugin-syntax-numeric-separator'",
+    'List of auxiliary Babel plugins to enable for parsing source.\n' +
+      'E.g. --plugins @babel/plugin-syntax-dynamic-import @babel/plugin-syntax-numeric-separator',
   )
   .string(args.OPTIONS)
   .describe(
@@ -117,7 +116,7 @@ const fbtCollector = new FbtCollector(
   // $FlowFixMe
   {
     auxiliaryTexts: argv[args.AUXILIARY_TEXTS],
-    plugins: argv[args.PLUGINS].split(','),
+    plugins: argv[args.PLUGINS],
     reactNativeMode: argv[args.REACT_NATIVE_MODE],
   },
   extraOptions,
