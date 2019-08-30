@@ -77,7 +77,7 @@
  *
  */
 'use strict';
-
+ 
 const {objMap} = require('../FbtUtil');
 const {FbtSite} = require('../translate/FbtSite.js');
 const TranslationBuilder = require('../translate/TranslationBuilder');
@@ -85,6 +85,7 @@ const TranslationConfig = require('../translate/TranslationConfig');
 const TranslationData = require('../translate/TranslationData');
 const fs = require('fs');
 const yargs = require('yargs');
+const path = require('path');
 
 const args = {
   HASH: 'fbt-hash-module',
@@ -94,6 +95,7 @@ const args = {
   SRC: 'source-strings',
   STDIN: 'stdin',
   TRANSLATIONS: 'translations',
+  SPLIT_BY_LOCALE_TO: 'split-by-locale-to',
 };
 
 const argv = yargs
@@ -140,7 +142,15 @@ const argv = yargs
   .default(args.PRETTY, false)
   .describe(args.PRETTY, 'pretty print the translation output')
   .describe(args.HELP, 'Display usage message')
-  .alias(args.HELP, 'help').argv;
+  .alias(args.HELP, 'help')
+  .string(args.SPLIT_BY_LOCALE_TO)
+  .default(args.SPLIT_BY_LOCALE_TO, null)
+  .describe(
+    args.SPLIT_BY_LOCALE_TO,
+    'By default, we write the output to stdout. If you instead would like to split ' +
+      'the output by locale you can use this arg to specify an output directory. ' +
+      'This is useful when you want to lazy load translations per locale.',
+  ).argv;
 
 function processFiles(
   stringFile /*: string */,
@@ -208,5 +218,21 @@ if (argv[args.HELP]) {
 const output = argv[args.STDIN]
   ? processJSON(JSON.parse(fs.readFileSync(process.stdin.fd, 'utf8')))
   : processFiles(argv[args.SRC], argv[args.TRANSLATIONS]);
-const json = JSON.stringify(output, ...(argv[args.PRETTY] ? [null, ' '] : []));
-process.stdout.write(json);
+
+function createJSON(obj) {
+  return JSON.stringify(obj, ...(argv[args.PRETTY] ? [null, ' '] : []));
+}
+
+const splitByLocaleTo = yargs.argv[args.SPLIT_BY_LOCALE_TO];
+if (splitByLocaleTo) {
+  fs.mkdirSync(splitByLocaleTo, {recursive: true});
+
+  Object.keys(output).forEach(function(locale) {
+    fs.writeFileSync(
+      path.join(splitByLocaleTo, `${locale}.json`),
+      createJSON({[locale]: output[locale]}),
+    );
+  });
+} else {
+  process.stdout.write(createJSON(output));
+}
