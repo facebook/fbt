@@ -95,7 +95,7 @@ class FbtCollector {
       return;
     }
 
-    transform(source, options, this._config.plugins);
+    transform(source, options, this._config.plugins || []);
 
     let newPhrases = fbt.getExtractedStrings();
     if (this._config.reactNativeMode) {
