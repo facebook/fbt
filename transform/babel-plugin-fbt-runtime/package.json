@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-fbt-runtime",
-  "version": "0.9.1",
+  "version": "0.9.4",
   "license": "MIT",
   "devDependencies": {
     "fb-babel-plugin-utils": "^0.9.0"
@@ -10,6 +10,6 @@
     "fbjs": "^1.0.0"
   },
   "peerDependencies": {
-    "babel-plugin-fbt": "0.9.1"
+    "babel-plugin-fbt": "^0.9.14"
   }
 }

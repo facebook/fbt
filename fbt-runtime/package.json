@@ -3,7 +3,7 @@
   "private": "false",
   "name": "fbt",
   "description": "The fbt i18n framework JS runtime.",
-  "version": "0.9.5",
+  "version": "0.9.55",
   "keywords": [
     "facebook",
     "fbt",
@@ -28,8 +28,8 @@
   "dependencies": {
   },
   "peerDependencies": {
-    "babel-plugin-fbt": "0.9.1",
-    "babel-plugin-fbt-runtime": "0.9.1"
+    "babel-plugin-fbt": "^0.9.14",
+    "babel-plugin-fbt-runtime": "^0.9.4"
   },
   "devDependencies": {
   },
