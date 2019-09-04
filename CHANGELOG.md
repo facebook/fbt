@@ -7,9 +7,9 @@ We haven't had the best track record of code/feature changes before this date, b
 
 ## TOC
 
-- [fbt versions](#fbt versions)
-- [babel-plugin-fbt versions](#babel-plugin-fbt versions)
-- [babel-plugin-fbt-runtime versions](#babel-plugin-fbt-runtime versions)
+- [fbt versions](#fbt-versions)
+- [babel-plugin-fbt versions](#babel-plugin-fbt-versions)
+- [babel-plugin-fbt-runtime versions](#babel-plugin-fbt-runtime-versions)
 
 ### fbt versions
 
