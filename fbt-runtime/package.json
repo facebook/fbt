@@ -35,5 +35,8 @@
   "devEngines": {
     "node": "6.x || 7.x || 8.x || 9.x || 10.x || 11.x",
     "npm": "6.x"
+  },
+  "scripts": {
+    "//postversion": "git push --tags && yarn publish . --tag $npm_package_version && git push && echo \"Successfully released version $npm_package_version!\""
   }
 }
