@@ -2,6 +2,7 @@
   "license": "MIT",
   "main": "index.js",
   "name": "babel-plugin-fbt",
+  "//version": "Follow SemVer specs at https://semver.org/",
   "version": "0.9.14",
   "devDependencies": {
     "yargs": "^9.0.0"
