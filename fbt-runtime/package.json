@@ -36,6 +36,6 @@
     "npm": "6.x"
   },
   "scripts": {
-    "//postversion": "git push --tags && yarn publish . --tag $npm_package_version && git push && echo \"Successfully released version $npm_package_version!\""
+    "publish_to_npm_latest": "yarn publish . && git push --tags && git push"
   }
 }

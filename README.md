@@ -50,5 +50,25 @@ https://facebookincubator.github.io/fbt
 
 See the [CONTRIBUTING](CONTRIBUTING.md) file for how to help out.
 
+## List of npm modules published from this repo:
+
+- [fbt](https://www.npmjs.com/package/fbt) (client-side)
+  - See [package.json](fbt-runtime/package.json) config
+- [babel-plugin-fbt](https://www.npmjs.com/package/babel-plugin-fbt) (server-side)
+  - See [package.json](transform/babel-plugin-fbt/package.json) config
+- [babel-plugin-fbt-runtime](https://www.npmjs.com/package/babel-plugin-fbt-runtime) (server-side)
+  - See [package.json](transform/babel-plugin-fbt-runtime/package.json) config
+- [fb-babel-plugin-utils](https://www.npmjs.com/package/fb-babel-plugin-utils) (server-side, used by `babel-plugin-fbt-runtime`)
+  - See [package.json](transform/fb-babel-plugin-utils/package.json) config
+
+## How to release a new npm version
+
+Example for the `fbt` npm module:
+
+```
+cd fbt-runtime/
+yarn publish_to_npm_latest
+```
+
 ## License
 FBT is MIT licensed, as found in the [LICENSE](LICENSE) file.
