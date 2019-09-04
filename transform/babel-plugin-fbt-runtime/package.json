@@ -1,5 +1,6 @@
 {
   "name": "babel-plugin-fbt-runtime",
+  "//version": "Follow SemVer specs at https://semver.org/",
   "version": "0.9.4",
   "license": "MIT",
   "devDependencies": {
