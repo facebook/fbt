@@ -50,5 +50,8 @@ https://facebookincubator.github.io/fbt
 
 See the [CONTRIBUTING](CONTRIBUTING.md) file for how to help out.
 
+## Change log
+See [CHANGELOG](CHANGELOG.md).
+
 ## License
 FBT is MIT licensed, as found in the [LICENSE](LICENSE) file.
