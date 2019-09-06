@@ -5,25 +5,25 @@
  * LICENSE file in the root directory of this source tree.
  *
  * @format
+ * @noflow
  */
 'use strict';
 
-const babel = require('gulp-babel');
+const babelPresets = require('./babelPresets');
+const packageData = require('./package.json');
 const del = require('del');
+const gulp = require('gulp');
+const babel = require('gulp-babel');
 const cleanCSS = require('gulp-clean-css');
 const concatCSS = require('gulp-concat-css');
 const derequire = require('gulp-derequire');
 const flatten = require('gulp-flatten');
-const gulp = require('gulp');
-const gulpif = require('gulp-if');
-const gulpUtil = require('gulp-util');
 const header = require('gulp-header');
-const packageData = require('./package.json');
-const babelPresets = require('./babelPresets');
+const gulpif = require('gulp-if');
 const rename = require('gulp-rename');
-const through = require('through2');
-const webpackStream = require('webpack-stream');
+const gulpUtil = require('gulp-util');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const webpackStream = require('webpack-stream');
 
 const paths = {
   published: 'fbt-runtime',
