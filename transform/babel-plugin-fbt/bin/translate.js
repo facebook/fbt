@@ -77,7 +77,7 @@
  *
  */
 'use strict';
- 
+
 const {objMap} = require('../FbtUtil');
 const {FbtSite} = require('../translate/FbtSite.js');
 const TranslationBuilder = require('../translate/TranslationBuilder');
@@ -95,7 +95,7 @@ const args = {
   SRC: 'source-strings',
   STDIN: 'stdin',
   TRANSLATIONS: 'translations',
-  SPLIT_BY_LOCALE_TO: 'split-by-locale-to',
+  OUTPUT_DIR: 'output-dir',
 };
 
 const argv = yargs
@@ -143,10 +143,11 @@ const argv = yargs
   .describe(args.PRETTY, 'pretty print the translation output')
   .describe(args.HELP, 'Display usage message')
   .alias(args.HELP, 'help')
-  .string(args.SPLIT_BY_LOCALE_TO)
-  .default(args.SPLIT_BY_LOCALE_TO, null)
+  .string(args.OUTPUT_DIR)
+  .default(args.OUTPUT_DIR, null)
+  .alias(args.OUTPUT_DIR, 'o')
   .describe(
-    args.SPLIT_BY_LOCALE_TO,
+    args.OUTPUT_DIR,
     'By default, we write the output to stdout. If you instead would like to split ' +
       'the output by locale you can use this arg to specify an output directory. ' +
       'This is useful when you want to lazy load translations per locale.',
@@ -220,16 +221,16 @@ const output = argv[args.STDIN]
   : processFiles(argv[args.SRC], argv[args.TRANSLATIONS]);
 
 function createJSON(obj) {
-  return JSON.stringify(obj, ...(argv[args.PRETTY] ? [null, ' '] : []));
+  return JSON.stringify(obj, ...(argv[args.PRETTY] ? [null, 2] : []));
 }
 
-const splitByLocaleTo = yargs.argv[args.SPLIT_BY_LOCALE_TO];
-if (splitByLocaleTo) {
-  fs.mkdirSync(splitByLocaleTo, {recursive: true});
+const outputDir = yargs.argv[args.OUTPUT_DIR];
+if (outputDir) {
+  fs.mkdirSync(outputDir, {recursive: true});
 
-  Object.keys(output).forEach(function(locale) {
+  Object.keys(output).forEach(locale => {
     fs.writeFileSync(
-      path.join(splitByLocaleTo, `${locale}.json`),
+      path.join(outputDir, `${locale}.json`),
       createJSON({[locale]: output[locale]}),
     );
   });
