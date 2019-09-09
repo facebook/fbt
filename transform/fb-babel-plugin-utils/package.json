@@ -16,5 +16,8 @@
     "@babel/plugin-syntax-object-rest-spread": "^7.0.0",
     "@babel/plugin-syntax-optional-catch-binding": "^7.0.0",
     "@babel/plugin-syntax-optional-chaining": "^7.0.0"
+  },
+  "scripts": {
+    "publish_to_npm_latest": "yarn publish . && git push --tags && git push"
   }
 }
