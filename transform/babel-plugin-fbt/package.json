@@ -14,5 +14,8 @@
     "jest-docblock": "^24.3.0",
     "fbjs": "^1.0.0",
     "shelljs": "^0.7.8"
+  },
+  "scripts": {
+    "publish_to_npm_latest": "yarn publish . && git push --tags && git push"
   }
 }
