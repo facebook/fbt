@@ -23,5 +23,7 @@ We haven't had the best track record of code/feature changes before this date, b
 
 ### babel-plugin-fbt-runtime versions
 
+- Next MINOR version
+  - #73 New arg `output-dir` added to the translate script. The output translation files will be split by locale.
 - 0.9.4:
   - [250207c](https://github.com/facebookincubator/fbt/commit/250207c) Update peer dependencies for babel-plugin-fbt.
