@@ -66,10 +66,14 @@ See [CHANGELOG](CHANGELOG.md).
 
 ## How to release a new npm version
 
-Example for the `fbt` npm module:
-
 ```
+# Go to the module's folder (where package.json is located)
 cd fbt-runtime/
+# or
+# cd transform/babel-plugin-fbt/
+# cd transform/babel-plugin-runtime/
+
+# publishes to npm and push new git tag to Github
 yarn publish_to_npm_latest
 ```
 
