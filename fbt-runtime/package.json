@@ -3,7 +3,7 @@
   "name": "fbt",
   "description": "The fbt i18n framework JS runtime.",
   "//version": "Follow SemVer specs at https://semver.org/",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "keywords": [
     "facebook",
     "fbt",
@@ -27,7 +27,7 @@
   "license": "MIT",
   "dependencies": {},
   "peerDependencies": {
-    "babel-plugin-fbt": "^0.9.14",
+    "babel-plugin-fbt": "^0.9.15",
     "babel-plugin-fbt-runtime": "^0.9.4"
   },
   "devDependencies": {},
