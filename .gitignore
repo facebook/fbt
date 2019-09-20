@@ -14,6 +14,7 @@ demo-app/.source_strings.json
 demo-app/.src_manifest.json
 demo-app/output
 demo-app/source_strings.json
+demo-app/src/translatedFbts
 demo-app/src/translatedFbts.json
 demo-app/yarn-error.log
 

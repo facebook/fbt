@@ -13,6 +13,7 @@
     "test-collect-fbts": "babel-node ../transform/babel-plugin-fbt/bin/collectFBT --plugins @babel/plugin-syntax-flow --pretty --manifest < .src_manifest.json > .test_source_strings.json",
     "translate-fbts": "babel-node ../transform/babel-plugin-fbt/bin/translate.js --translations translations/*.json --jenkins > src/translatedFbts.json",
     "translate-fbts-single-file": "babel-node ../transform/babel-plugin-fbt/bin/translate.js --jenkins --stdin < translation_input.json > src/translatedFbts.json",
+    "test-translate-fbts-into-output-dir": "babel-node ../transform/babel-plugin-fbt/bin/translate.js --translations translations/*.json --jenkins --output-dir src/translatedFbts",
     "clean-fbts": "rm .enum_manifest.json .src_manifest.json .source_strings.json src/translatedFbts.json 2&> /dev/null || exit 0",
     "start": "babel-node ../node_modules/webpack-dev-server/bin/webpack-dev-server --open",
     "test": "babel-node ../node_modules/jest/bin/jest --config ./jest.config.json"

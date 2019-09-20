@@ -84,6 +84,7 @@ const TranslationBuilder = require('../translate/TranslationBuilder');
 const TranslationConfig = require('../translate/TranslationConfig');
 const TranslationData = require('../translate/TranslationData');
 const fs = require('fs');
+const path = require('path');
 const yargs = require('yargs');
 
 const args = {
@@ -94,6 +95,7 @@ const args = {
   SRC: 'source-strings',
   STDIN: 'stdin',
   TRANSLATIONS: 'translations',
+  OUTPUT_DIR: 'output-dir',
 };
 
 const argv = yargs
@@ -140,7 +142,16 @@ const argv = yargs
   .default(args.PRETTY, false)
   .describe(args.PRETTY, 'pretty print the translation output')
   .describe(args.HELP, 'Display usage message')
-  .alias(args.HELP, 'help').argv;
+  .alias(args.HELP, 'help')
+  .string(args.OUTPUT_DIR)
+  .default(args.OUTPUT_DIR, null)
+  .alias(args.OUTPUT_DIR, 'o')
+  .describe(
+    args.OUTPUT_DIR,
+    'By default, we write the output to stdout. If you instead would like to split ' +
+      'the output by locale you can use this arg to specify an output directory. ' +
+      'This is useful when you want to lazy load translations per locale.',
+  ).argv;
 
 function processFiles(
   stringFile /*: string */,
@@ -208,5 +219,21 @@ if (argv[args.HELP]) {
 const output = argv[args.STDIN]
   ? processJSON(JSON.parse(fs.readFileSync(process.stdin.fd, 'utf8')))
   : processFiles(argv[args.SRC], argv[args.TRANSLATIONS]);
-const json = JSON.stringify(output, ...(argv[args.PRETTY] ? [null, ' '] : []));
-process.stdout.write(json);
+
+function createJSON(obj) {
+  return JSON.stringify(obj, ...(argv[args.PRETTY] ? [null, 2] : []));
+}
+
+const outputDir = yargs.argv[args.OUTPUT_DIR];
+if (outputDir) {
+  fs.mkdirSync(outputDir, {recursive: true});
+
+  Object.keys(output).forEach(locale => {
+    fs.writeFileSync(
+      path.join(outputDir, `${locale}.json`),
+      createJSON({[locale]: output[locale]}),
+    );
+  });
+} else {
+  process.stdout.write(createJSON(output));
+}
