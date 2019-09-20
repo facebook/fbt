@@ -17,7 +17,7 @@
  * @format
  * @fbt {"project": "intl-core"}
  * @typechecks
- * @flow
+ * @flow strict-local
  * @emails oncall+internationalization
  */
 
@@ -52,9 +52,6 @@ const intlList = function<TItem: React.Node>(
       );
     });
   }
-
-  conjunction = conjunction || CONJUNCTIONS.AND;
-  delimiter = delimiter || DELIMITERS.COMMA;
 
   const count = items.length;
   if (count === 0) {
@@ -99,7 +96,12 @@ const intlList = function<TItem: React.Node>(
     }
   }
 
-  return _getConjunction(output, lastItem, conjunction, delimiter);
+  return _getConjunction(
+    output,
+    lastItem,
+    conjunction || CONJUNCTIONS.AND,
+    delimiter || DELIMITERS.COMMA,
+  );
 };
 
 function _getConjunction(
