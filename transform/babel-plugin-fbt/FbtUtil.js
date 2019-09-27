@@ -245,7 +245,7 @@ function expandStringConcat(moduleName, t, node) {
   throwAt(
     node,
     `${moduleName} only accepts plain strings with params wrapped in ${moduleName}.param. ` +
-      `See the docs at https://fburl.com/fbt-children for more info. ` +
+      `See the docs at https://facebookincubator.github.io/fbt/ for more info. ` +
       `Expected StringLiteral, TemplateLiteral, or concatenation; got ${
         node.type
       }`,
