@@ -1,0 +1,21 @@
+{
+  "name": "fb-tiger-hash",
+  "private": false,
+  "version": "0.1.0",
+  "main": "index.js",
+  "license": "MIT",
+  "keywords": [
+    "crypto",
+    "facebook",
+    "fbt",
+    "hash"
+  ],
+  "peerDependencies": {
+    "babel-plugin-fbt": "0.9.x"
+  },
+  "engines": {
+    "node": ">= 10.4.0"
+  },
+  "repository": "facebookincubator/fbt",
+  "bugs": "https://github.com/facebookincubator/fbt/issues"
+}
