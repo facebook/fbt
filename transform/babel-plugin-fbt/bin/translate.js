@@ -211,29 +211,44 @@ function processGroups(phrases, translatedGroups) {
   return localeToHashToFbt;
 }
 
+function createJSON(obj) {
+  return JSON.stringify(obj, ...(argv[args.PRETTY] ? [null, 2] : []));
+}
+
+function writeOutput(output) {
+  const outputDir = yargs.argv[args.OUTPUT_DIR];
+  if (outputDir) {
+    fs.mkdirSync(outputDir, {recursive: true});
+
+    Object.keys(output).forEach(locale => {
+      fs.writeFileSync(
+        path.join(outputDir, `${locale}.json`),
+        createJSON({[locale]: output[locale]}),
+      );
+    });
+  } else {
+    process.stdout.write(createJSON(output));
+  }
+}
+
 if (argv[args.HELP]) {
   yargs.showHelp();
   process.exit(0);
 }
 
-const output = argv[args.STDIN]
-  ? processJSON(JSON.parse(fs.readFileSync(process.stdin.fd, 'utf8')))
-  : processFiles(argv[args.SRC], argv[args.TRANSLATIONS]);
-
-function createJSON(obj) {
-  return JSON.stringify(obj, ...(argv[args.PRETTY] ? [null, 2] : []));
-}
-
-const outputDir = yargs.argv[args.OUTPUT_DIR];
-if (outputDir) {
-  fs.mkdirSync(outputDir, {recursive: true});
-
-  Object.keys(output).forEach(locale => {
-    fs.writeFileSync(
-      path.join(outputDir, `${locale}.json`),
-      createJSON({[locale]: output[locale]}),
-    );
-  });
+if (argv[args.STDIN]) {
+  const stream = process.stdin;
+  let source = '';
+  stream
+    .setEncoding('utf8')
+    .on('data', function(chunk) {
+      source += chunk;
+    })
+    .on('end', function() {
+      const output = processJSON(JSON.parse(source));
+      writeOutput(output);
+    });
 } else {
-  process.stdout.write(createJSON(output));
+  const output = processFiles(argv[args.SRC], argv[args.TRANSLATIONS]);
+  writeOutput(output);
 }

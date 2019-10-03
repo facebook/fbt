@@ -28,6 +28,7 @@ We haven't had the best track record of code/feature changes before this date, b
     </summary>
 
    - [MAJOR] Remove `bin/tiger*` in favor of standalone `fb-tiger-hash` NPM package (native JS implementation)
+   - [BUG] Fix bug in translate command where reading from stdin could sometimes fail (#79)
 
   </details>
 
