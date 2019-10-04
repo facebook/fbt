@@ -100,6 +100,27 @@ class _FbtResultBase implements IFbtResultBase {
     return this._contents;
   }
 
+  /**
+   * Handle the error scenario where the FbtResultBase contains non-string elements
+   * (usually React components) and tries to run .toString()
+   *
+   * Example of bad usage of <fbt> with rich contents that will trigger this error
+   *
+   * render() {
+   *   const text = (
+   *     <fbt desc="...">
+   *       I have <Link href="#">no name</Link>.
+   *     </fbt>
+   *   );
+   *   return (
+   *     <div className={cx('FiddleCSS/root')}>
+   *       <p>Text = "{text}"</p>
+   *       <p>Truncated Text = "{text.substr(0, 9)}"</p> // will output: "I have ."
+   *       <em>You might have expected "I have no" but we don't support this in the FBT API.</em>
+   *     </div>
+   *   );
+   * }
+   */
   onStringSerializationError(content: FbtContentItem): void {
     throw new Error('This method needs to be overridden by a child class');
   }
