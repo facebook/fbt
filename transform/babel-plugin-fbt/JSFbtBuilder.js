@@ -53,6 +53,7 @@ class JSFbtBuilder {
   constructor(reactNativeMode) {
     this.usedEnums = {};
     this.usedPlurals = {};
+    this.usedPronouns = {};
     this.reactNativeMode = reactNativeMode;
   }
 
@@ -211,20 +212,35 @@ class JSFbtBuilder {
         return table;
 
       case 'pronoun':
-        Object.keys(GENDER_CONST).forEach(key => {
+        const genderSrc = item.gender;
+        const isUsed = this.usedPronouns.hasOwnProperty(genderSrc);
+        const genders = isUsed ? this.usedPronouns[genderSrc] : GENDER_CONST;
+        const resTable = {};
+        Object.keys(genders).forEach(key => {
           const gender = GENDER_CONST[key];
           if (gender === GENDER_CONST.NOT_A_PERSON && !item.human) {
             return;
+          }
+          if (!isUsed) {
+            this.usedPronouns[genderSrc] = {[key]: gender};
           }
           const genderKey = this.getPronounGenderKey(item.usage, gender);
           const pivotKey =
             genderKey === GENDER_CONST.UNKNOWN_PLURAL ? '*' : genderKey;
           const word = Gender.getData(genderKey, item.usage);
-          textSegments[pivotKey] = item.capitalize
+          const capWord = item.capitalize
             ? word.charAt(0).toUpperCase() + word.substr(1)
             : word;
+          resTable[pivotKey] = this._buildTable(
+            prefix + capWord,
+            texts,
+            idx + 1,
+          );
         });
-        break;
+        if (!isUsed) {
+          delete this.usedPronouns[genderSrc];
+        }
+        return resTable;
 
       case 'enum':
         //  If this is a duplicate enum, use the stored value.  Otherwise,

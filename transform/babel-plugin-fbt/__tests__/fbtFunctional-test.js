@@ -1032,21 +1032,12 @@ const generalTestData = {
           jsfbt: {
             t: {
               '1': {
-                '0': 'She wished themself a happy birthday.',
                 '1': 'She wished herself a happy birthday.',
-                '2': 'She wished himself a happy birthday.',
-                '*': 'She wished themselves a happy birthday.',
               },
               '2': {
-                '0': 'He wished themself a happy birthday.',
-                '1': 'He wished herself a happy birthday.',
                 '2': 'He wished himself a happy birthday.',
-                '*': 'He wished themselves a happy birthday.',
               },
               '*': {
-                '0': 'They wished themself a happy birthday.',
-                '1': 'They wished herself a happy birthday.',
-                '2': 'They wished himself a happy birthday.',
                 '*': 'They wished themselves a happy birthday.',
               },
             },

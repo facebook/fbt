@@ -504,6 +504,7 @@ function BabelPluginFbt(babel) {
           texts.push({
             type: 'pronoun',
             usage: node.arguments[0].value,
+            gender: getRawSource(src, node.arguments[1]),
             ...options,
           });
           break;
