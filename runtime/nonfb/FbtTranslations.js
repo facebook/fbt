@@ -16,6 +16,7 @@ const IntlViewerContext = require('IntlViewerContext');
 
 let translatedFbts = null;
 
+const DEFAULT_SRC_LOCALE = 'en_US';
 let customTranslationPayloadGetter: ?CustomTranslationPayloadGetter = null;
 
 const FbtTranslations = {
@@ -32,7 +33,7 @@ const FbtTranslations = {
     const table =
       translatedFbts != null && translatedFbts[IntlViewerContext.locale];
     if (__DEV__) {
-      if (!table) {
+      if (!table && IntlViewerContext.locale !== DEFAULT_SRC_LOCALE) {
         console.warn('Translations have not been provided');
       }
     }
