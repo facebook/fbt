@@ -26,11 +26,13 @@ We haven't had the best track record of code/feature changes before this date, b
      Changes that have landed in master but are not yet released.
      Click to see more.
     </summary>
-
-   - [MAJOR] Remove `bin/tiger*` in favor of standalone `fb-tiger-hash` NPM package (native JS implementation)
-   - [BUG] Fix bug in translate command where reading from stdin could sometimes fail (#79)
-
   </details>
+
+- 0.10.0:
+  - [435ec19](https://github.com/facebookincubator/fbt/commit/435ec19) Ignoring tests and mocks from NPM modules
+  - [67ed16f](https://github.com/facebookincubator/fbt/commit/67ed16f) Prune fbt:pronoun branches
+  - [b0247c6](https://github.com/facebookincubator/fbt/commit/b0247c6) Fix bug in translate command where reading from stdin could sometimes fail (#79)
+  - [0199b8d](https://github.com/facebookincubator/fbt/commit/0199b8d) Remove `bin/tiger*` in favor of standalone `fb-tiger-hash` NPM package (native JS implementation)
 
 - 0.9.16:
   - [7d46281](https://github.com/facebookincubator/fbt/commit/7d46281) `output-dir` arg added to the translate script - output files split by locale.
@@ -39,6 +41,9 @@ We haven't had the best track record of code/feature changes before this date, b
   - [c11e9fd](https://github.com/facebookincubator/fbt/commit/c11e9fd) Enable custom Babel plugins for FBT collection
 
 ### babel-plugin-fbt-runtime versions
+- 0.9.5:
+  - [435ec19](https://github.com/facebookincubator/fbt/commit/435ec19) Ignoring tests and mocks from NPM modules
+
 - 0.9.4:
   - [250207c](https://github.com/facebookincubator/fbt/commit/250207c) Update peer dependencies for babel-plugin-fbt.
 
