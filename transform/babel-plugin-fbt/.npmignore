@@ -1,0 +1,7 @@
+# Since .gitignore is not considered when .npmignore is present
+node_modules
+
+translate/__tests__
+bin/__tests__
+__mocks__
+__tests__
