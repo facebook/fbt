@@ -52,8 +52,13 @@ const _locToLang = {
 
 const FBLocaleToLang = {
   get: function(locale) {
-    return _locToLang[locale] || locale.substring(0, locale.indexOf('_'));
-  },
+    const lodashIndex = locale.indexOf("_");
+
+    return (
+      _locToLang[locale] ||
+      (lodashIndex !== -1 ? locale.substring(0, lodashIndex) : locale)
+    );
+  }
 };
 
 module.exports = FBLocaleToLang;
