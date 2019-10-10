@@ -13,11 +13,19 @@ We haven't had the best track record of code/feature changes before this date, b
 - [fb-tiger-hash versions](#fb-tiger-hash-versions)
 
 ### fbt versions
+  <details>
+    <summary>
+     Changes that have landed in master but are not yet released.
+     Click to see more.
+    </summary>
+
+  - [bug] Fix IntlNumberType.get(...) to work with short locales https://github.com/facebookincubator/fbt/pull/85
+
+  </details>
 - 0.10.2:
   - [04df822](https://github.com/facebookincubator/fbt/commit/04df822) Updated package version references
 - 0.10.0:
   - [9acb1cd](https://github.com/facebookincubator/fbt/commit/9acb1cd) Make fbt translation payload getter customizable
-
 
 ### babel-plugin-fbt versions
 - [Unreleased]
@@ -26,6 +34,7 @@ We haven't had the best track record of code/feature changes before this date, b
      Changes that have landed in master but are not yet released.
      Click to see more.
     </summary>
+  - [bug] Fix IntlNumberType.get(...) to work with short locales https://github.com/facebookincubator/fbt/pull/85
   </details>
 
 - 0.10.0:
