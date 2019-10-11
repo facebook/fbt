@@ -12,6 +12,9 @@ We haven't had the best track record of code/feature changes before this date, b
 - [babel-plugin-fbt-runtime versions](#babel-plugin-fbt-runtime-versions)
 - [fb-tiger-hash versions](#fb-tiger-hash-versions)
 
+### Top-level Github
+- Enable testing packages from top-level in GitHub
+
 ### fbt versions
 - 0.10.2:
   - [04df822](https://github.com/facebookincubator/fbt/commit/04df822) Updated package version references

@@ -9,6 +9,7 @@
     "@babel/core": "7.2.2",
     "@babel/generator": "^7.3.0",
     "@babel/node": "7.2.2",
+    "@babel/plugin-syntax-bigint": "^7.0.0",
     "@babel/plugin-syntax-class-properties": "^7.2.0",
     "@babel/plugin-syntax-flow": "^7.2.0",
     "@babel/plugin-syntax-jsx": "^7.2.0",
@@ -20,7 +21,7 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-preset-fbjs": "^3.1.2",
     "del": "^3.0.0",
-    "fbjs-scripts": "^1.0.1",
+    "fbjs-scripts": "^1.2.0",
     "flow-remove-types": "^1.2.3",
     "gulp": "^4.0.0",
     "gulp-babel": "^8.0.0",
@@ -33,6 +34,8 @@
     "gulp-rename": "^1.4.0",
     "gulp-util": "^3.0.8",
     "invariant": "^2.2.4",
+    "jest": "^24.9.0",
+    "jest-cli": "^24.9.0",
     "jest-docblock": "^22.2.0",
     "uglifyjs-webpack-plugin": "^2.1.1",
     "webpack": "^4.0.0",
@@ -47,13 +50,18 @@
     "shelljs": "^0.8.3"
   },
   "scripts": {
+    "build-runtime": "gulp lib",
     "clean": "gulp clean",
     "postinstall": "yarn build-runtime",
-    "build-runtime": "gulp lib"
+    "demo-app:test": "yarn jest demo-app",
+    "fb-tiger-hash:test": "yarn jest fb-tiger-hash",
+    "babel-plugin-fbt-runtime:test": "yarn jest transform/babel-plugin-fbt-runtime",
+    "babel-plugin-fbt:test": "yarn jest transform/babel-plugin-fbt",
+    "test": "yarn jest"
   },
   "workspaces": [
     "demo-app",
-    "fb-tiger",
+    "fb-tiger-hash",
     "fbt-runtime",
     "live-demo-app",
     "transform/*",

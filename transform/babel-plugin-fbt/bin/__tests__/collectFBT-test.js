@@ -23,8 +23,7 @@ describe('collectFBT', () => {
       collectOptions = collectOptions.concat('--react-native-mode');
     }
     var child = childProcess.spawnSync(
-      process.env.NODE_BINARY ||
-        __dirname + '/../../../../../../../../scripts/third-party/node',
+      process.env.NODE_BINARY || 'node',
       collectOptions,
       {input: source},
     );
