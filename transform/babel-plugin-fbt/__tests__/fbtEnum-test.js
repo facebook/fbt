@@ -61,6 +61,39 @@ describe('Test Fbt Enum', () => {
     });
   });
 
+  it('should handle jsx string literals', () => {
+    runTest({
+      input: withFbtRequireStatement(
+        `let aEnum = require('Test$FbtEnum');
+          var x = (
+            <fbt desc="enums!">
+              Click to see
+              <fbt:enum enum-range={aEnum} value="id1" />
+            </fbt>
+          );`,
+      ),
+
+      output: withFbtRequireStatement(
+        `let aEnum = require('Test$FbtEnum');
+          var x = fbt._(
+            ${payload({
+              type: 'table',
+              jsfbt: {
+                t: {
+                  id1: 'Click to see groups',
+                  id2: 'Click to see photos',
+                  id3: 'Click to see videos',
+                },
+                m: [null],
+              },
+              desc: 'enums!',
+            })},
+            [fbt._enum("id1", aEnum)],
+          );`,
+      ),
+    });
+  });
+
   it('should handle functional enums (with references)', () => {
     runTest({
       input: withFbtRequireStatement(

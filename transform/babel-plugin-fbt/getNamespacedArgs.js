@@ -258,15 +258,17 @@ const getNamespacedArgs = function(moduleName, t) {
         'value',
       );
 
-      if (valueAttr.value.type !== 'JSXExpressionContainer') {
-        throwAt(
-          node,
-          `Expected value attribute of <${moduleName}:enum> to be an expression ` +
-            `but got ${valueAttr.value.type}`,
-        );
+      if (valueAttr.value.type === 'JSXExpressionContainer') {
+        return [valueAttr.value.expression, rangeAttr.value.expression];
+      } else if (valueAttr.value.type === 'StringLiteral') {
+        return [valueAttr.value, rangeAttr.value.expression];
       }
 
-      return [valueAttr.value.expression, rangeAttr.value.expression];
+      throwAt(
+        node,
+        `Expected value attribute of <${moduleName}:enum> to be an expression ` +
+          `but got ${valueAttr.value.type}`,
+      );
     },
   };
 };
