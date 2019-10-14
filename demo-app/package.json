@@ -16,8 +16,8 @@
     "test-translate-fbts-into-output-dir": "babel-node ../transform/babel-plugin-fbt/bin/translate.js --translations translations/*.json --jenkins --output-dir src/translatedFbts",
     "clean-fbts": "rm .enum_manifest.json .src_manifest.json .source_strings.json src/translatedFbts.json 2&> /dev/null || exit 0",
     "start": "babel-node ../node_modules/webpack-dev-server/bin/webpack-dev-server --open",
-    "all": "yarn manifest && yarn collect-fbts && yarn translate-fbts",
-    "test": "yarn all && cd .. && yarn jest demo-app"
+    "all": "node run_all",
+    "test": "cd .. && yarn jest demo-app"
   },
   "devDependencies": {
     "@babel/core": "7.2.2",

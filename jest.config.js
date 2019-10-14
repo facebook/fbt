@@ -14,6 +14,7 @@ const runtimePaths = [
 const globalConfig = {
   setupFiles: ['fbjs-scripts/jest/environment.js'],
   timers: 'fake',
+  transform: {'\\.js$': '<rootDir>/jest-preprocessor.js'},
 };
 
 module.exports = {
@@ -21,13 +22,13 @@ module.exports = {
   projects: [
     {
       displayName: 'babel-plugin-fbt',
-      roots: [fs.realpathSync('transform/babel-plugin-fbt')],
-      transform: {'\\.js$': 'fbjs-scripts/jest/preprocessor.js'},
+      roots: [fs.realpathSync(path.resolve('transform', 'babel-plugin-fbt'))],
     },
     {
       displayName: 'babel-plugin-fbt-runtime',
-      roots: [fs.realpathSync('transform/babel-plugin-fbt-runtime')],
-      transform: {'\\.js$': 'fbjs-scripts/jest/preprocessor.js'},
+      roots: [
+        fs.realpathSync(path.resolve('transform', 'babel-plugin-fbt-runtime')),
+      ],
     },
     {
       displayName: 'fb-tiger-hash',
@@ -40,13 +41,20 @@ module.exports = {
       },
     },
     {
+      setupFiles: [
+        'fbjs-scripts/jest/environment.js',
+        '<rootDir>/demo-app/run_all.js',
+      ],
       displayName: 'demo-app',
       roots: ['<rootDir>/demo-app'],
       modulePaths: [
         '<rootDir>/demo-app/src',
         '<rootDir>/demo-app/src/example',
       ].concat(runtimePaths),
-      testPathIgnorePatterns: ['/output/', '/node_modules/'],
+      transformIgnorePatterns: [
+        '/node_modules/',
+        '<rootDir>/demo-app/run_all\\.js',
+      ],
       moduleNameMapper: {
         '\\.(css)$': '<rootDir>/demo-app/jest/css.js',
       },
@@ -66,5 +74,5 @@ module.exports = {
         ],
       },
     },
-  ].map(project => Object.assign(project, globalConfig)),
+  ].map(project => Object.assign({}, globalConfig, project)),
 };
