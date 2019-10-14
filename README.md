@@ -35,7 +35,7 @@ See how to use the source directly with Babel and Webpack in [our demo-app](demo
 ## How FBT works
 FBT works by transforming your `<fbt>` and `fbt(...)` constructs via
 Babel plugins.  These plugins serve to extract strings from source and
-lookup translate payloads generated at build-time.  FBT creates tables
+lookup translated payloads generated at build-time.  FBT creates tables
 of all possible variations for the given fbt phrase and accesses this
 at runtime.
 
