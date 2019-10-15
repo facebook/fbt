@@ -41,7 +41,7 @@ class FbtResult extends FbtResultBaseImpl {
     };
 
     if (__DEV__) {
-      FbtReactUtil.defineProperty(this, '_store', {validated: true});
+      FbtReactUtil.injectReactShim(this);
     }
   }
 }

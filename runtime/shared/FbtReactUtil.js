@@ -10,7 +10,7 @@
  *   js1 upgrade www-shared -p fbt --remote localhost:~/www
  *
  * @format
- * @flow
+ * @flow strict
  * @emails oncall+internationalization
  */
 
@@ -32,16 +32,18 @@ if (__DEV__) {
 const FbtReactUtil = {
   REACT_ELEMENT_TYPE: REACT_ELEMENT_TYPE,
 
-  defineProperty: function(target: Object, storeKey: string, value: Object) {
+  injectReactShim(fbtResult: IFbtResultBase) {
+    const reactObj = {validated: true};
+
     if (canDefineProperty) {
-      Object.defineProperty(target, storeKey, {
+      Object.defineProperty(fbtResult, '_store', {
         configurable: false,
         enumerable: false,
         writable: false,
-        value: value,
+        value: reactObj,
       });
     } else {
-      target[storeKey] = value;
+      fbtResult._store = reactObj;
     }
   },
 };

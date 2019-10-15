@@ -82,7 +82,7 @@ class InlineFbtResult extends FbtResultBaseImpl {
       hash,
     };
     if (__DEV__) {
-      FbtReactUtil.defineProperty(this, '_store', {validated: true});
+      FbtReactUtil.injectReactShim(this);
     }
   }
 }
