@@ -12,6 +12,9 @@ We haven't had the best track record of code/feature changes before this date, b
 - [babel-plugin-fbt-runtime versions](#babel-plugin-fbt-runtime-versions)
 - [fb-tiger-hash versions](#fb-tiger-hash-versions)
 
+### Top-level Github
+- Prepare directory structure for Lerna
+
 ### fbt versions
   <details>
     <summary>

@@ -26,9 +26,9 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const webpackStream = require('webpack-stream');
 
 const paths = {
-  published: 'fbt-runtime',
-  dist: 'fbt-runtime/dist',
-  lib: 'fbt-runtime/lib',
+  published: 'packages/fbt',
+  dist: 'packages/fbt/dist',
+  lib: 'packages/fbt/lib',
   license: 'LICENSE',
   runtime: [
     'runtime/**/*.js',
@@ -144,7 +144,7 @@ gulp.task(
       output: 'fbt.js',
     };
     return gulp
-      .src('./fbt-runtime/lib/FbtPublic.js')
+      .src('./packages/fbt/lib/FbtPublic.js')
       .pipe(buildDist(opts))
       .pipe(derequire())
       .pipe(
@@ -165,7 +165,7 @@ gulp.task(
       output: 'fbt.min.js',
     };
     return gulp
-      .src('./fbt-runtime/lib/FbtPublic.js')
+      .src('./packages/fbt/lib/FbtPublic.js')
       .pipe(buildDist(opts))
       .pipe(
         gulpif(
