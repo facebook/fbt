@@ -2,9 +2,6 @@
 node_modules
 yarn-error.log
 
-# NPM "fbt-runtime" package folder for publishing
-./fbt-runtime
-
 # MacOS
 .DS_Store
 
@@ -25,8 +22,8 @@ live-demo-app/output
 live-demo-app/src/translatedFbts.json
 live-demo-app/yarn-error.log
 
-# Publisehd NPM modules
-fbt-runtime/**
+# "Built" Publisehd NPM modules
+packages/fbt/**
 !fbt-runtime/.yarnrc
 !fbt-runtime/package.json
 

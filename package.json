@@ -53,10 +53,8 @@
   },
   "workspaces": [
     "demo-app",
-    "fb-tiger",
-    "fbt-runtime",
     "live-demo-app",
-    "transform/*",
+    "packages/*",
     "website"
   ],
   "engines": {
