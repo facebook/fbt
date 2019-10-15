@@ -12,11 +12,11 @@ module.exports = require('babel-jest').createTransformer({
     '@babel/plugin-proposal-optional-chaining',
     '@babel/plugin-transform-flow-strip-types',
     [
-      '../transform/babel-plugin-fbt/index.js',
+      'babel-plugin-fbt',
       {
         fbtEnumManifest: require('./.enum_manifest.json'),
       },
     ],
-    '../transform/babel-plugin-fbt-runtime/index.js',
+    'babel-plugin-fbt-runtime',
   ],
 });
