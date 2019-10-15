@@ -24,8 +24,8 @@ live-demo-app/yarn-error.log
 
 # "Built" Publisehd NPM modules
 packages/fbt/**
-!fbt-runtime/.yarnrc
-!fbt-runtime/package.json
+!packages/fbt/.yarnrc
+!packages/fbt/package.json
 
 # documentation build artifacts
 website/build/

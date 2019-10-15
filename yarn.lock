@@ -4345,11 +4345,6 @@ fbjs@1.0.0, fbjs@^1.0.0:
     setimmediate "^1.0.5"
     ua-parser-js "^0.7.18"
 
-fbt@^0.10.0:
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/fbt/-/fbt-0.10.2.tgz#f7bb505d3d60e1b8ec1ad00bac4b9bd4744d348d"
-  integrity sha512-/C6fy3uRprj5nIQKnPXhrwOn1C7dfQwsE5iVwtb0EkDfMQw8usjH1UCeod4pIEj6QJlDvUTtpkm6C+Iacu5vWA==
-
 fd-slicer@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/fd-slicer/-/fd-slicer-1.1.0.tgz#25c7c89cb1f9077f8891bbe61d8f390eae256f1e"
