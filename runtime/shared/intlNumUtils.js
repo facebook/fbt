@@ -7,7 +7,7 @@
  * kept in sync.
  *
  * Run the following command to sync the change from www to fbsource.
- *   js1 upgrade www-shared -p fbt --remote localhost:~/www
+ *   js1 upgrade www-shared -p fbt --local ~/www
  *
  * @flow strict
  * @typechecks
