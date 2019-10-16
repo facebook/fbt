@@ -14,6 +14,7 @@ We haven't had the best track record of code/feature changes before this date, b
 
 ### Top-level Github
 - Prepare directory structure for Lerna
+- Enable testing packages from top-level in GitHub
 
 ### fbt versions
   <details>
