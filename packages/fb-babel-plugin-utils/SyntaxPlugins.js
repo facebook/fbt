@@ -30,7 +30,7 @@ if (SyntaxPluginsConfig.shouldEnableFBSourcePlugins) {
   ] = require('@babel/plugin-syntax-dynamic-import');
 }
 
-const SYNTAX_PLUGINS = [];
+const SYNTAX_PLUGINS /*: Array<Object> */ = [];
 for (const pluginName in SYNTAX_PLUGINS_MAP) {
   SYNTAX_PLUGINS.push(SYNTAX_PLUGINS_MAP[pluginName]);
 }
