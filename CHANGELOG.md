@@ -25,6 +25,7 @@ We haven't had the best track record of code/feature changes before this date, b
 
   - [bug] Fix IntlNumberType.get(...) to work with short locales https://github.com/facebookincubator/fbt/pull/85
   - Allow fbt:enum value prop to be a string literal
+  - Allow jsx files to be fbt-containing candidates.
 
   </details>
 - 0.10.2:
