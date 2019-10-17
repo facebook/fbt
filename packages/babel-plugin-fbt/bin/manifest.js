@@ -76,7 +76,7 @@ fs.writeFileSync(argv['enum-manifest'], JSON.stringify(enumManifest));
 // Find source files that are fbt-containing candidates
 const jsFiles = shell
   .find(argv.src)
-  .filter(path => /\.(js|ts|tsx)$/.test(path));
+  .filter(path => /\.(js|jsx|ts|tsx)$/.test(path));
 const srcFiles = shell
   .grep('-l', FbtConstants.ModuleNameRegExp, jsFiles)
   .trim()
