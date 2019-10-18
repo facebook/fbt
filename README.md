@@ -56,7 +56,7 @@ See [CHANGELOG](CHANGELOG.md).
 ## List of npm modules published from this repo:
 
 - [fbt](https://www.npmjs.com/package/fbt) (client-side)
-  - See [package.json](packages/fbt-runtime/package.json) config
+  - See [package.json](packages/fbt/package.json) config
 - [babel-plugin-fbt](https://www.npmjs.com/package/babel-plugin-fbt) (server-side)
   - See [package.json](packages/babel-plugin-fbt/package.json) config
 - [babel-plugin-fbt-runtime](https://www.npmjs.com/package/babel-plugin-fbt-runtime) (server-side)
