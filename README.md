@@ -56,13 +56,13 @@ See [CHANGELOG](CHANGELOG.md).
 ## List of npm modules published from this repo:
 
 - [fbt](https://www.npmjs.com/package/fbt) (client-side)
-  - See [package.json](fbt-runtime/package.json) config
+  - See [package.json](packages/fbt-runtime/package.json) config
 - [babel-plugin-fbt](https://www.npmjs.com/package/babel-plugin-fbt) (server-side)
-  - See [package.json](transform/babel-plugin-fbt/package.json) config
+  - See [package.json](packages/babel-plugin-fbt/package.json) config
 - [babel-plugin-fbt-runtime](https://www.npmjs.com/package/babel-plugin-fbt-runtime) (server-side)
-  - See [package.json](transform/babel-plugin-fbt-runtime/package.json) config
+  - See [package.json](packages/babel-plugin-fbt-runtime/package.json) config
 - [fb-babel-plugin-utils](https://www.npmjs.com/package/fb-babel-plugin-utils) (server-side, used by `babel-plugin-fbt-runtime`)
-  - See [package.json](transform/fb-babel-plugin-utils/package.json) config
+  - See [package.json](packages/fb-babel-plugin-utils/package.json) config
 
 ## How to release a new npm version
 
@@ -70,8 +70,8 @@ See [CHANGELOG](CHANGELOG.md).
 # Go to the module's folder (where package.json is located)
 cd fbt-runtime/
 # or
-# cd transform/babel-plugin-fbt/
-# cd transform/babel-plugin-runtime/
+# cd packages/babel-plugin-fbt/
+# cd packages/babel-plugin-runtime/
 
 # publishes to npm and push new git tag to Github
 yarn publish_to_npm_latest
