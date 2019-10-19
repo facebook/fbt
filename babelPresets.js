@@ -9,7 +9,10 @@
 'use strict';
 
 const moduleMap = Object.assign(
-  {},
+  {
+    React: 'react',
+    ReactDOM: 'react-dom',
+  },
   require('fbjs/module-map'),
   require('fbjs-scripts/third-party-module-map'),
 );

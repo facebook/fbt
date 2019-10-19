@@ -1,7 +1,7 @@
 {
   "name": "fb-tiger-hash",
   "private": false,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "index.js",
   "license": "MIT",
   "keywords": [
@@ -11,7 +11,7 @@
     "hash"
   ],
   "peerDependencies": {
-    "babel-plugin-fbt": "0.9.x"
+    "babel-plugin-fbt": "^0.x.x"
   },
   "engines": {
     "node": ">= 10.4.0"

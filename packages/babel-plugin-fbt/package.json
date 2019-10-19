@@ -3,7 +3,7 @@
   "main": "index.js",
   "name": "babel-plugin-fbt",
   "//version": "Follow SemVer specs at https://semver.org/",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "devDependencies": {
     "yargs": "^9.0.0"
   },

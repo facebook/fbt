@@ -22,12 +22,13 @@ We haven't had the best track record of code/feature changes before this date, b
      Changes that have landed in master but are not yet released.
      Click to see more.
     </summary>
-
-  - [bug] Fix IntlNumberType.get(...) to work with short locales https://github.com/facebookincubator/fbt/pull/85
-  - Allow fbt:enum value prop to be a string literal
-  - Allow jsx files to be fbt-containing candidates.
-
   </details>
+
+- 0.10.3:
+  - [bug] Fix IntlNumberType.get(...) to work with short locales [#85](https://github.com/facebookincubator/fbt/pull/85)
+  - Allow fbt:enum value prop to be a string literal
+  - Fix intlList 'react' import [issue #62](https://github.com/facebookincubator/fbt/issues/62)
+
 - 0.10.2:
   - [04df822](https://github.com/facebookincubator/fbt/commit/04df822) Updated package version references
 - 0.10.0:
@@ -40,8 +41,12 @@ We haven't had the best track record of code/feature changes before this date, b
      Changes that have landed in master but are not yet released.
      Click to see more.
     </summary>
-  - [bug] Fix IntlNumberType.get(...) to work with short locales https://github.com/facebookincubator/fbt/pull/85
+
   </details>
+
+- 0.10.1:
+  - [bug] Fix IntlNumberType.get(...) to work with short locales [#85](https://github.com/facebookincubator/fbt/pull/85)
+  - Allow jsx files to be fbt-containing candidates.
 
 - 0.10.0:
   - [435ec19](https://github.com/facebookincubator/fbt/commit/435ec19) Ignoring tests and mocks from NPM modules
