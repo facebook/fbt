@@ -1,0 +1,13 @@
+{
+  "npmClient": "yarn",
+  "commands": {
+    "publish": {
+      "message": "chore: release"
+    }
+  }
+  "packages": [
+    "packages/*"
+  ],
+  "useWorkspaces": true,
+  "version": "independent"
+}

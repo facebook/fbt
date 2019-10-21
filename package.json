@@ -37,6 +37,7 @@
     "jest": "^24.9.0",
     "jest-cli": "^24.9.0",
     "jest-docblock": "^22.2.0",
+    "lerna": "^3.18.1",
     "react-dom": "^16.10.2",
     "uglifyjs-webpack-plugin": "^2.1.1",
     "webpack": "^4.0.0",
@@ -49,6 +50,10 @@
     "fbjs": "1.0.0",
     "npm": "^6.4.1",
     "shelljs": "^0.8.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/facebookincubator/fbt.git"
   },
   "scripts": {
     "build-runtime": "gulp lib",
