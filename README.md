@@ -3,8 +3,8 @@
 </h1>
 
 <h2 align="center">
-  <a href="https:/travis-ci.com/facebookincubator/fbt">
-    <img src="https:/travis-ci.com/facebookincubator/fbt.svg?branch=master" />
+  <a href="https://travis-ci.com/facebookincubator/fbt">
+    <img src="https://travis-ci.com/facebookincubator/fbt.svg?branch=master" />
   </a>
 </h2>
 
