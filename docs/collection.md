@@ -4,7 +4,7 @@ title: Extracting FBTs
 sidebar_label: Extracting translatable texts
 ---
 We provide
-[`collectFbt.js`](https://github.com/facebookincubator/fbt/blob/master/transform/babel-plugin-fbt/bin/collectFBT.js)
+[`collectFbt.js`](https://github.com/facebookincubator/fbt/blob/master/packages/babel-plugin-fbt/bin/collectFBT.js)
 as a utility for collecting strings.  It expects a JSON input of:
 ```
 {
