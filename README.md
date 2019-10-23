@@ -2,7 +2,14 @@
   <img src="https://facebookincubator.github.io/fbt/img/fbt.png" height="150" width="150"/>
 </h1>
 
-FBT is an internationalization framework for JavaScript designed to be not just powerful and flexible, but also simple and intuitive.  It helps with the following:
+<h2 align="center">
+  <a href="https:/travis-ci.com/facebookincubator/fbt">
+    <img src="https:/travis-ci.com/facebookincubator/fbt.svg?branch=master" />
+  </a>
+</h2>
+
+FBT is an internationalization framework for JavaScript designed to be not just **powerful** and **flexible**, but also **simple** and **intuitive**.  It helps with the following:
+
 * Organizing your source text for translation
 * Composing grammatically correct translatable UI
 * Eliminating verbose boilerplate for generating UI

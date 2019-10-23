@@ -56,8 +56,8 @@
     "postinstall": "yarn build-runtime",
     "demo-app:test": "yarn jest demo-app",
     "fb-tiger-hash:test": "yarn jest fb-tiger-hash",
-    "babel-plugin-fbt-runtime:test": "yarn jest transform/babel-plugin-fbt-runtime",
-    "babel-plugin-fbt:test": "yarn jest transform/babel-plugin-fbt",
+    "babel-plugin-fbt-runtime:test": "yarn jest packages/babel-plugin-fbt-runtime",
+    "babel-plugin-fbt:test": "yarn jest packages/babel-plugin-fbt",
     "test": "yarn jest"
   },
   "workspaces": [
