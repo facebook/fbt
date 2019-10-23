@@ -9,7 +9,6 @@
 </h2>
 
 FBT is an internationalization framework for JavaScript designed to be not just **powerful** and **flexible**, but also **simple** and **intuitive**.  It helps with the following:
-
 * Organizing your source text for translation
 * Composing grammatically correct translatable UI
 * Eliminating verbose boilerplate for generating UI
