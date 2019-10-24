@@ -1,0 +1,273 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates. All rights reserved.
+ * @format
+ */
+
+/* stylelint-disable fb-www/use-variables */
+
+.warning {
+  background-color: #be4b49;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(139, 3, 0, 0.75), 0 1px 10px rgba(0, 0, 0, 0.35);
+  box-sizing: border-box;
+  color: #fff;
+  display: block;
+  font-size: 1.6rem;
+  line-height: 1.2;
+  margin: 0 0 20px 0;
+  padding: 20px;
+  text-align: center;
+}
+
+.example {
+  background: #edf0f5;
+  border: 1px solid #bdc7d8;
+  border-radius: 3px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 20px;
+  width: 480px;
+}
+
+.example h1 {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin: 0 0 4px 0;
+}
+
+.example h2 {
+  font-size: 1.6rem;
+  font-weight: normal;
+  line-height: 1.2;
+  margin: 0 0 20px 0;
+}
+
+.example p {
+  color: #777;
+  font-size: 1rem;
+  margin: 0 0 20px 0;
+}
+
+.example a {
+  color: #365899;
+  text-decoration: none;
+}
+
+.example a:hover {
+  text-decoration: underline;
+}
+
+.example a:focus {
+  outline: none;
+}
+
+.example input[type='number'],
+.example input[type='text'],
+.example input[type='password'] {
+  border: 1px solid #bdc7d8;
+  border-radius: 3px;
+  box-sizing: border-box;
+  display: block;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  margin: 0;
+  padding: 8px 12px;
+  width: 100%;
+}
+
+.example select {
+  display: none;
+}
+
+.example input[type='radio'] {
+  margin: 0 8px 0 0;
+}
+
+.example input:focus {
+  outline: none;
+}
+
+.example input::placeholder {
+  color: #90949c;
+}
+
+.example select {
+  border: 1px solid #bdc7d8;
+  border-radius: 3px;
+  box-sizing: border-box;
+  display: block;
+  font-size: 1.1rem;
+  line-height: 1.2;
+  margin: 0;
+  padding: 4px;
+  width: 100%;
+}
+
+.example select:focus {
+  outline: none;
+}
+
+.example button {
+  background: linear-gradient(#67ae55, #578843);
+  border: 1px solid;
+  border-color: #3b6e22 #3b6e22 #2c5115;
+  border-radius: 5px;
+  box-shadow: inset 0 1px 1px #a4e388;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.6rem;
+  font-weight: bold;
+  line-height: 1.2;
+  min-width: 194px;
+  padding: 8px 20px;
+  position: relative;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.example button:hover {
+  background: linear-gradient(#79bc64, #578843);
+}
+
+.example button:active {
+  top: 1px;
+}
+
+.example button:focus {
+  outline: none;
+}
+
+.example fieldset {
+  border: none;
+  margin-inline-end: unset;
+  min-inline-size: unset;
+  padding-block-end: unset;
+  padding-block-start: unset;
+  padding-inline-end: unset;
+  padding-inline-start: unset;
+}
+
+.example legend {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  margin: 0 0 4px 0;
+  padding: 8px 0 0 0;
+}
+
+.example label {
+  align-items: center;
+  display: inline-flex;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  margin: 4px 20px 4px 4px;
+}
+
+.example_row {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin: 0 0 12px 0;
+  padding: 0;
+}
+
+.sentence {
+  background: linear-gradient(#dddde8, #ccccdd);
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px rgba(139, 3, 0, 0.75), 0 1px 10px rgba(0, 0, 0, 0.35);
+  box-sizing: border-box;
+  font-size: 1.5rem;
+  padding: 0.5em;
+  position: relative;
+}
+
+.example_row--multi {
+  justify-content: space-between;
+}
+
+.example_input {
+  display: block;
+}
+
+.example_input--half {
+  width: calc(50% - 4px);
+}
+
+.example_input--20 {
+  width: calc(20% - 4px);
+}
+
+.example_input--30 {
+  width: calc(30% - 4px);
+}
+
+.example_input--40 {
+  width: calc(40% - 4px);
+}
+
+.languages {
+  border-bottom: 1px solid #dddfe2;
+  color: #737373;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  list-style: none;
+  margin: 24px 0;
+  padding: 0 20px 8px 20px;
+  white-space: nowrap;
+}
+
+.languages li {
+  margin-right: 1em;
+}
+
+.languages a {
+  color: #365899;
+  text-decoration: none;
+}
+
+.languages a:hover {
+  text-decoration: underline;
+}
+
+.languages a:focus {
+  outline: none;
+}
+
+.copyright {
+  color: #737373;
+  font-size: 1rem;
+  margin: 0 0 20px 0;
+  text-align: left;
+  width: 440px;
+}
+
+.neatoSelect {
+  position: relative;
+  top: 5px;
+}
+
+.neatoLink {
+  font-weight: bold;
+  padding-left: 0.3em;
+  padding-right: 0.3em;
+}
+
+.padRight {
+  padding-right: 0.3em;
+}
+
+.rtl .padRight {
+  padding-left: 0.3em;
+}
+
+.pad {
+  padding-left: 0.3em;
+  padding-right: 0.3em;
+}
+
+button.bottom {
+  margin-top: 1em;
+}

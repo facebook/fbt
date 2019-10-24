@@ -1,0 +1,7 @@
+.enum_manifest.json
+.source_strings.json
+.src_manifest.json
+node_modules
+output
+src/translatedFbts.json
+*.log

@@ -1,0 +1,69 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates. All rights reserved.
+ * @format
+ */
+
+html {
+  font: 12px / 1.34 'Segoe UI', -apple-system, system-ui, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+  height: 100%;
+}
+
+html:lang(ar) {
+  font-family: 'Segoe UI', -apple-system, system-ui, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Segoe UI Regular Arabic', sans-serif;
+}
+
+html:lang(hi) {
+  font-family: 'Segoe UI', -apple-system, system-ui, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Nirmala UI', sans-serif;
+}
+
+html:lang(ja) {
+  font-family: 'Segoe UI', -apple-system, system-ui, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Yu Gothic UI', YuGothic, 'Meiryo UI',
+    Meiryo, 'MS Pgothic', Osaka, sans-serif;
+}
+
+html:lang(ko) {
+  font-family: 'Segoe UI', -apple-system, system-ui, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Malgun Gothic', Gulim, sans-serif;
+}
+
+html:lang(zh-Hans) {
+  font-family: 'Segoe UI', -apple-system, system-ui, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Microsoft Yahei UI', 'Microsoft Yahei',
+    Verdana, Simsun, sans-serif;
+}
+
+html:lang(zh-Hant) {
+  font-family: 'Segoe UI', -apple-system, system-ui, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Microsoft Jhenghei UI',
+    'Microsoft Jhenghei', Pmingliu, sans-serif;
+}
+
+body {
+  background: '#fff';
+  color: '#1d2129';
+  direction: ltr;
+  font-variant: common-ligatures;
+  height: 100%;
+  margin: 0;
+  overflow-y: scroll;
+  padding: 0;
+  text-rendering: optimizeLegibility;
+  unicode-bidi: embed;
+}
+
+body.rtl {
+  direction: rtl;
+}
+
+#root {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  height: 100%;
+  justify-content: center;
+}
