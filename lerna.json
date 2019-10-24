@@ -2,7 +2,7 @@
   "npmClient": "yarn",
   "commands": {
     "publish": {
-      "message": "chore: release"
+      "message": "chore(release): publish"
     }
   }
   "packages": [
