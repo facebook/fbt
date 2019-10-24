@@ -3,7 +3,7 @@
   "name": "fbt",
   "description": "The fbt i18n framework JS runtime.",
   "//version": "Follow SemVer specs at https://semver.org/",
-  "version": "0.10.3",
+  "version": "0.10.4",
   "keywords": [
     "facebook",
     "fbt",
@@ -23,7 +23,11 @@
   ],
   "main": "lib/FbtPublic.js",
   "style": "dist/fbt.css",
-  "repository": "facebookincubator/fbt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/facebookincubator/fbt",
+    "directory": "packages/fbt"
+  },
   "license": "MIT",
   "dependencies": {},
   "peerDependencies": {

@@ -11,6 +11,7 @@ We haven't had the best track record of code/feature changes before this date, b
 - [babel-plugin-fbt versions](#babel-plugin-fbt-versions)
 - [babel-plugin-fbt-runtime versions](#babel-plugin-fbt-runtime-versions)
 - [fb-tiger-hash versions](#fb-tiger-hash-versions)
+- [fb-babel-plugin-utils versions](#fb-babel-plugin-utils)
 
 ### Top-level Github
 - Prepare directory structure for Lerna
@@ -19,10 +20,12 @@ We haven't had the best track record of code/feature changes before this date, b
 ### fbt versions
   <details>
     <summary>
-     Changes that have landed in master but are not yet released.
-     Click to see more.
+     Unreleased changes that have landed in master. Click to see more.
     </summary>
   </details>
+
+- 0.10.4:
+  - Add READMEs and improve repository link in package.json
 
 - 0.10.3:
   - [bug] Fix IntlNumberType.get(...) to work with short locales [#85](https://github.com/facebookincubator/fbt/pull/85)
@@ -31,18 +34,20 @@ We haven't had the best track record of code/feature changes before this date, b
 
 - 0.10.2:
   - [04df822](https://github.com/facebookincubator/fbt/commit/04df822) Updated package version references
+
 - 0.10.0:
   - [9acb1cd](https://github.com/facebookincubator/fbt/commit/9acb1cd) Make fbt translation payload getter customizable
 
 ### babel-plugin-fbt versions
-- [Unreleased]
   <details>
     <summary>
-     Changes that have landed in master but are not yet released.
-     Click to see more.
+     Unreleased changes that have landed in master. Click to see more.
     </summary>
 
   </details>
+
+- 0.10.2:
+  - Add READMEs and improve repository link in package.json
 
 - 0.10.1:
   - [bug] Fix IntlNumberType.get(...) to work with short locales [#85](https://github.com/facebookincubator/fbt/pull/85)
@@ -61,6 +66,10 @@ We haven't had the best track record of code/feature changes before this date, b
   - [c11e9fd](https://github.com/facebookincubator/fbt/commit/c11e9fd) Enable custom Babel plugins for FBT collection
 
 ### babel-plugin-fbt-runtime versions
+
+- 0.9.6:
+  - Add READMEs and improve repository link in package.json
+
 - 0.9.5:
   - [435ec19](https://github.com/facebookincubator/fbt/commit/435ec19) Ignoring tests and mocks from NPM modules
 
@@ -70,3 +79,11 @@ We haven't had the best track record of code/feature changes before this date, b
 ### fb-tiger-hash versions
 - 0.1.0:
   -  First commit. A native JavaScript implementation of the Tiger hash Algorithm.
+
+### fb-babel-plugin-utils
+
+- 0.9.1:
+  - Add READMEs and improve repository link in package.json
+
+- 0.9.0:
+  - Initial commit

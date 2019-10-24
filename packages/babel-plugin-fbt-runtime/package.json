@@ -1,7 +1,7 @@
 {
   "name": "babel-plugin-fbt-runtime",
   "//version": "Follow SemVer specs at https://semver.org/",
-  "version": "0.9.5",
+  "version": "0.9.6",
   "license": "MIT",
   "devDependencies": {
     "fb-babel-plugin-utils": "^0.9.0"
@@ -12,6 +12,11 @@
   },
   "peerDependencies": {
     "babel-plugin-fbt": "^0.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/facebookincubator/fbt",
+    "directory": "packages/babel-plugin-fbt-runtime"
   },
   "scripts": {
     "publish_to_npm_latest": "yarn publish . && git push --tags && git push"

@@ -15,6 +15,11 @@
     "jest-docblock": "^24.3.0",
     "shelljs": "^0.7.8"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/facebookincubator/fbt",
+    "directory": "packages/babel-plugin-fbt"
+  },
   "scripts": {
     "publish_to_npm_latest": "yarn publish . && git push --tags && git push"
   }

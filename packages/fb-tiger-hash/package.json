@@ -1,7 +1,7 @@
 {
   "name": "fb-tiger-hash",
   "private": false,
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "index.js",
   "license": "MIT",
   "keywords": [
@@ -16,6 +16,10 @@
   "engines": {
     "node": ">= 10.4.0"
   },
-  "repository": "facebookincubator/fbt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/facebookincubator/fbt",
+    "directory": "packages/fb-tiger-hash"
+  },
   "bugs": "https://github.com/facebookincubator/fbt/issues"
 }
