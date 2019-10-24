@@ -1,12 +1,24 @@
-<h1 align="center">
-  <img src="https://facebookincubator.github.io/fbt/img/fbt.png" height="150" width="150"/>
-</h1>
-
-<h2 align="center">
+<p>
   <a href="https://travis-ci.com/facebookincubator/fbt">
-    <img src="https://travis-ci.com/facebookincubator/fbt.svg?branch=master" />
+    <img src="https://img.shields.io/travis/com/facebookincubator/fbt?logo=travis" alt="Travis CI" />
   </a>
-</h2>
+
+  <a href="https://twitter.com/fbt_js">
+    <img src="https://img.shields.io/twitter/follow/fbt_js.svg?style=social" align="right" alt="Twitter Follow" />
+  </a>
+
+  <a href="https://discord.gg/cQvXZr5">
+    <img src="https://img.shields.io/discord/102860784329052160.svg" align="right" alt="Discord Chat" />
+  </a>
+
+  <a href="https://www.facebook.com/groups/498204277369868">
+    <img src="https://img.shields.io/badge/Facebook-Group-blue" align="right" alt="Facebook Group" />
+  </a>
+</p>
+
+<h1 align="center">
+  <img src="https://facebookincubator.github.io/fbt/img/fbt.png" height="150" width="150" alt="FBT"/>
+</h1>
 
 FBT is an internationalization framework for JavaScript designed to be not just **powerful** and **flexible**, but also **simple** and **intuitive**.  It helps with the following:
 * Organizing your source text for translation
