@@ -5,7 +5,7 @@ Array [
   Object {
     "author": "jwatson",
     "col_beg": 2,
-    "col_end": 10,
+    "col_end": 8,
     "desc": "options!",
     "filepath": undefined,
     "jsfbt": "A string that moved files",
@@ -683,7 +683,7 @@ Array [
   Object {
     "author": "jwatson",
     "col_beg": 2,
-    "col_end": 10,
+    "col_end": 8,
     "desc": "options!",
     "filepath": undefined,
     "jsfbt": "A string that moved files",
