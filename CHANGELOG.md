@@ -28,8 +28,11 @@ We haven't had the best track record of code/feature changes before this date, b
     </summary>
   </details>
 
+- 0.10.5:
+  - Add README.md
+
 - 0.10.4:
-  - Add READMEs and improve repository link in package.json
+  - Improve repository link in package.json
 
 - 0.10.3:
   - [bug] Fix IntlNumberType.get(...) to work with short locales [#85](https://github.com/facebookincubator/fbt/pull/85)
@@ -70,6 +73,8 @@ We haven't had the best track record of code/feature changes before this date, b
   - [c11e9fd](https://github.com/facebookincubator/fbt/commit/c11e9fd) Enable custom Babel plugins for FBT collection
 
 ### babel-plugin-fbt-runtime versions
+- 0.9.7:
+  - package.json: improve repository link and set more accurate dependency versions
 
 - 0.9.6:
   - Add READMEs and improve repository link in package.json
@@ -81,6 +86,9 @@ We haven't had the best track record of code/feature changes before this date, b
   - [250207c](https://github.com/facebookincubator/fbt/commit/250207c) Update peer dependencies for babel-plugin-fbt.
 
 ### fb-tiger-hash versions
+- 0.1.3:
+  - package.json: improve repository link and set more accurate dependency versions
+
 - 0.1.0:
   -  First commit. A native JavaScript implementation of the Tiger hash Algorithm.
 

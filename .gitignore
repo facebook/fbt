@@ -27,6 +27,7 @@ live-demo-app/yarn-error.log
 packages/fbt/**
 !packages/fbt/.yarnrc
 !packages/fbt/package.json
+!packages/fbt/README.md
 
 # documentation build artifacts
 website/build/
