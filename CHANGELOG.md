@@ -14,6 +14,10 @@ We haven't had the best track record of code/feature changes before this date, b
 - [fb-babel-plugin-utils versions](#fb-babel-plugin-utils)
 
 ### Top-level Github
+- *[Experimental]* Add support for Flow type checks.
+  - Run `yarn flow:check` to check them.
+    - NOTE: our Flow types are still in their infancy, so lots of errors are expected.
+  - Run `yarn flow:watch` to recheck types upon changing JS files.
 - Prepare directory structure for Lerna
 - Enable testing packages from top-level in GitHub
 

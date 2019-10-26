@@ -3,7 +3,8 @@
  *
  * @emails oncall+internationalization
  * @lightSyntaxTransform.
- * @flow strict
+ * Flow does not support BigInt yet
+ * @noflow
  *
  * The Tiger S-Boxes
  *   https://www.cl.cam.ac.uk/~rja14/Papers/tigersb.pdf

@@ -12,7 +12,7 @@ import './css/Example.css';
 import classNames from 'classnames';
 import * as React from 'react';
 
-const ExampleEnum = require('Example$FbtEnum');
+const ExampleEnum = require('./Example$FbtEnum');
 
 import fbt, {GenderConst, IntlVariations, IntlViewerContext, init} from 'fbt';
 init({translations: require('../translatedFbts.json')});

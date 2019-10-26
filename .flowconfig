@@ -1,0 +1,70 @@
+[ignore]
+<PROJECT_ROOT>/packages/fbt/lib/.*
+
+[include]
+node_modules
+
+[libs]
+node_modules/@babel/types/lib/index.js.flow
+flow-types
+
+[lints]
+
+[options]
+name=flow/fbt-top-level-repo
+module.system=node
+module.system.node.resolve_dirname=node_modules
+
+esproposal.class_instance_fields=enable
+esproposal.class_static_fields=enable
+esproposal.optional_chaining=enable
+esproposal.nullish_coalescing=enable
+
+facebook.fbs=Fbs
+facebook.fbt=FbtElement
+
+# Import individual 3rd party node modules that are used by the babel transforms
+module.name_mapper='^\(invariant\|graceful-fs\|optimist\|fb-babel-plugin-utils\|@babel/.*\|fbjs/.*\)$' -> '<PROJECT_ROOT>/node_modules/\1'
+module.name_mapper='^\(ReactDOM\)$' -> '<PROJECT_ROOT>/node_modules/react-dom'
+
+# Redirect non-FB JS modules to a dedicated folder
+module.name_mapper='^\(DisplayGenderConst\|FBLocaleToLang\|fbtInit\|FbtPublic\|FbtTranslations\|GenderConst\|intlInlineMode\|IntlNumberType\|IntlPhonologicalRewrites\|IntlVariationResolver\|IntlVariations\|NumberFormatConfig\|NumberFormatConsts\)$' -> '<PROJECT_ROOT>/runtime/nonfb/\1'
+module.name_mapper='^\(Banzai\|cx\|FBLogger\|FBLogMessage\|FbtLogger\|FbtQTOverrides\|FbtResultGK\|IntlViewerContext\|killswitch\)$' -> '<PROJECT_ROOT>/runtime/nonfb/mocks/\1'
+
+# Redirect public JS modules to a dedicated folder
+module.name_mapper='^\(escapeRegex\|fbs\|fbt\|FbtPureStringResult\|FbtReactUtil\|FbtResultBaseImpl\|FbtResultBase\|FbtResult\|FbtResultWWW\|FbtTableAccessor\|formatNumber\|InlineFbtResult\|IntlGender\|intlList\|intlNumUtils\|IntlPunctuation\|IntlVariationResolverImpl\|substituteTokens\)$' -> '<PROJECT_ROOT>/runtime/shared/\1'
+module.name_mapper='^\(IntlCLDRNumberType[0-9][0-9]\)$' -> '<PROJECT_ROOT>/runtime/shared/FbtNumber/\1'
+# This Jest mock file is only used for testing, we don't need it on the OSS side
+module.name_mapper='^\(FbtNumberType\)$' -> '<PROJECT_ROOT>/runtime/shared/__mocks__/\1'
+
+munge_underscores=true
+
+sharedmemory.hash_table_pow=23
+
+suppress_type=$FlowIssue
+suppress_type=$FlowFixMe
+suppress_type=$FlowFixMeProps
+suppress_type=$FlowFixMeState
+suppress_type=$FlowFixMeEmpty
+suppress_type=$FlowExpectedError
+
+suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe\\($\\|[^(]\\|(\\(<VERSION>\\)? *\\(site=[a-z,_]*www[a-z,_]*\\)?)\\)
+suppress_comment=\\(.\\|\n\\)*\\$FlowIssue\\((\\(<VERSION>\\)? *\\(site=[a-z,_]*www[a-z,_]*\\)?)\\)?:? #[0-9]+
+suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
+suppress_comment=\\(.\\|\n\\)*\\$FlowLintFixMe
+
+experimental.well_formed_exports=true
+experimental.types_first=true
+experimental.abstract_locations=true
+
+[strict]
+deprecated-type
+nonstrict-import
+sketchy-null
+unclear-type
+unsafe-getters-setters
+untyped-import
+untyped-type-import
+
+[version]
+^0.110.0

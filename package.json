@@ -11,6 +11,7 @@
     "@babel/node": "7.2.2",
     "@babel/plugin-syntax-bigint": "^7.0.0",
     "@babel/plugin-syntax-class-properties": "^7.2.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-syntax-flow": "^7.2.0",
     "@babel/plugin-syntax-jsx": "^7.2.0",
     "@babel/plugin-syntax-nullish-coalescing-operator": "^7.2.0",
@@ -18,10 +19,12 @@
     "@babel/plugin-syntax-object-rest-spread": "^7.2.0",
     "@babel/plugin-syntax-optional-catch-binding": "^7.2.0",
     "@babel/plugin-syntax-optional-chaining": "^7.2.0",
+    "@cnakazawa/watch": "^1.0.3",
     "babel-core": "7.0.0-bridge.0",
     "babel-preset-fbjs": "^3.1.2",
     "del": "^3.0.0",
     "fbjs-scripts": "^1.2.0",
+    "flow-bin": "^0.110.1",
     "flow-remove-types": "^1.2.3",
     "gulp": "^4.0.0",
     "gulp-babel": "^8.0.0",
@@ -58,7 +61,10 @@
     "fb-tiger-hash:test": "yarn jest fb-tiger-hash",
     "babel-plugin-fbt-runtime:test": "yarn jest packages/babel-plugin-fbt-runtime",
     "babel-plugin-fbt:test": "yarn jest packages/babel-plugin-fbt",
-    "test": "yarn jest"
+    "flow:check": "flow check --show-all-errors",
+    "flow:watch": "yarn run watch 'yarn flow --show-all-errors | tee .flow-results' . --ignoreDotFiles",
+    "test": "yarn jest",
+    "test:watch": "yarn jest --watch"
   },
   "workspaces": [
     "demo-app",

@@ -1,6 +1,7 @@
 # Global build-related files
 node_modules
 yarn-error.log
+.flow-results
 
 # MacOS
 .DS_Store
