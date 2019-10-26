@@ -880,4 +880,25 @@ describe('Test fbt transforms without the jsx transform', () => {
       `),
     ).toMatchSnapshot(); // Should be like <div>{fbt._()}</div>
   });
+
+  it('short bool syntax for doNotExtract attribute', () => {
+    expect(
+      transformKeepJsx(`
+        const fbt = require("fbt");
+        let x = <fbt desc="" doNotExtract>Test</fbt>;
+      `),
+    ).toMatchSnapshot();
+  });
+
+  it('short bool syntax for number attribute', () => {
+    expect(
+      transformKeepJsx(`
+        const fbt = require("fbt");
+        let x = 
+          <fbt desc="">
+            <fbt:param name="name" number>{'name'}</fbt:param>
+          </fbt>;
+      `),
+    ).toMatchSnapshot();
+  });
 });

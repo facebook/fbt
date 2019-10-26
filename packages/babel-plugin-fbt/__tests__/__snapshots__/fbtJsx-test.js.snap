@@ -13,3 +13,15 @@ exports[`Test fbt transforms without the jsx transform not nested 1`] = `
 
 let x = fbt._(\\"__FBT__{\\\\\\"type\\\\\\":\\\\\\"text\\\\\\",\\\\\\"jsfbt\\\\\\":\\\\\\"A nested string\\\\\\",\\\\\\"desc\\\\\\":\\\\\\"nested!\\\\\\",\\\\\\"project\\\\\\":\\\\\\"\\\\\\"}__FBT__\\");"
 `;
+
+exports[`Test fbt transforms without the jsx transform short bool syntax for doNotExtract attribute 1`] = `
+"const fbt = require(\\"fbt\\");
+
+let x = fbt._(\\"__FBT__{\\\\\\"type\\\\\\":\\\\\\"text\\\\\\",\\\\\\"jsfbt\\\\\\":\\\\\\"Test\\\\\\",\\\\\\"desc\\\\\\":\\\\\\"\\\\\\",\\\\\\"project\\\\\\":\\\\\\"\\\\\\"}__FBT__\\");"
+`;
+
+exports[`Test fbt transforms without the jsx transform short bool syntax for number attribute 1`] = `
+"const fbt = require(\\"fbt\\");
+
+let x = fbt._(\\"__FBT__{\\\\\\"type\\\\\\":\\\\\\"table\\\\\\",\\\\\\"jsfbt\\\\\\":{\\\\\\"t\\\\\\":{\\\\\\"*\\\\\\":\\\\\\"{name}\\\\\\"},\\\\\\"m\\\\\\":[{\\\\\\"token\\\\\\":\\\\\\"name\\\\\\",\\\\\\"type\\\\\\":2}]},\\\\\\"desc\\\\\\":\\\\\\"\\\\\\",\\\\\\"project\\\\\\":\\\\\\"\\\\\\"}__FBT__\\", [fbt._param(\\"name\\", 'name', [0])]);"
+`;

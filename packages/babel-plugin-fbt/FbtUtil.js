@@ -116,6 +116,11 @@ function checkOption(option, validOptions, value) {
   return option;
 }
 
+function isBoolAttribute({name}){
+    return name === 'doNotExtract' || name === 'number'
+}
+
+
 /**
  * Build options list form corresponding attributes.
  */
@@ -137,7 +142,10 @@ function getOptionsFromAttributes(
     }
 
     let value = node.value;
-    if (value.type === 'JSXExpressionContainer') {
+
+    if(isBoolAttribute(node.name) && value === null){
+        value = t.booleanLiteral(true);
+    } else if (value.type === 'JSXExpressionContainer') {
       value = value.expression;
     } else if (
       value.type === 'StringLiteral' &&
