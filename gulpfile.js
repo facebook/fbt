@@ -183,6 +183,7 @@ gulp.task(
     return del([
       paths.published + '/*',
       '!' + paths.published + '/package.json',
+      '!' + paths.published + '/README.md',
     ]);
   }),
 );
