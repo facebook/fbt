@@ -78,7 +78,7 @@ function substituteTokens(
         }
       }
 
-      var argument = args[parameter];
+      const argument = args[parameter];
       if (argument && typeof argument === 'object') {
         objectPieces.push(argument);
         argNames.push(parameter);
