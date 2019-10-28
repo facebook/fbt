@@ -20,11 +20,11 @@ const FbtResult = require('FbtResult');
 
 describe('FbtResult', function() {
   it('can be flattened into array', function() {
-    var obj1 = new FbtResult(['prefix']);
+    let obj1 = new FbtResult(['prefix']);
 
-    var obj2 = new FbtResult(['suffix']);
+    let obj2 = new FbtResult(['suffix']);
 
-    var obj3 = new FbtResult([obj1, 'content', obj2]);
+    let obj3 = new FbtResult([obj1, 'content', obj2]);
     expect(obj3.flattenToArray().join(' ')).toBe('prefix content suffix');
 
     obj1 = new FbtResult(['prefix']);
@@ -42,7 +42,7 @@ describe('FbtResult', function() {
   });
 
   it('implements common string methods', function() {
-    var result = new FbtResult(['kombucha'], false, 'kombucha', null);
+    const result = new FbtResult(['kombucha'], false, 'kombucha', null);
     expect(result.startsWith('kom')).toBe(true);
     expect(console.error.mock.calls.length).toBe(1);
     expect(result.slice(1, 3)).toBe('om');

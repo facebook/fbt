@@ -8,7 +8,7 @@
 
 jest.disableAutomock();
 
-var fbt = require('fbt');
+const fbt = require('fbt');
 
 // Note that running the typechecker in jst turns on fbt preprocessing so we
 // have two almost identical test files: typechecked and not typechecked.
@@ -18,7 +18,7 @@ describe('mock fbt (no typechecks)', function() {
   });
 
   it("should handle <fbt> with embedded <fbt:param>'s", function() {
-    var sample = (
+    const sample = (
       <fbt desc="description">
         {'Hello '}
         <fbt:param name="name">{'bubba'}</fbt:param>

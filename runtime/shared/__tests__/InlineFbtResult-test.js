@@ -7,9 +7,9 @@
 
 jest.disableAutomock();
 
-var InlineFbtResult = require('InlineFbtResult');
-var React = require('React');
-var ReactTestUtils = require('ReactTestUtils');
+const InlineFbtResult = require('InlineFbtResult');
+const React = require('React');
+const ReactTestUtils = require('ReactTestUtils');
 
 describe('InlineFbtResult', function() {
   it('behaves like a string and a React element', function() {
@@ -22,7 +22,7 @@ describe('InlineFbtResult', function() {
     expect(React.isValidElement(result)).toBe(true);
     expect(result.toString()).toBe('hippopotamus');
 
-    var div = ReactTestUtils.renderIntoDocument(<div>{result}</div>);
+    const div = ReactTestUtils.renderIntoDocument(<div>{result}</div>);
     expect(div.textContent).toBe('hippopotamus');
   });
 });

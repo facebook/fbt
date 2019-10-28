@@ -18,8 +18,8 @@
 
 jest.disableAutomock();
 
-var fbt = require('fbt');
-var intlList = require('intlList');
+const fbt = require('fbt');
+const intlList = require('intlList');
 
 describe('intlList', () => {
   // Settings for fbt mock
@@ -41,8 +41,8 @@ describe('intlList', () => {
     );
   });
   it('should handle a bunch of items', () => {
-    var items = ['1', '2', '3', '4', '5', '6', '7', '8'];
-    var result = intlList(items);
+    const items = ['1', '2', '3', '4', '5', '6', '7', '8'];
+    const result = intlList(items);
     expect(result).toBe('1, 2, 3, 4, 5, 6, 7 and 8');
   });
   it('should handle no conjunction', () => {

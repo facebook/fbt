@@ -23,7 +23,7 @@ describe('intlNumUtils:', () => {
     });
   }
 
-  var u = require('intlNumUtils');
+  const u = require('intlNumUtils');
 
   function override(config) {
     setup();
