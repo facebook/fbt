@@ -16,6 +16,7 @@
 'use strict';
 
 const {JSModuleName, ModuleNameRegExp} = require('./FbtConstants');
+const keyMirror = require('fbjs/lib/keyMirror');
 const {FBS, FBT} = JSModuleName;
 
 function normalizeSpaces(value, options) {
@@ -116,6 +117,17 @@ function checkOption(option, validOptions, value) {
   return option;
 }
 
+const SHORT_BOOL_CANDIDATES = keyMirror({
+  common: true,
+  doNotExtract: null,
+  number: null,
+  preserveWhitespace: true,
+});
+
+function canBeShortBoolAttr(name) {
+  return name in SHORT_BOOL_CANDIDATES;
+}
+
 /**
  * Build options list form corresponding attributes.
  */
@@ -137,7 +149,11 @@ function getOptionsFromAttributes(
     }
 
     let value = node.value;
-    if (value.type === 'JSXExpressionContainer') {
+    const name = node.name.name;
+
+    if (canBeShortBoolAttr(name) && value === null) {
+      value = t.booleanLiteral(true);
+    } else if (value.type === 'JSXExpressionContainer') {
       value = value.expression;
     } else if (
       value.type === 'StringLiteral' &&
