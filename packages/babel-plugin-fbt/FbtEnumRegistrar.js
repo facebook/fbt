@@ -18,6 +18,7 @@
 
 const {FBT_ENUM_MODULE_SUFFIX} = require('./FbtConstants');
 const invariant = require('fbjs/lib/invariant');
+const path = require('path');
 
 const fbtEnumMapping /*: {[string]: ?string} */ = {};
 
@@ -26,17 +27,12 @@ const FbtEnumRegistrar = {
    * Associate a JS variable name to an Fbt enum module name
    * If the module name is invalid, then it's a no-op.
    */
-  setModuleAlias(
-    name /*: string */,
-    fbtEnumModuleName /*: string */,
-  ) /*: void */ {
-    invariant(
-      fbtEnumModuleName.trim() !== '',
-      'JS module name must not be empty',
-    );
-    if (fbtEnumModuleName.endsWith(FBT_ENUM_MODULE_SUFFIX)) {
-      fbtEnumMapping[name] = fbtEnumModuleName;
+  setModuleAlias(alias /*: string */, modulePath /*: string */) /*: void */ {
+    const moduleName = path.parse(modulePath).name;
+    if (!moduleName.endsWith(FBT_ENUM_MODULE_SUFFIX)) {
+      return;
     }
+    fbtEnumMapping[alias] = moduleName;
   },
 
   /**

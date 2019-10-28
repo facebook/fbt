@@ -208,9 +208,9 @@ function BabelPluginFbt(babel) {
 
         if (!checker.isModuleCall(node)) {
           if (isRequireAlias(path.parentPath)) {
-            const jsModuleName = node.arguments[0].value;
-            const jsVarName = path.parentPath.node.id.name;
-            FbtEnumRegistrar.setModuleAlias(jsVarName, jsModuleName);
+            const modulePath = node.arguments[0].value;
+            const alias = path.parentPath.node.id.name;
+            FbtEnumRegistrar.setModuleAlias(alias, modulePath);
           }
           return;
         }
