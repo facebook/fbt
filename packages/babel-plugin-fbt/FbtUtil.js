@@ -15,6 +15,7 @@
 
 'use strict';
 
+const keyMirror = require('fbjs/lib/keyMirror');
 const {JSModuleName, ModuleNameRegExp} = require('./FbtConstants');
 const {FBS, FBT} = JSModuleName;
 
@@ -116,8 +117,13 @@ function checkOption(option, validOptions, value) {
   return option;
 }
 
-function isBoolAttribute({name}){
-    return name === 'doNotExtract' || name === 'number'
+const SHORT_BOOL_CANDIDATES = keyMirror({
+    doNotExtract: null,
+    number: null,
+});
+
+function canBeShortBoolAttr(name) {
+    return name in SHORT_BOOL_CANDIDATES;
 }
 
 
@@ -142,9 +148,10 @@ function getOptionsFromAttributes(
     }
 
     let value = node.value;
+    let name = node.name.name;
 
-    if(isBoolAttribute(node.name) && value === null){
-        value = t.booleanLiteral(true);
+    if (canBeShortBoolAttr(name) && value === null) {
+      value = t.booleanLiteral(true);
     } else if (value.type === 'JSXExpressionContainer') {
       value = value.expression;
     } else if (
