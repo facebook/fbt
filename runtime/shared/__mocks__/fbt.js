@@ -16,10 +16,10 @@ jest
   .unmock('FbtTableAccessor')
   .mock('FbtNumberType');
 
-var fbt = jest.fn();
-var fbtRuntime = jest.requireActual('fbt');
+const fbt = jest.fn();
+const fbtRuntime = jest.requireActual('fbt');
 
-var WRAPPER = '__FBT__';
+const WRAPPER = '__FBT__';
 
 fbt.mockImplementation(function() {
   throw new Error('should never be called');
