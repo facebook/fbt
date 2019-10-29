@@ -17,8 +17,12 @@
 
 'use strict';
 
-const FbtConstants = require('../FbtConstants');
+const {
+  FBT_ENUM_MODULE_SUFFIX: ENUM_FILE,
+  ModuleNameRegExp,
+} = require('../FbtConstants');
 const fs = require('fs');
+const glob = require('glob');
 const path = require('path');
 const shell = require('shelljs');
 const yargs = require('yargs');
@@ -30,10 +34,11 @@ const argv = yargs
   )
   .describe('h', 'Display usage message')
   .alias('h', 'help')
-  .default('src', process.cwd())
+  .array('src')
+  .default('src', [process.cwd()])
   .describe(
     'src',
-    'The source folder in which to look for JS source containing fbt and ' +
+    'The source folder(s) in which to look for JS source containing fbt and ' +
       'files with the $FbtEnum.js suffix. Defaults to CWD',
   )
   .default('enum-manifest', '.enum_manifest.json')
@@ -59,26 +64,28 @@ require('@babel/register')({
   ],
 });
 
+const FILE_EXT = '.@(js|jsx|ts|tsx)';
+
 // Find enum files
-const enumFiles = shell
-  .find(argv.src)
-  .filter(path => /\$FbtEnum\.js/i.test(path));
+const enumManifest = {};
+for (const src of argv.src) {
+  const enumFiles = glob.sync(src + '/**/*' + ENUM_FILE + FILE_EXT, {
+    nodir: true,
+  });
+  for (const filepath of enumFiles) {
+    // Infer module name from filename.
+    const name = path.parse(filepath).name;
+    enumManifest[name] = require(path.resolve(filepath));
+  }
+}
 
 // Write enum manfiest
-const enumManifest = {};
-for (const filepath of enumFiles) {
-  // Infer module name from filename.
-  const name = path.parse(filepath).name;
-  enumManifest[name] = require(path.resolve(filepath));
-}
 fs.writeFileSync(argv['enum-manifest'], JSON.stringify(enumManifest));
 
 // Find source files that are fbt-containing candidates
-const jsFiles = shell
-  .find(argv.src)
-  .filter(path => /\.(jsx?|tsx?)$/.test(path));
+const getFiles = src => glob.sync(src + '/**/*' + FILE_EXT, {nodir: true});
 const srcFiles = shell
-  .grep('-l', FbtConstants.ModuleNameRegExp, jsFiles)
+  .grep('-l', ModuleNameRegExp, [].concat(...argv.src.map(getFiles)))
   .trim()
   .split('\n');
 

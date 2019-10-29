@@ -56,6 +56,8 @@ We haven't had the best track record of code/feature changes before this date, b
 - 0.10.2:
   - Add READMEs and improve repository link in package.json
   - Enable paths for enum module references
+  - Enable multiple src folders for manifest
+  - Fix manifest bug with directories ending in `.js`
 
 - 0.10.1:
   - [bug] Fix IntlNumberType.get(...) to work with short locales [#85](https://github.com/facebookincubator/fbt/pull/85)
