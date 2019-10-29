@@ -78,7 +78,7 @@
     "babel-plugin-fbt-runtime": "^0.9.5",
     "fbjs": "1.0.0",
     "fbt": "^0.10.0",
-    "lodash": "4.17.11",
+    "lodash": "4.17.13",
     "npm": "^6.4.1",
     "optimist": "^0.6.1"
   }
