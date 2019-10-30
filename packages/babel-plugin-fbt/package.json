@@ -3,15 +3,16 @@
   "main": "index.js",
   "name": "babel-plugin-fbt",
   "//version": "Follow SemVer specs at https://semver.org/",
-  "version": "0.10.2",
+  "version": "0.10.3",
   "devDependencies": {
   },
   "dependencies": {
     "@babel/core": "^7.0.0",
     "@babel/generator": "^7.0.0",
     "fb-babel-plugin-utils": "^0.9.0",
-    "fbjs": "1.0.0 - 1.2.x",
-    "glob": "^7.1.5",
+    "fbjs": "^1.0.0",
+    "fbjs-scripts": "^1.1.0",
+    "glob": "^7.1.1",
     "jest-docblock": "^24.3.0",
     "shelljs": "^0.7.8",
     "yargs": "^9.0.0"

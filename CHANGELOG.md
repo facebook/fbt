@@ -28,6 +28,9 @@ We haven't had the best track record of code/feature changes before this date, b
     </summary>
   </details>
 
+- 0.10.6:
+  - More accurate peer dependencies
+
 - 0.10.5:
   - Add README.md
 
@@ -53,6 +56,9 @@ We haven't had the best track record of code/feature changes before this date, b
 
   </details>
 
+- 0.10.3:
+  - Sync fbjs, fbjs-scripts, & glob deps with other FB packages
+
 - 0.10.2:
   - Add READMEs and improve repository link in package.json
   - Enable paths for enum module references
@@ -76,6 +82,9 @@ We haven't had the best track record of code/feature changes before this date, b
   - [c11e9fd](https://github.com/facebookincubator/fbt/commit/c11e9fd) Enable custom Babel plugins for FBT collection
 
 ### babel-plugin-fbt-runtime versions
+- 0.9.8:
+  - Fix fbjs dependency semver
+
 - 0.9.7:
   - package.json: improve repository link and set more accurate dependency versions
 
