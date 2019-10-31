@@ -59,6 +59,9 @@ We haven't had the best track record of code/feature changes before this date, b
 
   </details>
 
+- 0.10.4:
+  - Add description in NPM package
+
 - 0.10.3:
   - Sync fbjs, fbjs-scripts, & glob deps with other FB packages
 
@@ -85,6 +88,10 @@ We haven't had the best track record of code/feature changes before this date, b
   - [c11e9fd](https://github.com/facebookincubator/fbt/commit/c11e9fd) Enable custom Babel plugins for FBT collection
 
 ### babel-plugin-fbt-runtime versions
+
+- 0.9.9:
+  - Add description in NPM package
+
 - 0.9.8:
   - Fix fbjs dependency semver
 
@@ -101,6 +108,9 @@ We haven't had the best track record of code/feature changes before this date, b
   - [250207c](https://github.com/facebookincubator/fbt/commit/250207c) Update peer dependencies for babel-plugin-fbt.
 
 ### fb-tiger-hash versions
+- 0.1.4:
+  - Add description in NPM package
+
 - 0.1.3:
   - package.json: improve repository link and set more accurate dependency versions
 
