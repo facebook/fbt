@@ -10,7 +10,7 @@
 'use strict';
 
 const babelPresets = require('./babelPresets');
-const packageData = require('./package.json');
+const {version} = require('./packages/fbt/package.json');
 const del = require('del');
 const gulp = require('gulp');
 const babel = require('gulp-babel');
@@ -131,7 +131,7 @@ gulp.task(
       .src(paths.css, {follow: true})
       .pipe(concatCSS('fbt.css'))
       .pipe(cleanCSS({advanced: false}))
-      .pipe(header(COPYRIGHT_HEADER, {version: packageData.version}))
+      .pipe(header(COPYRIGHT_HEADER, {version}))
       .pipe(gulp.dest(paths.lib));
   }),
 );
@@ -150,7 +150,7 @@ gulp.task(
       .pipe(
         gulpif(
           '*.js',
-          header(COPYRIGHT_HEADER, {version: packageData.version}),
+          header(COPYRIGHT_HEADER, {version}),
         ),
       )
       .pipe(gulp.dest(paths.dist));
@@ -170,7 +170,7 @@ gulp.task(
       .pipe(
         gulpif(
           '*.js',
-          header(COPYRIGHT_HEADER, {version: packageData.version}),
+          header(COPYRIGHT_HEADER, {version}),
         ),
       )
       .pipe(gulp.dest(paths.dist));
