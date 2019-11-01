@@ -34,6 +34,7 @@ module.exports = {
     {
       displayName: 'fb-tiger-hash',
       roots: [fs.realpathSync(path.resolve('packages', 'fb-tiger-hash'))],
+      testRegex: '/__tests__/.*\.js$',
       transform: {
         '\\.js$': [
           '<rootDir>/jest-preprocessor.js',
@@ -42,11 +43,11 @@ module.exports = {
       },
     },
     {
+      displayName: 'demo-app',
       setupFiles: [
         'fbjs-scripts/jest/environment.js',
         '<rootDir>/demo-app/run_all.js',
       ],
-      displayName: 'demo-app',
       roots: ['<rootDir>/demo-app'],
       modulePaths: [
         '<rootDir>/demo-app/src',

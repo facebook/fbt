@@ -2,8 +2,9 @@
   "name": "fb-tiger-hash",
   "description": "Native JS implementation of the Tiger hash. Optionally supports flipped byte ordering found in PHP-5.3",
   "private": false,
-  "version": "0.1.4",
-  "main": "index.js",
+  "version": "0.1.5",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
   "license": "MIT",
   "keywords": [
     "crypto",
@@ -22,5 +23,11 @@
     "url": "https://github.com/facebookincubator/fbt.git",
     "directory": "packages/fb-tiger-hash"
   },
-  "bugs": "https://github.com/facebookincubator/fbt/issues"
+  "scripts": {
+    "test-types": "tsc --lib 'es6' --noEmit src/__tests__/sample.ts"
+  },
+  "bugs": "https://github.com/facebookincubator/fbt/issues",
+  "devDependencies": {
+    "typescript": "^3.6.4"
+  }
 }
