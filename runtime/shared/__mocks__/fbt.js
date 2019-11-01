@@ -68,4 +68,6 @@ fbt._name = function(...whateveryo) {
   return fbtRuntime._name(...whateveryo);
 };
 
+fbt.isFbtInstance = fbtRuntime.isFbtInstance;
+
 module.exports = fbt;
