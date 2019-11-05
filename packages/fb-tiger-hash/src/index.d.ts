@@ -1,3 +1,6 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ */
 declare interface PhraseData {
   desc: string;
   texts: Array<string>;

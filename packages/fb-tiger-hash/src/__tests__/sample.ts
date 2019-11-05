@@ -1,3 +1,6 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ */
 import {Tiger, hashPhrases} from 'fb-tiger-hash'
 
 hashPhrases([{

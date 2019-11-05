@@ -108,6 +108,9 @@ We haven't had the best track record of code/feature changes before this date, b
   - [250207c](https://github.com/facebookincubator/fbt/commit/250207c) Update peer dependencies for babel-plugin-fbt.
 
 ### fb-tiger-hash versions
+- 0.1.6:
+  - Strip yarn files in .npmignore
+
 - 0.1.5:
   - Add Typescript declarations and move source files to their own folder
 
