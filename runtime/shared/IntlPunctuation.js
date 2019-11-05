@@ -10,7 +10,7 @@
  *   js1 upgrade www-shared -p fbt --local ~/www
  *
  * @format
- * @flow
+ * @flow strict
  * @emails oncall+internationalization
  */
 
@@ -82,7 +82,11 @@ let _lastLocale = null;
 let _rewrites = IntlPhonologicalRewrites.get(IntlViewerContext.locale);
 
 function _getRules(): Array<[RegExp, (string => string) | string]> {
-  if (IntlViewerContext.locale && IntlViewerContext.locale !== _lastLocale) {
+  if (
+    IntlViewerContext.locale != null &&
+    IntlViewerContext.locale != '' &&
+    IntlViewerContext.locale !== _lastLocale
+  ) {
     _rules = [];
     _lastLocale = IntlViewerContext.locale;
     _rewrites = IntlPhonologicalRewrites.get(_lastLocale);
@@ -122,14 +126,15 @@ function _getRules(): Array<[RegExp, (string => string) | string]> {
  */
 function applyPhonologicalRules(text: string): string {
   const rules = _getRules();
+  let result = text;
 
   for (let i = 0; i < rules.length; i++) {
     const [regexp, replacement] = rules[i];
-    text = text.replace(regexp, replacement);
+    result = result.replace(regexp, replacement);
   }
 
   // If we have no rules (or if we already applied them), remove the delimiters.
-  return text.replace(/\x01/g, '');
+  return result.replace(/\x01/g, '');
 }
 
 /**
@@ -138,7 +143,7 @@ function applyPhonologicalRules(text: string): string {
  * the fact that we consider a string like "foo." to end with a period even
  * though there's a quote mark afterward.
  */
-function endsInPunct(str: any): boolean {
+function endsInPunct(str: string): boolean {
   if (typeof str !== 'string') {
     return false;
   }
