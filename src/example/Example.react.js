@@ -3,8 +3,7 @@
  *
  * Copyright (c) Facebook, Inc. and its affiliates. All rights reserved.
  *
- * @format
- * @flow strict-local
+ * @noformat Needed to preserve flow types in comments
  * @fbt {"project": "fbt-live-demo-project"}
  */
 
@@ -49,6 +48,7 @@ const LOCALES = Object.freeze({
   }),
 });
 
+/*::
 type Locale = $Keys<typeof LOCALES>;
 type Variation = $Values<typeof IntlVariations>;
 type SharedObj = $Keys<typeof ExampleEnum>;
@@ -66,8 +66,9 @@ type State = {|
   ex2Object: SharedObj,
   ex2Pronoun: PronounGender,
 |};
+*/
 
-export default class Example extends React.Component<Props, State> {
+export default class Example extends React.Component/*:: <Props, State> */ {
   state = {
     locale: 'en_US',
     ex1Name: 'Someone',
@@ -78,7 +79,7 @@ export default class Example extends React.Component<Props, State> {
     ex2Pronoun: GenderConst.UNKNOWN_SINGULAR,
   };
 
-  setLocale(locale: Locale) {
+  setLocale(locale /*: Locale */) {
     IntlViewerContext.locale = locale;
     this.setState({locale});
     const html = document.getElementsByTagName('html')[0];
@@ -88,7 +89,7 @@ export default class Example extends React.Component<Props, State> {
     document.body.className = LOCALES[locale].rtl ? 'rtl' : 'ltr';
   }
 
-  onSubmit(event: SyntheticInputEvent<>) {
+  onSubmit(event /*: SyntheticInputEvent<> */) {
     event.stopPropagation();
     event.preventDefault();
   }
@@ -122,7 +123,7 @@ export default class Example extends React.Component<Props, State> {
                 <span className="example_input--30">
                   <select
                     className="neatoSelect"
-                    onChange={(event: SyntheticUIEvent<>) => {
+                    onChange={(event /*: SyntheticUIEvent<> */) => {
                       const vcGender = parseInt(event.target.value, 10);
                       IntlViewerContext.GENDER = vcGender;
                       this.forceUpdate();
@@ -147,7 +148,7 @@ export default class Example extends React.Component<Props, State> {
                   <input
                     name="name"
                     placeholder="name"
-                    onChange={(event: SyntheticUIEvent<>) => {
+                    onChange={(event /*: SyntheticUIEvent<> */) => {
                       this.setState({ex1Name: event.target.value});
                     }}
                     type="text"
@@ -158,7 +159,7 @@ export default class Example extends React.Component<Props, State> {
                   <input
                     name="count"
                     placeholder="count"
-                    onChange={(event: SyntheticUIEvent<>) => {
+                    onChange={(event /*: SyntheticUIEvent<> */) => {
                       const val = parseInt(event.target.value, 10);
                       this.setState({ex1Count: isNaN(val) ? 1 : val});
                     }}
@@ -202,7 +203,7 @@ export default class Example extends React.Component<Props, State> {
                   <input
                     name="ex2Name"
                     placeholder="name"
-                    onChange={(event: SyntheticUIEvent<>) => {
+                    onChange={(event /*: SyntheticUIEvent<> */) => {
                       this.setState({ex2Name: event.target.value});
                     }}
                     type="text"
@@ -212,7 +213,7 @@ export default class Example extends React.Component<Props, State> {
                   className={classNames('example_input', 'example_input--20')}>
                   <select
                     className="neatoSelect"
-                    onChange={(event: SyntheticUIEvent<>) => {
+                    onChange={(event /*: SyntheticUIEvent<> */) => {
                       this.setState({ex2Object: event.target.value});
                     }}>
                     {Object.keys(ExampleEnum).map(k => (
@@ -226,7 +227,7 @@ export default class Example extends React.Component<Props, State> {
                   className={classNames('example_row', 'example_input--20')}>
                   <select
                     className="neatoSelect"
-                    onChange={(event: SyntheticUIEvent<>) => {
+                    onChange={(event /*: SyntheticUIEvent<> */) => {
                       this.setState({
                         ex2Pronoun: parseInt(event.target.value, 10),
                       });
@@ -339,7 +340,7 @@ export default class Example extends React.Component<Props, State> {
               ) : (
                 <a
                   href={`#${loc}`}
-                  onClick={(event: SyntheticUIEvent<>) => {
+                  onClick={(event /*: SyntheticUIEvent<> */) => {
                     event.preventDefault();
                     this.setLocale(loc);
                   }}>
