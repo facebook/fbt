@@ -3,6 +3,7 @@
  *
  * @emails oncall+internationalization
  * @format
+ * @flow strict
  */
 
 const IntlNumberVariations = {
@@ -33,7 +34,21 @@ const IntlFbtVariationType = {
   PRONOUN: 3,
 };
 
-function getType(n) {
+// This is not CLDR, but an fbt-specific marker that exists so that
+// singular phrases are not overwritten by multiplexed plural phrases
+// with a singular entry
+const EXACTLY_ONE = '_1';
+
+const SPECIALS = {
+  // The default entry.  When no entry exists, we fallback to this in the fbt
+  // table access logic.
+  '*': true,
+  EXACTLY_ONE: true,
+};
+
+function getType(
+  n /*: $Values<typeof IntlVariationMask> */,
+) /*: $Values<typeof IntlVariationMask> */ {
   if (!isValidValue(n)) {
     throw new Error('Invalid NumberType: ' + n);
   }
@@ -43,24 +58,13 @@ function getType(n) {
     : IntlVariationMask.GENDER;
 }
 
-// This is not CLDR, but an fbt-specific marker that exists so that
-// singular phrases are not overwritten by multiplexed plural phrases
-// with a singular entry
-const EXACTLY_ONE = '_1';
-
-const _specials = {
-  // The default entry.  When no entry exists, we fallback to this in the fbt
-  // table access logic.
-  '*': true,
-  EXACTLY_ONE: true,
-};
-
-function isValidValue(v) {
+function isValidValue(value /*: string | number */) /*: boolean */ {
+  const num = Number(value);
   /*eslint no-bitwise: 0*/
   return (
-    _specials[v] ||
-    (v & IntlVariationMask.NUMBER && !(v & ~IntlVariationMask.NUMBER)) ||
-    (v & IntlVariationMask.GENDER && !(v & ~IntlVariationMask.GENDER))
+    SPECIALS[value] ||
+    (num & IntlVariationMask.NUMBER && !(num & ~IntlVariationMask.NUMBER)) ||
+    (num & IntlVariationMask.GENDER && !(num & ~IntlVariationMask.GENDER))
   );
 }
 
@@ -69,9 +73,9 @@ module.exports = {
   Gender: IntlGenderVariations,
   Mask: IntlVariationMask,
   FbtVariationType: IntlFbtVariationType,
-  isValidValue: isValidValue,
-  getType: getType,
-  EXACTLY_ONE: EXACTLY_ONE,
+  isValidValue,
+  getType,
+  EXACTLY_ONE,
   VIEWING_USER: '__viewing_user__',
   SUBJECT: '__subject__',
 };

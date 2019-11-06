@@ -7,6 +7,7 @@
  * @format
  * @noflow
  */
+
 'use strict';
 
 const babelPresets = require('./babelPresets');

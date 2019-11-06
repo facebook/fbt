@@ -1,21 +1,25 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
- * @generated SignedSource<<8768ba0afe8b70bfc11c06a20c6ae9cc>>
+ * @generated SignedSource<<ff0f230855f60d787915b04a48ba204d>>
  *
  * Run `phps GenderGenScript` to regenerate this file.
  *
- * @flow
+ * @flow strict-local
  */
-const {Gender} = require('../IntlVariations');
-class IntlDefaultGenderType {
-  static getFallback() {
-    return Gender.UNKNOWN;
-  }
 
-  static getGenderVariations() {
+'use strict';
+
+const {Gender} = require('../IntlVariations');
+
+const IntlDefaultGenderType = {
+  getFallback() /*: typeof Gender.UNKNOWN */ {
+    return Gender.UNKNOWN;
+  },
+
+  getGenderVariations() /*: $ReadOnlyArray<$Values<typeof Gender>> */ {
     return [Gender.UNKNOWN, Gender.MALE, Gender.FEMALE];
-  }
-}
+  },
+};
 
 module.exports = IntlDefaultGenderType;

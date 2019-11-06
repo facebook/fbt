@@ -3,6 +3,7 @@
  *
  * @format
  */
+
 const fs = require('fs');
 const path = require('path');
 const runtimePaths = [
@@ -15,7 +16,12 @@ const runtimePaths = [
 const globalConfig = {
   setupFiles: ['fbjs-scripts/jest/environment.js'],
   timers: 'fake',
-  transform: {'\\.js$': '<rootDir>/jest-preprocessor.js'},
+  transform: {
+    '\\.js$': '<rootDir>/jest-preprocessor.js',
+  },
+  moduleNameMapper: {
+    '^FBLocaleToLang$': '<rootDir>/runtime/nonfb/FBLocaleToLang',
+  },
 };
 
 module.exports = {
@@ -58,6 +64,7 @@ module.exports = {
         '<rootDir>/demo-app/run_all\\.js',
       ],
       moduleNameMapper: {
+        ...globalConfig.moduleNameMapper,
         '\\.(css)$': '<rootDir>/demo-app/jest/css.js',
       },
       timers: 'fake',
@@ -76,5 +83,5 @@ module.exports = {
         ],
       },
     },
-  ].map(project => Object.assign({}, globalConfig, project)),
+  ].map(project => ({...globalConfig, ...project})),
 };

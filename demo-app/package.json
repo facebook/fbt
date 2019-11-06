@@ -7,7 +7,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "babel-node ../node_modules/webpack/bin/webpack",
+    "build": "babel-node node_modules/.bin/webpack",
     "manifest": "babel-node ../packages/babel-plugin-fbt/bin/manifest --src src",
     "collect-fbts": "babel-node ../packages/babel-plugin-fbt/bin/collectFBT --pretty --manifest < .src_manifest.json > .source_strings.json",
     "test-collect-fbts": "babel-node ../packages/babel-plugin-fbt/bin/collectFBT --plugins @babel/plugin-syntax-flow --pretty --manifest < .src_manifest.json > .test_source_strings.json",
@@ -15,8 +15,9 @@
     "translate-fbts-single-file": "babel-node ../packages/babel-plugin-fbt/bin/translate.js --jenkins --stdin < translation_input.json > src/translatedFbts.json",
     "test-translate-fbts-into-output-dir": "babel-node ../packages/babel-plugin-fbt/bin/translate.js --translations translations/*.json --jenkins --output-dir src/translatedFbts",
     "clean-fbts": "rm .enum_manifest.json .src_manifest.json .source_strings.json src/translatedFbts.json 2&> /dev/null || exit 0",
-    "start": "babel-node ../node_modules/webpack-dev-server/bin/webpack-dev-server --open",
-    "all": "node run_all",
+    "start": "babel-node node_modules/.bin/webpack-dev-server --open",
+    "postinstall": "yarn all",
+    "all": "babel-node run_all",
     "test": "cd .. && yarn jest demo-app"
   },
   "devDependencies": {
@@ -43,7 +44,6 @@
     "css-loader": "1.0.1",
     "file-loader": "2.0.0",
     "flow-bin": "0.87.0",
-    "flow-remove-types": "^1.2.3",
     "flow-typed": "2.5.1",
     "html-webpack-plugin": "3.2.0",
     "invariant": "^2.2.4",

@@ -7,7 +7,7 @@ const babel = require('@babel/core');
 const createCacheKeyFunction = require('fbjs-scripts/jest/createCacheKeyFunction');
 const path = require('path');
 
-let cacheKeyPackages = [
+const cacheKeyPackages = [
   'babel-preset-fbjs',
   'babel-plugin-fbt',
   'babel-plugin-fbt-runtime',
@@ -15,9 +15,9 @@ let cacheKeyPackages = [
 
 // This is basically fbjs-scripts/jest/preprocessor, but with the
 // ability to specify additional plugins
-function createTransformer(opts /*: Object*/ = {}) {
+function createTransformer(opts /*: Object */ = {}) {
   return {
-    process(src /*: string*/, filename /*: string*/) {
+    process(src /*: string */, filename /*: string */) {
       const options = {
         presets: [
           ['@babel/react', {throwIfNamespace: false}],
@@ -27,6 +27,7 @@ function createTransformer(opts /*: Object*/ = {}) {
         filename: filename,
         retainLines: true,
       };
+
       return babel.transform(src, options).code;
     },
 

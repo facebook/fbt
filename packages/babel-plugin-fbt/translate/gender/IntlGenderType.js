@@ -1,15 +1,22 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
- * @generated SignedSource<<8db5c2144dc57157d5982d77af2adfb6>>
+ * @generated SignedSource<<9a60853945bd01208c5d94f350df08f2>>
  *
  * Run `phps GenderGenScript` to regenerate this file.
  *
- * @flow
+ * @flow strict-local
  */
+
+'use strict';
+
 const FBLocaleToLang = require('../FBLocaleToLang');
 const IntlDefaultGenderType = require('./IntlDefaultGenderType');
 const IntlMergedUnknownGenderType = require('./IntlMergedUnknownGenderType');
+
+/*::
+type OutputType = typeof IntlMergedUnknownGenderType | typeof IntlDefaultGenderType;
+*/
 
 const _mergedLocales = {
     "ht_HT": 1,
@@ -32,14 +39,14 @@ const _mergedLangs = {
 };
 
 const IntlGenderType = {
-  forLanguage: function(lang) {
+  forLanguage(lang /*: string */) /*: OutputType */ {
     if (_mergedLangs[lang]) {
       return IntlMergedUnknownGenderType;
     }
     return IntlDefaultGenderType;
   },
 
-  forLocale: function(locale) {
+  forLocale(locale /*: string */) /*: OutputType */ {
     if (_mergedLocales[locale]) {
       return IntlMergedUnknownGenderType;
     }
