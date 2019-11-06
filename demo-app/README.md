@@ -17,6 +17,8 @@ yarn build
 yarn start
 ```
 
+Note: step 1-3 can be done with this command: `yarn all`.
+
 ## Unit tests
 
 ```

@@ -57,6 +57,12 @@ We haven't had the best track record of code/feature changes before this date, b
      Unreleased changes that have landed in master. Click to see more.
     </summary>
 
+    - [feature] Create new `node_modules/.bin` shortcuts for our scripts.
+    You can now execute them like this:
+      - `yarn fbt-collect`
+      - `yarn fbt-manifest`
+      - `yarn fbt-translate`
+
   </details>
 
 - 0.10.4:

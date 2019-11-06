@@ -5,6 +5,11 @@
   "description": "The FBT Babel localization transform",
   "//version": "Follow SemVer specs at https://semver.org/",
   "version": "0.10.4",
+  "bin" : {
+    "fbt-collect": "bin/collectFBT.js",
+    "fbt-manifest": "bin/manifest.js",
+    "fbt-translate": "bin/translate.js"
+  },
   "devDependencies": {
   },
   "dependencies": {
