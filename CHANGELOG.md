@@ -14,6 +14,7 @@ We haven't had the best track record of code/feature changes before this date, b
 - [fb-babel-plugin-utils versions](#fb-babel-plugin-utils)
 
 ### Top-level Github
+- Require node v10.4.0+ because for fb-tiger-hash (we need BigInt!)
 - *[Experimental]* Add support for Flow type checks.
   - Run `yarn flow:check` to check them.
     - NOTE: our Flow types are still in their infancy, so lots of errors are expected.
