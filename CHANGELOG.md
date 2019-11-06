@@ -58,13 +58,15 @@ We haven't had the best track record of code/feature changes before this date, b
      Unreleased changes that have landed in master. Click to see more.
     </summary>
 
-    - [feature] Create new `node_modules/.bin` shortcuts for our scripts.
+  </details>
+
+- 0.11.0:
+  - [feature] Enable both phrase and text packaging in collectFbt
+  - [feature] Create new `node_modules/.bin` shortcuts for our scripts.
     You can now execute them like this:
       - `yarn fbt-collect`
       - `yarn fbt-manifest`
       - `yarn fbt-translate`
-
-  </details>
 
 - 0.10.4:
   - Add description in NPM package

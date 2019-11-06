@@ -14,6 +14,8 @@
  */
 
 const {FbtType} = require('../FbtConstants');
+const fbtHashKey = require('../fbtHashKey');
+const jenkinsHash = require('../fbtJenkinsHash');
 const mergePhrase = require('./mergePhrase');
 
 /**
@@ -23,10 +25,6 @@ const mergePhrase = require('./mergePhrase');
 class PhrasePackager {
   constructor(terse) {
     this._terse = terse;
-    // The following 2 modules are not necessarily in the file-tree in repos where
-    // this isn't used.  Blow up hard and early if we try to use PhrasePackager
-    this._hashKey = require('../fbtHashKey');
-    this._jenkinsHash = require('../fbtJenkinsHash');
   }
 
   pack(phrases) {
@@ -36,8 +34,8 @@ class PhrasePackager {
       // Append hash keys to phrases for translation dictionary generation
       return mergePhrase(
         {
-          hash_key: this._hashKey(payload, phrase.desc),
-          hash_code: this._jenkinsHash(payload, phrase.desc),
+          hash_key: fbtHashKey(payload, phrase.desc),
+          hash_code: jenkinsHash(payload, phrase.desc),
         },
         phrase,
         !this._terse,

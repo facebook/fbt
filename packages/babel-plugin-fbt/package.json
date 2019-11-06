@@ -4,7 +4,7 @@
   "name": "babel-plugin-fbt",
   "description": "The FBT Babel localization transform",
   "//version": "Follow SemVer specs at https://semver.org/",
-  "version": "0.10.4",
+  "version": "0.11.0",
   "bin" : {
     "fbt-collect": "bin/collectFBT.js",
     "fbt-manifest": "bin/manifest.js",

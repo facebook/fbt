@@ -18,7 +18,7 @@ var childProcess = require('child_process');
 
 describe('collectFBT', () => {
   function collect(source, options = {}) {
-    var collectOptions = [require.resolve('../collectFBT'), '--packager=noop'];
+    var collectOptions = [require.resolve('../collectFBT'), '--packager=none'];
     if (options.react_native_mode || false) {
       collectOptions = collectOptions.concat('--react-native-mode');
     }

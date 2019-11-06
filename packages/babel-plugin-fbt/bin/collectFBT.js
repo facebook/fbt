@@ -39,6 +39,13 @@ const args = {
   TERSE: 'terse',
 };
 
+const packagerTypes = {
+  TEXT: 'text',
+  PHRASE: 'phrase',
+  BOTH: 'both',
+  NONE: 'none',
+};
+
 const argv = yargs
   .usage('Collect fbt instances from source:\n$0 [options]')
   .default(args.HASH, __dirname + '/md5Texts')
@@ -48,9 +55,11 @@ const argv = yargs
     args.PACKAGER,
     'Packager to use.  Choices are:\n' +
       "  'text' - hashing is done at the text (or leaf) level (more granular)\n" +
-      "'phrase' - hashing is done at the phrase level (less granular)\n" +
-      "  'noop' - No hashing or massaging of phrase data\n",
+      "'phrase' - hashing is done at the phrase (entire fbt callsite) level\n" +
+      "  'both' - Both phrase and text hashing are performed\n" +
+      "  'none' - No hashing or alteration of phrase data\n",
   )
+  .choices(args.PACKAGER, Object.values(packagerTypes))
   .boolean(args.TERSE)
   .default(args.TERSE, false)
   .describe(
@@ -102,6 +111,20 @@ const argv = yargs
       `i.e. --${args.OPTIONS} "locale,qux,id"`,
   ).argv;
 
+const packager = argv[args.PACKAGER];
+
+function getHasher() {
+  let hashPhrases = null;
+  if (packager === packagerTypes.TEXT || packager === packagerTypes.BOTH) {
+    // $FlowFixMe Requiring dynamic module
+    hashPhrases = require(argv[args.HASH]);
+    if (hashPhrases.hashPhrases != null) {
+      hashPhrases = hashPhrases.hashPhrases;
+    }
+  }
+  return hashPhrases;
+}
+
 const extraOptions = {};
 const cliExtraOptions = argv[args.OPTIONS];
 if (cliExtraOptions) {
@@ -135,11 +158,13 @@ function processJsonSource(source) {
 }
 
 function writeOutput() {
-  const phrases = fbtCollector.getPhrases();
   process.stdout.write(
     JSON.stringify(
       {
-        phrases: getPackager().pack(phrases),
+        phrases: getPackagers().reduce(
+          (phrases, packager) => packager.pack(phrases),
+          fbtCollector.getPhrases(),
+        ),
         childParentMappings: fbtCollector.getChildParentMappings(),
       },
       ...(argv[args.PRETTY] ? [null, ' '] : []),
@@ -165,15 +190,17 @@ function processSource(source) {
   }
 }
 
-function getPackager() {
-  switch (argv[args.PACKAGER]) {
-    case 'text':
-      // $FlowFixMe
-      return new TextPackager(require(argv[args.HASH]), argv[args.TERSE]);
-    case 'phrase':
-      return new PhrasePackager(argv[args.TERSE]);
-    case 'noop':
-      return {pack: phrases => phrases};
+function getPackagers() {
+  const terse = argv[args.TERSE];
+  switch (packager) {
+    case packagerTypes.TEXT:
+      return [new TextPackager(getHasher(), terse)];
+    case packagerTypes.PHRASE:
+      return [new PhrasePackager(terse)];
+    case packagerTypes.BOTH:
+      return [new TextPackager(getHasher(), terse), new PhrasePackager(terse)];
+    case packagerTypes.NONE:
+      return [{pack: phrases => phrases}];
     default:
       throw new Error('Unrecognized packager option');
   }
