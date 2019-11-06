@@ -5,7 +5,6 @@
  *
  * @emails oncall+internationalization
  * @format
- * @flow
  */
 
 'use strict';

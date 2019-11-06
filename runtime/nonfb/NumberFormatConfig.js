@@ -1,8 +1,10 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
- * @flow strict-local
+ *
+ * @noformat Needed to preserve flow types in comments
  */
 
+/*::
 export type StandardDecimalPatternInfo = {
   primaryGroupSize: number,
   secondaryGroupSize: number,
@@ -13,11 +15,12 @@ export type NumberingSystemData = {
 };
 
 declare class NumberFormatConfig {
-  decimalSeparator: string,
-  numberDelimiter: string,
-  minDigitsForThousandsSeparator: number,
-  standardDecimalPatternInfo: StandardDecimalPatternInfo,
-  numberingSystemData: ?NumberingSystemData,
+  decimalSeparator: string;
+  numberDelimiter: string;
+  minDigitsForThousandsSeparator: number;
+  standardDecimalPatternInfo: StandardDecimalPatternInfo;
+  numberingSystemData: ?NumberingSystemData;
 }
 
 declare export default NumberFormatConfig;
+*/

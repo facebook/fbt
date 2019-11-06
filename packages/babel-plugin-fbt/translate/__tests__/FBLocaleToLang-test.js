@@ -3,7 +3,6 @@
  *
  * @emails oncall+internationalization
  * @format
- * @flow strict-local
  */
 
 const FBLocaleToLang = require('../FBLocaleToLang');

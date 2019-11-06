@@ -4,28 +4,29 @@
  * Dummy class on www. Fetches translations from language packs on RN/CS.
  *
  * @emails oncall+internationalization
- * @flow
- * @format
+ * @noformat Needed to preserve flow types in comments
  */
 
 'use strict';
 
+/*::
 type CustomTranslationPayloadGetter = typeof FbtTranslations.getTranslatedPayload;
+*/
 
 const IntlViewerContext = require('IntlViewerContext');
 
 let translatedFbts = null;
 
 const DEFAULT_SRC_LOCALE = 'en_US';
-let customTranslationPayloadGetter: ?CustomTranslationPayloadGetter = null;
+let customTranslationPayloadGetter /*: ?CustomTranslationPayloadGetter */ = null;
 
 const FbtTranslations = {
   getTranslatedPayload(
-    hashKey: ?string,
-    enumHashKey: $FlowFixMe,
-    args: Array<$FlowFixMe>,
-    _table: string | Object,
-  ): ?{table: $FlowFixMe, args: Array<$FlowFixMe>} {
+    hashKey /*: ?string */,
+    enumHashKey /*: $FlowFixMe */,
+    args /*: Array<$FlowFixMe> */,
+    _table /*: string | Object */,
+  ) /*: ?{table: $FlowFixMe, args: Array<$FlowFixMe>} */ {
     if (customTranslationPayloadGetter != null) {
       return customTranslationPayloadGetter(hashKey, enumHashKey, args, _table);
     }
@@ -61,18 +62,18 @@ const FbtTranslations = {
    * the default payload getter behavior.
    */
   setCustomTranslationPayloadGetter__EXPERIMENTAL(
-    getter: CustomTranslationPayloadGetter,
-  ): this {
+    getter /*: CustomTranslationPayloadGetter */,
+  ) /*: this */ {
     customTranslationPayloadGetter = getter;
     return this;
   },
 
-  registerTranslations(translations): this {
+  registerTranslations(translations) /*: this */ {
     translatedFbts = translations;
     return this;
   },
 
-  isComponentScript(): boolean {
+  isComponentScript() /*: boolean */ {
     return false;
   },
 };

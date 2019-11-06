@@ -1,10 +1,12 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
- * @flow strict-local
+ *
+ * @format
  */
+
+const {execSync} = require('child_process');
 const fs = require('fs');
 const path = require('path');
-const {execSync} = require('child_process');
 
 process.chdir(__dirname);
 

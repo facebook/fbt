@@ -1,33 +1,41 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
+ *
  * @format
- * @noflow
+ * @flow strict
  */
+
+'use strict';
+
+type FBLoggerParam = ?(string | number | boolean);
 
 // No-op class implementation for Open Source
 class FBLogMessage {
-  constructor(_) {}
-  fatal() {}
-  mustfix() {}
-  warn() {}
-  info() {}
-  debug() {}
-  catching() {
+  constructor(project: string) {}
+
+  fatal(format: string, ...params: Array<FBLoggerParam>): void {}
+
+  mustfix(format: string, ...params: Array<FBLoggerParam>): void {}
+
+  warn(format: string, ...params: Array<FBLoggerParam>): void {}
+
+  info(format: string, ...params: Array<FBLoggerParam>): void {}
+
+  debug(format: string, ...params: Array<FBLoggerParam>): void {}
+
+  catching(error: Error): this {
     return this;
   }
-  blameToPreviousFile() {
+
+  blameToPreviousFile(): this {
     return this;
   }
-  blameToPreviousFrame() {
+
+  blameToPreviousFrame(): this {
     return this;
   }
-  blameToPreviousDirectory() {
-    return this;
-  }
-  addToCategoryKey() {
-    return this;
-  }
-  addMetadata() {
+
+  blameToPreviousDirectory(): this {
     return this;
   }
 }

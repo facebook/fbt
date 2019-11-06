@@ -1,6 +1,6 @@
 /*
  * Copyright 2004-present Facebook. All Rights Reserved.
- * @flow strict-local
+ *
  * @format
  */
 const babel = require('@babel/core');

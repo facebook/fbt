@@ -10,7 +10,6 @@
  *   js1 upgrade www-shared -p babel_plugin_fbt --local ~/www
  *
  * @emails oncall+internationalization
- * @flow
  * @format
  */
 /*global describe, it, expect*/

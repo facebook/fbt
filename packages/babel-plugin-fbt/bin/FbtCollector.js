@@ -9,9 +9,8 @@
  * Run the following command to sync the change from www to fbsource.
  *   js1 upgrade www-shared -p babel_plugin_fbt --local ~/www
  *
- * @flow
- *
  * DO NOT AUTO-FORMAT TO PRESERVE FLOW TYPES
+ * @noformat
  */
 
 /* eslint max-len: ["warn", 120] */

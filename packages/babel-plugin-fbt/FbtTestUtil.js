@@ -12,7 +12,6 @@
  * Utility functions to test the Fbt Babel transform plugin
  *
  * @emails oncall+internationalization
- * @flow
  * @format
  */
 
@@ -20,7 +19,7 @@
 
 const {transformSync} = require('@babel/core');
 
-function payload(obj: {project: string}): string {
+function payload(obj /*: {project: string} */) /*: string */ {
   obj.project = obj.project || '';
   return JSON.stringify(`__FBT__${JSON.stringify(obj)}__FBT__`);
 }
@@ -28,7 +27,7 @@ function payload(obj: {project: string}): string {
 function transform(
   source /*: string */,
   pluginOptions /*: $FlowFixMe */,
-): string {
+) /*: string */ {
   return transformSync(source, {
     ast: false,
     plugins: [
@@ -43,7 +42,7 @@ function transform(
 function transformKeepJsx(
   source /*: string */,
   pluginOptions /*: $FlowFixMe */,
-): string {
+) /*: string */ {
   return transformSync(source, {
     ast: false,
     plugins: [
@@ -54,12 +53,12 @@ function transformKeepJsx(
   }).code;
 }
 
-function withFbsRequireStatement(code: string): string {
+function withFbsRequireStatement(code /*: string */) /*: string */ {
   return `const fbs = require("fbs");
   ${code}`;
 }
 
-function withFbtRequireStatement(code: string): string {
+function withFbtRequireStatement(code /*: string */) /*: string */ {
   return `const fbt = require("fbt");
   ${code}`;
 }

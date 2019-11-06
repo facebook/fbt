@@ -1,14 +1,15 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
+ *
  * @format
- * @flow strict-local
+ * @flow strict
  */
 
 /**
  * OSS mock implementation to work with our ported ("unmodulified")
  * CSS
  */
-function cx(clsname: string) {
-  return clsname.replace('/', '_');
+function cx(cssClassName: string): string {
+  return cssClassName.replace('/', '_');
 }
 module.exports = cx;

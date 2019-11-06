@@ -4,7 +4,6 @@
  * Copyright (c) Facebook, Inc. and its affiliates. All rights reserved.
  *
  * @format
- * @flow strict-local
  * @fbt {"project": "fbt-demo-project"}
  */
 

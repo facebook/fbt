@@ -1,5 +1,6 @@
 [ignore]
 <PROJECT_ROOT>/packages/fbt/lib/.*
+<PROJECT_ROOT>/packages/fbt/dist/.*
 
 [include]
 node_modules

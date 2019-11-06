@@ -1,7 +1,10 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
- * @flow strict-local
+ *
+ * @format
+ * @flow strict
  */
+
 const IntlVariations = require('IntlVariations');
 
 const IntlViewerContext = {

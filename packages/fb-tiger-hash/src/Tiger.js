@@ -16,7 +16,6 @@
  *   https://www.cs.technion.ac.il/~biham/Reports/Tiger/tiger/node7.html
  *
  * @emails oncall+internationalization
- * @flow strict
  */
 
 /* eslint-disable no-bitwise */
