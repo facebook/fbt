@@ -61,6 +61,9 @@ We haven't had the best track record of code/feature changes before this date, b
 
   </details>
 
+- 0.11.1:
+  - Remove #!shebang from bin scripts and point to wrappers in `node_modules/.bin` shortcut paths
+
 - 0.11.0:
   - [feature] Enable both phrase and text packaging in collectFbt
   - [feature] Create new `node_modules/.bin` shortcuts for our scripts.
