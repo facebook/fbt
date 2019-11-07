@@ -2268,20 +2268,6 @@ babel-plugin-dynamic-import-node@^2.3.0:
   dependencies:
     object.assign "^4.1.0"
 
-babel-plugin-fbt@^0.10.3:
-  version "0.10.4"
-  resolved "https://registry.yarnpkg.com/babel-plugin-fbt/-/babel-plugin-fbt-0.10.4.tgz#aed9294cf24854fa80c3d048d9de5e19e69d44a6"
-  dependencies:
-    "@babel/core" "^7.0.0"
-    "@babel/generator" "^7.0.0"
-    fb-babel-plugin-utils "^0.9.0"
-    fbjs "^1.0.0"
-    fbjs-scripts "^1.1.0"
-    glob "^7.1.1"
-    jest-docblock "^24.3.0"
-    shelljs "^0.7.8"
-    yargs "^9.0.0"
-
 babel-plugin-istanbul@^5.1.0:
   version "5.1.4"
   resolved "https://registry.yarnpkg.com/babel-plugin-istanbul/-/babel-plugin-istanbul-5.1.4.tgz#841d16b9a58eeb407a0ddce622ba02fe87a752ba"

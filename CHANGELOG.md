@@ -14,6 +14,7 @@ We haven't had the best track record of code/feature changes before this date, b
 - [fb-babel-plugin-utils versions](#fb-babel-plugin-utils)
 
 ### Top-level Github
+- Fix demo-app breakage
 - Require node v10.4.0+ because for fb-tiger-hash (we need BigInt!)
 - *[Experimental]* Add support for Flow type checks.
   - Run `yarn flow:check` to check them.
@@ -97,6 +98,8 @@ We haven't had the best track record of code/feature changes before this date, b
   - [c11e9fd](https://github.com/facebookincubator/fbt/commit/c11e9fd) Enable custom Babel plugins for FBT collection
 
 ### babel-plugin-fbt-runtime versions
+- 0.9.10:
+  - Update peer dependency on `babel-plugin-fbt`
 
 - 0.9.9:
   - Add description in NPM package
