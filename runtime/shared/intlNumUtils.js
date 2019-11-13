@@ -15,8 +15,6 @@
  * @emails oncall+internationalization
  */
 
-// flowlint implicit-inexact-object:error
-
 const IntlViewerContext = require('IntlViewerContext');
 const NumberFormatConsts = require('NumberFormatConsts');
 
@@ -392,7 +390,7 @@ function _parseCodifiedNumber(text: string): ?number {
   return _text === '' || isNaN(value) ? null : value;
 }
 
-function _getNativeDigitsMap(): ?{[string]: string, ...} {
+function _getNativeDigitsMap(): ?{[string]: string} {
   const NumberFormatConfig = NumberFormatConsts.get(IntlViewerContext.locale);
   const nativeDigitMap = {};
   const digits =

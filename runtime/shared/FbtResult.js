@@ -14,8 +14,6 @@
  * @emails oncall+internationalization
  */
 
-// flowlint implicit-inexact-object:error
-
 import type {NestedFbtContentItems} from 'FbtResultBase';
 
 const FbtReactUtil = require('FbtReactUtil');
@@ -23,7 +21,9 @@ const FbtResultBaseImpl = require('FbtResultBaseImpl');
 
 const FbtComponent = (props: Props): mixed => props.content;
 
-type Props = {content: NestedFbtContentItems, ...};
+type Props = {
+  content: NestedFbtContentItems,
+};
 
 class FbtResult extends FbtResultBaseImpl {
   $$typeof: Symbol | $TEMPORARY$number<0xeac7> =
