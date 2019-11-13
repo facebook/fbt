@@ -13,15 +13,19 @@
  * @format
  */
 
+// flowlint implicit-inexact-object:error
+
 'use strict';
 
 export type StandardDecimalPatternInfo = {
   primaryGroupSize: number,
   secondaryGroupSize: number,
+  ...
 };
 
 export type NumberingSystemData = {
   digits: string,
+  ...
 };
 
 // @TypedJSModule
@@ -31,4 +35,5 @@ declare module.exports: {
   minDigitsForThousandsSeparator: number,
   standardDecimalPatternInfo: StandardDecimalPatternInfo,
   numberingSystemData: ?NumberingSystemData,
+  ...
 };
