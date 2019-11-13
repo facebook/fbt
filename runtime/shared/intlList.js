@@ -21,6 +21,8 @@
  * @emails oncall+internationalization
  */
 
+// flowlint implicit-inexact-object:error
+
 'use strict';
 
 const React = require('React');
@@ -184,4 +186,5 @@ module.exports = (intlList: (<TItem: React.Node>(
 ) => TItem | Fbt) & {
   DELIMITERS: typeof DELIMITERS,
   CONJUNCTIONS: typeof CONJUNCTIONS,
+  ...
 });
