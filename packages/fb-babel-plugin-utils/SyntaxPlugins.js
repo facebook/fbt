@@ -8,12 +8,14 @@
  * @format
  */
 
+// flowlint implicit-inexact-object:error
+
 'use strict';
 
 const SyntaxPluginsConfig = require('./SyntaxPluginsConfig');
 
 // Keep these require's explicit for grep friendliness.
-const SYNTAX_PLUGINS_MAP /*: {[string]: ?Object} */ = {
+const SYNTAX_PLUGINS_MAP /*: {[string]: ?Object, ...} */ = {
   '@babel/plugin-syntax-class-properties': require('@babel/plugin-syntax-class-properties'),
   '@babel/plugin-syntax-flow': require('@babel/plugin-syntax-flow'),
   '@babel/plugin-syntax-jsx': require('@babel/plugin-syntax-jsx'),
