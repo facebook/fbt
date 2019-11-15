@@ -5,6 +5,7 @@
 Run the following commands in order:
 
 ```
+yarn install
 # 1. Generate enum and source manifests
 yarn manifest
 # 2. Collect FBT translatable texts
