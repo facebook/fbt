@@ -10,7 +10,7 @@
  *   js1 upgrade www-shared -p fbt --local ~/www
  *
  * @format
- * @flow
+ * @flow strict-local
  * @emails oncall+internationalization
  */
 
@@ -26,8 +26,16 @@ const parameterRegexp = new RegExp(
   'g',
 );
 
+type MaybeReactComponent = $Shape<{
+  type?: string,
+  props?: {},
+  _store?: {
+    validated: boolean,
+  },
+}>;
+
 // Hack into React internals to avoid key warnings
-function markAsSafeForReact<T: Object>(object: T): T {
+function markAsSafeForReact<T: MaybeReactComponent>(object: T): T {
   if (__DEV__) {
     // If this looks like a ReactElement, mark it as safe to silence any
     // key warnings.
@@ -35,13 +43,16 @@ function markAsSafeForReact<T: Object>(object: T): T {
     // I use a string key to avoid any possible private variable transforms.
     const storeKey = '_store';
 
+    const store = object[storeKey];
     if (
-      object.type &&
+      object.type != null &&
+      object.type != '' &&
       typeof object.props === 'object' &&
-      typeof object[storeKey] === 'object' &&
-      typeof object[storeKey].validated === 'boolean'
+      store != null &&
+      typeof store === 'object' &&
+      typeof store.validated === 'boolean'
     ) {
-      object[storeKey].validated = true;
+      store.validated = true;
     }
   }
   return object;
@@ -51,13 +62,13 @@ function markAsSafeForReact<T: Object>(object: T): T {
  * Does the token substitution fbt() but without the string lookup.
  * Used for in-place substitutions in translation mode.
  */
-function substituteTokens(
+function substituteTokens<Arg: mixed>(
   template: string,
-  _args?: Object,
-): string | Array<any> {
+  _args: {[paramName: string]: Arg},
+): string | Array<string | Arg> {
   const args = _args;
 
-  if (!args) {
+  if (args == null) {
     return template;
   }
 
@@ -71,26 +82,32 @@ function substituteTokens(
   const objectPieces = [];
   const argNames = [];
   const stringPieces = template
-    .replace(parameterRegexp, (match, parameter, punctuation) => {
-      if (__DEV__) {
-        if (!args.hasOwnProperty(parameter)) {
-          throw new Error('Translatable string expects parameter ' + parameter);
+    .replace(
+      parameterRegexp,
+      (match: string, parameter: string, punctuation: string): string => {
+        if (__DEV__) {
+          if (!args.hasOwnProperty(parameter)) {
+            throw new Error(
+              'Translatable string expects parameter ' + parameter,
+            );
+          }
         }
-      }
 
-      const argument = args[parameter];
-      if (argument && typeof argument === 'object') {
-        objectPieces.push(argument);
-        argNames.push(parameter);
-        // End of Transmission Block sentinel marker
-        return '\x17' + punctuation;
-      } else if (argument === null) {
-        return '';
-      }
-      return (
-        argument + (IntlPunctuation.endsInPunct(argument) ? '' : punctuation)
-      );
-    })
+        const argument = args[parameter];
+        if (argument != null && typeof argument === 'object') {
+          objectPieces.push(argument);
+          argNames.push(parameter);
+          // End of Transmission Block sentinel marker
+          return '\x17' + punctuation;
+        } else if (argument === null) {
+          return '';
+        }
+        return (
+          String(argument) +
+          (IntlPunctuation.endsInPunct(String(argument)) ? '' : punctuation)
+        );
+      },
+    )
     .split('\x17')
     .map(IntlPunctuation.applyPhonologicalRules);
 
