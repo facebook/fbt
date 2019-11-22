@@ -16,7 +16,7 @@
 'use strict';
 
 const FbtAutoWrap = require('./FbtAutoWrap');
-const FbtCommon = require('./FbtCommon');
+const FbtCommonConstants = require('./FbtCommonConstants');
 const {
   FbtBooleanOptions,
   FbtRequiredAttributes,
@@ -80,7 +80,6 @@ function BabelPluginFbt(babel) {
       this.opts.fbtSentinel = this.opts.fbtSentinel || '__FBT__';
       this.opts.fbtBase64 = this.opts.fbtBase64;
 
-      FbtCommon.init(this.opts);
       FbtMethodCallVisitors.setEnumManifest(getEnumManifest(this.opts));
       initExtraOptions(this);
       initDefaultOptions(this);
@@ -127,7 +126,7 @@ function BabelPluginFbt(babel) {
           const textValue = normalizeSpaces(
             expandStringConcat(moduleName, t, text).value.trim(),
           );
-          const descValue = FbtCommon.getDesc(textValue);
+          const descValue = FbtCommonConstants[textValue];
           if (!descValue) {
             throwAt(
               path.node,
@@ -538,7 +537,9 @@ function BabelPluginFbt(babel) {
     if (path.node.arguments.length !== 1) {
       throwAt(
         path.node,
-        `Expected ${moduleName}.c to have exactly 1 argument. ${path.node.arguments.length} was given.`,
+        `Expected ${moduleName}.c to have exactly 1 argument. ${
+          path.node.arguments.length
+        } was given.`,
       );
     }
 
@@ -546,7 +547,7 @@ function BabelPluginFbt(babel) {
       expandStringConcat(moduleName, t, path.node.arguments[0]).value,
     ).trim();
 
-    const desc = FbtCommon.getDesc(text);
+    const desc = FbtCommonConstants[text];
     if (!desc) {
       throwAt(path.node, getUnknownCommonStringErrorMessage(moduleName, text));
     }
