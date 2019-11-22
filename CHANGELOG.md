@@ -64,6 +64,9 @@ We haven't had the best track record of code/feature changes before this date, b
 
   </details>
 
+- 0.12.0:
+  - Support common strings as plugin option
+
 - 0.11.1:
   - Remove #!shebang from bin scripts and point to wrappers in `node_modules/.bin` shortcut paths
 

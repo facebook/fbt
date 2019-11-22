@@ -27,6 +27,7 @@ const yargs = require('yargs');
 
 const args = {
   AUXILIARY_TEXTS: 'auxiliary-texts',
+  COMMON_STRINGS: 'fbt-common-path',
   HASH: 'hash-module',
   HELP: 'h',
   MANIFEST: 'manifest',
@@ -93,6 +94,13 @@ const argv = yargs
     'Interpret stdin as JSON map of {<enum-manifest-file>: ' +
       '[<source_file1>, ...]}. Otherwise stdin itself will be parsed',
   )
+  .string(args.COMMON_STRINGS)
+  .default(args.COMMON_STRINGS, null)
+  .describe(
+    args.COMMON_STRINGS,
+    'Optional path to the common strings module. ' +
+      'This is a map from {[text]: [description]}.',
+  )
   .boolean(args.PRETTY)
   .default(args.PRETTY, false)
   .describe(args.PRETTY, 'Pretty-print the JSON output')
@@ -140,6 +148,7 @@ const fbtCollector = new FbtCollector(
     auxiliaryTexts: argv[args.AUXILIARY_TEXTS],
     plugins: argv[args.PLUGINS],
     reactNativeMode: argv[args.REACT_NATIVE_MODE],
+    fbtCommonPath: argv[args.COMMON_STRINGS],
   },
   extraOptions,
 );
