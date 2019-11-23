@@ -14,14 +14,22 @@
  */
 'use strict';
 
-var childProcess = require('child_process');
+const childProcess = require('child_process');
+const path = require('path');
+
+const commonPath = path.resolve(__dirname, 'FbtCommonForTests.json');
 
 describe('collectFBT', () => {
   function collect(source, options = {}) {
-    var collectOptions = [require.resolve('../collectFBT'), '--packager=none'];
+    var collectOptions = [
+      require.resolve('../collectFBT'),
+      '--packager=none',
+      '--fbt-common-path=' + commonPath,
+    ];
     if (options.react_native_mode || false) {
-      collectOptions = collectOptions.concat('--react-native-mode');
+      collectOptions.push('--react-native-mode');
     }
+
     var child = childProcess.spawnSync(
       process.env.NODE_BINARY || 'node',
       collectOptions,
