@@ -46,11 +46,6 @@ describe('Test declarative (jsx) <fbs> syntax translation', () => {
         withFbsRequireStatement(`
           const fbsCommonElem = <fbs common={true}>Post</fbs>;
         `),
-        {
-          fbtCommon: {
-            Post: 'Button to post a comment',
-          },
-        },
       ),
     ).toMatchSnapshot();
   });
