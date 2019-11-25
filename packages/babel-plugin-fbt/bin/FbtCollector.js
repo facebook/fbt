@@ -40,6 +40,7 @@ export type TransformOptions = {|
   filename?: string,
   extraOptions?: mixed,
   fbtEnumManifest?: FbtEnumManifest,
+  fbtCommonPath?: string,
   auxiliaryTexts?: boolean,
   reactNativeMode?: boolean,
 |}
@@ -85,6 +86,7 @@ class FbtCollector {
       fbtEnumManifest,
       auxiliaryTexts: this._config.auxiliaryTexts,
       reactNativeMode: this._config.reactNativeMode,
+      fbtCommonPath: this._config.fbtCommonPath,
     };
     if (filename != null) {
       options.filename = filename;
