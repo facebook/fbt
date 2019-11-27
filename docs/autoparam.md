@@ -8,8 +8,8 @@ sidebar_label: Auto-parameterization
 `<fbt>` as though they were written with an `<fbt:param>` with a
 `name` attribute containing the child's text.  It will pull any child
 text into the parameter name, including those of recursive structures.   
-<span style="color:red"> **Note this is inherently not available to
-the `fbt(...)` API** </span>
+**<span style={{ color: "red" }}> Note this is inherently not available to
+the `fbt(...)` API </span>**
 
 
 ```xml

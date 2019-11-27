@@ -1,0 +1,21 @@
+/**
+ * Copyright (c) 2017-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/**
+ * /src/css/custom.css
+ * You can override the default Infima variables here.
+ * Note: this is not a complete list of --ifm- variables.
+ */
+:root {
+  --ifm-color-primary: #4267b2;
+  --ifm-color-primary-dark: #23469c;
+  --ifm-color-primary-darker: #113178;
+  --ifm-color-primary-darkest: #091e4a;
+  --ifm-color-primary-light: #7981c2;
+  --ifm-color-primary-lighter: #a09cc7;
+  --ifm-color-primary-lightest: #c4c2cc;
+}

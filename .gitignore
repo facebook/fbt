@@ -31,3 +31,5 @@ packages/fbt/**
 
 # documentation build artifacts
 website/build/
+website/node_modules
+website/.docusaurus
