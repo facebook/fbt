@@ -1,0 +1,127 @@
+/**
+ * Copyright (c) 2017-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.heroBanner {
+  padding: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 966px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+}
+
+.topContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sections {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+@media only screen and (max-width: 1023px) {
+  .sections {
+    flex-direction: column-reverse;
+  }
+}
+
+.splashImage {
+  max-height: 150px;
+}
+
+@media only screen and (max-width: 1023px) {
+  .splashImage {
+    margin-bottom: 30px;
+  }
+}
+
+.descriptionImage {
+  max-height: 250px;
+}
+
+.button {
+  margin: 0 1rem;
+}
+
+.features {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.featureBlock {
+  text-align: center;
+}
+
+.showcase {
+  padding: 0 20px 80px 20px;
+}
+
+.showcaseHeading {
+  font-size: 30px;
+  line-height: 1em;
+  margin-top: 20px;
+  padding: 10px 0;
+}
+
+.showcaseHeadingColored {
+  color: var(--ifm-color-primary);
+}
+
+.showcaseLogos {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  padding: 20px;
+}
+
+.showcaseLogo {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  background: white;
+  margin: 15px;
+  border-radius: 8px;
+  padding: 5px;
+  justify-content: center;
+}
+
+.description {
+  padding: 80px 0;
+  background: gray;
+  color: #fff;
+}
+
+.row {
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.column {
+  text-align: center;
+}

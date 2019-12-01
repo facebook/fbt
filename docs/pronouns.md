@@ -30,7 +30,7 @@ const GenderConst = {
 }
 ```
 
-<span style="color:red">**NOTE: This is not the same gender as used in `fbt:param`, `fbt:name`, or `subject`!**</span>
+**<span style={{ color: "red" }}>NOTE: This is not the same gender as used in `fbt:param`, `fbt:name`, or `subject`!</span>**<br/>
 The `IntlVariations` used in those cases only has `GENDER_MALE`, `GENDER_FEMALE`, and `GENDER_UNKNOWN`.
 
 
