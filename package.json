@@ -70,8 +70,7 @@
   "workspaces": [
     "demo-app",
     "live-demo-app",
-    "packages/*",
-    "website"
+    "packages/*"
   ],
   "engines": {
     "node": ">= 10.4.0"
