@@ -8,7 +8,7 @@
  * @format
  */
 
-// flowlint implicit-inexact-object:error
+// flowlint ambiguous-object-type:error
 
 'use strict';
 
