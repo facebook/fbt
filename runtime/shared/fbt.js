@@ -32,7 +32,7 @@ const FbtTableAccessor = require('FbtTableAccessor');
 const FbtResult = require('FbtResult');
 const FbtResultGK = require('FbtResultGK');
 const GenderConst = require('GenderConst');
-const {getTranslatedPayload, isComponentScript} = require('FbtTranslations');
+const {getTranslatedPayload} = require('FbtTranslations');
 const InlineFbtResult = require('InlineFbtResult');
 const IntlViewerContext = require('IntlViewerContext');
 
@@ -167,15 +167,10 @@ fbt._ = function(table, args, options) {
   let patternString = pattern;
   let patternHash = null;
 
-  const csError = isComponentScript()
-    ? '\nNote: Certain fbt constructs such as fbt.plural() and the third ' +
-      'positional `variations` argument to fbt.param() are currently disallowed'
-    : '';
   invariant(
     typeof pattern === 'string' || Array.isArray(pattern),
-    'Table access did not result in string: %s. %s',
+    'Table access did not result in string: %s.',
     JSON.stringify(pattern),
-    csError,
   );
   if (Array.isArray(pattern)) {
     // [fbt_impressions]
