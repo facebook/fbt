@@ -14,6 +14,7 @@ We haven't had the best track record of code/feature changes before this date, b
 - [fb-babel-plugin-utils versions](#fb-babel-plugin-utils)
 
 ### Top-level Github
+- Upgrade to Flow v0.113.0
 - Make demo-app rely on the local versions of our published npm modules.
   That'll avoid us from having to update `package.json` for every package update.
 - Fix demo-app breakage
