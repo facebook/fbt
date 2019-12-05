@@ -14,6 +14,8 @@
  * @emails oncall+internationalization
  */
 
+// flowlint ambiguous-object-type:error
+
 const IntlPunctuation = require('IntlPunctuation');
 
 const invariant = require('invariant');
@@ -28,10 +30,12 @@ const parameterRegexp = new RegExp(
 
 type MaybeReactComponent = $Shape<{
   type?: string,
-  props?: {},
+  props?: {...},
   _store?: {
     validated: boolean,
+    ...
   },
+  ...
 }>;
 
 // Hack into React internals to avoid key warnings
@@ -64,7 +68,7 @@ function markAsSafeForReact<T: MaybeReactComponent>(object: T): T {
  */
 function substituteTokens<Arg: mixed>(
   template: string,
-  _args: {[paramName: string]: Arg},
+  _args: {[paramName: string]: Arg, ...},
 ): string | Array<string | Arg> {
   const args = _args;
 

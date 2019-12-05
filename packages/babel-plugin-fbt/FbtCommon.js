@@ -6,17 +6,17 @@
 
 'use strict';
 
+// flowlint ambiguous-object-type:error 
+
 /*::
-type FbtCommonMap = {
-  [text: string]: string
-}
+type FbtCommonMap = { [text: string]: string, ... };
 */
 
-const textToDesc /*: FbtCommonMap*/ = {};
+const textToDesc /*: FbtCommonMap */ = {};
 
 const FbtCommon = {
   init(
-    opts /*: {fbtCommon?: FbtCommonMap, fbtCommonPath?: string} */ = {},
+    opts /*: {fbtCommon?: FbtCommonMap, fbtCommonPath?: string, ...} */ = {},
   ) /*: void */ {
     if (opts.fbtCommon) {
       Object.assign(textToDesc, opts.fbtCommon);
@@ -29,7 +29,7 @@ const FbtCommon = {
 
   getDesc(text /*: string */) /*: ?string */ {
     return textToDesc[text];
-  }
+  },
 };
 
 module.exports = FbtCommon;
