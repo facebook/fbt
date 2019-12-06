@@ -207,6 +207,8 @@ declare class FbtResultBase extends FbtPureStringResult
   ): Class<this>;
 }
 
+// Represents the input of an fbt.param
+type $FbtParamInput = React$Node;
 type $FbsParamInput = FbtPureStringResult | string;
 
 // Represents the output of an fbt.param, fbt.enum, etc...
@@ -290,10 +292,10 @@ type $ArrayBasedFbtFunctionAPI<Output, ParamInput> = $GenericFbtFunctionAPI<
 
 type $FbtFunctionAPI = $StringBasedFbtFunctionAPI<
   FbtWithoutString,
-  mixed,
+  $FbtParamInput,
   string,
 > &
-  $ArrayBasedFbtFunctionAPI<FbtWithoutString, mixed>;
+  $ArrayBasedFbtFunctionAPI<FbtWithoutString, $FbtParamInput>;
 
 type $FbsFunctionAPI = $StringBasedFbtFunctionAPI<
   FbtPureStringResult,
