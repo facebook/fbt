@@ -49,7 +49,7 @@ export type TransformOptions = {|
 function transform(
   code /*: string*/,
   options /*: TransformOptions*/,
-  plugins /*: Array<string>*/,
+  plugins /*: Array<mixed>*/,
 )/*: void*/ {
   const opts = {
     ast: false,

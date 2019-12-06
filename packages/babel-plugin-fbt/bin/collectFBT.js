@@ -146,7 +146,7 @@ const fbtCollector = new FbtCollector(
   // $FlowFixMe
   {
     auxiliaryTexts: argv[args.AUXILIARY_TEXTS],
-    plugins: argv[args.PLUGINS],
+    plugins: argv[args.PLUGINS].map(require),
     reactNativeMode: argv[args.REACT_NATIVE_MODE],
     fbtCommonPath: argv[args.COMMON_STRINGS],
   },

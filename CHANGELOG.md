@@ -65,6 +65,9 @@ We haven't had the best track record of code/feature changes before this date, b
 
   </details>
 
+- 0.12.1:
+  - Require passed plugins in collectFBT before passing to Babel
+
 - 0.12.0:
   - Support common strings as plugin option
 
