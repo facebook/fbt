@@ -16,7 +16,6 @@
 'use strict';
 
 const {FBT_ENUM_MODULE_SUFFIX} = require('./FbtConstants');
-const invariant = require('fbjs/lib/invariant');
 const path = require('path');
 
 const fbtEnumMapping /*: {[string]: ?string} */ = {};

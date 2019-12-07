@@ -196,6 +196,8 @@ function BabelPluginFbt(babel) {
       CallExpression(path) {
         const {node} = path;
         const visitor = this;
+        const fileCode = visitor.file.code;
+        const pluginOptions = visitor.opts;
         const moduleName =
           fbsChecker.isModuleCall(node) || fbsChecker.isCommonStringCall(node)
             ? FBS
@@ -240,7 +242,7 @@ function BabelPluginFbt(babel) {
           runtimeArgs,
           variations,
           hasTable: false, // can be mutated during `FbtMethodCallVisitors`.
-          src: visitor.file.code,
+          src: fileCode,
         };
 
         path.traverse(FbtMethodCallVisitors.call(t, moduleName), methodsState);
@@ -270,7 +272,7 @@ function BabelPluginFbt(babel) {
           texts = normalizeTableTexts(
             extractTableTexts(
               moduleName,
-              visitor.file.code,
+              fileCode,
               node.arguments[0],
               variations,
             ),
@@ -315,11 +317,11 @@ function BabelPluginFbt(babel) {
         phrase.jsfbt = JSFbtBuilder.build(
           phrase.type,
           texts,
-          visitor.opts.reactNativeMode,
+          pluginOptions.reactNativeMode,
         );
 
-        if (visitor.opts.collectFbt && !phrase.doNotExtract) {
-          if (visitor.opts.auxiliaryTexts) {
+        if (pluginOptions.collectFbt && !phrase.doNotExtract) {
+          if (pluginOptions.auxiliaryTexts) {
             phrase.texts = texts;
           }
 
@@ -336,12 +338,14 @@ function BabelPluginFbt(babel) {
           desc: phrase.desc,
           project: phrase.project,
         });
-        const encodedOutput = visitor.opts.fbtBase64
+        const encodedOutput = pluginOptions.fbtBase64
           ? Buffer.from(argsOutput).toString('base64')
           : argsOutput;
         const args = [
           t.stringLiteral(
-            visitor.opts.fbtSentinel + encodedOutput + visitor.opts.fbtSentinel,
+            pluginOptions.fbtSentinel +
+              encodedOutput +
+              pluginOptions.fbtSentinel,
           ),
         ];
 
