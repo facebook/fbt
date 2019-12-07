@@ -63,7 +63,7 @@
     "babel-plugin-fbt-runtime:test": "yarn jest packages/babel-plugin-fbt-runtime",
     "babel-plugin-fbt:test": "yarn jest packages/babel-plugin-fbt",
     "flow:check": "flow check --show-all-errors",
-    "flow:watch": "yarn run watch 'yarn flow stop && yarn flow --show-all-errors | tee .flow-results' . --ignoreDotFiles",
+    "flow:watch": "yarn run watch 'yarn flow stop && yarn flow check --show-all-errors 2>&1 | tee .flow-results' . --ignoreDotFiles",
     "test": "yarn jest",
     "test:watch": "yarn jest --watch"
   },
