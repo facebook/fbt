@@ -100,7 +100,7 @@ function verifyUniqueToken(moduleName, name, paramSet) {
 function checkOption(option, validOptions, value) {
   const validValues = validOptions[option];
   if (!validOptions.hasOwnProperty(option) || validValues === undefined) {
-    throwAt(
+    throw errorAt(
       value,
       `Invalid option "${option}". ` +
         `Only allowed: ${Object.keys(validOptions).join(', ')} `,
@@ -173,9 +173,12 @@ function getOptionsFromAttributes(
   return t.objectExpression(options);
 }
 
-function throwAt(astNode, msg) {
+function errorAt(
+  astNode /*: {loc: {start: number}} */,
+  msg /*: string */,
+) /*: Error */ {
   const startPosition = astNode.loc.start;
-  throw new Error(
+  return new Error(
     `Line ${startPosition.line} Column ${startPosition.column + 1}: ${msg}`,
   );
 }
@@ -190,7 +193,7 @@ function checkOptions(properties, validOptions) {
 
 function collectOptions(moduleName, t, options, validOptions) {
   if (options && options.type !== 'ObjectExpression') {
-    throwAt(
+    throw errorAt(
       options,
       `${moduleName}(...) expects an ObjectExpression as its 3rd argument`,
     );
@@ -218,7 +221,7 @@ function collectOptions(moduleName, t, options, validOptions) {
 function expandStringConcat(moduleName, t, node) {
   if (node.type === 'BinaryExpression') {
     if (node.operator !== '+') {
-      throwAt(
+      throw errorAt(
         node,
         `Expected concatenation operator (+) but got ${node.operator}`,
       );
@@ -245,7 +248,7 @@ function expandStringConcat(moduleName, t, node) {
         const expr = expressions[index++];
         // fbt.param expressions are already transformed to StringLiteral
         if (expr.type !== 'StringLiteral') {
-          throwAt(
+          throw errorAt(
             node,
             `${moduleName} template placeholders only accept params wrapped in ${moduleName}.param. ` +
               `Expected StringLiteral got ${expr.type}`,
@@ -258,13 +261,11 @@ function expandStringConcat(moduleName, t, node) {
     return t.stringLiteral(string);
   }
 
-  throwAt(
+  throw errorAt(
     node,
     `${moduleName} only accepts plain strings with params wrapped in ${moduleName}.param. ` +
       `See the docs at https://facebookincubator.github.io/fbt/ for more info. ` +
-      `Expected StringLiteral, TemplateLiteral, or concatenation; got ${
-        node.type
-      }`,
+      `Expected StringLiteral, TemplateLiteral, or concatenation; got ${node.type}`,
   );
 }
 
@@ -277,9 +278,9 @@ function getOptionBooleanValue(t, options, name, node) {
     return value.value;
   }
   if (value.expression) {
-    throwAt(node, `Expression not permitted for option "${name}".`);
+    throw errorAt(node, `Expression not permitted for option "${name}".`);
   } else {
-    throwAt(
+    throw errorAt(
       node,
       `Value for option "${name}" must be Boolean literal 'true' or 'false'.`,
     );
@@ -293,7 +294,7 @@ function getVariationValue(moduleName, variationName, variationInfo) {
     variationInfo.value.type === 'BooleanLiteral'
   ) {
     if (variationInfo.value.value !== true) {
-      throwAt(
+      throw errorAt(
         variationInfo,
         `${moduleName}.param's number option should be an expression or 'true'`,
       );
@@ -433,7 +434,7 @@ module.exports = {
   normalizeSpaces,
   objMap,
   textContainsFbtLikeModule,
-  throwAt,
+  errorAt,
   validateNamespacedFbtElement,
   verifyUniqueToken,
 };

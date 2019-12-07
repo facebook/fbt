@@ -30,12 +30,12 @@ const {
   ValidPronounUsages,
 } = require('./FbtConstants');
 const {
+  errorAt,
   expandStringConcat,
   filterEmptyNodes,
   getAttributeByNameOrThrow,
   getOptionsFromAttributes,
   normalizeSpaces,
-  throwAt,
 } = require('./FbtUtil');
 
 const getNamespacedArgs = function(moduleName, t) {
@@ -85,7 +85,7 @@ const getNamespacedArgs = function(moduleName, t) {
       }
 
       if (paramChildren.length !== 1) {
-        throwAt(
+        throw errorAt(
           node,
           `${moduleName}:param expects an {expression} or JSX element, and only one`,
         );
@@ -126,7 +126,7 @@ const getNamespacedArgs = function(moduleName, t) {
         );
       });
       if (pluralChildren.length !== 1) {
-        throwAt(
+        throw errorAt(
           node,
           `${moduleName}:plural expects text or an expression, and only one`,
         );
@@ -148,20 +148,23 @@ const getNamespacedArgs = function(moduleName, t) {
      */
     pronoun(node) {
       if (!node.openingElement.selfClosing) {
-        throwAt(node, `${moduleName}:pronoun must be a self-closing element`);
+        throw errorAt(
+          node,
+          `${moduleName}:pronoun must be a self-closing element`,
+        );
       }
 
       const attributes = node.openingElement.attributes;
 
       const typeAttr = getAttributeByNameOrThrow(attributes, 'type').value;
       if (typeAttr.type !== 'StringLiteral') {
-        throwAt(
+        throw errorAt(
           node,
           `${moduleName}:pronoun attribute "type" must have StringLiteral content`,
         );
       }
       if (!ValidPronounUsages.hasOwnProperty(typeAttr.value)) {
-        throwAt(
+        throw errorAt(
           node,
           `${moduleName}:pronoun attribute "type" must be one of [` +
             Object.keys(ValidPronounUsages) +
@@ -202,7 +205,7 @@ const getNamespacedArgs = function(moduleName, t) {
         );
       });
       if (nameChildren.length !== 1) {
-        throwAt(
+        throw errorAt(
           node,
           `${moduleName}:name expects text or an expression, and only one`,
         );
@@ -221,7 +224,10 @@ const getNamespacedArgs = function(moduleName, t) {
      */
     sameParam(node) {
       if (!node.openingElement.selfClosing) {
-        throwAt(node, `Expected ${moduleName}:same-param to be selfClosing.`);
+        throw errorAt(
+          node,
+          `Expected ${moduleName}:same-param to be selfClosing.`,
+        );
       }
 
       const nameAttr = getAttributeByNameOrThrow(
@@ -237,7 +243,7 @@ const getNamespacedArgs = function(moduleName, t) {
      */
     enum(node) {
       if (!node.openingElement.selfClosing) {
-        throwAt(node, `Expected ${moduleName}:enum to be selfClosing.`);
+        throw errorAt(node, `Expected ${moduleName}:enum to be selfClosing.`);
       }
 
       const rangeAttr = getAttributeByNameOrThrow(
@@ -246,7 +252,7 @@ const getNamespacedArgs = function(moduleName, t) {
       );
 
       if (rangeAttr.value.type !== 'JSXExpressionContainer') {
-        throwAt(
+        throw errorAt(
           node,
           'Expected JSX Expression for enum-range attribute but got ' +
             rangeAttr.value.type,
@@ -264,7 +270,7 @@ const getNamespacedArgs = function(moduleName, t) {
         return [valueAttr.value, rangeAttr.value.expression];
       }
 
-      throwAt(
+      throw errorAt(
         node,
         `Expected value attribute of <${moduleName}:enum> to be an expression ` +
           `but got ${valueAttr.value.type}`,

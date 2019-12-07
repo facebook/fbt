@@ -35,6 +35,7 @@ const FbtShiftEnums = require('./FbtShiftEnums');
 const {
   checkOption,
   collectOptions,
+  errorAt,
   expandStringConcat,
   extractEnumRange,
   filterEmptyNodes,
@@ -45,7 +46,6 @@ const {
   getRawSource,
   normalizeSpaces,
   objMap,
-  throwAt,
   validateNamespacedFbtElement,
 } = require('./FbtUtil');
 const getNamespacedArgs = require('./getNamespacedArgs');
@@ -129,13 +129,13 @@ function BabelPluginFbt(babel) {
           );
           const descValue = FbtCommon.getDesc(textValue);
           if (!descValue) {
-            throwAt(
+            throw errorAt(
               path.node,
               getUnknownCommonStringErrorMessage(moduleName, textValue),
             );
           }
           if (getAttributeByName(path.node.openingElement.attributes, 'desc')) {
-            throwAt(
+            throw errorAt(
               path.node,
               `<${moduleName} common={true}> must not have "desc" attribute`,
             );
@@ -217,14 +217,14 @@ function BabelPluginFbt(babel) {
         }
 
         if (!checker.isJSModuleBound(path)) {
-          throwAt(
+          throw errorAt(
             path.node,
             `${moduleName} is not bound. Did you forget to require('${moduleName}')?`,
           );
         }
 
         if (node.arguments.length < 2) {
-          throwAt(
+          throw errorAt(
             node,
             `Expected ${moduleName} calls to have at least two arguments. ` +
               `Only ${node.arguments.length} was given.`,
@@ -376,7 +376,7 @@ function BabelPluginFbt(babel) {
           ),
         );
       default:
-        throwAt(node, `Unknown namespace fbt type ${node.type}`);
+        throw errorAt(node, `Unknown namespace fbt type ${node.type}`);
     }
   }
 
@@ -408,7 +408,7 @@ function BabelPluginFbt(babel) {
     texts || (texts = []);
     if (node.type === 'BinaryExpression') {
       if (node.operator !== '+') {
-        throwAt(
+        throw errorAt(
           node,
           `Expected concatenation operator (+) but got ${node.operator}`,
         );
@@ -467,7 +467,7 @@ function BabelPluginFbt(babel) {
               ? PLURAL_PARAM_TOKEN
               : null;
           if (opts.showCount === 'ifMany' && !opts.many) {
-            throwAt(
+            throw errorAt(
               node,
               "The 'many' attribute must be set explicitly if showing count only " +
                 " on 'ifMany', since the singular form presumably starts with an article",
@@ -536,7 +536,7 @@ function BabelPluginFbt(babel) {
    */
   function processFbtCommonCall(moduleName, path) {
     if (path.node.arguments.length !== 1) {
-      throwAt(
+      throw errorAt(
         path.node,
         `Expected ${moduleName}.c to have exactly 1 argument. ${path.node.arguments.length} was given.`,
       );
@@ -548,7 +548,10 @@ function BabelPluginFbt(babel) {
 
     const desc = FbtCommon.getDesc(text);
     if (!desc) {
-      throwAt(path.node, getUnknownCommonStringErrorMessage(moduleName, text));
+      throw errorAt(
+        path.node,
+        getUnknownCommonStringErrorMessage(moduleName, text),
+      );
     }
 
     const callNode = t.callExpression(t.identifier(moduleName), [

@@ -16,7 +16,7 @@
 'use strict';
 
 const {FBS, FBT, REACT_FBT} = require('./FbtConstants').JSModuleName;
-const {assertModuleName, throwAt} = require('./FbtUtil');
+const {assertModuleName, errorAt} = require('./FbtUtil');
 
 class FbtNodeChecker {
   constructor(moduleName /*: 'fbt' | 'fbs' */) {
@@ -86,23 +86,19 @@ class FbtNodeChecker {
     const moduleName = this._moduleName;
     node.children.forEach(child => {
       if (fbtChecker.isJSXElement(child) || fbsChecker.isJSXElement(child)) {
-        throwAt(
+        throw errorAt(
           child,
-          `Don't put <${child.openingElement.name.name}> directly within <${
-            node.openingElement.name.name
-          }>. This is redundant. ` +
+          `Don't put <${child.openingElement.name.name}> directly within <${node.openingElement.name.name}>. This is redundant. ` +
             `The text is already translated so you don't need to translate it again`,
         );
       } else {
         const otherChecker = moduleName === FBT ? fbsChecker : fbtChecker;
         if (otherChecker.isJSXNamespacedElement(child)) {
           const childOpeningElementNode = child.openingElement.name;
-          throwAt(
+          throw errorAt(
             child,
             `Don't mix <fbt> and <fbs> JSX namespaces. ` +
-              `Found a <${childOpeningElementNode.namespace.name}:${
-                childOpeningElementNode.name.name
-              }> directly within a <${moduleName}>`,
+              `Found a <${childOpeningElementNode.namespace.name}:${childOpeningElementNode.name.name}> directly within a <${moduleName}>`,
           );
         }
       }

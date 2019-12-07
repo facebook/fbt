@@ -31,11 +31,11 @@ const FbtEnumRegistrar = require('./FbtEnumRegistrar');
 const FbtNodeChecker = require('./FbtNodeChecker');
 const {
   collectOptions,
+  errorAt,
   getOptionBooleanValue,
   getRawSource,
   getVariationValue,
   nest,
-  throwAt,
   verifyUniqueToken,
 } = require('./FbtUtil');
 const PLURAL_PARAM_TOKEN = 'number';
@@ -79,7 +79,7 @@ const call = function(t, moduleName) {
       }
 
       if (callee.property.type !== 'Identifier') {
-        throwAt(
+        throw errorAt(
           callee.property,
           `Expected ${moduleName} method to be an identifier, but got ` +
             callee.property.type,
@@ -91,7 +91,7 @@ const call = function(t, moduleName) {
         callee.property.name === 'sameParam'
       ) {
         if (node.arguments[0].type !== 'StringLiteral') {
-          throwAt(
+          throw errorAt(
             node.arguments[0],
             `Expected first argument to ${moduleName}.param to be a string, but got ` +
               node.arguments[0].type,
@@ -165,7 +165,7 @@ const call = function(t, moduleName) {
             );
           });
         } else {
-          throwAt(
+          throw errorAt(
             rangeArg,
             `Expected an array or object as a second argument in \`${moduleName}.enum\``,
           );
@@ -213,7 +213,7 @@ const call = function(t, moduleName) {
         this.hasTable = true;
 
         if (node.arguments.length < 2 || 3 < node.arguments.length) {
-          throwAt(
+          throw errorAt(
             node,
             `Expected '(usage, gender [, options])' arguments to ${moduleName}.pronoun`,
           );
@@ -221,7 +221,7 @@ const call = function(t, moduleName) {
 
         const usageExpr = node.arguments[0];
         if (usageExpr.type !== 'StringLiteral') {
-          throwAt(
+          throw errorAt(
             node,
             `First argument to ${moduleName}.pronoun must be a StringLiteral, got ` +
               usageExpr.type,
@@ -229,7 +229,7 @@ const call = function(t, moduleName) {
         }
         if (!ValidPronounUsages.hasOwnProperty(usageExpr.value)) {
           const usages = Object.keys(ValidPronounUsages);
-          throwAt(
+          throw errorAt(
             usageExpr,
             `First argument to ${moduleName}.pronoun must be one of [${usages}], ` +
               `got ${usageExpr.value}`,
@@ -259,14 +259,14 @@ const call = function(t, moduleName) {
         runtimeArgs.push(fbtCallExpression('pronoun', pronounArgs));
       } else if (callee.property.name === 'name') {
         if (node.arguments[0].type !== 'StringLiteral') {
-          throwAt(
+          throw errorAt(
             node.arguments[0],
             `Expected first argument to ${moduleName}.name to be a string, but got ` +
               node.arguments[0].type,
           );
         }
         if (node.arguments.length < 3) {
-          throwAt(
+          throw errorAt(
             node,
             `Missing arguments. Must have three arguments: label, value, gender`,
           );
@@ -278,7 +278,7 @@ const call = function(t, moduleName) {
         };
         runtimeArgs.push(fbtCallExpression('name', node.arguments));
       } else {
-        throwAt(
+        throw errorAt(
           callee.property,
           `Unknown ${moduleName} method ${callee.property.name}`,
         );
