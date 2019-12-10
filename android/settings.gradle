@@ -1,0 +1,12 @@
+/*
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+rootProject.name = 'rn-demo-app'
+apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
+include ':fbt-rn-android-native'
+project(':fbt-rn-android-native').projectDir = new File(rootProject.projectDir, 	'../node_modules/fbt-rn-android-native/android')
+include ':app'

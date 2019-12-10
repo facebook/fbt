@@ -1,0 +1,39 @@
+{
+  "name": "rn-demo-app",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "manifest": "babel-node ./node_modules/babel-plugin-fbt/bin/manifest --src src/ --enum-manifest i18n/fbt/.enum_manifest.json --src-manifest i18n/fbt/.src_manifest.json",
+    "collect-fbts": "babel-node ./node_modules/babel-plugin-fbt/bin/collectFBT --hash-module 'fb-tiger-hash/hashPhrases' --react-native-mode --manifest < i18n/fbt/.src_manifest.json > i18n/fbt/.source_strings.json",
+    "translate-fbts": "babel-node ./node_modules/babel-plugin-fbt/bin/translate.js --jenkins --source-strings i18n/fbt/.source_strings.json --translations i18n/fbt/translationScriptInput/*.json > i18n/fbt/translatedFbts.json",
+    "android": "react-native run-android",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "react": "16.9.0",
+    "react-native": "0.61.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/node": "^7.6.3",
+    "@babel/runtime": "^7.6.3",
+    "@react-native-community/eslint-config": "^0.0.5",
+    "babel-jest": "^24.9.0",
+    "babel-plugin-fbt": "^0.10.1",
+    "babel-plugin-fbt-runtime": "^0.9.5",
+    "babel-preset-react-native": "^4.0.1",
+    "eslint": "^6.5.1",
+    "fb-tiger-hash": "^0.1.1",
+    "fbt": "^0.10.3",
+    "jest": "^24.9.0",
+    "metro-react-native-babel-preset": "^0.56.0",
+    "fbt-rn-android-native": "file:../packages/fbt-rn-android-native",
+    "react-test-renderer": "16.9.0",
+    "shelljs": "^0.8.3"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}

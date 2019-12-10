@@ -1,0 +1,7 @@
+babel.config.js
+
+metro.config.js
+
+android/**
+
+node_modules/**/*.js

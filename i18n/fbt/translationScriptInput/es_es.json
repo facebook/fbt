@@ -1,0 +1,25 @@
+{
+  "fb-locale": "es_ES",
+  "translations": {
+    "2dcba29d4a842c6be5d76fe996fcd9f4": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "Primer paso",
+          "variations": {}
+        }
+      ]
+    },
+    "e379f5ddf643bc28c3a9db67b8f67155": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "Edita App.js para cambiar esta pantalla y luego verifica tus resultados.",
+          "variations": {}
+        }
+      ]
+    }
+  }
+}
