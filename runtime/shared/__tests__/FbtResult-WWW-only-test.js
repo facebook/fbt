@@ -23,21 +23,58 @@ describe('FbtResult: WWW-only', function() {
     expect(div.textContent).toBe('hippopotamus');
   });
 
-  it('invokes onStringSerializationError() when being serialized with non-FBT contents', function() {
-    const nonFbtContent = /non_fbt_content/;
-    const listener = new FbtErrorListenerWWW({translation: 'f4k3', hash: null});
-    // spy on the original method, but preserve original behavior
-    listener.onStringSerializationError = jest.fn(function() {
-      return FbtErrorListenerWWW.prototype.onStringSerializationError.apply(
-        this,
-        arguments,
+  describe('when being serialized with non-FBT contents', () => {
+    const translation = 'une traduction';
+    const hash = 'some hash';
+    let FBLogger;
+    let FbtFBLogger;
+
+    beforeEach(() => {
+      jest.mock(
+        'FBLogger',
+        () =>
+          (FBLogger = jest.fn(_loggerProject => ({
+            blameToPreviousDirectory: jest.fn(() => ({
+              blameToPreviousDirectory: jest.fn(() => {
+                return (FbtFBLogger = {
+                  mustfix: jest.fn(() => {}),
+                });
+              }),
+            })),
+          }))),
       );
     });
-    const result = new FbtResult(['kombucha', nonFbtContent], listener);
-    result.toString();
-    expect(listener.onStringSerializationError).toHaveBeenCalledTimes(1);
-    expect(listener.onStringSerializationError).toHaveBeenCalledWith(
-      nonFbtContent,
-    );
+
+    it('will invoke onStringSerializationError() ', function() {
+      const nonFbtContent = /non_fbt_content/;
+      const listener = new FbtErrorListenerWWW({
+        translation,
+        hash,
+      });
+
+      // spy on the original method, but preserve original behavior
+      listener.onStringSerializationError = jest.fn(function() {
+        return FbtErrorListenerWWW.prototype.onStringSerializationError.apply(
+          this,
+          arguments,
+        );
+      });
+
+      const result = new FbtResult(['kombucha', nonFbtContent], listener);
+      result.toString();
+      expect(listener.onStringSerializationError).toHaveBeenCalledTimes(1);
+      expect(listener.onStringSerializationError).toHaveBeenCalledWith(
+        nonFbtContent,
+      );
+      expect(FBLogger).toHaveBeenCalledWith('fbt');
+      expect(FbtFBLogger.mustfix).toHaveBeenCalledWith(
+        'Converting to a string will drop content data. Hash="%s" Translation="%s" Content="%s" (type=%s,%s)',
+        translation,
+        hash,
+        '{}',
+        'object',
+        'RegExp',
+      );
+    });
   });
 });
