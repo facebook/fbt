@@ -7,15 +7,23 @@
  * @format
  */
 
+const FbtHooks = require('FbtHooks');
 const FbtTranslations = require('FbtTranslations');
 
-function fbtInit({translations, customTranslationPayloadGetter__EXPERIMENTAL}) {
+function fbtInit({
+  customTranslationPayloadGetter__EXPERIMENTAL,
+  hooks,
+  translations,
+}) {
   FbtTranslations.registerTranslations(translations);
 
   if (customTranslationPayloadGetter__EXPERIMENTAL != null) {
     FbtTranslations.setCustomTranslationPayloadGetter__EXPERIMENTAL(
       customTranslationPayloadGetter__EXPERIMENTAL,
     );
+  }
+  if (hooks != null) {
+    FbtHooks.register(hooks);
   }
 }
 

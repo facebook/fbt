@@ -8,6 +8,7 @@
 jest.disableAutomock();
 console.error = jest.fn();
 
+const FbtErrorListenerWWW = require('FbtErrorListenerWWW');
 const FbtResult = require('FbtResult');
 const React = require('React');
 const ReactTestUtils = require('ReactTestUtils');
@@ -24,17 +25,18 @@ describe('FbtResult: WWW-only', function() {
 
   it('invokes onStringSerializationError() when being serialized with non-FBT contents', function() {
     const nonFbtContent = /non_fbt_content/;
-    const result = new FbtResult(['kombucha', nonFbtContent]);
-    result.onStringSerializationError = jest.fn(function() {
-      // spy on the original method, but preserve original behavior
-      return FbtResult.prototype.onStringSerializationError.apply(
+    const listener = new FbtErrorListenerWWW({translation: 'f4k3', hash: null});
+    // spy on the original method, but preserve original behavior
+    listener.onStringSerializationError = jest.fn(function() {
+      return FbtErrorListenerWWW.prototype.onStringSerializationError.apply(
         this,
         arguments,
       );
     });
+    const result = new FbtResult(['kombucha', nonFbtContent], listener);
     result.toString();
-    expect(result.onStringSerializationError).toHaveBeenCalledTimes(1);
-    expect(result.onStringSerializationError).toHaveBeenCalledWith(
+    expect(listener.onStringSerializationError).toHaveBeenCalledTimes(1);
+    expect(listener.onStringSerializationError).toHaveBeenCalledWith(
       nonFbtContent,
     );
   });

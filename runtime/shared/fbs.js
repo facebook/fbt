@@ -6,7 +6,7 @@
  *
  * Wrapper module for fbt.js (the implementation)
  */
-
+const FbtHooks = require('FbtHooks');
 const FbtPureStringResult = require('FbtPureStringResult');
 
 const fbt = require('fbt');
@@ -31,9 +31,11 @@ const FbsImpl = {
     return fbt._param(...arguments);
   },
 
-  _wrapContent(fbtContent, patternString, patternHash) {
+  _wrapContent(fbtContent, translation, hash) {
     const contents = typeof fbtContent === 'string' ? [fbtContent] : fbtContent;
-    return new FbtPureStringResult(contents);
+    // TODO T59083776: Pass in errorListener and update constructor arguments
+    const errorListener = FbtHooks.getErrorListener({hash, translation});
+    return new FbtPureStringResult(contents, errorListener);
   },
 };
 

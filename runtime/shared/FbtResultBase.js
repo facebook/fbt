@@ -23,6 +23,7 @@ let hasImplementedStringishMethods = false;
 // Named _FbtResultBase to avoid colliding with `FbtResultBase` class definition in Flow
 class _FbtResultBase implements IFbtResultBase {
   _contents: $NestedFbtContentItems;
+  _errorListener: ?IFbtErrorListener;
   _stringValue: ?string;
 
   // Declare that we'll implement these methods
@@ -66,12 +67,16 @@ class _FbtResultBase implements IFbtResultBase {
   trimLeft: $PropertyType<IFbtResultBase, 'trimLeft'>;
   trimRight: $PropertyType<IFbtResultBase, 'trimRight'>;
 
-  constructor(contents: $NestedFbtContentItems) {
+  constructor(
+    contents: $NestedFbtContentItems,
+    errorListener: ?IFbtErrorListener,
+  ) {
     invariant(
       hasImplementedStringishMethods,
       'Stringish methods must be implemented. See `usingStringProxyMethod`.',
     );
     this._contents = contents;
+    this._errorListener = errorListener;
     this._stringValue = null;
   }
 
@@ -81,31 +86,6 @@ class _FbtResultBase implements IFbtResultBase {
 
   getContents() {
     return this._contents;
-  }
-
-  /**
-   * Handle the error scenario where the FbtResultBase contains non-string elements
-   * (usually React components) and tries to run .toString()
-   *
-   * Example of bad usage of <fbt> with rich contents that will trigger this error
-   *
-   * render() {
-   *   const text = (
-   *     <fbt desc="...">
-   *       I have <Link href="#">no name</Link>.
-   *     </fbt>
-   *   );
-   *   return (
-   *     <div className={cx('FiddleCSS/root')}>
-   *       <p>Text = "{text}"</p>
-   *       <p>Truncated Text = "{text.substr(0, 9)}"</p> // will output: "I have ."
-   *       <em>You might have expected "I have no" but we don't support this in the FBT API.</em>
-   *     </div>
-   *   );
-   * }
-   */
-  onStringSerializationError(_content: $FbtContentItem): void {
-    throw new Error('This method needs to be overridden by a child class');
   }
 
   toString(): string {
@@ -118,8 +98,8 @@ class _FbtResultBase implements IFbtResultBase {
       const content = contents[ii];
       if (typeof content === 'string' || content instanceof _FbtResultBase) {
         stringValue += content.toString();
-      } else {
-        this.onStringSerializationError(content);
+      } else if (this._errorListener != null) {
+        this._errorListener.onStringSerializationError(content);
       }
     }
     if (!Object.isFrozen(this)) {

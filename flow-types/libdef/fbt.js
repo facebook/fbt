@@ -90,8 +90,46 @@ declare type $NestedFbtContentItems = $ReadOnlyArray<
   $FbtContentItem | $NestedFbtContentItems,
 >;
 
+declare type FbtErrorContext = {hash: ?string, translation: string};
+
+/**
+ * A delegate used in FbtResult for handling errors when toString
+ * can't serialize due to non-string and non-Fbt elements in the
+ * interpolated payload (e.g. React nodes, DOM nodes, etc).
+ */
+declare interface IFbtErrorListener {
+  constructor(context: FbtErrorContext): void;
+
+  /**
+   * Handle the error scenario where the FbtResultBase contains non-string elements
+   * (usually React components) and tries to run .toString()
+   *
+   * Example of bad usage of <fbt> with rich contents that will trigger this error
+   *
+   * render() {
+   *   const text = (
+   *     <fbt desc="...">
+   *       I have <Link href="#">no name</Link>.
+   *     </fbt>
+   *   );
+   *   return (
+   *     <div className={cx('FiddleCSS/root')}>
+   *       <p>Text = "{text}"</p>
+   *       <p>Truncated Text = "{text.substr(0, 9)}"</p> // will output: "I have ."
+   *       <em>You might have expected "I have no name" but we don't support
+   *           this in the FBT API.</em>
+   *     </div>
+   *   );
+   * }
+   */
+  onStringSerializationError(content: $FbtContentItem): void;
+}
+
 declare interface IFbtResultBase {
-  constructor(contents: $ReadOnlyArray<any>): void;
+  constructor(
+    contents: $ReadOnlyArray<any>,
+    errorListener: ?FbtErrorListener,
+  ): void;
   getContents(): any;
   // This relies on toString() which contains i18n logging logic to track impressions.
   // I.e. If you use this, i18n will register the string as displayed!
@@ -163,7 +201,10 @@ declare interface IFbtStringish {
 // - it doesn't behave like a stringish object
 declare class FbtPureStringResult implements IFbtResultBase {
   // implements IFbtResultBase
-  constructor(contents: $ReadOnlyArray<any>): void;
+  constructor(
+    contents: $ReadOnlyArray<any>,
+    errorListener: ?FbtErrorListener,
+  ): void;
   getContents: $PropertyType<IFbtResultBase, 'getContents'>;
   toJSON: $PropertyType<IFbtResultBase, 'toJSON'>;
   // TODO(T27672828) Move code of toString() inside unwrap()

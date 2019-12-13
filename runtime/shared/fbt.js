@@ -23,10 +23,12 @@
 /* eslint "fb-www/avoid-this-outside-classes": "off" */
 /* eslint "fb-www/order-requires": "off" */
 /* eslint "fb-www/require-flow-strict-local": "off" */
+require('FbtEnv').setup();
 
 const Banzai = require('Banzai');
 const {logger} = require('FbtLogger');
 const {overrides} = require('FbtQTOverrides');
+const FbtHooks = require('FbtHooks');
 const FbtResultBase = require('FbtResultBase');
 const FbtTableAccessor = require('FbtTableAccessor');
 const FbtResult = require('FbtResult');
@@ -44,8 +46,7 @@ const {
   getGenderVariations,
 } = require('IntlVariationResolver');
 
-// Used only in React Native
-let jsonExportMode = false;
+let jsonExportMode = false; // Used only in React Native
 
 const BINAST_STRING_MAGIC_CODE = 'B!N@$T';
 /**
@@ -493,7 +494,11 @@ fbt._wrapContent = (fbtContent, patternString, patternHash) => {
       patternHash,
     );
   }
-  return new FbtResult(contents);
+  const errorListener = FbtHooks.getErrorListener({
+    translation: patternString,
+    hash: patternHash,
+  });
+  return new FbtResult(contents, errorListener);
 };
 
 fbt.enableJsonExportMode = function() {

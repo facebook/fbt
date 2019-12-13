@@ -11,8 +11,6 @@
 const FBLogger = require('FBLogger');
 const FbtResultBase = require('FbtResultBase');
 
-const killswitch = require('killswitch');
-
 function logErrorUseStringMethod(methodName: string): void {
   // If the contents is array of length greater than one, then use the string
   // method will cause error
@@ -29,27 +27,7 @@ function logErrorUseStringMethod(methodName: string): void {
 /**
  * The FbtResultBase "implemented" module for www.
  */
-class FbtResultWWW extends FbtResultBase {
-  onStringSerializationError(content: $FbtContentItem): void {
-    let details = 'Context not logged.';
-    if (!killswitch('JS_RELIABILITY_FBT_LOGGING')) {
-      try {
-        const contentStr = JSON.stringify(content);
-        if (contentStr != null) {
-          details = contentStr.substr(0, 250);
-        }
-      } catch (err) {
-        // Catching circular reference error
-        details = err.message;
-      }
-    }
-    FBLogger('fbt')
-      .blameToPreviousDirectory()
-      .mustfix('Converting to a string will drop content data. %s', details);
-  }
-}
-
-const FbtResultWWWWithStringishMethods: Class<FbtResultBase> = FbtResultWWW.usingStringProxyMethod(
+const FbtResultWWWWithStringishMethods: Class<FbtResultBase> = FbtResultBase.usingStringProxyMethod(
   (methodName: $Keys<IFbtStringish>) => {
     return function() {
       logErrorUseStringMethod(methodName);

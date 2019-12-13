@@ -31,8 +31,11 @@ class FbtResult extends FbtResultBaseImpl {
   ref: ?React$Ref<React$ElementType> = null;
   type: (props: Props) => mixed = FbtComponent;
 
-  constructor(contents: $NestedFbtContentItems) {
-    super(contents);
+  constructor(
+    contents: $NestedFbtContentItems,
+    errorListener: ?IFbtErrorListener,
+  ) {
+    super(contents, errorListener);
     /* eslint-disable fb-www/react-state-props-mutation */
     this.props = {
       content: contents,
