@@ -73,6 +73,23 @@ declare type Fbs = FbtPureStringResult;
 // Favor using a single <fbt/> element as often as possible.
 declare type FbtCollection = Fbt | $ReadOnlyArray<Fbt>;
 
+// Similar to React$Node without `Iterable<React$Node>`
+declare type $FbtContentItem =
+  | boolean
+  | FbtElement
+  | FbtPureStringResult
+  | FbtString
+  | null
+  | number
+  | React$Element<any>
+  | React$Portal
+  | string
+  | void;
+
+declare type $NestedFbtContentItems = $ReadOnlyArray<
+  $FbtContentItem | $NestedFbtContentItems,
+>;
+
 declare interface IFbtResultBase {
   constructor(contents: $ReadOnlyArray<any>): void;
   getContents(): any;

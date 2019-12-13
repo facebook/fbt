@@ -8,16 +8,9 @@
 
 'use strict';
 
-import type {
-  FbtContentItem as _FbtContentItem,
-  NestedFbtContentItems as _NestedFbtContentItems,
-} from 'FbtResultBase';
-
-export type FbtContentItem = _FbtContentItem;
-export type NestedFbtContentItems = _NestedFbtContentItems;
-
 const FBLogger = require('FBLogger');
 const FbtResultBase = require('FbtResultBase');
+
 const killswitch = require('killswitch');
 
 function logErrorUseStringMethod(methodName: string): void {
@@ -37,7 +30,7 @@ function logErrorUseStringMethod(methodName: string): void {
  * The FbtResultBase "implemented" module for www.
  */
 class FbtResultWWW extends FbtResultBase {
-  onStringSerializationError(content: FbtContentItem): void {
+  onStringSerializationError(content: $FbtContentItem): void {
     let details = 'Context not logged.';
     if (!killswitch('JS_RELIABILITY_FBT_LOGGING')) {
       try {

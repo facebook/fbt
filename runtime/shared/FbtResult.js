@@ -16,14 +16,12 @@
 
 // flowlint ambiguous-object-type:error
 
-import type {NestedFbtContentItems} from 'FbtResultBase';
-
 const FbtReactUtil = require('FbtReactUtil');
 const FbtResultBaseImpl = require('FbtResultBaseImpl');
 
 const FbtComponent = (props: Props): mixed => props.content;
 
-type Props = {content: NestedFbtContentItems, ...};
+type Props = {content: $NestedFbtContentItems, ...};
 
 class FbtResult extends FbtResultBaseImpl {
   $$typeof: Symbol | $TEMPORARY$number<0xeac7> =
@@ -33,7 +31,7 @@ class FbtResult extends FbtResultBaseImpl {
   ref: ?React$Ref<React$ElementType> = null;
   type: (props: Props) => mixed = FbtComponent;
 
-  constructor(contents: NestedFbtContentItems) {
+  constructor(contents: $NestedFbtContentItems) {
     super(contents);
     /* eslint-disable fb-www/react-state-props-mutation */
     this.props = {

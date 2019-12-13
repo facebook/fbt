@@ -18,28 +18,11 @@
 
 const invariant = require('invariant');
 
-// Similar to React$Node without `Iterable<React$Node>`
-export type FbtContentItem =
-  | boolean
-  | FbtElement
-  | FbtPureStringResult
-  | FbtString
-  | null
-  | number
-  | React$Element<any>
-  | React$Portal
-  | string
-  | void;
-
-export type NestedFbtContentItems = $ReadOnlyArray<
-  FbtContentItem | NestedFbtContentItems,
->;
-
 let hasImplementedStringishMethods = false;
 
 // Named _FbtResultBase to avoid colliding with `FbtResultBase` class definition in Flow
 class _FbtResultBase implements IFbtResultBase {
-  _contents: NestedFbtContentItems;
+  _contents: $NestedFbtContentItems;
   _stringValue: ?string;
 
   // Declare that we'll implement these methods
@@ -83,7 +66,7 @@ class _FbtResultBase implements IFbtResultBase {
   trimLeft: $PropertyType<IFbtResultBase, 'trimLeft'>;
   trimRight: $PropertyType<IFbtResultBase, 'trimRight'>;
 
-  constructor(contents: NestedFbtContentItems) {
+  constructor(contents: $NestedFbtContentItems) {
     invariant(
       hasImplementedStringishMethods,
       'Stringish methods must be implemented. See `usingStringProxyMethod`.',
@@ -92,7 +75,7 @@ class _FbtResultBase implements IFbtResultBase {
     this._stringValue = null;
   }
 
-  flattenToArray(): Array<FbtContentItem> {
+  flattenToArray(): Array<$FbtContentItem> {
     return _FbtResultBase.flattenToArray(this._contents);
   }
 
@@ -121,7 +104,7 @@ class _FbtResultBase implements IFbtResultBase {
    *   );
    * }
    */
-  onStringSerializationError(content: FbtContentItem): void {
+  onStringSerializationError(_content: $FbtContentItem): void {
     throw new Error('This method needs to be overridden by a child class');
   }
 
@@ -150,8 +133,8 @@ class _FbtResultBase implements IFbtResultBase {
   }
 
   static flattenToArray(
-    contents: NestedFbtContentItems,
-  ): Array<FbtContentItem> {
+    contents: $NestedFbtContentItems,
+  ): Array<$FbtContentItem> {
     const result = [];
     for (let ii = 0; ii < contents.length; ++ii) {
       const content = contents[ii];

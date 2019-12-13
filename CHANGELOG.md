@@ -32,6 +32,7 @@ We haven't had the best track record of code/feature changes before this date, b
      Unreleased changes that have landed in master. Click to see more.
     </summary>
 
+- [refactor] Move FbtContentItem and NestedFbtContentItems to libdefs
 - [refactor] Flow type strict substituteTokens.js
 - Fix version in header comments
 
