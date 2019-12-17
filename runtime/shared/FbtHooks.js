@@ -6,11 +6,9 @@
  * @format
  */
 
-// import typeof FbtErrorContext from 'FbtErrorContext';
-
-export type FbtHookRegistrations = {
-  errorListener?: (context: FbtErrorContext) => IFbtErrorListener,
-};
+export type FbtHookRegistrations = $Shape<{
+  errorListener: (context: FbtErrorContext) => IFbtErrorListener,
+}>;
 
 const _registrations: FbtHookRegistrations = {};
 
