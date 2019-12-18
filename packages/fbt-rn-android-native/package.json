@@ -1,8 +1,7 @@
 {
-  "private": true,
   "name": "fbt-rn-android-native",
   "title": "React Native Fbt Android Native Module",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Android native module to enable the usage of the FBT translation framework in React Native apps.",
   "main": "index.js",
   "repository": {
