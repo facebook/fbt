@@ -16,3 +16,6 @@ yarn translate-fbts
 # 5. Run a local web server with hot reloading at localhost:8081
 yarn android
 ```
+
+## Change log
+ See [CHANGELOG](CHANGELOG.md).
