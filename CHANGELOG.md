@@ -12,6 +12,7 @@ We haven't had the best track record of code/feature changes before this date, b
 - [babel-plugin-fbt-runtime versions](#babel-plugin-fbt-runtime-versions)
 - [fb-tiger-hash versions](#fb-tiger-hash-versions)
 - [fb-babel-plugin-utils versions](#fb-babel-plugin-utils)
+- [fbt-rn-android-native versions](#fbt-rn-android-native)
 
 ### Top-level Github
 - Upgrade to Flow v0.113.0
@@ -151,10 +152,15 @@ We haven't had the best track record of code/feature changes before this date, b
 - 0.1.0:
   -  First commit. A native JavaScript implementation of the Tiger hash Algorithm.
 
-### fb-babel-plugin-utils
+### fb-babel-plugin-utils versions
 
 - 0.9.1:
   - Add READMEs and improve repository link in package.json
 
 - 0.9.0:
+  - Initial commit
+
+### fbt-rn-android-native versions
+
+- 0.0.1:
   - Initial commit
