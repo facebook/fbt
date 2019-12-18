@@ -47,6 +47,7 @@ module.exports = function babelPresets(opts) {
       require('@babel/plugin-transform-arrow-functions'),
       require('@babel/plugin-transform-block-scoped-functions'),
       require('@babel/plugin-proposal-class-properties'),
+      require('@babel/plugin-proposal-optional-chaining'),
       [require('@babel/plugin-transform-classes'), {loose: true}],
       require('@babel/plugin-transform-object-super'),
       require('@babel/plugin-transform-shorthand-properties'),

@@ -25,8 +25,6 @@
 /* eslint "fb-www/require-flow-strict-local": "off" */
 require('FbtEnv').setup();
 
-const Banzai = require('Banzai');
-const {logger} = require('FbtLogger');
 const {overrides} = require('FbtQTOverrides');
 const FbtHooks = require('FbtHooks');
 const FbtResultBase = require('FbtResultBase');
@@ -180,8 +178,8 @@ fbt._ = function(table, args, options) {
   );
   if (Array.isArray(pattern)) {
     // [fbt_impressions]
-    // When logging of string impressions is enabled, the string and it's hash
-    // is packaged in an array. We want to log the hash
+    // When logging of string impressions is enabled, the string and its hash
+    // are packaged in an array. We want to log the hash
     patternString = pattern[0];
     patternHash = pattern[1];
     // Append '1_' for appid's prepended to our i18n hash
@@ -189,9 +187,9 @@ fbt._ = function(table, args, options) {
     const stringID = '1_' + patternHash;
     patternString = overrides[stringID] || patternString;
     if (overrides[stringID]) {
-      fbt.logQTImpression(patternHash);
+      FbtHooks.onTranslationOverride(patternHash);
     }
-    fbt.logImpression(patternHash);
+    FbtHooks.logImpression(patternHash);
   }
   const cachedFbt = _cachedFbtResults[patternString];
   const hasSubstitutions = this._hasKeys(allSubstitutions);
@@ -456,23 +454,6 @@ fbt._name = function(label, value, gender) {
   const substitution = {};
   substitution[label] = value;
   return FbtTableAccessor.getGenderResult(variation, substitution, gender);
-};
-
-/**
- * In www, fbt.logImpression() takes a string hash and logs it using BanzaiLogger,
- * via the Logger config 'FbtImpressionsLoggerConfig'.
- * @param {string} hash
- */
-fbt.logImpression = function(hash) {
-  if (logger) {
-    logger.logImpression(hash);
-  }
-  return hash;
-};
-
-fbt.logQTImpression = function(hash) {
-  Banzai.post('intl_qt_event', {hash: hash});
-  return hash;
 };
 
 fbt._wrapContent = (fbtContent, patternString, patternHash) => {
