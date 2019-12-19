@@ -162,5 +162,8 @@ We haven't had the best track record of code/feature changes before this date, b
 
 ### fbt-rn-android-native versions
 
+- 0.0.2:
+  - Updated Readme.md file with a link to a demo app showing how to use the module
+
 - 0.0.1:
   - Initial commit
