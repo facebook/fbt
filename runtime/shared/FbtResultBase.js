@@ -20,8 +20,7 @@ const invariant = require('invariant');
 
 let hasImplementedStringishMethods = false;
 
-// Named _FbtResultBase to avoid colliding with `FbtResultBase` class definition in Flow
-class _FbtResultBase implements IFbtResultBase {
+class FbtResultBase implements IFbtResultBase {
   _contents: $NestedFbtContentItems;
   _errorListener: ?IFbtErrorListener;
   _stringValue: ?string;
@@ -81,7 +80,7 @@ class _FbtResultBase implements IFbtResultBase {
   }
 
   flattenToArray(): Array<$FbtContentItem> {
-    return _FbtResultBase.flattenToArray(this._contents);
+    return FbtResultBase.flattenToArray(this._contents);
   }
 
   getContents() {
@@ -96,7 +95,7 @@ class _FbtResultBase implements IFbtResultBase {
     const contents = this.flattenToArray();
     for (let ii = 0; ii < contents.length; ++ii) {
       const content = contents[ii];
-      if (typeof content === 'string' || content instanceof _FbtResultBase) {
+      if (typeof content === 'string' || content instanceof FbtResultBase) {
         stringValue += content.toString();
       } else if (this._errorListener != null) {
         this._errorListener.onStringSerializationError(content);
@@ -119,8 +118,8 @@ class _FbtResultBase implements IFbtResultBase {
     for (let ii = 0; ii < contents.length; ++ii) {
       const content = contents[ii];
       if (Array.isArray(content)) {
-        result.push.apply(result, _FbtResultBase.flattenToArray(content));
-      } else if (content instanceof _FbtResultBase) {
+        result.push.apply(result, FbtResultBase.flattenToArray(content));
+      } else if (content instanceof FbtResultBase) {
         result.push.apply(result, content.flattenToArray());
       } else {
         result.push(content);
@@ -131,7 +130,7 @@ class _FbtResultBase implements IFbtResultBase {
 
   static usingStringProxyMethod(
     stringProxyFn: (stringMethodName: $Keys<IFbtStringish>) => Function,
-  ): Class<_FbtResultBase> {
+  ): Class<FbtResultBase> {
     const currentClass = this;
     // Warning: The following methods are only appplicable during the transition
     // period for some existing code that uses string method on Fbt string.
@@ -188,4 +187,4 @@ class _FbtResultBase implements IFbtResultBase {
   }
 }
 
-module.exports = ((_FbtResultBase: $FlowFixMe): Class<FbtResultBase>);
+module.exports = ((FbtResultBase: $FlowFixMe): Class<$FbtResultBase>);

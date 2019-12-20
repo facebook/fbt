@@ -39,7 +39,7 @@ declare opaque type FbtString: string;
 // - An Fbt in defaultProps breaks: https://fburl.com/cer2jdjd
 // - Opaque types with truthy bounds aren't excluded from the type of
 //   logical 'and' expressions. https://fburl.com/9b5vm9wh
-declare type FbtElement = FbtResultBase;
+declare type FbtElement = $FbtResultBase;
 
 /**
  * All translated strings. Could either be a translated string returned by an
@@ -214,7 +214,7 @@ declare class FbtPureStringResult implements IFbtResultBase {
   // unwrap(): string;
 }
 
-declare class FbtResultBase extends FbtPureStringResult
+declare class $FbtResultBase extends FbtPureStringResult
   implements IFbtStringish {
   // implements IFbtStringish
   charAt: $PropertyType<IFbtStringish, 'charAt'>;
