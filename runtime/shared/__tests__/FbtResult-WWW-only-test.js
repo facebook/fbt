@@ -69,8 +69,8 @@ describe('FbtResult: WWW-only', function() {
       expect(FBLogger).toHaveBeenCalledWith('fbt');
       expect(FbtFBLogger.mustfix).toHaveBeenCalledWith(
         'Converting to a string will drop content data. Hash="%s" Translation="%s" Content="%s" (type=%s,%s)',
-        translation,
         hash,
+        translation,
         '{}',
         'object',
         'RegExp',
