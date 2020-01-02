@@ -69,7 +69,11 @@
   "workspaces": [
     "demo-app",
     "live-demo-app",
-    "packages/*"
+    "packages/babel-plugin-fbt",
+    "packages/babel-plugin-fbt-runtime",
+    "packages/fb-babel-plugin-utils",
+    "packages/fb-tiger-hash",
+    "packages/fbt"
   ],
   "engines": {
     "node": ">= 10.4.0"
