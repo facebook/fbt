@@ -151,48 +151,19 @@ declare interface IFbtStringish {
   // The following methods are expected not to be supported soon.
 
   // Methods from String
-  toString: typeof String.prototype.toString;
-  charAt: typeof String.prototype.charAt;
-  charCodeAt: typeof String.prototype.charCodeAt;
-  codePointAt: typeof String.prototype.codePointAt;
-  endsWith: typeof String.prototype.endsWith;
-  includes: typeof String.prototype.includes;
   indexOf: typeof String.prototype.indexOf;
-  lastIndexOf: typeof String.prototype.lastIndexOf;
-  link: typeof String.prototype.link;
   localeCompare: typeof String.prototype.localeCompare;
   match: typeof String.prototype.match;
   normalize: typeof String.prototype.normalize;
-  repeat: typeof String.prototype.repeat;
   replace: typeof String.prototype.replace;
   search: typeof String.prototype.search;
   slice: typeof String.prototype.slice;
   split: typeof String.prototype.split;
-  startsWith: typeof String.prototype.startsWith;
   substr: typeof String.prototype.substr;
   substring: typeof String.prototype.substring;
-  toLocaleLowerCase: typeof String.prototype.toLocaleLowerCase;
-  toLocaleUpperCase: typeof String.prototype.toLocaleUpperCase;
   toLowerCase: typeof String.prototype.toLowerCase;
   toUpperCase: typeof String.prototype.toUpperCase;
   trim: typeof String.prototype.trim;
-  trimLeft: typeof String.prototype.trimLeft;
-  trimRight: typeof String.prototype.trimRight;
-  // Deprecated String methods
-  anchor(name: string): string;
-  big(): string;
-  blink(): string;
-  bold(): string;
-  fixed(): string;
-  italics(): string;
-  small(): string;
-  fontcolor(color: string): string;
-  fontsize(color: string): string;
-  strike(): string;
-  sub(): string;
-  sup(): string;
-  // FBism?
-  contains(string): boolean;
 }
 
 // String result wrapper intended for ComponentScript.
@@ -217,48 +188,20 @@ declare class FbtPureStringResult implements IFbtResultBase {
 declare class $FbtResultBase extends FbtPureStringResult
   implements IFbtStringish {
   // implements IFbtStringish
-  charAt: $PropertyType<IFbtStringish, 'charAt'>;
-  charCodeAt: $PropertyType<IFbtStringish, 'charCodeAt'>;
-  codePointAt: $PropertyType<IFbtStringish, 'codePointAt'>;
-  endsWith: $PropertyType<IFbtStringish, 'endsWith'>;
-  includes: $PropertyType<IFbtStringish, 'includes'>;
   indexOf: $PropertyType<IFbtStringish, 'indexOf'>;
-  lastIndexOf: $PropertyType<IFbtStringish, 'lastIndexOf'>;
-  link: $PropertyType<IFbtStringish, 'link'>;
   localeCompare: $PropertyType<IFbtStringish, 'localeCompare'>;
   match: $PropertyType<IFbtStringish, 'match'>;
   normalize: $PropertyType<IFbtStringish, 'normalize'>;
-  repeat: $PropertyType<IFbtStringish, 'repeat'>;
   replace: $PropertyType<IFbtStringish, 'replace'>;
   search: $PropertyType<IFbtStringish, 'search'>;
   slice: $PropertyType<IFbtStringish, 'slice'>;
   split: $PropertyType<IFbtStringish, 'split'>;
-  startsWith: $PropertyType<IFbtStringish, 'startsWith'>;
   substr: $PropertyType<IFbtStringish, 'substr'>;
   substring: $PropertyType<IFbtStringish, 'substring'>;
-  toLocaleLowerCase: $PropertyType<IFbtStringish, 'toLocaleLowerCase'>;
-  toLocaleUpperCase: $PropertyType<IFbtStringish, 'toLocaleUpperCase'>;
   toLowerCase: $PropertyType<IFbtStringish, 'toLowerCase'>;
   toString: $PropertyType<IFbtStringish, 'toString'>;
   toUpperCase: $PropertyType<IFbtStringish, 'toUpperCase'>;
   trim: $PropertyType<IFbtStringish, 'trim'>;
-  trimLeft: $PropertyType<IFbtStringish, 'trimLeft'>;
-  trimRight: $PropertyType<IFbtStringish, 'trimRight'>;
-  // Deprecated String methods
-  anchor: $PropertyType<IFbtStringish, 'anchor'>;
-  big: $PropertyType<IFbtStringish, 'big'>;
-  blink: $PropertyType<IFbtStringish, 'blink'>;
-  bold: $PropertyType<IFbtStringish, 'bold'>;
-  fixed: $PropertyType<IFbtStringish, 'fixed'>;
-  italics: $PropertyType<IFbtStringish, 'italics'>;
-  small: $PropertyType<IFbtStringish, 'small'>;
-  fontcolor: $PropertyType<IFbtStringish, 'fontcolor'>;
-  fontsize: $PropertyType<IFbtStringish, 'fontsize'>;
-  strike: $PropertyType<IFbtStringish, 'strike'>;
-  sub: $PropertyType<IFbtStringish, 'sub'>;
-  sup: $PropertyType<IFbtStringish, 'sup'>;
-  // FBism?
-  contains: $PropertyType<IFbtStringish, 'contains'>;
 
   static usingStringProxyMethod(
     stringProxyFn: (stringMethodName: $Keys<IFbtStringish>) => Function,
