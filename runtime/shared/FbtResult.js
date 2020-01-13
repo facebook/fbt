@@ -24,7 +24,7 @@ const FbtComponent = (props: Props): mixed => props.content;
 type Props = {content: $NestedFbtContentItems, ...};
 
 class FbtResult extends FbtResultBaseImpl {
-  $$typeof: Symbol | $TEMPORARY$number<0xeac7> =
+  $$typeof: symbol | $TEMPORARY$number<0xeac7> =
     FbtReactUtil.REACT_ELEMENT_TYPE;
   key: ?string = null;
   props: Props;
