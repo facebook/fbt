@@ -3,17 +3,12 @@ language: node_js
 node_js:
   - '10.4.0'
   - '12'
-env:
-  - CMD=demo-app:test
-  - CMD=fb-tiger-hash:test
-  - CMD=babel-plugin-fbt-runtime:test
-  - CMD=babel-plugin-fbt:test
 
 branches:
   only:
     - master
 
-script: yarn run $CMD
+script: yarn flow:check && yarn test
 
 before_install:
   # Install latest yarn (will go to ~/.yarn) and update $PATH for current shell
