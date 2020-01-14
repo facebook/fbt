@@ -26,7 +26,7 @@
     "babel-preset-fbjs": "^3.1.2",
     "del": "^3.0.0",
     "fbjs-scripts": "^1.2.0",
-    "flow-bin": "^0.113.0",
+    "flow-bin": "^0.115.0",
     "gulp": "^4.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^4.0.0",
