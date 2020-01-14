@@ -15,6 +15,7 @@ We haven't had the best track record of code/feature changes before this date, b
 - [fbt-rn-android-native versions](#fbt-rn-android-native)
 
 ### Top-level Github
+- Upgrade to Flow v0.115.0
 - Remove the String.prototype methods (that aren't used internally) from libdefs
 - Upgrade to Flow v0.113.0
 - Make demo-app rely on the local versions of our published npm modules.
