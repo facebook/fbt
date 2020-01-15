@@ -8,12 +8,11 @@ branches:
   only:
     - master
 
-script:
-  - yarn flow:check
-  - yarn run babel-plugin-fbt-runtime:test
-  - yarn run babel-plugin-fbt:test
-  - yarn run demo-app:test
-  - yarn run fb-tiger-hash:test
+script: yarn flow:check
+script: yarn run babel-plugin-fbt-runtime:test
+script: yarn run babel-plugin-fbt:test
+script: yarn run demo-app:test
+script: yarn run fb-tiger-hash:test
 
 # script: yarn run "$CMD"
 #
