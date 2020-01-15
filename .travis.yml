@@ -8,19 +8,19 @@ branches:
   only:
     - master
 
+env:
+  - CMD=demo-app:test
+  - CMD=fb-tiger-hash:test
+  - CMD=babel-plugin-fbt-runtime:test
+  - CMD=babel-plugin-fbt:test
+
+script: yarn run "$CMD"
+
 jobs:
   include:
     - stage: test
       name: "Flow checks"
       script: yarn flow:check
-    - name: "Test demo-app:test"
-      script: yarn demo-app:test
-    - name: "Test fb-tiger-hash:test"
-      script: yarn fb-tiger-hash:test
-    - name: "Test babel-plugin-fbt-runtime:test"
-      script: yarn babel-plugin-fbt-runtime:test
-    - name: "Test babel-plugin-fbt:test"
-      script: yarn babel-plugin-fbt:test
 
 before_install:
   # Install latest yarn (will go to ~/.yarn) and update $PATH for current shell
