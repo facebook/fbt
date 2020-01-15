@@ -10,15 +10,17 @@ branches:
 
 jobs:
   include:
-    - stage: script
+    - stage: test
       name: "Flow checks"
       script: yarn flow:check
-    - script: yarn test demo-app:test
-    - script: yarn test fb-tiger-hash:test
-    - script: yarn test babel-plugin-fbt-runtime:test
-    - script: yarn test babel-plugin-fbt:test
-
-# script: yarn flow:check && yarn test
+    - name: "Test demo-app:test"
+      script: yarn demo-app:test
+    - name: "Test fb-tiger-hash:test"
+      script: yarn fb-tiger-hash:test
+    - name: "Test babel-plugin-fbt-runtime:test"
+      script: yarn babel-plugin-fbt-runtime:test
+    - name: "Test babel-plugin-fbt:test"
+      script: yarn babel-plugin-fbt:test
 
 before_install:
   # Install latest yarn (will go to ~/.yarn) and update $PATH for current shell
