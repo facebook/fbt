@@ -17,13 +17,13 @@ env:
 script: yarn run "$CMD"
 
 jobs:
+  node_js:
+    - '10.4.0'
+    - '12'
   include:
     - stage: test
       name: "Flow checks"
       script: yarn flow:check
-      node_js:
-        - '10.4.0'
-        - '12'
 
 before_install:
   # Install latest yarn (will go to ~/.yarn) and update $PATH for current shell
