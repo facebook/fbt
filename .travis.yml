@@ -8,7 +8,17 @@ branches:
   only:
     - master
 
-script: yarn flow:check && yarn test
+jobs:
+  include:
+    - stage: script
+      name: "Flow checks"
+      script: yarn flow:check
+    - script: yarn test demo-app:test
+    - script: yarn test fb-tiger-hash:test
+    - script: yarn test babel-plugin-fbt-runtime:test
+    - script: yarn test babel-plugin-fbt:test
+
+# script: yarn flow:check && yarn test
 
 before_install:
   # Install latest yarn (will go to ~/.yarn) and update $PATH for current shell
