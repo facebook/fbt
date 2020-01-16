@@ -162,6 +162,7 @@ We haven't had the best track record of code/feature changes before this date, b
     </summary>
 
     - Minor: clarify error messages when unit tests fail due to Babel AST node differences.
+    - Minor: normalize source code before using it in unit tests' code comparisons
   </details>
 
 - 0.9.1:

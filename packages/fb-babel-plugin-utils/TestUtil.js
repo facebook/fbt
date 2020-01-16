@@ -74,10 +74,34 @@ function firstCommonSubstring(left, right) {
   return left.substr(0, i);
 }
 
+// New versions of Babel detect and store the trailing comma of function arguments
+// in the Babel node structure. But many of our unit tests assume that
+// the function trailing comma is not important.
+// So let's remove these to facilitate AST comparisons
+// We'll also need to use the same type of quotes for strings.
+function normalizeSourceCode(sourceCode /*: string */) /*: string */ {
+  const ast = parse(sourceCode);
+  // Note: @babel/generator does not generate trailing commas by default
+  return generate(
+    ast,
+    {
+      comments: true,
+      quotes: 'single',
+    },
+    sourceCode,
+  ).code.trim();
+}
+
 module.exports = {
   assertSourceAstEqual(expected, actual, options) {
-    const expectedTree = stripMeta(parse(expected).program, options);
-    const actualTree = stripMeta(parse(actual).program, options);
+    const expectedTree = stripMeta(
+      parse(normalizeSourceCode(expected)).program,
+      options,
+    );
+    const actualTree = stripMeta(
+      parse(normalizeSourceCode(actual)).program,
+      options,
+    );
     try {
       assert.deepStrictEqual(actualTree, expectedTree);
     } catch (e) {
