@@ -11,7 +11,7 @@
 
 'use strict';
 
-type Substitution = {};
+type Substitution = {...};
 type TableKey = string | number;
 
 const FbtTableAccessor = {

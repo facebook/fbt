@@ -115,6 +115,7 @@ describe('fbt', () => {
     value: string,
     childA: mixed,
     childB: mixed,
+    ...
   };
 
   function _render(value, childA, childB) {
@@ -136,7 +137,7 @@ describe('fbt', () => {
     return <div>{fbtFragment}</div>;
   }
 
-  class TestComponent extends React.Component<Props, {}> {
+  class TestComponent extends React.Component<Props, {...}> {
     render(): React.Node {
       return _render(this.props.value, this.props.childA, this.props.childB);
     }

@@ -10,6 +10,7 @@ export type FbtHookRegistrations = $Shape<{
   errorListener: (context: FbtErrorContext) => IFbtErrorListener,
   logImpression: (hash: string) => void,
   onTranslationOverride: (hash: string) => void,
+  ...
 }>;
 
 const _registrations: FbtHookRegistrations = {};
