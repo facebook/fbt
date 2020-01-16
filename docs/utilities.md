@@ -10,7 +10,7 @@ Bundled with fbt come a few useful utilities for constructing strings.
 
 As an example
 ```js
-const intlList = require('intlList');
+const intlList = require('fbt/lib/intlList');
 const CONJUNCTIONS = intlList.CONJUNCTIONS;
 const DELIMITER = intlList.DELIMITER;
 let people = ['Adam', 'Becky', fbt('4 others', 'last item')]
