@@ -156,6 +156,13 @@ We haven't had the best track record of code/feature changes before this date, b
   -  First commit. A native JavaScript implementation of the Tiger hash Algorithm.
 
 ### fb-babel-plugin-utils versions
+  <details>
+    <summary>
+     Unreleased changes that have landed in master. Click to see more.
+    </summary>
+
+    - Minor: clarify error messages when unit tests fail due to Babel AST node differences.
+  </details>
 
 - 0.9.1:
   - Add READMEs and improve repository link in package.json

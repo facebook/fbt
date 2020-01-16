@@ -3,6 +3,8 @@
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
+ *
+ * @format
  */
 
 'use strict';
@@ -77,8 +79,9 @@ module.exports = {
     const expectedTree = stripMeta(parse(expected).program, options);
     const actualTree = stripMeta(parse(actual).program, options);
     try {
-      assert.deepEqual(actualTree, expectedTree);
+      assert.deepStrictEqual(actualTree, expectedTree);
     } catch (e) {
+      const jsonDiff = require('json-diff');
       const expectedFormattedCode = prettyPrint(expected);
       const actualFormattedCode = prettyPrint(actual);
       const commonStr = firstCommonSubstring(
@@ -95,31 +98,28 @@ module.exports = {
         excerptLength,
       );
 
-      console.log(`Expected: ${expectedFormattedCode}`);
-      console.log(`Actual  : ${actualFormattedCode}`);
-      console.log(`First common string: ${commonStr}`);
-      console.log(`The first difference is (${excerptLength} chars max): `);
-      console.log(`Expected: ${excerptDiffFromExpected}`);
-      console.log(`Actual  : ${excerptDiffFromActual}`);
+      const errMessage = `deepEqual node AST assert failed for the following code:
 
-      const err = new Error(
-        [
-          'deepEqual node AST assert failed for the following code:',
-          '  Expected output:',
-          expectedFormattedCode,
-          '',
-          '  Actual output:',
-          actualFormattedCode,
-          '',
-          '  First common string:',
-          commonStr,
-          '',
-          `  The first difference is (${excerptLength} chars max): `,
-          `  Expected: ${excerptDiffFromExpected}`,
-          `  Actual  : ${excerptDiffFromActual}`,
-          '',
-        ].join('\n'),
-      );
+Expected output: <<<${expectedFormattedCode}>>>
+
+Actual output: <<<${actualFormattedCode}>>>
+
+First common string: <<<${commonStr}>>>
+
+The first difference is (${excerptLength} chars max):
+
+Expected : <<<${excerptDiffFromExpected}>>>
+
+Actual   : <<<${excerptDiffFromActual}>>>
+
+AST diff:
+====
+${jsonDiff.diffString(actualTree, expectedTree)}
+====
+`;
+      console.error(errMessage);
+
+      const err = new Error(errMessage);
       err.stack = e.stack;
       throw err;
     }
