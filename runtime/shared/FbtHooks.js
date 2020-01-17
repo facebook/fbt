@@ -16,8 +16,7 @@ export type FbtHookRegistrations = $Shape<{
 const _registrations: FbtHookRegistrations = {};
 const FbtHooks = {
   getErrorListener(context: FbtErrorContext): ?IFbtErrorListener {
-    const factory = _registrations.errorListener;
-    return factory ? factory(context) : null;
+    return _registrations.errorListener?.(context);
   },
 
   logImpression(hash: string): void {

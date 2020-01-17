@@ -122,13 +122,15 @@ declare interface IFbtErrorListener {
    *   );
    * }
    */
-  onStringSerializationError(content: $FbtContentItem): void;
+  +onStringSerializationError?: (content: $FbtContentItem) => void;
+
+  +onStringMethodUsed?: (method: string) => void;
 }
 
 declare interface IFbtResultBase {
   constructor(
     contents: $ReadOnlyArray<any>,
-    errorListener: ?FbtErrorListener,
+    errorListener: ?IFbtErrorListener,
   ): void;
   getContents(): any;
   // This relies on toString() which contains i18n logging logic to track impressions.
@@ -174,7 +176,7 @@ declare class FbtPureStringResult implements IFbtResultBase {
   // implements IFbtResultBase
   constructor(
     contents: $ReadOnlyArray<any>,
-    errorListener: ?FbtErrorListener,
+    errorListener: ?IFbtErrorListener,
   ): void;
   getContents: $PropertyType<IFbtResultBase, 'getContents'>;
   toJSON: $PropertyType<IFbtResultBase, 'toJSON'>;
@@ -202,10 +204,6 @@ declare class $FbtResultBase extends FbtPureStringResult
   toString: $PropertyType<IFbtStringish, 'toString'>;
   toUpperCase: $PropertyType<IFbtStringish, 'toUpperCase'>;
   trim: $PropertyType<IFbtStringish, 'trim'>;
-
-  static usingStringProxyMethod(
-    stringProxyFn: (stringMethodName: $Keys<IFbtStringish>) => Function,
-  ): Class<this>;
 }
 
 // Represents the input of an fbt.param

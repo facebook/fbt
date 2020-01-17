@@ -18,12 +18,15 @@
 
 const invariant = require('invariant');
 
-let hasImplementedStringishMethods = false;
-
 class FbtResultBase implements IFbtResultBase {
   _contents: $NestedFbtContentItems;
-  _errorListener: ?IFbtErrorListener;
   _stringValue: ?string;
+
+  // __errorListener is given an extra "private" underscore to prevent munging
+  // (https://fburl.com/munge) of the member.  We access the member in a
+  // function declared on the prototype outside of the class (see below). So,
+  // munging will affect this access.
+  __errorListener: ?IFbtErrorListener;
 
   // Declare that we'll implement these methods
   anchor: $PropertyType<IFbtResultBase, 'anchor'>;
@@ -70,12 +73,8 @@ class FbtResultBase implements IFbtResultBase {
     contents: $NestedFbtContentItems,
     errorListener: ?IFbtErrorListener,
   ) {
-    invariant(
-      hasImplementedStringishMethods,
-      'Stringish methods must be implemented. See `usingStringProxyMethod`.',
-    );
     this._contents = contents;
-    this._errorListener = errorListener;
+    this.__errorListener = errorListener;
     this._stringValue = null;
   }
 
@@ -97,8 +96,8 @@ class FbtResultBase implements IFbtResultBase {
       const content = contents[ii];
       if (typeof content === 'string' || content instanceof FbtResultBase) {
         stringValue += content.toString();
-      } else if (this._errorListener != null) {
-        this._errorListener.onStringSerializationError(content);
+      } else {
+        this.__errorListener?.onStringSerializationError?.(content);
       }
     }
     if (!Object.isFrozen(this)) {
@@ -127,64 +126,62 @@ class FbtResultBase implements IFbtResultBase {
     }
     return result;
   }
-
-  static usingStringProxyMethod(
-    stringProxyFn: (stringMethodName: $Keys<IFbtStringish>) => Function,
-  ): Class<FbtResultBase> {
-    const currentClass = this;
-    // Warning: The following methods are only appplicable during the transition
-    // period for some existing code that uses string method on Fbt string.
-    // The fbt string should be considered as the final string to be displayed
-    // and therefore should not be manipulated.
-    // The following methods are expected not to be supported soon.
-    [
-      'anchor',
-      'big',
-      'blink',
-      'bold',
-      'charAt',
-      'charCodeAt',
-      'codePointAt',
-      'contains',
-      'endsWith',
-      'fixed',
-      'fontcolor',
-      'fontsize',
-      'includes',
-      'indexOf',
-      'italics',
-      'lastIndexOf',
-      'link',
-      'localeCompare',
-      'match',
-      'normalize',
-      'repeat',
-      'replace',
-      'search',
-      'slice',
-      'small',
-      'split',
-      'startsWith',
-      'strike',
-      'sub',
-      'substr',
-      'substring',
-      'sup',
-      'toLocaleLowerCase',
-      'toLocaleUpperCase',
-      'toLowerCase',
-      'toUpperCase',
-      'trim',
-      'trimLeft',
-      'trimRight',
-    ].forEach(methodName => {
-      /* eslint-disable fb-www/should-use-class */
-      // $FlowFixMe Mock stringish methods
-      currentClass.prototype[methodName] = stringProxyFn(methodName);
-    });
-    hasImplementedStringishMethods = true;
-    return currentClass;
-  }
 }
+
+// Warning: The following methods are only appplicable during the transition
+// period for some existing code that uses string method on Fbt string.
+// The fbt string should be considered as the final string to be displayed
+// and therefore should not be manipulated.
+// The following methods are expected not to be supported "soon".
+[
+  'anchor',
+  'big',
+  'blink',
+  'bold',
+  'charAt',
+  'charCodeAt',
+  'codePointAt',
+  'contains',
+  'endsWith',
+  'fixed',
+  'fontcolor',
+  'fontsize',
+  'includes',
+  'indexOf',
+  'italics',
+  'lastIndexOf',
+  'link',
+  'localeCompare',
+  'match',
+  'normalize',
+  'repeat',
+  'replace',
+  'search',
+  'slice',
+  'small',
+  'split',
+  'startsWith',
+  'strike',
+  'sub',
+  'substr',
+  'substring',
+  'sup',
+  'toLocaleLowerCase',
+  'toLocaleUpperCase',
+  'toLowerCase',
+  'toUpperCase',
+  'trim',
+  'trimLeft',
+  'trimRight',
+].forEach(methodName => {
+  /* eslint-disable fb-www/should-use-class */
+  // $FlowFixMe index signature
+  FbtResultBase.prototype[methodName] = function(...args) {
+    this.__errorListener?.onStringMethodUsed?.(methodName);
+    // $FlowFixMe Mock stringish methods
+    return String.prototype[methodName].apply(this, args);
+  };
+  /* eslint-enable fb-www/should-use-class */
+});
 
 module.exports = ((FbtResultBase: $FlowFixMe): Class<$FbtResultBase>);

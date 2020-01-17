@@ -17,13 +17,13 @@
 // flowlint ambiguous-object-type:error
 
 const FbtReactUtil = require('FbtReactUtil');
-const FbtResultBaseImpl = require('FbtResultBaseImpl');
+const FbtResultBase = require('FbtResultBase');
 
 const FbtComponent = (props: Props): mixed => props.content;
 
 type Props = {content: $NestedFbtContentItems, ...};
 
-class FbtResult extends FbtResultBaseImpl {
+class FbtResult extends FbtResultBase {
   $$typeof: symbol | $TEMPORARY$number<0xeac7> =
     FbtReactUtil.REACT_ELEMENT_TYPE;
   key: ?string = null;

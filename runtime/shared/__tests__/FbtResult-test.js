@@ -9,50 +9,83 @@
  * Run the following command to sync the change from www to fbsource.
  *   js1 upgrade www-shared -p fbt --local ~/www
  *
- * @format
  * @emails oncall+internationalization
+ * @format
+ * @flow
  */
 
 jest.disableAutomock();
-console.error = jest.fn();
 
+const FbtHooks = require('FbtHooks');
 const FbtResult = require('FbtResult');
 
+const nullthrows = require('nullthrows');
+
+let _errorListener;
+
 describe('FbtResult', function() {
+  beforeEach(() => {
+    jest.resetModules();
+    require('FbtEnv').setup();
+    _errorListener = FbtHooks.getErrorListener({
+      hash: 'h',
+      translation: 't',
+    });
+  });
+
   it('can be flattened into array', function() {
-    let obj1 = new FbtResult(['prefix']);
+    const errorListener = nullthrows(_errorListener);
+    let obj1 = new FbtResult(['prefix'], errorListener);
 
-    let obj2 = new FbtResult(['suffix']);
+    const obj2 = new FbtResult(['suffix'], errorListener);
 
-    let obj3 = new FbtResult([obj1, 'content', obj2]);
-    expect(obj3.flattenToArray().join(' ')).toBe('prefix content suffix');
+    let obj3 = new FbtResult([obj1, 'content', obj2], errorListener);
+    expect(
+      // flow doesn't think FbtResult.flattenToArray exists because of
+      // our egregious lies spat out in module.exports of FbtResultBase.js
+      // $FlowFixMe flattenToArray
+      obj3.flattenToArray().join(' '),
+    ).toBe('prefix content suffix');
 
-    obj1 = new FbtResult(['prefix']);
+    obj1 = new FbtResult(['prefix'], errorListener);
 
-    obj2 = {
-      a: 'random1',
-      b: 'random2',
-      toString: function() {
-        return 'obj2';
+    // $FlowExpectedError
+    const stringable = ({
+      toString() {
+        return 'stringable';
       },
-    };
+    }: $FbtContentItem);
 
-    obj3 = new FbtResult([obj1, 'content', obj2]);
-    expect(obj3.flattenToArray().join(' ')).toBe('prefix content obj2');
+    obj3 = new FbtResult([obj1, 'content', stringable], errorListener);
+    expect(
+      // flow doesn't think FbtResult.flattenToArray exists because of
+      // our egregious lies spat out in module.exports of FbtResultBase.js
+      // $FlowFixMe flattenToArray
+      obj3.flattenToArray().join(' '),
+    ).toBe('prefix content stringable');
   });
 
   it('implements common string methods', function() {
-    const result = new FbtResult(['kombucha'], false, 'kombucha', null);
-    expect(result.startsWith('kom')).toBe(true);
-    expect(console.error.mock.calls.length).toBe(1);
+    const errorListener = nullthrows(_errorListener);
+    const result = new FbtResult(['kombucha'], errorListener);
+
+    // $FlowFixMe We're mocking a read-only property (method) below
+    const err = (console.error = jest.fn());
+    expect(result.substr(0, 3)).toBe('kom');
+    expect(err.mock.calls.length).toBe(1);
     expect(result.slice(1, 3)).toBe('om');
-    expect(console.error.mock.calls.length).toBe(2);
+    expect(err.mock.calls.length).toBe(2);
   });
 
   it('does not invoke onStringSerializationError() when being serialized with valid-FBT contents', function() {
-    const result = new FbtResult(['hello', new FbtResult('world')]);
-    result.onStringSerializationError = jest.fn();
+    const errorListener = nullthrows(_errorListener);
+    const result = new FbtResult(
+      ['hello', new FbtResult(['world'], errorListener)],
+      errorListener,
+    );
+    // $FlowFixMe We're mocking a read-only property (method) below
+    errorListener.onStringSerializationError = jest.fn();
     result.toString();
-    expect(result.onStringSerializationError).not.toHaveBeenCalled();
+    expect(errorListener?.onStringSerializationError).not.toHaveBeenCalled();
   });
 });
