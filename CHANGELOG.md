@@ -31,18 +31,18 @@ We haven't had the best track record of code/feature changes before this date, b
 - Enable testing packages from top-level in GitHub
 
 ### fbt versions
-  <details>
-    <summary>
-     Unreleased changes that have landed in master. Click to see more.
-    </summary>
+<details>
+  <summary>
+   Unreleased changes that have landed in master. Click to see more.
+  </summary>
 
-- [feat] Remove Banzai & FbtLogger, provide hooks in their place.
-- [refactor] Abstract away string serialization error handling.
-- [refactor] Move FbtContentItem and $NestedFbtContentItems to libdefs
-- [refactor] Flow type strict substituteTokens.js
-- Fix version in header comments
+  - [feat] Remove Banzai & FbtLogger, provide hooks in their place.
+  - [refactor] Abstract away string serialization error handling.
+  - [refactor] Move FbtContentItem and $NestedFbtContentItems to libdefs
+  - [refactor] Flow type strict substituteTokens.js
+  - Fix version in header comments
+</details>
 
-  </details>
 
 - 0.10.6:
   - More accurate peer dependencies
