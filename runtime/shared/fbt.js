@@ -29,10 +29,10 @@ const {overrides} = require('FbtQTOverrides');
 const FbtHooks = require('FbtHooks');
 const FbtResultBase = require('FbtResultBase');
 const FbtTableAccessor = require('FbtTableAccessor');
+const FbtTranslations = require('FbtTranslations');
 const FbtResult = require('FbtResult');
 const FbtResultGK = require('FbtResultGK');
 const GenderConst = require('GenderConst');
-const {getTranslatedPayload, isComponentScript} = require('FbtTranslations');
 const InlineFbtResult = require('InlineFbtResult');
 const IntlViewerContext = require('IntlViewerContext');
 
@@ -43,6 +43,11 @@ const {
   getNumberVariations,
   getGenderVariations,
 } = require('IntlVariationResolver');
+
+// TODO: Remove this after resolving T47935495.
+if (FbtTranslations == null) {
+  throw new Error('fbt: FbtTranslations is undefined!');
+}
 
 let jsonExportMode = false; // Used only in React Native
 
@@ -123,7 +128,7 @@ fbt._ = function(table, args, options) {
       };
     }
 
-    ({table, args} = getTranslatedPayload(
+    ({table, args} = FbtTranslations.getTranslatedPayload(
       options.hk,
       options.ehk,
       args,
@@ -166,7 +171,7 @@ fbt._ = function(table, args, options) {
   let patternString = pattern;
   let patternHash = null;
 
-  const csError = isComponentScript()
+  const csError = FbtTranslations.isComponentScript()
     ? '\nNote: Certain fbt constructs such as fbt.plural() and the third ' +
       'positional `variations` argument to fbt.param() are currently disallowed'
     : '';
