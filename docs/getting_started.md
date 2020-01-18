@@ -7,7 +7,6 @@ sidebar_label: Getting Started
 ## Try the Demo
 Check out our [Github](https://github.com/facebookincubator/fbt) repository and run the Webpack demo app.
 See ["Building and starting the demo app"](https://github.com/facebookincubator/fbt/tree/master/demo-app#building-and-starting-the-demo-app)
-
 # Integrating into your app
 
 ## NPM module dependencies
@@ -18,12 +17,12 @@ The required NPM modules to add to your `dependencies` in your app are:
    * Transforms the raw payloads within `fbt._(...)` so they can be used at runtime (by `fbt._`)
    * NOTE: [This plugin should get merged into `babel-plugin-fbt`](https://github.com/facebookincubator/fbt/issues/125)
 
-If you're unfamiliar with [Babel](https://babeljs.io/), you can read through [their documentation here]((https://babeljs.io/)
+If you're unfamiliar with [Babel](https://babeljs.io/), you can read through [their documentation here](https://babeljs.io/)
 
 ### Babel Plugin ordering (Caveat)
 There is a plugin ordering gotcha to be aware of if you use other Babel plugins.
 FBT expects to be the first plugin to visit its relevant `<fbt>` and `fbt(...)` nodes
-[See this Github issue trackign this](https://github.com/facebookincubator/fbt/issues/40)
+[See this Github issue tracking this](https://github.com/facebookincubator/fbt/issues/40)
 
 You'll hit issues if another transforms beats the `babel-plugin-fbt`
 to the Babel AST, node and transforms it such that the plugin doesn't
@@ -41,9 +40,8 @@ To work around this you can use Babel's `passPerPreset` option, and ensure `babe
 ```
 
 ### Webpack Example
-You'll need to add the fbt babel transforms to your app similar to our demo-app:
+You'll need to add the fbt babel transforms in a manner similar to our demo-app.
 [See our demo-app's Webpack config](https://github.com/facebookincubator/fbt/blob/543e0a9c5b5c74e2094da3b94e3828c1dccacb7a/demo-app/webpack.config.js#L54-L59)
-
 
 ## Build-time / offline processes
 
@@ -63,10 +61,14 @@ These are:
    * Takes extracted source text (from `collectFBT`) and [translations provided in JSON format](https://facebookincubator.github.io/fbt/docs/translating) to produce these payloads
 
 ### How to use these scripts
-You can see how the demo-app [calls into these scripts here](https://github.com/facebookincubator/fbt/blob/3a5441708ca6b71c2c18fe5a952d1058a22306d1/demo-app/package.json#L11-L14).  It [runs all these in another script, here](https://github.com/facebookincubator/fbt/blob/3a5441708ca6b71c2c18fe5a952d1058a22306d1/demo-app/run_all.js)
+You can see how the demo-app [calls into these scripts here](https://github.com/facebookincubator/fbt/blob/3a5441708ca6b71c2c18fe5a952d1058a22306d1/demo-app/package.json#L11-L14).
+
+The demo app [runs all these in another script, here](https://github.com/facebookincubator/fbt/blob/3a5441708ca6b71c2c18fe5a952d1058a22306d1/demo-app/run_all.js)
 
 ## Runtime
 The [fbt runtime](https://www.npmjs.com/package/fbt) is what resolves the translation payload table generated during the translation phase into a singular result base on all the input provided at runtime.
 
 ### Initialization
-FBT requires that you initialize it with your relevant translations in order to work via the `init` function.  You can see an [example of this in the demo-app](https://github.com/facebookincubator/fbt/blob/98d0516290975f614737387748769e235bf61216/demo-app/src/example/Example.react.js#L16-L17).  If you've split your translation payloads [using the `--output-dir` option to `translate`](https://github.com/facebookincubator/fbt/blob/98d0516290975f614737387748769e235bf61216/packages/babel-plugin-fbt/bin/translate.js#L145-L153), you can still update locales on-the-fly after you've brought your payload in by updating the translation map held by fbt, [similar to the demo-app](https://github.com/facebookincubator/fbt/blob/98d0516290975f614737387748769e235bf61216/packages/babel-plugin-fbt/bin/translate.js#L178), or by calling into `init` with your new translations for your given locale again.
+The `fbt` runtime requires that you initialize with your relevant translations via the `init` function.  You can see an [example of this in the demo-app](https://github.com/facebookincubator/fbt/blob/98d0516290975f614737387748769e235bf61216/demo-app/src/example/Example.react.js#L16-L17).
+
+If you've split your translation payloads using [the `--output-dir` option](https://github.com/facebookincubator/fbt/blob/98d0516290975f614737387748769e235bf61216/packages/babel-plugin-fbt/bin/translate.js#L145-L153) to the [`translate` script](https://github.com/facebookincubator/fbt/blob/master/packages/babel-plugin-fbt/bin/translate.js), you can still update locales on-the-fly after you've brought your payload in by updating the translation map held by `fbt`, [similar to the demo-app](https://github.com/facebookincubator/fbt/blob/98d0516290975f614737387748769e235bf61216/packages/babel-plugin-fbt/bin/translate.js#L178), or by calling into `init` with your new translations for your given locale again.
