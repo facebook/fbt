@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[45],{137:function(s){s.exports=JSON.parse('{"id":"standards","title":"i18n standards","description":"## Locales","source":"@site/../docs/standards.md","permalink":"/fbt/docs/standards","sidebar_label":"On i18n standards","sidebar":"docs","previous":{"title":"Translating","permalink":"/fbt/docs/translating"}}')}}]);
