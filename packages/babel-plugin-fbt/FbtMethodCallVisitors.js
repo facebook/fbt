@@ -248,7 +248,7 @@ const call = function(t, moduleName) {
           optionsExpr,
           ValidPronounOptions,
         );
-        if (getOptionBooleanValue(options, 'human')) {
+        if (getOptionBooleanValue(t, options, 'human', optionsExpr)) {
           pronounArgs.push(
             t.objectExpression([
               t.objectProperty(t.identifier('human'), t.numericLiteral(1)),
