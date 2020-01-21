@@ -35,10 +35,10 @@ const {
   getOptionBooleanValue,
   getRawSource,
   getVariationValue,
-  nest,
   verifyUniqueToken,
 } = require('./FbtUtil');
 const PLURAL_PARAM_TOKEN = 'number';
+const t = require('@babel/types');
 
 /**
  * Variations.
@@ -54,7 +54,7 @@ function setEnumManifest(manifest) {
   enumManifest = manifest;
 }
 
-const call = function(t, moduleName) {
+const call = function(moduleName) {
   function fbtCallExpression(name, args) {
     return t.callExpression(
       t.memberExpression(
@@ -176,8 +176,9 @@ const call = function(t, moduleName) {
         // Keep track of duplicate enums, and only add unique entries to
         // our runtime argument list.  Duplicates will not be added to
         // our table as keys.
-        const rawValue = getRawSource(this.src, node.arguments[0]);
-        const usedVal = nest(this, 'usedEnums')[rawValue];
+        const rawValue = getRawSource(this.fileSource, node.arguments[0]);
+
+        const usedVal = this.usedEnums[rawValue];
         if (!usedVal) {
           this.usedEnums[rawValue] = true;
           runtimeArgs.push(
@@ -248,7 +249,7 @@ const call = function(t, moduleName) {
           optionsExpr,
           ValidPronounOptions,
         );
-        if (getOptionBooleanValue(t, options, 'human', optionsExpr)) {
+        if (getOptionBooleanValue(options, 'human', optionsExpr)) {
           pronounArgs.push(
             t.objectExpression([
               t.objectProperty(t.identifier('human'), t.numericLiteral(1)),

@@ -20,11 +20,11 @@ const {assertModuleName, errorAt} = require('./FbtUtil');
 
 class FbtNodeChecker {
   constructor(moduleName /*: 'fbt' | 'fbs' */) {
-    this._moduleName = assertModuleName(moduleName);
+    this.moduleName = assertModuleName(moduleName);
   }
 
   isNameOfModule(name) {
-    return this._moduleName === FBT
+    return this.moduleName === FBT
       ? FbtNodeChecker.isFbtName(name)
       : FbtNodeChecker.isFbsName(name);
   }
@@ -50,6 +50,7 @@ class FbtNodeChecker {
     );
   }
 
+  // Detects this pattern: `fbt(...)`
   isModuleCall(node) {
     return (
       node.callee.type === 'Identifier' && this.isNameOfModule(node.callee.name)
@@ -63,10 +64,11 @@ class FbtNodeChecker {
   }
 
   isJSModuleBound(path) {
-    const binding = path.context.scope.getBinding(this._moduleName);
+    const binding = path.context.scope.getBinding(this.moduleName);
     return !!(binding && binding.path.node);
   }
 
+  // Detects this pattern: `fbt.c(...)`
   isCommonStringCall(node) {
     return (
       this.isMemberExpression(node.callee) &&
@@ -83,7 +85,7 @@ class FbtNodeChecker {
    * Inside <fbs>, don't allow <fbt:param>.
    */
   assertNoNestedFbts(node) {
-    const moduleName = this._moduleName;
+    const moduleName = this.moduleName;
     node.children.forEach(child => {
       if (fbtChecker.isJSXElement(child) || fbsChecker.isJSXElement(child)) {
         throw errorAt(
@@ -116,9 +118,36 @@ class FbtNodeChecker {
   static isFbsName(name) {
     return name === FBS;
   }
-}
-FbtNodeChecker.COMMON_STRING_METHOD_NAME = 'c';
 
+  static forFbtCommonFunctionCall(path /*: NodePath */) /*: ?this */ {
+    if (fbtChecker.isCommonStringCall(path.node)) {
+      return fbtChecker;
+    } else if (fbsChecker.isCommonStringCall(path.node)) {
+      return fbsChecker;
+    }
+    return null;
+  }
+
+  static forFbtFunctionCall(path /*: NodePath */) /*: ?this */ {
+    if (fbtChecker.isModuleCall(path.node)) {
+      return fbtChecker;
+    } else if (fbsChecker.isModuleCall(path.node)) {
+      return fbsChecker;
+    }
+    return null;
+  }
+
+  static forJSXFbt(path /*: NodePath */) /*: ?this */ {
+    if (fbtChecker.isJSXElement(path.node)) {
+      return fbtChecker;
+    } else if (fbsChecker.isJSXElement(path.node)) {
+      return fbsChecker;
+    }
+    return null;
+  }
+}
+
+FbtNodeChecker.COMMON_STRING_METHOD_NAME = 'c';
 const fbsChecker = new FbtNodeChecker(FBS);
 const fbtChecker = new FbtNodeChecker(FBT);
 

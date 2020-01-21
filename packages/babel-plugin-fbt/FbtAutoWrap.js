@@ -30,6 +30,9 @@ const FbtParamType = {
 /**
  * Given a node that is a child of an <fbt> node and the phrase that the node
  * is within, the implicit node becomes the child of a new <fbt> node.
+ *
+ * WARNING: this method has side-effects because it alters the given `node` object
+ * You shouldn't try to run this multiple times on the same `node`.
  */
 function wrapImplicitFBTParam(moduleName, t, node) {
   const fbtJSXIdentifier = t.JSXIdentifier(moduleName);

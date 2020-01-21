@@ -7,6 +7,7 @@
 
 'use strict';
 
+// Detects `require('...')`
 function isRequireCall(node) {
   return (
     node.type === 'CallExpression' &&
@@ -17,6 +18,7 @@ function isRequireCall(node) {
   );
 }
 
+// Detects `const foo = require('bar')`
 function isRequireAlias(path) {
   const grandParent = path.parentPath.parent;
   const parent = path.parent;

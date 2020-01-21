@@ -10,73 +10,97 @@
  *   js1 upgrade www-shared -p babel_plugin_fbt --local ~/www
  *
  * @emails oncall+internationalization
- * @format
+ * @flow
  */
+/*eslint max-len: ["error", 100]*/
 
 'use strict';
 
-const FbtAutoWrap = require('./FbtAutoWrap');
+/*::
+import typeof BabelTypes from '@babel/types';
+import type {
+  BabelTransformPlugin,
+  NodePathOf,
+} from '@babel/core';
+import type {
+  FbtCallSiteOptions,
+} from './FbtConstants';
+
+export type ExtraBabelNodeProps = {
+  implicitFbt?: boolean,
+  parentIndex?: number,
+};
+export type FbtBabelNodeCallExpression = BabelNodeCallExpression & ExtraBabelNodeProps;
+export type FbtBabelNodeJSXElement = BabelNodeJSXElement & ExtraBabelNodeProps;
+export type FbtBabelNodeShape = $Shape<ExtraBabelNodeProps>;
+export type PluginOptions = {|
+  auxiliaryTexts: boolean,
+  collectFbt: boolean,
+  extraOptions: {[optionName: string]: mixed},
+  fbtBase64: boolean,
+  fbtEnumLoader: string,
+  fbtEnumToPath: {[enumName: string]: string},
+  fbtSentinel: string,
+  filename: string,
+  reactNativeMode: boolean,
+|};
+
+type Phrase = {
+  filepath: string,
+  line_beg: number,
+  col_beg: number,
+  line_end: number,
+  col_end: number,
+};
+
+type ChildToParentMap = {[childIndex: number]: number};
+*/
+
+const FbtCommonFunctionCallProcessor = require('./babel-processors/FbtCommonFunctionCallProcessor');
+const FbtFunctionCallProcessor = require('./babel-processors/FbtFunctionCallProcessor');
+const JSXFbtProcessor = require('./babel-processors/JSXFbtProcessor');
+// const FbtAutoWrap = require('./FbtAutoWrap');
 const FbtCommon = require('./FbtCommon');
 const {
-  FbtBooleanOptions,
-  FbtRequiredAttributes,
-  FbtType,
-  JSModuleName: {FBS, FBT},
-  PLURAL_PARAM_TOKEN,
+  JSModuleName: {FBT},
   ValidFbtOptions,
-  ValidPluralOptions,
-  ValidPronounOptions,
 } = require('./FbtConstants');
 const FbtEnumRegistrar = require('./FbtEnumRegistrar');
 const fbtHashKey = require('./fbtHashKey');
 const FbtMethodCallVisitors = require('./FbtMethodCallVisitors');
-const FbtNodeChecker = require('./FbtNodeChecker');
 const FbtShiftEnums = require('./FbtShiftEnums');
 const {
   checkOption,
-  collectOptions,
-  errorAt,
-  expandStringConcat,
-  extractEnumRange,
-  filterEmptyNodes,
-  getAttributeByName,
-  getAttributeByNameOrThrow,
-  getOptionBooleanValue,
-  getOptionsFromAttributes,
-  getRawSource,
-  normalizeSpaces,
   objMap,
-  validateNamespacedFbtElement,
 } = require('./FbtUtil');
-const getNamespacedArgs = require('./getNamespacedArgs');
-const JSFbtBuilder = require('./JSFbtBuilder');
 const {
   RequireCheck: {isRequireAlias},
 } = require('fb-babel-plugin-utils');
-const fbtChecker = FbtNodeChecker.forModule(FBT);
-const fbsChecker = FbtNodeChecker.forModule(FBS);
 const {parse: parseDocblock} = require('jest-docblock');
 
 /**
  * Default options passed from a docblock.
  */
-let defaultOptions;
+let defaultOptions /*: FbtCallSiteOptions */;
 
 /**
  * An array containing all collected phrases.
  */
-let phrases;
+let phrases/*: Array<Phrase>*/;
 
 /**
  * An array containing the child to parent relationships for implicit nodes.
  */
-let childToParent;
+let childToParent/*: ChildToParentMap*/;
 
-function BabelPluginFbt(babel) {
+function BabelPluginFbt(babel /*: {
+  types: BabelTypes,
+}*/) /*: BabelTransformPlugin<ExtraBabelNodeProps>*/ {
   const t = babel.types;
 
   return {
     pre() {
+      // TODO(T56277508) Type this.opts to match `PluginOptions`
       this.opts.fbtSentinel = this.opts.fbtSentinel || '__FBT__';
       this.opts.fbtBase64 = this.opts.fbtBase64;
 
@@ -94,89 +118,15 @@ function BabelPluginFbt(babel) {
        * Transform jsx-style <fbt> to fbt() calls.
        */
       JSXElement(path) {
-        const {node} = path;
-        const isFbtJSX = fbtChecker.isJSXElement(node);
-        const isFbsJSX = fbsChecker.isJSXElement(node);
+        const root = JSXFbtProcessor.create({
+          babelTypes: t,
+          path,
+        });
 
-        if (!isFbtJSX && !isFbsJSX) {
+        if (!root) {
           return;
         }
-
-        const moduleName = isFbtJSX ? FBT : FBS;
-
-        FbtNodeChecker.forModule(moduleName).assertNoNestedFbts(node);
-
-        if (!node.implicitFbt) {
-          FbtAutoWrap.createImplicitDescriptions(moduleName, node);
-        }
-
-        giveParentPhraseLocation(node, phrases.length);
-
-        const children = filterEmptyNodes(node.children).map(
-          transformNamespacedFbtElement.bind(null, moduleName),
-        );
-
-        const text =
-          children.length > 1
-            ? createConcatFromExpressions(children)
-            : children[0];
-
-        const common = getCommonAttributeValue(moduleName, path.node);
-        let desc;
-        if (common && common.value) {
-          const textValue = normalizeSpaces(
-            expandStringConcat(moduleName, t, text).value.trim(),
-          );
-          const descValue = FbtCommon.getDesc(textValue);
-          if (!descValue) {
-            throw errorAt(
-              path.node,
-              getUnknownCommonStringErrorMessage(moduleName, textValue),
-            );
-          }
-          if (getAttributeByName(path.node.openingElement.attributes, 'desc')) {
-            throw errorAt(
-              path.node,
-              `<${moduleName} common={true}> must not have "desc" attribute`,
-            );
-          }
-          desc = t.stringLiteral(descValue);
-        } else {
-          desc = getDescAttributeValue(moduleName, path.node);
-        }
-
-        const args = [text, desc];
-
-        // Optional attributes to be passed as options.
-        var attrs = node.openingElement.attributes;
-        if (attrs.length > 1) {
-          args.push(
-            getOptionsFromAttributes(
-              t,
-              attrs,
-              ValidFbtOptions,
-              FbtRequiredAttributes,
-            ),
-          );
-        }
-
-        let callNode = t.callExpression(t.identifier(moduleName), args);
-
-        callNode.loc = node.loc;
-        if (node.parentIndex !== undefined) {
-          callNode.parentIndex = node.parentIndex;
-        }
-
-        if (t.isJSXElement(path.parent)) {
-          callNode = t.jsxExpressionContainer(callNode);
-
-          callNode.loc = node.loc;
-          if (node.parentIndex !== undefined) {
-            callNode.parentIndex = node.parentIndex;
-          }
-        }
-
-        path.replaceWith(callNode);
+        path.replaceWith(root.convertToFbtFunctionCallNode(phrases.length));
       },
 
       /**
@@ -196,129 +146,48 @@ function BabelPluginFbt(babel) {
       CallExpression(path) {
         const {node} = path;
         const visitor = this;
-        const fileCode = visitor.file.code;
+        const fileSource = visitor.file.code;
         const pluginOptions = visitor.opts;
-        const moduleName =
-          fbsChecker.isModuleCall(node) || fbsChecker.isCommonStringCall(node)
-            ? FBS
-            : FBT;
-        const checker = FbtNodeChecker.forModule(moduleName);
 
-        if (checker.isCommonStringCall(node)) {
-          processFbtCommonCall(moduleName, path);
+        let root = FbtCommonFunctionCallProcessor.create({
+          babelTypes: t,
+          path,
+        });
+
+        if (root) {
+          path.replaceWith(root.convertToNormalCall());
           return;
         }
 
-        if (!checker.isModuleCall(node)) {
-          if (isRequireAlias(path.parentPath)) {
-            const modulePath = node.arguments[0].value;
-            const alias = path.parentPath.node.id.name;
-            FbtEnumRegistrar.setModuleAlias(alias, modulePath);
-          }
+        if (isRequireAlias(path.parentPath)) {
+          FbtEnumRegistrar.registerIfApplicable(path);
           return;
         }
 
-        if (!checker.isJSModuleBound(path)) {
-          throw errorAt(
-            path.node,
-            `${moduleName} is not bound. Did you forget to require('${moduleName}')?`,
-          );
+        if (root) {
+          root.registerFbtEnumIfApplicable();
+          return;
         }
 
-        if (node.arguments.length < 2) {
-          throw errorAt(
-            node,
-            `Expected ${moduleName} calls to have at least two arguments. ` +
-              `Only ${node.arguments.length} was given.`,
-          );
+        root = FbtFunctionCallProcessor.create({
+          babelTypes: t,
+          defaultFbtOptions: defaultOptions,
+          fileSource,
+          path,
+          pluginOptions,
+        });
+
+        if (!root) {
+          return;
         }
 
-        // Contains params and enums in the order in which they appear.
-        const runtimeArgs = [];
-        const variations = {};
-
-        const methodsState = {
-          paramSet: {},
-          runtimeArgs,
-          variations,
-          hasTable: false, // can be mutated during `FbtMethodCallVisitors`.
-          src: fileCode,
-        };
-
-        path.traverse(FbtMethodCallVisitors.call(t, moduleName), methodsState);
-
-        let texts;
-        const optionsNode = node.arguments[2];
-        const options = collectOptions(
-          moduleName,
-          t,
-          optionsNode,
-          ValidFbtOptions,
-        );
-
-        if (options.subject) {
-          methodsState.hasTable = true;
-        }
-        const isTable =
-          Object.keys(variations).length > 0 || methodsState.hasTable;
-
-        for (const key in FbtBooleanOptions) {
-          if (options.hasOwnProperty(key)) {
-            options[key] = getOptionBooleanValue(t, options, key, optionsNode);
-          }
-        }
-
-        if (isTable) {
-          texts = normalizeTableTexts(
-            extractTableTexts(
-              moduleName,
-              fileCode,
-              node.arguments[0],
-              variations,
-            ),
-          );
-        } else {
-          texts = [
-            normalizeSpaces(
-              expandStringConcat(moduleName, t, node.arguments[0]).value,
-              options,
-            ).trim(),
-          ];
-        }
-
-        const desc = normalizeSpaces(
-          expandStringConcat(moduleName, t, node.arguments[1]).value,
-          options,
-        ).trim();
-
-        const phrase = {
-          type: isTable ? FbtType.TABLE : FbtType.TEXT,
-          desc: desc,
-        };
-
-        if (options.subject) {
-          texts.unshift({
-            type: 'subject',
-          });
-
-          runtimeArgs.unshift(
-            t.callExpression(
-              t.memberExpression(
-                t.identifier(moduleName),
-                t.identifier('_subject'),
-                false,
-              ),
-              [getOptionAST(node.arguments[2], 'subject')],
-            ),
-          );
-        }
-
-        appendOptions(phrase, options);
-        phrase.jsfbt = JSFbtBuilder.build(
-          phrase.type,
+        const {
+          callNode,
+          phrase,
           texts,
-          pluginOptions.reactNativeMode,
-        );
+        } = root.convertToFbtRuntimeCall();
+
+        path.replaceWith(callNode);
 
         if (pluginOptions.collectFbt && !phrase.doNotExtract) {
           if (pluginOptions.auxiliaryTexts) {
@@ -331,250 +200,15 @@ function BabelPluginFbt(babel) {
             addEnclosingString(phrases.length - 1, node.parentIndex);
           }
         }
-
-        const argsOutput = JSON.stringify({
-          type: phrase.type,
-          jsfbt: phrase.jsfbt,
-          desc: phrase.desc,
-          project: phrase.project,
-        });
-        const encodedOutput = pluginOptions.fbtBase64
-          ? Buffer.from(argsOutput).toString('base64')
-          : argsOutput;
-        const args = [
-          t.stringLiteral(
-            pluginOptions.fbtSentinel +
-              encodedOutput +
-              pluginOptions.fbtSentinel,
-          ),
-        ];
-
-        if (runtimeArgs.length > 0) {
-          args.push(t.arrayExpression(runtimeArgs));
-        }
-
-        path.replaceWith(
-          t.callExpression(
-            t.memberExpression(t.identifier(moduleName), t.identifier('_')),
-            args,
-          ),
-        );
-      },
-    },
-  };
-
-  /**
-   * Transform a namespaced fbt JSXElement (or its React equivalent) into a
-   * method call. E.g. `<fbt:param>` or <FbtParam> to `fbt.param()`
-   */
-  function transformNamespacedFbtElement(moduleName, node) {
-    switch (node.type) {
-      case 'JSXElement':
-        return toFbtNamespacedCall(moduleName, node);
-      case 'JSXText':
-        return t.stringLiteral(normalizeSpaces(node.value));
-      case 'JSXExpressionContainer':
-        return t.stringLiteral(
-          normalizeSpaces(
-            expandStringConcat(moduleName, t, node.expression).value,
-          ),
-        );
-      default:
-        throw errorAt(node, `Unknown namespace fbt type ${node.type}`);
-    }
-  }
-
-  function toFbtNamespacedCall(moduleName, node) {
-    let name = validateNamespacedFbtElement(
-      moduleName,
-      node.openingElement.name,
-    );
-    const args = getNamespacedArgs(moduleName, t)[name](node);
-    if (name == 'implicitParamMarker') {
-      name = 'param';
-    }
-    return t.callExpression(
-      t.memberExpression(t.identifier(moduleName), t.identifier(name), false),
-      args,
-    );
-  }
-
-  /**
-   * Extracts texts that contains variations or enums, contatenating
-   * literal parts. Example:
-   *
-   * "Hello, " + fbt.param('user', user, {gender: 'male'}) + "! " +
-   * "Your score is " + fbt.param('score', score) + "!"
-   *
-   * ["Hello, ", {type: 'gender', token: 'user'}, "! Your score is {score}!"]
-   */
-  function extractTableTexts(moduleName, src, node, variations, texts) {
-    texts || (texts = []);
-    if (node.type === 'BinaryExpression') {
-      if (node.operator !== '+') {
-        throw errorAt(
-          node,
-          `Expected concatenation operator (+) but got ${node.operator}`,
-        );
-      }
-      extractTableTexts(moduleName, src, node.left, variations, texts);
-      extractTableTexts(moduleName, src, node.right, variations, texts);
-    } else if (node.type === 'TemplateLiteral') {
-      let index = 0;
-      for (const elem of node.quasis) {
-        if (elem.value.cooked) {
-          extractTableTexts(
-            moduleName,
-            src,
-            t.stringLiteral(elem.value.cooked),
-            variations,
-            texts,
-          );
-        }
-        if (index < node.expressions.length) {
-          const expr = node.expressions[index++];
-          extractTableTexts(moduleName, src, expr, variations, texts);
-        }
-      }
-    } else if (node.type === 'StringLiteral') {
-      // If we already collected a literal part previously, and
-      // current part is a literal as well, just concatenate them.
-      const previousText = texts[texts.length - 1];
-      if (typeof previousText === 'string') {
-        texts[texts.length - 1] = normalizeSpaces(previousText + node.value);
-      } else {
-        texts.push(node.value);
-      }
-    } else if (node.type === 'CallExpression') {
-      const callee = node.callee.property;
-      switch (callee.name || callee.value) {
-        case 'param':
-          texts.push(variations[node.arguments[0].value]);
-          break;
-        case 'enum':
-          texts.push({
-            type: 'enum',
-            range: extractEnumRange(node.arguments[1]),
-            value: getRawSource(src, node.arguments[0]),
-          });
-          break;
-        case 'plural':
-          const singular = node.arguments[0].value;
-          const opts = collectOptions(
-            moduleName,
-            t,
-            node.arguments[2],
-            ValidPluralOptions,
-          );
-          const defaultToken =
-            opts.showCount && opts.showCount !== 'no'
-              ? PLURAL_PARAM_TOKEN
-              : null;
-          if (opts.showCount === 'ifMany' && !opts.many) {
-            throw errorAt(
-              node,
-              "The 'many' attribute must be set explicitly if showing count only " +
-                " on 'ifMany', since the singular form presumably starts with an article",
-            );
-          }
-          const data = {
-            type: 'plural',
-            showCount: 'no',
-            name: defaultToken,
-            singular: singular,
-            value: getRawSource(src, node.arguments[1]),
-            many: singular + 's',
-            ...opts,
-          };
-          if (data.showCount !== 'no') {
-            if (data.showCount === 'yes') {
-              data.singular = '1 ' + data.singular;
-            }
-            data.many = '{' + data.name + '} ' + data.many;
-          }
-          texts.push(data);
-          break;
-        case 'pronoun':
-          // Usage: fbt.pronoun(usage, gender [, options])
-          const optionsNode = node.arguments[2];
-          const options = collectOptions(
-            moduleName,
-            t,
-            node.arguments[2],
-            ValidPronounOptions,
-          );
-          for (const key of Object.keys(options)) {
-            options[key] = getOptionBooleanValue(t, options, key, optionsNode);
-          }
-          texts.push({
-            type: 'pronoun',
-            usage: node.arguments[0].value,
-            gender: getRawSource(src, node.arguments[1]),
-            ...options,
-          });
-          break;
-        case 'name':
-          texts.push(variations[node.arguments[0].value]);
-          break;
-      }
-    }
-
-    return texts;
-  }
-
-  /**
-   * Given an array of nodes, recursively construct a concatenation of all
-   * these nodes.
-   */
-  function createConcatFromExpressions(nodes) {
-    if (nodes.length === 0) {
-      throw new Error(`Cannot create an expression without nodes.`);
-    }
-    return nodes.reduceRight(function(rest, node) {
-      return t.binaryExpression('+', node, rest);
-    });
-  }
-
-  /**
-   * fbt.c(text) --> fbt(text, desc)
-   */
-  function processFbtCommonCall(moduleName, path) {
-    if (path.node.arguments.length !== 1) {
-      throw errorAt(
-        path.node,
-        `Expected ${moduleName}.c to have exactly 1 argument. ${path.node.arguments.length} was given.`,
-      );
-    }
-
-    const text = normalizeSpaces(
-      expandStringConcat(moduleName, t, path.node.arguments[0]).value,
-    ).trim();
-
-    const desc = FbtCommon.getDesc(text);
-    if (!desc) {
-      throw errorAt(
-        path.node,
-        getUnknownCommonStringErrorMessage(moduleName, text),
-      );
-    }
-
-    const callNode = t.callExpression(t.identifier(moduleName), [
-      t.stringLiteral(text),
-      t.stringLiteral(desc),
-    ]);
-
-    callNode.loc = path.node.loc;
-    path.replaceWith(callNode);
-  }
+      }, // CallExpression
+    }, // visitor
+  }; // babel plugin return
 }
 
-BabelPluginFbt.getExtractedStrings = function() {
-  return phrases;
-};
+BabelPluginFbt.getExtractedStrings = () /*: Array<Phrase>*/ => phrases;
 
-BabelPluginFbt.getChildToParentRelationships = function() {
-  return childToParent || {};
-};
+BabelPluginFbt.getChildToParentRelationships = () /*: ChildToParentMap*/ =>
+  childToParent || {};
 
 function initExtraOptions(state) {
   Object.assign(ValidFbtOptions, state.opts.extraOptions || {});
@@ -594,102 +228,16 @@ function initDefaultOptions(state) {
   }
 }
 
-function getDescAttributeValue(moduleName, node) {
-  const descAttr = getAttributeByNameOrThrow(
-    node.openingElement.attributes,
-    'desc',
-  );
-  if (!descAttr) {
-    throw new Error(`<${moduleName}> requires a "desc" attribute`);
-  }
-  if (descAttr.value.type === 'JSXExpressionContainer') {
-    return descAttr.value.expression;
-  }
-  return descAttr.value;
-}
-
-function getCommonAttributeValue(moduleName, node) {
-  const commonAttr = getAttributeByName(
-    node.openingElement.attributes,
-    'common',
-  );
-  if (!commonAttr) {
-    return null;
-  }
-  if (commonAttr.value.type === 'JSXExpressionContainer') {
-    const expression = commonAttr.value.expression;
-    if (expression.type === 'BooleanLiteral') {
-      return expression;
-    }
-  }
-
-  throw new Error(
-    `\`common\` attribute for <${moduleName}> requires boolean literal`,
-  );
-}
-
-/**
- * Appends additional options to the main
- * fbt call argument.
- */
-function appendOptions(fbtArg, options) {
-  Object.assign(fbtArg, defaultOptions, options);
-}
-
-/**
- * Returns the AST node associated with the key provided, or null if it doesn't exist.
- */
-function getOptionAST(options, name) {
-  const props = (options && options.properties) || [];
-  for (var ii = 0; ii < props.length; ii++) {
-    const option = props[ii];
-    const curName = option.key.name || option.key.value;
-    if (name === curName) {
-      return option.value.expression || option.value;
-    }
-  }
-  return null;
-}
-
-/**
- * Normalizes first and last elements in the
- * table texts by triming them left and right accordingly.
- * [" Hello, ", {enum}, " world! "] -> ["Hello, ", {enum}, " world!"]
- */
-function normalizeTableTexts(texts) {
-  const firstText = texts[0];
-  if (firstText && typeof firstText === 'string') {
-    texts[0] = firstText.trimLeft();
-  }
-  const lastText = texts[texts.length - 1];
-  if (lastText && typeof lastText === 'string') {
-    texts[texts.length - 1] = lastText.trimRight();
-  }
-  return texts;
-}
-
-/** Given a node, and its index location in phrases, any children of the given
- * node that are implicit are given their parent's location. This can then
- * be used to link the inner strings with their enclosing string.
- */
-function giveParentPhraseLocation(parentNode, parentIdx) {
-  if (!parentNode.children) {
-    return;
-  }
-  for (let ii = 0; ii < parentNode.children.length; ++ii) {
-    const child = parentNode.children[ii];
-    if (child.implicitDesc) {
-      child.parentIndex = parentIdx;
-    }
-  }
-}
-
 function addPhrase(node, phrase, state) {
   phrases.push({
     filepath: state.opts.filename,
+    // $FlowFixMe `start` property might be null
     line_beg: node.loc.start.line,
+    // $FlowFixMe `start` property might be null
     col_beg: node.loc.start.column,
+    // $FlowFixMe `end` property might be null
     line_end: node.loc.end.line,
+    // $FlowFixMe `end` property might be null
     col_end: node.loc.end.column,
     ...phrase,
   });
@@ -708,9 +256,13 @@ function getEnumManifest(opts) {
   if (fbtEnumManifest != null) {
     return fbtEnumManifest;
   } else if (fbtEnumPath != null) {
+    // $FlowExpectedError node.js require() needs to be dynamic
     return require(fbtEnumPath);
   } else if (fbtEnumToPath != null) {
-    const loadEnum = opts.fbtEnumLoader ? require(opts.fbtEnumLoader) : require;
+    const loadEnum = opts.fbtEnumLoader
+      ? // $FlowExpectedError node.js require() needs to be dynamic
+        require(opts.fbtEnumLoader)
+      : require;
     return objMap(opts.fbtEnumToPath, loadEnum);
   }
   return null;

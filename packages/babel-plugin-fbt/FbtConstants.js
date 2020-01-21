@@ -16,8 +16,31 @@
  *   js1 upgrade www-shared -p babel_plugin_fbt --local ~/www
  *
  * @emails oncall+internationalization
- * @format
+ * @flow strict
  */
+
+/*::
+export type FbtOptionValue = string | boolean | BabelNode;
+// export type FbtCallSiteOptions = {[$Keys<typeof ValidFbtOptions>]: ?FbtOptionValue};
+export type FbtCallSiteOptions = $Shape<{|
+   author?: ?FbtOptionValue;
+   // TODO(T56277500) Refine to expected type: string
+   common?: ?FbtOptionValue;
+   // TODO(T56277500) Refine to expected type: boolean
+   doNotExtract?: ?FbtOptionValue;
+   // TODO(T56277500) Refine to expected type: boolean
+   preserveWhitespace?: ?FbtOptionValue;
+   // TODO(T56277500) Refine to expected type: string
+   project?: ?FbtOptionValue;
+   // TODO(T56277500) Refine to expected type: BabelNode
+   subject?: ?FbtOptionValue;
+|}>;
+
+// JS module names without the "React FBT" variant
+export type JSModuleNameType = 'fbt' | 'fbs';
+export type ValidPronounUsagesKey = $Keys<typeof ValidPronounUsages>;
+export type ShowCountKey = $Keys<typeof ShowCount>;
+*/
 
 const ValidPronounUsages = {
   object: 0,
@@ -43,11 +66,10 @@ const PluralOptions = {
   many: true,
 };
 
-const ValidPluralOptions = Object.assign(
-  {},
-  PluralOptions,
-  PluralRequiredAttributes,
-);
+const ValidPluralOptions = {
+  ...PluralOptions,
+  ...PluralRequiredAttributes,
+};
 
 const ValidPronounOptions = {
   human: {true: true, false: true},
@@ -71,6 +93,8 @@ const FbtBooleanOptions = {
   doNotExtract: true,
 };
 
+const FbtCallMustHaveAtLeastOneOfTheseAttributes = ['desc', 'common'];
+
 const FbtRequiredAttributes = {
   desc: true,
 };
@@ -86,13 +110,11 @@ const RequiredParamOptions = {
   name: true,
 };
 
-const ValidParamOptions = Object.assign(
-  {
-    number: true,
-    gender: true,
-  },
-  RequiredParamOptions,
-);
+const ValidParamOptions = {
+  number: true,
+  gender: true,
+  ...RequiredParamOptions,
+};
 
 const FbtType = {
   TABLE: 'table',
@@ -106,7 +128,7 @@ const JSModuleName = {
 };
 
 // Used to help detect the usage of the JS fbt/fbs API inside a JS file
-const ModuleNameRegExp = new RegExp(
+const ModuleNameRegExp /*: RegExp */ = new RegExp(
   `\\b(?:${Object.values(JSModuleName).join('|')})\\b`,
 );
 
@@ -115,6 +137,7 @@ const FBT_ENUM_MODULE_SUFFIX = '$FbtEnum';
 module.exports = {
   FBT_ENUM_MODULE_SUFFIX,
   FbtBooleanOptions,
+  FbtCallMustHaveAtLeastOneOfTheseAttributes,
   FbtRequiredAttributes,
   FbtType,
   JSModuleName,

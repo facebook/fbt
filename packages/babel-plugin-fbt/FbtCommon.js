@@ -6,9 +6,10 @@
 
 'use strict';
 
-// flowlint ambiguous-object-type:error 
+// flowlint ambiguous-object-type:error
 
 /*::
+import type {JSModuleNameType} from './FbtConstants';
 type FbtCommonMap = { [text: string]: string, ... };
 */
 
@@ -30,6 +31,13 @@ const FbtCommon = {
   getDesc(text /*: string */) /*: ?string */ {
     return textToDesc[text];
   },
+
+  getUnknownCommonStringErrorMessage(
+    moduleName /*: JSModuleNameType */,
+    text /*: string */
+  ) /*: string */ {
+    return `Unknown string "${text}" for <${moduleName} common={true}>`;
+  }
 };
 
 module.exports = FbtCommon;

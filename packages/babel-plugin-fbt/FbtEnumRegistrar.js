@@ -10,10 +10,16 @@
  *   js1 upgrade www-shared -p babel_plugin_fbt --local ~/www
  *
  * @emails oncall+internationalization
- * @format
+ * @flow
  */
 
 'use strict';
+
+/*::
+import type {FbtBabelNodeCallExpression} from './index.js';
+import type {NodePathOf} from '@babel/core';
+type NodePath = NodePathOf<FbtBabelNodeCallExpression>;
+*/
 
 const {FBT_ENUM_MODULE_SUFFIX} = require('./FbtConstants');
 const path = require('path');
@@ -38,6 +44,22 @@ const FbtEnumRegistrar = {
    */
   getModuleName(name /*: string */) /*: ?string */ {
     return fbtEnumMapping[name];
+  },
+
+  /**
+   * Processes a `require(...)` call and registers the fbt enum if applicable.
+   * @param path Babel path of a `require(...)` call expression
+   */
+  registerIfApplicable(path /*: NodePath */) /*: void */ {
+    const {node} = path;
+    const firstArgument = node.arguments[0];
+    if (firstArgument.type !== 'StringLiteral') {
+      return;
+    }
+    const modulePath = firstArgument.value;
+    // $FlowFixMe Need to check that parent path exists and that the node is correct
+    const alias = (path.parentPath.node.id.name /*: string */);
+    this.setModuleAlias(alias, modulePath);
   },
 };
 

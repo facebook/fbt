@@ -667,35 +667,35 @@ describe('Equality between auto-wrapped and manually wrapped params', () => {
       transform(
         withFbtRequireStatement(
           `<fbt desc="d">
-              <div>
-                this is a test
-                <fbt:param name="to make sure that explicit params under an implicit node">
-                  <link>
-                    <fbt desc="d2">
-                      to make sure that explicit tags
-                      <b>under an implicit node</b>
-                    </fbt>
-                  </link>
-                </fbt:param>
-                <fbt:param name="and ones that are next to each other">
-                  <link>
-                    <fbt desc="d3">
-                      and ones that are next
-                      <b>to each other</b>
-                    </fbt>
-                  </link>
-                </fbt:param>
-                under an implicit tag are wrapped with [ ]
-              </div>
-              <fbt:param name="but free standing ones are not">
+            <div>
+              this is a test
+              <fbt:param name="to make sure that explicit params under an implicit node">
                 <link>
-                  <fbt desc="d3">
-                    but free standing ones
-                    <b>are not</b>
+                  <fbt desc="d2">
+                    to make sure that explicit tags
+                    <b>under an implicit node</b>
                   </fbt>
                 </link>
               </fbt:param>
-            </fbt>;`,
+              <fbt:param name="and ones that are next to each other">
+                <link>
+                  <fbt desc="d3">
+                    and ones that are next
+                    <b>to each other</b>
+                  </fbt>
+                </link>
+              </fbt:param>
+              under an implicit tag are wrapped with [ ]
+            </div>
+            <fbt:param name="but free standing ones are not">
+              <link>
+                <fbt desc="d3">
+                  but free standing ones
+                  <b>are not</b>
+                </fbt>
+              </link>
+            </fbt:param>
+          </fbt>;`,
         ),
       ),
     ).toEqual(
