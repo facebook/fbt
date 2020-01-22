@@ -9,7 +9,10 @@
 
 module.exports = {
   docs: {
-    "Getting started": ["getting_started"],
+    "Getting started": [
+      "getting_started",
+      "getting_started_react_native_android"
+    ],
     API: [
       "api_intro",
       "params",
