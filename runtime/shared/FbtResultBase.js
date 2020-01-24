@@ -16,8 +16,6 @@
 
 'use strict';
 
-const invariant = require('invariant');
-
 class FbtResultBase implements IFbtResultBase {
   _contents: $NestedFbtContentItems;
   _stringValue: ?string;
