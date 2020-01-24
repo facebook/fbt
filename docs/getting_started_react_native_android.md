@@ -11,27 +11,28 @@ Check out our [Android Native Module](https://www.npmjs.com/package/fbt-rn-andro
 ## Adding FBT to an Android specific React Native App
 
 * Add all dependencies
-    * `yarn add babel-preset-react-native shelljs fbt babel-plugin-fbt babel-plugin-fbt-runtime @babel/node fb-tiger-hash fbt-rn-android-native --dev`
+  * `yarn add babel-preset-react-native shelljs fbt babel-plugin-fbt babel-plugin-fbt-runtime @babel/node fb-tiger-hash fbt-rn-android-native --dev`
 
-    * Make sure your fbt has a version greater than `"^0.10.0"`
+  * Make sure your fbt has a version greater than `"^0.10.0"`
 
 * Create a .babelrc or babel.config.js file to add the transformation plugins with the following content:
-
-`{`
-`"plugins": ["babel-plugin-fbt", "babel-plugin-fbt-runtime"],`
-`"presets": ["module:metro-react-native-babel-preset"]`
-`}`
+```
+  {
+   "plugins": ["babel-plugin-fbt", "babel-plugin-fbt-runtime"],
+   "presets": ["module:metro-react-native-babel-preset"]
+  }
+```
 
 * Update your Android main activity so that the app reloads whenever the user changes the locale
-    * You can find an example in the [rn-demo-app](https://github.com/facebookincubator/fbt/blob/rn-demo-app/android/app/src/main/java/com/fbtrndemoapp/MainActivity.java#L39)
+  * You can find an example in the [rn-demo-app](https://github.com/facebookincubator/fbt/blob/rn-demo-app/android/app/src/main/java/com/fbtrndemoapp/MainActivity.java#L39)
 * Add "locale|layoutDirection" in android:configChanges in the AndroidManifest.xml. This will restart the app whenever the language of the device changes and will load the correct translations.
-    * android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|layoutDirection|locale"
+  * android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|layoutDirection|locale"
 * Copy the files in the [i18n folder](https://github.com/facebookincubator/fbt/tree/rn-demo-app/i18n) of the demo app. Find an explanation of each file below:
 
-    * Create a JS wrapper around the native module
-        * rn-demo-app: [FbtI18nNativeAssets](https://github.com/facebookincubator/fbt/blob/rn-demo-app/i18n/FbtI18nNativeAssets.js)
-        * The Android native module `fbt-rn-android-native` is used to read translations from android resources
-            * This module reads translations from android/raw-xx-rXX/localizable.json files with the following structure:
+  * Create a JS wrapper around the native module
+     * rn-demo-app: [FbtI18nNativeAssets](https://github.com/facebookincubator/fbt/blob/rn-demo-app/i18n/FbtI18nNativeAssets.js)
+     * The Android native module `fbt-rn-android-native` is used to read translations from android resources
+       * This module reads translations from android/raw-xx-rXX/localizable.json files with the following structure:
 `{
 "2keTtB": "\"Escanear código QR\"",
 "24DJ19": "\"Subir\"",
@@ -40,7 +41,7 @@ Check out our [Android Native Module](https://www.npmjs.com/package/fbt-rn-andro
             * More info here: https://www.npmjs.com/package/fbt-rn-android-native
 
     * Create your custom payload getter to inject in FBT
-        * rn-demo-app: [CustomTrasnlationPayloadGetter](https://github.com/facebookincubator/fbt/blob/rn-demo-app/i18n/CustomTranslationPayloadGetter.js)
+        * rn-demo-app: [CustomTranslationPayloadGetter](https://github.com/facebookincubator/fbt/blob/rn-demo-app/i18n/CustomTranslationPayloadGetter.js)
 
     * Create an fbtInit component to inject the CustomPayloadGetter before we execute any JS code. This is needed if you have any strings that need to be statically available in the app.
         * rn-demo-app: [fbtInit](https://github.com/facebookincubator/fbt/blob/rn-demo-app/i18n/fbtInit.js)
@@ -51,14 +52,21 @@ Check out our [Android Native Module](https://www.npmjs.com/package/fbt-rn-andro
 
 * Add the fbt scripts to your package.json file:
     * Add the `manifest` script call in package.json. This script looks for all the files that import fbt and creates the input for the collectFBT script below.
-        * ``"`manifest`"```: ```"`babel-node ./node_modules/babel-plugin-fbt/bin/manifest --src src/ --enum-manifest i18n/fbt/.enum_manifest.json --src-manifest i18n/fbt/.src_manifest.json`"``
-    * Add the `collectFBT` script call in package.json. This script collects all fbt-wrapped strings into a file for you to translate.
-        * ``"`collect-fbts`"```: ```"`babel-node ./node_modules/babel-plugin-fbt/bin/collectFBT --hash-module 'fb-tiger-hash/hashPhrases' --react-native-mode --manifest < i18n/fbt/.src_manifest.json > i18n/fbt/.source_strings.json`"``
-    * Add the `translate` script call in package.json. This script should be used after all strings are translated. It’ll generate a single file with all translations that we then need to translate into Android specific localizable.json files. See the input format [here](https://github.com/facebookincubator/fbt/tree/rn-demo-app/i18n/fbt/translationScriptInput).
-        * ``"`translate-fbts`"```: ```"`babel-node ./node_modules/babel-plugin-fbt/bin/translate.js --jenkins --source-strings i18n/fbt/.source_strings.json --translations i18n/fbt/translationScriptInput/*.json > i18n/fbt/translatedFbts.json`"``
-* Generate localizable.json files for each language and add them to the corresponding `res/[raw-xx-rXX](https://github.com/facebookincubator/fbt/tree/rn-demo-app/android/app/src/main/res/raw-es-rES)` folder (xx is the ISO 2 Letter Language Codes)
-    * You can find a helper script in the rn-demo-app: [generate-android-localizable.js](https://github.com/facebookincubator/fbt/blob/rn-demo-app/i18n/scripts/generate-android-localizables.js)
-    * The script takes in the translation script output and generates localizable.json files in the "android/res" folder. See it in the [rn-demo-app](https://github.com/facebookincubator/fbt/tree/rn-demo-app/android/app/src/main/res/raw-es-rES)
+```
+  "manifest": "babel-node ./node_modules/babel-plugin-fbt/bin/manifest --src src/ --enum-manifest i18n/fbt/.enum_manifest.json --src-manifest i18n/fbt/.src_manifest.json"
+```
+   * Add the `collectFBT` script call in package.json. This script collects all fbt-wrapped strings into a file for you to translate.
+```
+  "collect-fbts": "babel-node ./node_modules/babel-plugin-fbt/bin/collectFBT --hash-module 'fb-tiger-hash/hashPhrases' --react-native-mode --manifest < i18n/fbt/.src_manifest.json > i18n/fbt/.source_strings.json"
+```
+   * Add the `translate` script call in package.json. This script should be used after all strings are translated. It’ll generate a single file with all translations that we then need to translate into Android specific localizable.json files. See the input format [here](https://github.com/facebookincubator/fbt/tree/rn-demo-app/i18n/fbt/translationScriptInput).
+```   
+  "translate-fbts": "babel-node ./node_modules/babel-plugin-fbt/bin/translate.js --jenkins --source-strings i18n/fbt/.source_strings.json --translations i18n/fbt/translationScriptInput/*.json > i18n/fbt/translatedFbts.json"
+```
+
+- Generate localizable.json files for each language and add them to the corresponding `res/[raw-xx-rXX](https://github.com/facebookincubator/fbt/tree/rn-demo-app/android/app/src/main/res/raw-es-rES)` folder (xx is the ISO 2 Letter Language Codes)
+  * You can find a helper script in the rn-demo-app: [generate-android-localizable.js](https://github.com/facebookincubator/fbt/blob/rn-demo-app/i18n/scripts/generate-android-localizables.js)
+  * The script takes in the translation script output and generates localizable.json files in the "android/res" folder. See it in the [rn-demo-app](https://github.com/facebookincubator/fbt/tree/rn-demo-app/android/app/src/main/res/raw-es-rES)
 
 ## **Notes**
 
