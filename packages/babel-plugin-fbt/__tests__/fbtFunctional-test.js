@@ -68,7 +68,11 @@ const generalTestData = {
 
   'should maintain newlines': {
     input: withFbtRequireStatement(
-      `var x = fbt('A simple string... ' + 'with some other stuff.', 'blah');
+      `var x = fbt(
+        'A simple string... ' +
+        'with some other stuff.',
+        'blah'
+      );
       baz();`,
     ),
 

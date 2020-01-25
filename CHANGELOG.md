@@ -71,6 +71,7 @@ We haven't had the best track record of code/feature changes before this date, b
     <summary>
      Unreleased changes that have landed in master. Click to see more.
     </summary>
+    - [fix] Fix incorrect test input in `fbtFunctional-test.js`
     - [refactor] Split up the monolithic fbt transform logic into separate modules.
   </details>
 

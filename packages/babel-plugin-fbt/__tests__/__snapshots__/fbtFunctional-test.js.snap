@@ -666,12 +666,12 @@ exports[`Functional FBT API using string-concatenated arguments: Meta-data colle
 Array [
   Object {
     "col_beg": 10,
-    "col_end": 71,
+    "col_end": 7,
     "desc": "blah",
     "filepath": undefined,
     "jsfbt": "A simple string... with some other stuff.",
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 6,
     "project": "",
     "type": "text",
   },
@@ -1296,12 +1296,12 @@ exports[`Functional FBT API using string-concatenated arguments: Meta-data colle
 Array [
   Object {
     "col_beg": 10,
-    "col_end": 71,
+    "col_end": 7,
     "desc": "blah",
     "filepath": undefined,
     "jsfbt": "A simple string... with some other stuff.",
     "line_beg": 2,
-    "line_end": 2,
+    "line_end": 6,
     "project": "",
     "type": "text",
   },
