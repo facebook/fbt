@@ -54,17 +54,18 @@
     "shelljs": "^0.8.3"
   },
   "scripts": {
-    "build-runtime": "gulp lib",
-    "clean": "gulp clean",
-    "postinstall": "yarn build-runtime",
-    "demo-app:test": "yarn jest demo-app",
-    "fb-tiger-hash:test": "yarn jest fb-tiger-hash && cd packages/fb-tiger-hash && yarn test-types",
     "babel-plugin-fbt-runtime:test": "yarn jest packages/babel-plugin-fbt-runtime",
     "babel-plugin-fbt:test": "yarn jest packages/babel-plugin-fbt",
+    "build-runtime": "gulp lib",
+    "clean-test": "yarn install && cd demo-app && yarn clean-build && cd .. && yarn test && yarn flow:check",
+    "clean": "gulp clean",
+    "demo-app:test": "yarn jest demo-app",
+    "fb-tiger-hash:test": "yarn jest fb-tiger-hash && cd packages/fb-tiger-hash && yarn test-types",
     "flow:check": "flow check --show-all-errors",
     "flow:watch": "yarn run watch 'yarn flow stop && yarn flow check --show-all-errors 2>&1 | tee .flow-results' . --ignoreDotFiles",
-    "test": "yarn jest",
-    "test:watch": "yarn jest --watch"
+    "postinstall": "yarn build-runtime",
+    "test:watch": "yarn jest --watch",
+    "test": "yarn jest"
   },
   "workspaces": [
     "demo-app",
