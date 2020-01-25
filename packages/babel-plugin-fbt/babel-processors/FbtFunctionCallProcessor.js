@@ -354,46 +354,50 @@ class FbtFunctionCallProcessor {
           `Expected a MemberExpression but got "${node.callee.type}" instead`,
         );
       }
-      const callee = node.callee.property;
-      if (callee.type !== 'Identifier' && callee.type !== 'StringLiteral') {
+      const calledProperty = node.callee.property;
+      if (calledProperty.type !== 'Identifier' && calledProperty.type !== 'StringLiteral') {
         throw errorAt(
           node.callee,
-          `Expected property to be an Identifier or a StringLiteral got "${callee.type}" instead`,
+          `Expected property to be an Identifier or a StringLiteral got "${
+            calledProperty.type
+          }" instead`,
         );
       }
-      switch (callee.name || callee.value) {
+
+      const [arg0, arg1, arg2] = node.arguments;
+      switch (calledProperty.name || calledProperty.value) {
         case 'param':
           texts.push(variations[
             // $FlowFixMe `value` property is not always present
-            node.arguments[0].value
+            arg0.value
           ]);
           break;
         case 'enum':
-          if (node.arguments[1].type !== 'ObjectExpression') {
+          if (arg1.type !== 'ObjectExpression') {
             throw errorAt(
-              node.arguments[1],
-              `Expected an ObjectExpression but got "${node.arguments[1].type}" instead`,
+              arg1,
+              `Expected an ObjectExpression but got "${arg1.type}" instead`,
             );
           }
           texts.push({
             type: 'enum',
-            range: extractEnumRange(node.arguments[1]),
-            value: getRawSource(fileSource, node.arguments[0]),
+            range: extractEnumRange(arg1),
+            value: getRawSource(fileSource, arg0),
           });
           break;
         case 'plural':
-          if (node.arguments[0].type !== 'StringLiteral') {
+          if (arg0.type !== 'StringLiteral') {
             throw errorAt(
-              node.arguments[0],
-              `Expected a StringLiteral but got "${node.arguments[0].type}" instead`,
+              arg0,
+              `Expected a StringLiteral but got "${arg0.type}" instead`,
             );
           }
-          const singular = node.arguments[0].value;
+          const singular = arg0.value;
           const opts = collectOptions(
             moduleName,
             t,
             // $FlowFixMe This argument may not be a BabelNodeObjectExpression
-            node.arguments[2],
+            arg2,
             ValidPluralOptions,
           );
           const defaultToken =
@@ -414,7 +418,7 @@ class FbtFunctionCallProcessor {
             showCount: 'showCount' in opts ? opts.showCount : 'no',
             name: 'name' in opts ? opts.name : defaultToken,
             singular,
-            value: 'value' in opts ? opts.value : getRawSource(fileSource, node.arguments[1]),
+            value: 'value' in opts ? opts.value : getRawSource(fileSource, arg1),
             many: 'many' in opts ? opts.many : singular + 's',
           };
 
@@ -424,14 +428,14 @@ class FbtFunctionCallProcessor {
             }
             if (typeof data.name !== 'string') {
               throw errorAt(
-                node.arguments[2],
+                arg2,
                 `Expected ${moduleName}.plural name property to be a string instead of ` +
                 `${typeof data.name}`,
               );
             }
             if (typeof data.many !== 'string') {
               throw errorAt(
-                node.arguments[2],
+                arg2,
                 `Expected ${moduleName}.plural many property to be a string instead of ` +
                 `${typeof data.many}`,
               );
@@ -443,12 +447,12 @@ class FbtFunctionCallProcessor {
           break;
         case 'pronoun':
           // Usage: fbt.pronoun(usage, gender [, options])
-          const optionsNode = node.arguments[2];
+          const optionsNode = arg2;
           const options = collectOptions(
             moduleName,
             t,
             // $FlowFixMe This argument may not be a BabelNodeObjectExpression
-            node.arguments[2],
+            arg2,
             ValidPronounOptions,
           );
           for (const key of Object.keys(options)) {
@@ -458,8 +462,8 @@ class FbtFunctionCallProcessor {
             ...options,
             type: 'pronoun',
             // $FlowFixMe `value` property might be missing
-            usage: node.arguments[0].value,
-            gender: getRawSource(fileSource, node.arguments[1]),
+            usage: arg0.value,
+            gender: getRawSource(fileSource, arg1),
           };
           // $FlowFixMe An object literal isn't compatible with BabelNodeExpression
           texts.push(pronounData);
@@ -467,7 +471,7 @@ class FbtFunctionCallProcessor {
         case 'name':
           texts.push(variations[
             // $FlowFixMe `value` property is not always present
-            node.arguments[0].value
+            arg0.value
           ]);
           break;
       }
