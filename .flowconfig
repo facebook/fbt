@@ -21,7 +21,8 @@ esproposal.class_instance_fields=enable
 esproposal.class_static_fields=enable
 esproposal.optional_chaining=enable
 esproposal.nullish_coalescing=enable
-
+# TODO(T60942430) Set object definitions to be exact by default
+# exact_by_default=true
 facebook.fbs=Fbs
 facebook.fbt=FbtElement
 
