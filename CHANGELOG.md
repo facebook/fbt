@@ -164,6 +164,7 @@ We haven't had the best track record of code/feature changes before this date, b
      Unreleased changes that have landed in master. Click to see more.
     </summary>
 
+    - Feat: expose utility function `generateFormattedCodeFromAST()` to convert a `BabelNode` to a source code string
     - Minor: clarify error messages when unit tests fail due to Babel AST node differences.
     - Minor: normalize source code before using it in unit tests' code comparisons
   </details>

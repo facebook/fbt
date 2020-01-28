@@ -60,8 +60,21 @@ function parse(code) {
   });
 }
 
-function prettyPrint(input) {
-  return generate(parse(input), {comments: true}, input).code.trim();
+/**
+ * Generate formatted JS source code from a given Babel AST object.
+ * Note: JS comments are preserved.
+ * See `__tests__/TestUtil-test.js` for example.
+ *
+ * @param {BabelNode} babelNode BabelNode object obtained after parsing JS code
+ * or from a Babel Transform.
+ * @return {string} JS source code
+ */
+function generateFormattedCodeFromAST(babelNode) {
+  return generate(babelNode, {comments: true}, '').code.trim();
+}
+
+function formatSourceCode(input) {
+  return generateFormattedCodeFromAST(parse(input));
 }
 
 function firstCommonSubstring(left, right) {
@@ -93,6 +106,8 @@ function normalizeSourceCode(sourceCode /*: string */) /*: string */ {
 }
 
 module.exports = {
+  generateFormattedCodeFromAST,
+
   assertSourceAstEqual(expected, actual, options) {
     const expectedTree = stripMeta(
       parse(normalizeSourceCode(expected)).program,
@@ -106,8 +121,8 @@ module.exports = {
       assert.deepStrictEqual(actualTree, expectedTree);
     } catch (e) {
       const jsonDiff = require('json-diff');
-      const expectedFormattedCode = prettyPrint(expected);
-      const actualFormattedCode = prettyPrint(actual);
+      const expectedFormattedCode = formatSourceCode(expected);
+      const actualFormattedCode = formatSourceCode(actual);
       const commonStr = firstCommonSubstring(
         expectedFormattedCode,
         actualFormattedCode,
@@ -183,4 +198,6 @@ ${jsonDiff.diffString(actualTree, expectedTree)}
       ),
     );
   },
+
+  __parse__FOR_UNIT_TESTS: parse,
 };
