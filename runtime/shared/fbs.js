@@ -33,9 +33,13 @@ const FbsImpl = {
 
   _wrapContent(fbtContent, translation, hash) {
     const contents = typeof fbtContent === 'string' ? [fbtContent] : fbtContent;
-    // TODO T59083776: Pass in errorListener and update constructor arguments
     const errorListener = FbtHooks.getErrorListener({hash, translation});
-    return new FbtPureStringResult(contents, errorListener);
+    return FbtHooks.getFbsResult({
+      contents,
+      errorListener,
+      patternHash: hash,
+      patternString: translation,
+    });
   },
 };
 

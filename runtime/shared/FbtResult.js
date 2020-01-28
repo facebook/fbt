@@ -15,6 +15,7 @@
  */
 
 // flowlint ambiguous-object-type:error
+import type {FbtResolvedPayload} from 'FbtHooks';
 
 const FbtReactUtil = require('FbtReactUtil');
 const FbtResultBase = require('FbtResultBase');
@@ -44,6 +45,10 @@ class FbtResult extends FbtResultBase {
     if (__DEV__) {
       FbtReactUtil.injectReactShim(this);
     }
+  }
+
+  static get(input: FbtResolvedPayload): FbtResult {
+    return new FbtResult(input.contents, input.errorListener);
   }
 }
 

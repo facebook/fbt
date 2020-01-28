@@ -6,8 +6,18 @@
  * @format
  */
 
+export type FbtResolvedPayload = {
+  contents: $NestedFbtContentItems,
+  errorListener: ?IFbtErrorListener,
+  patternString: string,
+  patternHash: string,
+};
+
+// TODO: T61015960 - getFb[st]Result should return types that are locked down
 export type FbtHookRegistrations = $Shape<{
   errorListener: (context: FbtErrorContext) => IFbtErrorListener,
+  getFbsResult: (input: FbtResolvedPayload) => mixed,
+  getFbtResult: (input: FbtResolvedPayload) => mixed,
   logImpression: (hash: string) => void,
   onTranslationOverride: (hash: string) => void,
   ...
@@ -25,6 +35,16 @@ const FbtHooks = {
 
   onTranslationOverride(hash: string): void {
     _registrations.onTranslationOverride?.(hash);
+  },
+
+  // TODO: T61015960 - get off `mixed` and onto something more locked down (Fbs)
+  getFbsResult(input: FbtResolvedPayload): mixed {
+    return _registrations.getFbsResult(input);
+  },
+
+  // TODO: T61015960 - get off `mixed` and onto something more locked down (Fbt)
+  getFbtResult(input: FbtResolvedPayload): mixed {
+    return _registrations.getFbtResult(input);
   },
 
   register(registrations: FbtHookRegistrations): void {

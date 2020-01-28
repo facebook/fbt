@@ -30,12 +30,12 @@ module.name_mapper='^\(invariant\|graceful-fs\|nullthrows\|optimist\|fb-babel-pl
 module.name_mapper='^\(ReactDOM\)$' -> '<PROJECT_ROOT>/node_modules/react-dom'
 
 # Redirect non-FB JS modules to a dedicated folder
-module.name_mapper='^\(FBLocaleToLang\|fbtInit\|FbtEnv\|FbtPublic\|FbtTranslations\|GenderConst\|InlineFbtResult\|intlInlineMode\|IntlNumberType\|IntlPhonologicalRewrites\|IntlVariationResolver\|IntlVariations\|NumberFormatConsts\)$' -> '<PROJECT_ROOT>/runtime/nonfb/\1'
+module.name_mapper='^\(FBLocaleToLang\|fbtInit\|FbtEnv\|FbtPublic\|FbtTranslations\|GenderConst\|intlInlineMode\|IntlNumberType\|IntlPhonologicalRewrites\|IntlVariationResolver\|IntlVariations\|NumberFormatConsts\)$' -> '<PROJECT_ROOT>/runtime/nonfb/\1'
 module.name_mapper='^\(cx\|FBLogger\|FBLogMessage\|FbtQTOverrides\|FbtResultGK\|IntlViewerContext\|killswitch\)$' -> '<PROJECT_ROOT>/runtime/nonfb/mocks/\1'
 module.name_mapper='^\(DisplayGenderConst\)$' -> '<PROJECT_ROOT>/runtime/shared_deps/\1'
 
 # Redirect public JS modules to a dedicated folder
-module.name_mapper='^\(escapeRegex\|fbs\|fbt\|FbtHooks\|FbtPureStringResult\|FbtReactUtil\|FbtResultBase\|FbtResult\|FbtTableAccessor\|formatNumber\|IntlGender\|intlList\|intlNumUtils\|IntlPunctuation\|IntlVariationResolverImpl\|substituteTokens\)$' -> '<PROJECT_ROOT>/runtime/shared/\1'
+module.name_mapper='^\(escapeRegex\|fbs\|fbt\|FbtHooks\|FbtPureStringResult\|FbtReactUtil\|FbtResultBase\|FbtResult\|FbtTableAccessor\|formatNumber\|getFbsResult\|IntlGender\|intlList\|intlNumUtils\|IntlPunctuation\|IntlVariationResolverImpl\|substituteTokens\)$' -> '<PROJECT_ROOT>/runtime/shared/\1'
 module.name_mapper='^\(IntlCLDRNumberType[0-9][0-9]\)$' -> '<PROJECT_ROOT>/runtime/shared/FbtNumber/\1'
 # This Jest mock file is only used for testing, we don't need it on the OSS side
 module.name_mapper='^\(FbtNumberType\)$' -> '<PROJECT_ROOT>/runtime/shared/__mocks__/\1'

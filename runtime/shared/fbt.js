@@ -31,9 +31,7 @@ const FbtResultBase = require('FbtResultBase');
 const FbtTableAccessor = require('FbtTableAccessor');
 const FbtTranslations = require('FbtTranslations');
 const FbtResult = require('FbtResult');
-const FbtResultGK = require('FbtResultGK');
 const GenderConst = require('GenderConst');
-const InlineFbtResult = require('InlineFbtResult');
 const IntlViewerContext = require('IntlViewerContext');
 
 const intlNumUtils = require('intlNumUtils');
@@ -462,29 +460,17 @@ fbt._name = function(label, value, gender) {
 };
 
 fbt._wrapContent = (fbtContent, patternString, patternHash) => {
-  // TODO #20587740: Remove this conditional block. Currently unit tests rely
-  // on shouldReturnFbtResult being mocked to false and results being unwrapped.
-  if (
-    !FbtResultGK.shouldReturnFbtResult &&
-    FbtResultGK.inlineMode !== 'REPORT'
-  ) {
-    return fbtContent;
-  }
-
   const contents = typeof fbtContent === 'string' ? [fbtContent] : fbtContent;
-  if (FbtResultGK.inlineMode && FbtResultGK.inlineMode !== 'NO_INLINE') {
-    return new InlineFbtResult(
-      contents,
-      FbtResultGK.inlineMode,
-      patternString,
-      patternHash,
-    );
-  }
   const errorListener = FbtHooks.getErrorListener({
     translation: patternString,
     hash: patternHash,
   });
-  return new FbtResult(contents, errorListener);
+  return FbtHooks.getFbtResult({
+    contents,
+    errorListener,
+    patternString,
+    patternHash,
+  });
 };
 
 fbt.enableJsonExportMode = function() {

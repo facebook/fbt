@@ -6,13 +6,15 @@
  *
  * @format
  */
-
 const FbtHooks = require('FbtHooks');
+const FbtResult = require('FbtResult');
 const FbtTranslations = require('FbtTranslations');
+
+const getFbsResult = require('getFbsResult');
 
 function fbtInit({
   customTranslationPayloadGetter__EXPERIMENTAL,
-  hooks,
+  hooks = {},
   translations,
 }) {
   FbtTranslations.registerTranslations(translations);
@@ -22,9 +24,14 @@ function fbtInit({
       customTranslationPayloadGetter__EXPERIMENTAL,
     );
   }
-  if (hooks != null) {
-    FbtHooks.register(hooks);
+  // If getFbtResult isn't defined, provide a default one out of the box.
+  if (hooks.getFbtResult === undefined) {
+    hooks.getFbtResult = FbtResult.get;
   }
+  if (hooks.getFbsResult === undefined) {
+    hooks.getFbsResult = getFbsResult;
+  }
+  FbtHooks.register(hooks);
 }
 
 module.exports = fbtInit;

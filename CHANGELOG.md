@@ -37,6 +37,7 @@ We haven't had the best track record of code/feature changes before this date, b
    Unreleased changes that have landed in master. Click to see more.
   </summary>
 
+  - [feat] Enable overriding result returned from fbt via `getFbtResult` in `FbtHooks`
   - [feat] Provide onStringMethodUsed hook for IFbtErrorListener
   - [feat] Remove Banzai & FbtLogger, provide hooks in their place.
   - [refactor] Abstract away string serialization error handling.
