@@ -36,7 +36,9 @@ We haven't had the best track record of code/feature changes before this date, b
   <summary>
    Unreleased changes that have landed in master. Click to see more.
   </summary>
+</details>
 
+- 0.11.0:
   - [feat] Expose FbtResult in fbt
   - [feat] Enable overriding result returned from fbt via `getFbtResult` in `FbtHooks`
   - [feat] Provide onStringMethodUsed hook for IFbtErrorListener
@@ -45,8 +47,6 @@ We haven't had the best track record of code/feature changes before this date, b
   - [refactor] Move FbtContentItem and $NestedFbtContentItems to libdefs
   - [refactor] Flow type strict substituteTokens.js
   - Fix version in header comments
-</details>
-
 
 - 0.10.6:
   - More accurate peer dependencies
