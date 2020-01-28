@@ -1148,14 +1148,23 @@ const generalTestData = {
 
   'should throw on pronoun usage invalid': {
     input:
-      // Note 'possession' instead of 'possessive'.
+      // Note 'POSSESSION' instead of 'possessive'.
+      withFbtRequireStatement(
+        `var x = fbt(
+          'It is ' + fbt.pronoun('POSSESSION', gender) + ' birthday.',
+          'throw because of unknown pronoun type',
+        );`,
+      ),
+
+    inputWithArraySyntax:
+      // Note 'POSSESSION' instead of 'possessive'.
       withFbtRequireStatement(
         `var x = fbt(
           [
             'It is ',
-            fbt.pronoun('possession', gender),
+            fbt.pronoun('POSSESSION', gender),
             ' birthday.'
-          ], 'throw not StringLiteral',
+          ], 'throw because of unknown pronoun type',
         );`,
       ),
 
