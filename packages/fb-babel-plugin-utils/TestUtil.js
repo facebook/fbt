@@ -56,7 +56,7 @@ function getDefaultTransformForPlugins(plugins) {
 function parse(code) {
   return babelParser.parse(code, {
     sourceType: 'module',
-    plugins: ['flow', 'jsx'],
+    plugins: ['flow', 'jsx', 'nullishCoalescingOperator'],
   });
 }
 
