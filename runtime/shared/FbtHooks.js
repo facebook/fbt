@@ -11,6 +11,7 @@ export type FbtResolvedPayload = {
   errorListener: ?IFbtErrorListener,
   patternString: string,
   patternHash: string,
+  ...
 };
 
 // TODO: T61015960 - getFb[st]Result should return types that are locked down
