@@ -49,6 +49,7 @@ const {
   isStringLiteral,
   isTemplateLiteral,
 } = require('@babel/types');
+const {generateFormattedCodeFromAST} = require('fb-babel-plugin-utils/TestUtil');
 
 function normalizeSpaces(
   value /*: string */,
@@ -229,11 +230,12 @@ function errorAt(
   msg /*: string */,
 ) /*: Error */ {
   const location = astNode.loc;
-  if (location != null) {
-    const {start} = location;
-    return new Error(`Line ${start.line} Column ${start.column + 1}: ${msg}`);
-  }
-  return new Error(msg);
+  const errorMsg =
+    (location != null
+      ? `Line ${location.start.line} Column ${location.start.column + 1}: `
+      : '') +
+    `${msg}\n---\n${generateFormattedCodeFromAST(astNode)}\n---`;
+  return new Error(errorMsg);
 }
 
 function checkOptions(properties, validOptions) /*: Array<BabelNodeObjectProperty> */ {

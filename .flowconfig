@@ -27,7 +27,7 @@ facebook.fbs=Fbs
 facebook.fbt=FbtElement
 
 # Import 3rd party node modules used by Babel transforms and runtime tests
-module.name_mapper='^\(invariant\|graceful-fs\|nullthrows\|optimist\|fb-babel-plugin-utils\|@babel/.*\|fbjs/.*\)$' -> '<PROJECT_ROOT>/node_modules/\1'
+module.name_mapper='^\(\(invariant\|graceful-fs\|nullthrows\|optimist\|fb-babel-plugin-utils\|@babel\|fbjs\)\(/.*\)?\)$' -> '<PROJECT_ROOT>/node_modules/\1'
 module.name_mapper='^\(ReactDOM\)$' -> '<PROJECT_ROOT>/node_modules/react-dom'
 
 # Redirect non-FB JS modules to a dedicated folder
