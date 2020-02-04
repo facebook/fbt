@@ -78,6 +78,10 @@ We haven't had the best track record of code/feature changes before this date, b
     - [refactor] Split up the monolithic fbt transform logic into separate modules.
   </details>
 
+- 0.13.0:
+  - [feat] Loosen Babel dependencies and upgrade yargs
+  - [refactor] Split up the monolithic fbt transform logic into separate modules.
+
 - 0.12.1:
   - Require passed plugins in collectFBT before passing to Babel
 
