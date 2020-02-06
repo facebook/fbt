@@ -6,7 +6,7 @@
 node_modules
 
 [libs]
-node_modules/@babel/types/lib/index.js.flow
+node_modules/babel-plugin-fbt/node_modules/@babel/types/lib/index.js.flow
 flow-types/libdef
 flow-types/nonfb/libdef
 

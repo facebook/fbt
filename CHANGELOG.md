@@ -73,6 +73,7 @@ We haven't had the best track record of code/feature changes before this date, b
     <summary>
      Unreleased changes that have landed in master. Click to see more.
     </summary>
+    - Fix Flow checks due to missing @babel/types dependency
   </details>
 
 - 0.13.0:
