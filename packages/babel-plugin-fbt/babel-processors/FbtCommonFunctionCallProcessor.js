@@ -98,7 +98,7 @@ class FbtCommonFunctionCallProcessor {
     }
 
     const text = normalizeSpaces(
-      expandStringConcat(moduleName, t, node.arguments[0]).value,
+      expandStringConcat(moduleName, node.arguments[0]).value,
     ).trim();
 
     const desc = FbtCommon.getDesc(text);

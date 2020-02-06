@@ -97,7 +97,9 @@ class JSXFbtProcessor {
       : null;
   }
 
-  _getText(childNodes) {
+  _getText(
+    childNodes /*: $ReadOnlyArray<BabelNodeStringLiteral | BabelNodeCallExpression> */
+  ) /*: BabelNodeBinaryExpression | BabelNodeStringLiteral | BabelNodeCallExpression */ {
     return childNodes.length > 1
       ? this._createConcatFromExpressions(childNodes)
       : childNodes[0];
@@ -109,7 +111,7 @@ class JSXFbtProcessor {
     let desc;
     if (commonAttributeValue && commonAttributeValue.value) {
       const textValue = normalizeSpaces(
-        expandStringConcat(moduleName, this.t, text).value.trim(),
+        expandStringConcat(moduleName, text).value.trim(),
       );
       const descValue = FbtCommon.getDesc(textValue);
       if (descValue == null || descValue === '') {
@@ -243,7 +245,7 @@ class JSXFbtProcessor {
     return this;
   }
 
-  _transformChildrenToFbtCalls() {
+  _transformChildrenToFbtCalls() /*: Array<BabelNodeStringLiteral | BabelNodeCallExpression> */ {
     return (
       filterEmptyNodes(this.node.children) /*: $ReadOnlyArray<FbtBabelNodeJSXElementChild> */
     ).map(
@@ -266,7 +268,7 @@ class JSXFbtProcessor {
       case 'JSXExpressionContainer':
         return t.stringLiteral(
           normalizeSpaces(
-            expandStringConcat(this.moduleName, t, node.expression).value,
+            expandStringConcat(this.moduleName, node.expression).value,
           ),
         );
       default:
@@ -296,7 +298,9 @@ class JSXFbtProcessor {
   /**
    * Given an array of nodes, recursively construct a concatenation of all these nodes.
    */
-  _createConcatFromExpressions(nodes) /*: BabelNodeBinaryExpression */ {
+  _createConcatFromExpressions(
+    nodes /*: $ReadOnlyArray<BabelNodeStringLiteral | BabelNodeCallExpression> */
+  ) /*: BabelNodeBinaryExpression */ {
     invariant(nodes.length > 1, 'Cannot create an expression without nodes.');
 
     // Flow's native type for the array#reduceRight method is incorrect
@@ -305,6 +309,7 @@ class JSXFbtProcessor {
     // See https://fburl.com/07z4y180
     // $FlowExpectedError
     return (nodes.reduceRight(
+      // $FlowExpectedError Same reason as above
       (rest, node) =>  this.t.binaryExpression('+', node, rest)
     ) /*: BabelNodeBinaryExpression */);
   }

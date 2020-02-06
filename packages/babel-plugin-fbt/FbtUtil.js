@@ -34,6 +34,7 @@ type BabelNodeCallExpressionArgument = $ElementType<
 const {JSModuleName, ModuleNameRegExp} = require('./FbtConstants');
 const keyMirror = require('fbjs/lib/keyMirror');
 const invariant = require('invariant');
+const nullthrows = require('nullthrows');
 const {FBS, FBT} = JSModuleName;
 const {
   isArrowFunctionExpression,
@@ -48,6 +49,7 @@ const {
   isObjectProperty,
   isStringLiteral,
   isTemplateLiteral,
+  stringLiteral,
 } = require('@babel/types');
 const {generateFormattedCodeFromAST} = require('fb-babel-plugin-utils/TestUtil');
 
@@ -279,7 +281,7 @@ function collectOptions /*:: <ValidOptions: {}> */(
     // which are used only by specific runtimes.
     if (validOptions.hasOwnProperty(name)) {
       key2value[name] = isTextualNode(value)
-        ? normalizeSpaces(expandStringConcat(moduleName, t, value).value)
+        ? normalizeSpaces(expandStringConcat(moduleName, value).value)
         : value;
     }
   });
@@ -293,7 +295,6 @@ function collectOptions /*:: <ValidOptions: {}> */(
  */
 function expandStringConcat(
   moduleName /*: string */,
-  t /*: BabelTypes */,
   node /*: BabelNode */,
 ) /*: BabelNodeStringLiteral | BabelNodeJSXText */ {
   if (isBinaryExpression(node)) {
@@ -303,9 +304,9 @@ function expandStringConcat(
         `Expected concatenation operator (+) but got ${node.operator}`,
       );
     }
-    return t.stringLiteral(
-      expandStringConcat(moduleName, t, node.left).value +
-        expandStringConcat(moduleName, t, node.right).value,
+    return stringLiteral(
+      expandStringConcat(moduleName, node.left).value +
+        expandStringConcat(moduleName, node.right).value,
     );
   } else if (isStringLiteral(node)) {
     return node;
@@ -335,7 +336,7 @@ function expandStringConcat(
       }
     }
 
-    return t.stringLiteral(string);
+    return stringLiteral(string);
   }
 
   throw errorAt(
@@ -345,6 +346,20 @@ function expandStringConcat(
       `Expected StringLiteral, TemplateLiteral, or concatenation; ` +
       // $FlowExpectedError This BabelNode is unsupported so it may not even have a type property
       `got "${node.type}"`,
+  );
+}
+
+function expandStringArray(
+  moduleName /*: string */,
+  node /*: BabelNodeArrayExpression */,
+) /*: BabelNodeStringLiteral */ {
+  return stringLiteral(
+    nullthrows(node.elements).map(element =>
+      expandStringConcat(
+        moduleName,
+        nullthrows(element),
+      ).value
+    ).join('')
   );
 }
 
@@ -540,6 +555,8 @@ module.exports = {
   assertModuleName,
   checkOption,
   collectOptions,
+  errorAt,
+  expandStringArray,
   expandStringConcat,
   extractEnumRange,
   filterEmptyNodes,
@@ -553,7 +570,6 @@ module.exports = {
   normalizeSpaces,
   objMap,
   textContainsFbtLikeModule,
-  errorAt,
   validateNamespacedFbtElement,
   verifyUniqueToken,
 };

@@ -75,6 +75,7 @@ const FbtNodeChecker = require('../FbtNodeChecker');
 const {
   collectOptions,
   errorAt,
+  expandStringArray,
   expandStringConcat,
   extractEnumRange,
   getOptionBooleanValue,
@@ -83,9 +84,14 @@ const {
 } = require('../FbtUtil');
 const JSFbtBuilder = require('../JSFbtBuilder');
 const {
+  arrayExpression,
+  isCallExpression,
   isObjectExpression,
   isObjectProperty,
+  isStringLiteral,
+  isTemplateLiteral,
 } = require('@babel/types');
+const nullthrows = require('nullthrows');
 
 /**
 * This class provides utility methods to process the babel node of the standard fbt function call
@@ -277,19 +283,22 @@ class FbtFunctionCallProcessor {
   }
 
   _getTexts(variations, options, isTable /*: boolean */) {
-    const {moduleName, node, t} = this;
+    const {moduleName, node: {arguments: [textNode]}} = this;
+    const arrayTextNode = this._convertToStringArrayNodeIfNeeded(textNode);
     let texts;
+
     if (isTable) {
       texts = this._normalizeTableTexts(
-        this._extractTableTexts(
-          node.arguments[0],
+        this._extractTableTextsFromStringArray(
+          arrayTextNode,
           variations,
         ),
       );
     } else {
+      const unnormalizedText = expandStringArray(moduleName, arrayTextNode).value;
       texts = [
         normalizeSpaces(
-          expandStringConcat(moduleName, t, node.arguments[0]).value,
+          unnormalizedText,
           options,
         ).trim(),
       ];
@@ -302,32 +311,95 @@ class FbtFunctionCallProcessor {
     return texts;
   }
 
+  _convertToStringArrayNodeIfNeeded(textNode) /*: BabelNodeArrayExpression */ {
+    switch (textNode.type) {
+      case 'ArrayExpression':
+        return textNode;
+      case 'BinaryExpression':
+        const operands = this._getBinaryExpressionOperands(textNode);
+        return arrayExpression(operands);
+      case 'CallExpression':
+      case 'StringLiteral':
+      case 'TemplateLiteral':
+        return arrayExpression([textNode]);
+      default:
+        throw errorAt(
+          textNode,
+          `Unexpected node type: ${textNode.type}. ` +
+          `${this.moduleName}()'s first argument should be a string literal, ` +
+          `a construct like ${this.moduleName}.param() or an array of those.`,
+        );
+    }
+  }
+
+  _getBinaryExpressionOperands(node /*: BabelNodeExpression */) {
+    switch (node.type) {
+      case 'BinaryExpression':
+        if (node.operator !== '+') {
+          throw new Error('Expected to see a string concatenation');
+        }
+        return [
+          ...this._getBinaryExpressionOperands(node.left),
+          ...this._getBinaryExpressionOperands(node.right),
+        ];
+      case 'CallExpression':
+      case 'StringLiteral':
+      case 'TemplateLiteral':
+        return [node];
+      default:
+        throw errorAt(
+          node,
+          `Unexpected node type: ${node.type}. ` +
+          `The ${this.moduleName}() string concatenation pattern only supports ` +
+          ` string literals or constructs like ${this.moduleName}.param().`,
+        );
+    }
+  }
+
   /**
    * Extracts texts that contains variations or enums, concatenating
    * literal parts.
    * Example:
+   *
+   * [
+   *   'Hello, ', fbt.param('user', user, {gender: 'male'}), '! ',
+   *   'Your score is ', fbt.param('score', score), '!',
+   * ]
+   * =>
+   *   ["Hello, ", {type: 'gender', token: 'user'}, "! Your score is {score}!"]
+   */
+  _extractTableTextsFromStringArray(
+    node /*: BabelNodeArrayExpression */,
+    variations,
+  ) /*: ExtractTableTextItems */ {
+    return nullthrows(node.elements).reduce((results, element) => {
+      results.push(...this._extractTableTextsFromStringArrayItem(
+        nullthrows(element),
+        variations,
+      ));
+      return results;
+    }, []);
+  }
+
+  /**
+   * Extracts texts from each fbt text array item:
    *
    *   "Hello, " + fbt.param('user', user, {gender: 'male'}) + "! " +
    *   "Your score is " + fbt.param('score', score) + "!"
    * =>
    *   ["Hello, ", {type: 'gender', token: 'user'}, "! Your score is {score}!"]
    */
-  _extractTableTexts(node, variations, texts /*: ExtractTableTextItems */ = []) {
+  _extractTableTextsFromStringArrayItem(
+    node,
+    variations,
+    texts /*: ExtractTableTextItems */ = [], // For recursive calls only
+  ) /*: ExtractTableTextItems */ {
     const {fileSource, moduleName, t} = this;
-    if (node.type === 'BinaryExpression') {
-      if (node.operator !== '+') {
-        throw errorAt(
-          node,
-          `Expected concatenation operator (+) but got ${node.operator}`,
-        );
-      }
-      this._extractTableTexts(node.left, variations, texts);
-      this._extractTableTexts(node.right, variations, texts);
-    } else if (node.type === 'TemplateLiteral') {
+    if (isTemplateLiteral(node)) {
       let index = 0;
       for (const elem of node.quasis) {
         if (elem.value.cooked) {
-          this._extractTableTexts(
+          this._extractTableTextsFromStringArrayItem(
             t.stringLiteral(elem.value.cooked),
             variations,
             texts,
@@ -335,10 +407,14 @@ class FbtFunctionCallProcessor {
         }
         if (index < node.expressions.length) {
           const expr = node.expressions[index++];
-          this._extractTableTexts(expr, variations, texts);
+          this._extractTableTextsFromStringArrayItem(
+            expr,
+            variations,
+            texts,
+          );
         }
       }
-    } else if (node.type === 'StringLiteral') {
+    } else if (isStringLiteral(node)) {
       // If we already collected a literal part previously, and
       // current part is a literal as well, just concatenate them.
       const previousText = texts[texts.length - 1];
@@ -347,7 +423,7 @@ class FbtFunctionCallProcessor {
       } else {
         texts.push(node.value);
       }
-    } else if (node.type === 'CallExpression') {
+    } else if (isCallExpression(node)) {
       if (node.callee.type !== 'MemberExpression') {
         throw errorAt(
           node.callee,
@@ -475,6 +551,13 @@ class FbtFunctionCallProcessor {
           ]);
           break;
       }
+    } else {
+      throw errorAt(
+        node,
+        `Unexpected node type: ${node.type}. ` +
+        `${this.moduleName}() text arguments should be a string literal, ` +
+        `a construct like ${this.moduleName}.param() or an array of those.`,
+      );
     }
 
     return texts;
@@ -501,7 +584,6 @@ class FbtFunctionCallProcessor {
     return normalizeSpaces(
       expandStringConcat(
         this.moduleName,
-        this.t,
         this.node.arguments[1]
       ).value,
       options,

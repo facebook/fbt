@@ -73,6 +73,7 @@ We haven't had the best track record of code/feature changes before this date, b
     <summary>
      Unreleased changes that have landed in master. Click to see more.
     </summary>
+    - [feat] Add ability to provide strings as an array instead of a string concatenation pattern for the Fbt functional API.
     - Fix Flow checks due to missing @babel/types dependency
   </details>
 

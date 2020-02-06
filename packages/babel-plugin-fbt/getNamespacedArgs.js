@@ -134,7 +134,6 @@ const getNamespacedArgs = function(moduleName, t) {
       const singularNode = pluralChildren[0];
       const singularText = expandStringConcat(
         moduleName,
-        t,
         singularNode.expression || singularNode,
       );
       const singularArg = t.stringLiteral(

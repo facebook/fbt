@@ -222,7 +222,8 @@ const generalTestData = {
   },
 
   'should handle a JSX fragment nested with fbt.param as an argument': {
-    inputWithArraySyntax: withFbtRequireStatement(
+    // TODO(T38926768) Enable this once we support proper auto-parameterization in JSX
+    _inputWithArraySyntax: withFbtRequireStatement(
       `var React = require('react');
       var x = fbt(
         [
@@ -232,8 +233,9 @@ const generalTestData = {
             <b>
               C1
               {
-                // Expected flow type: jsxParam<T>(name: string, value: T): T
-                fbt.jsxParam("paramName", paramValue)
+                // TODO(T27672828) fbt.param() should return FbtWithoutString
+                // once we get rid of string-concat patterns
+                fbt.param('paramName', paramValue)
               }
               C2
             </b>
@@ -354,12 +356,12 @@ const generalTestData = {
     input: withFbtRequireStatement(
       `var x = fbt(
         'Click to see ' + fbt.enum('groups', ['groups', 'photos', 'videos']),
-        'enums!',
+        'enum as an array',
       );`,
     ),
 
     inputWithArraySyntax: withFbtRequireStatement(
-      `fbt(
+      `var x = fbt(
         [
           'Click to see ',
           fbt.enum('groups', ['groups', 'photos', 'videos']),
@@ -380,7 +382,7 @@ const generalTestData = {
             },
             m: [null],
           },
-          desc: 'enums!',
+          desc: 'enum as an array',
         })},
         [
           fbt._enum('groups', {
@@ -398,12 +400,12 @@ const generalTestData = {
       `var x = fbt(
         'Click to see ' +
           fbt.enum('id1', {id1: 'groups', id2: 'photos', id3: 'videos'}),
-        'enums!',
+        'enum as an object',
       );`,
     ),
 
     inputWithArraySyntax: withFbtRequireStatement(
-      `fbt(
+      `var x = fbt(
         [
           'Click to see ',
           fbt.enum('id1', {id1: 'groups', id2: 'photos', id3: 'videos'}),
@@ -424,7 +426,7 @@ const generalTestData = {
             },
             m: [null],
           },
-          desc: 'enums!',
+          desc: 'enum as an object',
         })},
         [
           fbt._enum('id1', {
@@ -684,7 +686,8 @@ const generalTestData = {
       `var x = fbt(
         [
           'Click to see ',
-          fbt.param('count', c, {number: true}) + ' links',
+          fbt.param('count', c, {number: true}),
+          ' links',
         ], 'variations!',
       );`,
     ),
@@ -1170,6 +1173,19 @@ const generalTestData = {
 
     throws: true,
   },
+
+  'should throw when concatenating an fbt construct to a string while using the array argument syntax': {
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var x = fbt(
+          [
+            'It is ' + fbt.pronoun('possession', gender) + ' birthday.'
+          ], 'throw because fbt constructs should be used as array items only',
+        );`,
+    ),
+
+    throws: true,
+  },
+
   // Initially needed for JS source maps accuracy
   // This is useful only for testing column/line coordinates
   // Newlines are not preserved in the extracted fbt string
@@ -1378,8 +1394,7 @@ describe('Functional FBT API', () => {
     describeTestScenarios(prepareTestDataForInputKey('input'));
   });
 
-  // eslint-disable-next-line jest/no-disabled-tests
-  xdescribe('using array arguments:', () => {
+  describe('using array arguments:', () => {
     describeTestScenarios(prepareTestDataForInputKey('inputWithArraySyntax'));
   });
 });
