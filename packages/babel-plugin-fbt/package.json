@@ -20,6 +20,7 @@
     "fbjs-scripts": "^1.1.0",
     "glob": "^7.1.1",
     "jest-docblock": "^24.3.0",
+    "nullthrows": "^1.1.1",
     "shelljs": "^0.7.8",
     "yargs": "^14.2.0"
   },

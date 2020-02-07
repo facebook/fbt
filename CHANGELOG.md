@@ -76,8 +76,9 @@ We haven't had the best track record of code/feature changes before this date, b
     <summary>
      Unreleased changes that have landed in master. Click to see more.
     </summary>
+    - [fix] Fix issues due to missing dependency to the `nullthrows` npm package (only visible when using babel-plugin-fbt as a standalone module)
     - [feat] Add ability to provide strings as an array instead of a string concatenation pattern for the Fbt functional API.
-    - Fix Flow checks due to missing @babel/types dependency
+    - [fix] Fixed Flow checks due to missing @babel/types dependency
   </details>
 
 - 0.13.0:
