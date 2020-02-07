@@ -29,7 +29,6 @@ const {overrides} = require('FbtQTOverrides');
 const FbtHooks = require('FbtHooks');
 const FbtResultBase = require('FbtResultBase');
 const FbtTableAccessor = require('FbtTableAccessor');
-const FbtTranslations = require('FbtTranslations');
 const FbtResult = require('FbtResult');
 const GenderConst = require('GenderConst');
 const IntlViewerContext = require('IntlViewerContext');
@@ -42,14 +41,10 @@ const {
   getGenderVariations,
 } = require('IntlVariationResolver');
 
-// TODO: Remove this after resolving T47935495.
-if (FbtTranslations == null) {
-  throw new Error('fbt: FbtTranslations is undefined!');
-}
+import type {FbtInputOpts, FbtRuntimeInput, FbtTableArgs} from 'FbtHooks';
 
 let jsonExportMode = false; // Used only in React Native
 
-const BINAST_STRING_MAGIC_CODE = 'B!N@$T';
 /**
  * fbt.XXX calls return arguments in the form of
  * [<INDEX>, <SUBSTITUTION>] to be processed by fbt._
@@ -73,7 +68,6 @@ const PRONOUN_USAGE = {
 };
 
 const _cachedFbtResults = {};
-const _parsedFbtStrings = {};
 
 const fbt = function() {};
 
@@ -106,36 +100,37 @@ const fbt = function() {};
  * contains a structured enums to hash keys map which will later be traversed
  * to look up enum-less translated payload.
  */
-fbt._ = function(table, args, options) {
-  if (typeof table === 'string' && table.startsWith(BINAST_STRING_MAGIC_CODE)) {
-    // This is a BinAST escaped string
-    if (!(table in _parsedFbtStrings)) {
-      _parsedFbtStrings[table] = JSON.parse(
-        table.substring(BINAST_STRING_MAGIC_CODE.length),
-      );
-    }
-    table = _parsedFbtStrings[table];
+fbt._ = function(
+  inputTable: FbtRuntimeInput,
+  inputArgs: ?FbtTableArgs,
+  options: ?FbtInputOpts,
+): Fbt {
+  // TODO T61652022: Remove this when no longer used in fbsource
+  if ((options?.hk || options?.ehk) && jsonExportMode) {
+    // $FlowFixMe: breaking typing because this should never happen
+    return {
+      text: inputTable,
+      fbt: true,
+      hashKey: options.hk,
+    };
   }
 
-  if (options && (options.hk || options.ehk)) {
-    if (jsonExportMode) {
-      return {
-        text: table,
-        fbt: true,
-        hashKey: options.hk,
-      };
-    }
-
-    ({table, args} = FbtTranslations.getTranslatedPayload(
-      options.hk,
-      options.ehk,
-      args,
-      table,
-    ) || {
-      table,
-      args,
-    });
-  }
+  // Adapt the input payload to the translated table and arguments we expect
+  //
+  // WWW: The payload is ready, as-is, and is pre-translated UNLESS we detect
+  //      the magic BINAST string which needs to be stripped if it exists.
+  //
+  // RN: we look up our translated table via the hash key (options.hk) and
+  //     flattened enum hash key (options.ehk), which partially resolves the
+  //     translation for the enums (should they exist).
+  //
+  // OSS: The table is the English payload, and we lookup the translated payload
+  //      via FbtTranslations
+  let {table: pattern, args} = FbtHooks.getTranslatedInput({
+    table: inputTable,
+    args: inputArgs,
+    options,
+  });
 
   // [fbt_impressions]
   // If this is a string literal (no tokens to substitute) then 'args' is empty
@@ -146,18 +141,19 @@ fbt._ = function(table, args, options) {
   // need to traverse in order to pick the correct string, based on the
   // args that follow.
   let allSubstitutions = {};
-  let pattern = table;
 
-  if (table.__vcg) {
+  if (pattern.__vcg) {
     args = args || [];
-    args.unshift([getGenderVariations(IntlViewerContext.GENDER), null]);
+    const {GENDER} = IntlViewerContext;
+    const variation = getGenderVariations(GENDER);
+    args.unshift(FbtTableAccessor.getGenderResult(variation, null, GENDER));
   }
 
   if (args) {
     if (typeof pattern !== 'string') {
       // On mobile, table can be accessed at the native layer when fetching
       // translations. If pattern is not a string here, table has not been accessed
-      pattern = this._accessTable(table, args, 0);
+      pattern = _accessTable(pattern, args, 0);
     }
     allSubstitutions = Object.assign(
       {},
@@ -166,19 +162,7 @@ fbt._ = function(table, args, options) {
     invariant(pattern !== null, 'Table access failed');
   }
 
-  let patternString = pattern;
-  let patternHash = null;
-
-  const csError = FbtTranslations.isComponentScript()
-    ? '\nNote: Certain fbt constructs such as fbt.plural() and the third ' +
-      'positional `variations` argument to fbt.param() are currently disallowed'
-    : '';
-  invariant(
-    typeof pattern === 'string' || Array.isArray(pattern),
-    'Table access did not result in string: %s. %s',
-    JSON.stringify(pattern),
-    csError,
-  );
+  let patternString, patternHash;
   if (Array.isArray(pattern)) {
     // [fbt_impressions]
     // When logging of string impressions is enabled, the string and its hash
@@ -187,13 +171,20 @@ fbt._ = function(table, args, options) {
     patternHash = pattern[1];
     // Append '1_' for appid's prepended to our i18n hash
     // (see intl_get_application_id)
+    // $FlowFixMe pattern is the tuple [string, string]
     const stringID = '1_' + patternHash;
     patternString = overrides[stringID] || patternString;
     if (overrides[stringID]) {
       FbtHooks.onTranslationOverride(patternHash);
     }
     FbtHooks.logImpression(patternHash);
+  } else if (typeof pattern === 'string') {
+    patternString = pattern;
+  } else {
+    const msg = pattern === undefined ? 'undefined' : JSON.stringify(pattern);
+    throw new Error('Table access did not result in string: ' + msg);
   }
+
   const cachedFbt = _cachedFbtResults[patternString];
   const hasSubstitutions = this._hasKeys(allSubstitutions);
   if (cachedFbt && !hasSubstitutions) {
@@ -231,7 +222,7 @@ fbt._hasKeys = function(o) {
  * each table entry.  The first entry found is the one we want, as we
  * set defaults after preferred indices.  For example:
  *
- * @param {?string|object|array} table - {
+ * @param @table - {
  *   // viewer gender
  *   '*': {
  *     // {num} plural
@@ -271,37 +262,47 @@ fbt._hasKeys = function(o) {
  * table['*'][PLURAL][POST].  ALSO undefined. Deduped to '*'
  * table['*']['*'][POST].  There it is.
  *
- * @param {array}  args          fbt runtime arguments
- * @param {number} argsIndex     argument index we're currently visiting
+ * @param args      - fbt runtime arguments
+ * @param argsIndex - argument index we're currently visiting
  */
-fbt._accessTable = function(table, args, argsIndex) {
-  // Either we've reached the end of our arguments at a valid entry, in which
-  // case table is now a string (leaf) or we've accessed a key that didn't exist
-  // in the table, in which case we return null
+function _accessTable(
+  table: ?FbtRuntimeInput,
+  args: FbtTableArgs,
+  argsIndex: number,
+): ?string | [string, string] {
   if (argsIndex >= args.length) {
+    // We've reached the end of our arguments at a valid entry, in which case
+    // table is now a string (leaf)
+    // $FlowFixMe string is incompatible FbtInputTable type
     return table;
   } else if (table == null) {
+    // We've accessed a key that didn't exist in the table
     return null;
   }
-  let pattern = null;
   const arg = args[argsIndex];
-  const tableIndex = arg[ARG.INDEX];
+  const tableIndices = arg[ARG.INDEX];
 
-  // Do we have a variation? Attempt table access in variation order
-  if (Array.isArray(tableIndex)) {
-    for (let k = 0; k < tableIndex.length; ++k) {
-      const subTable = table[tableIndex[k]];
-      pattern = this._accessTable(subTable, args, argsIndex + 1);
-      if (pattern != null) {
-        break;
-      }
-    }
-  } else {
-    table = tableIndex !== null ? table[tableIndex] : table;
-    pattern = this._accessTable(table, args, argsIndex + 1);
+  if (tableIndices == null) {
+    return _accessTable(table, args, argsIndex + 1);
   }
-  return pattern;
-};
+  invariant(
+    typeof table !== 'string',
+    'If tableIndex is non-null, we should have a table, but we got: %s',
+    table,
+  );
+  // Is there a variation? Attempt table access in order of variation preference
+  for (let k = 0; k < tableIndices.length; ++k) {
+    const key = tableIndices[k];
+    // table isn't a tuple here, but flow thinks it could be
+    // $FlowFixMe string is not an array index
+    const subTable = table[key];
+    const pattern = _accessTable(subTable, args, argsIndex + 1);
+    if (pattern != null) {
+      return pattern;
+    }
+  }
+  return null;
+}
 
 /**
  * fbt._enum() takes an enum value and returns a tuple in the format:
@@ -339,14 +340,13 @@ fbt._subject = function(value) {
  *   - E.g. [0], [0,count], or [0,foo.someNumber() + 1]
  */
 fbt._param = function(label, value, variations) {
-  let variation = null;
   const substitution = {[label]: value};
   if (variations) {
     if (variations[0] === VARIATIONS.NUMBER) {
       const number = variations.length > 1 ? variations[1] : value;
       invariant(typeof number === 'number', 'fbt.param expected number');
 
-      variation = getNumberVariations(number);
+      const variation = getNumberVariations(number);
       if (typeof value === 'number') {
         substitution[label] = intlNumUtils.formatNumberWithThousandDelimiters(
           value,
@@ -356,13 +356,13 @@ fbt._param = function(label, value, variations) {
     } else if (variations[0] === VARIATIONS.GENDER) {
       invariant(variations.length > 1, 'expected gender value');
       const gender = variations[1];
-      variation = getGenderVariations(gender);
+      const variation = getGenderVariations(gender);
       return FbtTableAccessor.getGenderResult(variation, substitution, gender);
     } else {
       invariant(false, 'Unknown invariant mask');
     }
   } else {
-    return [variation, substitution];
+    return FbtTableAccessor.getSubstitution(substitution);
   }
 };
 

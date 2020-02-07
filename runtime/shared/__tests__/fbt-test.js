@@ -14,6 +14,8 @@ jest
   .unmock('IntlVariationResolverImpl')
   .unmock('NumberFormatConsts');
 
+import type {FbtRuntimeCallInput, FbtTranslatedInput} from 'FbtHooks';
+
 const FbtNumberType = require('FbtNumberType');
 const fbtRuntime = jest.requireActual('fbt');
 const fbt = require('fbt');
@@ -379,5 +381,16 @@ describe('fbt', () => {
     const fbtJSXResult = <fbt desc="blah">test</fbt>;
     (fbtJSXResult: Fbt);
     (fbtJSXResult: FbtWithoutString);
+  });
+
+  it('should defer to FbtHooks.getTranslatedPayload', () => {
+    require('FbtHooks').register({
+      getTranslatedInput(_input: FbtRuntimeCallInput): FbtTranslatedInput {
+        return {table: 'ALL YOUR TRANSLATION ARE BELONG TO US', args: null};
+      },
+    });
+    expect(fbtRuntime._('sample string', null, null)).toEqual(
+      'ALL YOUR TRANSLATION ARE BELONG TO US',
+    );
   });
 });

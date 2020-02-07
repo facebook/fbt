@@ -12,24 +12,18 @@ const FbtTranslations = require('FbtTranslations');
 
 const getFbsResult = require('getFbsResult');
 
-function fbtInit({
-  customTranslationPayloadGetter__EXPERIMENTAL,
-  hooks = {},
-  translations,
-}) {
+function fbtInit({hooks = {}, translations}) {
   FbtTranslations.registerTranslations(translations);
 
-  if (customTranslationPayloadGetter__EXPERIMENTAL != null) {
-    FbtTranslations.setCustomTranslationPayloadGetter__EXPERIMENTAL(
-      customTranslationPayloadGetter__EXPERIMENTAL,
-    );
-  }
-  // If getFbtResult isn't defined, provide a default one out of the box.
-  if (hooks.getFbtResult === undefined) {
+  // Hookup default implementations
+  if (hooks.getFbtResult == null) {
     hooks.getFbtResult = FbtResult.get;
   }
-  if (hooks.getFbsResult === undefined) {
+  if (hooks.getFbsResult == null) {
     hooks.getFbsResult = getFbsResult;
+  }
+  if (hooks.getTranslatedPayload == null) {
+    hooks.getTranslatedPayload = FbtTranslations.getTranslatedPayload;
   }
   FbtHooks.register(hooks);
 }

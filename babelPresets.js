@@ -19,8 +19,7 @@ const moduleMap = Object.assign(
 
 // TODO T40028530: Remove this when we can convert to fbjs
 // Depends on https://github.com/facebookincubator/fbt/issues/40
-module.exports = function babelPresets(opts) {
-  opts = opts || {};
+module.exports = function babelPresets() {
   const plugins = [
     require('@babel/plugin-syntax-class-properties'),
     require('@babel/plugin-syntax-flow'),
@@ -33,12 +32,6 @@ module.exports = function babelPresets(opts) {
     [require('babel-preset-fbjs/plugins/rewrite-modules'), {map: moduleMap}],
   ];
 
-  // We only want to add declarations for flow transforms and not for js. So we
-  // have to do this separate from above.
-  if (opts.flow) {
-    plugins.push(require('babel-preset-fbjs/plugins/dev-declaration'));
-  }
-
   return {
     plugins: plugins.concat([
       require('@babel/plugin-transform-template-literals'),
@@ -47,11 +40,13 @@ module.exports = function babelPresets(opts) {
       require('@babel/plugin-transform-arrow-functions'),
       require('@babel/plugin-transform-block-scoped-functions'),
       require('@babel/plugin-proposal-class-properties'),
+      require('@babel/plugin-proposal-nullish-coalescing-operator'),
       require('@babel/plugin-proposal-optional-chaining'),
       [require('@babel/plugin-transform-classes'), {loose: true}],
       require('@babel/plugin-transform-object-super'),
       require('@babel/plugin-transform-shorthand-properties'),
       require('@babel/plugin-transform-computed-properties'),
+      require('@babel/plugin-transform-flow-strip-types'),
       require('@babel/plugin-transform-for-of'),
       [require('@babel/plugin-transform-spread'), {loose: true}],
       require('@babel/plugin-transform-parameters'),
@@ -60,7 +55,6 @@ module.exports = function babelPresets(opts) {
       require('@babel/plugin-transform-modules-commonjs'),
       require('@babel/plugin-transform-member-expression-literals'),
       require('@babel/plugin-transform-property-literals'),
-      require('@babel/plugin-transform-flow-strip-types'),
       require('@babel/plugin-proposal-object-rest-spread'),
       require('@babel/plugin-transform-react-display-name'),
       require('@babel/plugin-transform-react-jsx'),

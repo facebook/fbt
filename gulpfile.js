@@ -43,9 +43,6 @@ const babelOptsJS = {
   presets: [babelPresets()],
 };
 
-const babelOptsFlow = {
-  presets: [babelPresets({flow: true})],
-};
 const COPYRIGHT = 'Copyright (c) Facebook, Inc. and its affiliates.';
 
 const COPYRIGHT_HEADER = `/**
@@ -113,12 +110,12 @@ gulp.task(
   }),
 );
 
+// Just copy raw source to *.js.flow
 gulp.task(
   'flow',
   gulp.series(function() {
     return gulp
       .src(paths.runtime, {follow: true})
-      .pipe(babel(babelOptsFlow))
       .pipe(flatten())
       .pipe(rename({extname: '.js.flow'}))
       .pipe(gulp.dest(paths.lib));

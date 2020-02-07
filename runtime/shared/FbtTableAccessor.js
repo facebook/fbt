@@ -5,38 +5,49 @@
  * specific implementation.
  *
  * @emails oncall+internationalization
- * @flow strict-local
+ * @flow strict
  * @format
  */
 
 'use strict';
 
-type Substitution = {...};
-type TableKey = string | number;
+export type FbtSubstitution = {[token: string]: mixed};
+
+export type FbtTableKey = string | number;
+
+export type FbtTableArg = [?Array<FbtTableKey>, ?FbtSubstitution];
 
 const FbtTableAccessor = {
-  getEnumResult(value: string | number): [TableKey, ?Substitution] {
-    return [value, null];
+  getEnumResult(value: FbtTableKey): FbtTableArg {
+    return [[value], null];
   },
+
   getGenderResult(
-    variation: Array<string | number>,
-    substitution: ?Substitution,
-    value: number,
-  ): [Array<TableKey>, ?Substitution] {
+    variation: Array<FbtTableKey>,
+    substitution: ?FbtSubstitution,
+    _gender: number,
+  ): FbtTableArg {
     // value is ignored here which will be used in alternative implementation
     // for different platform
     return [variation, substitution];
   },
+
   getNumberResult(
-    variation: Array<string | number>,
-    substitution: ?Substitution,
-    value: number,
-  ): [Array<TableKey>, ?Substitution] {
+    variation: Array<FbtTableKey>,
+    substitution: ?FbtSubstitution,
+    _numberValue: number,
+  ): FbtTableArg {
     // value is ignored here which will be used in alternative implementation
     // for different platformf
     return [variation, substitution];
   },
-  getPronounResult(genderKey: number): [Array<TableKey>, ?Substitution] {
+
+  // For an fbt.param where no gender or plural/number variation exists
+  getSubstitution(substitution: ?FbtSubstitution): FbtTableArg {
+    return [null, substitution];
+  },
+
+  getPronounResult(genderKey: number): FbtTableArg {
     return [[genderKey, '*'], null];
   },
 };

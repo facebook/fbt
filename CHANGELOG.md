@@ -38,6 +38,9 @@ We haven't had the best track record of code/feature changes before this date, b
   </summary>
 </details>
 
+- 0.12.0:
+  - [feat] FbtHooks.getTranslatedInput for ReactNative translation retrieval
+
 - 0.11.0:
   - [feat] Expose FbtResult in fbt
   - [feat] Enable overriding result returned from fbt via `getFbtResult` in `FbtHooks`
