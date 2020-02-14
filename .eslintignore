@@ -4,4 +4,6 @@ metro.config.js
 
 android/**
 
+ios/**
+
 node_modules/**/*.js

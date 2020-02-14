@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c8fc9ba2b5e537a55fdef95d65cf3194>>
+ * @generated SignedSource<<935168106d08733ae621890afa6e9918>>
  *
  * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  * !! This file is synchronized from fbsource. You should not     !!
@@ -22,12 +22,15 @@
 
 'use strict';
 
-import {NativeModules} from 'react-native';
+import {Platform, NativeModules} from 'react-native';
 
 const _translationsDictionary: {[hashKey: string]: ?string} = {};
 
 export default class FbtI18nNativeAssets {
-  static isAvailable = NativeModules.FbtAndroidNativeModule != null;
+  static isAvailable =
+    Platform.OS === 'ios'
+      ? NativeModules.FBTNativeModule != null
+      : NativeModules.FbtAndroidNativeModule != null;
 
   static getString = (hashKey: string): ?string => {
     let translatedPayload;
@@ -40,9 +43,13 @@ export default class FbtI18nNativeAssets {
         // **Translations will not work while debugging**
         translatedPayload = null;
       } else {
-        translatedPayload = NativeModules.FbtAndroidNativeModule.getString(
-          hashKey,
-        );
+        if (Platform.OS === 'ios') {
+          translatedPayload = NativeModules.FBTNativeModule.getString(hashKey);
+        } else {
+          translatedPayload = NativeModules.FbtAndroidNativeModule.getString(
+            hashKey,
+          );
+        }
       }
       _translationsDictionary[hashKey] = translatedPayload;
     }
