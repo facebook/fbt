@@ -29,7 +29,6 @@ const {overrides} = require('FbtQTOverrides');
 const FbtHooks = require('FbtHooks');
 const FbtResultBase = require('FbtResultBase');
 const FbtTableAccessor = require('FbtTableAccessor');
-const FbtResult = require('FbtResult');
 const GenderConst = require('GenderConst');
 const IntlViewerContext = require('IntlViewerContext');
 
