@@ -2,17 +2,17 @@
   "name": "babel-plugin-fbt-runtime",
   "description": "The secondary FBT Babel transform, for E2E use",
   "//version": "Follow SemVer specs at https://semver.org/",
-  "version": "0.9.10",
+  "version": "0.9.11",
   "license": "MIT",
   "devDependencies": {
-    "fb-babel-plugin-utils": "^0.9.1"
+    "fb-babel-plugin-utils": "^0.10.0"
   },
   "dependencies": {
     "@babel/core": "^7.0.0",
     "fbjs": "^1.0.0"
   },
   "peerDependencies": {
-    "babel-plugin-fbt": "^0.11.x"
+    "babel-plugin-fbt": "^0.14.1"
   },
   "repository": {
     "type": "git",

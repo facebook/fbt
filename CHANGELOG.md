@@ -138,6 +138,9 @@ We haven't had the best track record of code/feature changes before this date, b
   - [c11e9fd](https://github.com/facebookincubator/fbt/commit/c11e9fd) Enable custom Babel plugins for FBT collection
 
 ### babel-plugin-fbt-runtime versions
+- 0.9.11:
+  - Update peer dependency on `babel-plugin-fbt` and devDependency on `fb-babel-plugin-utils`
+
 - 0.9.10:
   - Update peer dependency on `babel-plugin-fbt`
 
