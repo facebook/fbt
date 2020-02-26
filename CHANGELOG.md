@@ -78,6 +78,9 @@ We haven't had the best track record of code/feature changes before this date, b
     </summary>
   </details>
 
+- 0.14.1:
+  - [fix] Point to correct fb-babel-plugin-utils package version
+
 - 0.14.0:
   - [fix] Fix issues due to missing dependency to the `nullthrows` npm package (only visible when using babel-plugin-fbt as a standalone module)
   - [feat] Add ability to provide strings as an array instead of a string concatenation pattern for the Fbt functional API.
@@ -177,11 +180,12 @@ We haven't had the best track record of code/feature changes before this date, b
     <summary>
      Unreleased changes that have landed in master. Click to see more.
     </summary>
-
-    - Feat: expose utility function `generateFormattedCodeFromAST()` to convert a `BabelNode` to a source code string
-    - Minor: clarify error messages when unit tests fail due to Babel AST node differences.
-    - Minor: normalize source code before using it in unit tests' code comparisons
   </details>
+
+- 0.10.0:
+  - Feat: expose utility function `generateFormattedCodeFromAST()` to convert a `BabelNode` to a source code string
+  - Minor: clarify error messages when unit tests fail due to Babel AST node differences.
+  - Minor: normalize source code before using it in unit tests' code comparisons
 
 - 0.9.1:
   - Add READMEs and improve repository link in package.json
