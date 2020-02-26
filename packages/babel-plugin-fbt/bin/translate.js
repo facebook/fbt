@@ -113,9 +113,7 @@ const argv = yargs
   .default(args.HASH, false)
   .describe(
     args.HASH,
-    `Similar to --${
-      args.JENKINS
-    }, but pass the hash-module of your choice.  The ` +
+    `Similar to --${args.JENKINS}, but pass the hash-module of your choice.  The ` +
       'module should export a function with the same signature and operation ' +
       'of fbt-hash-module',
   )
