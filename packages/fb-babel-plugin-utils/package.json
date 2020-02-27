@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/facebookincubator/fbt",
+    "url": "https://github.com/facebook/fbt",
     "directory": "packages/fb-babel-plugin-utils"
   },
   "scripts": {

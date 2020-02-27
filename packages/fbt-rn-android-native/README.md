@@ -1,6 +1,6 @@
 # fbt-rn-android-native
 
-Android native module to enable the usage of the [FBT translation framework](https://facebookincubator.github.io/fbt/) in React Native apps
+Android native module to enable the usage of the [FBT translation framework](https://facebook.github.io/fbt/) in React Native apps
 
 ## Getting started
 
@@ -28,7 +28,7 @@ Android native module to enable the usage of the [FBT translation framework](htt
   	```
 
 ## Usage
-[React Native Demo App](https://github.com/facebookincubator/fbt/tree/rn-demo-app)
+[React Native Demo App](https://github.com/facebook/fbt/tree/rn-demo-app)
 
 ## Notes
 - The only currently supported way for changing the app language is by changing the language on the device itself. This native library depends on how the Android OS selects files depending on the language of the device.

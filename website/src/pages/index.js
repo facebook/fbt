@@ -129,7 +129,7 @@ const Index = () => {
                       "button button--secondary button--lg",
                       styles.button
                     )}
-                    to="https://github.com/facebookincubator/fbt"
+                    to="https://github.com/facebook/fbt"
                   >
                     Try it out
                   </Link>

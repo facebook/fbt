@@ -6,7 +6,7 @@ sidebar_label: Runtime Utilities
 
 Bundled with fbt come a few useful utilities for constructing strings.
 ### intlList(...)
-[`intlList`](https://github.com/facebookincubator/fbt/blob/master/runtime/shared/intlList.js) creates `fbt` instances with selectable conjunctions given an array.
+[`intlList`](https://github.com/facebook/fbt/blob/master/runtime/shared/intlList.js) creates `fbt` instances with selectable conjunctions given an array.
 
 As an example
 ```js

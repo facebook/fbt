@@ -18,5 +18,5 @@ for the FBT payload, and store it for lookup later after generating the
 translated payload in a separate process.  At resource request time, we lookup
 the `payload identifier + locale` and replace the identifier inline in source
 with the translated payload. Conceptually, we're performing the
-[`FbtTranslations`](https://github.com/facebookincubator/fbt/blob/master/runtime/nonfb/FbtTranslations.js)
+[`FbtTranslations`](https://github.com/facebook/fbt/blob/master/runtime/nonfb/FbtTranslations.js)
 lookup, but on the server-side before serving the JS resource.

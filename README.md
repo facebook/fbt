@@ -1,6 +1,6 @@
 <p>
-  <a href="https://travis-ci.com/facebookincubator/fbt">
-    <img src="https://img.shields.io/travis/com/facebookincubator/fbt?logo=travis" alt="Travis CI" />
+  <a href="https://travis-ci.com/facebook/fbt">
+    <img src="https://img.shields.io/travis/com/facebook/fbt?logo=travis" alt="Travis CI" />
   </a>
 
   <a href="https://twitter.com/fbt_js">
@@ -17,7 +17,7 @@
 </p>
 
 <h1 align="center">
-  <img src="https://facebookincubator.github.io/fbt/img/fbt.png" height="150" width="150" alt="FBT"/>
+  <img src="https://facebook.github.io/fbt/img/fbt.png" height="150" width="150" alt="FBT"/>
 </h1>
 
 FBT is an internationalization framework for JavaScript designed to be not just **powerful** and **flexible**, but also **simple** and **intuitive**.  It helps with the following:
@@ -35,7 +35,7 @@ FBT is an internationalization framework for JavaScript designed to be not just 
 
 ## Building the fbt library
 ```
-git clone git@github.com:facebookincubator/fbt.git
+git clone git@github.com:facebook/fbt.git
 cd fbt
 yarn install
 ```
@@ -58,10 +58,10 @@ of all possible variations for the given fbt phrase and accesses this
 at runtime.
 
 ## Full documentation
-https://facebookincubator.github.io/fbt
+https://facebook.github.io/fbt
 
 ## Join the fbt community
-* [Website](https://facebookincubator.github.io/fbt)
+* [Website](https://facebook.github.io/fbt)
 * [Facebook group](https://www.facebook.com/groups/498204277369868)
 * [Discord #fbt channel in reactiflux](https://discord.gg/cQvXZr5)
 * [Twitter](https://twitter.com/fbt_js)

@@ -14,8 +14,8 @@
     "localization",
     "react"
   ],
-  "homepage": "https://facebookincubator.github.io/fbt/",
-  "bugs": "https://github.com/facebookincubator/fbt/issues",
+  "homepage": "https://facebook.github.io/fbt/",
+  "bugs": "https://github.com/facebook/fbt/issues",
   "files": [
     "dist/",
     "lib/",
@@ -25,7 +25,7 @@
   "style": "dist/fbt.css",
   "repository": {
     "type": "git",
-    "url": "https://github.com/facebookincubator/fbt",
+    "url": "https://github.com/facebook/fbt",
     "directory": "packages/fbt"
   },
   "license": "MIT",

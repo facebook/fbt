@@ -18,7 +18,7 @@ const moduleMap = Object.assign(
 );
 
 // TODO T40028530: Remove this when we can convert to fbjs
-// Depends on https://github.com/facebookincubator/fbt/issues/40
+// Depends on https://github.com/facebook/fbt/issues/40
 module.exports = function babelPresets() {
   const plugins = [
     require('@babel/plugin-syntax-class-properties'),

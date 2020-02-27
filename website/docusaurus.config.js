@@ -10,11 +10,11 @@
 module.exports = {
   title: "FBT",
   tagline: "An internationalization framework",
-  url: "https://facebookincubator.github.io",
+  url: "https://facebook.github.io",
   baseUrl: "/fbt/",
   favicon: "img/favicon_blue.png",
   projectName: "fbt",
-  organizationName: "facebookincubator",
+  organizationName: "facebook",
   scripts: ["https://buttons.github.io/buttons.js"],
   customFields: {
     users: [
@@ -37,7 +37,7 @@ module.exports = {
         { to: "docs/getting_started", label: "Docs", position: "right" },
         { to: "help", label: "Help", position: "right" },
         {
-          href: "https://github.com/facebookincubator/fbt",
+          href: "https://github.com/facebook/fbt",
           label: "GitHub",
           position: "right"
         }
@@ -87,7 +87,7 @@ module.exports = {
             { label: "Blog", to: "blog" },
             {
               label: "Github",
-              href: "https://github.com/facebookincubator/fbt"
+              href: "https://github.com/facebook/fbt"
             },
           ]
         }

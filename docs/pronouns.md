@@ -4,7 +4,7 @@ title: Pronouns
 sidebar_label: Pronouns
 ---
 
-`fbt:pronoun` and `fbt.pronoun` both take a required `PRONOUN_USAGE` enum and a [`GenderConst`](https://github.com/facebookincubator/fbt/blob/master/runtime/nonfb/GenderConst.js) enum:
+`fbt:pronoun` and `fbt.pronoun` both take a required `PRONOUN_USAGE` enum and a [`GenderConst`](https://github.com/facebook/fbt/blob/master/runtime/nonfb/GenderConst.js) enum:
 ```
 const PRONOUN_USAGE = {
   OBJECT: 0,
