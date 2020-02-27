@@ -321,7 +321,7 @@ export default class Example extends React.Component/*:: <Props, State> */ {
                   type="submit"
                   onClick={e => {
                     window.open(
-                      'https://github.com/facebookincubator/fbt',
+                      'https://github.com/facebook/fbt',
                       '_blank',
                     );
                   }}>
