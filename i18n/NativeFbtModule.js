@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<45068b16bc43c4c4b1adc72d0f5fbe6c>>
+ * @generated SignedSource<<bd0f4455ae0281a3b9fe07dad5d1849b>>
  *
  * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  * !! This file is synchronized from fbsource. You should not     !!
@@ -22,27 +22,11 @@
 
 'use strict';
 
-import FbtI18nNativeAssets from './FbtI18nNativeAssets';
+import {TurboModule} from 'react-native/Libraries/TurboModule/RCTExport';
+import * as TurboModuleRegistry from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 
-// TODO: Add better types once this is updated in GitHub (T53555809)
-const getTranslatedPayload = (
-  hashKey: ?string,
-  enumHashKey: $FlowFixMe,
-  args: Array<$FlowFixMe>,
-  _table: string | Object,
-): ?{table: $FlowFixMe, args: Array<$FlowFixMe>} => {
-  if (hashKey != null) {
-    let translatedPayload = FbtI18nNativeAssets.getString(hashKey);
-    if (translatedPayload) {
-      translatedPayload = JSON.parse(translatedPayload);
-    }
+export interface Spec extends TurboModule {
+  getString: (hashKey: string) => string;
+}
 
-    return translatedPayload != null && translatedPayload !== ''
-      ? {table: translatedPayload, args}
-      : null;
-  }
-
-  return null;
-};
-
-export {getTranslatedPayload};
+export default (TurboModuleRegistry.get<Spec>('FbtModule'): ?Spec);

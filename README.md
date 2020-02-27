@@ -1,4 +1,4 @@
-# Babel/ReactNative/Android OSS FBT
+# Babel/ReactNative/Android/iOS OSS FBT
 
 ## Building and starting the demo app
 

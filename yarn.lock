@@ -3123,11 +3123,6 @@ fbjs@^1.0.0:
     setimmediate "^1.0.5"
     ua-parser-js "^0.7.18"
 
-fbt-rn-android-native@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/fbt-rn-android-native/-/fbt-rn-android-native-0.0.1.tgz#b785c8eb98ea0102c825cd7137ae6db58900c442"
-  integrity sha512-YWObmlE3l1v5aI2OyM87u0tx3oap0FzUL0imGlPeb1lCMp1W+z5fAFfI8pywrm9IqiiZhPGwHzGIWcONtoqPBQ==
-
 fbt@^0.10.3:
   version "0.10.6"
   resolved "https://registry.yarnpkg.com/fbt/-/fbt-0.10.6.tgz#a363ee1ab824199fda01eaa3b97b93f1371c948d"
@@ -5632,6 +5627,9 @@ react-is@^16.8.1, react-is@^16.8.4, react-is@^16.9.0:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
+
+"react-native-fbt@file:../packages/react-native-fbt":
+  version "0.0.1"
 
 react-native@0.61.2:
   version "0.61.2"
