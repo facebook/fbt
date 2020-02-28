@@ -38,6 +38,12 @@ We haven't had the best track record of code/feature changes before this date, b
   </summary>
 </details>
 
+- 0.13.0:
+  - [fix] FbtInit.getTranslatedInput was setting the wrong default.
+
+- 0.12.1:
+  - [fix] Patch fix for FbtHooks.getTranslatedInput (from 0.13.0)
+
 - 0.12.0:
   - [feat] FbtHooks.getTranslatedInput for ReactNative translation retrieval
 

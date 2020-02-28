@@ -4,26 +4,36 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
+ * @flow strict-local
  * @format
  */
+import type {FbtRegistrations} from 'FbtHooks';
+import type {TranslationDict} from 'FbtTranslations';
+
 const FbtHooks = require('FbtHooks');
 const FbtResult = require('FbtResult');
 const FbtTranslations = require('FbtTranslations');
 
 const getFbsResult = require('getFbsResult');
 
-function fbtInit({hooks = {}, translations}) {
-  FbtTranslations.registerTranslations(translations);
+export type FbtInitInput = {
+  hooks: ?FbtRegistrations,
+  translations: TranslationDict,
+};
+
+function fbtInit(input: FbtInitInput): void {
+  FbtTranslations.registerTranslations(input.translations);
 
   // Hookup default implementations
+  const hooks = input.hooks ?? {};
   if (hooks.getFbtResult == null) {
     hooks.getFbtResult = FbtResult.get;
   }
   if (hooks.getFbsResult == null) {
     hooks.getFbsResult = getFbsResult;
   }
-  if (hooks.getTranslatedPayload == null) {
-    hooks.getTranslatedPayload = FbtTranslations.getTranslatedPayload;
+  if (hooks.getTranslatedInput == null) {
+    hooks.getTranslatedInput = FbtTranslations.getTranslatedInput;
   }
   FbtHooks.register(hooks);
 }

@@ -383,7 +383,7 @@ describe('fbt', () => {
     (fbtJSXResult: FbtWithoutString);
   });
 
-  it('should defer to FbtHooks.getTranslatedPayload', () => {
+  it('should defer to FbtHooks.getTranslatedInput', () => {
     require('FbtHooks').register({
       getTranslatedInput(_input: FbtRuntimeCallInput): FbtTranslatedInput {
         return {table: 'ALL YOUR TRANSLATION ARE BELONG TO US', args: null};

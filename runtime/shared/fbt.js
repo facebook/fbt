@@ -123,8 +123,8 @@ fbt._ = function(
   //     flattened enum hash key (options.ehk), which partially resolves the
   //     translation for the enums (should they exist).
   //
-  // OSS: The table is the English payload, and we lookup the translated payload
-  //      via FbtTranslations
+  // OSS: The table is the English payload, and, by default, we lookup the
+  //      translated payload via FbtTranslations
   let {table: pattern, args} = FbtHooks.getTranslatedInput({
     table: inputTable,
     args: inputArgs,

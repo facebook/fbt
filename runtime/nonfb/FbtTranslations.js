@@ -10,7 +10,6 @@
 
 'use strict';
 
-type CustomTranslationPayloadGetter = typeof FbtTranslations.getTranslatedPayload;
 import type {FbtRuntimeCallInput, FbtTranslatedInput} from 'FbtHooks';
 
 const IntlViewerContext = require('IntlViewerContext');
@@ -20,12 +19,14 @@ let translatedFbts = null;
 type TranslationStr = string;
 
 // {locale: {hash: translation}}
-type TranslationDict = {[locale: string]: {[hashKey: string]: TranslationStr}};
+export type TranslationDict = {
+  [locale: string]: {[hashKey: string]: TranslationStr},
+};
 
 const DEFAULT_SRC_LOCALE = 'en_US';
 
 const FbtTranslations = {
-  getTranslatedPayload(input: FbtRuntimeCallInput): ?FbtTranslatedInput {
+  getTranslatedInput(input: FbtRuntimeCallInput): ?FbtTranslatedInput {
     const {args, options} = input;
     const hashKey = options?.hk;
     const table =
