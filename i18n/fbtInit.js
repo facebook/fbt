@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<b807ec695b6b11363e7af2079af42c2d>>
+ * @generated SignedSource<<51a2666747cc9e8eaede4bc4ab33883a>>
  *
  * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  * !! This file is synchronized from fbsource. You should not     !!
@@ -20,10 +20,8 @@
  * @flow strict-local
  */
 
-import {getTranslatedPayload} from './CustomTranslationPayloadGetter';
+import {getTranslatedInput} from './getTranslatedInput';
 import {init} from 'fbt';
-init({
-  customTranslationPayloadGetter__EXPERIMENTAL: getTranslatedPayload,
-});
+init({hooks: {getTranslatedInput}});
 
 export default {};

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<45068b16bc43c4c4b1adc72d0f5fbe6c>>
+ * @generated SignedSource<<64f5f834628fc680784f95cc3842b80e>>
  *
  * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  * !! This file is synchronized from fbsource. You should not     !!
@@ -22,27 +22,21 @@
 
 'use strict';
 
+import type {FbtRuntimeCallInput, FbtTranslatedInput} from 'fbt/lib/FbtHooks';
+
 import FbtI18nNativeAssets from './FbtI18nNativeAssets';
 
-// TODO: Add better types once this is updated in GitHub (T53555809)
-const getTranslatedPayload = (
-  hashKey: ?string,
-  enumHashKey: $FlowFixMe,
-  args: Array<$FlowFixMe>,
-  _table: string | Object,
-): ?{table: $FlowFixMe, args: Array<$FlowFixMe>} => {
-  if (hashKey != null) {
-    let translatedPayload = FbtI18nNativeAssets.getString(hashKey);
+function getTranslatedInput(
+  input: FbtRuntimeCallInput,
+): ?FbtTranslatedInput {
+  const {options} = input;
+  if (options.hk != null) {
+    let translatedPayload = FbtI18nNativeAssets.getString(options.hk);
     if (translatedPayload) {
-      translatedPayload = JSON.parse(translatedPayload);
+      return {table: JSON.parse(translatedPayload), args: input.args};
     }
-
-    return translatedPayload != null && translatedPayload !== ''
-      ? {table: translatedPayload, args}
-      : null;
   }
-
   return null;
-};
+}
 
-export {getTranslatedPayload};
+export {getTranslatedInput};
