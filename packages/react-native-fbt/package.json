@@ -4,9 +4,6 @@
   "version": "0.0.1",
   "description": "Native module to enable the usage of the FBT translation framework in React Native apps.",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/facebook/fbt.git"
