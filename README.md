@@ -27,6 +27,7 @@ FBT is an internationalization framework for JavaScript designed to be not just 
 
 ## Examples
 [See our demo here](demo-app/src/example/Example.react.js)
+[See our React Native demo here](https://github.com/facebook/fbt/tree/rn-demo-app)
 
 ## Requirements
 * [Node.js](https://nodejs.org/)

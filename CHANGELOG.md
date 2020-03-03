@@ -12,7 +12,8 @@ We haven't had the best track record of code/feature changes before this date, b
 - [babel-plugin-fbt-runtime versions](#babel-plugin-fbt-runtime-versions)
 - [fb-tiger-hash versions](#fb-tiger-hash-versions)
 - [fb-babel-plugin-utils versions](#fb-babel-plugin-utils)
-- [fbt-rn-android-native versions](#fbt-rn-android-native)
+- [fbt-rn-android-native versions [Deprecated]](#fbt-rn-android-native)
+- [react-native-fbt](#react-native-fbt)
 
 ### Top-level Github
 - Add `yarn clean-test` script to clean, rebuild and test this whole project
@@ -209,3 +210,8 @@ We haven't had the best track record of code/feature changes before this date, b
 
 - 0.0.1:
   - Initial commit
+
+### react-native-fbt versions
+
+- 0.0.1:
+  - New React Native package that enables the FBT library for both iOS and Android
