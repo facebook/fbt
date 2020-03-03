@@ -37,6 +37,7 @@ We haven't had the best track record of code/feature changes before this date, b
   <summary>
    Unreleased changes that have landed in master. Click to see more.
   </summary>
+  [refactor] Introduce `FbtTable` and related types around payload access
 </details>
 
 - 0.13.0:

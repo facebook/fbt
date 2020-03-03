@@ -6,20 +6,15 @@
  * @format
  */
 
-import type {FbtTableArg, FbtTableKey} from 'FbtTableAccessor';
-
-/**
- * A leaf string in our FbtInputTable
- */
-type PatternString = string;
-type PatternHash = string;
+import type {FbtTableKey, PatternHash, PatternString} from 'FbtTable';
+import type {FbtTableArg} from 'FbtTableAccessor';
 
 // TODO T61557741: Move these types to fbt.js when it's flow strict
 export type FbtResolvedPayload = {|
   contents: $NestedFbtContentItems,
   errorListener: ?IFbtErrorListener,
   patternString: PatternString,
-  patternHash: PatternHash,
+  patternHash: ?PatternHash,
 |};
 
 /**
@@ -33,16 +28,16 @@ export type FbtResolvedPayload = {|
  *  See the docblock for fbt._ for an example of the nested table and its behavior
  */
 export type FbtInputTable = {
-  [key: FbtTableKey]: PatternString | FbtRuntimeInput,
+  [key: FbtTableKey]: FbtRuntimeInput,
   ...,
 };
-
-export type FbtTableArgs = Array<FbtTableArg>;
 
 export type FbtRuntimeInput =
   | PatternString
   | [PatternString, PatternHash]
   | FbtInputTable;
+
+export type FbtTableArgs = Array<FbtTableArg>;
 
 export type FbtTranslatedInput = {
   table: FbtRuntimeInput,

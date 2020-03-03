@@ -11,9 +11,7 @@
 
 'use strict';
 
-export type FbtSubstitution = {[token: string]: mixed};
-
-export type FbtTableKey = string | number;
+import type {FbtSubstitution, FbtTableKey} from 'FbtTable';
 
 export type FbtTableArg = [?Array<FbtTableKey>, ?FbtSubstitution];
 
@@ -43,7 +41,7 @@ const FbtTableAccessor = {
   },
 
   // For an fbt.param where no gender or plural/number variation exists
-  getSubstitution(substitution: ?FbtSubstitution): FbtTableArg {
+  getSubstitution(substitution: FbtSubstitution): FbtTableArg {
     return [null, substitution];
   },
 

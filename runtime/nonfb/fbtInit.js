@@ -7,7 +7,7 @@
  * @flow strict-local
  * @format
  */
-import type {FbtRegistrations} from 'FbtHooks';
+import type {FbtHookRegistrations} from 'FbtHooks';
 import type {TranslationDict} from 'FbtTranslations';
 
 const FbtHooks = require('FbtHooks');
@@ -17,7 +17,7 @@ const FbtTranslations = require('FbtTranslations');
 const getFbsResult = require('getFbsResult');
 
 export type FbtInitInput = {
-  hooks: ?FbtRegistrations,
+  hooks: ?FbtHookRegistrations,
   translations: TranslationDict,
 };
 

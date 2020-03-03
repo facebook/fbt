@@ -6,14 +6,15 @@
  */
 
 jest
-  .unmock('substituteTokens')
+  .unmock('FbtTable')
+  .unmock('FbtTableAccessor')
   .unmock('intlNumUtils')
-  .unmock('IntlPunctuation')
   .unmock('IntlPhonologicalRewrites')
-  .unmock('NumberFormatConsts')
+  .unmock('IntlPunctuation')
   .unmock('IntlVariationResolver')
   .unmock('IntlVariationResolverImpl')
-  .unmock('FbtTableAccessor')
+  .unmock('NumberFormatConsts')
+  .unmock('substituteTokens')
   .mock('FbtNumberType');
 
 const fbt = jest.fn();
