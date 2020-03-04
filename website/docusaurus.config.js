@@ -94,10 +94,10 @@ module.exports = {
       ]
     },
     image: "img/fbt.png"
-  },
-  algolia: {
-    apiKey: '5c2d8a0fd96316854e1f0eabd60c39ec',
-    indexName: 'fbt',  
+    algolia: {
+      apiKey: "5c2d8a0fd96316854e1f0eabd60c39ec",
+      indexName: "fbt",
+    },
   },
   presets: [
     [
