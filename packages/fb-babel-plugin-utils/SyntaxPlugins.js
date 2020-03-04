@@ -15,7 +15,7 @@
 const SyntaxPluginsConfig = require('./SyntaxPluginsConfig');
 
 // Keep these require's explicit for grep friendliness.
-const SYNTAX_PLUGINS_MAP /*: {[string]: ?Object | [Object, {}], ...} */ = {
+const SYNTAX_PLUGINS_MAP /*: {[string]: ?Object | [Object, {...}], ...} */ = {
   '@babel/plugin-syntax-class-properties': require('@babel/plugin-syntax-class-properties'),
   '@babel/plugin-syntax-flow': [
     require('@babel/plugin-syntax-flow'),
