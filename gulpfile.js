@@ -36,6 +36,7 @@ const paths = {
     '!runtime/**/__tests__/*',
     '!runtime/**/__mocks__/*',
   ],
+  typedModules: ['flow-types/typed-js-modules/*.flow'],
   css: ['runtime/**/*.css'],
 };
 
@@ -99,27 +100,29 @@ gulp.task(
   }),
 );
 
+function flatLib(job) {
+  return job.pipe(flatten()).pipe(gulp.dest(paths.lib));
+}
+
 gulp.task(
   'modules',
-  gulp.series(function() {
-    return gulp
-      .src(paths.runtime, {follow: true})
-      .pipe(babel(babelOptsJS))
-      .pipe(flatten())
-      .pipe(gulp.dest(paths.lib));
-  }),
+  gulp.series(() =>
+    flatLib(gulp.src(paths.runtime, {follow: true}).pipe(babel(babelOptsJS))),
+  ),
 );
 
 // Just copy raw source to *.js.flow
 gulp.task(
   'flow',
-  gulp.series(function() {
-    return gulp
-      .src(paths.runtime, {follow: true})
-      .pipe(flatten())
-      .pipe(rename({extname: '.js.flow'}))
-      .pipe(gulp.dest(paths.lib));
-  }),
+  gulp.parallel(
+    () =>
+      flatLib(
+        gulp
+          .src(paths.runtime, {follow: true})
+          .pipe(rename({extname: '.js.flow'})),
+      ),
+    () => flatLib(gulp.src(paths.typedModules, {follow: true})),
+  ),
 );
 
 gulp.task(
