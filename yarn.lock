@@ -3250,6 +3250,10 @@ flow-bin@^0.115.0:
   version "0.115.0"
   resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.115.0.tgz#22e3ad9e5c7198967de80138ba8a9154ff387960"
 
+flow-parser@>=0.115.0:
+  version "0.119.1"
+  resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.119.1.tgz#c120c402e164c7e9379a8d84b2c838adaaa0e610"
+
 flow-remove-types@^1.0.0:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/flow-remove-types/-/flow-remove-types-1.2.3.tgz#6131aefc7da43364bb8b479758c9dec7735d1a18"
@@ -3652,6 +3656,13 @@ gulp-match@^1.0.3:
 gulp-rename@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/gulp-rename/-/gulp-rename-1.4.0.tgz#de1c718e7c4095ae861f7296ef4f3248648240bd"
+
+gulp-rewrite-flowtyped-modules@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/gulp-rewrite-flowtyped-modules/-/gulp-rewrite-flowtyped-modules-0.0.3.tgz#c173b1a92f4baa6f365cf6bf6e94ca52a48afc68"
+  dependencies:
+    flow-parser ">=0.115.0"
+    through2 "^3.0.1"
 
 gulp-util@^3.0.4, gulp-util@^3.0.8:
   version "3.0.8"
@@ -7292,7 +7303,7 @@ through2-filter@^3.0.0:
     through2 "~2.0.0"
     xtend "~4.0.0"
 
-through2@3.0.1:
+through2@3.0.1, through2@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/through2/-/through2-3.0.1.tgz#39276e713c3302edf9e388dd9c812dd3b825bd5a"
   dependencies:

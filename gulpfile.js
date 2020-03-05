@@ -11,6 +11,7 @@
 'use strict';
 
 const babelPresets = require('./babelPresets');
+const moduleMap = require('./moduleMap');
 const {version} = require('./packages/fbt/package.json');
 const del = require('del');
 const gulp = require('gulp');
@@ -22,6 +23,7 @@ const flatten = require('gulp-flatten');
 const header = require('gulp-header');
 const gulpif = require('gulp-if');
 const rename = require('gulp-rename');
+const rewriteModules = require('gulp-rewrite-flowtyped-modules');
 const gulpUtil = require('gulp-util');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const webpackStream = require('webpack-stream');
@@ -111,7 +113,7 @@ gulp.task(
   ),
 );
 
-// Just copy raw source to *.js.flow
+// Copy raw source with rewritten modules to *.js.flow
 gulp.task(
   'flow',
   gulp.parallel(
@@ -119,7 +121,8 @@ gulp.task(
       flatLib(
         gulp
           .src(paths.runtime, {follow: true})
-          .pipe(rename({extname: '.js.flow'})),
+          .pipe(rename({extname: '.js.flow'}))
+          .pipe(rewriteModules({map: moduleMap})),
       ),
     () => flatLib(gulp.src(paths.typedModules, {follow: true})),
   ),
