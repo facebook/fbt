@@ -8,14 +8,7 @@
  */
 'use strict';
 
-const moduleMap = Object.assign(
-  {
-    React: 'react',
-    ReactDOM: 'react-dom',
-  },
-  require('fbjs/module-map'),
-  require('fbjs-scripts/third-party-module-map'),
-);
+const moduleMap = require('./moduleMap');
 
 // TODO T40028530: Remove this when we can convert to fbjs
 // Depends on https://github.com/facebook/fbt/issues/40

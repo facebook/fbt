@@ -16,6 +16,7 @@ We haven't had the best track record of code/feature changes before this date, b
 - [fbt-rn-android-native versions [Deprecated]](#fbt-rn-android-native-versions-deprecated)
 
 ### Top-level Github
+- refactor: Breakup `moduleMap` from babelPresets
 - Add `yarn clean-test` script to clean, rebuild and test this whole project
 - Run Flow checks and all Jest tests in Travis by default
 - Upgrade to Flow v0.115.0
