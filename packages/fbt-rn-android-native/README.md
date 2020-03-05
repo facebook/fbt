@@ -1,4 +1,8 @@
-# fbt-rn-android-native
+# fbt-rn-android-native [DEPRECATED]
+
+This package will not longer be maintained. It has been deprecated in favor of [react-native-fbt](https://www.npmjs.com/package/react-native-fbt), which adds support for iOS React Native applications as well.
+
+-----
 
 Android native module to enable the usage of the [FBT translation framework](https://facebook.github.io/fbt/) in React Native apps
 
