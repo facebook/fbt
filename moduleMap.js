@@ -9,12 +9,12 @@
 'use strict';
 
 const moduleMap = Object.assign(
+  require('fbjs-scripts/third-party-module-map'),
   {
+    invariant: 'invariant',
     React: 'react',
     ReactDOM: 'react-dom',
   },
-  require('fbjs/module-map'),
-  require('fbjs-scripts/third-party-module-map'),
 );
 
 module.exports = moduleMap;

@@ -29,15 +29,15 @@
     "directory": "packages/fbt"
   },
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "invariant": "^2.2.4"
+  },
   "peerDependencies": {
     "babel-plugin-fbt": "^0.10.x",
     "babel-plugin-fbt-runtime": "^0.9.x",
     "react": "0.12.0 - 16.x.x"
   },
-  "devDependencies": {
-    "nullthrows": "^1.1.1"
-  },
+  "devDependencies": {},
   "devEngines": {
     "node": "6.x || 7.x || 8.x || 9.x || 10.x || 11.x",
     "npm": "6.x"
