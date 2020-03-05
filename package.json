@@ -30,7 +30,7 @@
     "fbt": "^0.13.0",
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.56.0",
-    "react-native-fbt": "file:../packages/react-native-fbt",
+    "react-native-fbt": "^0.0.1",
     "react-test-renderer": "16.9.0",
     "shelljs": "^0.8.3"
   },
