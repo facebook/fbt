@@ -38,10 +38,12 @@ We haven't had the best track record of code/feature changes before this date, b
   <summary>
    Unreleased changes that have landed in master. Click to see more.
   </summary>
-  [fix] Add NumberFormatConfig flow definition
-  [fix] Use `invariant` module in fbt runtime and list it as dependency
-  [refactor] Introduce `FbtTable` and related types around payload access
 </details>
+
+- 0.14.0:
+  - [fix] Add NumberFormatConfig flow definition
+  - [fix] Use `invariant` module in fbt runtime and list it as dependency
+  - [refactor] Introduce `FbtTable` and related types around payload access
 
 - 0.13.0:
   - [fix] FbtInit.getTranslatedInput was setting the wrong default.
