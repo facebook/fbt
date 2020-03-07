@@ -79,18 +79,19 @@ const FbtTable = {
    * @param argsIndex - argument index we're currently visiting
    */
   access(
-    table: ?FbtRuntimeInput,
+    table: FbtRuntimeInput,
     args: FbtTableArgs,
     argsIndex: number,
   ): ?PatternString | [PatternString, PatternHash] {
     if (argsIndex >= args.length) {
       // We've reached the end of our arguments at a valid entry, in which case
-      // table is now a string (leaf)
-      // $FlowFixMe string is incompatible FbtInputTable type
+      // table is now a string (leaf) or undefined (key doesn't exist)
+      invariant(
+        typeof table === 'string' || Array.isArray(table),
+        'Expected leaf, but got: %s',
+        JSON.stringify(table),
+      );
       return table;
-    } else if (table == null) {
-      // We've accessed a key that didn't exist in the table
-      return null;
     }
     const arg = args[argsIndex];
     const tableIndices = arg[FbtTable.ARG.INDEX];
@@ -99,16 +100,16 @@ const FbtTable = {
       return FbtTable.access(table, args, argsIndex + 1);
     }
     invariant(
-      typeof table !== 'string',
+      typeof table !== 'string' && !Array.isArray(table),
       'If tableIndex is non-null, we should have a table, but we got: %s',
-      table,
+      typeof table,
     );
     // Is there a variation? Attempt table access in order of variation preference
     for (let k = 0; k < tableIndices.length; ++k) {
-      const key = tableIndices[k];
-      // table isn't a tuple here, but flow thinks it could be
-      // $FlowFixMe string is not an array index
-      const subTable = table[key];
+      const subTable = table[tableIndices[k]];
+      if (subTable == null) {
+        continue;
+      }
       const pattern = FbtTable.access(subTable, args, argsIndex + 1);
       if (pattern != null) {
         return pattern;
