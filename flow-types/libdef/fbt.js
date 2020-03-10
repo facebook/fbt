@@ -154,7 +154,6 @@ declare interface IFbtStringish {
 
   // Methods from String
   indexOf: typeof String.prototype.indexOf;
-  localeCompare: typeof String.prototype.localeCompare;
   match: typeof String.prototype.match;
   normalize: typeof String.prototype.normalize;
   replace: typeof String.prototype.replace;
@@ -190,7 +189,6 @@ declare class $FbtResultBase extends FbtPureStringResult
   implements IFbtStringish {
   // implements IFbtStringish
   indexOf: $PropertyType<IFbtStringish, 'indexOf'>;
-  localeCompare: $PropertyType<IFbtStringish, 'localeCompare'>;
   match: $PropertyType<IFbtStringish, 'match'>;
   normalize: $PropertyType<IFbtStringish, 'normalize'>;
   replace: $PropertyType<IFbtStringish, 'replace'>;
