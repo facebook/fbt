@@ -171,8 +171,12 @@ fbt._ = function(
   } else if (typeof pattern === 'string') {
     patternString = pattern;
   } else {
-    const msg = pattern === undefined ? 'undefined' : JSON.stringify(pattern);
-    throw new Error('Table access did not result in string: ' + msg);
+    throw new Error(
+      'Table access did not result in string: ' +
+        (pattern === undefined ? 'undefined' : JSON.stringify(pattern)) +
+        ', Type: ' +
+        typeof pattern,
+    );
   }
 
   const cachedFbt = _cachedFbtResults[patternString];
