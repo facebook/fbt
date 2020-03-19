@@ -68,10 +68,8 @@ function markAsSafeForReact<T: MaybeReactComponent>(object: T): T {
  */
 function substituteTokens<Arg: mixed>(
   template: string,
-  _args: {[paramName: string]: Arg, ...},
+  args: {[paramName: string]: Arg, ...},
 ): string | Array<string | Arg> {
-  const args = _args;
-
   if (args == null) {
     return template;
   }
@@ -88,7 +86,7 @@ function substituteTokens<Arg: mixed>(
   const stringPieces = template
     .replace(
       parameterRegexp,
-      (match: string, parameter: string, punctuation: string): string => {
+      (_match: string, parameter: string, punctuation: string): string => {
         if (__DEV__) {
           if (!args.hasOwnProperty(parameter)) {
             throw new Error(
@@ -120,9 +118,14 @@ function substituteTokens<Arg: mixed>(
   }
 
   // Zip together the lists of pieces.
-  const pieces = [stringPieces[0]];
+  // We skip adding empty strings from stringPieces since they were
+  // injected from translation patterns that only contain tokens. See D20453562
+  const pieces = stringPieces[0] !== '' ? [stringPieces[0]] : [];
   for (let i = 0; i < objectPieces.length; i++) {
-    pieces.push(markAsSafeForReact(objectPieces[i]), stringPieces[i + 1]);
+    pieces.push(markAsSafeForReact(objectPieces[i]));
+    if (stringPieces[i + 1] !== '') {
+      pieces.push(stringPieces[i + 1]);
+    }
   }
   return pieces;
 }
