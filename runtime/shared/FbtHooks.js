@@ -57,14 +57,18 @@ export type FbtEnumHashKeyTable = {
 };
 
 export type FbtInputOpts = {
-  hk?: string, // hash key
-  ehk?: FbtEnumHashKeyTable, // enum hash key
+  // hash key
+  hk?: string,
+  // enum hash key
+  ehk?: FbtEnumHashKeyTable,
+  ...
 };
 
 export type FbtRuntimeCallInput = {
   table: FbtRuntimeInput,
   args: ?FbtTableArgs,
   options: ?FbtInputOpts,
+  ...
 };
 
 // TODO: T61015960 - getFb[st]Result should return types that are locked down
