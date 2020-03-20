@@ -27,15 +27,21 @@ const React = require('React');
 const ReactDOM = require('ReactDOM');
 
 describe('fbt', () => {
-  // Use a locale that has FEW.
-  FbtNumberType.getVariation = jest.requireActual(
-    'IntlCLDRNumberType19',
-  ).getVariation;
-
   const ONE = String(IntlVariations.NUMBER_ONE);
   const FEW = String(IntlVariations.NUMBER_FEW);
   const MALE = String(IntlVariations.GENDER_MALE);
   const FEMALE = String(IntlVariations.GENDER_FEMALE);
+  let domContainer;
+
+  beforeEach(() => {
+    jest.resetModules();
+    domContainer = document.createElement('div');
+
+    // Use a locale that has FEW.
+    FbtNumberType.getVariation = jest.requireActual(
+      'IntlCLDRNumberType19',
+    ).getVariation;
+  });
 
   it('should memoize new strings', function() {
     expect(fbtRuntime._getCachedFbt('sample string')).toEqual(undefined);
@@ -171,10 +177,8 @@ describe('fbt', () => {
     ).toEqual('A total amount is 10000');
   });
 
-  const container = document.createElement('div');
-
   function renderAndExtractChildDivs(component) {
-    const node = ReactDOM.findDOMNode(ReactDOM.render(component, container));
+    const node = ReactDOM.findDOMNode(ReactDOM.render(component, domContainer));
     // TODO T21716504: flow thinks ReactDOM.findDOMNode returns Text...
     invariant(node instanceof Element, 'Expected node to be an Element');
     const resultingElements = node && node.getElementsByTagName('div');
@@ -277,7 +281,7 @@ describe('fbt', () => {
     for (const n in numToType) {
       const type = numToType[n];
       const displayNumber = intlNumUtils.formatNumberWithThousandDelimiters(n);
-      expect(fbtRuntime._param('num', parseInt(n), [0])).toEqual([
+      expect(fbtRuntime._param('num', parseInt(n, 10), [0])).toEqual([
         [type, '*'],
         {num: displayNumber},
       ]);
@@ -392,5 +396,34 @@ describe('fbt', () => {
     expect(fbtRuntime._('sample string', null, null)).toEqual(
       'ALL YOUR TRANSLATION ARE BELONG TO US',
     );
+  });
+
+  describe('given a string that is only made of contiguous tokens', () => {
+    it('should return a list of token values without empty strings', () => {
+      const fbtParams = [{value: 'hello'}, {value: 'world'}];
+
+      expect(
+        <fbt desc="...">
+          <fbt:param name="hello">{fbtParams[0]}</fbt:param>
+          <fbt:param name="world">{fbtParams[1]}</fbt:param>
+        </fbt>,
+      ).toEqual(fbtParams);
+
+      expect(
+        fbt(
+          fbt.param(
+            'hello',
+            // $FlowExpectedError No need to use a real React node for testing
+            fbtParams[0],
+          ) +
+            fbt.param(
+              'world',
+              // $FlowExpectedError No need to use a real React node for testing
+              fbtParams[1],
+            ),
+          'desc',
+        ),
+      ).toEqual(fbtParams);
+    });
   });
 });

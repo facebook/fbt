@@ -131,7 +131,6 @@ exports[`Example.react renders the example 1`] = `
         <span
           className="sentence example_row"
         >
-          
           <b
             className="padRight"
           >
@@ -248,7 +247,6 @@ exports[`Example.react renders the example 1`] = `
         <span
           className="sentence example_row"
         >
-          
           <b
             className="padRight"
           >
@@ -262,13 +260,11 @@ exports[`Example.react renders the example 1`] = `
           <b
             className="pad"
           >
-            
             <a
               href="#"
             >
               View
             </a>
-            
           </b>
            their link.
         </span>
