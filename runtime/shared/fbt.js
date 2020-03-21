@@ -161,7 +161,6 @@ fbt._ = function(
     patternHash = pattern[1];
     // Append '1_' for appid's prepended to our i18n hash
     // (see intl_get_application_id)
-    // $FlowFixMe pattern is the tuple [string, string]
     const stringID = '1_' + patternHash;
     if (overrides[stringID] != null && overrides[stringID] !== '') {
       patternString = overrides[stringID];
