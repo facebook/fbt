@@ -76,7 +76,7 @@ Check out our [FBT Native Module](https://www.npmjs.com/package/react-native-fbt
 ```
    * Add the `collectFBT` script call in package.json. This script collects all fbt-wrapped strings into a file for you to translate.
 ```
-  "collect-fbts": "babel-node ./node_modules/babel-plugin-fbt/bin/collectFBT --hash-module 'fb-tiger-hash/hashPhrases' --react-native-mode --manifest < i18n/fbt/.src_manifest.json > i18n/fbt/.source_strings.json"
+  "collect-fbts": "babel-node ./node_modules/babel-plugin-fbt/bin/collectFBT --hash-module 'fb-tiger-hash/src/hashPhrases' --react-native-mode --manifest < i18n/fbt/.src_manifest.json > i18n/fbt/.source_strings.json"
 ```
    * Add the `translate` script call in package.json. This script should be used after all strings are translated. It’ll generate a single file with all translations that we then need to translate into Android specific localizable.json files. See the input format [here](https://github.com/facebook/fbt/tree/rn-demo-app/i18n/fbt/translationScriptInput).
 ```   
