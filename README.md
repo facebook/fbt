@@ -13,6 +13,7 @@ yarn collect-fbts
 yarn translate-fbts
 # 4. Generate android/res translation files by running the
 #    generate-android-localizable script with the ouput of translate-fbts
+yarn generate-android-fbt
 # 5. Run a local web server with hot reloading at localhost:8081
 yarn android
 ```
