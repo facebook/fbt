@@ -90,7 +90,11 @@ declare type $NestedFbtContentItems = $ReadOnlyArray<
   $FbtContentItem | $NestedFbtContentItems,
 >;
 
-declare type FbtErrorContext = {hash: ?string, translation: string};
+declare type FbtErrorContext = {
+  hash: ?string,
+  translation: string,
+  ...
+};
 
 /**
  * A delegate used in FbtResult for handling errors when toString
@@ -138,7 +142,7 @@ declare interface IFbtResultBase {
   toJSON(): string;
 
   // Hack for allowing FBTResult to play nice in React components
-  _store?: {validated: boolean};
+  _store?: {validated: boolean, ...};
 }
 
 declare interface IFbtStringish {
@@ -226,6 +230,7 @@ type $GenericFbtFunctionAPI<Input, Output, ParamInput, ParamOutput> = {
     options?: {
       author?: string,
       project?: string,
+      ...
     },
   ): Output,
   param(
@@ -234,11 +239,12 @@ type $GenericFbtFunctionAPI<Input, Output, ParamInput, ParamOutput> = {
     options?: {
       number?: boolean | number,
       gender?: $IntlVariationsEnum,
+      ...
     },
   ): ParamOutput,
   enum(
     value: string,
-    range: $ReadOnlyArray<string> | {[key: string]: string},
+    range: $ReadOnlyArray<string> | {[key: string]: string, ...},
   ): ParamOutput,
   name(
     tokenName: string,
@@ -251,25 +257,28 @@ type $GenericFbtFunctionAPI<Input, Output, ParamInput, ParamOutput> = {
     options?: {
       many?: string,
       showCount?: 'ifMany' | 'no' | 'yes',
+      ...
     },
   ): ParamOutput,
   pronoun(
     usage: 'object' | 'possessive' | 'reflexive' | 'subject',
     gender: $GenderConstEnum,
-    options?: {capitalize?: boolean, human?: boolean},
+    options?: {
+      capitalize?: boolean,
+      human?: boolean,
+      ...
+    },
   ): ParamOutput,
   sameParam(name: string): ParamOutput,
-
   c(text: string): Output,
   jsonEncode: boolean,
   replaceParams: boolean,
-
   // Only used in React Native in fbsource
   enableJsonExportMode(): void,
   // Only used in React Native in fbsource
   disableJsonExportMode(): void,
-
   isFbtInstance(value: mixed): boolean,
+  ...
 };
 
 type $StringBasedFbtFunctionAPI<
