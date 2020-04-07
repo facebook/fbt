@@ -387,8 +387,12 @@ fbt.disableJsonExportMode = function() {
   jsonExportMode = false;
 };
 
-fbt.isFbtInstance = function(value: mixed): boolean {
+// Must define this as a standalone function
+// because Flow doesn't support %check on as a class static method
+function isFbtInstance(value: mixed): boolean %checks {
   return value instanceof FbtResultBase;
-};
+}
+
+fbt.isFbtInstance = isFbtInstance;
 
 module.exports = ((fbt: $FlowFixMe): $FbtFunctionAPI);

@@ -39,6 +39,7 @@ We haven't had the best track record of code/feature changes before this date, b
   <summary>
    Unreleased changes that have landed in master. Click to see more.
   </summary>
+  - [feat] Convert `fbt.isFbtInstance()` to a predicate function for Flow
   - [fix] Avoid generating unnecessary empty strings in fbt result contents
   - [chore] Log type of leaf reached during table access failure
   - [fix] Fix FlowFixMes in FbtTable.access
