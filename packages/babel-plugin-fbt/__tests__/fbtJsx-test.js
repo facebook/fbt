@@ -583,6 +583,25 @@ const testData = {
     ),
   },
 
+  'should not throw on attributes that are explictly ignored': {
+    input: withFbtRequireStatement(
+      `<fbt desc="some-desc" __self={this}>
+        <fbt:param name="foo" __self={this}>
+          !{foo}!
+        </fbt:param>
+      </fbt>`
+    ),
+
+    output: withFbtRequireStatement(
+      `fbt._(
+        ${payload({
+          type: "text",
+          jsfbt: "{foo}",
+          desc: "some-desc",
+        })}, [fbt._param("foo", foo)]);`
+    ),
+  },
+
   'should maintain order of params and enums': {
     input: withFbtRequireStatement(
       `<fbt desc="some-desc">

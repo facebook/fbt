@@ -16,7 +16,7 @@ const {
   PluralOptions,
   PluralRequiredAttributes,
   PronounRequiredAttributes,
-  RequiredParamOptions,
+  IgnoredParamOptions,
   ValidParamOptions,
   ValidPronounOptions,
   ValidPronounUsages,
@@ -51,7 +51,7 @@ const getNamespacedArgs = function(moduleName, t) {
         t,
         attributes,
         ValidParamOptions,
-        RequiredParamOptions,
+        IgnoredParamOptions,
       );
 
       let paramChildren = filterEmptyNodes(node.children).filter(function(

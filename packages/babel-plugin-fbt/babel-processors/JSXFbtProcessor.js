@@ -31,7 +31,7 @@ const FbtAutoWrap = require('../FbtAutoWrap');
 const FbtCommon = require('../FbtCommon');
 const {
   FbtCallMustHaveAtLeastOneOfTheseAttributes,
-  FbtRequiredAttributes,
+  FbtIgnoredAttributes,
   ValidFbtOptions,
 } = require('../FbtConstants');
 const FbtNodeChecker = require('../FbtNodeChecker');
@@ -134,7 +134,7 @@ class JSXFbtProcessor {
         this.t,
         attrs,
         ValidFbtOptions,
-        FbtRequiredAttributes,
+        FbtIgnoredAttributes,
       )
       : null;
   }
