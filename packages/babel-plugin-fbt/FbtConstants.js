@@ -91,6 +91,11 @@ const FbtRequiredAttributes = {
   desc: true,
 };
 
+const FbtIgnoredAttributes = {
+  __self: true,
+  ...FbtRequiredAttributes,
+};
+
 const PronounRequiredAttributes = {
   type: true,
   gender: true,
@@ -100,6 +105,11 @@ const PLURAL_PARAM_TOKEN = 'number';
 
 const RequiredParamOptions = {
   name: true,
+};
+
+const IgnoredParamOptions = {
+  __self: true,
+  ...RequiredParamOptions,
 };
 
 const ValidParamOptions = {
@@ -130,8 +140,10 @@ module.exports = {
   FBT_ENUM_MODULE_SUFFIX,
   FbtBooleanOptions,
   FbtCallMustHaveAtLeastOneOfTheseAttributes,
+  FbtIgnoredAttributes,
   FbtRequiredAttributes,
   FbtType,
+  IgnoredParamOptions,
   JSModuleName,
   ModuleNameRegExp,
   PLURAL_PARAM_TOKEN,
