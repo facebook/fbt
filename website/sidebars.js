@@ -10,7 +10,7 @@
 module.exports = {
   docs: {
     "Getting started": [
-      "getting_started",
+      "getting_started_on_web",
       "getting_started_react_native"
     ],
     API: [

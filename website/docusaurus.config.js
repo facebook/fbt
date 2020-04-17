@@ -55,7 +55,7 @@ module.exports = {
         {
           title: "Docs",
           items: [
-            { label: "Getting Started", to: "docs/getting_started" },
+            { label: "Getting Started", to: "docs/getting_started_on_web" },
             { label: "Help", to: "help" },
             {
               label: "API Reference",

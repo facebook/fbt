@@ -1,7 +1,7 @@
 ---
-id: getting_started
-title: Getting Started
-sidebar_label: Getting Started
+id: getting_started_on_web
+title: Getting Started on web
+sidebar_label: Web
 ---
 
 ## Try the Demo
