@@ -13,10 +13,10 @@
 
 const FbtAutoWrap = require('./FbtAutoWrap');
 const {
-  IgnoredParamOptions,
   PluralOptions,
   PluralRequiredAttributes,
   PronounRequiredAttributes,
+  RequiredParamOptions,
   ValidParamOptions,
   ValidPronounOptions,
   ValidPronounUsages,
@@ -51,7 +51,7 @@ const getNamespacedArgs = function(moduleName, t) {
         t,
         attributes,
         ValidParamOptions,
-        IgnoredParamOptions,
+        RequiredParamOptions,
       );
 
       let paramChildren = filterEmptyNodes(node.children).filter(function(
