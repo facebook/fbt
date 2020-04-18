@@ -21,6 +21,7 @@ module.exports = {
       "enums",
       "pronouns",
       "autoparam",
+      "common",
       "utilities"
     ],
     "JS Transforms": ["transform"],
