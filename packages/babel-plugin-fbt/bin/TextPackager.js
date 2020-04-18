@@ -5,21 +5,18 @@
  * @format
  */
 const {FbtType} = require('../FbtConstants');
-const mergePhrase = require('./mergePhrase');
 
 /**
  * TextPackager massages the data to handle multiple texts in fbt payloads (like
  * enum branches) and hashes each individual text.  It stores this mapping in a
- * stripped down phrase (it drops extraneous data like the jsfbt payload itself
- * to limit JSON parsing down the pipe via mergePhrase).
+ * stripped down phrase
  */
 class TextPackager {
   // The hash function signature should look like:
   // [{desc: '...', texts: ['t1',...,'tN']},...]) =>
   //   [[hash1,...,hashN],...]
-  constructor(hash, terse) {
+  constructor(hash) {
     this._hash = hash;
-    this._terse = terse;
   }
 
   pack(phrases) {
@@ -39,11 +36,7 @@ class TextPackager {
         }
         hashToText[hash] = text;
       });
-      return mergePhrase(
-        {hashToText: hashToText},
-        phrases[phraseIdx],
-        !this._terse,
-      );
+      return {hashToText, ...phrases[phraseIdx]};
     });
   }
 }

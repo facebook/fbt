@@ -162,10 +162,14 @@ function writeOutput() {
   process.stdout.write(
     JSON.stringify(
       {
-        phrases: getPackagers().reduce(
-          (phrases, packager) => packager.pack(phrases),
-          fbtCollector.getPhrases(),
-        ),
+        phrases: getPackagers()
+          .reduce(
+            (phrases, packager) => packager.pack(phrases),
+            fbtCollector.getPhrases(),
+          )
+          .map(phrase =>
+            argv[args.TERSE] ? delete phrase.jsfbt && phrase : phrase,
+          ),
         childParentMappings: fbtCollector.getChildParentMappings(),
       },
       ...(argv[args.PRETTY] ? [null, ' '] : []),
@@ -192,14 +196,13 @@ function processSource(source) {
 }
 
 function getPackagers() {
-  const terse = argv[args.TERSE];
   switch (packager) {
     case packagerTypes.TEXT:
-      return [new TextPackager(getHasher(), terse)];
+      return [new TextPackager(getHasher())];
     case packagerTypes.PHRASE:
-      return [new PhrasePackager(terse)];
+      return [new PhrasePackager()];
     case packagerTypes.BOTH:
-      return [new TextPackager(getHasher(), terse), new PhrasePackager(terse)];
+      return [new TextPackager(getHasher()), new PhrasePackager()];
     case packagerTypes.NONE:
       return [{pack: phrases => phrases}];
     default:

@@ -94,6 +94,7 @@ We haven't had the best track record of code/feature changes before this date, b
     <summary>
      Unreleased changes that have landed in master. Click to see more.
     </summary>
+  - [fix] Bug in collectFBT.js when using `BOTH` packagers with `--terse`
   </details>
 
 - 0.14.1:
