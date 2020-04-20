@@ -34,7 +34,7 @@ module.exports = {
         src: "img/fbt.png"
       },
       links: [
-        { to: "docs/getting_started", label: "Docs", position: "right" },
+        { to: "docs/getting_started_on_web", label: "Docs", position: "right" },
         { to: "help", label: "Help", position: "right" },
         {
           href: "https://github.com/facebook/fbt",
