@@ -27,15 +27,15 @@ export type FbtResolvedPayload = {|
  *
  *  See the docblock for fbt._ for an example of the nested table and its behavior
  */
-export type FbtInputTable = {
-  [key: FbtTableKey]: FbtRuntimeInput,
-  ...,
-};
-
 export type FbtRuntimeInput =
   | PatternString
   | [PatternString, PatternHash]
   | FbtInputTable;
+
+export type FbtInputTable = {
+  [key: FbtTableKey]: FbtRuntimeInput,
+  ...,
+};
 
 export type FbtTableArgs = Array<FbtTableArg>;
 

@@ -3,6 +3,7 @@
  *
  * DO NOT AUTO-FORMAT TO PRESERVE FLOW TYPES
  * @noformat
+ * @flow
  */
 
 /* eslint max-len: ["warn", 120] */
@@ -16,16 +17,42 @@ const {SyntaxPlugins} = require('fb-babel-plugin-utils');
 const fs = require('graceful-fs');
 
 /*::
+import type {PatternString} from '../../../runtime/shared/FbtTable';
+import type {FbtRuntimeInput} from '../../../runtime/shared/FbtHooks';
+import type {BabelPluginList} from '@babel/core';
 type CollectorConfig = {|
   auxiliaryTexts: boolean,
-  plugins?: Array<string>,
+  fbtCommonPath?: string,
+  plugins?: BabelPluginList,
   reactNativeMode?: boolean,
 |};
 export type ChildParentMappings = {[prop: number]: number}
 export type Errors = {[file: string]: Error};
 export type ExtraOptions = {[prop: string]: boolean};
 export type FbtEnumManifest = {};
-export type Phrase = {[prop: string]: mixed};
+type PhraseBase = {|
+  col_beg: number,
+  col_end: number,
+  desc: string,
+  hash_code: number,
+  hash_key: string,
+  hashToText: {[hash: string]: string},
+  line_beg: number,
+  line_end: number,
+  project: string,
+|};
+export type Phrase = {|
+  ...PhraseBase,
+  type: 'text',
+  jsfbt: PatternString,
+|} | {|
+  ...PhraseBase,
+  type: 'table',
+  jsfbt: {
+    t: FbtRuntimeInput,
+    m: {}
+  },
+|};
 export type TransformOptions = {|
   collectFbt?: boolean,
   soureType?: string,
@@ -41,7 +68,7 @@ export type TransformOptions = {|
 function transform(
   code /*: string*/,
   options /*: TransformOptions*/,
-  plugins /*: Array<mixed>*/,
+  plugins /*: BabelPluginList */,
 )/*: void*/ {
   const opts = {
     ast: false,
