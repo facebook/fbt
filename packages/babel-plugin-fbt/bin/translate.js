@@ -79,7 +79,7 @@
 'use strict';
 
 const {objMap} = require('../FbtUtil');
-const {FbtSite} = require('../translate/FbtSite.js');
+const {FbtSite} = require('../translate/FbtSite');
 const TranslationBuilder = require('../translate/TranslationBuilder');
 const TranslationConfig = require('../translate/TranslationConfig');
 const TranslationData = require('../translate/TranslationData');
@@ -151,14 +151,23 @@ const argv = yargs
       'This is useful when you want to lazy load translations per locale.',
   ).argv;
 
+function parseJSONFile(filepath) {
+  try {
+    return JSON.parse(fs.readFileSync(filepath));
+  } catch (error) {
+    error.message += `\nFile path: "${filepath}"`;
+    throw error;
+  }
+}
+
 function processFiles(
   stringFile /*: string */,
   translationFiles /*: Array<string> */,
 ) {
-  const phrases = JSON.parse(fs.readFileSync(stringFile)).phrases;
+  const phrases = parseJSONFile(stringFile).phrases;
   const fbtSites = phrases.map(FbtSite.fromScan);
   const translatedGroups = translationFiles.map(file => {
-    const group = JSON.parse(fs.readFileSync(file));
+    const group = parseJSONFile(file);
     return processTranslations(fbtSites, group);
   });
   return processGroups(phrases, translatedGroups);
