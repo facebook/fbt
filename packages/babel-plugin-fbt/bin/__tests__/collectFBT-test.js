@@ -41,7 +41,13 @@ describe('collectFBT', () => {
       );
     }
 
-    return JSON.parse(child.stdout.toString());
+    const stdout = child.stdout.toString();
+    try {
+      return JSON.parse(stdout);
+    } catch (error) {
+      error.message += `\nstdout:\n----\n${stdout}\n----`;
+      throw error;
+    }
   }
 
   it('should extract strings', () => {
