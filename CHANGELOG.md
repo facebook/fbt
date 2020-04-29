@@ -46,6 +46,9 @@ We haven't had the best track record of code/feature changes before this date, b
   - [fix] Fix FlowFixMes in FbtTable.access
 </details>
 
+- 0.14.1:
+  - [fix] Support IE11 in development mode by rewriting a feature checker
+
 - 0.14.0:
   - [fix] Add NumberFormatConfig flow definition
   - [fix] Use `invariant` module in fbt runtime and list it as dependency
