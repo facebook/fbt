@@ -21,11 +21,9 @@ const REACT_ELEMENT_TYPE = ((typeof Symbol === 'function' &&
 
 let canDefineProperty = false;
 if (__DEV__) {
-  try {
-    Object.defineProperty({}, 'x', {});
+  if (Object && Object.defineProperty) {
+    Object.defineProperty({}, "x", {});
     canDefineProperty = true;
-  } catch {
-    // IE will fail on defineProperty
   }
 }
 
