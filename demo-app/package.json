@@ -13,7 +13,6 @@
     "clean-fbts": "rm .enum_manifest.json .src_manifest.json .source_strings.json src/translatedFbts.json 2&> /dev/null || exit 0",
     "collect-fbts": "babel-node node_modules/.bin/fbt-collect --pretty --manifest < .src_manifest.json > .source_strings.json",
     "manifest": "babel-node node_modules/.bin/fbt-manifest --src src",
-    "postinstall": "yarn all",
     "start": "babel-node node_modules/.bin/webpack-dev-server --open",
     "test-collect-fbts": "babel-node node_modules/.bin/fbt-collect --plugins @babel/plugin-syntax-flow --pretty --manifest < .src_manifest.json > .test_source_strings.json",
     "test-translate-fbts-into-output-dir": "babel-node node_modules/.bin/fbt-translate --translations translations/*.json --jenkins --output-dir src/translatedFbts",
