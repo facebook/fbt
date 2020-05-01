@@ -1,5 +1,6 @@
 {
   "name": "babel-plugin-fbt-runtime",
+  "main": "index.js",
   "description": "The secondary FBT Babel transform, for E2E use",
   "//version": "Follow SemVer specs at https://semver.org/",
   "version": "0.9.11",

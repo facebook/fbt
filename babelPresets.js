@@ -20,8 +20,8 @@ module.exports = function babelPresets() {
     require('babel-plugin-syntax-trailing-function-commas'),
     require('@babel/plugin-syntax-object-rest-spread'),
     require('babel-preset-fbjs/plugins/dev-expression'),
-    require('babel-plugin-fbt/index.js'),
-    require('babel-plugin-fbt-runtime/index.js'),
+    require('babel-plugin-fbt'),
+    require('babel-plugin-fbt-runtime'),
     [require('babel-preset-fbjs/plugins/rewrite-modules'), {map: moduleMap}],
   ];
 
