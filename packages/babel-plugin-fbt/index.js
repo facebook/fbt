@@ -17,6 +17,12 @@ import type {
 import type {
   FbtCallSiteOptions,
 } from './FbtConstants';
+import type {
+  ExtractTableTextItems,
+  FbtFunctionCallPhrase,
+} from './babel-processors/FbtFunctionCallProcessor';
+import type {FbtRuntimeInput} from '../../runtime/shared/FbtHooks';
+import type {PatternString} from '../../runtime/shared/FbtTable';
 
 export type ExtraBabelNodeProps = {
   implicitFbt?: boolean,
@@ -36,22 +42,38 @@ export type PluginOptions = {|
   filename: string,
   reactNativeMode: boolean,
 |};
-
-type Phrase = {
+type TableJSFBT = {
+  t: FbtRuntimeInput,
+  m: {}
+};
+type PhraseBase = {|
+  ...FbtCallSiteOptions,
+  col_beg: number,
+  col_end: number,
+  desc: string,
   filepath: string,
   line_beg: number,
-  col_beg: number,
   line_end: number,
-  col_end: number,
-};
-
+  project: string,
+  texts?: ExtractTableTextItems,
+|};
+export type ObjectWithJSFBT = {|
+  type: 'text',
+  jsfbt: PatternString,
+|} | {|
+  type: 'table',
+  jsfbt: TableJSFBT,
+|};
+export type Phrase = {|
+  ...PhraseBase,
+  ...ObjectWithJSFBT,
+|};
 type ChildToParentMap = {[childIndex: number]: number};
 */
 
 const FbtCommonFunctionCallProcessor = require('./babel-processors/FbtCommonFunctionCallProcessor');
 const FbtFunctionCallProcessor = require('./babel-processors/FbtFunctionCallProcessor');
 const JSXFbtProcessor = require('./babel-processors/JSXFbtProcessor');
-// const FbtAutoWrap = require('./FbtAutoWrap');
 const FbtCommon = require('./FbtCommon');
 const {
   JSModuleName: {FBT},
@@ -231,7 +253,7 @@ function addPhrase(node, phrase, state) {
     line_end: node.loc.end.line,
     // $FlowFixMe `end` property might be null
     col_end: node.loc.end.column,
-    ...phrase,
+    ...(phrase /*: FbtFunctionCallPhrase */),
   });
 }
 

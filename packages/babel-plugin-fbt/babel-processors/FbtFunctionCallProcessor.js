@@ -19,13 +19,14 @@ import type {
   FbtBabelNodeCallExpression,
   FbtBabelNodeJSXElement,
   FbtBabelNodeShape,
+  ObjectWithJSFBT,
   PluginOptions,
 } from '../index.js';
 import type {NodePathOf} from '@babel/core';
 import typeof BabelTypes from '@babel/types';
 
 type NodePath = NodePathOf<FbtBabelNodeCallExpression>;
-type ExtractTableTextItems = Array<
+export type ExtractTableTextItems = Array<
   | ?string
   | boolean
   | BabelNodeExpression | BabelNodeSpreadElement | BabelNodeJSXNamespacedName
@@ -52,6 +53,13 @@ type ExtractTableTextItems = Array<
     usage: ValidPronounUsagesKey,
   |}
 >;
+
+export type FbtFunctionCallPhrase = {|
+  ...FbtCallSiteOptions,
+  desc: string,
+  texts?: ExtractTableTextItems,
+  ...ObjectWithJSFBT,
+|};
 */
 
 const {
@@ -584,19 +592,21 @@ class FbtFunctionCallProcessor {
 
   _getPhrase(texts, desc, options, isTable) {
     const phraseType = isTable ? FbtType.TABLE : FbtType.TEXT;
-    const phrase = {
-      type: phraseType,
+    const jsfbt = JSFbtBuilder.build(
+      phraseType,
+      texts,
+      this.pluginOptions.reactNativeMode,
+    );
+    return {
       desc,
       // Merge with fbt callsite options
       ...this.defaultFbtOptions,
       ...options,
-      jsfbt: JSFbtBuilder.build(
-        phraseType,
-        texts,
-        this.pluginOptions.reactNativeMode,
-      ),
+      ...(isTable // Need to set type explicitly for Flow checks
+        ? {type: FbtType.TABLE, jsfbt}
+        : {type: FbtType.TEXT, jsfbt}
+      )
     };
-    return phrase;
   }
 
   _createFbtRuntimeCall(phrase, runtimeArgs) {
@@ -631,14 +641,7 @@ class FbtFunctionCallProcessor {
 
   convertToFbtRuntimeCall() /*: {
     callNode: BabelNodeCallExpression,
-    phrase:
-      {|
-        ...FbtCallSiteOptions,
-        desc: string,
-        jsfbt: mixed,
-        texts?: ExtractTableTextItems,
-        type: $Values<typeof FbtType>,
-      |},
+    phrase: FbtFunctionCallPhrase,
     texts: ExtractTableTextItems,
   } */ {
     this._assertJSModuleWasAlreadyRequired();

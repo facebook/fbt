@@ -1,7 +1,7 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
- * @format
+ * @noformat
  * @flow
  */
 
@@ -15,6 +15,7 @@ const FbtCollector = require('./FbtCollector');
 const PhrasePackager = require('./PhrasePackager');
 const TextPackager = require('./TextPackager');
 const fs = require('fs');
+const nullthrows = require('nullthrows');
 const path = require('path');
 const yargs = require('yargs');
 
@@ -122,7 +123,7 @@ function getHasher() {
       hashPhrases = hashPhrases.hashPhrases;
     }
   }
-  return hashPhrases;
+  return nullthrows(hashPhrases);
 }
 
 const extraOptions = {};
@@ -167,9 +168,13 @@ function writeOutput() {
             (phrases, packager) => packager.pack(phrases),
             fbtCollector.getPhrases(),
           )
-          .map(phrase =>
-            argv[args.TERSE] ? delete phrase.jsfbt && phrase : phrase,
-          ),
+          .map(phrase => {
+            if (argv[args.TERSE]) {
+              const {jsfbt: _, ...phraseWithoutJSFBT} = phrase;
+              return phraseWithoutJSFBT;
+            }
+            return phrase;
+          }),
         childParentMappings: fbtCollector.getChildParentMappings(),
       },
       ...(argv[args.PRETTY] ? [null, ' '] : []),

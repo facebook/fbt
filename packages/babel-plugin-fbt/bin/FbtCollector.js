@@ -17,9 +17,8 @@ const {SyntaxPlugins} = require('fb-babel-plugin-utils');
 const fs = require('graceful-fs');
 
 /*::
-import type {PatternString} from '../../../runtime/shared/FbtTable';
-import type {FbtRuntimeInput} from '../../../runtime/shared/FbtHooks';
 import type {BabelPluginList} from '@babel/core';
+import type {Phrase} from '../index';
 type CollectorConfig = {|
   auxiliaryTexts: boolean,
   fbtCommonPath?: string,
@@ -30,28 +29,11 @@ export type ChildParentMappings = {[prop: number]: number}
 export type Errors = {[file: string]: Error};
 export type ExtraOptions = {[prop: string]: boolean};
 export type FbtEnumManifest = {};
-type PhraseBase = {|
-  col_beg: number,
-  col_end: number,
-  desc: string,
-  hash_code: number,
-  hash_key: string,
-  hashToText: {[hash: string]: string},
-  line_beg: number,
-  line_end: number,
-  project: string,
-|};
-export type Phrase = {|
-  ...PhraseBase,
-  type: 'text',
-  jsfbt: PatternString,
-|} | {|
-  ...PhraseBase,
-  type: 'table',
-  jsfbt: {
-    t: FbtRuntimeInput,
-    m: {}
-  },
+export type PackagerPhrase = {|
+  ...Phrase,
+  hash_code?: number,
+  hash_key?: string,
+  hashToText?: {[hash: string]: string},
 |};
 export type TransformOptions = {|
   collectFbt?: boolean,
@@ -82,7 +64,7 @@ function transform(
 
 class FbtCollector {
 /*::
-  _phrases: Array<Phrase>;
+  _phrases: Array<PackagerPhrase>;
   _errors: Errors;
   _extraOptions: ExtraOptions;
   _config: CollectorConfig;
@@ -146,7 +128,7 @@ class FbtCollector {
     return !hasFailure;
   }
 
-  getPhrases() /*: Array<Phrase>*/ {
+  getPhrases() /*: Array<PackagerPhrase>*/ {
     return this._phrases;
   }
 
