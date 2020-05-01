@@ -44,10 +44,8 @@ We haven't had the best track record of code/feature changes before this date, b
   - [fix] Avoid generating unnecessary empty strings in fbt result contents
   - [chore] Log type of leaf reached during table access failure
   - [fix] Fix FlowFixMes in FbtTable.access
-</details>
-
-- 0.14.1:
   - [fix] Support IE11 in development mode by rewriting a feature checker
+</details>
 
 - 0.14.0:
   - [fix] Add NumberFormatConfig flow definition
