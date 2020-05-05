@@ -16,6 +16,7 @@ We haven't had the best track record of code/feature changes before this date, b
 - [fbt-rn-android-native versions [Deprecated]](#fbt-rn-android-native-versions-deprecated)
 
 ### Top-level Github
+- Upgrade to Flow v0.123.0
 - [doc] Add Fbt Common Strings documentation
 - Upgrade to Flow v0.120.1
 - refactor: Breakup `moduleMap` from babelPresets

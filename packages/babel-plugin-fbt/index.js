@@ -25,6 +25,7 @@ import type {FbtRuntimeInput} from '../../runtime/shared/FbtHooks';
 import type {PatternString} from '../../runtime/shared/FbtTable';
 
 export type ExtraBabelNodeProps = {
+  implicitDesc?: string,
   implicitFbt?: boolean,
   parentIndex?: number,
 };
@@ -46,7 +47,14 @@ type TableJSFBT = {
   t: FbtRuntimeInput,
   m: {}
 };
-type PhraseBase = {|
+export type ObjectWithJSFBT = {|
+  type: 'text',
+  jsfbt: PatternString,
+|} | {|
+  type: 'table',
+  jsfbt: TableJSFBT,
+|};
+export type Phrase = {|
   ...FbtCallSiteOptions,
   col_beg: number,
   col_end: number,
@@ -56,16 +64,6 @@ type PhraseBase = {|
   line_end: number,
   project: string,
   texts?: ExtractTableTextItems,
-|};
-export type ObjectWithJSFBT = {|
-  type: 'text',
-  jsfbt: PatternString,
-|} | {|
-  type: 'table',
-  jsfbt: TableJSFBT,
-|};
-export type Phrase = {|
-  ...PhraseBase,
   ...ObjectWithJSFBT,
 |};
 type ChildToParentMap = {[childIndex: number]: number};

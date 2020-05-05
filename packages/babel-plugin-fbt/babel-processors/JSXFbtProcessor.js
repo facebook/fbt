@@ -223,7 +223,9 @@ class JSXFbtProcessor {
    * be used to link the inner strings with their enclosing string.
    */
   _setPhraseIndexOnImplicitChildren(phraseIndex /*: number */) /*: this */ {
-    const {children} = this.node;
+    const children = this.node.children;
+    // Flow checks fail when using the syntax below. See P129890692
+    // const {children} = this.node;
     if (!children) {
       return this;
     }
