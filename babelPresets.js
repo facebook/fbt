@@ -13,20 +13,16 @@ const moduleMap = require('./moduleMap');
 // TODO T40028530: Remove this when we can convert to fbjs
 // Depends on https://github.com/facebook/fbt/issues/40
 module.exports = function babelPresets() {
-  const plugins = [
-    require('@babel/plugin-syntax-class-properties'),
-    require('@babel/plugin-syntax-flow'),
-    require('@babel/plugin-syntax-jsx'),
-    require('babel-plugin-syntax-trailing-function-commas'),
-    require('@babel/plugin-syntax-object-rest-spread'),
-    require('babel-preset-fbjs/plugins/dev-expression'),
-    require('babel-plugin-fbt'),
-    require('babel-plugin-fbt-runtime'),
-    [require('babel-preset-fbjs/plugins/rewrite-modules'), {map: moduleMap}],
-  ];
-
-  return {
-    plugins: plugins.concat([
+      require('@babel/plugin-proposal-optional-catch-binding'),
+      require('@babel/plugin-syntax-class-properties'),
+      require('@babel/plugin-syntax-flow'),
+      require('@babel/plugin-syntax-jsx'),
+      require('babel-plugin-syntax-trailing-function-commas'),
+      require('@babel/plugin-syntax-object-rest-spread'),
+      require('babel-preset-fbjs/plugins/dev-expression'),
+      require('babel-plugin-fbt'),
+      require('babel-plugin-fbt-runtime'),
+      [require('babel-preset-fbjs/plugins/rewrite-modules'), {map: moduleMap}],
       require('@babel/plugin-transform-template-literals'),
       require('@babel/plugin-transform-literals'),
       require('@babel/plugin-transform-function-name'),
@@ -52,6 +48,6 @@ module.exports = function babelPresets() {
       require('@babel/plugin-transform-react-display-name'),
       require('@babel/plugin-transform-react-jsx'),
       require('babel-preset-fbjs/plugins/object-assign'),
-    ]),
+    ],
   };
 };
