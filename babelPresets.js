@@ -13,6 +13,8 @@ const moduleMap = require('./moduleMap');
 // TODO T40028530: Remove this when we can convert to fbjs
 // Depends on https://github.com/facebook/fbt/issues/40
 module.exports = function babelPresets() {
+  return {
+    plugins: [
       require('@babel/plugin-proposal-optional-catch-binding'),
       require('@babel/plugin-syntax-class-properties'),
       require('@babel/plugin-syntax-flow'),
