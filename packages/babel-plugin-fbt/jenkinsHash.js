@@ -2,6 +2,7 @@
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
  * @format
+ * @flow strict
  */
 /* eslint no-bitwise: 0 */
 
@@ -38,8 +39,7 @@ function toUtf8(str) {
 }
 
 // Hash computation for each string that matches the dump script in i18n's php.
-// $FlowFixMe Errors found when adding @flow to files in Libraries/Utilities
-function jenkinsHash(str) {
+function jenkinsHash(str /*: string */) /*: number */ {
   if (!str) {
     return 0;
   }

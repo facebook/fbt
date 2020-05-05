@@ -2,8 +2,22 @@
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
  * @emails oncall+internationalization
- * @format
+ * @flow
  */
+
+/*::
+import type {PatternHash, PatternString} from '../../../runtime/shared/FbtTable';
+import type {PackagerPhrase} from './FbtCollector';
+
+// The hash function signature should look like:
+// [{desc: '...', texts: ['t1',...,'tN']},...]) =>
+//   [[hash1,...,hashN],...]
+type HashFunction = (textsGroupedByDesc: Array<{
+  desc: string,
+  texts: Array<PatternString>
+}>) => Array<Array<PatternHash>>;
+*/
+
 const {FbtType} = require('../FbtConstants');
 
 /**
@@ -12,14 +26,12 @@ const {FbtType} = require('../FbtConstants');
  * stripped down phrase
  */
 class TextPackager {
-  // The hash function signature should look like:
-  // [{desc: '...', texts: ['t1',...,'tN']},...]) =>
-  //   [[hash1,...,hashN],...]
-  constructor(hash) {
+  /*:: _hash: HashFunction; */
+  constructor(hash /*: HashFunction */) {
     this._hash = hash;
   }
 
-  pack(phrases) {
+  pack(phrases /*: Array<PackagerPhrase> */) /*: Array<PackagerPhrase> */ {
     const flatTexts = phrases.map(phrase => ({
       desc: phrase.desc,
       texts: _flattenTexts(
@@ -36,7 +48,10 @@ class TextPackager {
         }
         hashToText[hash] = text;
       });
-      return {hashToText, ...phrases[phraseIdx]};
+      return {
+        hashToText,
+        ...phrases[phraseIdx],
+      };
     });
   }
 }
@@ -46,6 +61,9 @@ function _flattenTexts(texts) {
     // Return all tree leaves of a jsfbt TABLE or singleton array in the case of
     // a TEXT type
     return [texts];
+  }
+  if (texts instanceof Array) {
+    return [texts[0]];
   }
 
   const aggregate = [];

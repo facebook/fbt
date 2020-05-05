@@ -22,8 +22,7 @@ export type FbtCallSiteOptions = $Shape<{|
    doNotExtract?: ?FbtOptionValue;
    // TODO(T56277500) Refine to expected type: boolean
    preserveWhitespace?: ?FbtOptionValue;
-   // TODO(T56277500) Refine to expected type: string
-   project?: ?FbtOptionValue;
+   project: string;
    // TODO(T56277500) Refine to expected type: BabelNode
    subject?: ?FbtOptionValue;
 |}>;

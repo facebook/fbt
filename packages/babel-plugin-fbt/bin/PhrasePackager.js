@@ -2,8 +2,12 @@
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
  * @emails oncall+internationalization
- * @format
+ * @flow
  */
+
+/*::
+import type {PackagerPhrase} from './FbtCollector';
+*/
 
 const {FbtType} = require('../FbtConstants');
 const fbtHashKey = require('../fbtHashKey');
@@ -14,15 +18,14 @@ const jenkinsHash = require('../fbtJenkinsHash');
  * entire payload for identfication
  */
 class PhrasePackager {
-  pack(phrases) {
+  pack/*:: */(phrases /*: Array<PackagerPhrase> */) /*: Array<PackagerPhrase> */ {
     return phrases.map(phrase => {
       const payload =
         phrase.type === FbtType.TABLE ? phrase.jsfbt.t : phrase.jsfbt;
-      // Append hash keys to phrases for translation dictionary generation
       return {
         hash_key: fbtHashKey(payload, phrase.desc),
         hash_code: jenkinsHash(payload, phrase.desc),
-        ...phrase,
+        ...(phrase /*: PackagerPhrase */),
       };
     });
   }
