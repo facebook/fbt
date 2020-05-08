@@ -83,11 +83,11 @@ Check out our [FBT Native Module](https://www.npmjs.com/package/react-native-fbt
   "translate-fbts": "babel-node ./node_modules/babel-plugin-fbt/bin/translate.js --jenkins --source-strings i18n/fbt/.source_strings.json --translations i18n/fbt/translationScriptInput/*.json > i18n/fbt/translatedFbts.json"
 ```
 
-- [Android] Generate localizable.json files for each language and add them to the corresponding `res/[raw-xx-rXX](https://github.com/facebook/fbt/tree/rn-demo-app/android/app/src/main/res/raw-es-rES)` folder (xx is the ISO 2 Letter Language Codes)
+- [Android] Generate localizable.json files for each language and add them to the corresponding [`res/[raw-xx-rXX]`](https://github.com/facebook/fbt/tree/rn-demo-app/android/app/src/main/res/raw-es-rES) folder (xx is the ISO 2 Letter Language Codes)
   * You can find a helper script in the rn-demo-app: [generate-android-localizable.js](https://github.com/facebook/fbt/blob/rn-demo-app/i18n/scripts/generate-android-localizables.js)
   * The script takes in the translation script output and generates localizable.json files in the "android/res" folder. See it in the [rn-demo-app](https://github.com/facebook/fbt/tree/rn-demo-app/android/app/src/main/res/raw-es-rES)
 
-- [iOS] Generate Localizable.strings files for each language and add them to the corresponding `xx.lproj(https://github.com/facebook/fbt/tree/rn-demo-app/ios/es.lproj)` folder (xx is the ISO 2 Letter Language Codes)
+- [iOS] Generate Localizable.strings files for each language and add them to the corresponding [`xx.lproj`](https://github.com/facebook/fbt/tree/rn-demo-app/ios/es.lproj) folder (xx is the ISO 2 Letter Language Codes)
   * You can take the Android helper script and adapt it for the iOS version.
 
 ## **Notes**
