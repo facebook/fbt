@@ -22,7 +22,13 @@ const REACT_ELEMENT_TYPE = ((typeof Symbol === 'function' &&
 let canDefineProperty = false;
 if (__DEV__) {
   try {
-    Object.defineProperty({}, 'x', {});
+    Object.defineProperty({}, 'x', {
+      // same settings as what we'll use during actual runtime
+      configurable: false,
+      enumerable: false,
+      writable: false,
+      value: 'foo',
+    });
     canDefineProperty = true;
   } catch {
     // IE will fail on defineProperty
@@ -30,7 +36,7 @@ if (__DEV__) {
 }
 
 const FbtReactUtil = {
-  REACT_ELEMENT_TYPE: REACT_ELEMENT_TYPE,
+  REACT_ELEMENT_TYPE,
 
   injectReactShim(fbtResult: IFbtResultBase) {
     const reactObj = {validated: true};
