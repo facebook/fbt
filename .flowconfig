@@ -58,7 +58,7 @@ suppress_type=$FlowExpectedError
 suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe\\($\\|[^(]\\|(\\(<VERSION>\\)? *\\(site=[a-z,_]*www[a-z,_]*\\)?)\\)
 suppress_comment=\\(.\\|\n\\)*\\$FlowIssue\\((\\(<VERSION>\\)? *\\(site=[a-z,_]*www[a-z,_]*\\)?)\\)?:? #[0-9]+
 suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
-suppress_comment=\\(.\\|\n\\)*\\$FlowLintFixMe
+suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe
 
 experimental.well_formed_exports=true
 experimental.types_first=true
