@@ -3063,7 +3063,7 @@ fb-babel-plugin-utils@^0.9.0:
     "@babel/plugin-syntax-optional-catch-binding" "^7.0.0"
     "@babel/plugin-syntax-optional-chaining" "^7.0.0"
 
-fb-tiger-hash@^0.1.1:
+fb-tiger-hash@^0.1.6:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/fb-tiger-hash/-/fb-tiger-hash-0.1.6.tgz#38ccf79e9659213455e25e3ca21f86716ac400ec"
   integrity sha512-PPYJ0Yrv6xTBWgpZL6ETxntWJHbUeTxy6d5DwZRK4H2yIiO7MSh0WCH+K4p1vh3P0wPxnB+9kutK0PXoS7sDZg==
