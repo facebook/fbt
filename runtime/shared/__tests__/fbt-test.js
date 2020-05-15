@@ -414,18 +414,11 @@ describe('fbt', () => {
           /* $FlowFixMe(>=0.121.0 site=www) This comment suppresses an error
            * found when Flow v0.121 was deployed. To see the error delete this
            * comment and run Flow. */
-          fbt.param(
-            'hello',
-            // $FlowExpectedError No need to use a real React node for testing
-            fbtParams[0],
-          ) +
+          fbt.param('hello', fbtParams[0]) +
             /* $FlowFixMe(>=0.121.0 site=www) This comment suppresses an error
              * found when Flow v0.121 was deployed. To see the error delete
              * this comment and run Flow. */
-            fbt.param(
-              'world', // $FlowExpectedError No need to use a real React node for testing
-              fbtParams[1],
-            ),
+            fbt.param('world', fbtParams[1]),
           'desc',
         ),
       ).toEqual(fbtParams);
