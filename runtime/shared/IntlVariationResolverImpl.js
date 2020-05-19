@@ -21,13 +21,15 @@ const IntlVariationResolverImpl = {
   getNumberVariations(
     number: number,
   ): Array<$FlowFixMe | $TEMPORARY$string<'*'> | $TEMPORARY$string<'_1'>> {
-    /* eslint-disable no-bitwise */
     const numType = IntlNumberType.get(IntlViewerContext.locale).getVariation(
       number,
     );
     invariant(
+      // eslint-disable-next-line no-bitwise
       numType & IntlVariations.BITMASK_NUMBER,
-      'Invalid number provided',
+      'Invalid number provided: %s (%s)',
+      numType,
+      typeof numType,
     );
     return number === 1 ? [EXACTLY_ONE, numType, '*'] : [numType, '*'];
   },
@@ -36,10 +38,12 @@ const IntlVariationResolverImpl = {
    * Wrapper to validate gender.
    */
   getGenderVariations(gender: number): Array<$TEMPORARY$string<'*'> | number> {
-    /* eslint-disable no-bitwise */
     invariant(
+      // eslint-disable-next-line no-bitwise
       gender & IntlVariations.BITMASK_GENDER,
-      'Invalid gender provided',
+      'Invalid gender provided: %s (%s)',
+      gender,
+      typeof gender,
     );
     return [gender, '*'];
   },
