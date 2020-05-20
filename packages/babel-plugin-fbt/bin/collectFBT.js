@@ -28,6 +28,7 @@ const args = {
   OPTIONS: 'options',
   PACKAGER: 'packager',
   PLUGINS: 'plugins',
+  PRESETS: 'presets',
   PRETTY: 'pretty',
   REACT_NATIVE_MODE: 'react-native-mode',
   TERSE: 'terse',
@@ -104,6 +105,12 @@ const argv = yargs
     args.PLUGINS,
     'List of auxiliary Babel plugins to enable for parsing source.\n' +
       'E.g. --plugins @babel/plugin-syntax-dynamic-import @babel/plugin-syntax-numeric-separator',
+  ).array(args.PRESETS)
+  .default(args.PRESETS, [])
+  .describe(
+    args.PRESETS,
+    'List of auxiliary Babel presets to enable for parsing source.\n' +
+      'E.g. --presets @babel/preset-typescript',
   )
   .string(args.OPTIONS)
   .describe(
@@ -141,6 +148,7 @@ const fbtCollector = new FbtCollector(
   {
     auxiliaryTexts: argv[args.AUXILIARY_TEXTS],
     plugins: argv[args.PLUGINS].map(require),
+    presets: argv[args.PRESETS].map(require),
     reactNativeMode: argv[args.REACT_NATIVE_MODE],
     fbtCommonPath: argv[args.COMMON_STRINGS],
   },

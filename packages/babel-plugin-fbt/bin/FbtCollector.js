@@ -17,12 +17,13 @@ const {SyntaxPlugins} = require('fb-babel-plugin-utils');
 const fs = require('graceful-fs');
 
 /*::
-import type {BabelPluginList} from '@babel/core';
+import type {BabelPluginList, BabelPresetList} from '@babel/core';
 import type {Phrase} from '../index';
 type CollectorConfig = {|
   auxiliaryTexts: boolean,
   fbtCommonPath?: string,
   plugins?: BabelPluginList,
+  presets?: BabelPresetList,
   reactNativeMode?: boolean,
 |};
 export type ChildParentMappings = {[prop: number]: number}
@@ -51,12 +52,14 @@ function transform(
   code /*: string*/,
   options /*: TransformOptions*/,
   plugins /*: BabelPluginList */,
+  presets  /*: BabelPresetList */
 )/*: void*/ {
   const opts = {
     ast: false,
     code: false,
     filename: options.filename,
     plugins: SyntaxPlugins.list.concat(plugins, [[fbt, options]]),
+    presets,
     sourceType: 'unambiguous',
   };
   babel.transformSync(code, opts);
@@ -97,7 +100,7 @@ class FbtCollector {
       return;
     }
 
-    transform(source, options, this._config.plugins || []);
+    transform(source, options, this._config.plugins || [], this._config.presets || []);
 
     let newPhrases = fbt.getExtractedStrings();
     if (this._config.reactNativeMode) {
