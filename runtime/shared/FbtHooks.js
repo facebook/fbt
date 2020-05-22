@@ -6,8 +6,11 @@
  * @format
  */
 
+/* eslint-disable fb-www/flow-exact-by-default-object-types */
+
 import type {FbtTableKey, PatternHash, PatternString} from 'FbtTable';
 import type {FbtTableArg} from 'FbtTableAccessor';
+import typeof IntlViewerContext from 'IntlViewerContext';
 
 // TODO T61557741: Move these types to fbt.js when it's flow strict
 export type FbtResolvedPayload = {|
@@ -72,15 +75,15 @@ export type FbtRuntimeCallInput = {
 };
 
 // TODO: T61015960 - getFb[st]Result should return types that are locked down
-export type FbtHookRegistrations = $Shape<{
+export type FbtHookRegistrations = $Shape<{|
   errorListener: (context: FbtErrorContext) => IFbtErrorListener,
   getFbsResult: (input: FbtResolvedPayload) => mixed,
   getFbtResult: (input: FbtResolvedPayload) => mixed,
   getTranslatedInput: (input: FbtRuntimeCallInput) => ?FbtTranslatedInput,
+  getViewerContext: () => IntlViewerContext,
   logImpression: (hash: string) => void,
   onTranslationOverride: (hash: string) => void,
-  ...
-}>;
+|}>;
 
 const _registrations: FbtHookRegistrations = {};
 const FbtHooks = {
@@ -108,6 +111,10 @@ const FbtHooks = {
 
   getTranslatedInput(input: FbtRuntimeCallInput): FbtTranslatedInput {
     return _registrations.getTranslatedInput?.(input) ?? input;
+  },
+
+  getViewerContext(): IntlViewerContext {
+    return _registrations.getViewerContext();
   },
 
   register(registrations: FbtHookRegistrations): void {

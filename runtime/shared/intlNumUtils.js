@@ -17,7 +17,7 @@
 
 // flowlint ambiguous-object-type:error
 
-const IntlViewerContext = require('IntlViewerContext');
+const FbtHooks = require('FbtHooks');
 const NumberFormatConsts = require('NumberFormatConsts');
 
 const escapeRegex = require('escapeRegex');
@@ -172,7 +172,9 @@ function _replaceWithNativeDigits(number: string, digits: string): string {
  * integer, `2` to round to nearest cent when displaying currency, etc.
  */
 function formatNumber(value: number, decimals?: ?number): string {
-  const NumberFormatConfig = NumberFormatConsts.get(IntlViewerContext.locale);
+  const NumberFormatConfig = NumberFormatConsts.get(
+    FbtHooks.getViewerContext().locale,
+  );
   return formatNumberRaw(
     value,
     decimals,
@@ -199,7 +201,9 @@ function formatNumberWithThousandDelimiters(
   value: number,
   decimals?: ?number,
 ): string {
-  const NumberFormatConfig = NumberFormatConsts.get(IntlViewerContext.locale);
+  const NumberFormatConfig = NumberFormatConsts.get(
+    FbtHooks.getViewerContext().locale,
+  );
   return formatNumberRaw(
     value,
     decimals,
@@ -393,7 +397,9 @@ function _parseCodifiedNumber(text: string): ?number {
 }
 
 function _getNativeDigitsMap(): ?{[string]: string, ...} {
-  const NumberFormatConfig = NumberFormatConsts.get(IntlViewerContext.locale);
+  const NumberFormatConfig = NumberFormatConsts.get(
+    FbtHooks.getViewerContext().locale,
+  );
   const nativeDigitMap = {};
   const digits =
     NumberFormatConfig.numberingSystemData &&
@@ -409,7 +415,9 @@ function _getNativeDigitsMap(): ?{[string]: string, ...} {
 }
 
 function parseNumber(text: string): ?number {
-  const NumberFormatConfig = NumberFormatConsts.get(IntlViewerContext.locale);
+  const NumberFormatConfig = NumberFormatConsts.get(
+    FbtHooks.getViewerContext().locale,
+  );
   return parseNumberRaw(
     text,
     NumberFormatConfig.decimalSeparator || '.',
@@ -418,13 +426,13 @@ function parseNumber(text: string): ?number {
 }
 
 const intlNumUtils = {
-  formatNumber: formatNumber,
-  formatNumberRaw: formatNumberRaw,
-  formatNumberWithThousandDelimiters: formatNumberWithThousandDelimiters,
-  formatNumberWithLimitedSigFig: formatNumberWithLimitedSigFig,
-  parseNumber: parseNumber,
-  parseNumberRaw: parseNumberRaw,
-  truncateLongNumber: truncateLongNumber,
+  formatNumber,
+  formatNumberRaw,
+  formatNumberWithThousandDelimiters,
+  formatNumberWithLimitedSigFig,
+  parseNumber,
+  parseNumberRaw,
+  truncateLongNumber,
 
   /**
    * Converts a float into a prettified string. e.g. 1000.5 => "1,000.5"

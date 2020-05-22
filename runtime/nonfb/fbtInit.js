@@ -7,12 +7,14 @@
  * @flow strict-local
  * @format
  */
+
 import type {FbtHookRegistrations} from 'FbtHooks';
 import type {TranslationDict} from 'FbtTranslations';
 
 const FbtHooks = require('FbtHooks');
 const FbtResult = require('FbtResult');
 const FbtTranslations = require('FbtTranslations');
+const IntlViewerContext = require('IntlViewerContext'); // default VC
 
 const getFbsResult = require('getFbsResult');
 
@@ -35,6 +37,10 @@ function fbtInit(input: FbtInitInput): void {
   if (hooks.getTranslatedInput == null) {
     hooks.getTranslatedInput = FbtTranslations.getTranslatedInput;
   }
+  if (hooks.getViewerContext == null) {
+    hooks.getViewerContext = () => IntlViewerContext;
+  }
+
   FbtHooks.register(hooks);
 }
 

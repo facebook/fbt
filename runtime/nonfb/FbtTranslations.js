@@ -12,7 +12,7 @@
 
 import type {FbtRuntimeCallInput, FbtTranslatedInput} from 'FbtHooks';
 
-const IntlViewerContext = require('IntlViewerContext');
+const FbtHooks = require('FbtHooks');
 
 let translatedFbts = null;
 
@@ -29,20 +29,20 @@ const FbtTranslations = {
   getTranslatedInput(input: FbtRuntimeCallInput): ?FbtTranslatedInput {
     const {args, options} = input;
     const hashKey = options?.hk;
-    const table =
-      translatedFbts != null && translatedFbts[IntlViewerContext.locale];
+    const {locale} = FbtHooks.getViewerContext();
+    const table = translatedFbts?.[locale];
     if (__DEV__) {
-      if (!table && IntlViewerContext.locale !== DEFAULT_SRC_LOCALE) {
+      if (!table && locale !== DEFAULT_SRC_LOCALE) {
         console.warn('Translations have not been provided');
       }
     }
 
-    if (!table || hashKey == null || table[hashKey] == null) {
+    if (hashKey == null || table?.[hashKey] == null) {
       return null;
     }
     return {
       table: table[hashKey],
-      args: args,
+      args,
     };
   },
 

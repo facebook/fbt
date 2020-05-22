@@ -3,9 +3,10 @@
  * @format
  * @flow strict-local
  */
+
+const FbtHooks = require('FbtHooks');
 const IntlNumberType = require('IntlNumberType');
 const IntlVariations = require('IntlVariations');
-const IntlViewerContext = require('IntlViewerContext');
 
 const invariant = require('invariant');
 
@@ -21,9 +22,9 @@ const IntlVariationResolverImpl = {
   getNumberVariations(
     number: number,
   ): Array<$FlowFixMe | $TEMPORARY$string<'*'> | $TEMPORARY$string<'_1'>> {
-    const numType = IntlNumberType.get(IntlViewerContext.locale).getVariation(
-      number,
-    );
+    const numType = IntlNumberType.get(
+      FbtHooks.getViewerContext().locale,
+    ).getVariation(number);
     invariant(
       // eslint-disable-next-line no-bitwise
       numType & IntlVariations.BITMASK_NUMBER,
