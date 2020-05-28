@@ -4,7 +4,7 @@
  * Dummy class on www. Fetches translations from language packs on RN/CS.
  *
  * @emails oncall+internationalization
- * @flow strict
+ * @flow strict-local
  * @format
  */
 
