@@ -69,6 +69,14 @@ The demo app [runs all these in another script, here](https://github.com/faceboo
 The [fbt runtime](https://www.npmjs.com/package/fbt) is what resolves the translation payload table generated during the translation phase into a singular result base on all the input provided at runtime.
 
 ### Initialization
-The `fbt` runtime requires that you initialize with your relevant translations via the `init` function.  You can see an [example of this in the demo-app](https://github.com/facebook/fbt/blob/98d0516290975f614737387748769e235bf61216/demo-app/src/example/Example.react.js#L16-L17).
+The `fbt` runtime requires that you initialize with your relevant translations via the `init()` function.  You can see an [example of this in the demo-app](https://github.com/facebook/fbt/blob/df2414ab3eb00a94b4a082d8f62e0e39e3053e40/demo-app/src/example/Example.react.js#L22-L27).
 
-If you've split your translation payloads using [the `--output-dir` option](https://github.com/facebook/fbt/blob/98d0516290975f614737387748769e235bf61216/packages/babel-plugin-fbt/bin/translate.js#L145-L153) to the [`translate` script](https://github.com/facebook/fbt/blob/master/packages/babel-plugin-fbt/bin/translate.js), you can still update locales on-the-fly after you've brought your payload in by updating the translation map held by `fbt`, [similar to the demo-app](https://github.com/facebook/fbt/blob/98d0516290975f614737387748769e235bf61216/packages/babel-plugin-fbt/bin/translate.js#L178), or by calling into `init` with your new translations for your given locale again.
+### Changing of translation locale on the fly
+
+Let's assume you've split your translation payloads per locale using the [`--output-dir` option](https://github.com/facebook/fbt/blob/98d0516290975f614737387748769e235bf61216/packages/babel-plugin-fbt/bin/translate.js#L145-L153) of the [`translate` script](https://github.com/facebook/fbt/blob/master/packages/babel-plugin-fbt/bin/translate.js). In this example, your app was initialized with the `es_ES` translation payload and, upon user request, you need to load `fr_FR` translations and show these in the UI. (We'll assume that your app already has access to the new translation payload)
+
+In order to change of translation locale on the fly, you'll need to do all the items below:
+
+1. **Update the translation payload** by calling [`FbtTranslations.registerTranslations(newTranslationPayload)`](https://github.com/facebook/fbt/blob/f58d7c24e675c925d6d54dc33aa749b1640da200/runtime/nonfb/FbtTranslations.js#L49). The translation payload object used there should have the same structure as what was passed to the `init()` function.
+1. **Expose the current UI translation locale** by providing a [`getViewerContext()`](https://github.com/facebook/fbt/blob/df2414ab3eb00a94b4a082d8f62e0e39e3053e40/runtime/shared/FbtHooks.js#L83) hook to the `init()` function. See our our [demo app](https://github.com/facebook/fbt/blob/df2414ab3eb00a94b4a082d8f62e0e39e3053e40/demo-app/src/example/Example.react.js#L17-L27) for example.
+   1. NOTE: it's not sufficient to only change the translation payload because we apply various number variation and phonological rules based on the UI locale. I.e. If you forget to change of locale, you might still end up displaying incorrect translations.

@@ -41,7 +41,7 @@ We haven't had the best track record of code/feature changes before this date, b
   <summary>
    Unreleased changes that have landed in master. Click to see more.
   </summary>
-  - [major feat] Add ability to provide your own ViewerContext dynamically
+  - [major feat] Add ability to provide your own ViewerContext dynamically. See [related doc.](https://facebook.github.io/fbt/docs/getting_started_on_web#changing-of-translation-locale-on-the-fly)
   - [fix] Render optional catch binding syntax to ES5 to fix [IE11 bug](https://github.com/facebook/fbt/pull/139)
   - [feat] Convert `fbt.isFbtInstance()` to a predicate function for Flow
   - [fix] Avoid generating unnecessary empty strings in fbt result contents
