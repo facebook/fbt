@@ -9,11 +9,22 @@
 
 import './css/Example.css';
 import classNames from 'classnames';
-import fbt, {GenderConst, IntlVariations, IntlViewerContext, init} from 'fbt';
+import fbt, {GenderConst, IntlVariations, init} from 'fbt';
 import * as React from 'react';
 
 const ExampleEnum = require('Example$FbtEnum');
-init({translations: require('../translatedFbts.json')});
+
+const viewerContext = {
+  GENDER: IntlVariations.GENDER_UNKNOWN,
+  locale: 'en_US',
+};
+
+init({
+  translations: require('../translatedFbts.json'),
+  hooks: {
+    getViewerContext: () => viewerContext,
+  },
+});
 
 const LOCALES = Object.freeze({
   en_US: Object.freeze({
@@ -80,7 +91,7 @@ export default class Example extends React.Component/*:: <Props, State> */ {
   };
 
   setLocale(locale /*: Locale */) {
-    IntlViewerContext.locale = locale;
+    viewerContext.locale = locale;
     this.setState({locale});
     const html = document.getElementsByTagName('html')[0];
     if (html != null) {
@@ -125,7 +136,7 @@ export default class Example extends React.Component/*:: <Props, State> */ {
                     className="neatoSelect"
                     onChange={(event /*: SyntheticUIEvent<> */) => {
                       const vcGender = parseInt(event.target.value, 10);
-                      IntlViewerContext.GENDER = vcGender;
+                      viewerContext.GENDER = vcGender;
                       this.forceUpdate();
                     }}>
                     <option value={IntlVariations.GENDER_UNKNOWN}>
