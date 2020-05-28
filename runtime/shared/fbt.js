@@ -20,7 +20,7 @@
  */
 
 /* eslint max-len: ["warn", 120] */
-require('FbtEnv').setup();
+require('FbtEnv').setupOnce();
 
 import type {FbtInputOpts, FbtRuntimeInput, FbtTableArgs} from 'FbtHooks';
 
@@ -34,7 +34,6 @@ const {
   getGenderVariations,
   getNumberVariations,
 } = require('IntlVariationResolver');
-const IntlViewerContext = require('IntlViewerContext');
 
 const intlNumUtils = require('intlNumUtils');
 const invariant = require('invariant');
@@ -134,7 +133,7 @@ fbt._ = function(
 
   if (pattern.__vcg != null) {
     args = args || [];
-    const {GENDER} = IntlViewerContext;
+    const {GENDER} = FbtHooks.getViewerContext();
     const variation = getGenderVariations(GENDER);
     args.unshift(FbtTableAccessor.getGenderResult(variation, null, GENDER));
   }

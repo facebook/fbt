@@ -9,6 +9,13 @@
 jest.disableAutomock();
 
 describe('intlNumUtils:', () => {
+  let u;
+
+  beforeEach(() => {
+    jest.resetModules();
+    u = require('intlNumUtils');
+  });
+
   // Ensures intlNumUtils and this test have the same instance of
   // NumberFormatConfig and that our prepare* functions override as
   // expected
@@ -23,8 +30,6 @@ describe('intlNumUtils:', () => {
       return {..._originalConfig, ..._overrides};
     });
   }
-
-  const u = require('intlNumUtils');
 
   function override(config) {
     setup();

@@ -5,7 +5,7 @@
  * specific implementation.
  *
  * @emails oncall+internationalization
- * @flow strict
+ * @flow strict-local
  * @format
  */
 

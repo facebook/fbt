@@ -2,12 +2,15 @@
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
  * @emails oncall+internationalization
- * @flow strict
+ * @flow strict-local
  * @format
  */
 
+/* eslint-disable fb-www/flow-exact-by-default-object-types */
+
 import type {FbtTableKey, PatternHash, PatternString} from 'FbtTable';
 import type {FbtTableArg} from 'FbtTableAccessor';
+import typeof IntlViewerContext from 'IntlViewerContext';
 
 // TODO T61557741: Move these types to fbt.js when it's flow strict
 export type FbtResolvedPayload = {|
@@ -72,47 +75,19 @@ export type FbtRuntimeCallInput = {
 };
 
 // TODO: T61015960 - getFb[st]Result should return types that are locked down
-export type FbtHookRegistrations = $Shape<{
+export type FbtHookRegistrations = $Shape<{|
   errorListener: (context: FbtErrorContext) => IFbtErrorListener,
   getFbsResult: (input: FbtResolvedPayload) => mixed,
   getFbtResult: (input: FbtResolvedPayload) => mixed,
   getTranslatedInput: (input: FbtRuntimeCallInput) => ?FbtTranslatedInput,
+  getViewerContext: () => IntlViewerContext,
   logImpression: (hash: string) => void,
   onTranslationOverride: (hash: string) => void,
-  ...
-}>;
+|}>;
 
-const _registrations: FbtHookRegistrations = {};
-const FbtHooks = {
-  getErrorListener(context: FbtErrorContext): ?IFbtErrorListener {
-    return _registrations.errorListener?.(context);
-  },
+const FbtEnv = require('FbtEnv');
+const FbtHooksImpl = require('FbtHooksImpl');
 
-  logImpression(hash: string): void {
-    _registrations.logImpression?.(hash);
-  },
+module.exports = FbtHooksImpl;
 
-  onTranslationOverride(hash: string): void {
-    _registrations.onTranslationOverride?.(hash);
-  },
-
-  // TODO: T61015960 - get off `mixed` and onto something more locked down (Fbs)
-  getFbsResult(input: FbtResolvedPayload): mixed {
-    return _registrations.getFbsResult(input);
-  },
-
-  // TODO: T61015960 - get off `mixed` and onto something more locked down (Fbt)
-  getFbtResult(input: FbtResolvedPayload): mixed {
-    return _registrations.getFbtResult(input);
-  },
-
-  getTranslatedInput(input: FbtRuntimeCallInput): FbtTranslatedInput {
-    return _registrations.getTranslatedInput?.(input) ?? input;
-  },
-
-  register(registrations: FbtHookRegistrations): void {
-    Object.assign(_registrations, registrations);
-  },
-};
-
-module.exports = FbtHooks;
+FbtEnv.setupOnce();

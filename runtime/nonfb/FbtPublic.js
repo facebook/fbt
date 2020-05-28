@@ -9,7 +9,6 @@ const FbtResult = require('FbtResult');
 const FbtTranslations = require('FbtTranslations');
 const GenderConst = require('GenderConst');
 const IntlVariations = require('IntlVariations');
-const IntlViewerContext = require('IntlViewerContext');
 
 const fbt = require('fbt');
 const init = require('fbtInit');
@@ -27,6 +26,5 @@ const FbtPublic = {
   GenderConst,
   init,
   IntlVariations,
-  IntlViewerContext,
 };
 module.exports = FbtPublic;

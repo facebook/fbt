@@ -2,39 +2,48 @@
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
  * @format
- * @emails i18n-tests@fb.com
+ * @emails oncall+internationalization
  * @typechecks
  * @flow
  */
 
 /* eslint-disable fb-www/dot-notation, fb-www/fbt-no-project */
-jest
-  .enableAutomock()
-  .unmock('IntlVariationResolver')
-  .unmock('IntlVariationResolverImpl')
-  .unmock('NumberFormatConsts');
+
+'use strict';
+
+import typeof intlNumUtilsType from 'intlNumUtils';
+
+jest.mock('FbtNumberType');
 
 import type {FbtRuntimeCallInput, FbtTranslatedInput} from 'FbtHooks';
 
+// Warning: importing JS modules outside of beforeEach blocks is generally bad practice
+// in jest tests. We might need to move these modules inside beforeEach().
+// These ones can stay here for now since they have a consistent behavior across this test suite.
 const FbtNumberType = require('FbtNumberType');
-const fbtRuntime = jest.requireActual('fbt');
-const fbt = require('fbt');
-const intlNumUtils = jest.requireActual('intlNumUtils');
 const IntlVariations = require('IntlVariations');
-const IntlViewerContext = require('IntlViewerContext');
-const invariant = require('invariant');
 const React = require('React');
 const ReactDOM = require('ReactDOM');
 
-describe('fbt', () => {
-  const ONE = String(IntlVariations.NUMBER_ONE);
-  const FEW = String(IntlVariations.NUMBER_FEW);
-  const MALE = String(IntlVariations.GENDER_MALE);
-  const FEMALE = String(IntlVariations.GENDER_FEMALE);
-  let domContainer;
+const invariant = require('invariant');
 
+const ONE = String(IntlVariations.NUMBER_ONE);
+const FEW = String(IntlVariations.NUMBER_FEW);
+const MALE = String(IntlVariations.GENDER_MALE);
+const FEMALE = String(IntlVariations.GENDER_FEMALE);
+
+let domContainer;
+let fbt;
+let fbtRuntime;
+let intlNumUtils;
+
+describe('fbt', () => {
   beforeEach(() => {
     jest.resetModules();
+
+    intlNumUtils = jest.requireActual<intlNumUtilsType>('intlNumUtils');
+    fbtRuntime = jest.requireActual('fbt');
+    fbt = require('fbt');
     domContainer = document.createElement('div');
 
     // Use a locale that has FEW.
@@ -145,7 +154,7 @@ describe('fbt', () => {
     return <div>{fbtFragment}</div>;
   }
 
-  class TestComponent extends React.Component<Props, {...}> {
+  class TestComponent extends React.Component<Props, void> {
     render(): React.Node {
       return _render(this.props.value, this.props.childA, this.props.childB);
     }
@@ -280,7 +289,9 @@ describe('fbt', () => {
     };
     for (const n in numToType) {
       const type = numToType[n];
-      const displayNumber = intlNumUtils.formatNumberWithThousandDelimiters(n);
+      const displayNumber = intlNumUtils.formatNumberWithThousandDelimiters(
+        parseFloat(n),
+      );
       expect(fbtRuntime._param('num', parseInt(n, 10), [0])).toEqual([
         [type, '*'],
         {num: displayNumber},
@@ -314,6 +325,13 @@ describe('fbt', () => {
   });
 
   it('should access table with fallback logic', function() {
+    const FbtHooks = require('FbtHooks');
+    let genderMock;
+    // $FlowFixMe We need to mock this method
+    FbtHooks.getViewerContext = jest.fn(() => ({
+      GENDER: genderMock,
+    }));
+
     const table = {
       __vcg: 1, // viewer-context gender
       '*': {},
@@ -341,6 +359,7 @@ describe('fbt', () => {
     const name = fbtRuntime._param('name', 'Bob');
 
     // GENDER UNKNOWN
+    genderMock = IntlVariations.GENDER_UNKNOWN;
     let tests = [
       {arg: [A, few, name], expected: 'A,UNKNOWN,FEW Bob has 10'},
       {arg: [A, one, name], expected: 'A,UNKNOWN,ONE Bob has 1'},
@@ -350,11 +369,16 @@ describe('fbt', () => {
       {arg: [B, other, name], expected: 'B,UNKNOWN,OTHER Bob has 20'},
     ];
     const runTest = function(test) {
-      expect(fbtRuntime._(table, test.arg)).toBe(test.expected);
+      try {
+        expect(fbtRuntime._(table, test.arg)).toBe(test.expected);
+      } catch (error) {
+        error.message += `\ntest.expected="${test.expected}"`;
+        throw error;
+      }
     };
     tests.forEach(runTest);
 
-    IntlViewerContext.GENDER = IntlVariations.GENDER_MALE;
+    genderMock = IntlVariations.GENDER_MALE;
     tests = [
       {arg: [A, few, name], expected: 'A,MALE,OTHER Bob has 10'},
       {arg: [A, one, name], expected: 'A,MALE,ONE Bob has 1'},
@@ -365,7 +389,7 @@ describe('fbt', () => {
     ];
     tests.forEach(runTest);
 
-    IntlViewerContext.GENDER = IntlVariations.GENDER_FEMALE;
+    genderMock = IntlVariations.GENDER_FEMALE;
     tests = [
       {arg: [A, few, name], expected: 'A,UNKNOWN,FEW Bob has 10'},
       {arg: [A, one, name], expected: 'A,UNKNOWN,ONE Bob has 1'},

@@ -26,7 +26,6 @@ let _errorListener;
 describe('FbtResult', function() {
   beforeEach(() => {
     jest.resetModules();
-    require('FbtEnv').setup();
     _errorListener = FbtHooks.getErrorListener({
       hash: 'h',
       translation: 't',

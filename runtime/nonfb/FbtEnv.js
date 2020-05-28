@@ -10,7 +10,7 @@
  * An empty no-op for now.
  */
 const FbtEnv = {
-  setup() {},
+  setupOnce() {},
 };
 
 module.exports = FbtEnv;

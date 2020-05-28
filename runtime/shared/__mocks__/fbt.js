@@ -6,6 +6,7 @@
  */
 
 jest
+  .unmock('FbtEnv')
   .unmock('FbtTable')
   .unmock('FbtTableAccessor')
   .unmock('intlNumUtils')

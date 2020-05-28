@@ -10,7 +10,7 @@
  *   js1 upgrade www-shared -p fbt --local ~/www
  *
  * @format
- * @flow strict
+ * @flow strict-local
  * @emails oncall+internationalization
  */
 
@@ -23,8 +23,8 @@
  *  Note: Please keep this in sync with www/html/js/mobile/lib/intl-core.js.
  */
 
+const FbtHooks = require('FbtHooks');
 const IntlPhonologicalRewrites = require('IntlPhonologicalRewrites');
-const IntlViewerContext = require('IntlViewerContext');
 
 /**
  * Regular expression snippet containing all the characters that we
@@ -77,39 +77,40 @@ const ENDS_IN_PUNCT_REGEXP = new RegExp(
     ']*$',
 );
 
-let _rules = [];
-let _lastLocale = null;
-let _rewrites = IntlPhonologicalRewrites.get(IntlViewerContext.locale);
+type Rules = $ReadOnlyArray<[RegExp, (string => string) | string]>;
 
-function _getRules(): Array<[RegExp, (string => string) | string]> {
-  if (
-    IntlViewerContext.locale != null &&
-    IntlViewerContext.locale != '' &&
-    IntlViewerContext.locale !== _lastLocale
-  ) {
-    _rules = [];
-    _lastLocale = IntlViewerContext.locale;
-    _rewrites = IntlPhonologicalRewrites.get(_lastLocale);
+const rulesPerLocale: {[locale: string]: ?Rules, ...} = {};
+
+function _getMemoizedRules(localeArg: ?string): Rules {
+  const locale = localeArg ?? '';
+  let rules = rulesPerLocale[locale];
+  if (rules == null) {
+    rules = rulesPerLocale[locale] = _getRules(localeArg);
   }
-  if (!_rules.length) {
-    // Process the patterns and replacements by applying metaclasses.
-    for (let pattern in _rewrites.patterns) {
-      let replacement = _rewrites.patterns[pattern];
-      // "Metaclasses" are shorthand for larger character classes. For example,
-      // _C may refer to consonants and _V to vowels for a locale.
-      for (const metaclass in _rewrites.meta) {
-        const metaclassRegexp = new RegExp(metaclass.slice(1, -1), 'g');
-        const characterClass = _rewrites.meta[metaclass];
-        pattern = pattern.replace(metaclassRegexp, characterClass);
-        replacement = replacement.replace(metaclassRegexp, characterClass);
-      }
-      if (replacement === 'javascript') {
-        replacement = match => match.slice(1).toLowerCase();
-      }
-      _rules.push([new RegExp(pattern.slice(1, -1), 'g'), replacement]);
+  return rules;
+}
+
+function _getRules(locale: ?string): Rules {
+  const rules = [];
+  const rewrites = IntlPhonologicalRewrites.get(locale);
+
+  // Process the patterns and replacements by applying metaclasses.
+  for (let pattern in rewrites.patterns) {
+    let replacement = rewrites.patterns[pattern];
+    // "Metaclasses" are shorthand for larger character classes. For example,
+    // _C may refer to consonants and _V to vowels for a locale.
+    for (const metaclass in rewrites.meta) {
+      const metaclassRegexp = new RegExp(metaclass.slice(1, -1), 'g');
+      const characterClass = rewrites.meta[metaclass];
+      pattern = pattern.replace(metaclassRegexp, characterClass);
+      replacement = replacement.replace(metaclassRegexp, characterClass);
     }
+    if (replacement === 'javascript') {
+      replacement = match => match.slice(1).toLowerCase();
+    }
+    rules.push([new RegExp(pattern.slice(1, -1), 'g'), replacement]);
   }
-  return _rules;
+  return rules;
 }
 
 /**
@@ -125,7 +126,7 @@ function _getRules(): Array<[RegExp, (string => string) | string]> {
  * Returns: String with phonological rules applied (e.g., "Ozguri...")
  */
 function applyPhonologicalRules(text: string): string {
-  const rules = _getRules();
+  const rules = _getMemoizedRules(FbtHooks.getViewerContext().locale);
   let result = text;
 
   for (let i = 0; i < rules.length; i++) {

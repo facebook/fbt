@@ -5,7 +5,7 @@
  * recursively accessing the table entries and returning the leaves
  *
  * @emails oncall+internationalization
- * @flow strict
+ * @flow strict-local
  * @format
  */
 

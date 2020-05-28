@@ -5,11 +5,14 @@
  * @format
  * @emails oncall+internationalization
  */
+
 import type {FbtResolvedPayload} from 'FbtHooks';
 import typeof FbtHooks from 'FbtHooks';
+import typeof getFbsResult from 'getFbsResult';
 
-const actualGetFbsResult = jest.requireActual('getFbsResult');
-const ActualFbtHooks = (jest.requireActual('FbtHooks'): FbtHooks);
+jest.unmock('FbtEnv').unmock('FbtHooksImpl');
+const actualGetFbsResult = jest.requireActual<getFbsResult>('getFbsResult');
+const ActualFbtHooks = jest.requireActual<FbtHooks>('FbtHooks');
 
 const MockedFbtHooks: FbtHooks = {
   ...ActualFbtHooks,
