@@ -84,10 +84,12 @@ echo "Do you wish to create a git tag?"
 select yn in "Yes" "No"; do
     case $yn in
         Yes )
-            git commit ./package.json -m "Create version $packageWithVersionName" > /dev/null
+            if ! git diff-index --quiet HEAD --; then
+              git commit ./package.json -m "Create version $packageWithVersionName"
+            fi
             git tag "$package-$npmVersion"
             echo Reminder: you can push git tags with the command:
-            echo   git push --tags
+            echo   git push origin --tags
             break
         ;;
         No ) break ;;
