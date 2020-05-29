@@ -1,0 +1,97 @@
+#!/bin/bash
+set -e
+
+scriptName=$(basename "$0")
+package="$1"
+newVersion="$2"
+npmBetaTag=beta
+
+if [[ "$package" == "-h" || "$package" == "--help" || "$package" == "" ]]; then
+    cat <<EOF
+Usage: $scriptName [-h|--help] <package> [version]
+  Publishes a given package at a given version.
+  Optionally creates a new git tag (and commit).
+
+  If you don't define [version], we'll just use the current version in package.json
+
+  [version] See the "version" argument of the "npm version" CLI command
+    (See: https://docs.npmjs.com/cli/version)
+    Additional special version: "$npmBetaTag"
+      Using "$npmBetaTag" will reuse the current package.json version after appending "-$npmBetaTag" to it.
+
+Example:
+  $scriptName babel-plugin-fbt
+    # publishes babel-plugin-fbt at the current version in package.json
+
+  $scriptName babel-plugin-fbt 0.14.3
+    # publishes babel-plugin-fbt at a new 0.14.3 version
+
+  $scriptName babel-plugin-fbt preminor
+    # publishes babel-plugin-fbt at the next minor version of the package.json
+    # with an added "-n" suffix
+
+  $scriptName babel-plugin-fbt beta
+    # publishes babel-plugin-fbt at the current version in package.json
+    # after appending "-$npmBetaTag" to it.
+EOF
+    exit
+fi
+
+if ! git diff-index --quiet HEAD --; then
+    >&2 echo We detected some uncommitted changes in this repo.
+    >&2 echo Please commit, shelve or discard them before running this script.
+    exit
+fi
+
+function cleanup_repo {
+    git reset --hard > /dev/null
+}
+trap cleanup_repo EXIT
+
+pushd "packages/$package"
+
+currentNpmVersion=$(cat ./package.json | jq .version -r)
+if [[ "$newVersion" == "$npmBetaTag" ]]; then
+    newVersion=$currentNpmVersion-$npmBetaTag
+fi
+
+if [[ "$newVersion" == "$currentNpmVersion" || "$newVersion" == "" ]]; then
+    npmVersion=v$currentNpmVersion
+else
+    npmVersion=$(npm version "$newVersion" --allow-same-version)
+fi
+
+newVersion=$(cat ./package.json | jq .version -r)
+packageWithVersionName=$package@$newVersion
+echo "We're going to publish $packageWithVersionName"
+
+if ! [[ "$npmVersion" =~ ^v[0-9]+.[0-9]+.[0-9]+$ ]]; then
+  echo "WARNING: $npmVersion is not a pure semver version, so we'll tag this as '$npmBetaTag'"
+  publishTag="--tag $npmBetaTag"
+fi
+
+echo "Do you wish to continue?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) break ;;
+        No ) exit ;;
+    esac
+done
+
+npm publish $publishTag
+
+echo "Do you wish to create a git tag?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes )
+            git commit ./package.json -m "Create version $packageWithVersionName" > /dev/null
+            git tag "$package-$npmVersion"
+            echo Reminder: you can push git tags with the command:
+            echo   git push --tags
+            break
+        ;;
+        No ) break ;;
+    esac
+done
+
+popd
