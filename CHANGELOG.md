@@ -41,14 +41,16 @@ We haven't had the best track record of code/feature changes before this date, b
   <summary>
    Unreleased changes that have landed in master. Click to see more.
   </summary>
-  - [major feat] Add ability to provide your own ViewerContext dynamically. See [related doc.](https://facebook.github.io/fbt/docs/getting_started_on_web#changing-of-translation-locale-on-the-fly)
+</details>
+
+- 0.15.0:
+  - [feat] Add ability to provide your own ViewerContext dynamically. See [related doc.](https://facebook.github.io/fbt/docs/getting_started_on_web#changing-of-translation-locale-on-the-fly)
   - [fix] Render optional catch binding syntax to ES5 to fix [IE11 bug](https://github.com/facebook/fbt/pull/139)
   - [feat] Convert `fbt.isFbtInstance()` to a predicate function for Flow
   - [fix] Avoid generating unnecessary empty strings in fbt result contents
   - [chore] Log type of leaf reached during table access failure
   - [fix] Fix FlowFixMes in FbtTable.access
   - [feat] Improve feature detection of `Object.defineProperty()` for IE11
-</details>
 
 - 0.14.0:
   - [fix] Add NumberFormatConfig flow definition
@@ -99,8 +101,10 @@ We haven't had the best track record of code/feature changes before this date, b
     <summary>
      Unreleased changes that have landed in master. Click to see more.
     </summary>
-  - [fix] Bug in collectFBT.js when using `BOTH` packagers with `--terse`
   </details>
+
+- 0.14.2:
+  - [fix] Bug in collectFBT.js when using `BOTH` packagers with `--terse`
 
 - 0.14.1:
   - [fix] Point to correct fb-babel-plugin-utils package version
