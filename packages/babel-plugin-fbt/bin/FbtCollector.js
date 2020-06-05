@@ -116,8 +116,8 @@ class FbtCollector {
   ) /*: boolean*/ {
     let hasFailure = false;
     files.forEach(file => {
-      const source = fs.readFileSync(file, 'utf8');
       try {
+        const source = fs.readFileSync(file, 'utf8');
         this.collectFromOneFile(source, file, fbtEnumManifest);
       } catch (e) {
         this._errors[file] = e;

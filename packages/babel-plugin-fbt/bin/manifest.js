@@ -78,7 +78,8 @@ const getFiles = src => glob.sync(src + '/**/*' + FILE_EXT, {nodir: true});
 const srcFiles = shell
   .grep('-l', ModuleNameRegExp, [].concat(...argv.src.map(getFiles)))
   .trim()
-  .split('\n');
+  .split('\n')
+  .filter(filepath => filepath.trim());
 
 fs.writeFileSync(
   argv['src-manifest'],

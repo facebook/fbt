@@ -185,10 +185,11 @@ function writeOutput() {
   const errs = fbtCollector.getErrors();
   const errCount = Object.keys(errs).length;
   if (errCount > 0) {
-    for (const f in errs) {
-      process.stderr.write(f + ':\n\t' + errs[f].toString() + '\n');
+    for (const filePath in errs) {
+      const error = errs[filePath];
+      process.stderr.write(`[file="${filePath}"]:\n\t` + String(error.stack || error) + '\n');
     }
-    throw new Error(`Failed in ${errCount} files`);
+    throw new Error(`Failed in ${errCount} file(s).`);
   }
 }
 
