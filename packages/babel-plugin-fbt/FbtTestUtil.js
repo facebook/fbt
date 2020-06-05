@@ -35,14 +35,18 @@ function transformKeepJsx(
   source /*: string */,
   pluginOptions /*: $FlowFixMe */,
 ) /*: string */ {
-  return transformSync(source, {
-    ast: false,
-    plugins: [
-      require('@babel/plugin-syntax-jsx'),
-      [require('./index'), pluginOptions],
-    ],
-    sourceType: 'module',
-  }).code;
+  const prettier = require('prettier');
+  return prettier.format(
+    transformSync(source, {
+      ast: false,
+      plugins: [
+        require('@babel/plugin-syntax-jsx'),
+        [require('./index'), pluginOptions],
+      ],
+      sourceType: 'module',
+    }).code,
+    {parser: 'babel'},
+  );
 }
 
 function withFbsRequireStatement(code /*: string */) /*: string */ {
