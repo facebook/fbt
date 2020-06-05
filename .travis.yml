@@ -1,8 +1,8 @@
 language: node_js
 
 node_js:
-  - '10.19.x'
-  - '12.16.x'
+  - '10.19.*'
+  - '12.16.*'
 
 branches:
   only:
@@ -19,11 +19,11 @@ script: yarn run "$CMD"
 jobs:
   include:
     - stage: test
-      name: "Flow checks - node v10.19.x"
-      node_js: '10.19.x'
+      name: "Flow checks - node v10.19.*"
+      node_js: '10.19.*'
       script: yarn flow:check
-    - name: "Flow checks - node v12.16.x"
-      node_js: '12.16.x'
+    - name: "Flow checks - node v12.16.*"
+      node_js: '12.16.*'
       script: yarn flow:check
 
 before_install:
