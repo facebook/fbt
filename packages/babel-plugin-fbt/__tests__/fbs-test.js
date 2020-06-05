@@ -124,7 +124,7 @@ describe('Test functional fbs() syntax translation', () => {
         `),
       ),
     ).toThrow(
-      `fbs only accepts plain strings with params wrapped in fbs.param().`,
+      `fbs only accepts plain strings with params wrapped in fbs.param(...).`,
     );
   });
 
