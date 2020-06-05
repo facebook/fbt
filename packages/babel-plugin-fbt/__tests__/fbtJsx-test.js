@@ -893,4 +893,68 @@ describe('Test fbt transforms without the jsx transform', () => {
       `),
     ).toMatchSnapshot();
   });
+
+  describe('when using within template literals', () => {
+    it('should work with a basic <fbt>', () => {
+      expect(
+        transformKeepJsx(`
+          const fbt = require("fbt");
+          html\`<div>
+            \${
+              <fbt desc="some desc" project="some project">
+                basic text
+              </fbt>
+            }
+          </div>\`;
+        `),
+      ).toMatchSnapshot();
+    });
+
+    it('should work with basic <fbt> auto-parameterization', () => {
+      expect(
+        transformKeepJsx(`
+          const fbt = require("fbt");
+          html\`<div>
+            \${
+              <fbt desc="some desc" project="some project">
+                outer text
+                <strong>
+                  bold text
+                </strong>
+              </fbt>
+            }
+          </div>\`;
+        `),
+      ).toMatchSnapshot();
+    });
+
+    it('should work with a nested <fbt> within an <fbt:param>', () => {
+      expect(
+        transformKeepJsx(`
+          const fbt = require("fbt");
+          html\`<div>
+            \${
+              <fbt desc="some desc" project="some project">
+                outer text
+                <fbt:param name="param text">
+                  {
+                    html\`<strong>
+                      \${
+                        <fbt desc="inner string">
+                          inner text
+                          <fbt:param name="inner param">
+                            {'bold'}
+                          </fbt:param>
+                        </fbt>
+                      }
+                    </strong>\`
+                  }
+                </fbt:param>
+              </fbt>
+            }
+          </div>\`;
+        `),
+      ).toMatchSnapshot();
+    });
+  });
 });

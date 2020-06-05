@@ -40,3 +40,57 @@ let x = fbt._(
 );
 "
 `;
+
+exports[`Test fbt transforms without the jsx transform when using within template literals should work with a basic <fbt> 1`] = `
+"const fbt = require(\\"fbt\\");
+
+html\`<div>
+  \${fbt._(
+    '__FBT__{\\"type\\":\\"text\\",\\"jsfbt\\":\\"basic text\\",\\"desc\\":\\"some desc\\",\\"project\\":\\"some project\\"}__FBT__'
+  )}
+</div>\`;
+"
+`;
+
+exports[`Test fbt transforms without the jsx transform when using within template literals should work with a nested <fbt> within an <fbt:param> 1`] = `
+"const fbt = require(\\"fbt\\");
+
+html\`<div>
+  \${fbt._(
+    '__FBT__{\\"type\\":\\"text\\",\\"jsfbt\\":\\"outer text {param text}\\",\\"desc\\":\\"some desc\\",\\"project\\":\\"some project\\"}__FBT__',
+    [
+      fbt._param(
+        \\"param text\\",
+        html\`<strong>
+          \${fbt._(
+            '__FBT__{\\"type\\":\\"text\\",\\"jsfbt\\":\\"inner text {inner param}\\",\\"desc\\":\\"inner string\\",\\"project\\":\\"\\"}__FBT__',
+            [fbt._param(\\"inner param\\", \\"bold\\")]
+          )}
+        </strong>\`
+      ),
+    ]
+  )}
+</div>\`;
+"
+`;
+
+exports[`Test fbt transforms without the jsx transform when using within template literals should work with basic <fbt> auto-parameterization 1`] = `
+"const fbt = require(\\"fbt\\");
+
+html\`<div>
+  \${fbt._(
+    '__FBT__{\\"type\\":\\"text\\",\\"jsfbt\\":\\"outer text {=bold text}\\",\\"desc\\":\\"some desc\\",\\"project\\":\\"some project\\"}__FBT__',
+    [
+      fbt._param(
+        \\"=bold text\\",
+        <strong>
+          {fbt._(
+            '__FBT__{\\"type\\":\\"text\\",\\"jsfbt\\":\\"bold text\\",\\"desc\\":\\"In the phrase: \\\\\\\\\\"outer text {=bold text}\\\\\\\\\\"\\",\\"project\\":\\"\\"}__FBT__'
+          )}
+        </strong>
+      ),
+    ]
+  )}
+</div>\`;
+"
+`;
