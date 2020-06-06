@@ -76,13 +76,13 @@ export type FbtRuntimeCallInput = {
 
 // TODO: T61015960 - getFb[st]Result should return types that are locked down
 export type FbtHookRegistrations = $Shape<{|
-  errorListener: (context: FbtErrorContext) => IFbtErrorListener,
+  errorListener: ?(context: FbtErrorContext) => IFbtErrorListener,
   getFbsResult: (input: FbtResolvedPayload) => mixed,
   getFbtResult: (input: FbtResolvedPayload) => mixed,
-  getTranslatedInput: (input: FbtRuntimeCallInput) => ?FbtTranslatedInput,
+  getTranslatedInput: ?(input: FbtRuntimeCallInput) => ?FbtTranslatedInput,
   getViewerContext: () => IntlViewerContext,
-  logImpression: (hash: string) => void,
-  onTranslationOverride: (hash: string) => void,
+  logImpression: ?(hash: string) => void,
+  onTranslationOverride: ?(hash: string) => void,
 |}>;
 
 const FbtEnv = require('FbtEnv');

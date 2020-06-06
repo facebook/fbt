@@ -6,8 +6,6 @@
  * @format
  */
 
-/* eslint-disable fb-www/flow-exact-by-default-object-types */
-
 import type {
   FbtHookRegistrations,
   FbtResolvedPayload,
