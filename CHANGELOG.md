@@ -40,7 +40,7 @@ We haven't had the best track record of code/feature changes before this date, b
 ### fbt versions
 <details>
   <summary>
-   Unreleased changes that have landed in master. Click to see more.
+    Unreleased changes that have landed in master. Click to see more.
   </summary>
 </details>
 
@@ -100,7 +100,7 @@ We haven't had the best track record of code/feature changes before this date, b
 ### babel-plugin-fbt versions
   <details>
     <summary>
-     Unreleased changes that have landed in master. Click to see more.
+      Unreleased changes that have landed in master. Click to see more.
     </summary>
     - [fix] Avoid throwing errors during string extraction when source code folder has no fbt string inside. (manifest & collect-fbts)
   </details>
