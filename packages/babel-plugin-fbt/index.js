@@ -9,7 +9,7 @@
 'use strict';
 
 /*::
-import typeof BabelTypes from '@babel/types';
+import typeof * as BabelTypes from '@babel/types';
 import type {
   BabelTransformPlugin,
   NodePathOf,

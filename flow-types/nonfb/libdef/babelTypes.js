@@ -1803,6 +1803,7 @@ declare module "@babel/types" {
   declare export function tsTypeParameterInstantiation(params: Array<BabelNodeTSType>): BabelNodeTSTypeParameterInstantiation;
   declare export function tsTypeParameterDeclaration(params: Array<BabelNodeTSTypeParameter>): BabelNodeTSTypeParameterDeclaration;
   declare export function tsTypeParameter(constraint?: BabelNodeTSType, _default?: BabelNodeTSType, name: string): BabelNodeTSTypeParameter;
+  // Flow errors appear from here
   declare export function isArrayExpression(node: ?Object, opts?: ?Object): boolean %checks (node instanceof BabelNodeArrayExpression)
   declare export function isAssignmentExpression(node: ?Object, opts?: ?Object): boolean %checks (node instanceof BabelNodeAssignmentExpression)
   declare export function isBinaryExpression(node: ?Object, opts?: ?Object): boolean %checks (node instanceof BabelNodeBinaryExpression)
