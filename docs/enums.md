@@ -70,9 +70,10 @@ All the above examples [extract](collection.md) the same 4 separate strings for 
 ## Shared enums
 
 If you need to use the same enum multiple times, you can use a pre-defined
-enum. These enums need to be able to be `"JSON.stringifiable"` and
-should have simple key/value structures. They also require a separate
-build step to generate an enum-manifest and source manifest that makes
+enum. These enum module names need to end with `$FbtEnum`, must be able to be `"JSON.stringifiable"` and
+should have simple key/value structures.
+
+They also require a separate build step to generate an enum-manifest and source manifest that makes
 them available to the `babel-plugin-fbt` at "build-time".
 
 ```js
@@ -84,14 +85,43 @@ const Example$FbtEnum = {
   POST: "post",
   VIDEO: "video",
 };
+module.exports = Example$FbtEnum;
 
 // Demo.react.js
-const ExampleEnum = require('ExampleEnum');
+const Example$FbtEnum = require('Example$FbtEnum');
 <fbt desc="Example enum">
   <fbt:param name="name">{this.state.ex2Name}</fbt:param>
   has a
   <fbt:enum
-    enum-range={ExampleEnum}
+    enum-range={Example$FbtEnum}
+    value={this.state.exampleObject}
+  />
+  to share!
+</fbt>
+```
+### ES6 Import/export syntax
+
+ES6 import/export syntax is supported but the Enum must be exported as a
+`default` export.
+
+```js
+// Example$FbtEnum.js
+const Example$FbtEnum = {
+  LINK: "link",
+  PAGE: "page",
+  PHOTO: "photo",
+  POST: "post",
+  VIDEO: "video",
+};
+export default Example$FbtEnum;
+
+// Demo.react.js
+import Example$FbtEnum from 'Example$FbtEnum';
+<fbt desc="Example enum">
+  <fbt:param name="name">{this.state.ex2Name}</fbt:param>
+  has a
+  <fbt:enum
+    enum-range={Example$FbtEnum}
     value={this.state.exampleObject}
   />
   to share!

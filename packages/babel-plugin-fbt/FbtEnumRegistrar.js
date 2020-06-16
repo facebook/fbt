@@ -10,10 +10,12 @@
 /*::
 import type {FbtBabelNodeCallExpression} from './index.js';
 import type {NodePathOf} from '@babel/core';
-type NodePath = NodePathOf<FbtBabelNodeCallExpression>;
+type NodeCallExpression = NodePathOf<FbtBabelNodeCallExpression>;
+type NodeImportDeclaration = NodePathOf<BabelNodeImportDeclaration>;
 */
 
 const {FBT_ENUM_MODULE_SUFFIX} = require('./FbtConstants');
+const t = require('@babel/types');
 const path = require('path');
 
 const fbtEnumMapping /*: {[string]: ?string} */ = {};
@@ -42,7 +44,7 @@ const FbtEnumRegistrar = {
    * Processes a `require(...)` call and registers the fbt enum if applicable.
    * @param path Babel path of a `require(...)` call expression
    */
-  registerIfApplicable(path /*: NodePath */) /*: void */ {
+  registerRequireIfApplicable(path /*: NodeCallExpression */) /*: void */ {
     const {node} = path;
     const firstArgument = node.arguments[0];
     if (firstArgument.type !== 'StringLiteral') {
@@ -52,6 +54,34 @@ const FbtEnumRegistrar = {
     // $FlowFixMe Need to check that parent path exists and that the node is correct
     const alias = (path.parentPath.node.id.name /*: string */);
     this.setModuleAlias(alias, modulePath);
+  },
+
+  /**
+   * Processes a `import ... from '...';` statement and registers the fbt enum
+   * if applicable.
+   *
+   * We only support the following top level import styles:
+   *   - `import aEnum from 'A$Enum';
+   *   - `import * as aEnum from 'A$Enum';
+   *
+   * @param path Babel path of a `import` statement
+   */
+  registerImportIfApplicable(path /*: NodeImportDeclaration */) /*: void */ {
+    const {node} = path;
+
+    if (node.specifiers.length > 1) {
+      return;
+    }
+
+    const specifier = node.specifiers[0];
+    if (
+      t.isImportDefaultSpecifier(specifier) ||
+      t.isImportNamespaceSpecifier(specifier)
+    ) {
+      const alias = specifier.local.name;
+      const modulePath = node.source.value;
+      this.setModuleAlias(alias, modulePath);
+    }
   },
 };
 

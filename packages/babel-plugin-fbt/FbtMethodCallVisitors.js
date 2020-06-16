@@ -150,6 +150,13 @@ const call = function(moduleName) {
           runtimeRange = t.objectExpression(rangeProps);
         } else if (t.isIdentifier(rangeArg)) {
           const enumModule = FbtEnumRegistrar.getModuleName(rangeArg.name);
+          if (enumModule == null) {
+            throw errorAt(
+              rangeArg,
+              `Fbt Enum \`${rangeArg.name}\` not registered, ensure the enum ` +
+                `was correctly imported.`,
+            );
+          }
           const manifest = enumManifest[enumModule];
           rangeProps = Object.keys(manifest).map(key => {
             return t.objectProperty(

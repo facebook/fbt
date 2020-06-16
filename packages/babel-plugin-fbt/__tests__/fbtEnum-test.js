@@ -20,6 +20,11 @@ function runTest(data) {
 }
 
 describe('Test Fbt Enum', () => {
+  beforeEach(() => {
+    // Ensure the Enum registrar config is reset.
+    jest.resetModules();
+  });
+
   it('should handle jsx enums (with references)', () => {
     runTest({
       input: withFbtRequireStatement(
@@ -86,7 +91,7 @@ describe('Test Fbt Enum', () => {
     });
   });
 
-  it('should handle functional enums (with references)', () => {
+  it('should handle functional enums (with references) (require)', () => {
     runTest({
       input: withFbtRequireStatement(
         `let aEnum = require('Test$FbtEnum');
@@ -111,6 +116,66 @@ describe('Test Fbt Enum', () => {
             [fbt._enum(id, aEnum)],
           );`,
       ),
+    });
+  });
+
+  it('should handle functional enums (with references) (import default)', () => {
+    runTest({
+      input: `
+        import fbt from 'fbt';
+        import aEnum from 'Test$FbtEnum';
+        var x = fbt('Click to see ' + fbt.enum(id, aEnum), 'enums!');
+      `,
+
+      output: `
+        import fbt from 'fbt';
+        import aEnum from 'Test$FbtEnum';
+        var x = fbt._(
+          ${payload({
+            type: 'table',
+            jsfbt: {
+              t: {
+                id1: 'Click to see groups',
+                id2: 'Click to see photos',
+                id3: 'Click to see videos',
+              },
+              m: [null],
+            },
+            desc: 'enums!',
+          })},
+          [fbt._enum(id, aEnum)],
+        );
+    `,
+    });
+  });
+
+  it('should handle functional enums (with references) (import star)', () => {
+    runTest({
+      input: `
+        import fbt from 'fbt';
+        import * as aEnum from 'Test$FbtEnum';
+        var x = fbt('Click to see ' + fbt.enum(id, aEnum), 'enums!');
+      `,
+
+      output: `
+        import fbt from 'fbt';
+        import * as aEnum from 'Test$FbtEnum';
+        var x = fbt._(
+          ${payload({
+            type: 'table',
+            jsfbt: {
+              t: {
+                id1: 'Click to see groups',
+                id2: 'Click to see photos',
+                id3: 'Click to see videos',
+              },
+              m: [null],
+            },
+            desc: 'enums!',
+          })},
+          [fbt._enum(id, aEnum)],
+        );
+    `,
     });
   });
 
@@ -154,5 +219,27 @@ describe('Test Fbt Enum', () => {
     ).toThrowError(
       'fbt enum range values must be StringLiteral, got TemplateLiteral',
     );
+  });
+
+  it('should throw on multiple import types', () => {
+    expect(() =>
+      transform(
+        withFbtRequireStatement(
+          `import aEnum, * as bEnum from 'Test$FbtEnum';
+          var x = fbt('Click to see ' + fbt.enum(id, aEnum), 'enums!');`,
+        ),
+      ),
+    ).toThrowError('Fbt Enum `aEnum` not registered');
+  });
+
+  it('should throw on destructured imports', () => {
+    expect(() =>
+      transform(
+        withFbtRequireStatement(
+          `import {aEnum} from 'Test$FbtEnum';
+          var x = fbt('Click to see ' + fbt.enum(id, aEnum), 'enums!');`,
+        ),
+      ),
+    ).toThrowError('Fbt Enum `aEnum` not registered');
   });
 });

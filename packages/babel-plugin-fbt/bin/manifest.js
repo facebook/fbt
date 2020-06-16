@@ -49,9 +49,13 @@ if (argv.help) {
 
 // Register babel-plugins with node to enable parsing flow types, etc.
 require('@babel/register')({
+  // Ensure babel resolves paths relative to our package directory so the
+  // plugins can always be resolved to this node_modules directory.
+  cwd: path.resolve(__dirname, '../'),
   plugins: [
     '@babel/plugin-syntax-object-rest-spread',
     '@babel/plugin-transform-flow-strip-types',
+    '@babel/plugin-transform-modules-commonjs',
   ],
 });
 
@@ -66,7 +70,15 @@ for (const src of argv.src) {
   for (const filepath of enumFiles) {
     // Infer module name from filename.
     const name = path.parse(filepath).name;
-    enumManifest[name] = require(path.resolve(filepath));
+    const obj = require(path.resolve(filepath));
+    const enumValue = obj.__esModule ? obj.default : obj;
+    if (enumValue == null) {
+      throw new Error(
+        `No valid enum found for '${name}', ensure you are exporting your enum ` +
+          `via \`module.exports = { ... };\` or \`export default { ... };\``,
+      );
+    }
+    enumManifest[name] = enumValue;
   }
 }
 

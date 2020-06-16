@@ -142,6 +142,13 @@ function BabelPluginFbt(babel /*: {
       },
 
       /**
+       * Register enum imports
+       */
+      ImportDeclaration(path) {
+        FbtEnumRegistrar.registerImportIfApplicable(path);
+      },
+
+      /**
        * Transform fbt("text", "desc", {project: "project"}) to semantically:
        *
        * fbt._(
@@ -172,7 +179,7 @@ function BabelPluginFbt(babel /*: {
         }
 
         if (isRequireAlias(path.parentPath)) {
-          FbtEnumRegistrar.registerIfApplicable(path);
+          FbtEnumRegistrar.registerRequireIfApplicable(path);
           return;
         }
 
