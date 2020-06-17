@@ -103,6 +103,7 @@ We haven't had the best track record of code/feature changes before this date, b
     <summary>
       Unreleased changes that have landed in master. Click to see more.
     </summary>
+    - [fix] Add missing npm dependencies for `bin/manifest.js`
     - [feat] Add ES6 imports/exports support for shared enums. See [related doc.](https://facebook.github.io/fbt/docs/enums#es6-import-export-syntax)
     - [fix] Avoid throwing errors during string extraction when source code folder has no fbt string inside. (manifest & collect-fbts)
   </details>
