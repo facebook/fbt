@@ -30,4 +30,19 @@ test('TestUtil:', () => {
       `);
     });
   });
+  describe('stripCodeBlockWhitespace:', () => {
+    it('can safely strip whitespace', () => {
+      expect(
+        TestUtil.stripCodeBlockWhitespace(`
+          const c          = 1;
+          const d = 2;
+            const e = 3;
+        `),
+      ).toBe(`
+const c          = 1;
+const d = 2;
+  const e = 3;
+        `);
+    });
+  });
 });

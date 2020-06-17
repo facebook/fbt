@@ -108,6 +108,24 @@ function normalizeSourceCode(sourceCode /*: string */) /*: string */ {
 module.exports = {
   generateFormattedCodeFromAST,
 
+  /**
+   * This function allows you to use mutliline template strings in your test
+   * cases without worrying about non standard loc's. It does this by stripping
+   * leading whitespace so the contents lines up based on the first lines
+   * offset.
+   */
+  stripCodeBlockWhitespace(code) {
+    // Find standard whitespace offset for block
+    const match = code.match(/(\n\s*)\S/);
+    const strippedCode =
+      match == null
+        ? code
+        : // Strip from each line
+          code.replace(new RegExp(match[1], 'g'), '\n');
+
+    return strippedCode;
+  },
+
   assertSourceAstEqual(expected, actual, options) {
     const expectedTree = stripMeta(
       parse(normalizeSourceCode(expected)).program,
