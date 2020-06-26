@@ -16,6 +16,7 @@ We haven't had the best track record of code/feature changes before this date, b
 - [fbt-rn-android-native versions [Deprecated]](#fbt-rn-android-native-versions-deprecated)
 
 ### Top-level Github
+- [fix] Relax required version patterns of npm dependencies
 - Sync `babelTypeShims.js` to GitHub. It was previously missing due to internal config issues.
 - Upgrade to Flow v0.123.0
 - [doc] Add Fbt Common Strings documentation
@@ -103,10 +104,13 @@ We haven't had the best track record of code/feature changes before this date, b
     <summary>
       Unreleased changes that have landed in master. Click to see more.
     </summary>
-    - [fix] Add missing npm dependencies for `bin/manifest.js`
-    - [feat] Add ES6 imports/exports support for shared enums. See [related doc.](https://facebook.github.io/fbt/docs/enums#es6-import-export-syntax)
-    - [fix] Avoid throwing errors during string extraction when source code folder has no fbt string inside. (manifest & collect-fbts)
   </details>
+
+- 0.15.0:
+  - [fix] Relax required version patterns of npm dependencies
+  - [fix] Add missing npm dependencies for `bin/manifest.js`
+  - [feat] Add ES6 imports/exports support for shared enums. See [related doc.](https://facebook.github.io/fbt/docs/enums#es6-import-export-syntax)
+  - [fix] Avoid throwing errors during string extraction when source code folder has no fbt string inside. (manifest & collect-fbts)
 
 - 0.14.2:
   - [fix] Bug in collectFBT.js when using `BOTH` packagers with `--terse`
@@ -171,6 +175,10 @@ We haven't had the best track record of code/feature changes before this date, b
   - [c11e9fd](https://github.com/facebook/fbt/commit/c11e9fd) Enable custom Babel plugins for FBT collection
 
 ### babel-plugin-fbt-runtime versions
+
+- 0.9.12:
+  - [fix] Relax required version patterns of npm dependencies
+
 - 0.9.11:
   - Update peer dependency on `babel-plugin-fbt` and devDependency on `fb-babel-plugin-utils`
 
@@ -217,6 +225,9 @@ We haven't had the best track record of code/feature changes before this date, b
      Unreleased changes that have landed in master. Click to see more.
     </summary>
   </details>
+
+- 0.10.1:
+  - [fix] Relax required version patterns of npm dependencies
 
 - 0.10.0:
   - Feat: expose utility function `generateFormattedCodeFromAST()` to convert a `BabelNode` to a source code string
