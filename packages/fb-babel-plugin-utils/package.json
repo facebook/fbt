@@ -1,15 +1,15 @@
 {
   "name": "fb-babel-plugin-utils",
   "//version": "Follow SemVer specs at https://semver.org/",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "Common Babel 7 utils for FB",
   "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.0.0",
     "@babel/generator": "^7.0.0",
-    "@babel/parser": "7.7.4",
+    "@babel/parser": "^7.7.4",
     "@babel/plugin-syntax-class-properties": "^7.0.0",
-    "@babel/plugin-syntax-flow": "7.7.4",
+    "@babel/plugin-syntax-flow": "^7.7.4",
     "@babel/plugin-syntax-jsx": "^7.0.0",
     "@babel/plugin-syntax-nullish-coalescing-operator": "^7.0.0",
     "@babel/plugin-syntax-numeric-separator": "^7.2.0",
