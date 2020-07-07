@@ -96,7 +96,8 @@ fbt._ = function(
 ): Fbt {
   // TODO T61652022: Remove this when no longer used in fbsource
   if ((options?.hk || options?.ehk) && jsonExportMode) {
-    // $FlowFixMe: breaking typing because this should never happen
+    /* $FlowFixMe[incompatible-return] : breaking typing because this should
+     * never happen */
     return {
       text: inputTable,
       fbt: true,
@@ -374,7 +375,7 @@ function _wrapContent(fbtContent, patternString, patternHash): Fbt {
     patternString,
     patternHash,
   });
-  // $FlowFixMe FbtHooks.getFbtResult returns mixed.
+  // $FlowFixMe[incompatible-return] FbtHooks.getFbtResult returns mixed.
   return result;
 }
 

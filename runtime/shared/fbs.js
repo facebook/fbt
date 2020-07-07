@@ -27,7 +27,7 @@ const FbsImpl = {
       value,
       typeof value,
     );
-    // $FlowFixMe TODO(T36305131) Add accurate flow types to fbt.js
+    // $FlowFixMe[incompatible-call] TODO(T36305131) Add accurate flow types to fbt.js
     return fbt._param(...arguments);
   },
 

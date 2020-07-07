@@ -173,10 +173,11 @@ class FbtResultBase implements IFbtResultBase {
   'trimRight',
 ].forEach(methodName => {
   /* eslint-disable fb-www/should-use-class */
-  // $FlowFixMe index signature
+  // $FlowFixMe[prop-missing] index signature
   FbtResultBase.prototype[methodName] = function(...args) {
     this.__errorListener?.onStringMethodUsed?.(methodName);
-    // $FlowFixMe Mock stringish methods
+    // $FlowFixMe[incompatible-type] Mock stringish methods
+    // $FlowFixMe[prop-missing] Mock stringish methods
     return String.prototype[methodName].apply(this, args);
   };
   /* eslint-enable fb-www/should-use-class */
