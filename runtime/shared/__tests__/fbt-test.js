@@ -200,9 +200,9 @@ describe('fbt', () => {
       <TestComponent value="A" childA={<div />} childB={<div />} />,
     );
     expect(nodes.length).toBe(2);
-    /* $FlowFixMe(>=0.99.0 site=www) This comment suppresses an error found
-     * when Flow v0.99 was deployed. To see the error delete this comment and
-     * run Flow. */
+    /* $FlowFixMe[prop-missing] (>=0.99.0 site=www) This comment suppresses an
+     * error found when Flow v0.99 was deployed. To see the error delete this
+     * comment and run Flow. */
     expect(console.warn.mock.calls.length).toBe(0);
   });
 
@@ -327,7 +327,7 @@ describe('fbt', () => {
   it('should access table with fallback logic', function() {
     const FbtHooks = require('FbtHooks');
     let genderMock;
-    // $FlowFixMe We need to mock this method
+    // $FlowFixMe[cannot-write] We need to mock this method
     FbtHooks.getViewerContext = jest.fn(() => ({
       GENDER: genderMock,
     }));
@@ -435,13 +435,13 @@ describe('fbt', () => {
 
       expect(
         fbt(
-          /* $FlowFixMe(>=0.121.0 site=www) This comment suppresses an error
-           * found when Flow v0.121 was deployed. To see the error delete this
-           * comment and run Flow. */
+          /* $FlowFixMe[incompatible-call] (>=0.121.0 site=www) This comment
+           * suppresses an error found when Flow v0.121 was deployed. To see
+           * the error delete this comment and run Flow. */
           fbt.param('hello', fbtParams[0]) +
-            /* $FlowFixMe(>=0.121.0 site=www) This comment suppresses an error
-             * found when Flow v0.121 was deployed. To see the error delete
-             * this comment and run Flow. */
+            /* $FlowFixMe[incompatible-call] (>=0.121.0 site=www) This comment
+             * suppresses an error found when Flow v0.121 was deployed. To see
+             * the error delete this comment and run Flow. */
             fbt.param('world', fbtParams[1]),
           'desc',
         ),
