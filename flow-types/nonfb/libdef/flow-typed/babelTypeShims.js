@@ -36,6 +36,8 @@ declare module '@babel/core' {
     string | [string] | [string, {[option: string]: mixed}],
   >;
 
+  declare type BabelPresetList = BabelPluginList;
+
   declare function transformSync(
     code: string,
     opts: {

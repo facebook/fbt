@@ -44,6 +44,7 @@ We haven't had the best track record of code/feature changes before this date, b
   <summary>
     Unreleased changes that have landed in master. Click to see more.
   </summary>
+  - [feat] Add Babel `presets` as a CLI option for [`collectFBT.js`](https://github.com/facebook/fbt/blob/master/packages/babel-plugin-fbt/bin/collectFBT.js)
   - [feat] Add ES6 imports/exports support for shared enums. See [related doc.](https://facebook.github.io/fbt/docs/enums#es6-import-export-syntax)
 </details>
 
