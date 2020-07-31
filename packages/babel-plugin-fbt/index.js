@@ -37,9 +37,18 @@ export type PluginOptions = {|
   collectFbt: boolean,
   extraOptions: {[optionName: string]: mixed},
   fbtBase64: boolean,
-  fbtEnumLoader: string,
-  fbtEnumToPath: {[enumName: string]: string},
-  fbtSentinel: string,
+  // Path to a JS module that must export a function that is responsible for
+  // loading an fbt enum (by file path) and return its object.
+  // I.e. fbt enum loading function signature:
+  // (enumFilePath) => typeof $PropertyType<PluginOptions, 'fbtEnumManifest'>
+  fbtEnumLoader?: ?string,
+  // Function that would return an fbt manifest object
+  fbtEnumManifest?: ?{[enumModuleName: string]: {[enumKey: string]: string}},
+  // Fbt enum file path
+  fbtEnumPath?: ?string,
+  // Object map of file paths keyed by fbt enum module names
+  fbtEnumToPath?: ?{[enumName: string]: string},
+  fbtSentinel?: string,
   filename: string,
   reactNativeMode: boolean,
 |};
@@ -113,7 +122,6 @@ function BabelPluginFbt(babel /*: {
   return {
     pre() {
       // TODO(T56277508) Type this.opts to match `PluginOptions`
-      this.opts.fbtSentinel = this.opts.fbtSentinel || '__FBT__';
       this.opts.fbtBase64 = this.opts.fbtBase64;
 
       FbtCommon.init(this.opts);

@@ -79,6 +79,7 @@ const {
   FbtBooleanOptions,
   FbtType,
   PLURAL_PARAM_TOKEN,
+  SENTINEL,
   ValidFbtOptions,
   ValidPluralOptions,
   ValidPronounOptions,
@@ -645,12 +646,9 @@ class FbtFunctionCallProcessor {
     const encodedOutput = pluginOptions.fbtBase64
       ? Buffer.from(argsOutput).toString('base64')
       : argsOutput;
+    const fbtSentinel = pluginOptions.fbtSentinel || SENTINEL;
     const args = [
-      t.stringLiteral(
-        pluginOptions.fbtSentinel +
-          encodedOutput +
-          pluginOptions.fbtSentinel,
-      ),
+      t.stringLiteral(fbtSentinel + encodedOutput + fbtSentinel),
     ];
 
     if (runtimeArgs.length > 0) {
