@@ -5,6 +5,7 @@
  * @flow
  */
 /*eslint max-len: ["error", 100]*/
+/* eslint-disable fb-www/no-new-error */ // disable www-only linter
 
 'use strict';
 
