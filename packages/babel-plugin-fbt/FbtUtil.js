@@ -21,6 +21,7 @@ type BabelNodeCallExpressionArgument = $ElementType<
   $PropertyType<BabelNodeCallExpression, 'arguments'>,
   number,
 >;
+export type ParamSet = {[parameterName: string]: ?true};
 */
 
 const {JSModuleName, ModuleNameRegExp} = require('./FbtConstants');
@@ -120,15 +121,17 @@ function isTextualNode(node) {
   return false;
 }
 
-function verifyUniqueToken(
+function setUniqueToken(
+  node /*: BabelNode */,
   moduleName /*: string */,
   name /*: string */,
-  paramSet /*: {[name: string]: ?true} */,
+  paramSet /*: ParamSet */,
 ) /*: void */ {
   if (paramSet[name]) {
-    throw new Error(
-      `There's already a token with the same name, '${name}' in this ${moduleName} call. ` +
-        `Use ${moduleName}.sameParam if you want to reuse the same token value or ` +
+    throw errorAt(
+      node,
+      `There's already a token called "${name}" in this ${moduleName} call. ` +
+        `Use ${moduleName}.sameParam if you want to reuse the same token name or ` +
         `give this token a different name`,
     );
   }
@@ -561,7 +564,7 @@ module.exports = {
   hasKeys,
   normalizeSpaces,
   objMap,
+  setUniqueToken,
   textContainsFbtLikeModule,
   validateNamespacedFbtElement,
-  verifyUniqueToken,
 };

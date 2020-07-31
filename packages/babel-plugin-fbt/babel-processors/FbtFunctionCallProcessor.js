@@ -16,6 +16,9 @@ import type {
   ValidPronounUsagesKey,
 } from '../FbtConstants';
 import type {
+  ParamSet,
+} from '../FbtUtil';
+import type {
   FbtBabelNodeCallExpression,
   FbtBabelNodeJSXElement,
   FbtBabelNodeShape,
@@ -29,13 +32,23 @@ type NodePath = NodePathOf<FbtBabelNodeCallExpression>;
 export type ExtractTableTextItems = Array<
   | ?string
   | boolean
-  | BabelNodeExpression | BabelNodeSpreadElement | BabelNodeJSXNamespacedName
-  | {| type: 'subject' |}
+  | BabelNodeExpression
+  | BabelNodeSpreadElement
+  | BabelNodeJSXNamespacedName
+  | {|type: 'subject'|}
   | {|
-    type: 'enum',
-    range: {[name: string]: BabelNodeStringLiteral},
-    value: string,
-  |}
+      type: 'number',
+      token: string,
+    |}
+  | {|
+      type: 'gender',
+      token: string,
+    |}
+  | {|
+      type: 'enum',
+      range: {[name: string]: BabelNodeStringLiteral},
+      value: string,
+    |}
   | {|
       type: 'plural',
       count: ?FbtOptionValue,
@@ -46,12 +59,12 @@ export type ExtractTableTextItems = Array<
       many: string,
     |}
   | {|
-    type: 'pronoun',
-    capitalize: boolean,
-    gender: string,
-    human: boolean,
-    usage: ValidPronounUsagesKey,
-  |}
+      type: 'pronoun',
+      capitalize: boolean,
+      gender: string,
+      human: boolean,
+      usage: ValidPronounUsagesKey,
+    |},
 >;
 
 export type FbtFunctionCallPhrase = {|
@@ -216,11 +229,20 @@ class FbtFunctionCallProcessor {
   // Returns params and enums info in the order in which they appear.
   _collectFbtCalls(options /*: $Shape<FbtCallSiteOptions> */) /*: {|
     hasTable: boolean,
-    paramSet: {...},
-    runtimeArgs: Array<BabelNodeCallExpression>,
+    paramSet: ParamSet,
+    runtimeArgs: $ReadOnlyArray<BabelNodeCallExpression>,
     fileSource: string,
     usedEnums: {[enumExpr: string]: ?boolean},
-    variations: {...},
+    variations: {[paramName: string]:
+      {|
+          type: 'number',
+          token: string,
+        |}
+      | {|
+          type: 'gender',
+          token: string,
+        |}
+    },
   |} */ {
     const {
       fileSource,
@@ -315,9 +337,10 @@ class FbtFunctionCallProcessor {
     switch (textNode.type) {
       case 'ArrayExpression':
         return textNode;
-      case 'BinaryExpression':
+      case 'BinaryExpression': {
         const operands = this._getBinaryExpressionOperands(textNode);
         return arrayExpression(operands);
+      }
       case 'CallExpression':
       case 'StringLiteral':
       case 'TemplateLiteral':
@@ -336,7 +359,7 @@ class FbtFunctionCallProcessor {
     switch (node.type) {
       case 'BinaryExpression':
         if (node.operator !== '+') {
-          throw new Error('Expected to see a string concatenation');
+          throw errorAt(node, 'Expected to see a string concatenation');
         }
         return [
           ...this._getBinaryExpressionOperands(node.left),
@@ -461,7 +484,7 @@ class FbtFunctionCallProcessor {
             value: getRawSource(fileSource, arg0),
           });
           break;
-        case 'plural':
+        case 'plural': {
           if (arg0.type !== 'StringLiteral') {
             throw errorAt(
               arg0,
@@ -521,7 +544,8 @@ class FbtFunctionCallProcessor {
           // $FlowFixMe An object literal isn't compatible with BabelNodeExpression
           texts.push(data);
           break;
-        case 'pronoun':
+        }
+        case 'pronoun': {
           // Usage: fbt.pronoun(usage, gender [, options])
           const optionsNode = arg2;
           const options = collectOptions(
@@ -544,6 +568,7 @@ class FbtFunctionCallProcessor {
           // $FlowFixMe An object literal isn't compatible with BabelNodeExpression
           texts.push(pronounData);
           break;
+        }
         case 'name':
           texts.push(variations[
             // $FlowFixMe `value` property is not always present
