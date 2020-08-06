@@ -12,7 +12,6 @@
 import typeof BabelTypes from '@babel/types';
 import type {
   BabelTransformPlugin,
-  NodePathOf,
 } from '@babel/core';
 import type {
   FbtCallSiteOptions,

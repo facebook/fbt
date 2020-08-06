@@ -159,7 +159,7 @@ class FbtFunctionCallProcessor {
     path: NodePath,
     pluginOptions: PluginOptions,
   } */) /*: ?FbtFunctionCallProcessor */ {
-    const nodeChecker = FbtNodeChecker.forFbtFunctionCall(path);
+    const nodeChecker = FbtNodeChecker.forFbtFunctionCall(path.node);
     return nodeChecker != null
       ? new FbtFunctionCallProcessor({
         babelTypes,
@@ -174,7 +174,7 @@ class FbtFunctionCallProcessor {
 
   _assertJSModuleWasAlreadyRequired() /*: this */ {
     const {moduleName, path} = this;
-    if (!this.nodeChecker.isJSModuleBound(path)) {
+    if (!this.nodeChecker.isJSModuleBound<typeof path.node>(path)) {
       throw errorAt(
         path.node,
         `${moduleName} is not bound. Did you forget to require('${moduleName}')?`,

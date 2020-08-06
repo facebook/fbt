@@ -79,7 +79,7 @@ class JSXFbtProcessor {
     babelTypes: BabelTypes,
     path: NodePath,
   } */) /*: ?JSXFbtProcessor */ {
-    const nodeChecker = FbtNodeChecker.forJSXFbt(path);
+    const nodeChecker = FbtNodeChecker.forJSXFbt(path.node);
     return nodeChecker != null
       ? new JSXFbtProcessor({
         babelTypes,
