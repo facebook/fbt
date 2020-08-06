@@ -226,6 +226,7 @@ We haven't had the best track record of code/feature changes before this date, b
     <summary>
      Unreleased changes that have landed in master. Click to see more.
     </summary>
+    - [feat] Add ability to test against Jest code snapshots
     - [fix] Add missing `json-diff` npm dependency
   </details>
 
