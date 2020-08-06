@@ -226,6 +226,7 @@ We haven't had the best track record of code/feature changes before this date, b
     <summary>
      Unreleased changes that have landed in master. Click to see more.
     </summary>
+    - [fix] Add missing `json-diff` npm dependency
   </details>
 
 - 0.10.1:
