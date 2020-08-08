@@ -33,6 +33,8 @@ export type ValidPronounUsagesKey = $Keys<typeof ValidPronounUsages>;
 export type ShowCountKey = $Keys<typeof ShowCount>;
 */
 
+const SENTINEL = '__FBT__';
+
 const ValidPronounUsages = {
   object: 0,
   possessive: 1,
@@ -138,6 +140,7 @@ module.exports = {
   PluralRequiredAttributes,
   PronounRequiredAttributes,
   RequiredParamOptions,
+  SENTINEL,
   ValidFbtOptions,
   ValidParamOptions,
   ValidPluralOptions,

@@ -2,33 +2,53 @@
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
  * @emails oncall+internationalization
- * @format
+ * @flow
  */
 
 'use strict';
 /* eslint max-len: ["warn", 120] */
 /* eslint-disable fb-www/comma-dangle */
 
-const GENDER_CONST = {
-  NOT_A_PERSON: 0,
-  FEMALE_SINGULAR: 1,
-  MALE_SINGULAR: 2,
-  FEMALE_SINGULAR_GUESS: 3,
-  MALE_SINGULAR_GUESS: 4,
+/*::
+type GenderConfig = {|
+  is_male: boolean,
+  is_female: boolean,
+  is_neuter: boolean,
+  is_plural: boolean,
+  is_mixed: boolean,
+  is_guess: boolean,
+  is_unknown: boolean,
+  subject: string,
+  possessive: string,
+  reflexive: string,
+  object: string,
+  string: string,
+|};
 
+export type GenderConstEnum = $GenderConstEnum;
+*/
+
+// Keep this in sync with GenderConst.js (of the fbt npm module)
+// TODO(T70508769) Figure out a way to keep this in sync more transparently
+const GENDER_CONST = Object.freeze({
+  NOT_A_PERSON: ((0 /*: $FlowExpectedError*/ ) /*: GenderConstEnum*/),
+  FEMALE_SINGULAR: ((1 /*: $FlowExpectedError*/ ) /*: GenderConstEnum*/),
+  MALE_SINGULAR: ((2 /*: $FlowExpectedError*/ ) /*: GenderConstEnum*/),
+  FEMALE_SINGULAR_GUESS: ((3 /*: $FlowExpectedError*/ ) /*: GenderConstEnum*/),
+  MALE_SINGULAR_GUESS: ((4 /*: $FlowExpectedError*/ ) /*: GenderConstEnum*/),
   // 5 seems to indicate a group of people who may be of mixed gender
-  MIXED_SINGULAR: 5,
-  MIXED_PLURAL: 5,
+  MIXED_SINGULAR: ((5 /*: $FlowExpectedError*/ ) /*: GenderConstEnum*/),
+  MIXED_PLURAL: ((5 /*: $FlowExpectedError*/ ) /*: GenderConstEnum*/),
+  NEUTER_SINGULAR: ((6 /*: $FlowExpectedError*/ ) /*: GenderConstEnum*/),
+  UNKNOWN_SINGULAR: ((7 /*: $FlowExpectedError*/ ) /*: GenderConstEnum*/),
+  FEMALE_PLURAL: ((8 /*: $FlowExpectedError*/ ) /*: GenderConstEnum*/),
+  MALE_PLURAL: ((9 /*: $FlowExpectedError*/ ) /*: GenderConstEnum*/),
+  NEUTER_PLURAL: ((10 /*: $FlowExpectedError*/ ) /*: GenderConstEnum*/),
+  UNKNOWN_PLURAL: ((11 /*: $FlowExpectedError*/ ) /*: GenderConstEnum*/),
+});
 
-  NEUTER_SINGULAR: 6,
-  UNKNOWN_SINGULAR: 7,
-  FEMALE_PLURAL: 8,
-  MALE_PLURAL: 9,
-  NEUTER_PLURAL: 10,
-  UNKNOWN_PLURAL: 11,
-};
-
-const data = {
+const data /*: {[GenderConstEnum]: GenderConfig} */ = {
+  // $FlowExpectedError[invalid-computed-prop] Tolerate using an opaque type as an object key
   [GENDER_CONST.NOT_A_PERSON]: {
     is_male: false,
     is_female: false,
@@ -43,6 +63,7 @@ const data = {
     object: 'this',
     string: 'unknown',
   },
+  // $FlowExpectedError[invalid-computed-prop] Tolerate using an opaque type as an object key
   [GENDER_CONST.UNKNOWN_SINGULAR]: {
     is_male: false,
     is_female: false,
@@ -57,6 +78,7 @@ const data = {
     object: 'them',
     string: 'unknown singular',
   },
+  // $FlowExpectedError[invalid-computed-prop] Tolerate using an opaque type as an object key
   [GENDER_CONST.FEMALE_SINGULAR]: {
     is_male: false,
     is_female: true,
@@ -71,6 +93,7 @@ const data = {
     object: 'her',
     string: 'female singular',
   },
+  // $FlowExpectedError[invalid-computed-prop] Tolerate using an opaque type as an object key
   [GENDER_CONST.FEMALE_SINGULAR_GUESS]: {
     is_male: false,
     is_female: true,
@@ -85,6 +108,7 @@ const data = {
     object: 'her',
     string: 'female singular',
   },
+  // $FlowExpectedError[invalid-computed-prop] Tolerate using an opaque type as an object key
   [GENDER_CONST.MALE_SINGULAR]: {
     is_male: true,
     is_female: false,
@@ -99,6 +123,7 @@ const data = {
     object: 'him',
     string: 'male singular',
   },
+  // $FlowExpectedError[invalid-computed-prop] Tolerate using an opaque type as an object key
   [GENDER_CONST.MALE_SINGULAR_GUESS]: {
     is_male: true,
     is_female: false,
@@ -113,6 +138,7 @@ const data = {
     object: 'him',
     string: 'male singular',
   },
+  // $FlowExpectedError[invalid-computed-prop] Tolerate using an opaque type as an object key
   [GENDER_CONST.NEUTER_SINGULAR]: {
     is_male: false,
     is_female: false,
@@ -127,6 +153,7 @@ const data = {
     object: 'them',
     string: 'neuter singular',
   },
+  // $FlowExpectedError[invalid-computed-prop] Tolerate using an opaque type as an object key
   [GENDER_CONST.MIXED_PLURAL]: {
     is_male: false,
     is_female: false,
@@ -141,6 +168,7 @@ const data = {
     object: 'them',
     string: 'mixed plural',
   },
+  // $FlowExpectedError[invalid-computed-prop] Tolerate using an opaque type as an object key
   [GENDER_CONST.FEMALE_PLURAL]: {
     is_male: false,
     is_female: true,
@@ -155,6 +183,7 @@ const data = {
     object: 'them',
     string: 'female plural',
   },
+  // $FlowExpectedError[invalid-computed-prop] Tolerate using an opaque type as an object key
   [GENDER_CONST.MALE_PLURAL]: {
     is_male: true,
     is_female: false,
@@ -169,6 +198,7 @@ const data = {
     object: 'them',
     string: 'male plural',
   },
+  // $FlowExpectedError[invalid-computed-prop] Tolerate using an opaque type as an object key
   [GENDER_CONST.NEUTER_PLURAL]: {
     is_male: false,
     is_female: false,
@@ -183,6 +213,7 @@ const data = {
     object: 'them',
     string: 'neuter plural',
   },
+  // $FlowExpectedError[invalid-computed-prop] Tolerate using an opaque type as an object key
   [GENDER_CONST.UNKNOWN_PLURAL]: {
     is_male: false,
     is_female: false,
@@ -199,7 +230,10 @@ const data = {
   },
 };
 
-function getData(gender, usage) {
+function getData(
+  gender /*: GenderConstEnum */,
+  usage /*: $Keys<GenderConfig> */,
+) /*: boolean | string */ {
   return data[gender]
     ? data[gender][usage]
     : data[GENDER_CONST.NOT_A_PERSON][usage];

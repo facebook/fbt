@@ -16,6 +16,7 @@ We haven't had the best track record of code/feature changes before this date, b
 - [fbt-rn-android-native versions [Deprecated]](#fbt-rn-android-native-versions-deprecated)
 
 ### Top-level Github
+- [chore] Upgrade to Flow v0.127.0
 - [fix] Relax required version patterns of npm dependencies
 - Sync `babelTypeShims.js` to GitHub. It was previously missing due to internal config issues.
 - Upgrade to Flow v0.123.0
@@ -43,6 +44,7 @@ We haven't had the best track record of code/feature changes before this date, b
   <summary>
     Unreleased changes that have landed in master. Click to see more.
   </summary>
+  - [feat] Add Babel `presets` as a CLI option for [`collectFBT.js`](https://github.com/facebook/fbt/blob/master/packages/babel-plugin-fbt/bin/collectFBT.js)
   - [feat] Add ES6 imports/exports support for shared enums. See [related doc.](https://facebook.github.io/fbt/docs/enums#es6-import-export-syntax)
 </details>
 
@@ -224,6 +226,8 @@ We haven't had the best track record of code/feature changes before this date, b
     <summary>
      Unreleased changes that have landed in master. Click to see more.
     </summary>
+    - [feat] Add ability to test against Jest code snapshots
+    - [fix] Add missing `json-diff` npm dependency
   </details>
 
 - 0.10.1:

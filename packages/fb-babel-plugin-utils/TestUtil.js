@@ -196,11 +196,16 @@ ${jsonDiff.diffString(actualTree, expectedTree)}
           transform(testInfo.input, testInfo.options);
         } else {
           expect(() => {
-            this.assertSourceAstEqual(
-              testInfo.output,
-              transform(testInfo.input, testInfo.options),
-              options,
-            );
+            const transformOutput = transform(testInfo.input, testInfo.options);
+            if (options && options.matchSnapshot) {
+              expect(transformOutput).toMatchSnapshot();
+            } else {
+              this.assertSourceAstEqual(
+                testInfo.output,
+                transformOutput,
+                options,
+              );
+            }
           }).not.toThrow();
         }
       });

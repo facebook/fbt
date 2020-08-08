@@ -42,13 +42,13 @@ describe('FbtResult', function() {
     expect(
       // flow doesn't think FbtResult.flattenToArray exists because of
       // our egregious lies spat out in module.exports of FbtResultBase.js
-      // $FlowFixMe flattenToArray
+      // $FlowFixMe[prop-missing] flattenToArray
       obj3.flattenToArray().join(' '),
     ).toBe('prefix content suffix');
 
     obj1 = new FbtResult(['prefix'], errorListener);
 
-    // $FlowExpectedError
+    // $FlowExpectedError[incompatible-cast]
     const stringable = ({
       toString() {
         return 'stringable';
@@ -59,7 +59,7 @@ describe('FbtResult', function() {
     expect(
       // flow doesn't think FbtResult.flattenToArray exists because of
       // our egregious lies spat out in module.exports of FbtResultBase.js
-      // $FlowFixMe flattenToArray
+      // $FlowFixMe[prop-missing] flattenToArray
       obj3.flattenToArray().join(' '),
     ).toBe('prefix content stringable');
   });
@@ -68,7 +68,7 @@ describe('FbtResult', function() {
     const errorListener = nullthrows(_errorListener);
     const result = new FbtResult(['kombucha'], errorListener);
 
-    // $FlowFixMe We're mocking a read-only property (method) below
+    // $FlowFixMe[cannot-write] We're mocking a read-only property (method) below
     const err = (console.error = jest.fn());
     expect(result.substr(0, 3)).toBe('kom');
     expect(err.mock.calls.length).toBe(1);
@@ -82,7 +82,7 @@ describe('FbtResult', function() {
       ['hello', new FbtResult(['world'], errorListener)],
       errorListener,
     );
-    // $FlowFixMe We're mocking a read-only property (method) below
+    // $FlowFixMe[cannot-write] We're mocking a read-only property (method) below
     errorListener.onStringSerializationError = jest.fn();
     result.toString();
     expect(errorListener?.onStringSerializationError).not.toHaveBeenCalled();

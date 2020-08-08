@@ -15,7 +15,8 @@
     "@babel/plugin-syntax-numeric-separator": "^7.2.0",
     "@babel/plugin-syntax-object-rest-spread": "^7.0.0",
     "@babel/plugin-syntax-optional-catch-binding": "^7.0.0",
-    "@babel/plugin-syntax-optional-chaining": "^7.0.0"
+    "@babel/plugin-syntax-optional-chaining": "^7.0.0",
+    "json-diff": "^0.5.4"
   },
   "repository": {
     "type": "git",

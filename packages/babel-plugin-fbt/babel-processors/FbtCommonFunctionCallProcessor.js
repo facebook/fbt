@@ -61,7 +61,7 @@ class FbtCommonFunctionCallProcessor {
     babelTypes: BabelTypes,
     path: NodePath,
   } */) /*: ?FbtCommonFunctionCallProcessor */ {
-    const nodeChecker = FbtNodeChecker.forFbtCommonFunctionCall(path);
+    const nodeChecker = FbtNodeChecker.forFbtCommonFunctionCall(path.node);
     return nodeChecker != null
       ? new FbtCommonFunctionCallProcessor({
         babelTypes,

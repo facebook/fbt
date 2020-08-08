@@ -25,7 +25,7 @@ describe('intlNumUtils:', () => {
     const NumberFormatConsts = require('NumberFormatConsts');
     const _originalConfig = NumberFormatConsts.get();
 
-    // $FlowFixMe We need to mock this method
+    // $FlowFixMe[cannot-write] We need to mock this method
     NumberFormatConsts.get = jest.fn(() => {
       return {..._originalConfig, ..._overrides};
     });

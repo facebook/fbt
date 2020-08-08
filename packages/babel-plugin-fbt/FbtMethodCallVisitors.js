@@ -29,7 +29,7 @@ const {
   getOptionBooleanValue,
   getRawSource,
   getVariationValue,
-  verifyUniqueToken,
+  setUniqueToken,
 } = require('./FbtUtil');
 const PLURAL_PARAM_TOKEN = 'number';
 const t = require('@babel/types');
@@ -93,7 +93,7 @@ const call = function(moduleName) {
         // Collect params only if it's original one (not "sameParam").
         if (constructName === 'param') {
           runtimeArgs.push(fbtCallExpression('param', args));
-          verifyUniqueToken(moduleName, arg0.value, this.paramSet);
+          setUniqueToken(node, moduleName, arg0.value, this.paramSet);
         }
 
         // Variation case. Replace:
@@ -101,6 +101,8 @@ const call = function(moduleName) {
         // {gender: <gender>} -> {type: "gender", token: <param-name>}
         if (args.length === 3) {
           const paramName = arg0.value;
+          // TODO(T69419475): detect variation type by property name instead
+          // of expecting it to be the first object property
           const variationInfo = arg2.properties[0];
           const variationName =
             variationInfo.key.name || variationInfo.key.value;
@@ -190,7 +192,7 @@ const call = function(moduleName) {
         const pluralArgs = [count];
         if (options.showCount && options.showCount !== 'no') {
           const name = options.name || PLURAL_PARAM_TOKEN;
-          verifyUniqueToken(moduleName, name, this.paramSet);
+          setUniqueToken(node, moduleName, name, this.paramSet);
           pluralArgs.push(t.stringLiteral(name));
           if (options.value) {
             pluralArgs.push(options.value);
