@@ -6,15 +6,25 @@ Run the following commands in order:
 
 ```
 yarn install
-# 1. Generate enum and source manifests
+```
+#### 1. Generate enum and source manifests
+```
 yarn manifest
-# 2. Collect FBT translatable texts
+```
+#### 2. Collect FBT translatable texts
+```
 yarn collect-fbts
-# 3. Generate translatedFbts.js from translation_input.json
+```
+#### 3. Generate translatedFbts.js from translation_input.json
+```
 yarn translate-fbts
-# 4. Generate static files in `./output/`.
+```
+#### 4. Generate static files in `./output/`.
+```
 yarn build
-# 5. Run a local web server with hot reloading at localhost:8081
+```
+### 5. Run a local web server with hot reloading at localhost:8081
+```
 yarn start
 ```
 
