@@ -214,6 +214,54 @@ describe('collectFBT', () => {
     expect(actual).toEqual(expected);
   });
 
+  it('should dedupe fbt:plurals', () => {
+    var res = collect(
+      [
+        `const fbt = require('fbt');`,
+        `<fbt desc="desc...">`,
+        `  There`,
+        `  <fbt:plural count={num} many="are">is</fbt:plural>{' '}`,
+        `  <fbt:plural count={num} showCount="yes"
+             value={intlNumUtils.formatNumberWithThousandDelimiters(x)}>`,
+        `    photo`,
+        `  </fbt:plural>.`,
+        `</fbt>`,
+      ].join('\n'),
+    );
+    expect(res).toEqual({
+      childParentMappings: {},
+      phrases: [
+        {
+          col_beg: 0,
+          col_end: 6,
+          desc: 'desc...',
+          jsfbt: {
+            m: [
+              null,
+              {
+                singular: true,
+                token: 'number',
+                type: 2,
+              },
+            ],
+            t: {
+              '*': {
+                '*': 'There are {number} photos.',
+              },
+              _1: {
+                _1: 'There is 1 photo.',
+              },
+            },
+          },
+          line_beg: 2,
+          line_end: 9,
+          project: '',
+          type: 'table',
+        },
+      ],
+    });
+  });
+
   it('should extract correctly from templates', () => {
     // using templates with just string contents
     var res = collect(

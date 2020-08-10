@@ -41,6 +41,16 @@ let x = fbt._(
 "
 `;
 
+exports[`Test fbt transforms without the jsx transform when using within template literals should dedupe plurals 1`] = `
+"const fbt = require(\\"fbt\\");
+
+fbt._(
+  '__FBT__{\\"type\\":\\"table\\",\\"jsfbt\\":{\\"t\\":{\\"*\\":{\\"*\\":\\"There are {number} photos.\\"},\\"_1\\":{\\"_1\\":\\"There is 1 photo.\\"}},\\"m\\":[null,{\\"token\\":\\"number\\",\\"type\\":2,\\"singular\\":true}]},\\"desc\\":\\"desc...\\",\\"project\\":\\"\\"}__FBT__',
+  [fbt._plural(num), fbt._plural(num, \\"number\\", hi())]
+);
+"
+`;
+
 exports[`Test fbt transforms without the jsx transform when using within template literals should work with a basic <fbt> 1`] = `
 "const fbt = require(\\"fbt\\");
 

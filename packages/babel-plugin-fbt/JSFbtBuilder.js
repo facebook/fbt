@@ -185,24 +185,24 @@ class JSFbtBuilder {
         textSegments['*'] = '{' + item.token + '}';
         break;
 
-      case 'plural':
-        const pluralVal = item.value;
-        if (pluralVal in this.usedPlurals) {
+      case 'plural': {
+        const pluralCount = item.count;
+        if (pluralCount in this.usedPlurals) {
           // Constrain our plural value ('many'/'singular') BUT still add a
           // single level.  We don't currently prune runtime args like we do
           // with enums, but we ought to...
           // TODO T41100260
-          const key = this.usedPlurals[pluralVal];
+          const key = this.usedPlurals[pluralCount];
           const val = item[PLURAL_KEY_TO_TYPE[key]];
           return {[key]: this._buildTable(prefix + val, texts, idx + 1)};
         }
         const table = objMap(PLURAL_KEY_TO_TYPE, (type, key) => {
-          this.usedPlurals[pluralVal] = key;
+          this.usedPlurals[pluralCount] = key;
           return this._buildTable(prefix + item[type], texts, idx + 1);
         });
-        delete this.usedPlurals[pluralVal];
+        delete this.usedPlurals[pluralCount];
         return table;
-
+      }
       case 'pronoun':
         const genderSrc = item.gender;
         const isUsed = this.usedPronouns.hasOwnProperty(genderSrc);

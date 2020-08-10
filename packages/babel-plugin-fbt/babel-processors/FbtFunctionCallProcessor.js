@@ -55,7 +55,6 @@ export type ExtractTableTextItems = Array<
       showCount: 'yes' | 'no' | 'ifMany',
       name: string,
       singular: string,
-      value: string,
       many: string,
     |}
   | {|
@@ -518,7 +517,7 @@ class FbtFunctionCallProcessor {
             showCount: 'showCount' in opts ? opts.showCount : 'no',
             name: 'name' in opts ? opts.name : defaultToken,
             singular,
-            value: 'value' in opts ? opts.value : getRawSource(fileSource, arg1),
+            count: getRawSource(fileSource, arg1),
             many: 'many' in opts ? opts.many : singular + 's',
           };
 

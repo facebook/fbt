@@ -13,7 +13,7 @@ const {
   transformKeepJsx,
   withFbtRequireStatement,
 } = require('../FbtTestUtil');
-const {FbtVariationType} = require('../translate/IntlVariations.js');
+const {FbtVariationType} = require('../translate/IntlVariations');
 const {TestUtil} = require('fb-babel-plugin-utils');
 
 const testData = {
@@ -924,6 +924,21 @@ describe('Test fbt transforms without the jsx transform', () => {
               </fbt>
             }
           </div>\`;
+        `),
+      ).toMatchSnapshot();
+    });
+
+    it('should dedupe plurals', () => {
+      expect(
+        transformKeepJsx(`
+          const fbt = require("fbt");
+          <fbt desc="desc...">
+            There
+            <fbt:plural count={num} many="are">is</fbt:plural>{' '}
+            <fbt:plural count={num} showCount="yes" value={hi()}>
+              photo
+            </fbt:plural>.
+          </fbt>
         `),
       ).toMatchSnapshot();
     });

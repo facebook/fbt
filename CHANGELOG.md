@@ -106,6 +106,7 @@ We haven't had the best track record of code/feature changes before this date, b
     <summary>
       Unreleased changes that have landed in master. Click to see more.
     </summary>
+    - [fix] `fbt:plural` branch pruning when `value` option is present
   </details>
 
 - 0.15.0:
