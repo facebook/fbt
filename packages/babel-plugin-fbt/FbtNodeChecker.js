@@ -23,7 +23,7 @@ const {
 } = require('@babel/types');
 
 class FbtNodeChecker {
-  moduleName /*: JSModuleNameType*/;
+  /*:: moduleName: JSModuleNameType; */
 
   constructor(moduleName /*: JSModuleNameType */) {
     this.moduleName = assertModuleName(moduleName);
@@ -168,8 +168,11 @@ class FbtNodeChecker {
     return null;
   }
 
-  static COMMON_STRING_METHOD_NAME /*: 'c' */ = 'c';
+  // Not defining the static value here because of JS syntax compatibility issues in node.js v10.x
+  /*:: static COMMON_STRING_METHOD_NAME: 'c' */
 }
+
+FbtNodeChecker.COMMON_STRING_METHOD_NAME = 'c';
 
 const fbsChecker = new FbtNodeChecker(FBS);
 const fbtChecker = new FbtNodeChecker(FBT);
