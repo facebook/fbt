@@ -2,9 +2,6 @@
 
 List of changes for each released npm package version.
 
-## Primo Mea-culpa
-We haven't had the best track record of code/feature changes before this date, but let's try to do this properly from now on... [2019/09/03]
-
 ## TOC
 
 - [fbt versions](#fbt-versions)
@@ -44,8 +41,10 @@ We haven't had the best track record of code/feature changes before this date, b
   <summary>
     Unreleased changes that have landed in master. Click to see more.
   </summary>
+
   - [feat] Add Babel `presets` as a CLI option for [`collectFBT.js`](https://github.com/facebook/fbt/blob/master/packages/babel-plugin-fbt/bin/collectFBT.js)
   - [feat] Add ES6 imports/exports support for shared enums. See [related doc.](https://facebook.github.io/fbt/docs/enums#es6-import-export-syntax)
+
 </details>
 
 - 0.15.0:
@@ -106,8 +105,11 @@ We haven't had the best track record of code/feature changes before this date, b
     <summary>
       Unreleased changes that have landed in master. Click to see more.
     </summary>
-    - [fix] `fbt:plural` branch pruning when `value` option is present
+
   </details>
+
+- [0.15.1]:
+  - [fix] `fbt:plural` branch pruning when `value` option present. (Introduced in v0.13.0)
 
 - 0.15.0:
   - [fix] Relax required version patterns of npm dependencies
