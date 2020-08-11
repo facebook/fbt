@@ -23,6 +23,21 @@
   }
 }
 
+.announcement {
+  background-color: #20232a;
+  color: #fff;
+  font-weight: bold;
+  font-size: 24px;
+  padding: 48px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.announcementInner {
+  margin: 0 auto;
+  max-width: 768px;
+}
+
 .topContainer {
   display: flex;
   justify-content: space-around;

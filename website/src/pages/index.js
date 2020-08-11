@@ -31,7 +31,7 @@ const features = [
 </button>`}
         />
       </>
-    )
+    ),
   },
   {
     title: <>Seamless text collection</>,
@@ -49,7 +49,7 @@ const features = [
 }`}
         />
       </>
-    )
+    ),
   },
   {
     title: <>Integrated translations</>,
@@ -58,8 +58,8 @@ const features = [
         Easily pull translations into your app
         <CodeBlock code={`<button>Hello, Byd!</button>`} />
       </>
-    )
-  }
+    ),
+  },
 ];
 
 const Features = () =>
@@ -114,6 +114,15 @@ const Index = () => {
       title={`${siteConfig.title} - ${siteConfig.tagline}`}
       description={siteConfig.tagline}
     >
+      <div className={styles.announcement}>
+        <div className={styles.announcementInner}>
+          Black Lives Matter.{" "}
+          <a href="https://support.eji.org/give/153413/#!/donation/checkout">
+            Support the Equal Justice Initiative
+          </a>
+          .
+        </div>
+      </div>
       <header className={classnames("hero hero--primary", styles.heroBanner)}>
         <div className={classnames("container", styles.topContainer)}>
           <div>
