@@ -2,8 +2,11 @@
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
  * @emails oncall+internationalization
+ * @flow strict
  * @format
  */
+
+/* eslint-disable fb-www/no-import-export */
 
 'use strict';
 
