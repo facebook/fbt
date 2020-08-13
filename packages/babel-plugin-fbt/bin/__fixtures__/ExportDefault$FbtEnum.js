@@ -6,8 +6,6 @@
  * @format
  */
 
-/* eslint-disable fb-www/no-import-export */
-
 'use strict';
 
 const ExportDefault$FbtEnum = {
