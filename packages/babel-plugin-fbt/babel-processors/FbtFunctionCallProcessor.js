@@ -212,7 +212,6 @@ class FbtFunctionCallProcessor {
     const optionsNode = this._getOptionsNode();
     const options = collectOptions(
       this.moduleName,
-      this.t,
       optionsNode,
       ValidFbtOptions,
     );
@@ -494,7 +493,6 @@ class FbtFunctionCallProcessor {
           const singular = arg0.value;
           const opts = collectOptions(
             moduleName,
-            t,
             // $FlowFixMe This argument may not be a BabelNodeObjectExpression
             arg2,
             ValidPluralOptions,
@@ -550,7 +548,6 @@ class FbtFunctionCallProcessor {
           const optionsNode = arg2;
           const options = collectOptions(
             moduleName,
-            t,
             // $FlowFixMe This argument may not be a BabelNodeObjectExpression
             arg2,
             ValidPronounOptions,

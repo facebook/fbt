@@ -250,7 +250,6 @@ function checkOptions(properties, validOptions) /*: Array<BabelNodeObjectPropert
 
 function collectOptions /*:: <ValidOptions: {}> */(
   moduleName /*: string */,
-  t /*: BabelTypes */,
   options /*: ?BabelNodeObjectExpression */,
   validOptions /*: ValidOptions */,
 ) /*: {|[$Keys<ValidOptions>]: ?FbtOptionValue|} */ {

@@ -188,7 +188,7 @@ const call = function(moduleName) {
       } else if (constructName === 'plural') {
         this.hasTable = true;
         const count = arg1;
-        const options = collectOptions(moduleName, t, arg2, ValidPluralOptions);
+        const options = collectOptions(moduleName, arg2, ValidPluralOptions);
         const pluralArgs = [count];
         if (options.showCount && options.showCount !== 'no') {
           const name = options.name || PLURAL_PARAM_TOKEN;
@@ -240,7 +240,6 @@ const call = function(moduleName) {
         const optionsExpr = arg2;
         const options = collectOptions(
           moduleName,
-          t,
           optionsExpr,
           ValidPronounOptions,
         );
