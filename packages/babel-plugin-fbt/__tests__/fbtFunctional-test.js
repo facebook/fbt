@@ -8,7 +8,7 @@
 jest.autoMockOff();
 
 const {payload, transform, withFbtRequireStatement} = require('../FbtTestUtil');
-const {FbtVariationType} = require('../translate/IntlVariations.js');
+const {FbtVariationType} = require('../translate/IntlVariations');
 const {TestUtil} = require('fb-babel-plugin-utils');
 
 const generalTestData = {
@@ -225,10 +225,10 @@ const generalTestData = {
             <b>
               C1
               {
-                // TODO(T27672828) fbt.param() should return FbtWithoutString
-                // once we get rid of string-concat patterns
-                fbt.param('paramName', paramValue)
+                // TODO(T27672828) <FbtParam> or <fbt:param> should be typed like a React component
+                // whose render() method returns the type of its "children" property
               }
+              <fbt:param name="paramName">{paramValue}</fbt:param>
               C2
             </b>
             B2
