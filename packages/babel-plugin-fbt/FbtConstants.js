@@ -10,6 +10,7 @@
  * @emails oncall+internationalization
  * @flow strict
  */
+/*eslint max-len: ["error", 100]*/
 
 /*::
 export type FbtOptionValue = string | boolean | BabelNode;
