@@ -2,19 +2,23 @@
 
 ## Building and starting the demo app
 
-Run the following commands in order:
+Assuming you're in the `demo-app` folder (the same folder as this README),
+run the following commands in order:
 
 ```
+# 0. Prerequisites: install npm packages in the parent folder
+pushd .. && yarn install && popd
+# 1. Install npm packages for demo-app
 yarn install
-# 1. Generate enum and source manifests
+# 2. Generate enum and source manifests
 yarn manifest
-# 2. Collect FBT translatable texts
+# 3. Collect FBT translatable texts
 yarn collect-fbts
-# 3. Generate translatedFbts.js from translation_input.json
+# 4. Generate translatedFbts.js from translation_input.json
 yarn translate-fbts
-# 4. Generate static files in `./output/`.
+# 5. Generate static files in `./output/`.
 yarn build
-# 5. Run a local web server with hot reloading at localhost:8081
+# 6. Run a local web server with hot reloading at localhost:8081
 yarn start
 ```
 
