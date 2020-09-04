@@ -145,21 +145,6 @@ declare interface IFbtResultBase {
   _store?: {validated: boolean, ...};
 }
 
-declare interface IFbtStringish {
-  // Warning: The following methods are only applicable during the transition
-  // period for some existing code that uses string method on Fbt string.
-  //
-  // The fbt string should be considered as the final string to be displayed
-  // and therefore should not be manipulated.
-  // This relies on toString() which contains i18n logging logic to track impressions.
-  // I.e. If you use this, i18n will register the string as displayed!
-  //
-  // The following methods are expected not to be supported soon.
-
-  // Methods from String
-  indexOf: typeof String.prototype.indexOf;
-}
-
 // String result wrapper intended for ComponentScript.
 // Similar to FbtResultBase except that:
 // - it can only be assembled from strings, not React elements
@@ -179,11 +164,8 @@ declare class FbtPureStringResult implements IFbtResultBase {
   // unwrap(): string;
 }
 
-declare class $FbtResultBase extends FbtPureStringResult
-  implements IFbtStringish {
-  // implements IFbtStringish
-  indexOf: $PropertyType<IFbtStringish, 'indexOf'>;
-  toString: $PropertyType<IFbtStringish, 'toString'>;
+declare class $FbtResultBase extends FbtPureStringResult {
+  toString: typeof String.prototype.toString;
 }
 
 // Represents the input of an fbt.param
