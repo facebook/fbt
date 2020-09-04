@@ -159,7 +159,6 @@ declare interface IFbtStringish {
   // Methods from String
   indexOf: typeof String.prototype.indexOf;
   match: typeof String.prototype.match;
-  normalize: typeof String.prototype.normalize;
 }
 
 // String result wrapper intended for ComponentScript.
@@ -186,7 +185,6 @@ declare class $FbtResultBase extends FbtPureStringResult
   // implements IFbtStringish
   indexOf: $PropertyType<IFbtStringish, 'indexOf'>;
   match: $PropertyType<IFbtStringish, 'match'>;
-  normalize: $PropertyType<IFbtStringish, 'normalize'>;
   toString: $PropertyType<IFbtStringish, 'toString'>;
 }
 
