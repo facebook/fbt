@@ -64,18 +64,6 @@ describe('FbtResult', function() {
     ).toBe('prefix content stringable');
   });
 
-  it('implements common string methods', function() {
-    const errorListener = nullthrows(_errorListener);
-    const result = new FbtResult(['kombucha'], errorListener);
-
-    // $FlowFixMe[cannot-write] We're mocking a read-only property (method) below
-    const err = (console.error = jest.fn());
-    expect(result.substr(0, 3)).toBe('kom');
-    expect(err.mock.calls.length).toBe(1);
-    expect(result.slice(1, 3)).toBe('om');
-    expect(err.mock.calls.length).toBe(2);
-  });
-
   it('does not invoke onStringSerializationError() when being serialized with valid-FBT contents', function() {
     const errorListener = nullthrows(_errorListener);
     const result = new FbtResult(
