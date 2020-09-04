@@ -163,7 +163,6 @@ declare interface IFbtStringish {
   replace: typeof String.prototype.replace;
   search: typeof String.prototype.search;
   slice: typeof String.prototype.slice;
-  split: typeof String.prototype.split;
 }
 
 // String result wrapper intended for ComponentScript.
@@ -194,7 +193,6 @@ declare class $FbtResultBase extends FbtPureStringResult
   replace: $PropertyType<IFbtStringish, 'replace'>;
   search: $PropertyType<IFbtStringish, 'search'>;
   slice: $PropertyType<IFbtStringish, 'slice'>;
-  split: $PropertyType<IFbtStringish, 'split'>;
   toString: $PropertyType<IFbtStringish, 'toString'>;
 }
 
