@@ -166,8 +166,6 @@ declare interface IFbtStringish {
   split: typeof String.prototype.split;
   substr: typeof String.prototype.substr;
   substring: typeof String.prototype.substring;
-  toLowerCase: typeof String.prototype.toLowerCase;
-  toUpperCase: typeof String.prototype.toUpperCase;
 }
 
 // String result wrapper intended for ComponentScript.
@@ -201,9 +199,7 @@ declare class $FbtResultBase extends FbtPureStringResult
   split: $PropertyType<IFbtStringish, 'split'>;
   substr: $PropertyType<IFbtStringish, 'substr'>;
   substring: $PropertyType<IFbtStringish, 'substring'>;
-  toLowerCase: $PropertyType<IFbtStringish, 'toLowerCase'>;
   toString: $PropertyType<IFbtStringish, 'toString'>;
-  toUpperCase: $PropertyType<IFbtStringish, 'toUpperCase'>;
 }
 
 // Represents the input of an fbt.param

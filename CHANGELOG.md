@@ -19,6 +19,7 @@ List of changes for each released npm package version.
 - Upgrade to Flow v0.123.0
 - [doc] Add Fbt Common Strings documentation
 - Upgrade to Flow v0.120.1
+- refactor: Remove String.prototype.* methods from FbtResult flow-types
 - refactor: Breakup `moduleMap` from babelPresets
 - Add `yarn clean-test` script to clean, rebuild and test this whole project
 - Run Flow checks and all Jest tests in Travis by default
