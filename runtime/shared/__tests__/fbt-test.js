@@ -188,9 +188,9 @@ describe('fbt', () => {
 
   function renderAndExtractChildDivs(component) {
     const node = ReactDOM.findDOMNode(ReactDOM.render(component, domContainer));
-    // TODO T21716504: flow thinks ReactDOM.findDOMNode returns Text...
+    // flow thinks ReactDOM.findDOMNode can return a type of Text...
     invariant(node instanceof Element, 'Expected node to be an Element');
-    const resultingElements = node && node.getElementsByTagName('div');
+    const resultingElements = node.getElementsByTagName('div');
     return Array.prototype.slice.call(resultingElements, 0);
   }
 
