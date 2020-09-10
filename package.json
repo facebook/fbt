@@ -58,18 +58,18 @@
     "shelljs": "^0.8.4"
   },
   "scripts": {
-    "babel-plugin-fbt-runtime:test": "yarn jest packages/babel-plugin-fbt-runtime",
-    "babel-plugin-fbt:test": "yarn jest packages/babel-plugin-fbt",
+    "babel-plugin-fbt-runtime:test": "jest packages/babel-plugin-fbt-runtime",
+    "babel-plugin-fbt:test": "jest packages/babel-plugin-fbt",
     "build-runtime": "gulp lib",
     "clean-test": "yarn install && cd demo-app && yarn clean-build && yarn test-build-scripts && cd .. && yarn test && yarn flow:check",
     "clean": "gulp clean",
     "demo-app:test": "cd demo-app && yarn test",
-    "fb-tiger-hash:test": "yarn jest fb-tiger-hash && cd packages/fb-tiger-hash && yarn test-types",
+    "fb-tiger-hash:test": "jest fb-tiger-hash && cd packages/fb-tiger-hash && yarn test-types",
     "flow:check": "flow check --show-all-errors",
-    "flow:watch": "yarn run watch 'yarn flow stop && yarn flow check --show-all-errors 2>&1 | tee .flow-results' . --ignoreDotFiles",
+    "flow:watch": "yarn watch 'yarn flow stop && yarn flow check --show-all-errors 2>&1 | tee .flow-results' . --ignoreDotFiles",
     "postinstall": "yarn build-runtime",
-    "test:watch": "yarn jest --watch",
-    "test": "yarn jest"
+    "test:watch": "jest --watch",
+    "test": "jest"
   },
   "resolutions": {
     "**/@babel/core": "^7.2.0",
