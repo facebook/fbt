@@ -8,7 +8,7 @@ sidebar_label: React Native
 Check out our [React Native Demo app](https://github.com/facebook/fbt/tree/rn-demo-app).
 Check out our [FBT Native Module](https://www.npmjs.com/package/react-native-fbt) on NPM.
 
-## Adding FBT an it's dependencies
+## Adding FBT and it's dependencies
 
 * Add all dependencies
   * `yarn add babel-preset-react-native shelljs fbt babel-plugin-fbt babel-plugin-fbt-runtime @babel/node fb-tiger-hash react-native-fbt --dev`
