@@ -8,7 +8,7 @@
 jest.autoMockOff();
 
 const {payload, transform, withFbtRequireStatement} = require('../FbtTestUtil');
-const {FbtVariationType} = require('../translate/IntlVariations.js');
+const {FbtVariationType} = require('../translate/IntlVariations');
 const {TestUtil} = require('fb-babel-plugin-utils');
 
 function runTest(data, extra) {

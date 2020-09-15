@@ -10,7 +10,7 @@
 jest.autoMockOff();
 
 const {transformSync: babelTransform} = require('@babel/core');
-const {withFbtRequireStatement} = require('babel-plugin-fbt/FbtTestUtil.js');
+const {withFbtRequireStatement} = require('babel-plugin-fbt/FbtTestUtil');
 
 const {TestUtil} = require('fb-babel-plugin-utils');
 

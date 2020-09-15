@@ -10,7 +10,7 @@ const IntlVariations = require('./IntlVariations');
 const TranslationData = require('./TranslationData');
 const invariant = require('fbjs/lib/invariant');
 const {EXACTLY_ONE, isValidValue, Mask} = IntlVariations;
-const {FbtSiteMetaEntry} = require('./FbtSite.js');
+const {FbtSiteMetaEntry} = require('./FbtSite');
 
 /**
  * Given an FbtSite (source payload) and the relevant translations,

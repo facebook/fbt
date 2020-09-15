@@ -5,9 +5,9 @@
  * @format
  */
 
-const {FbtType} = require('../FbtConstants.js');
+const {FbtType} = require('../FbtConstants');
 const {objMap} = require('../FbtUtil');
-const {FbtVariationType, Mask} = require('./IntlVariations.js');
+const {FbtVariationType, Mask} = require('./IntlVariations');
 const invariant = require('fbjs/lib/invariant');
 
 /**

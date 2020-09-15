@@ -7,12 +7,12 @@
 
 'use strict';
 
-const {FbtType} = require('../FbtConstants.js');
+const {FbtType} = require('../FbtConstants');
 const {
   extractEnumsAndFlattenPhrases,
   shiftEnumsToTop,
-} = require('../FbtShiftEnums.js');
-const {FbtVariationType} = require('../translate/IntlVariations.js');
+} = require('../FbtShiftEnums');
+const {FbtVariationType} = require('../translate/IntlVariations');
 
 const extractEnumsAndFlattenPhrasesTestData = [
   {

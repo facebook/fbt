@@ -7,7 +7,7 @@
 
 'use strict';
 
-const {FbtType} = require('./FbtConstants.js');
+const {FbtType} = require('./FbtConstants');
 const invariant = require('fbjs/lib/invariant');
 
 /**

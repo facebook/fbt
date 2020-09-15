@@ -7,4 +7,4 @@
 
 'use strict';
 
-require('./translate.js');
+require('./translate');
