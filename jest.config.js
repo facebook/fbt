@@ -65,7 +65,6 @@ module.exports = {
       ],
       moduleNameMapper: {
         ...globalConfig.moduleNameMapper,
-        '\\.(css)$': '<rootDir>/demo-app/jest/css.js',
       },
       timers: 'fake',
       transform: {
