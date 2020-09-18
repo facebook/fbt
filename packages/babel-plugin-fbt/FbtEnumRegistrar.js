@@ -10,17 +10,29 @@
 /*::
 import type {FbtBabelNodeCallExpression} from './index.js';
 import type {NodePathOf} from '@babel/core';
+
 type NodeCallExpression = NodePathOf<FbtBabelNodeCallExpression>;
 type NodeImportDeclaration = NodePathOf<BabelNodeImportDeclaration>;
+export type EnumModule = {|+[enumKey: string]: string|};
+type EnumManifest = {+[enumModuleName: string]: ?EnumModule};
 */
 
 const {FBT_ENUM_MODULE_SUFFIX} = require('./FbtConstants');
 const t = require('@babel/types');
 const path = require('path');
 
-const fbtEnumMapping /*: {[string]: ?string} */ = {};
+const fbtEnumMapping /*: {[enumAlias: string]: ?string} */ = {};
+
+let enumManifest/*: ?EnumManifest */;
 
 const FbtEnumRegistrar = {
+  /**
+   * Set the enum manifest. I.e. a mapping of enum module names -> enum entries
+   */
+  setEnumManifest(manifest /*: ?EnumManifest */) /*: void */ {
+    enumManifest = manifest;
+  },
+
   /**
    * Associate a JS variable name to an Fbt enum module name
    * If the module name is invalid, then it's a no-op.
@@ -38,6 +50,16 @@ const FbtEnumRegistrar = {
    */
   getModuleName(name /*: string */) /*: ?string */ {
     return fbtEnumMapping[name];
+  },
+
+  /**
+   * Returns the Fbt enum module name for a given variable name (if any)
+   */
+  getEnum(variableName /*: string */) /*: ?EnumModule */ {
+    const moduleName = this.getModuleName(variableName);
+    return enumManifest != null && moduleName != null
+      ? enumManifest[moduleName]
+      : null;
   },
 
   /**

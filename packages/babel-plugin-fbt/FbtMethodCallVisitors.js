@@ -42,12 +42,6 @@ const Variation = {
   gender: 1,
 };
 
-let enumManifest;
-
-function setEnumManifest(manifest) {
-  enumManifest = manifest;
-}
-
 const call = function(moduleName) {
   function fbtCallExpression(name, args) {
     return t.callExpression(
@@ -151,15 +145,14 @@ const call = function(moduleName) {
           });
           runtimeRange = t.objectExpression(rangeProps);
         } else if (t.isIdentifier(rangeArg)) {
-          const enumModule = FbtEnumRegistrar.getModuleName(rangeArg.name);
-          if (enumModule == null) {
+          const manifest = FbtEnumRegistrar.getEnum(rangeArg.name);
+          if (manifest == null) {
             throw errorAt(
               rangeArg,
               `Fbt Enum \`${rangeArg.name}\` not registered, ensure the enum ` +
                 `was correctly imported.`,
             );
           }
-          const manifest = enumManifest[enumModule];
           rangeProps = Object.keys(manifest).map(key => {
             return t.objectProperty(
               t.stringLiteral(key),
@@ -284,5 +277,4 @@ const call = function(moduleName) {
 
 module.exports = {
   call,
-  setEnumManifest,
 };

@@ -124,7 +124,7 @@ function BabelPluginFbt(babel /*: {
       this.opts.fbtBase64 = this.opts.fbtBase64;
 
       FbtCommon.init(this.opts);
-      FbtMethodCallVisitors.setEnumManifest(getEnumManifest(this.opts));
+      FbtEnumRegistrar.setEnumManifest(getEnumManifest(this.opts));
       initExtraOptions(this);
       initDefaultOptions(this);
       phrases = [];
