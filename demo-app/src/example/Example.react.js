@@ -272,11 +272,11 @@ export default class Example extends React.Component<Props, State> {
                     <option value={GenderConst.UNKNOWN_SINGULAR}>
                       <fbt desc="Gender Select label">Unknown (singular)</fbt>
                     </option>
-                    <option value={GenderConst.MALE_SINGULAR}>
-                      <fbt desc="Gender Select label">Male (singular)</fbt>
+                    <option value={GenderConst.MALE}>
+                      <fbt desc="Gender Select label">Male</fbt>
                     </option>
-                    <option value={GenderConst.FEMALE_SINGULAR}>
-                      <fbt desc="Gender Select label">Female (singular)</fbt>
+                    <option value={GenderConst.FEMALE}>
+                      <fbt desc="Gender Select label">Female</fbt>
                     </option>
                   </select>
                 </span>

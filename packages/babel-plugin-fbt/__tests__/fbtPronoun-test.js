@@ -43,8 +43,8 @@ describe('fbt pronoun support', () => {
             type: 'table',
             jsfbt: {
               t: {
-                '1': 'Her birthday is today.',
-                '2': 'His birthday is today.',
+                '3': 'Her birthday is today.',
+                '4': 'His birthday is today.',
                 '*': 'Their birthday is today.',
               },
               m: [null],
@@ -117,8 +117,8 @@ describe('fbt pronoun support', () => {
             type: 'table',
             jsfbt: {
               t: {
-                '1': 'Wish her a happy birthday.',
-                '2': 'Wish him a happy birthday.',
+                '3': 'Wish her a happy birthday.',
+                '4': 'Wish him a happy birthday.',
                 '*': 'Wish them a happy birthday.',
               },
               m: [null],
@@ -152,8 +152,8 @@ describe('fbt pronoun support (react native)', () => {
             type: 'table',
             jsfbt: {
               t: {
-                '1': 'Her birthday is today.',
-                '2': 'His birthday is today.',
+                '3': 'Her birthday is today.',
+                '4': 'His birthday is today.',
                 '*': 'Their birthday is today.',
               },
               m: [
@@ -234,8 +234,8 @@ describe('fbt pronoun support (react native)', () => {
             type: 'table',
             jsfbt: {
               t: {
-                '1': 'Wish her a happy birthday.',
-                '2': 'Wish him a happy birthday.',
+                '3': 'Wish her a happy birthday.',
+                '4': 'Wish him a happy birthday.',
                 '*': 'Wish them a happy birthday.',
               },
               m: [

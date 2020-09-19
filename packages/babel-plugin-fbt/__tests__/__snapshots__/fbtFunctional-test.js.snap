@@ -296,8 +296,8 @@ Array [
       ],
       "t": Object {
         "*": "You wished them a happy birthday.",
-        "1": "You wished her a happy birthday.",
-        "2": "You wished him a happy birthday.",
+        "3": "You wished her a happy birthday.",
+        "4": "You wished him a happy birthday.",
       },
     },
     "line_beg": 2,
@@ -413,8 +413,8 @@ Array [
       ],
       "t": Object {
         "*": "It is their birthday.",
-        "1": "It is her birthday.",
-        "2": "It is his birthday.",
+        "3": "It is her birthday.",
+        "4": "It is his birthday.",
       },
     },
     "line_beg": 2,
@@ -445,11 +445,11 @@ Array [
         "*": Object {
           "*": "They wished themselves a happy birthday.",
         },
-        "1": Object {
-          "1": "She wished herself a happy birthday.",
+        "3": Object {
+          "3": "She wished herself a happy birthday.",
         },
-        "2": Object {
-          "2": "He wished himself a happy birthday.",
+        "4": Object {
+          "4": "He wished himself a happy birthday.",
         },
       },
     },
@@ -877,8 +877,8 @@ Array [
       ],
       "t": Object {
         "*": "You wished them a happy birthday.",
-        "1": "You wished her a happy birthday.",
-        "2": "You wished him a happy birthday.",
+        "3": "You wished her a happy birthday.",
+        "4": "You wished him a happy birthday.",
       },
     },
     "line_beg": 2,
@@ -990,8 +990,8 @@ Array [
       ],
       "t": Object {
         "*": "It is their birthday.",
-        "1": "It is her birthday.",
-        "2": "It is his birthday.",
+        "3": "It is her birthday.",
+        "4": "It is his birthday.",
       },
     },
     "line_beg": 2,
@@ -1018,11 +1018,11 @@ Array [
         "*": Object {
           "*": "They wished themselves a happy birthday.",
         },
-        "1": Object {
-          "1": "She wished herself a happy birthday.",
+        "3": Object {
+          "3": "She wished herself a happy birthday.",
         },
-        "2": Object {
-          "2": "He wished himself a happy birthday.",
+        "4": Object {
+          "4": "He wished himself a happy birthday.",
         },
       },
     },
@@ -1531,8 +1531,8 @@ Array [
       ],
       "t": Object {
         "*": "You wished them a happy birthday.",
-        "1": "You wished her a happy birthday.",
-        "2": "You wished him a happy birthday.",
+        "3": "You wished her a happy birthday.",
+        "4": "You wished him a happy birthday.",
       },
     },
     "line_beg": 2,
@@ -1648,8 +1648,8 @@ Array [
       ],
       "t": Object {
         "*": "It is their birthday.",
-        "1": "It is her birthday.",
-        "2": "It is his birthday.",
+        "3": "It is her birthday.",
+        "4": "It is his birthday.",
       },
     },
     "line_beg": 2,
@@ -1680,11 +1680,11 @@ Array [
         "*": Object {
           "*": "They wished themselves a happy birthday.",
         },
-        "1": Object {
-          "1": "She wished herself a happy birthday.",
+        "3": Object {
+          "3": "She wished herself a happy birthday.",
         },
-        "2": Object {
-          "2": "He wished himself a happy birthday.",
+        "4": Object {
+          "4": "He wished himself a happy birthday.",
         },
       },
     },
@@ -2169,8 +2169,8 @@ Array [
       ],
       "t": Object {
         "*": "You wished them a happy birthday.",
-        "1": "You wished her a happy birthday.",
-        "2": "You wished him a happy birthday.",
+        "3": "You wished her a happy birthday.",
+        "4": "You wished him a happy birthday.",
       },
     },
     "line_beg": 2,
@@ -2282,8 +2282,8 @@ Array [
       ],
       "t": Object {
         "*": "It is their birthday.",
-        "1": "It is her birthday.",
-        "2": "It is his birthday.",
+        "3": "It is her birthday.",
+        "4": "It is his birthday.",
       },
     },
     "line_beg": 2,
@@ -2310,11 +2310,11 @@ Array [
         "*": Object {
           "*": "They wished themselves a happy birthday.",
         },
-        "1": Object {
-          "1": "She wished herself a happy birthday.",
+        "3": Object {
+          "3": "She wished herself a happy birthday.",
         },
-        "2": Object {
-          "2": "He wished himself a happy birthday.",
+        "4": Object {
+          "4": "He wished himself a happy birthday.",
         },
       },
     },

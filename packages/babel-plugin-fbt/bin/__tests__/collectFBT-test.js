@@ -394,11 +394,11 @@ describe('collectFBT', () => {
               '*': '{name} sells their items',
               _1: '{name} sells their item',
             },
-            1: {
+            3: {
               '*': '{name} sells her items',
               _1: '{name} sells her item',
             },
-            2: {
+            4: {
               '*': '{name} sells his items',
               _1: '{name} sells his item',
             },
@@ -444,11 +444,11 @@ describe('collectFBT', () => {
               '*': '{name} sells their items',
               _1: '{name} sells their item',
             },
-            1: {
+            3: {
               '*': '{name} sells her items',
               _1: '{name} sells her item',
             },
-            2: {
+            4: {
               '*': '{name} sells his items',
               _1: '{name} sells his item',
             },

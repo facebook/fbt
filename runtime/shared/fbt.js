@@ -300,7 +300,7 @@ fbt._plural = function(count, label, value) {
  * fbt._pronoun() takes a 'usage' string and a GenderConst value and returns a tuple in the format:
  * [variations, null]
  * @param {number} usage - Example: PRONOUN_USAGE.object.
- * @param {number} gender - Example: GenderConst.MALE_SINGULAR
+ * @param {number} gender - Example: GenderConst.MALE
  * @param {?object} options - Example: { human: 1 }
  */
 fbt._pronoun = function(usage, gender, options) {
@@ -321,22 +321,15 @@ function getPronounGenderKey(usage, gender) {
         ? GenderConst.NOT_A_PERSON
         : GenderConst.UNKNOWN_PLURAL;
 
-    case GenderConst.FEMALE_SINGULAR:
-    case GenderConst.FEMALE_SINGULAR_GUESS:
-      return GenderConst.FEMALE_SINGULAR;
+    case GenderConst.FEMALE:
+      return GenderConst.FEMALE;
 
-    case GenderConst.MALE_SINGULAR:
-    case GenderConst.MALE_SINGULAR_GUESS:
-      return GenderConst.MALE_SINGULAR;
+    case GenderConst.MALE:
+      return GenderConst.MALE;
 
-    case GenderConst.MIXED_SINGULAR: // And MIXED_PLURAL; they have the same integer values.
-    case GenderConst.FEMALE_PLURAL:
-    case GenderConst.MALE_PLURAL:
-    case GenderConst.NEUTER_PLURAL:
     case GenderConst.UNKNOWN_PLURAL:
       return GenderConst.UNKNOWN_PLURAL;
 
-    case GenderConst.NEUTER_SINGULAR:
     case GenderConst.UNKNOWN_SINGULAR:
       return usage === PRONOUN_USAGE.REFLEXIVE
         ? GenderConst.NOT_A_PERSON

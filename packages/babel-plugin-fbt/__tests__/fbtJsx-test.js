@@ -660,8 +660,8 @@ const testData = {
           type: 'table',
           jsfbt: {
             t: {
-              '1': 'Wish her a happy birthday.',
-              '2': 'Wish him a happy birthday.',
+              '3': 'Wish her a happy birthday.',
+              '4': 'Wish him a happy birthday.',
               '*': 'Wish them a happy birthday.',
             },
             m: [null],
@@ -695,8 +695,8 @@ const testData = {
           type: 'table',
           jsfbt: {
             t: {
-              '1': 'Wish her a happy birthday.',
-              '2': 'Wish him a happy birthday.',
+              '3': 'Wish her a happy birthday.',
+              '4': 'Wish him a happy birthday.',
               '*': 'Wish them a happy birthday.',
             },
             m: [
@@ -731,11 +731,11 @@ const testData = {
           type: 'table',
           jsfbt: {
             t: {
-              '1': {
-                '1': 'She wished herself a happy birthday.',
+              '3': {
+                '3': 'She wished herself a happy birthday.',
               },
-              '2': {
-                '2': 'He wished himself a happy birthday.',
+              '4': {
+                '4': 'He wished himself a happy birthday.',
               },
               '*': {
                 '*': 'They wished themselves a happy birthday.',
@@ -775,11 +775,11 @@ const testData = {
           type: 'table',
           jsfbt: {
             t: {
-              '1': {
-                '1': 'She wished herself a happy birthday.',
+              '3': {
+                '3': 'She wished herself a happy birthday.',
               },
-              '2': {
-                '2': 'He wished himself a happy birthday.',
+              '4': {
+                '4': 'He wished himself a happy birthday.',
               },
               '*': {
                 '*': 'They wished themselves a happy birthday.',

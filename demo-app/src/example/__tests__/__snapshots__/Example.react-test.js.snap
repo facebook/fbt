@@ -210,7 +210,7 @@ exports[`Example.react renders the example 1`] = `
               onChange={[Function]}
             >
               <option
-                value={11}
+                value={2}
               >
                 Gender:
               </option>
@@ -220,24 +220,24 @@ exports[`Example.react renders the example 1`] = `
                 Not a person
               </option>
               <option
-                value={11}
+                value={2}
               >
                 Unknown (Plural)
               </option>
               <option
-                value={7}
+                value={1}
               >
                 Unknown (singular)
               </option>
               <option
-                value={2}
+                value={3}
               >
-                Male (singular)
+                Male
               </option>
               <option
-                value={1}
+                value={4}
               >
-                Female (singular)
+                Female
               </option>
             </select>
           </span>
