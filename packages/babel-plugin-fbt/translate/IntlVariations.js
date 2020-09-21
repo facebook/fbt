@@ -2,23 +2,30 @@
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
  * @emails oncall+internationalization
- * @format
  * @flow strict
  */
 
+/*::
+export type IntlVariationsEnum = $IntlVariationsEnum;
+*/
+
+// Must match with `IntlVariations.js`
 const IntlNumberVariations = {
-  ZERO: 0x10, //  0b10000
-  ONE: 0x4, //    0b00100
-  TWO: 0x8, //    0b01000
-  FEW: 0x14, //   0b10100
-  MANY: 0xc, //   0b01100
-  OTHER: 0x18, // 0b11000
+  // Cast below values to IntlVariationsEnum
+  ZERO: ((16 /*: $FlowExpectedError */) /*: IntlVariationsEnum */), //  0b10000
+  ONE: ((4 /*: $FlowExpectedError */) /*: IntlVariationsEnum */), //    0b00100
+  TWO: ((8 /*: $FlowExpectedError */) /*: IntlVariationsEnum */), //    0b01000
+  FEW: ((20 /*: $FlowExpectedError */) /*: IntlVariationsEnum */), //   0b10100
+  MANY: ((12 /*: $FlowExpectedError */) /*: IntlVariationsEnum */), //  0b01100
+  OTHER: ((24 /*: $FlowExpectedError */) /*: IntlVariationsEnum */), // 0b11000
 };
 
+// Must match with `IntlVariations.js`
 const IntlGenderVariations = {
-  MALE: 1,
-  FEMALE: 2,
-  UNKNOWN: 3,
+  // Cast below values to IntlVariationsEnum
+  MALE: ((1 /*: $FlowExpectedError */) /*: IntlVariationsEnum */),
+  FEMALE: ((2 /*: $FlowExpectedError */) /*: IntlVariationsEnum */),
+  UNKNOWN: ((3 /*: $FlowExpectedError */) /*: IntlVariationsEnum */),
 };
 
 // Two bitmasks for representing gender/number variations.  Give a bit

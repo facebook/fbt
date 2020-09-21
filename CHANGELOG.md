@@ -106,7 +106,7 @@ List of changes for each released npm package version.
     <summary>
       Unreleased changes that have landed in master. Click to see more.
     </summary>
-
+    - [feat] Added tests to ensure that `IntlVariations` gender and number constants are in sync with the client-side code equivalent
   </details>
 
 - [0.15.1]:
