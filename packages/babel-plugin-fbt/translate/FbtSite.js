@@ -245,6 +245,6 @@ _variationTypeToMask[FbtVariationType.GENDER] = Mask.GENDER;
 _variationTypeToMask[FbtVariationType.NUMBER] = Mask.NUMBER;
 
 module.exports = {
-  FbtSite: FbtSite,
-  FbtSiteMetaEntry: FbtSiteMetaEntry,
+  FbtSite,
+  FbtSiteMetaEntry,
 };
