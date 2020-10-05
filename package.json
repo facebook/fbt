@@ -43,7 +43,7 @@
     "invariant": "^2.2.4",
     "jest": "^24.9.0",
     "jest-cli": "^24.9.0",
-    "jest-docblock": "^22.2.0",
+    "jest-docblock": "^26.0.0",
     "prettier": "^2.0.5",
     "react-dom": "^16.10.2",
     "uglifyjs-webpack-plugin": "^2.1.1",

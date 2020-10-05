@@ -8,7 +8,7 @@
 const {hasKeys} = require('../FbtUtil');
 const IntlVariations = require('./IntlVariations');
 const TranslationData = require('./TranslationData');
-const invariant = require('fbjs/lib/invariant');
+const invariant = require('invariant');
 const {EXACTLY_ONE, isValidValue, Mask} = IntlVariations;
 const {FbtSiteMetaEntry} = require('./FbtSite');
 

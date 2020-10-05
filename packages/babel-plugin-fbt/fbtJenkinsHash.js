@@ -12,8 +12,8 @@ import type {FbtRuntimeInput} from '../../runtime/shared/FbtHooks';
 import type {PatternString} from '../../runtime/shared/FbtTable';
 */
 
-const invariant = require('fbjs/lib/invariant');
 const jenkinsHash = require('./jenkinsHash');
+const invariant = require('invariant');
 
 function fbtJenkinsHash(
   jsfbt /*: PatternString | FbtRuntimeInput */,
