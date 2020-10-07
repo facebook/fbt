@@ -26,7 +26,6 @@ export type ParamSet = {[parameterName: string]: ?true};
 */
 
 const {JSModuleName, ModuleNameRegExp} = require('./FbtConstants');
-const keyMirror = require('fbjs/lib/keyMirror');
 const invariant = require('invariant');
 const nullthrows = require('nullthrows');
 const {FBS, FBT} = JSModuleName;
@@ -164,12 +163,12 @@ function checkOption(
   return option;
 }
 
-const SHORT_BOOL_CANDIDATES = keyMirror({
-  common: true,
-  doNotExtract: null,
-  number: null,
-  preserveWhitespace: true,
-});
+const SHORT_BOOL_CANDIDATES = {
+  common: 'common',
+  doNotExtract: 'doNotExtract',
+  number: 'number',
+  preserveWhitespace: 'preserveWhitespace',
+};
 
 function canBeShortBoolAttr(name) {
   return name in SHORT_BOOL_CANDIDATES;

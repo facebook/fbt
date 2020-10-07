@@ -106,6 +106,7 @@ List of changes for each released npm package version.
     <summary>
       Unreleased changes that have landed in master. Click to see more.
     </summary>
+    - [refactor] Remove dependency on `fbjs` and `fbjs-scripts` modules. Update to `jest-docblock@^26.0.0`.
     - [feat] Added tests to ensure that `IntlVariations` gender and number constants are in sync with the client-side code equivalent
   </details>
 
