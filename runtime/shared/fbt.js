@@ -329,7 +329,7 @@ function getPronounGenderKey(usage, gender) {
     case GenderConst.MALE_SINGULAR_GUESS:
       return GenderConst.MALE_SINGULAR;
 
-    case GenderConst.MIXED_SINGULAR: // And MIXED_PLURAL; they have the same integer values.
+    case GenderConst.MIXED_UNKNOWN:
     case GenderConst.FEMALE_PLURAL:
     case GenderConst.MALE_PLURAL:
     case GenderConst.NEUTER_PLURAL:
