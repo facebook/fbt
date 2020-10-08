@@ -282,7 +282,7 @@ class JSFbtBuilder {
       case GENDER_CONST.MALE_SINGULAR_GUESS:
         return GENDER_CONST.MALE_SINGULAR;
 
-      case GENDER_CONST.MIXED_SINGULAR: // And MIXED_PLURAL; they have the same integer values.
+      case GENDER_CONST.MIXED_UNKNOWN:
       case GENDER_CONST.FEMALE_PLURAL:
       case GENDER_CONST.MALE_PLURAL:
       case GENDER_CONST.NEUTER_PLURAL:
