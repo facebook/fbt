@@ -37,8 +37,7 @@ const GENDER_CONST = Object.freeze({
   FEMALE_SINGULAR_GUESS: ((3 /*: $FlowExpectedError*/ ) /*: GenderConstEnum*/),
   MALE_SINGULAR_GUESS: ((4 /*: $FlowExpectedError*/ ) /*: GenderConstEnum*/),
   // 5 seems to indicate a group of people who may be of mixed gender
-  MIXED_SINGULAR: ((5 /*: $FlowExpectedError*/ ) /*: GenderConstEnum*/),
-  MIXED_PLURAL: ((5 /*: $FlowExpectedError*/ ) /*: GenderConstEnum*/),
+  MIXED_UNKNOWN: ((5 /*: $FlowExpectedError*/ ) /*: GenderConstEnum*/),
   NEUTER_SINGULAR: ((6 /*: $FlowExpectedError*/ ) /*: GenderConstEnum*/),
   UNKNOWN_SINGULAR: ((7 /*: $FlowExpectedError*/ ) /*: GenderConstEnum*/),
   FEMALE_PLURAL: ((8 /*: $FlowExpectedError*/ ) /*: GenderConstEnum*/),
@@ -154,7 +153,7 @@ const data /*: {[GenderConstEnum]: GenderConfig} */ = {
     string: 'neuter singular',
   },
   // $FlowExpectedError[invalid-computed-prop] Tolerate using an opaque type as an object key
-  [GENDER_CONST.MIXED_PLURAL]: {
+  [GENDER_CONST.MIXED_UNKNOWN]: {
     is_male: false,
     is_female: false,
     is_neuter: false,
