@@ -8,7 +8,7 @@
 'use strict';
 
 const {FbtType} = require('./FbtConstants');
-const invariant = require('fbjs/lib/invariant');
+const invariant = require('invariant');
 
 /**
  * Used by collectFBT to output multiple phrases in a flat array.

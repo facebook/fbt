@@ -219,7 +219,8 @@ type $GenericFbtFunctionAPI<Input, Output, ParamInput, ParamOutput> = {
     options?: {
       many?: string,
       showCount?: 'ifMany' | 'no' | 'yes',
-      ...
+      name?: string, // token name
+      value?: $FbtContentItem, // optional value to replace token (rather than count)
     },
   ): ParamOutput,
   pronoun(

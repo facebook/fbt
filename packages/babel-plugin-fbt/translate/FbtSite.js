@@ -8,7 +8,7 @@
 const {FbtType} = require('../FbtConstants');
 const {objMap} = require('../FbtUtil');
 const {FbtVariationType, Mask} = require('./IntlVariations');
-const invariant = require('fbjs/lib/invariant');
+const invariant = require('invariant');
 
 /**
  * Represents a fbt() or <fbt /> source data from a callsite and all
@@ -245,6 +245,6 @@ _variationTypeToMask[FbtVariationType.GENDER] = Mask.GENDER;
 _variationTypeToMask[FbtVariationType.NUMBER] = Mask.NUMBER;
 
 module.exports = {
-  FbtSite: FbtSite,
-  FbtSiteMetaEntry: FbtSiteMetaEntry,
+  FbtSite,
+  FbtSiteMetaEntry,
 };

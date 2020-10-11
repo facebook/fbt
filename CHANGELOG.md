@@ -42,11 +42,13 @@ List of changes for each released npm package version.
   <summary>
     Unreleased changes that have landed in master. Click to see more.
   </summary>
+</details>
 
+- 0.16.0:
+  - [major] Merge two `GenderConst` entries that had the same value to avoid confusion. <br/>
+    I.e. `MIXED_SINGULAR` and `MIXED_PLURAL` will both be referred as `MIXED_UNKNOWN` and it'll keep the same value (`MIXED_UNKNOWN=5`).
   - [feat] Add Babel `presets` as a CLI option for [`collectFBT.js`](https://github.com/facebook/fbt/blob/master/packages/babel-plugin-fbt/bin/collectFBT.js)
   - [feat] Add ES6 imports/exports support for shared enums. See [related doc.](https://facebook.github.io/fbt/docs/enums#es6-import-export-syntax)
-
-</details>
 
 - 0.15.0:
   - [feat] Add ability to provide your own ViewerContext dynamically. See [related doc.](https://facebook.github.io/fbt/docs/getting_started_on_web#changing-of-translation-locale-on-the-fly)
@@ -106,10 +108,15 @@ List of changes for each released npm package version.
     <summary>
       Unreleased changes that have landed in master. Click to see more.
     </summary>
-
   </details>
 
-- [0.15.1]:
+- 0.16.0:
+  - [major] Merge two `GenderConst` entries that had the same value to avoid confusion. <br/>
+    I.e. `MIXED_SINGULAR` and `MIXED_PLURAL` will both be referred as `MIXED_UNKNOWN` and it'll keep the same value (`MIXED_UNKNOWN=5`).
+  - [refactor] Remove dependency on `fbjs` and `fbjs-scripts` modules. Update to `jest-docblock@^26.0.0`.
+  - [feat] Added tests to ensure that `IntlVariations` gender and number constants are in sync with the client-side code equivalent
+
+- 0.15.1:
   - [fix] `fbt:plural` branch pruning when `value` option present. (Introduced in v0.13.0)
 
 - 0.15.0:
@@ -230,9 +237,11 @@ List of changes for each released npm package version.
     <summary>
      Unreleased changes that have landed in master. Click to see more.
     </summary>
-    - [feat] Add ability to test against Jest code snapshots
-    - [fix] Add missing `json-diff` npm dependency
   </details>
+
+- 0.11.0:
+  - [feat] Add ability to test against Jest code snapshots
+  - [fix] Add missing `json-diff` npm dependency
 
 - 0.10.1:
   - [fix] Relax required version patterns of npm dependencies

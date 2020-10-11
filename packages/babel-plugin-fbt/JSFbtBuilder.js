@@ -17,7 +17,7 @@ const {
   FbtVariationType,
   SUBJECT,
 } = require('./translate/IntlVariations');
-const invariant = require('fbjs/lib/invariant');
+const invariant = require('invariant');
 
 const PLURAL_KEY_TO_TYPE = {
   '*': 'many',
