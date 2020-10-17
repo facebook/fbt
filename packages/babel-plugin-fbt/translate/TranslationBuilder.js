@@ -3,6 +3,7 @@
  *
  * @emails oncall+internationalization
  * @format
+ * @noflow
  */
 
 const {hasKeys} = require('../FbtUtil');

@@ -3,6 +3,7 @@
  *
  * @emails oncall+internationalization
  * @format
+ * @noflow
  */
 
 class TranslationData {

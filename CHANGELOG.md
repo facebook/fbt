@@ -13,6 +13,7 @@ List of changes for each released npm package version.
 - [fbt-rn-android-native versions [Deprecated]](#fbt-rn-android-native-versions-deprecated)
 
 ### Top-level Github
+- [chore] Adding @noflow annotations
 - [chore] Upgrade to Flow v0.127.0
 - [fix] Relax required version patterns of npm dependencies
 - Sync `babelTypeShims.js` to GitHub. It was previously missing due to internal config issues.
@@ -108,6 +109,9 @@ List of changes for each released npm package version.
     <summary>
       Unreleased changes that have landed in master. Click to see more.
     </summary>
+    
+  - [chore] Adding @noflow annotations
+  
   </details>
 
 - 0.16.0:
@@ -237,6 +241,9 @@ List of changes for each released npm package version.
     <summary>
      Unreleased changes that have landed in master. Click to see more.
     </summary>
+    
+  - [chore] Adding @noflow annotations
+    
   </details>
 
 - 0.11.0:

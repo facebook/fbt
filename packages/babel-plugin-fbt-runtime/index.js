@@ -6,6 +6,7 @@
  * produced by the fbt syntax transform.
  *
  * @format
+ * @noflow
  */
 
 'use strict';

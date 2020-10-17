@@ -3,6 +3,7 @@
  *
  * @emails oncall+internationalization
  * @format
+ * @noflow
  */
 
 const IntlNumberType = require('./CLDR/IntlNumberType');

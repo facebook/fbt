@@ -3,6 +3,7 @@
  *
  * @emails oncall+internationalization
  * @format
+ * @noflow
  */
 
 const {FbtType} = require('../FbtConstants');

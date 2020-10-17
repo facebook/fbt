@@ -8,6 +8,7 @@
  *
  * @emails oncall+internationalization
  * @format
+ * @noflow
  */
 /*eslint max-len: ["error", 100]*/
 
