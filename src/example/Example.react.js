@@ -3,6 +3,7 @@
  *
  * Copyright (c) Facebook, Inc. and its affiliates. All rights reserved.
  *
+ * @noflow
  * @noformat Needed to preserve flow types in comments
  * @fbt {"project": "fbt-live-demo-project"}
  */
