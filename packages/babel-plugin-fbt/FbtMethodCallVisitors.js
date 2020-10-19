@@ -198,7 +198,7 @@ const call = function(moduleName) {
         // - enum string usage
         //    e.g. 'object', 'possessive', 'reflexive', 'subject'
         // - enum int gender
-        //    e.g. GenderConst.MALE_SINGULAR, FEMALE_SINGULAR, etc.
+        //    e.g. GenderConst.MALE, FEMALE, etc.
 
         this.hasTable = true;
 

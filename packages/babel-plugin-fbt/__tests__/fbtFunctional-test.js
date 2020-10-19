@@ -1005,8 +1005,8 @@ const generalTestData = {
           type: 'table',
           jsfbt: {
             t: {
-              '1': 'You wished her a happy birthday.',
-              '2': 'You wished him a happy birthday.',
+              '3': 'You wished her a happy birthday.',
+              '4': 'You wished him a happy birthday.',
               '*': 'You wished them a happy birthday.',
             },
             m: [null],
@@ -1052,11 +1052,11 @@ const generalTestData = {
           type: 'table',
           jsfbt: {
             t: {
-              '1': {
-                '1': 'She wished herself a happy birthday.',
+              '3': {
+                '3': 'She wished herself a happy birthday.',
               },
-              '2': {
-                '2': 'He wished himself a happy birthday.',
+              '4': {
+                '4': 'He wished himself a happy birthday.',
               },
               '*': {
                 '*': 'They wished themselves a happy birthday.',
@@ -1101,8 +1101,8 @@ const generalTestData = {
           type: 'table',
           jsfbt: {
             t: {
-              '1': 'It is her birthday.',
-              '2': 'It is his birthday.',
+              '3': 'It is her birthday.',
+              '4': 'It is his birthday.',
               '*': 'It is their birthday.',
             },
             m: [null],

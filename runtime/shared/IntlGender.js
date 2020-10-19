@@ -39,11 +39,9 @@ function fromMultiple(genders: Array<number>): number {
 function fromDisplayGender(gender: DisplayGenderConstType): number {
   switch (gender) {
     case DisplayGenderConst.MALE:
-      return GenderConst.MALE_SINGULAR;
+      return GenderConst.MALE;
     case DisplayGenderConst.FEMALE:
-      return GenderConst.FEMALE_SINGULAR;
-    case DisplayGenderConst.NEUTER:
-      return GenderConst.NEUTER_SINGULAR;
+      return GenderConst.FEMALE
     default:
       return GenderConst.NOT_A_PERSON;
   }
