@@ -645,14 +645,11 @@ const testData = {
   },
 
   'should handle object pronoun': {
-    input:
-      // eslint-disable-next-line fb-www/gender-neutral-language
-      // Wish her a happy birthday.
-      withFbtRequireStatement(
-        `<fbt desc={"d"} project={"p"}>
-          Wish <fbt:pronoun type="object" gender={gender}/> a happy birthday.
+    input: withFbtRequireStatement(
+      `<fbt desc={"d"} project={"p"}>
+          I know <fbt:pronoun type="object" gender={gender}/>.
         </fbt>;`,
-      ),
+    ),
 
     output: withFbtRequireStatement(
       `fbt._(
@@ -660,9 +657,10 @@ const testData = {
           type: 'table',
           jsfbt: {
             t: {
-              '1': 'Wish her a happy birthday.',
-              '2': 'Wish him a happy birthday.',
-              '*': 'Wish them a happy birthday.',
+              '0': 'I know this.',
+              '1': 'I know her.',
+              '2': 'I know him.',
+              '*': 'I know them.',
             },
             m: [null],
           },
@@ -676,14 +674,11 @@ const testData = {
   },
 
   'should handle object pronoun (react native)': {
-    input:
-      // eslint-disable-next-line fb-www/gender-neutral-language
-      // Wish her a happy birthday.
-      withFbtRequireStatement(
-        `<fbt desc={"d"} project={"p"}>
-          Wish <fbt:pronoun type="object" gender={gender}/> a happy birthday.
+    input: withFbtRequireStatement(
+      `<fbt desc={"d"} project={"p"}>
+          I know <fbt:pronoun type="object" gender={gender}/>.
         </fbt>;`,
-      ),
+    ),
 
     options: {
       reactNativeMode: true,
@@ -695,9 +690,10 @@ const testData = {
           type: 'table',
           jsfbt: {
             t: {
-              '1': 'Wish her a happy birthday.',
-              '2': 'Wish him a happy birthday.',
-              '*': 'Wish them a happy birthday.',
+              '0': 'I know this.',
+              '1': 'I know her.',
+              '2': 'I know him.',
+              '*': 'I know them.',
             },
             m: [
               {
@@ -720,8 +716,8 @@ const testData = {
       // She wished herself a happy birthday.
       withFbtRequireStatement(
         `<fbt desc={"d"} project={"p"}>
-          <fbt:pronoun type="subject" gender={gender} capitalize={true} />
-          wished <fbt:pronoun type="reflexive" gender={gender}/> a happy birthday.
+          <fbt:pronoun type="subject" gender={gender} capitalize={true} human={true}/>
+          wished <fbt:pronoun type="reflexive" gender={gender} human={true}/> a happy birthday.
         </fbt>;`,
       ),
 
@@ -745,8 +741,10 @@ const testData = {
           },
           desc: 'd',
           project: 'p',
-        })}, [
-          fbt._pronoun(3, gender), fbt._pronoun(2,gender)
+        })},
+        [
+          fbt._pronoun(3, gender, {human: 1}),
+          fbt._pronoun(2, gender, {human: 1}),
         ]
       );`,
     ),
@@ -758,9 +756,9 @@ const testData = {
       // She wished herself a happy birthday.
       withFbtRequireStatement(
         `<fbt desc={"d"} project={"p"}>
-          <fbt:pronoun type="subject" gender={gender} capitalize={true}/>
+          <fbt:pronoun type="subject" gender={gender} capitalize={true} human={true}/>
           wished
-          <fbt:pronoun type="reflexive" gender={gender}/>
+          <fbt:pronoun type="reflexive" gender={gender} human={true}/>
           a happy birthday.
         </fbt>;`,
       ),
@@ -797,8 +795,8 @@ const testData = {
           desc: 'd',
           project: 'p',
         })}, [
-          fbt._pronoun(3, gender),
-          fbt._pronoun(2, gender)
+          fbt._pronoun(3, gender, {human: 1}),
+          fbt._pronoun(2, gender, {human: 1}),
         ]
       );`,
     ),

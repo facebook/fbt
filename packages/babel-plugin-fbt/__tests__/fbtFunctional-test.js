@@ -973,31 +973,25 @@ const generalTestData = {
   },
 
   'should handle object pronoun': {
-    input:
-      // eslint-disable-next-line fb-www/gender-neutral-language
-      // I.e. You wished her a happy birthday.
-      withFbtRequireStatement(
-        `var x = fbt(
-          'You wished ' +
+    input: withFbtRequireStatement(
+      `var x = fbt(
+          'I know ' +
             fbt.pronoun('object', gender) +
-            ' a happy birthday.',
+            '.',
           'object pronoun',
         );`,
-      ),
+    ),
 
-    inputWithArraySyntax:
-      // eslint-disable-next-line fb-www/gender-neutral-language
-      // I.e. You wished her a happy birthday.
-      withFbtRequireStatement(
-        `var x = fbt(
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var x = fbt(
           [
-            'You wished ',
+            'I know ',
             fbt.pronoun('object', gender),
-            ' a happy birthday.'
+            '.'
           ],
           'object pronoun',
         );`,
-      ),
+    ),
 
     output: withFbtRequireStatement(
       `var x = fbt._(
@@ -1005,9 +999,10 @@ const generalTestData = {
           type: 'table',
           jsfbt: {
             t: {
-              '1': 'You wished her a happy birthday.',
-              '2': 'You wished him a happy birthday.',
-              '*': 'You wished them a happy birthday.',
+              '0': 'I know this.',
+              '1': 'I know her.',
+              '2': 'I know him.',
+              '*': 'I know them.',
             },
             m: [null],
           },
@@ -1024,9 +1019,9 @@ const generalTestData = {
       // I.e. He wished himself a happy birthday.
       withFbtRequireStatement(
         `var x = fbt(
-          fbt.pronoun('subject', gender, {capitalize: true}) +
+          fbt.pronoun('subject', gender, {capitalize: true, human: true}) +
             ' wished ' +
-            fbt.pronoun('reflexive', gender) +
+            fbt.pronoun('reflexive', gender, {human: true}) +
             ' a happy birthday.',
           'subject+reflexive pronouns',
         );`,
@@ -1038,9 +1033,9 @@ const generalTestData = {
       withFbtRequireStatement(
         `var x = fbt(
           [
-            fbt.pronoun('subject', gender, {capitalize: true}),
+            fbt.pronoun('subject', gender, {capitalize: true, human: true}),
             ' wished ',
-            fbt.pronoun('reflexive', gender),
+            fbt.pronoun('reflexive', gender, {human: true}),
             ' a happy birthday.'
           ], 'subject+reflexive pronouns',
         );`,
@@ -1066,7 +1061,10 @@ const generalTestData = {
           },
           desc: 'subject+reflexive pronouns',
         })},
-        [fbt._pronoun(3, gender), fbt._pronoun(2, gender)],
+        [
+          fbt._pronoun(3, gender, {human: 1}),
+          fbt._pronoun(2, gender, {human: 1})
+        ],
       );`,
     ),
   },

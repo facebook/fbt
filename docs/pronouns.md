@@ -39,7 +39,7 @@ The `IntlVariations` used in those cases only has `GENDER_MALE`, `GENDER_FEMALE`
 <fbt desc="pronoun example">
   <fbt:param name="name">{ent.getName()}</fbt:param>
   shared
-  <fbt:pronoun type="possessive" gender={ent.getPronounGender()} />
+  <fbt:pronoun type="possessive" gender={ent.getPronounGender()} human={true} />
   photo with you.
 </fbt>
 ```

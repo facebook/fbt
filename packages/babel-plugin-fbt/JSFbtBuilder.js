@@ -211,7 +211,7 @@ class JSFbtBuilder {
         const resTable = {};
         Object.keys(genders).forEach(key => {
           const gender = GENDER_CONST[key];
-          if (gender === GENDER_CONST.NOT_A_PERSON && !item.human) {
+          if (gender === GENDER_CONST.NOT_A_PERSON && item.human) {
             return;
           }
           if (!isUsed) {

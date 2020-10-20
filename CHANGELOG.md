@@ -109,9 +109,9 @@ List of changes for each released npm package version.
     <summary>
       Unreleased changes that have landed in master. Click to see more.
     </summary>
-    
-  - [chore] Adding @noflow annotations
-  
+    - [chore] Adding @noflow annotations
+    - [fix] Fix issue where the value of the `human` option of `fbt:pronoun` was processed incorrectly. Before, `human=true` used to behave as if `human=false`, and vice versa.
+      Also, when `fbt:pronoun` is used without an explicit `human=false` option, we'll now generate the `NOT_A_PERSON` gender-case.
   </details>
 
 - 0.16.0:
@@ -248,9 +248,9 @@ List of changes for each released npm package version.
     <summary>
      Unreleased changes that have landed in master. Click to see more.
     </summary>
-    
+
   - [chore] Adding @noflow annotations
-    
+
   </details>
 
 - 0.11.0:

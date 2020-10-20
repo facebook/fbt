@@ -105,7 +105,7 @@ describe('fbt pronoun support', () => {
         withFbtRequireStatement(
           `var x = fbt(
             'Wish ' +
-              fbt.pronoun('object', gender, {human: false}) +
+              fbt.pronoun('object', gender, {human: true}) +
               ' a happy birthday.',
             'Elided false option',
           );`,
@@ -125,7 +125,7 @@ describe('fbt pronoun support', () => {
             },
             desc: 'Elided false option',
           })},
-          [fbt._pronoun(0, gender)],
+          [fbt._pronoun(0, gender, {human: 1})],
         );`,
       ),
     });
@@ -222,7 +222,7 @@ describe('fbt pronoun support (react native)', () => {
         withFbtRequireStatement(
           `var x = fbt(
             'Wish ' +
-              fbt.pronoun('object', gender, {human: false}) +
+              fbt.pronoun('object', gender, {human: true}) +
               ' a happy birthday.',
             'Elided false option',
           );`,
@@ -246,7 +246,7 @@ describe('fbt pronoun support (react native)', () => {
             },
             desc: 'Elided false option',
           })},
-          [fbt._pronoun(0, gender)],
+          [fbt._pronoun(0, gender, {human: 1})],
         );`,
       ),
     });
