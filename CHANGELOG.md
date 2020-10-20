@@ -221,6 +221,13 @@ List of changes for each released npm package version.
   - [250207c](https://github.com/facebook/fbt/commit/250207c) Update peer dependencies for babel-plugin-fbt.
 
 ### fb-tiger-hash versions
+  <details>
+    <summary>
+     Unreleased changes that have landed in master. Click to see more.
+    </summary>
+    - [refactor] Add flow types
+  </details>
+
 - 0.1.6:
   - Strip yarn files in .npmignore
 

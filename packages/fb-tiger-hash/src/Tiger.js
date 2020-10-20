@@ -16,6 +16,8 @@
  *   https://www.cs.technion.ac.il/~biham/Reports/Tiger/tiger/node7.html
  *
  * @emails oncall+internationalization
+ * Flow does not support BigInt yet
+ * @noflow
  */
 
 /* eslint-disable no-bitwise */
