@@ -468,7 +468,7 @@ function objMap/*:: <
 ) /*: {[TKey]: TValueOut} */ {
   // A Lame, non-exhaustive runtime check, but oh well.
   if (
-    !object instanceof Object ||
+    !(object instanceof Object) ||
     // $FlowExpectedError "prototype" property might not exist
     object.prototype !== undefined
   ) {
