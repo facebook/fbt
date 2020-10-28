@@ -190,11 +190,6 @@ function BabelPluginFbt(babel /*: {
           return;
         }
 
-        if (root) {
-          root.registerFbtEnumIfApplicable();
-          return;
-        }
-
         root = FbtFunctionCallProcessor.create({
           babelTypes: t,
           defaultFbtOptions: defaultOptions,
