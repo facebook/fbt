@@ -87,7 +87,6 @@ const {
 } = require('./FbtConstants');
 const FbtEnumRegistrar = require('./FbtEnumRegistrar');
 const fbtHashKey = require('./fbtHashKey');
-const FbtMethodCallVisitors = require('./FbtMethodCallVisitors');
 const FbtShiftEnums = require('./FbtShiftEnums');
 const {
   checkOption,
