@@ -46,6 +46,15 @@ const {
   validateNamespacedFbtElement,
 } = require('../FbtUtil');
 const getNamespacedArgs = require('../getNamespacedArgs');
+const {
+  binaryExpression,
+  callExpression,
+  identifier,
+  isJSXElement,
+  jsxExpressionContainer,
+  memberExpression,
+  stringLiteral,
+} = require('@babel/types');
 const invariant = require('invariant');
 
 class JSXFbtProcessor {
@@ -118,7 +127,7 @@ class JSXFbtProcessor {
           `<${moduleName} common={true}> must not have "desc" attribute`,
         );
       }
-      desc = this.t.stringLiteral(descValue);
+      desc = stringLiteral(descValue);
     } else {
       desc = this._getDescAttributeValue();
     }
@@ -170,7 +179,6 @@ class JSXFbtProcessor {
       moduleName,
       node,
       path,
-      t,
     } = this;
     invariant(text != null, 'text cannot be null');
     invariant(desc != null, 'desc cannot be null');
@@ -180,26 +188,26 @@ class JSXFbtProcessor {
       args.push(options);
     }
 
-    // t.callExpression() only returns a BabelNodeCallExpression but we need to
+    // callExpression() only returns a BabelNodeCallExpression but we need to
     // customize it as an FbtBabelNodeCallExpression
-    const callNode = ((t.callExpression(
-      t.identifier(moduleName),
+    const callNode = ((callExpression(
+      identifier(moduleName),
       args,
     ) /*: $FlowExpectedError */) /*: FbtBabelNodeCallExpression */);
 
     callNode.loc = node.loc;
     callNode.parentIndex = node.parentIndex;
 
-    if (t.isJSXElement(path.parent)) {
-      // t.jsxExpressionContainer() only returns a BabelNodeJSXElement but we need to
+    if (isJSXElement(path.parent)) {
+      // jsxExpressionContainer() only returns a BabelNodeJSXElement but we need to
       // customize it as an FbtBabelNodeJSXElement
-      const jsxExpressionContainer = ((t.jsxExpressionContainer(
+      const ret = ((jsxExpressionContainer(
         callNode,
       ) /*: $FlowExpectedError */) /*: FbtBabelNodeJSXElement */);
 
-      jsxExpressionContainer.loc = node.loc;
-      jsxExpressionContainer.parentIndex = node.parentIndex;
-      return jsxExpressionContainer;
+      ret.loc = node.loc;
+      ret.parentIndex = node.parentIndex;
+      return ret;
     }
     return callNode;
   }
@@ -252,15 +260,13 @@ class JSXFbtProcessor {
    * method call. E.g. `<fbt:param>` or <FbtParam> to `fbt.param()`
    */
   _transformNamespacedFbtElement(node) {
-    const {t} = this;
-
     switch (node.type) {
       case 'JSXElement':
         return this._toFbtNamespacedCall(node);
       case 'JSXText':
-        return t.stringLiteral(normalizeSpaces(node.value));
+        return stringLiteral(normalizeSpaces(node.value));
       case 'JSXExpressionContainer':
-        return t.stringLiteral(
+        return stringLiteral(
           normalizeSpaces(
             expandStringConcat(this.moduleName, node.expression).value,
           ),
@@ -273,7 +279,7 @@ class JSXFbtProcessor {
   // WARNING: this method has side-effects because it alters the given `node` object
   // You shouldn't try to run this multiple times on the same `node`.
   _toFbtNamespacedCall(node) {
-    const {moduleName, t} = this;
+    const {moduleName} = this;
 
     let name = validateNamespacedFbtElement(
       moduleName,
@@ -283,8 +289,8 @@ class JSXFbtProcessor {
     if (name == 'implicitParamMarker') {
       name = 'param';
     }
-    return t.callExpression(
-      t.memberExpression(t.identifier(moduleName), t.identifier(name), false),
+    return callExpression(
+      memberExpression(identifier(moduleName), identifier(name), false),
       args,
     );
   }
@@ -304,7 +310,7 @@ class JSXFbtProcessor {
     // $FlowExpectedError
     return (nodes.reduceRight(
       // $FlowExpectedError Same reason as above
-      (rest, node) =>  this.t.binaryExpression('+', node, rest)
+      (rest, node) => binaryExpression('+', node, rest)
     ) /*: BabelNodeBinaryExpression */);
   }
 
