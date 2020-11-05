@@ -279,7 +279,7 @@ class JSXFbtProcessor {
       moduleName,
       node.openingElement.name,
     );
-    const args = getNamespacedArgs(moduleName, t)[name](node);
+    const args = getNamespacedArgs(moduleName)[name](node);
     if (name == 'implicitParamMarker') {
       name = 'param';
     }

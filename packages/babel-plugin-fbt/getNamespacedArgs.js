@@ -5,7 +5,6 @@
  *
  * @emails oncall+internationalization
  * @format
- * @noflow
  */
 'use strict';
 
@@ -30,8 +29,10 @@ const {
   getOptionsFromAttributes,
   normalizeSpaces,
 } = require('./FbtUtil');
+const t = require('@babel/types');
+const {jsxExpressionContainer, stringLiteral} = t;
 
-const getNamespacedArgs = function(moduleName, t) {
+const getNamespacedArgs = function(moduleName) {
   return {
     /**
      * Node that is a child of a <fbt> node that should be handled as
@@ -39,7 +40,7 @@ const getNamespacedArgs = function(moduleName, t) {
      */
     implicitParamMarker(node) {
       const newNode = FbtAutoWrap.wrapImplicitFBTParam(moduleName, t, node);
-      return [t.stringLiteral('=' + newNode.paramName), newNode];
+      return [stringLiteral('=' + newNode.paramName), newNode];
     },
 
     /**
@@ -73,7 +74,7 @@ const getNamespacedArgs = function(moduleName, t) {
         node.children[0].value === ' '
       ) {
         paramChildren = [
-          t.jsxExpressionContainer(t.stringLiteral(node.children[0].value)),
+          jsxExpressionContainer(stringLiteral(node.children[0].value)),
         ];
       }
 
@@ -129,7 +130,7 @@ const getNamespacedArgs = function(moduleName, t) {
         moduleName,
         singularNode.expression || singularNode,
       );
-      const singularArg = t.stringLiteral(
+      const singularArg = stringLiteral(
         normalizeSpaces(singularText.value).trimRight(),
       );
       return [singularArg, countAttr.expression, options];
@@ -163,7 +164,7 @@ const getNamespacedArgs = function(moduleName, t) {
             ']',
         );
       }
-      const result = [t.stringLiteral(typeAttr.value)];
+      const result = [stringLiteral(typeAttr.value)];
 
       const genderExpr = getAttributeByNameOrThrow(attributes, 'gender').value;
       result.push(genderExpr.expression);
@@ -205,7 +206,7 @@ const getNamespacedArgs = function(moduleName, t) {
 
       let singularArg = nameChildren[0].expression || nameChildren[0];
       if (singularArg.type === 'JSXText') {
-        singularArg = t.stringLiteral(normalizeSpaces(singularArg.value));
+        singularArg = stringLiteral(normalizeSpaces(singularArg.value));
       }
 
       return [nameAttribute, singularArg, genderAttribute.expression];
