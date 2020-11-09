@@ -82,6 +82,24 @@ module.exports = {
           ]
         },
         {
+          title: 'Legal',
+          // Please do not remove the privacy and terms, it's a legal requirement.
+          items: [
+            {
+              label: 'Privacy',
+              href: 'https://opensource.facebook.com/legal/privacy/',
+              target: '_blank',
+              rel: 'noreferrer noopener',
+            },
+            {
+              label: 'Terms',
+              href: 'https://opensource.facebook.com/legal/terms/',
+              target: '_blank',
+              rel: 'noreferrer noopener',
+            },
+          ],
+        },
+        {
           title: "More",
           items: [
             { label: "Blog", to: "blog" },
