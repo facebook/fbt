@@ -18,23 +18,23 @@
 
 <link rel="preload" href="/fbt/styles.dd599b3e.js" as="script">
 
-<link rel="preload" href="/fbt/runtime~main.2c878ed4.js" as="script">
+<link rel="preload" href="/fbt/runtime~main.4958ebd0.js" as="script">
 
-<link rel="preload" href="/fbt/main.c77dcd2c.js" as="script">
+<link rel="preload" href="/fbt/main.d64610ea.js" as="script">
 
-<link rel="preload" href="/fbt/1.55dd5d49.js" as="script">
+<link rel="preload" href="/fbt/1.6ce20d81.js" as="script">
 
-<link rel="preload" href="/fbt/2.282c4025.js" as="script">
+<link rel="preload" href="/fbt/2.aec90354.js" as="script">
 
-<link rel="preload" href="/fbt/3.ece67625.js" as="script">
+<link rel="preload" href="/fbt/3.ff8a68a4.js" as="script">
 
-<link rel="preload" href="/fbt/1be78505.bdebfcf2.js" as="script">
+<link rel="preload" href="/fbt/1be78505.306ab89d.js" as="script">
 
 <link rel="preload" href="/fbt/4ff346a2.80a9a0ae.js" as="script">
 
 <link rel="preload" href="/fbt/17896441.1f7d783c.js" as="script">
 
-<link rel="preload" href="/fbt/56b2bdfa.63202c46.js" as="script">
+<link rel="preload" href="/fbt/56b2bdfa.2b463a06.js" as="script">
 
 </head>
 <body>
@@ -48,28 +48,28 @@ to check the gender of <code>IntlVariations.GENDER</code> in order to variate on
 gender.</p><h2><a aria-hidden="true" tabindex="-1" class="anchor enhancedAnchor_ZqCz" id="subject"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#subject" title="Direct link to heading">#</a>Subject</h2><h3><a aria-hidden="true" tabindex="-1" class="anchor enhancedAnchor_ZqCz" id="the-hidden-__subject__-token"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#the-hidden-__subject__-token" title="Direct link to heading">#</a>The hidden <code>__subject__</code> token</h3><p>Similar to <a href="implicit_params#viewer-gender">viewer gender</a>, this is an
 implicit variation based on gender.  Whether the variation is provided
 is determined at the <a href="translation">translation</a> level.  A translator
-may choose to variate on <code>__subject__</code> or not.</p><p>Unlike viewer gender, subject requires that the <code>fbt</code> callsite provide it via the <a href="api_intro#optional-attributes">optional argument</a></p><p>E.g</p><div class="mdxCodeBlock_iHAB"><pre class="prism-code language-undefined codeBlock_19pQ"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1BYj">Copy</button><code class="codeBlockLines_2n9r" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">let actorMarkupUsedElsewhere = &lt;a href=#&quot;&gt;...&lt;/a&gt;</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">&lt;fbt</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  subject={subjectGender} </span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  desc={&#x27;There is an implicit actor here. &#x27; +</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">        &quot;Like: &#x27;{name} translated your string.&#x27;&quot;}&gt;</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  translated your string.</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">&lt;/fbt&gt;</span></div></code></pre></div><p>The above will variate correctly, provided there are separate translations for the <code>__subject__</code> token.</p></div></article><div class="margin-vert--xl"><div class="row"><div class="col"></div><div class="col text--right"><em><small>Last updated on <time datetime="2019-01-04T16:39:33.000Z" class="docLastUpdatedAt_1sqk">1/4/2019</time> by <strong>David Cho-Lerat</strong></small></em></div></div></div><div class="margin-vert--lg"><nav class="pagination-nav"><div class="pagination-nav__item"><a class="pagination-nav__link" href="/fbt/docs/params"><h5 class="pagination-nav__link--sublabel">Previous</h5><h4 class="pagination-nav__link--label">« Parameters and interpolation</h4></a></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/fbt/docs/plurals"><h5 class="pagination-nav__link--sublabel">Next</h5><h4 class="pagination-nav__link--label">Plurals »</h4></a></div></nav></div></div></div><div class="col col--3"><div class="tableOfContents_TbNY"><ul class="contents contents__left-border"><li><a href="#viewer-gender" class="contents__link">Viewer Gender</a><ul><li><a href="#the-hidden-__viewing_user__-token" class="contents__link">The hidden <code>__viewing_user__</code> token</a></li></ul></li><li><a href="#subject" class="contents__link">Subject</a><ul><li><a href="#the-hidden-__subject__-token" class="contents__link">The hidden <code>__subject__</code> token</a></li></ul></li></ul></div></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container"><div class="row footer__links"><div class="col footer__col"><h4 class="footer__title">Docs</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/fbt/docs/getting_started_on_web">Getting Started</a></li><li class="footer__item"><a class="footer__link-item" href="/fbt/help">Help</a></li><li class="footer__item"><a class="footer__link-item" href="/fbt/docs/api_intro">API Reference</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/fbt/users">User Showcase</a></li><li class="footer__item"><a class="footer__link-item" target="_blank" rel="noopener noreferrer" href="http://stackoverflow.com/questions/tagged/fbt">Stack Overflow</a></li><li class="footer__item"><a class="footer__link-item" target="_blank" rel="noopener noreferrer" href="https://discord.gg/cQvXZr5">Discord Channel</a></li><li class="footer__item"><a class="footer__link-item" target="_blank" rel="noopener noreferrer" href="https://twitter.com/fbt_js">Twitter</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">More</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/fbt/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" target="_blank" rel="noopener noreferrer" href="https://github.com/facebook/fbt">Github</a></li></ul></div></div><div class="text--center"><div class="margin-bottom--sm"><a href="https://opensource.facebook.com/" target="_blank" rel="noopener noreferrer" class="footerLogoLink_1Wg7"><img class="footer__logo" alt="Facebook Open Source Logo" src="https://docusaurus.io/img/oss_logo.png"></a></div><div>Copyright © 2020 Facebook, Inc.</div></div></div></footer>
+may choose to variate on <code>__subject__</code> or not.</p><p>Unlike viewer gender, subject requires that the <code>fbt</code> callsite provide it via the <a href="api_intro#optional-attributes">optional argument</a></p><p>E.g</p><div class="mdxCodeBlock_iHAB"><pre class="prism-code language-undefined codeBlock_19pQ"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1BYj">Copy</button><code class="codeBlockLines_2n9r" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">let actorMarkupUsedElsewhere = &lt;a href=#&quot;&gt;...&lt;/a&gt;</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">&lt;fbt</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  subject={subjectGender} </span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  desc={&#x27;There is an implicit actor here. &#x27; +</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">        &quot;Like: &#x27;{name} translated your string.&#x27;&quot;}&gt;</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  translated your string.</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">&lt;/fbt&gt;</span></div></code></pre></div><p>The above will variate correctly, provided there are separate translations for the <code>__subject__</code> token.</p></div></article><div class="margin-vert--xl"><div class="row"><div class="col"></div><div class="col text--right"><em><small>Last updated on <time datetime="2019-01-04T16:39:33.000Z" class="docLastUpdatedAt_1sqk">1/4/2019</time> by <strong>David Cho-Lerat</strong></small></em></div></div></div><div class="margin-vert--lg"><nav class="pagination-nav"><div class="pagination-nav__item"><a class="pagination-nav__link" href="/fbt/docs/params"><h5 class="pagination-nav__link--sublabel">Previous</h5><h4 class="pagination-nav__link--label">« Parameters and interpolation</h4></a></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/fbt/docs/plurals"><h5 class="pagination-nav__link--sublabel">Next</h5><h4 class="pagination-nav__link--label">Plurals »</h4></a></div></nav></div></div></div><div class="col col--3"><div class="tableOfContents_TbNY"><ul class="contents contents__left-border"><li><a href="#viewer-gender" class="contents__link">Viewer Gender</a><ul><li><a href="#the-hidden-__viewing_user__-token" class="contents__link">The hidden <code>__viewing_user__</code> token</a></li></ul></li><li><a href="#subject" class="contents__link">Subject</a><ul><li><a href="#the-hidden-__subject__-token" class="contents__link">The hidden <code>__subject__</code> token</a></li></ul></li></ul></div></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container"><div class="row footer__links"><div class="col footer__col"><h4 class="footer__title">Docs</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/fbt/docs/getting_started_on_web">Getting Started</a></li><li class="footer__item"><a class="footer__link-item" href="/fbt/help">Help</a></li><li class="footer__item"><a class="footer__link-item" href="/fbt/docs/api_intro">API Reference</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/fbt/users">User Showcase</a></li><li class="footer__item"><a class="footer__link-item" target="_blank" rel="noopener noreferrer" href="http://stackoverflow.com/questions/tagged/fbt">Stack Overflow</a></li><li class="footer__item"><a class="footer__link-item" target="_blank" rel="noopener noreferrer" href="https://discord.gg/cQvXZr5">Discord Channel</a></li><li class="footer__item"><a class="footer__link-item" target="_blank" rel="noopener noreferrer" href="https://twitter.com/fbt_js">Twitter</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Legal</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" target="_blank" rel="noreferrer noopener" href="https://opensource.facebook.com/legal/privacy/">Privacy</a></li><li class="footer__item"><a class="footer__link-item" target="_blank" rel="noreferrer noopener" href="https://opensource.facebook.com/legal/terms/">Terms</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">More</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/fbt/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" target="_blank" rel="noopener noreferrer" href="https://github.com/facebook/fbt">Github</a></li></ul></div></div><div class="text--center"><div class="margin-bottom--sm"><a href="https://opensource.facebook.com/" target="_blank" rel="noopener noreferrer" class="footerLogoLink_1Wg7"><img class="footer__logo" alt="Facebook Open Source Logo" src="https://docusaurus.io/img/oss_logo.png"></a></div><div>Copyright © 2020 Facebook, Inc.</div></div></div></footer>
 </div>
 
 <script src="/fbt/styles.dd599b3e.js"></script>
 
-<script src="/fbt/runtime~main.2c878ed4.js"></script>
+<script src="/fbt/runtime~main.4958ebd0.js"></script>
 
-<script src="/fbt/main.c77dcd2c.js"></script>
+<script src="/fbt/main.d64610ea.js"></script>
 
-<script src="/fbt/1.55dd5d49.js"></script>
+<script src="/fbt/1.6ce20d81.js"></script>
 
-<script src="/fbt/2.282c4025.js"></script>
+<script src="/fbt/2.aec90354.js"></script>
 
-<script src="/fbt/3.ece67625.js"></script>
+<script src="/fbt/3.ff8a68a4.js"></script>
 
-<script src="/fbt/1be78505.bdebfcf2.js"></script>
+<script src="/fbt/1be78505.306ab89d.js"></script>
 
 <script src="/fbt/4ff346a2.80a9a0ae.js"></script>
 
 <script src="/fbt/17896441.1f7d783c.js"></script>
 
-<script src="/fbt/56b2bdfa.63202c46.js"></script>
+<script src="/fbt/56b2bdfa.2b463a06.js"></script>
 
 
 </body>

@@ -18,23 +18,23 @@
 
 <link rel="preload" href="/fbt/styles.dd599b3e.js" as="script">
 
-<link rel="preload" href="/fbt/runtime~main.2c878ed4.js" as="script">
+<link rel="preload" href="/fbt/runtime~main.4958ebd0.js" as="script">
 
-<link rel="preload" href="/fbt/main.c77dcd2c.js" as="script">
+<link rel="preload" href="/fbt/main.d64610ea.js" as="script">
 
-<link rel="preload" href="/fbt/1.55dd5d49.js" as="script">
+<link rel="preload" href="/fbt/1.6ce20d81.js" as="script">
 
-<link rel="preload" href="/fbt/2.282c4025.js" as="script">
+<link rel="preload" href="/fbt/2.aec90354.js" as="script">
 
-<link rel="preload" href="/fbt/3.ece67625.js" as="script">
+<link rel="preload" href="/fbt/3.ff8a68a4.js" as="script">
 
-<link rel="preload" href="/fbt/1be78505.bdebfcf2.js" as="script">
+<link rel="preload" href="/fbt/1be78505.306ab89d.js" as="script">
 
 <link rel="preload" href="/fbt/4ff346a2.80a9a0ae.js" as="script">
 
 <link rel="preload" href="/fbt/17896441.1f7d783c.js" as="script">
 
-<link rel="preload" href="/fbt/5804f401.1c119a88.js" as="script">
+<link rel="preload" href="/fbt/5804f401.3c5878eb.js" as="script">
 
 </head>
 <body>
@@ -47,28 +47,28 @@ If you want the same interpolation to show up, you must use
 <code>fbt:same-param</code> or <code>fbt.sameParam</code>.  This construct only takes a name
 and no value, as the value to the first instance is re-used for the
 second token.</p><div class="mdxCodeBlock_iHAB"><pre class="prism-code language-undefined codeBlock_19pQ"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1BYj">Copy</button><code class="codeBlockLines_2n9r" style="color:#bfc7d5;background-color:#292d3e"><div class="token-line" style="color:#bfc7d5"><span class="token plain">&lt;fbt desc=&quot;param example&quot;&gt;</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  &lt;fbt:name name=&quot;name&quot; gender={gender}&gt;</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    &lt;a href=&quot;#&quot;&gt;{name}&lt;/a&gt;</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  &lt;/fbt:name&gt;</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  shared a link.  Tell</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  &lt;fbt:same-param name=&quot;name&quot; /&gt;</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  you liked it.</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">&lt;/fbt&gt;</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain" style="display:inline-block">
-</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">fbt(</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  fbt.name(</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    &#x27;name&#x27;,</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">     &lt;a href=&quot;#&quot;&gt;{name}&lt;/a&gt;,</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">     {gender: gender}</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">   ) +</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  &#x27; shared a link.  Tell &#x27; + fbt.sameParam(&#x27;name&#x27;) + &#x27; you liked it.&#x27;,</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  &#x27;param example&#x27;</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">)</span></div></code></pre></div></div></article><div class="margin-vert--xl"><div class="row"><div class="col"></div><div class="col text--right"><em><small>Last updated on <time datetime="2019-01-16T21:14:13.000Z" class="docLastUpdatedAt_1sqk">1/16/2019</time> by <strong>John Watson</strong></small></em></div></div></div><div class="margin-vert--lg"><nav class="pagination-nav"><div class="pagination-nav__item"><a class="pagination-nav__link" href="/fbt/docs/api_intro"><h5 class="pagination-nav__link--sublabel">Previous</h5><h4 class="pagination-nav__link--label">« The FBT API</h4></a></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/fbt/docs/implicit_params"><h5 class="pagination-nav__link--sublabel">Next</h5><h4 class="pagination-nav__link--label">Implicit parameters »</h4></a></div></nav></div></div></div><div class="col col--3"><div class="tableOfContents_TbNY"><ul class="contents contents__left-border"><li><a href="#required-attributes" class="contents__link">Required attributes</a></li><li><a href="#optional-attributes" class="contents__link">Optional attributes</a></li><li><a href="#fbtname" class="contents__link">fbt.name</a><ul><li><a href="#duplicate-tokens" class="contents__link">Duplicate tokens</a></li></ul></li></ul></div></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container"><div class="row footer__links"><div class="col footer__col"><h4 class="footer__title">Docs</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/fbt/docs/getting_started_on_web">Getting Started</a></li><li class="footer__item"><a class="footer__link-item" href="/fbt/help">Help</a></li><li class="footer__item"><a class="footer__link-item" href="/fbt/docs/api_intro">API Reference</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/fbt/users">User Showcase</a></li><li class="footer__item"><a class="footer__link-item" target="_blank" rel="noopener noreferrer" href="http://stackoverflow.com/questions/tagged/fbt">Stack Overflow</a></li><li class="footer__item"><a class="footer__link-item" target="_blank" rel="noopener noreferrer" href="https://discord.gg/cQvXZr5">Discord Channel</a></li><li class="footer__item"><a class="footer__link-item" target="_blank" rel="noopener noreferrer" href="https://twitter.com/fbt_js">Twitter</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">More</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/fbt/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" target="_blank" rel="noopener noreferrer" href="https://github.com/facebook/fbt">Github</a></li></ul></div></div><div class="text--center"><div class="margin-bottom--sm"><a href="https://opensource.facebook.com/" target="_blank" rel="noopener noreferrer" class="footerLogoLink_1Wg7"><img class="footer__logo" alt="Facebook Open Source Logo" src="https://docusaurus.io/img/oss_logo.png"></a></div><div>Copyright © 2020 Facebook, Inc.</div></div></div></footer>
+</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">fbt(</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  fbt.name(</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">    &#x27;name&#x27;,</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">     &lt;a href=&quot;#&quot;&gt;{name}&lt;/a&gt;,</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">     {gender: gender}</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">   ) +</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  &#x27; shared a link.  Tell &#x27; + fbt.sameParam(&#x27;name&#x27;) + &#x27; you liked it.&#x27;,</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  &#x27;param example&#x27;</span></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">)</span></div></code></pre></div></div></article><div class="margin-vert--xl"><div class="row"><div class="col"></div><div class="col text--right"><em><small>Last updated on <time datetime="2019-01-16T21:14:13.000Z" class="docLastUpdatedAt_1sqk">1/16/2019</time> by <strong>John Watson</strong></small></em></div></div></div><div class="margin-vert--lg"><nav class="pagination-nav"><div class="pagination-nav__item"><a class="pagination-nav__link" href="/fbt/docs/api_intro"><h5 class="pagination-nav__link--sublabel">Previous</h5><h4 class="pagination-nav__link--label">« The FBT API</h4></a></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/fbt/docs/implicit_params"><h5 class="pagination-nav__link--sublabel">Next</h5><h4 class="pagination-nav__link--label">Implicit parameters »</h4></a></div></nav></div></div></div><div class="col col--3"><div class="tableOfContents_TbNY"><ul class="contents contents__left-border"><li><a href="#required-attributes" class="contents__link">Required attributes</a></li><li><a href="#optional-attributes" class="contents__link">Optional attributes</a></li><li><a href="#fbtname" class="contents__link">fbt.name</a><ul><li><a href="#duplicate-tokens" class="contents__link">Duplicate tokens</a></li></ul></li></ul></div></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container"><div class="row footer__links"><div class="col footer__col"><h4 class="footer__title">Docs</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/fbt/docs/getting_started_on_web">Getting Started</a></li><li class="footer__item"><a class="footer__link-item" href="/fbt/help">Help</a></li><li class="footer__item"><a class="footer__link-item" href="/fbt/docs/api_intro">API Reference</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/fbt/users">User Showcase</a></li><li class="footer__item"><a class="footer__link-item" target="_blank" rel="noopener noreferrer" href="http://stackoverflow.com/questions/tagged/fbt">Stack Overflow</a></li><li class="footer__item"><a class="footer__link-item" target="_blank" rel="noopener noreferrer" href="https://discord.gg/cQvXZr5">Discord Channel</a></li><li class="footer__item"><a class="footer__link-item" target="_blank" rel="noopener noreferrer" href="https://twitter.com/fbt_js">Twitter</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Legal</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" target="_blank" rel="noreferrer noopener" href="https://opensource.facebook.com/legal/privacy/">Privacy</a></li><li class="footer__item"><a class="footer__link-item" target="_blank" rel="noreferrer noopener" href="https://opensource.facebook.com/legal/terms/">Terms</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">More</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/fbt/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" target="_blank" rel="noopener noreferrer" href="https://github.com/facebook/fbt">Github</a></li></ul></div></div><div class="text--center"><div class="margin-bottom--sm"><a href="https://opensource.facebook.com/" target="_blank" rel="noopener noreferrer" class="footerLogoLink_1Wg7"><img class="footer__logo" alt="Facebook Open Source Logo" src="https://docusaurus.io/img/oss_logo.png"></a></div><div>Copyright © 2020 Facebook, Inc.</div></div></div></footer>
 </div>
 
 <script src="/fbt/styles.dd599b3e.js"></script>
 
-<script src="/fbt/runtime~main.2c878ed4.js"></script>
+<script src="/fbt/runtime~main.4958ebd0.js"></script>
 
-<script src="/fbt/main.c77dcd2c.js"></script>
+<script src="/fbt/main.d64610ea.js"></script>
 
-<script src="/fbt/1.55dd5d49.js"></script>
+<script src="/fbt/1.6ce20d81.js"></script>
 
-<script src="/fbt/2.282c4025.js"></script>
+<script src="/fbt/2.aec90354.js"></script>
 
-<script src="/fbt/3.ece67625.js"></script>
+<script src="/fbt/3.ff8a68a4.js"></script>
 
-<script src="/fbt/1be78505.bdebfcf2.js"></script>
+<script src="/fbt/1be78505.306ab89d.js"></script>
 
 <script src="/fbt/4ff346a2.80a9a0ae.js"></script>
 
 <script src="/fbt/17896441.1f7d783c.js"></script>
 
-<script src="/fbt/5804f401.1c119a88.js"></script>
+<script src="/fbt/5804f401.3c5878eb.js"></script>
 
 
 </body>
