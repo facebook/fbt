@@ -34,30 +34,32 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        loader: 'babel-loader',
-        query: {
-          plugins: [
-            ['minify-replace', {
-              'replacements': [{
-                'identifierName': '__DEV__',
-                'replacement': {
-                  'type': 'booleanLiteral',
-                  'value': true
-                }
-              }]
-            }],
-            '@babel/plugin-proposal-class-properties',
-            '@babel/plugin-proposal-object-rest-spread',
-            '@babel/plugin-proposal-optional-catch-binding',
-            '@babel/plugin-proposal-optional-chaining',
-            '@babel/plugin-transform-flow-strip-types',
-            ['babel-plugin-fbt', {
-              // We can also provide the fbt enum manifest directly as a JS variable
-              // fbtEnumManifest: require('./.enum_manifest.json'),
-              fbtEnumPath: path.join(__dirname, '.enum_manifest.json')
-            }],
-            'babel-plugin-fbt-runtime',
-          ]
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: [
+              ['minify-replace', {
+                'replacements': [{
+                  'identifierName': '__DEV__',
+                  'replacement': {
+                    'type': 'booleanLiteral',
+                    'value': true
+                  }
+                }]
+              }],
+              '@babel/plugin-proposal-class-properties',
+              '@babel/plugin-proposal-object-rest-spread',
+              '@babel/plugin-proposal-optional-catch-binding',
+              '@babel/plugin-proposal-optional-chaining',
+              '@babel/plugin-transform-flow-strip-types',
+              ['babel-plugin-fbt', {
+                // We can also provide the fbt enum manifest directly as a JS variable
+                // fbtEnumManifest: require('./.enum_manifest.json'),
+                fbtEnumPath: path.join(__dirname, '.enum_manifest.json')
+              }],
+              'babel-plugin-fbt-runtime',
+            ]
+          }
         }
       },
       {
@@ -69,7 +71,7 @@ module.exports = {
       },
       {
         test: /\.(bmp|gif|jpg|jpeg|png|psd|svg|webp|ttf|ktx|wav|ogg|mp4|webm)$/,
-        loaders: ['file-loader']
+        use: ['file-loader'],
       }
     ]
   },
