@@ -25,7 +25,6 @@ const gulpif = require('gulp-if');
 const rename = require('gulp-rename');
 const rewriteModules = require('gulp-rewrite-flowtyped-modules');
 const gulpUtil = require('gulp-util');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const webpackStream = require('webpack-stream');
 
 const paths = {
@@ -80,10 +79,6 @@ const buildDist = function(opts) {
       minimize: !opts.debug,
     },
   };
-
-  if (!opts.debug) {
-    webpackOpts.plugins.push(new UglifyJsPlugin());
-  }
 
   return webpackStream(webpackOpts, null, function(err, stats) {
     if (err) {
