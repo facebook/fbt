@@ -17,7 +17,7 @@ const del = require('del');
 const gulp = require('gulp');
 const babel = require('gulp-babel');
 const cleanCSS = require('gulp-clean-css');
-const concatCSS = require('gulp-concat-css');
+const concat = require('gulp-concat');
 const derequire = require('gulp-derequire');
 const flatten = require('gulp-flatten');
 const header = require('gulp-header');
@@ -128,7 +128,7 @@ gulp.task(
   gulp.series(function() {
     return gulp
       .src(paths.css, {follow: true})
-      .pipe(concatCSS('fbt.css'))
+      .pipe(concat('fbt.css'))
       .pipe(cleanCSS({advanced: false}))
       .pipe(header(COPYRIGHT_HEADER, {version}))
       .pipe(gulp.dest(paths.lib));

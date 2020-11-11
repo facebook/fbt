@@ -32,7 +32,7 @@
     "gulp": "^4.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^4.0.0",
-    "gulp-concat-css": "^3.1.0",
+    "gulp-concat": "^2.6.1",
     "gulp-derequire": "^2.1.0",
     "gulp-flatten": "^0.4.0",
     "gulp-header": "^2.0.9",
