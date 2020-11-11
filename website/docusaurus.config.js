@@ -33,7 +33,7 @@ module.exports = {
         alt: "FBT Logo",
         src: "img/fbt.png"
       },
-      links: [
+      items: [
         { to: "docs/getting_started_on_web", label: "Docs", position: "right" },
         { to: "help", label: "Help", position: "right" },
         {
