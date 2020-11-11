@@ -74,7 +74,6 @@
     "babel-plugin-minify-replace": "^0.5.0",
     "fbjs": "^1.0.0",
     "fbt": "x.x.x",
-    "optimist": "^0.6.1",
     "react": "^16.6.3",
     "react-dom": "^16.6.3"
   }
