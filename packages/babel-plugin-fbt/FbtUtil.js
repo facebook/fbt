@@ -257,7 +257,11 @@ function collectOptions /*:: <ValidOptions: {}> */(
     // $FlowFixMe Pretend that the empty object matches this function output type
     return key2value;
   }
-  checkOptions(options.properties, validOptions).forEach(option => {
+  checkOptions(
+    options.properties,
+    // $FlowFixMe[escaped-generic]
+    validOptions,
+  ).forEach(option => {
     if (isArrowFunctionExpression(option.value)) {
       throw errorAt(
         option,

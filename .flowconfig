@@ -59,6 +59,7 @@ suppress_type=$FlowExpectedError
 well_formed_exports=true
 types_first=true
 experimental.abstract_locations=true
+generate_tests=false
 
 [strict]
 deprecated-type
@@ -70,4 +71,4 @@ untyped-import
 untyped-type-import
 
 [version]
-^0.132.0
+^0.137.0
