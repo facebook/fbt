@@ -970,4 +970,26 @@ describe('Test fbt transforms without the jsx transform', () => {
       ).toMatchSnapshot();
     });
   });
+
+  // TODO(T78914132): actually, we should NOT insert a space between two <fbt:plural>
+  // that don't neighbor raw text to match Hack fbt parity.
+  // But there's not much point fixing this before the fbt autoparam work.
+  // See Hack fbt equivalent: https://fburl.com/intl/zkacwqtj
+  // See also JS fbt fiddle: https://fburl.com/intl/ha5dryng
+  it(`[legacy buggy behavior] <fbt:pronoun> should insert a space character between two fbt constructs that don't neighbor raw text`, () =>
+    expect(
+      transformKeepJsx(`
+        const fbt = require("fbt");
+        <fbt desc="">
+          You can add
+          <fbt:plural count={count} many="these">
+            this
+          </fbt:plural>
+          <fbt:plural count={count} many="tags">
+            tag
+          </fbt:plural>
+          to anything.
+        </fbt>
+      `),
+    ).toMatchSnapshot());
 });

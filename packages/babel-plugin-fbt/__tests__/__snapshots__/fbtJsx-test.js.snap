@@ -1,5 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Test fbt transforms without the jsx transform [legacy buggy behavior] <fbt:pronoun> should insert a space character between two fbt constructs that don't neighbor raw text 1`] = `
+"const fbt = require(\\"fbt\\");
+
+fbt._(
+  '__FBT__{\\"type\\":\\"table\\",\\"jsfbt\\":{\\"t\\":{\\"*\\":{\\"*\\":\\"You can add thesetags to anything.\\"},\\"_1\\":{\\"_1\\":\\"You can add this tag to anything.\\"}},\\"m\\":[null,null]},\\"desc\\":\\"\\",\\"project\\":\\"\\"}__FBT__',
+  [fbt._plural(count), fbt._plural(count)]
+);
+"
+`;
+
 exports[`Test fbt transforms without the jsx transform nested in div 1`] = `
 "const fbt = require(\\"fbt\\");
 
