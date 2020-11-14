@@ -4,6 +4,7 @@
  * @emails oncall+internationalization
  * @flow
  */
+/* eslint max-len: ["warn", 100] */
 
 /*::
 import type {PackagerPhrase} from './FbtCollector';
@@ -15,7 +16,7 @@ const jenkinsHash = require('../fbtJenkinsHash');
 
 /**
  * PhrasePackager differs from TextPackager in that it hashes the
- * entire payload for identfication
+ * entire payload for identification
  */
 class PhrasePackager {
   pack/*:: */(phrases /*: Array<PackagerPhrase> */) /*: Array<PackagerPhrase> */ {
