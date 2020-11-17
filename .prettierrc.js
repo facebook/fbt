@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<fe90cb53e28cb5577c5b067286be82bb>>
+ * @generated SignedSource<<6dd19c7d979ae6501f7c73b3b81665bf>>
  *
  * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  * !! This file is synchronized from fbsource. You should not     !!
@@ -23,4 +23,5 @@ module.exports = {
   jsxBracketSameLine: true,
   singleQuote: true,
   trailingComma: 'all',
+  arrowParens: 'avoid',
 };
