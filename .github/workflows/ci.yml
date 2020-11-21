@@ -1,0 +1,30 @@
+name: FBT Continuous Integration
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 15 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ '10.19', '12.16' ]
+        test: [
+          'flow:check',
+          'babel-plugin-fbt:test',
+          'babel-plugin-fbt-runtime:test',
+          'demo-app:test',
+          'fb-tiger-hash:test' 
+        ]
+    name: "v${{ matrix.node }}: ${{ matrix.test }}"
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v2-beta
+        with: 
+          node-version: ${{ matrix.node }}
+      - run: yarn install
+      - run: yarn run ${{matrix.test}}
