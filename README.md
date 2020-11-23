@@ -1,6 +1,6 @@
 <p>
-  <a href="https://travis-ci.com/facebook/fbt">
-    <img src="https://img.shields.io/travis/com/facebook/fbt?logo=travis" alt="Travis CI" />
+  <a href="https://github.com/facebook/fbt/actions?query=workflow%3A%22FBT+Continuous+Integration%22">
+    <img src="https://github.com/facebook/fbt/workflows/FBT%20Continuous%20Integration/badge.svg" />
   </a>
 
   <a href="https://twitter.com/fbt_js">
