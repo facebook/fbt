@@ -64,6 +64,12 @@ const LOCALES = Object.freeze({
     englishName: 'Japanese',
     rtl: false,
   }),
+  ru_RU: Object.freeze({
+    bcp47: 'ru',
+    displayName: 'Русский',
+    englishName: 'Russian',
+    rtl: false,
+  }),
 });
 
 type Locale = $Keys<typeof LOCALES>;
