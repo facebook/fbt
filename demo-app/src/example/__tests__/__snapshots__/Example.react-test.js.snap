@@ -342,6 +342,16 @@ exports[`Example.react renders the example 1`] = `
         日本語
       </a>
     </li>
+    <li
+      value="ru_RU"
+    >
+      <a
+        href="#ru_RU"
+        onClick={[Function]}
+      >
+        Русский
+      </a>
+    </li>
   </ul>
   <p
     className="copyright"
