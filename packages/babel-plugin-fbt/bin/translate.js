@@ -249,10 +249,10 @@ if (argv[args.STDIN]) {
   let source = '';
   stream
     .setEncoding('utf8')
-    .on('data', function(chunk) {
+    .on('data', function (chunk) {
       source += chunk;
     })
-    .on('end', function() {
+    .on('end', function () {
       const output = processJSON(JSON.parse(source));
       writeOutput(output);
     });

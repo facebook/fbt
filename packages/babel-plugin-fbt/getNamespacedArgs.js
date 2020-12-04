@@ -32,7 +32,7 @@ const {
 const t = require('@babel/types');
 const {jsxExpressionContainer, stringLiteral} = t;
 
-const getNamespacedArgs = function(moduleName) {
+const getNamespacedArgs = function (moduleName) {
   return {
     /**
      * Node that is a child of a <fbt> node that should be handled as
@@ -56,7 +56,7 @@ const getNamespacedArgs = function(moduleName) {
         RequiredParamOptions,
       );
 
-      let paramChildren = filterEmptyNodes(node.children).filter(function(
+      let paramChildren = filterEmptyNodes(node.children).filter(function (
         child,
       ) {
         return (
@@ -114,7 +114,7 @@ const getNamespacedArgs = function(moduleName) {
       );
       const countAttr = getAttributeByNameOrThrow(attributes, 'count').value;
       const children = filterEmptyNodes(node.children);
-      const pluralChildren = children.filter(function(child) {
+      const pluralChildren = children.filter(function (child) {
         return (
           child.type === 'JSXText' || child.type === 'JSXExpressionContainer'
         );
@@ -192,7 +192,7 @@ const getNamespacedArgs = function(moduleName) {
         .value;
 
       const children = filterEmptyNodes(node.children);
-      const nameChildren = children.filter(function(child) {
+      const nameChildren = children.filter(function (child) {
         return (
           child.type === 'JSXText' || child.type === 'JSXExpressionContainer'
         );

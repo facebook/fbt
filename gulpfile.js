@@ -57,7 +57,7 @@ const COPYRIGHT_HEADER = `/**
  */
 `;
 
-const buildDist = function(opts) {
+const buildDist = function (opts) {
   const webpackOpts = {
     externals: {},
     output: {
@@ -80,7 +80,7 @@ const buildDist = function(opts) {
     },
   };
 
-  return webpackStream(webpackOpts, null, function(err, stats) {
+  return webpackStream(webpackOpts, null, function (err, stats) {
     if (err) {
       throw new gulpUtil.PluginError('webpack', err);
     }
@@ -92,7 +92,7 @@ const buildDist = function(opts) {
 
 gulp.task(
   'license',
-  gulp.series(function() {
+  gulp.series(function () {
     return gulp.src(paths.license).pipe(gulp.dest(paths.published));
   }),
 );
@@ -125,7 +125,7 @@ gulp.task(
 
 gulp.task(
   'css',
-  gulp.series(function() {
+  gulp.series(function () {
     return gulp
       .src(paths.css, {follow: true})
       .pipe(concat('fbt.css'))
@@ -137,7 +137,7 @@ gulp.task(
 
 gulp.task(
   'dist',
-  gulp.series('modules', 'css', function() {
+  gulp.series('modules', 'css', function () {
     const opts = {
       debug: true,
       output: 'fbt.js',
@@ -146,19 +146,14 @@ gulp.task(
       .src('./packages/fbt/lib/FbtPublic.js')
       .pipe(buildDist(opts))
       .pipe(derequire())
-      .pipe(
-        gulpif(
-          '*.js',
-          header(COPYRIGHT_HEADER, {version}),
-        ),
-      )
+      .pipe(gulpif('*.js', header(COPYRIGHT_HEADER, {version})))
       .pipe(gulp.dest(paths.dist));
   }),
 );
 
 gulp.task(
   'dist:min',
-  gulp.series('modules', function() {
+  gulp.series('modules', function () {
     const opts = {
       debug: false,
       output: 'fbt.min.js',
@@ -166,19 +161,14 @@ gulp.task(
     return gulp
       .src('./packages/fbt/lib/FbtPublic.js')
       .pipe(buildDist(opts))
-      .pipe(
-        gulpif(
-          '*.js',
-          header(COPYRIGHT_HEADER, {version}),
-        ),
-      )
+      .pipe(gulpif('*.js', header(COPYRIGHT_HEADER, {version})))
       .pipe(gulp.dest(paths.dist));
   }),
 );
 
 gulp.task(
   'clean',
-  gulp.series(function() {
+  gulp.series(function () {
     return del([
       paths.published + '/*',
       '!' + paths.published + '/package.json',

@@ -43,7 +43,7 @@ const Variation = {
   gender: 1,
 };
 
-const call = function(moduleName) {
+const call = function (moduleName) {
   function fbtCallExpression(name, args) {
     return t.callExpression(
       t.memberExpression(

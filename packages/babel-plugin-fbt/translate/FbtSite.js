@@ -237,7 +237,7 @@ class FbtSiteMetaEntry {
   }
 }
 
-const _getVariationMaskFromType = function(type) {
+const _getVariationMaskFromType = function (type) {
   return _variationTypeToMask[type];
 };
 

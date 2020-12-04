@@ -53,7 +53,7 @@ class JSFbtBuilder {
   buildMetadata(texts) {
     const metadata = [];
     const enums = {};
-    texts.forEach(function(item) {
+    texts.forEach(function (item) {
       if (typeof item === 'string') {
         return;
       }

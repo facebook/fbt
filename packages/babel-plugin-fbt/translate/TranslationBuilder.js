@@ -410,7 +410,7 @@ for (const k in IntlVariations.Number) {
   _numbers.push(IntlVariations.Number[k]);
 }
 
-const _getTypesFromMask = function(mask) {
+const _getTypesFromMask = function (mask) {
   const type = IntlVariations.getType(mask);
   if (type === Mask.NUMBER) {
     return _numbers;
