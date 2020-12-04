@@ -58,7 +58,7 @@ const PRONOUN_USAGE = {
 
 const _cachedFbtResults = {};
 
-const fbt = function() {};
+const fbt = function () {};
 
 /**
  * fbt._() iterates through all indices provided in `args` and accesses
@@ -89,7 +89,7 @@ const fbt = function() {};
  * contains a structured enums to hash keys map which will later be traversed
  * to look up enum-less translated payload.
  */
-fbt._ = function(
+fbt._ = function (
   inputTable: FbtRuntimeInput,
   inputArgs: ?FbtTableArgs,
   options: ?FbtInputOpts,
@@ -214,7 +214,7 @@ function _hasKeys(o) {
  * @param {string|number} value - Example: "id1"
  * @param {object} range - Example: {"id1": "groups", "id2": "videos", ...}
  */
-fbt._enum = function(value, range) {
+fbt._enum = function (value, range) {
   if (__DEV__) {
     invariant(value in range, 'invalid value: %s', value);
   }
@@ -226,7 +226,7 @@ fbt._enum = function(value, range) {
  * [variation, null]
  * @param {number} value - Example: "16777216"
  */
-fbt._subject = function(value) {
+fbt._subject = function (value) {
   return FbtTableAccessor.getGenderResult(
     getGenderVariations(value),
     null,
@@ -243,7 +243,7 @@ fbt._subject = function(value) {
  * @param {?array} variations
  *   - E.g. [0], [0,count], or [0,foo.someNumber() + 1]
  */
-fbt._param = function(label, value, variations) {
+fbt._param = function (label, value, variations) {
   const substitution = {[label]: value};
   if (variations) {
     if (variations[0] === VARIATIONS.NUMBER) {
@@ -280,7 +280,7 @@ fbt._param = function(label, value, variations) {
  * @param {?string} value
  *   - The value to use (instead of count) for replacing {label}
  */
-fbt._plural = function(count, label, value) {
+fbt._plural = function (count, label, value) {
   const variation = getNumberVariations(count);
   const substitution = {};
   if (label) {
@@ -303,7 +303,7 @@ fbt._plural = function(count, label, value) {
  * @param {number} gender - Example: GenderConst.MALE_SINGULAR
  * @param {?object} options - Example: { human: 1 }
  */
-fbt._pronoun = function(usage, gender, options) {
+fbt._pronoun = function (usage, gender, options) {
   invariant(
     gender !== GenderConst.NOT_A_PERSON || !options || !options.human,
     'Gender cannot be GenderConst.NOT_A_PERSON if you set "human" to true',
@@ -356,7 +356,7 @@ function getPronounGenderKey(usage, gender) {
  *   - E.g. 'replaces {label} in pattern'
  * @param {number} gender - Example: "IntlVariations.GENDER_FEMALE"
  */
-fbt._name = function(label, value, gender) {
+fbt._name = function (label, value, gender) {
   const variation = getGenderVariations(gender);
   const substitution = {};
   substitution[label] = value;
@@ -379,11 +379,11 @@ function _wrapContent(fbtContent, patternString, patternHash): Fbt {
   return result;
 }
 
-fbt.enableJsonExportMode = function() {
+fbt.enableJsonExportMode = function () {
   jsonExportMode = true;
 };
 
-fbt.disableJsonExportMode = function() {
+fbt.disableJsonExportMode = function () {
   jsonExportMode = false;
 };
 

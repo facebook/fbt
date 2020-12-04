@@ -31,48 +31,48 @@ const IntlPhonologicalRewrites = require('IntlPhonologicalRewrites');
  * count as sentence-final punctuation.
  */
 const PUNCT_CHAR_CLASS = ('[.!?' +
-'\u3002' + // Chinese/Japanese period
-'\uFF01' + // Fullwidth exclamation point
-'\uFF1F' + // Fullwidth question mark
-'\u0964' + // Hindi "full stop"
-'\u2026' + // Chinese ellipsis
-'\u0EAF' + // Laotian ellipsis
-'\u1801' + // Mongolian ellipsis
-'\u0E2F' + // Thai ellipsis
-'\uFF0E' + // Fullwidth full stop
+  '\u3002' + // Chinese/Japanese period
+  '\uFF01' + // Fullwidth exclamation point
+  '\uFF1F' + // Fullwidth question mark
+  '\u0964' + // Hindi "full stop"
+  '\u2026' + // Chinese ellipsis
+  '\u0EAF' + // Laotian ellipsis
+  '\u1801' + // Mongolian ellipsis
+  '\u0E2F' + // Thai ellipsis
+  '\uFF0E' + // Fullwidth full stop
   ']': string);
 
 const ENDS_IN_PUNCT_REGEXP = new RegExp(
   PUNCT_CHAR_CLASS +
-  '[)"\'' +
-  // JavaScript doesn't support Unicode character
-  // properties in regexes, so we have to list
-  // all of these individually. This is an
-  // abbreviated list of the "final punctuation"
-  // and "close punctuation" Unicode codepoints,
-  // excluding symbols we're unlikely to ever
-  // see (mathematical notation, etc.)
-  '\u00BB' + // Double angle quote
-  '\u0F3B' + // Tibetan close quote
-  '\u0F3D' + // Tibetan right paren
-  '\u2019' + // Right single quote
-  '\u201D' + // Right double quote
-  '\u203A' + // Single right angle quote
-  '\u3009' + // Right angle bracket
-  '\u300B' + // Right double angle bracket
-  '\u300D' + // Right corner bracket
-  '\u300F' + // Right hollow corner bracket
-  '\u3011' + // Right lenticular bracket
-  '\u3015' + // Right tortoise shell bracket
-  '\u3017' + // Right hollow lenticular bracket
-  '\u3019' + // Right hollow tortoise shell
-  '\u301B' + // Right hollow square bracket
-  '\u301E' + // Double prime quote
-  '\u301F' + // Low double prime quote
-  '\uFD3F' + // Ornate right parenthesis
-  '\uFF07' + // Fullwidth apostrophe
-  '\uFF09' + // Fullwidth right parenthesis
-  '\uFF3D' + // Fullwidth right square bracket
+    '[)"\'' +
+    // JavaScript doesn't support Unicode character
+    // properties in regexes, so we have to list
+    // all of these individually. This is an
+    // abbreviated list of the "final punctuation"
+    // and "close punctuation" Unicode codepoints,
+    // excluding symbols we're unlikely to ever
+    // see (mathematical notation, etc.)
+    '\u00BB' + // Double angle quote
+    '\u0F3B' + // Tibetan close quote
+    '\u0F3D' + // Tibetan right paren
+    '\u2019' + // Right single quote
+    '\u201D' + // Right double quote
+    '\u203A' + // Single right angle quote
+    '\u3009' + // Right angle bracket
+    '\u300B' + // Right double angle bracket
+    '\u300D' + // Right corner bracket
+    '\u300F' + // Right hollow corner bracket
+    '\u3011' + // Right lenticular bracket
+    '\u3015' + // Right tortoise shell bracket
+    '\u3017' + // Right hollow lenticular bracket
+    '\u3019' + // Right hollow tortoise shell
+    '\u301B' + // Right hollow square bracket
+    '\u301E' + // Double prime quote
+    '\u301F' + // Low double prime quote
+    '\uFD3F' + // Ornate right parenthesis
+    '\uFF07' + // Fullwidth apostrophe
+    '\uFF09' + // Fullwidth right parenthesis
+    '\uFF3D' + // Fullwidth right square bracket
     '\\s' +
     ']*$',
 );

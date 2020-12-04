@@ -41,13 +41,13 @@ const DELIMITERS = {
   SEMICOLON: 'SEMICOLON',
 };
 
-const intlList = function<TItem: React.Node>(
+const intlList = function <TItem: React.Node>(
   items: $ReadOnlyArray<TItem>,
   conjunction: ?$Keys<typeof CONJUNCTIONS>,
   delimiter: ?$Keys<typeof DELIMITERS>,
 ): TItem | Fbt {
   if (__DEV__) {
-    items.forEach(function(item) {
+    items.forEach(function (item) {
       invariant(
         typeof item === 'string' || React.isValidElement(item),
         'Must provide a string or ReactComponent to intlList.',

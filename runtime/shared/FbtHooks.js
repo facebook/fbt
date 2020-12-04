@@ -37,7 +37,7 @@ export type FbtRuntimeInput =
 
 export type FbtInputTable = {
   [key: FbtTableKey]: FbtRuntimeInput,
-  ...,
+  ...
 };
 
 export type FbtTableArgs = Array<FbtTableArg>;
@@ -56,7 +56,7 @@ export type FbtTranslatedInput = {
  */
 export type FbtEnumHashKeyTable = {
   [key: FbtTableKey]: PatternString | FbtEnumHashKeyTable,
-  ...,
+  ...
 };
 
 export type FbtInputOpts = {
