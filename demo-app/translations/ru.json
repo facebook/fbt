@@ -1,0 +1,393 @@
+{
+  "fb-locale": "ru_RU",
+  "translations": {
+    "f9df2DVor1ccX0uzZbuDVQ==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "Демонстрация FBT",
+          "variations": {}
+        }
+      ]
+    },
+    "JBhJwfCe2TutVvTr9c9HLw==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "имя",
+          "variations": {}
+        }
+      ]
+    },
+    "PvA+AsZdpZXw81g/J3Ow0Q==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "Составление предложений",
+          "variations": {}
+        }
+      ]
+    },
+    "BJj5GnFcg5DWU/fW7CqXRQ==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "Используйте форму ниже, чтобы увидеть FBT в действии.",
+          "variations": {}
+        }
+      ]
+    },
+    "HusiL84DARy+8jiK7kc7qg==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "Ваш пол:",
+          "variations": {}
+        }
+      ]
+    },
+    "aRgFYYwtEkSHmVCxJMiHQQ==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "Неизвестно",
+          "variations": {}
+        }
+      ]
+    },
+    "ljoRgg3SRs0vzbkgFv1tSA==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "Мужской",
+          "variations": {}
+        }
+      ]
+    },
+    "gAWLgPJCoT4RWZyEUmFM+A==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "Женский",
+          "variations": {}
+        }
+      ]
+    },
+    "K4iveOd+Z8ZNF2cfxBO+kw==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "количество",
+          "variations": {}
+        }
+      ]
+    },
+    "DFDZjshVSmmTwi62nfXNfQ==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "Пол:",
+          "variations": {}
+        }
+      ]
+    },
+    "PqPPir8Kg9xSlqdednPFOg==": {
+      "tokens": ["name"],
+      "types": [3],
+      "translations": [
+        {
+          "translation": "{name} поделился {=a photo} с вами",
+          "variations": {
+            "0": 1
+          }
+        },
+        {
+          "translation": "{name} поделилась {=a photo} с вами",
+          "variations": {
+            "0": 2
+          }
+        },
+        {
+          "translation": "{name} поделился(-ась) {=a photo} с вами",
+          "variations": {
+            "0": 3
+          }
+        }
+      ]
+    },
+    "/gj3gwqx1z8Xw233oZgOpQ==": {
+      "tokens": ["number"],
+      "types": [28],
+      "translations": [
+        {
+          "translation": "{number} фотографии",
+          "variations": {
+            "0": 20
+          }
+        },
+        {
+          "translation": "{number} фотографий",
+          "variations": {
+            "0": 12
+          }
+        },
+        {
+          "translation": "{number} фото",
+          "variations": {
+            "0": 4
+          }
+        }
+      ]
+    },
+    "8UZCD6gFUKN+U5UUo1I3/w==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "фото",
+          "variations": {}
+        }
+      ]
+    },
+    "CcRrycO18VroWvGAcg0u7w==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "Не человек",
+          "variations": {}
+        }
+      ]
+    },
+    "+JZjqgCHObNg6jWov91o+w==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "Неизвестно (множественное число)",
+          "variations": {}
+        }
+      ]
+    },
+    "Pcdu2jt+bnKzFRSeBLICcQ==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "Неизвестно (единственное число)",
+          "variations": {}
+        }
+      ]
+    },
+    "+DJQa/brVSQ5ial+3ta3gg==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "Мужской (единственное число)",
+          "variations": {}
+        }
+      ]
+    },
+    "+jPpJbvCzEnvvfpvTTRVdg==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "Женский (единственное число)",
+          "variations": {}
+        }
+      ]
+    },
+    "Yjqpv79V3JSE255LFP0AAA==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "{name} хочет поделиться ссылкой! {=View} ее ссылку.",
+          "variations": {}
+        }
+      ]
+    },
+    "pmznwyWXEqrG9HZwb5aGsQ==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "{name} хочет поделиться ссылкой! {=View} его ссылку.",
+          "variations": {}
+        }
+      ]
+    },
+    "/JQB0l8rEd+B7ae/lcLlVg==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "{name} хочет поделиться ссылкой! {=View} ссылку.",
+          "variations": {}
+        }
+      ]
+    },
+    "fS9yqVLDDYOA627Xuxrxvw==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "{name} хочет поделиться страницей! {=View} ее страницу.",
+          "variations": {}
+        }
+      ]
+    },
+    "1gXZoVTrxY6d3TSX5/KrXg==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "{name} хочет поделиться страницей! {=View} его страницу.",
+          "variations": {}
+        }
+      ]
+    },
+    "ocUjztl+ZCTxysGLukn+kw==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "{name} хочет поделиться страницей! {=View} страницу.",
+          "variations": {}
+        }
+      ]
+    },
+    "z67lDQSKUy/LXrqrRHj3aw==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "{name} хочет поделиться фото! {=View} ее фото.",
+          "variations": {}
+        }
+      ]
+    },
+    "1PKQnkF/lWmk79Tv/ys24A==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "{name} хочет поделиться фото! {=View} его фото.",
+          "variations": {}
+        }
+      ]
+    },
+    "95jC7mDsBpqzCbCA3504zw==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "{name} хочет поделиться фото! {=View} фото.",
+          "variations": {}
+        }
+      ]
+    },
+    "7y2mltlG5nn8ihCz2AK1AQ==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "{name} хочет поделиться публикацией! {=View} ее публикацию.",
+          "variations": {}
+        }
+      ]
+    },
+    "FT9sU8nTJmNxzV6HXQDOdA==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "{name} хочет поделиться публикацией! {=View} его публикацию.",
+          "variations": {}
+        }
+      ]
+    },
+    "Izavl3nyjFZGvIPhvrJYMA==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "{name} хочет поделиться публикацией! {=View} публикацию.",
+          "variations": {}
+        }
+      ]
+    },
+    "9fe4WrzDx/G3g9xlON2txA==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "{name} хочет поделиться ссылкой! {=View} ее ссылку.",
+          "variations": {}
+        }
+      ]
+    },
+    "I3OyaQ+VNY1GA++1dByInA==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "{name} хочет поделиться видео! {=View} его видео.",
+          "variations": {}
+        }
+      ]
+    },
+    "N4hL52x52Phrk/Bzp1RkTg==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "{name} хочет поделиться видео! {=View} видео.",
+          "variations": {}
+        }
+      ]
+    },
+    "mmqgrx7cIVUnJZnhEIjItw==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "{=View}",
+          "variations": {}
+        }
+      ]
+    },
+    "Kb0bgdPFst+Bq13gtG2Obg==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "Просмотреть",
+          "variations": {}
+        }
+      ]
+    },
+    "AqPBSvlIt0d3coakQBEMpg==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "Попробовать!",
+          "variations": {}
+        }
+      ]
+    }
+  }
+}
