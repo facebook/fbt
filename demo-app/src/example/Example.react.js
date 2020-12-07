@@ -309,7 +309,7 @@ export default class Example extends React.Component<Props, State> {
                   <fbt:pronoun
                     type="possessive"
                     gender={this.state.ex2Pronoun}
-                    human="true"
+                    human={false}
                   />{' '}
                   <fbt:enum
                     enum-range={ExampleEnum}
