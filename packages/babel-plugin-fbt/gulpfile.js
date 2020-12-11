@@ -10,7 +10,7 @@
 
 'use strict';
 
-const {PLUGINS} = require('../babelPlugins');
+const {PLUGINS} = require('../../babelPlugins');
 const del = require('del');
 const gulp = require('gulp');
 const babel = require('gulp-babel');
