@@ -1,7 +1,7 @@
 {
   "private": true,
   "//": "Copyright (c) Facebook, Inc. and its affiliates. All rights reserved.",
-  "name": "fbt-example",
+  "name": "demo-app",
   "//version": "Follow SemVer specs at https://semver.org/",
   "version": "1.0.0",
   "main": "index.js",
