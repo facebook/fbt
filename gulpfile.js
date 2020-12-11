@@ -10,8 +10,9 @@
 
 'use strict';
 
-const babelPresets = require('./babelPresets');
+const {PLUGINS} = require('./babelPlugins');
 const moduleMap = require('./moduleMap');
+const babelPluginFbtGulp = require('./packages/babel-plugin-fbt/gulpfile');
 const {version} = require('./packages/fbt/package.json');
 const del = require('del');
 const gulp = require('gulp');
@@ -22,6 +23,7 @@ const derequire = require('gulp-derequire');
 const flatten = require('gulp-flatten');
 const header = require('gulp-header');
 const gulpif = require('gulp-if');
+const once = require('gulp-once');
 const rename = require('gulp-rename');
 const rewriteModules = require('gulp-rewrite-flowtyped-modules');
 const gulpUtil = require('gulp-util');
@@ -39,10 +41,6 @@ const paths = {
   ],
   typedModules: ['flow-types/typed-js-modules/*.flow'],
   css: ['runtime/**/*.css'],
-};
-
-const babelOptsJS = {
-  presets: [babelPresets()],
 };
 
 const COPYRIGHT = 'Copyright (c) Facebook, Inc. and its affiliates.';
@@ -103,9 +101,28 @@ function flatLib(job) {
 
 gulp.task(
   'modules',
-  gulp.series(() =>
-    flatLib(gulp.src(paths.runtime, {follow: true}).pipe(babel(babelOptsJS))),
-  ),
+  gulp.series(babelPluginFbtGulp.build, function buildModules() {
+    return flatLib(
+      gulp
+        .src(paths.runtime, {follow: true})
+        .pipe(once())
+        .pipe(
+          babel({
+            plugins: [
+              ...PLUGINS,
+              require('@babel/plugin-syntax-jsx'),
+              require('babel-plugin-fbt'),
+              require('babel-plugin-fbt-runtime'),
+              [
+                require('babel-preset-fbjs/plugins/rewrite-modules'),
+                {map: moduleMap},
+              ],
+              require('@babel/plugin-transform-react-jsx'),
+            ],
+          }),
+        ),
+    );
+  }),
 );
 
 // Copy raw source with rewritten modules to *.js.flow
@@ -168,13 +185,14 @@ gulp.task(
 
 gulp.task(
   'clean',
-  gulp.series(function () {
-    return del([
+  gulp.parallel(babelPluginFbtGulp.clean, () =>
+    del([
+      '.checksums',
       paths.published + '/*',
       '!' + paths.published + '/package.json',
       '!' + paths.published + '/README.md',
-    ]);
-  }),
+    ]),
+  ),
 );
 
 gulp.task(

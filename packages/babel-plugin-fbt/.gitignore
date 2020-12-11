@@ -1,0 +1,6 @@
+node_modules
+dist
+yarn.lock
+
+# file checksums used by gulp-once
+.checksums

@@ -37,6 +37,7 @@
     "gulp-flatten": "^0.4.0",
     "gulp-header": "^2.0.9",
     "gulp-if": "^2.0.2",
+    "gulp-once": "^2.1.1",
     "gulp-rename": "^1.4.0",
     "gulp-rewrite-flowtyped-modules": "^0.0.8",
     "gulp-util": "^3.0.8",
@@ -66,6 +67,9 @@
     "flow:check": "flow check --show-all-errors",
     "flow:watch": "yarn watch 'yarn flow stop && yarn flow check --show-all-errors 2>&1 | tee .flow-results' . --ignoreDotFiles",
     "postinstall": "yarn build-runtime",
+    "//": "Needed because the yarn+workspace `install` process creates the bin scripts' symbolic links ONLY BEFORE running the install steps",
+    "create_dummy_bin_scripts_for_yarn_install": "mkdir -p packages/babel-plugin-fbt/dist/bin 2> /dev/null ; cp packages/babel-plugin-fbt/bin/*.bin.js packages/babel-plugin-fbt/dist/bin",
+    "preinstall": "yarn create_dummy_bin_scripts_for_yarn_install",
     "test:watch": "jest --watch",
     "test": "jest"
   },
@@ -76,8 +80,8 @@
   },
   "workspaces": [
     "demo-app",
-    "packages/babel-plugin-fbt",
     "packages/babel-plugin-fbt-runtime",
+    "packages/babel-plugin-fbt",
     "packages/fb-babel-plugin-utils",
     "packages/fb-tiger-hash",
     "packages/fbt"

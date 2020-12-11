@@ -31,6 +31,7 @@ module.exports = {
     {
       displayName: 'babel-plugin-fbt',
       roots: [fs.realpathSync(path.resolve('packages', 'babel-plugin-fbt'))],
+      testPathIgnorePatterns: ['packages/babel-plugin-fbt/dist/'],
     },
     {
       displayName: 'babel-plugin-fbt-runtime',

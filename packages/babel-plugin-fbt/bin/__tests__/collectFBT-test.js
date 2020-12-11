@@ -14,8 +14,16 @@ const commonPath = path.resolve(__dirname, 'FbtCommonForTests.json');
 
 describe('collectFBT', () => {
   function collect(source, options = {}) {
-    var collectOptions = [
-      require.resolve('../collectFBT'),
+    const scriptPath = path.join(
+      // Find the actual module root path
+      // It's dependent on the "main" path set in package.json
+      // See https://stackoverflow.com/a/49455609/104598
+      path.dirname(require.resolve('babel-plugin-fbt')),
+      'bin',
+      'collectFBT',
+    );
+    const collectOptions = [
+      scriptPath,
       '--packager=none',
       '--fbt-common-path=' + commonPath,
     ];

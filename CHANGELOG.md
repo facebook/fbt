@@ -112,6 +112,7 @@ List of changes for each released npm package version.
       Unreleased changes that have landed in master. Click to see more.
     </summary>
 
+  - [minor] Add ability to write Flow annotations in JS code directly. Npm packages will contain both ES5 and Flow JS file versions.
   - [chore] Adding @noflow annotations
   - [fix] Fix issue where the value of the `human` option of `fbt:pronoun` was processed incorrectly. Before, `human=true` used to behave as if `human=false`, and vice versa.
       Also, when `fbt:pronoun` is used without an explicit `human=false` option, we'll now generate the `NOT_A_PERSON` gender-case.

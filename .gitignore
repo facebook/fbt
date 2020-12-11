@@ -2,6 +2,8 @@
 node_modules
 yarn-error.log
 .flow-results
+# file checksums used by gulp-once
+.checksums
 
 # MacOS
 .DS_Store

@@ -13,6 +13,7 @@
     "clean-fbts": "rm .enum_manifest.json .src_manifest.json .source_strings.json src/translatedFbts.json .test_*.json 2&> /dev/null || exit 0",
     "collect-fbts": "fbt-collect --pretty --manifest < .src_manifest.json > .source_strings.json",
     "manifest": "fbt-manifest --src src",
+    "preinstall": "yarn workspace babel-plugin-fbt prepack",
     "postinstall": "yarn all",
     "start": "webpack-dev-server --open",
     "test-collect-fbts": "fbt-collect --pretty --manifest < .src_manifest.json > .test_source_strings.json",

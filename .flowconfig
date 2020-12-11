@@ -2,6 +2,7 @@
 <PROJECT_ROOT>/packages/fbt/lib/.*
 <PROJECT_ROOT>/packages/fbt/dist/.*
 .*/@babel/types/lib/index.js.flow
+.*/packages/babel-plugin-fbt/dist/.*
 
 [include]
 node_modules

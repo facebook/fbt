@@ -1,16 +1,21 @@
 {
   "license": "MIT",
-  "main": "index.js",
+  "main": "dist/index.js",
   "name": "babel-plugin-fbt",
   "description": "The FBT Babel localization transform",
   "//version": "Follow SemVer specs at https://semver.org/",
   "version": "0.16.0",
   "bin": {
-    "fbt-collect": "bin/collectFBT.bin.js",
-    "fbt-manifest": "bin/manifest.bin.js",
-    "fbt-translate": "bin/translate.bin.js"
+    "fbt-collect": "dist/bin/collectFBT.bin.js",
+    "fbt-manifest": "dist/bin/manifest.bin.js",
+    "fbt-translate": "dist/bin/translate.bin.js"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-once": "^2.1.1",
+    "gulp-rename": "^1.4.0"
+  },
   "dependencies": {
     "@babel/core": "^7.0.0",
     "@babel/generator": "^7.0.0",
@@ -32,6 +37,7 @@
     "directory": "packages/babel-plugin-fbt"
   },
   "scripts": {
+    "prepack": "gulp build",
     "publish_to_npm_latest": "yarn publish . && git push --tags && git push"
   }
 }
