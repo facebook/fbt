@@ -12,7 +12,7 @@ const {FbtType} = require('./FbtConstants');
 const invariant = require('invariant');
 
 /**
- * Used by collectFBT to output multiple phrases in a flat array.
+ * Used by collectFbt to output multiple phrases in a flat array.
  * See FbtShiftEnumsTest for example input and output.
  */
 function extractEnumsAndFlattenPhrases(phrases) {

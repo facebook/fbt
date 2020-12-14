@@ -6,7 +6,7 @@
   "//version": "Follow SemVer specs at https://semver.org/",
   "version": "0.16.0",
   "bin": {
-    "fbt-collect": "dist/bin/collectFBT.bin.js",
+    "fbt-collect": "dist/bin/collectFbt.bin.js",
     "fbt-manifest": "dist/bin/manifest.bin.js",
     "fbt-translate": "dist/bin/translate.bin.js"
   },

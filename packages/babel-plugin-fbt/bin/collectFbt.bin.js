@@ -8,4 +8,4 @@
 
 'use strict';
 
-require('./collectFBT');
+require('./collectFbt');

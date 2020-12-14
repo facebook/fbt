@@ -13,6 +13,8 @@ as a utility for collecting strings.  It expects a JSON input of:
   ]
 }
 ```
+_`collectFbt.js` is also exposed as a binary named `fbt-collect` from `babel-plugin-fbt`_
+
 `enumManifestPath` doesn't need to point to a valid enum manifest, but if you use a [shared enum](enums#shared-enums) it's required.
 
 The enum-manifest should be a `"JSON.parseable"` mapping from all known enums in your app to the key/value pairs they respectively represent:
@@ -32,8 +34,9 @@ The enum-manifest should be a `"JSON.parseable"` mapping from all known enums in
 }
 ```
 We've provided `manifest.js` as an easy way to generate this manifest from a given source tree.
+_`manifest.js` is also exposed as a binary named `fbt-manifest` from `babel-plugin-fbt`_
 
-`collectFbts.js` will output a JSON object in the following format:
+`collectFbt.js` will output a JSON object in the following format:
 
 ```js
 {
