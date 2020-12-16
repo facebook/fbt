@@ -52,7 +52,7 @@ describe('fbt', () => {
     ).getVariation;
   });
 
-  it('should memoize new strings', function() {
+  it('should memoize new strings', function () {
     expect(fbtRuntime._getCachedFbt('sample string')).toEqual(undefined);
 
     expect(fbtRuntime._('sample string')).toEqual(
@@ -60,17 +60,17 @@ describe('fbt', () => {
     );
   });
 
-  it('should trivially handle tokenless strings', function() {
+  it('should trivially handle tokenless strings', function () {
     expect(fbt('without tokens', 'test')).toEqual('without tokens');
   });
 
-  it('should handle common strings', function() {
+  it('should handle common strings', function () {
     expect(fbt.c('Accept')).toEqual(
       fbt('Accept', 'Button/Link: Accept conditions'),
     );
   });
 
-  it('should replace tokens with named values', function() {
+  it('should replace tokens with named values', function () {
     expect(
       fbt('with token ' + fbt.param('token', 'A') + ' here', 'test'),
     ).toEqual('with token A here');
@@ -86,7 +86,7 @@ describe('fbt', () => {
     ).toEqual('with tokens A and B');
   });
 
-  it('should remove punctuation when a value ends with it', function() {
+  it('should remove punctuation when a value ends with it', function () {
     expect(
       fbt('They said ' + fbt.param('quote', '"Hi!"') + '.', 'test'),
     ).toEqual('They said "Hi!"');
@@ -95,7 +95,7 @@ describe('fbt', () => {
     );
   });
 
-  it('should allow values that look like token patterns', function() {
+  it('should allow values that look like token patterns', function () {
     expect(
       fbt(
         'with tokens ' +
@@ -108,7 +108,7 @@ describe('fbt', () => {
     ).toEqual('with tokens {tokenB} and B');
   });
 
-  it('should support objects as token values', function() {
+  it('should support objects as token values', function () {
     // We expect that this returns an opaque React fragment instead of an array.
     // We use this to preserve identity of nested React elements.
     const argument = <div />;
@@ -117,13 +117,13 @@ describe('fbt', () => {
       'test',
     );
     const items = [];
-    React.Children.forEach(fragment, function(item) {
+    React.Children.forEach(fragment, function (item) {
       items.push(item);
     });
     expect(items).toEqual(['with token ', argument, ' here']);
   });
 
-  it('should render empty string for null values', function() {
+  it('should render empty string for null values', function () {
     expect(fbt(fbt.param('null_value', null), 'test')).toEqual('');
   });
 
@@ -160,7 +160,7 @@ describe('fbt', () => {
     }
   }
 
-  it('should use wildcard defaults', function() {
+  it('should use wildcard defaults', function () {
     expect(
       fbt(
         'with something like ' +
@@ -171,7 +171,7 @@ describe('fbt', () => {
     ).toEqual('with something like 42 wildcards');
   });
 
-  it('should format numeric value', function() {
+  it('should format numeric value', function () {
     expect(
       fbt(
         'A total amount is ' + fbt.param('count', 10000, {number: true}),
@@ -180,7 +180,7 @@ describe('fbt', () => {
     ).toEqual('A total amount is 10,000');
   });
 
-  it('should keep literal value as is', function() {
+  it('should keep literal value as is', function () {
     expect(
       fbt('A total amount is ' + fbt.param('count', 10000), 'Test string'),
     ).toEqual('A total amount is 10000');
@@ -194,7 +194,7 @@ describe('fbt', () => {
     return Array.prototype.slice.call(resultingElements, 0);
   }
 
-  it('should not warn when unkeyed React components are params', function() {
+  it('should not warn when unkeyed React components are params', function () {
     jest.spyOn(console, 'warn').mockImplementation(() => {});
     const nodes = renderAndExtractChildDivs(
       <TestComponent value="A" childA={<div />} childB={<div />} />,
@@ -222,7 +222,7 @@ describe('fbt', () => {
     expect(nodesA[1]).toBe(nodesB[0]);
   }
 
-  it('should retain React identity when sentence order changes', function() {
+  it('should retain React identity when sentence order changes', function () {
     expectChildSetsToRetainIdentity(<div key="A" />, <div key="B" />);
   });
 
@@ -240,13 +240,13 @@ describe('fbt', () => {
   //   );
   // });
 
-  it('should replace QuickTranslation strings', function() {
+  it('should replace QuickTranslation strings', function () {
     expect(
       fbtRuntime._(['This is a QT string', '8b0c31a270a324f26d2417a358106611']),
     ).toEqual('override');
   });
 
-  it('should replace QuickTranslation strings with params', function() {
+  it('should replace QuickTranslation strings with params', function () {
     expect(
       fbtRuntime._(
         ['Just a {param}', 'fakeHash3'],
@@ -255,7 +255,7 @@ describe('fbt', () => {
     ).toEqual('Override a substitute');
   });
 
-  it('should replace QuickTranslation "trees"', function() {
+  it('should replace QuickTranslation "trees"', function () {
     const runtimeArg = {
       s: ['This is a QT with a {param}', 'fakeHash1'],
       p: ['These are QTs with a {param}', 'fakeHash2'],
@@ -275,7 +275,7 @@ describe('fbt', () => {
     ).toEqual('These are overrides and a test');
   });
 
-  it('should handle variated numbers', function() {
+  it('should handle variated numbers', function () {
     const previousNumberTypeGetter = FbtNumberType.getVariation;
     FbtNumberType.getVariation = jest.requireActual(
       'IntlCLDRNumberType31',
@@ -300,7 +300,7 @@ describe('fbt', () => {
     FbtNumberType.getVariation = previousNumberTypeGetter;
   });
 
-  it('should create a tuple for fbt.subject if valid', function() {
+  it('should create a tuple for fbt.subject if valid', function () {
     expect(fbtRuntime._subject(IntlVariations.GENDER_MALE)).toEqual([
       [IntlVariations.GENDER_MALE, '*'],
       null,
@@ -308,13 +308,13 @@ describe('fbt', () => {
     expect(() => fbtRuntime._subject(0)).toThrow('Invalid gender provided');
   });
 
-  it('should leave non-QuickTranslation strings alone', function() {
+  it('should leave non-QuickTranslation strings alone', function () {
     expect(
       fbtRuntime._(["This isn't", '8b0c31a270a324f26d2417a358106612']),
     ).toEqual("This isn't");
   });
 
-  it('should access table with multiple tokens containing subject', function() {
+  it('should access table with multiple tokens containing subject', function () {
     expect(
       fbt(
         'Invited by ' + fbt.plural('friend', 1, {showCount: 'yes'}) + '.',
@@ -324,7 +324,7 @@ describe('fbt', () => {
     ).toEqual('Invited by 1 friend.');
   });
 
-  it('should access table with fallback logic', function() {
+  it('should access table with fallback logic', function () {
     const FbtHooks = require('FbtHooks');
     let genderMock;
     // $FlowFixMe[cannot-write] We need to mock this method
@@ -368,7 +368,7 @@ describe('fbt', () => {
       {arg: [B, one, name], expected: 'B,UNKNOWN,ONE Bob has 1'},
       {arg: [B, other, name], expected: 'B,UNKNOWN,OTHER Bob has 20'},
     ];
-    const runTest = function(test) {
+    const runTest = function (test) {
       try {
         expect(fbtRuntime._(table, test.arg)).toBe(test.expected);
       } catch (error) {
