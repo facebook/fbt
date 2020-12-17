@@ -39,6 +39,8 @@ const paths = {
     '!runtime/**/__tests__/*',
     '!runtime/**/__mocks__/*',
   ],
+  runtimeTests: ['runtime/nonfb/**/__tests__/*'],
+  runtimeMocks: ['runtime/nonfb/**/__mocks__/*'],
   typedModules: ['flow-types/typed-js-modules/*.flow'],
   css: ['runtime/**/*.css'],
 };
@@ -125,6 +127,39 @@ gulp.task(
   }),
 );
 
+const babelTestPresets = {
+  plugins: [
+    ...PLUGINS,
+    require('@babel/plugin-syntax-jsx'),
+    // TODO #81682213 - Bring in shared runtime tests
+    // The fbtCommon map below is only applicable to fbt-test.js, which doesn't
+    // yet run in github
+    [require('babel-plugin-fbt'), {fbtCommon: {Accept: '...'}}],
+    require('babel-plugin-fbt-runtime'),
+    require('@babel/plugin-transform-react-jsx'),
+  ],
+};
+
+gulp.task(
+  'test-modules',
+  gulp.parallel(
+    () =>
+      gulp
+        .src(paths.runtimeTests, {follow: true})
+        .pipe(once())
+        .pipe(babel(babelTestPresets))
+        .pipe(flatten())
+        .pipe(gulp.dest(paths.lib + '/__tests__')),
+    () =>
+      gulp
+        .src(paths.runtimeMocks, {follow: true})
+        .pipe(once())
+        .pipe(babel(babelTestPresets))
+        .pipe(flatten())
+        .pipe(gulp.dest(paths.lib + '/__mocks__')),
+  ),
+);
+
 // Copy raw source with rewritten modules to *.js.flow
 gulp.task(
   'flow',
@@ -199,7 +234,7 @@ gulp.task(
   'lib',
   gulp.series(
     'clean',
-    gulp.parallel('license', 'modules', 'flow'),
+    gulp.parallel('license', 'modules', 'test-modules', 'flow'),
     gulp.series('dist', 'dist:min'),
   ),
 );

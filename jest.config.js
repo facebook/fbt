@@ -40,6 +40,11 @@ module.exports = {
       ],
     },
     {
+      displayName: 'fbt-runtime',
+      roots: [fs.realpathSync(path.resolve('packages', 'fbt', 'lib'))],
+      modulePaths: [fs.realpathSync(path.resolve('packages', 'fbt', 'lib'))]
+    },
+    {
       displayName: 'fb-tiger-hash',
       roots: [fs.realpathSync(path.resolve('packages', 'fb-tiger-hash'))],
       testRegex: '/__tests__/.*\\.js$',

@@ -59,6 +59,7 @@
   "scripts": {
     "babel-plugin-fbt-runtime:test": "jest packages/babel-plugin-fbt-runtime",
     "babel-plugin-fbt:test": "jest packages/babel-plugin-fbt",
+    "fbt:test": "jest packages/fbt",
     "build-runtime": "gulp lib",
     "clean-test": "yarn install && yarn workspace demo-app clean-build && yarn workspace demo-app test-build-scripts && yarn test && yarn flow:check",
     "clean": "gulp clean",
