@@ -1,4 +1,4 @@
-name: FBT Continuous Integration
+name: build
 
 on:
   push:
