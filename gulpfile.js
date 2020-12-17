@@ -231,9 +231,8 @@ gulp.task(
 );
 
 gulp.task(
-  'lib',
+  'build-runtime',
   gulp.series(
-    'clean',
     gulp.parallel('license', 'modules', 'test-modules', 'flow'),
     gulp.series('dist', 'dist:min'),
   ),
