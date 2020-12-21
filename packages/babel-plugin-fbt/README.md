@@ -17,7 +17,7 @@
 </p>
 
 <h1 align="center">
-  <img src="https://facebookincubator.github.io/fbt/img/fbt.png" height="150" width="150" alt="FBT"/>
+  <img src="https://facebook.github.io/fbt/img/fbt.png" height="150" width="150" alt="FBT"/>
 </h1>
 
 
@@ -26,4 +26,4 @@
 This is the *main* FBT Babel transform.  For E2E use it should be paired with the [fbt-babel-plugin-runtime](https://www.npmjs.com/package/babel-plugin-fbt-runtime)
 
 ## Full documentation
-https://facebookincubator.github.io/fbt
+https://facebook.github.io/fbt

@@ -340,7 +340,7 @@ function expandStringConcat(
   throw errorAt(
     node,
     `${moduleName} only accepts plain strings with params wrapped in ${moduleName}.param(...). ` +
-      `See the docs at https://facebookincubator.github.io/fbt/ for more info. ` +
+      `See the docs at https://facebook.github.io/fbt/ for more info. ` +
       `Expected StringLiteral, TemplateLiteral, or concatenation; ` +
       // $FlowExpectedError This BabelNode is unsupported so it may not even have a type property
       `got "${node.type}"`,
