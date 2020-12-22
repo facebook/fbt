@@ -112,6 +112,7 @@ List of changes for each released npm package version.
       Unreleased changes that have landed in master. Click to see more.
     </summary>
 
+  - [chore!] `collectFBT` renamed to `collectFbt` (BREAKING CHANGE: updates paths to binary)
   - [minor] Add ability to write Flow annotations in JS code directly. Npm packages will contain both ES5 and Flow JS file versions.
   - [chore] Adding @noflow annotations
   - [fix] Fix issue where the value of the `human` option of `fbt:pronoun` was processed incorrectly. Before, `human=true` used to behave as if `human=false`, and vice versa.
