@@ -13,6 +13,7 @@ List of changes for each released npm package version.
 - [fbt-rn-android-native versions [Deprecated]](#fbt-rn-android-native-versions-deprecated)
 
 ### Top-level Github
+- [chore] Upgrade to Flow v0.141.0
 - [chore] Use GitHub Actions for Continuous Integration
 - [chore] Upgrade to Flow v0.137.0
 - [chore] Adding @noflow annotations
