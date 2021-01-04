@@ -46,6 +46,8 @@ List of changes for each released npm package version.
   <summary>
     Unreleased changes that have landed in master. Click to see more.
   </summary>
+
+  - [fix] Improved Flow typing of `intlList`.
 </details>
 
 - 0.16.0:

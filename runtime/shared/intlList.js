@@ -179,12 +179,15 @@ function _getConjunction(
 intlList.DELIMITERS = DELIMITERS;
 intlList.CONJUNCTIONS = CONJUNCTIONS;
 
-module.exports = (intlList: (<TItem: React.Node>(
-  items: $ReadOnlyArray<TItem>,
-  conjunction: ?$Keys<typeof CONJUNCTIONS>,
-  delimiter: ?$Keys<typeof DELIMITERS>,
-) => TItem | Fbt) & {
+type IntlListExport = {|
+  <TItem: React.Node>(
+    items: $ReadOnlyArray<TItem>,
+    conjunction: ?$Keys<typeof CONJUNCTIONS>,
+    delimiter: ?$Keys<typeof DELIMITERS>,
+  ): TItem | Fbt,
+
   DELIMITERS: typeof DELIMITERS,
   CONJUNCTIONS: typeof CONJUNCTIONS,
-  ...
-});
+|};
+
+module.exports = (intlList: IntlListExport);
