@@ -49,14 +49,14 @@ You'll need to add the fbt babel transforms in a manner similar to our demo-app.
 There are scripts bundled into the `babel-plugin-fbt` package that are designed for collecting source text (and associated metadata) from your application's source.
 These are:
 
- * [manifest](https://github.com/facebook/fbt/blob/master/packages/babel-plugin-fbt/src/bin/manifest.bin.js) -
+ * [fbt-manifest](https://github.com/facebook/fbt/blob/19531133625dab1d38995dcf578dcfdfa0b09048/packages/babel-plugin-fbt/package.json#L10) -
    Scans provided filesystem paths and generates a manifest of the [enumeration modules](https://facebook.github.io/fbt/docs/enums)
    * **NOTE**: Enum modules must end in [$FbtEnum.(js|jsx|ts|tsx)](https://github.com/facebook/fbt/blob/3a5441708ca6b71c2c18fe5a952d1058a22306d1/packages/babel-plugin-fbt/bin/manifest.js#L66) (i.e. `Foo$FbtEnum.js`)
- * [collectFbt](https://github.com/facebook/fbt/blob/master/packages/babel-plugin-fbt/src/bin/collectFbt.bin.js) -
+ * [fbt-collectFbt](https://github.com/facebook/fbt/blob/19531133625dab1d38995dcf578dcfdfa0b09048/packages/babel-plugin-fbt/package.json#L9) -
    Given source input, extract any source text and print them to STDOUT as JSON
 
 ### Translation
- * [translate](https://github.com/facebook/fbt/blob/master/packages/babel-plugin-fbt/src/bin/translate.bin.js) -
+ * [fbt-translate](https://github.com/facebook/fbt/blob/19531133625dab1d38995dcf578dcfdfa0b09048/packages/babel-plugin-fbt/package.json#L11) -
    Creates translation payloads for runtime
    * Takes extracted source text (from `collectFbt`) and [translations provided in JSON format](https://facebook.github.io/fbt/docs/translating) to produce these payloads
 
