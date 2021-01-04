@@ -47,8 +47,10 @@ List of changes for each released npm package version.
     Unreleased changes that have landed in master. Click to see more.
   </summary>
 
-  - [fix] Improved Flow typing of `intlList`.
 </details>
+
+- 0.16.1:
+  - [fix] Improved Flow typing of `intlList`.
 
 - 0.16.0:
   - [major] Merge two `GenderConst` entries that had the same value to avoid confusion. <br/>
@@ -115,6 +117,9 @@ List of changes for each released npm package version.
       Unreleased changes that have landed in master. Click to see more.
     </summary>
 
+  </details>
+
+- 0.17.0:
   - [chore!] `collectFBT` renamed to `collectFbt` (BREAKING CHANGE: updates paths to binary)
   - [minor!] Add ability to write Flow annotations in JS code directly.
       Npm packages will contain both ES5 and Flow JS file versions.
@@ -125,7 +130,6 @@ List of changes for each released npm package version.
       Also, when `fbt:pronoun` is used without an explicit `human=false` option, we'll now generate the `NOT_A_PERSON` gender-case.
   - [fix] Fix incorrect object detection algorithm of `objMap()` in `FbtUtil.js`
   - [chore] Remove dead code
-  </details>
 
 - 0.16.0:
   - [major] Merge two `GenderConst` entries that had the same value to avoid confusion. <br/>
