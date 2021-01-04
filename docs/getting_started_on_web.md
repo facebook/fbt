@@ -46,17 +46,17 @@ You'll need to add the fbt babel transforms in a manner similar to our demo-app.
 ## Build-time / offline processes
 
 ### Collection
-There are scripts bundled into the `babel-plugin-fbt` package that are desigend for collecting source text (and associated metadata) from your application's source.
+There are scripts bundled into the `babel-plugin-fbt` package that are designed for collecting source text (and associated metadata) from your application's source.
 These are:
 
- * [manifest](https://github.com/facebook/fbt/blob/master/packages/babel-plugin-fbt/bin/manifest.bin.js) -
+ * [manifest](https://github.com/facebook/fbt/blob/master/packages/babel-plugin-fbt/src/bin/manifest.bin.js) -
    Scans provided filesystem paths and generates a manifest of the [enumeration modules](https://facebook.github.io/fbt/docs/enums)
    * **NOTE**: Enum modules must end in [$FbtEnum.(js|jsx|ts|tsx)](https://github.com/facebook/fbt/blob/3a5441708ca6b71c2c18fe5a952d1058a22306d1/packages/babel-plugin-fbt/bin/manifest.js#L66) (i.e. `Foo$FbtEnum.js`)
- * [collectFbt](https://github.com/facebook/fbt/blob/master/packages/babel-plugin-fbt/bin/collectFbt.bin.js) -
+ * [collectFbt](https://github.com/facebook/fbt/blob/master/packages/babel-plugin-fbt/src/bin/collectFbt.bin.js) -
    Given source input, extract any source text and print them to STDOUT as JSON
 
 ### Translation
- * [translate](https://github.com/facebook/fbt/blob/master/packages/babel-plugin-fbt/bin/translate.bin.js) -
+ * [translate](https://github.com/facebook/fbt/blob/master/packages/babel-plugin-fbt/src/bin/translate.bin.js) -
    Creates translation payloads for runtime
    * Takes extracted source text (from `collectFbt`) and [translations provided in JSON format](https://facebook.github.io/fbt/docs/translating) to produce these payloads
 
@@ -73,7 +73,7 @@ The `fbt` runtime requires that you initialize with your relevant translations v
 
 ### Changing of translation locale on the fly
 
-Let's assume you've split your translation payloads per locale using the [`--output-dir` option](https://github.com/facebook/fbt/blob/98d0516290975f614737387748769e235bf61216/packages/babel-plugin-fbt/bin/translate.js#L145-L153) of the [`translate` script](https://github.com/facebook/fbt/blob/master/packages/babel-plugin-fbt/bin/translate.js). In this example, your app was initialized with the `es_ES` translation payload and, upon user request, you need to load `fr_FR` translations and show these in the UI. (We'll assume that your app already has access to the new translation payload)
+Let's assume you've split your translation payloads per locale using the [`--output-dir` option](https://github.com/facebook/fbt/blob/98d0516290975f614737387748769e235bf61216/packages/babel-plugin-fbt/bin/translate.js#L145-L153) of the [`translate` script](https://github.com/facebook/fbt/blob/master/packages/babel-plugin-fbt/src/bin/translate.js). In this example, your app was initialized with the `es_ES` translation payload and, upon user request, you need to load `fr_FR` translations and show these in the UI. (We'll assume that your app already has access to the new translation payload)
 
 In order to change of translation locale on the fly, you'll need to do all the items below:
 

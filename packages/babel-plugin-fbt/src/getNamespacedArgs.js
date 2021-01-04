@@ -9,7 +9,7 @@
 'use strict';
 
 /* eslint fb-www/comma-dangle: "off" */
-// See explaination in /js/fb-transforms/babel-7/babel-plugin-fbt/index.js
+// See explanation in ./index.js
 
 const FbtAutoWrap = require('./FbtAutoWrap');
 const {

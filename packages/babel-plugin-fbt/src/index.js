@@ -20,8 +20,8 @@ import type {
   ExtractTableTextItems,
   FbtFunctionCallPhrase,
 } from './babel-processors/FbtFunctionCallProcessor';
-import type {FbtRuntimeInput} from '../../runtime/shared/FbtHooks';
-import type {PatternString} from '../../runtime/shared/FbtTable';
+import type {FbtRuntimeInput} from '../../../runtime/shared/FbtHooks';
+import type {PatternString} from '../../../runtime/shared/FbtTable';
 
 export type ExtraBabelNodeProps = {
   implicitDesc?: string,

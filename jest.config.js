@@ -13,6 +13,7 @@ const runtimePaths = [
   '<rootDir>/runtime/nonfb',
   '<rootDir>/runtime/nonfb/mocks',
 ];
+const {PLUGINS} = require('./babelPlugins');
 
 const globalConfig = {
   setupFiles: ['fbjs-scripts/jest/environment.js'],
@@ -30,8 +31,11 @@ module.exports = {
   projects: [
     {
       displayName: 'babel-plugin-fbt',
-      roots: [fs.realpathSync(path.resolve('packages', 'babel-plugin-fbt'))],
-      testPathIgnorePatterns: ['packages/babel-plugin-fbt/dist/'],
+      roots: [
+        fs.realpathSync(path.resolve('packages', 'babel-plugin-fbt', 'dist')),
+      ],
+      snapshotResolver:
+        '<rootDir>/packages/babel-plugin-fbt/jest.snapshotResolver.js',
     },
     {
       displayName: 'babel-plugin-fbt-runtime',
@@ -42,7 +46,7 @@ module.exports = {
     {
       displayName: 'fbt-runtime',
       roots: [fs.realpathSync(path.resolve('packages', 'fbt', 'lib'))],
-      modulePaths: [fs.realpathSync(path.resolve('packages', 'fbt', 'lib'))]
+      modulePaths: [fs.realpathSync(path.resolve('packages', 'fbt', 'lib'))],
     },
     {
       displayName: 'fb-tiger-hash',

@@ -19,7 +19,10 @@ const rename = require('gulp-rename');
 const path = require('path');
 
 const paths = {
-  root: ['**/*.js', '!dist/**', '!gulpfile.js', '!node_modules/**'],
+  src: {
+    js: ['src/**/*.js', '!dist/**', '!gulpfile.js', '!node_modules/**'],
+    json: ['src/**/*.json', '!dist/**', '!node_modules/**'],
+  },
   dist: 'dist',
 };
 
@@ -42,7 +45,7 @@ gulp.task(
   'build',
   gulp.parallel(
     function babelPluginFbt_buildDistJS() {
-      return src(paths.root, {
+      return src(paths.src.js, {
         follow: true,
       })
         .pipe(once())
@@ -54,10 +57,15 @@ gulp.task(
         .pipe(dest(paths.dist));
     },
     function babelPluginFbt_buildDistFlowJS() {
-      return src(paths.root, {
+      return src(paths.src.js, {
         follow: true,
       })
         .pipe(rename({extname: '.js.flow'}))
+        .pipe(once())
+        .pipe(dest(paths.dist));
+    },
+    function babelPluginFbt_copyJsonToDist() {
+      return src(paths.src.json, {follow: true})
         .pipe(once())
         .pipe(dest(paths.dist));
     },
@@ -66,7 +74,7 @@ gulp.task(
 
 gulp.task('watch', () => {
   gulp.watch(
-    paths.root,
+    paths.src.js.concat(paths.src.json),
     {
       cwd: __dirname,
       ignoreInitial: false,

@@ -20,7 +20,9 @@ describe('IntlVariations', () => {
 
   describe('when compared with the client-side IntlVariations', () => {
     beforeEach(() => {
-      ClientSideIntlVariations = require('../../../../runtime/nonfb/IntlVariations');
+      // one "../" parent folder higher since this file is supposed
+      // to run (transpiled) in the "dist" subfolder.
+      ClientSideIntlVariations = require('../../../../../runtime/nonfb/IntlVariations');
     });
 
     function getPropsByPrefix(object, prefix) {

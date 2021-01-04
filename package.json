@@ -69,7 +69,7 @@
     "flow:watch": "yarn watch 'yarn flow stop && yarn flow check --show-all-errors 2>&1 | tee .flow-results' . --ignoreDotFiles",
     "postinstall": "yarn gulp --series clean build-runtime",
     "//": "Needed because the yarn+workspace `install` process creates the bin scripts' symbolic links ONLY BEFORE running the install steps",
-    "create_dummy_bin_scripts_for_yarn_install": "mkdir -p packages/babel-plugin-fbt/dist/bin 2> /dev/null ; cp packages/babel-plugin-fbt/bin/*.bin.js packages/babel-plugin-fbt/dist/bin",
+    "create_dummy_bin_scripts_for_yarn_install": "mkdir -p packages/babel-plugin-fbt/dist/bin 2> /dev/null ; cp packages/babel-plugin-fbt/src/bin/*.bin.js packages/babel-plugin-fbt/dist/bin",
     "preinstall": "yarn create_dummy_bin_scripts_for_yarn_install",
     "test:watch": "jest --watch",
     "test": "jest"

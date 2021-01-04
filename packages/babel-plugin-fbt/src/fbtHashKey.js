@@ -9,8 +9,8 @@
 
 
 /*::
-import type {FbtRuntimeInput} from '../../runtime/shared/FbtHooks';
-import type {PatternString} from '../../runtime/shared/FbtTable';
+import type {FbtRuntimeInput} from '../../../runtime/shared/FbtHooks';
+import type {PatternString} from '../../../runtime/shared/FbtTable';
 */
 
 const fbtJenkinsHash = require('./fbtJenkinsHash');

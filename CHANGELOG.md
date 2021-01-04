@@ -53,7 +53,7 @@ List of changes for each released npm package version.
 - 0.16.0:
   - [major] Merge two `GenderConst` entries that had the same value to avoid confusion. <br/>
     I.e. `MIXED_SINGULAR` and `MIXED_PLURAL` will both be referred as `MIXED_UNKNOWN` and it'll keep the same value (`MIXED_UNKNOWN=5`).
-  - [feat] Add Babel `presets` as a CLI option for [`collectFBT.js`](https://github.com/facebook/fbt/blob/master/packages/babel-plugin-fbt/bin/collectFBT.js)
+  - [feat] Add Babel `presets` as a CLI option for [`collectFBT.js`](https://github.com/facebook/fbt/blob/c6201e9b463685a942563adaa62569430d41aa27/packages/babel-plugin-fbt/bin/collectFBT.js)
   - [feat] Add ES6 imports/exports support for shared enums. See [related doc.](https://facebook.github.io/fbt/docs/enums#es6-import-export-syntax)
 
 - 0.15.0:
@@ -116,7 +116,10 @@ List of changes for each released npm package version.
     </summary>
 
   - [chore!] `collectFBT` renamed to `collectFbt` (BREAKING CHANGE: updates paths to binary)
-  - [minor] Add ability to write Flow annotations in JS code directly. Npm packages will contain both ES5 and Flow JS file versions.
+  - [minor!] Add ability to write Flow annotations in JS code directly.
+      Npm packages will contain both ES5 and Flow JS file versions.
+      Source files have been moved to a `src` folder and their ES5-transpiled versions
+      will be published inside the `dist` folder. (BREAKING CHANGE: updates paths to source files)
   - [chore] Adding @noflow annotations
   - [fix] Fix issue where the value of the `human` option of `fbt:pronoun` was processed incorrectly. Before, `human=true` used to behave as if `human=false`, and vice versa.
       Also, when `fbt:pronoun` is used without an explicit `human=false` option, we'll now generate the `NOT_A_PERSON` gender-case.

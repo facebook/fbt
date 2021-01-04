@@ -6,7 +6,7 @@
  */
 
 /*::
-import type {PatternHash, PatternString} from '../../../runtime/shared/FbtTable';
+import type {PatternHash, PatternString} from '../../../../runtime/shared/FbtTable';
 import type {PackagerPhrase} from './FbtCollector';
 
 // The hash function signature should look like:

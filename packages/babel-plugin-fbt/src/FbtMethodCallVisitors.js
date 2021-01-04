@@ -15,7 +15,7 @@
 'use strict';
 
 /* eslint fb-www/comma-dangle: "off" */
-// See explanation in /js/fb-transforms/babel-7/babel-plugin-fbt/index.js
+// See explanation in ./index.js
 
 const {
   ValidPluralOptions,
