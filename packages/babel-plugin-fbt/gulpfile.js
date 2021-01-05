@@ -10,7 +10,6 @@
 
 'use strict';
 
-const {PLUGINS} = require('../../babelPlugins');
 const del = require('del');
 const gulp = require('gulp');
 const babel = require('gulp-babel');
@@ -51,7 +50,15 @@ gulp.task(
         .pipe(once())
         .pipe(
           babel({
-            plugins: PLUGINS,
+            plugins: [
+              '@babel/plugin-proposal-optional-catch-binding',
+              '@babel/plugin-syntax-class-properties',
+              '@babel/plugin-syntax-flow',
+              'babel-preset-fbjs/plugins/dev-expression',
+              '@babel/plugin-proposal-nullish-coalescing-operator',
+              '@babel/plugin-proposal-optional-chaining',
+              '@babel/plugin-transform-flow-strip-types',
+            ],
           }),
         )
         .pipe(dest(paths.dist));
