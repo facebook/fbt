@@ -4437,6 +4437,20 @@ gulp-rename@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/gulp-rename/-/gulp-rename-1.4.0.tgz#de1c718e7c4095ae861f7296ef4f3248648240bd"
 
+gulp-rewrite-flowtyped-modules@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/gulp-rewrite-flowtyped-modules/-/gulp-rewrite-flowtyped-modules-0.0.8.tgz#2661f94aa161b7dea918ac5a2990fbaed241dc3e"
+  dependencies:
+    flow-parser ">=0.115.0"
+    through2 "^3.0.1"
+
+gulp-strip-docblock-pragmas@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/gulp-strip-docblock-pragmas/-/gulp-strip-docblock-pragmas-0.0.2.tgz#160c06a4b0806b6caa1175cc5ba49dbed4149980"
+  dependencies:
+    jest-docblock "^26.0.0"
+    through2 "^3.0.1"
+
 gulp-util@^3.0.8:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/gulp-util/-/gulp-util-3.0.8.tgz#0054e1e744502e27c04c187c3ecc505dd54bbb4f"

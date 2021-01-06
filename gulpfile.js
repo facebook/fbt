@@ -130,33 +130,38 @@ gulp.task(
 const babelTestPresets = {
   plugins: [
     ...PLUGINS,
-    require('@babel/plugin-syntax-jsx'),
+    '@babel/plugin-syntax-jsx',
     // TODO #81682213 - Bring in shared runtime tests
     // The fbtCommon map below is only applicable to fbt-test.js, which doesn't
     // yet run in github
-    [require('babel-plugin-fbt'), {fbtCommon: {Accept: '...'}}],
-    require('babel-plugin-fbt-runtime'),
-    require('@babel/plugin-transform-react-jsx'),
+    ['babel-plugin-fbt', {fbtCommon: {Accept: '...'}}],
+    'babel-plugin-fbt-runtime',
+    '@babel/plugin-transform-react-jsx',
   ],
 };
 
 gulp.task(
   'test-modules',
-  gulp.parallel(
-    () =>
-      gulp
-        .src(paths.runtimeTests, {follow: true})
-        .pipe(once())
-        .pipe(babel(babelTestPresets))
-        .pipe(flatten())
-        .pipe(gulp.dest(paths.lib + '/__tests__')),
-    () =>
-      gulp
-        .src(paths.runtimeMocks, {follow: true})
-        .pipe(once())
-        .pipe(babel(babelTestPresets))
-        .pipe(flatten())
-        .pipe(gulp.dest(paths.lib + '/__mocks__')),
+  gulp.series(
+    babelPluginFbtGulp.build,
+    gulp.parallel(
+      function buildRuntimeTests() {
+        return gulp
+          .src(paths.runtimeTests, {follow: true})
+          .pipe(once())
+          .pipe(babel(babelTestPresets))
+          .pipe(flatten())
+          .pipe(gulp.dest(paths.lib + '/__tests__'));
+      },
+      function buildRuntimeMocks() {
+        return gulp
+          .src(paths.runtimeMocks, {follow: true})
+          .pipe(once())
+          .pipe(babel(babelTestPresets))
+          .pipe(flatten())
+          .pipe(gulp.dest(paths.lib + '/__mocks__'));
+      },
+    ),
   ),
 );
 
