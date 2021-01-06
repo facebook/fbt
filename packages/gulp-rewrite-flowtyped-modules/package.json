@@ -1,0 +1,30 @@
+{
+  "name": "gulp-rewrite-flowtyped-modules",
+  "description": "A flow-syntax-aware module dependency rewriter gulp plugin.",
+  "version": "0.0.9",
+  "main": "src/index.js",
+  "license": "MIT",
+  "dependencies": {
+    "flow-parser": ">=0.115.0",
+    "through2": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=6.0"
+  },
+  "keywords": [
+    "gulpplugin",
+    "gulp",
+    "flow"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/facebook/fbt.git"
+  },
+  "scripts": {
+    "test": "yarn jest"
+  },
+  "bugs": "https://github.com/facebook/fbt/issues",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
