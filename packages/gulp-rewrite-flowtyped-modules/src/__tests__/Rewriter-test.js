@@ -1,5 +1,9 @@
 /**
  * (c) Facebook, Inc. and its affiliates. Confidential and proprietary.
+ *
+ * @noflow
+ * @format
+ * @emails oncall+i18n_fbt_oss
  */
 
 'use strict';

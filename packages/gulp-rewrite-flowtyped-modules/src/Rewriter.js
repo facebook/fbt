@@ -1,5 +1,8 @@
 /**
  * (c) Facebook, Inc. and its affiliates. Confidential and proprietary.
+ *
+ * @noflow
+ * @format
  */
 
 'use strict';
@@ -23,7 +26,7 @@ class Rewriter {
   }
 
   static rewrite(src, opts) {
-    return (new Rewriter(src, opts)).rewrite();
+    return new Rewriter(src, opts).rewrite();
   }
 
   rewrite() {
