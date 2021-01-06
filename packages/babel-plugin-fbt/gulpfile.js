@@ -41,7 +41,7 @@ const dest = (glob, opts) =>
     ...opts,
   });
 
-// Strip @generated pragma.
+// Strip the 'generated' pragma.
 // Files are transpiled and contents no longer match signature
 const stripGenerated = () => stripDocblockPragmas({pragmas: ['generated']});
 

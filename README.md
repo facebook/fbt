@@ -1,5 +1,5 @@
 <p>
-  <a href="https://github.com/facebook/fbt/actions?query=workflow%3A%22build">
+  <a href="https://github.com/facebook/fbt/actions?query=workflow%3Abuild">
     <img src="https://github.com/facebook/fbt/workflows/build/badge.svg" />
   </a>
 
