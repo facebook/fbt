@@ -39,7 +39,6 @@
     "gulp-if": "^2.0.2",
     "gulp-once": "^2.1.1",
     "gulp-rename": "^1.4.0",
-    "gulp-rewrite-flowtyped-modules": "^0.0.8",
     "gulp-util": "^3.0.8",
     "invariant": "^2.2.4",
     "jest": "^24.9.0",

@@ -11,6 +11,7 @@
     "fbt-translate": "dist/bin/translate.bin.js"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-optional-chaining": "^7.12.7",
     "gulp": "^4.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-once": "^2.1.1",
