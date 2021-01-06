@@ -49,6 +49,10 @@ module.exports = {
       modulePaths: [fs.realpathSync(path.resolve('packages', 'fbt', 'lib'))],
     },
     {
+      displayName: 'gulp-rewrite-flowtyped-modules',
+      roots: [fs.realpathSync(path.resolve('packages', 'gulp-rewrite-flowtyped-modules'))],
+    },
+    {
       displayName: 'fb-tiger-hash',
       roots: [fs.realpathSync(path.resolve('packages', 'fb-tiger-hash'))],
       testRegex: '/__tests__/.*\\.js$',
