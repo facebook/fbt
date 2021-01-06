@@ -65,6 +65,7 @@
     "clean": "gulp clean",
     "demo-app:test": "yarn workspace demo-app test",
     "fb-tiger-hash:test": "jest fb-tiger-hash && yarn workspace fb-tiger-hash test-types",
+    "gulp-rewrite-flowtyped-modules:test": "yarn workspace gulp-rewrite-flowtyped-modules test",
     "flow:check": "flow check --show-all-errors",
     "flow:watch": "yarn watch 'yarn flow stop && yarn flow check --show-all-errors 2>&1 | tee .flow-results' . --ignoreDotFiles",
     "postinstall": "yarn gulp --series clean build-runtime",
@@ -85,7 +86,8 @@
     "packages/babel-plugin-fbt",
     "packages/fb-babel-plugin-utils",
     "packages/fb-tiger-hash",
-    "packages/fbt"
+    "packages/fbt",
+    "packages/gulp-rewrite-flowtyped-modules"
   ],
   "engines": {
     "node": ">= 10.4.0"

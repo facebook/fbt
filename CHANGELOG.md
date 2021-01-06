@@ -9,6 +9,7 @@ List of changes for each released npm package version.
 - [babel-plugin-fbt-runtime versions](#babel-plugin-fbt-runtime-versions)
 - [fb-tiger-hash versions](#fb-tiger-hash-versions)
 - [fb-babel-plugin-utils versions](#fb-babel-plugin-utils-versions)
+- [gulp-rewrite-flowtyped-modules](#gulp-rewrite-flowtyped-modules)
 - [react-native-fbt versions](#react-native-fbt-versions)
 - [fbt-rn-android-native versions [Deprecated]](#fbt-rn-android-native-versions-deprecated)
 
@@ -291,6 +292,11 @@ List of changes for each released npm package version.
   - Add READMEs and improve repository link in package.json
 
 - 0.9.0:
+  - Initial commit
+
+### gulp-rewrite-flowtyped-modules
+
+- 0.0.9:
   - Initial commit
 
 ### react-native-fbt versions
