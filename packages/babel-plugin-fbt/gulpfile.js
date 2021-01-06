@@ -15,6 +15,7 @@ const gulp = require('gulp');
 const babel = require('gulp-babel');
 const gulpOnce = require('gulp-once');
 const rename = require('gulp-rename');
+const stripDocblockPragmas = require('gulp-strip-docblock-pragmas');
 const path = require('path');
 
 const paths = {
@@ -40,6 +41,10 @@ const dest = (glob, opts) =>
     ...opts,
   });
 
+// Strip @generated pragma.
+// Files are transpiled and contents no longer match signature
+const stripGenerated = () => stripDocblockPragmas({pragmas: ['generated']});
+
 gulp.task(
   'build',
   gulp.parallel(
@@ -48,6 +53,7 @@ gulp.task(
         follow: true,
       })
         .pipe(once())
+        .pipe(stripGenerated())
         .pipe(
           babel({
             plugins: [
@@ -69,6 +75,7 @@ gulp.task(
       })
         .pipe(rename({extname: '.js.flow'}))
         .pipe(once())
+        .pipe(stripGenerated())
         .pipe(dest(paths.dist));
     },
     function babelPluginFbt_copyJsonToDist() {

@@ -92,7 +92,7 @@ const buildDist = function (opts) {
 
 gulp.task(
   'license',
-  gulp.series(function () {
+  gulp.series(function copyLicense() {
     return gulp.src(paths.license).pipe(gulp.dest(paths.published));
   }),
 );
@@ -130,33 +130,38 @@ gulp.task(
 const babelTestPresets = {
   plugins: [
     ...PLUGINS,
-    require('@babel/plugin-syntax-jsx'),
+    '@babel/plugin-syntax-jsx',
     // TODO #81682213 - Bring in shared runtime tests
     // The fbtCommon map below is only applicable to fbt-test.js, which doesn't
     // yet run in github
-    [require('babel-plugin-fbt'), {fbtCommon: {Accept: '...'}}],
-    require('babel-plugin-fbt-runtime'),
-    require('@babel/plugin-transform-react-jsx'),
+    ['babel-plugin-fbt', {fbtCommon: {Accept: '...'}}],
+    'babel-plugin-fbt-runtime',
+    '@babel/plugin-transform-react-jsx',
   ],
 };
 
 gulp.task(
   'test-modules',
-  gulp.parallel(
-    () =>
-      gulp
-        .src(paths.runtimeTests, {follow: true})
-        .pipe(once())
-        .pipe(babel(babelTestPresets))
-        .pipe(flatten())
-        .pipe(gulp.dest(paths.lib + '/__tests__')),
-    () =>
-      gulp
-        .src(paths.runtimeMocks, {follow: true})
-        .pipe(once())
-        .pipe(babel(babelTestPresets))
-        .pipe(flatten())
-        .pipe(gulp.dest(paths.lib + '/__mocks__')),
+  gulp.series(
+    babelPluginFbtGulp.build,
+    gulp.parallel(
+      function buildRuntimeTests() {
+        return gulp
+          .src(paths.runtimeTests, {follow: true})
+          .pipe(once())
+          .pipe(babel(babelTestPresets))
+          .pipe(flatten())
+          .pipe(gulp.dest(paths.lib + '/__tests__'));
+      },
+      function buildRuntimeMocks() {
+        return gulp
+          .src(paths.runtimeMocks, {follow: true})
+          .pipe(once())
+          .pipe(babel(babelTestPresets))
+          .pipe(flatten())
+          .pipe(gulp.dest(paths.lib + '/__mocks__'));
+      },
+    ),
   ),
 );
 
@@ -164,20 +169,23 @@ gulp.task(
 gulp.task(
   'flow',
   gulp.parallel(
-    () =>
-      flatLib(
+    function flowCheck() {
+      return flatLib(
         gulp
           .src(paths.runtime, {follow: true})
           .pipe(rename({extname: '.js.flow'}))
           .pipe(rewriteModules({map: moduleMap})),
-      ),
-    () => flatLib(gulp.src(paths.typedModules, {follow: true})),
+      );
+    },
+    function copyFlowTypedModules() {
+      return flatLib(gulp.src(paths.typedModules, {follow: true}));
+    },
   ),
 );
 
 gulp.task(
   'css',
-  gulp.series(function () {
+  gulp.series(function buildCSS() {
     return gulp
       .src(paths.css, {follow: true})
       .pipe(concat('fbt.css'))
@@ -189,7 +197,7 @@ gulp.task(
 
 gulp.task(
   'dist',
-  gulp.series('modules', 'css', function () {
+  gulp.series('modules', 'css', function buildDistTask() {
     const opts = {
       debug: true,
       output: 'fbt.js',
@@ -205,7 +213,7 @@ gulp.task(
 
 gulp.task(
   'dist:min',
-  gulp.series('modules', function () {
+  gulp.series('modules', function buildDistMinTask() {
     const opts = {
       debug: false,
       output: 'fbt.min.js',
@@ -220,14 +228,14 @@ gulp.task(
 
 gulp.task(
   'clean',
-  gulp.parallel(babelPluginFbtGulp.clean, () =>
-    del([
+  gulp.parallel(babelPluginFbtGulp.clean, function cleanTask() {
+    return del([
       '.checksums',
       paths.published + '/*',
       '!' + paths.published + '/package.json',
       '!' + paths.published + '/README.md',
-    ]),
-  ),
+    ]);
+  }),
 );
 
 gulp.task(
