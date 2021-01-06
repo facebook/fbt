@@ -3,7 +3,7 @@
   "main": "index.js",
   "description": "The secondary FBT Babel transform, for E2E use",
   "//version": "Follow SemVer specs at https://semver.org/",
-  "version": "0.9.12",
+  "version": "0.9.13",
   "license": "MIT",
   "devDependencies": {
     "fb-babel-plugin-utils": "^0.10.0"
@@ -13,7 +13,7 @@
     "fbjs": "^1.0.0"
   },
   "peerDependencies": {
-    "babel-plugin-fbt": "^0.14.2"
+    "babel-plugin-fbt": "^0.16.x"
   },
   "repository": {
     "type": "git",
