@@ -44,45 +44,45 @@ const dest = (glob, opts) =>
 // Strip the 'generated' pragma.
 // Files are transpiled and contents no longer match signature
 const stripGenerated = () => stripDocblockPragmas({pragmas: ['generated']});
+const babelPluginFbt_buildDistJS = () =>
+  src(paths.src.js, {
+    follow: true,
+  })
+    .pipe(once())
+    .pipe(stripGenerated())
+    .pipe(
+      babel({
+        plugins: [
+          '@babel/plugin-proposal-optional-catch-binding',
+          '@babel/plugin-syntax-class-properties',
+          '@babel/plugin-syntax-flow',
+          'babel-preset-fbjs/plugins/dev-expression',
+          '@babel/plugin-proposal-nullish-coalescing-operator',
+          '@babel/plugin-proposal-optional-chaining',
+          '@babel/plugin-transform-flow-strip-types',
+        ],
+      }),
+    )
+    .pipe(dest(paths.dist));
+
+const babelPluginFbt_buildDistFlowJS = () =>
+  src(paths.src.js, {
+    follow: true,
+  })
+    .pipe(rename({extname: '.js.flow'}))
+    .pipe(once())
+    .pipe(stripGenerated())
+    .pipe(dest(paths.dist));
+
+const babelPluginFbt_copyJsonToDist = () =>
+  src(paths.src.json, {follow: true}).pipe(once()).pipe(dest(paths.dist));
 
 gulp.task(
   'build',
   gulp.parallel(
-    function babelPluginFbt_buildDistJS() {
-      return src(paths.src.js, {
-        follow: true,
-      })
-        .pipe(once())
-        .pipe(stripGenerated())
-        .pipe(
-          babel({
-            plugins: [
-              '@babel/plugin-proposal-optional-catch-binding',
-              '@babel/plugin-syntax-class-properties',
-              '@babel/plugin-syntax-flow',
-              'babel-preset-fbjs/plugins/dev-expression',
-              '@babel/plugin-proposal-nullish-coalescing-operator',
-              '@babel/plugin-proposal-optional-chaining',
-              '@babel/plugin-transform-flow-strip-types',
-            ],
-          }),
-        )
-        .pipe(dest(paths.dist));
-    },
-    function babelPluginFbt_buildDistFlowJS() {
-      return src(paths.src.js, {
-        follow: true,
-      })
-        .pipe(rename({extname: '.js.flow'}))
-        .pipe(once())
-        .pipe(stripGenerated())
-        .pipe(dest(paths.dist));
-    },
-    function babelPluginFbt_copyJsonToDist() {
-      return src(paths.src.json, {follow: true})
-        .pipe(once())
-        .pipe(dest(paths.dist));
-    },
+    babelPluginFbt_buildDistJS,
+    babelPluginFbt_buildDistFlowJS,
+    babelPluginFbt_copyJsonToDist,
   ),
 );
 
@@ -99,18 +99,12 @@ gulp.task('watch', () => {
   );
 });
 
-gulp.task(
-  'clean',
-  gulp.series(() =>
-    del(
-      [
-        path.join(__dirname, checksumFile),
-        path.join(__dirname, paths.dist, '*'),
-      ],
-      {force: true},
-    ),
-  ),
-);
+const babelPluginFbt_clean = () =>
+  del(
+    [path.join(__dirname, checksumFile), path.join(__dirname, paths.dist, '*')],
+    {force: true},
+  );
+gulp.task('clean', gulp.series(babelPluginFbt_clean));
 
 gulp.task('default', gulp.series('build'));
 

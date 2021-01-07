@@ -90,42 +90,37 @@ const buildDist = function (opts) {
   });
 };
 
-gulp.task(
-  'license',
-  gulp.series(function copyLicense() {
-    return gulp.src(paths.license).pipe(gulp.dest(paths.published));
-  }),
-);
+const copyLicense = () =>
+  gulp.src(paths.license).pipe(gulp.dest(paths.published));
+
+gulp.task('license', gulp.series(copyLicense));
 
 function flatLib(job) {
   return job.pipe(flatten()).pipe(gulp.dest(paths.lib));
 }
 
-gulp.task(
-  'modules',
-  gulp.series(babelPluginFbtGulp.build, function buildModules() {
-    return flatLib(
-      gulp
-        .src(paths.runtime, {follow: true})
-        .pipe(once())
-        .pipe(
-          babel({
-            plugins: [
-              ...PLUGINS,
-              require('@babel/plugin-syntax-jsx'),
-              require('babel-plugin-fbt'),
-              require('babel-plugin-fbt-runtime'),
-              [
-                require('babel-preset-fbjs/plugins/rewrite-modules'),
-                {map: moduleMap},
-              ],
-              require('@babel/plugin-transform-react-jsx'),
+const buildModules = () =>
+  flatLib(
+    gulp
+      .src(paths.runtime, {follow: true})
+      .pipe(once())
+      .pipe(
+        babel({
+          plugins: [
+            ...PLUGINS,
+            require('@babel/plugin-syntax-jsx'),
+            require('babel-plugin-fbt'),
+            require('babel-plugin-fbt-runtime'),
+            [
+              require('babel-preset-fbjs/plugins/rewrite-modules'),
+              {map: moduleMap},
             ],
-          }),
-        ),
-    );
-  }),
-);
+            require('@babel/plugin-transform-react-jsx'),
+          ],
+        }),
+      ),
+  );
+gulp.task('modules', gulp.series(babelPluginFbtGulp.build, buildModules));
 
 const babelTestPresets = {
   plugins: [
@@ -140,103 +135,80 @@ const babelTestPresets = {
   ],
 };
 
+const transformTests = (src, dest) =>
+  gulp
+    .src(src, {follow: true})
+    .pipe(once())
+    .pipe(babel(babelTestPresets))
+    .pipe(flatten())
+    .pipe(gulp.dest(dest));
+
+const buildRuntimeTests = () =>
+  transformTests(paths.runtimeTests, paths.lib + '/__tests__');
+
+const buildRuntimeMocks = () =>
+  transformTests(paths.runtimeMocks, paths.lib + '/__mocks__');
+
 gulp.task(
   'test-modules',
   gulp.series(
     babelPluginFbtGulp.build,
-    gulp.parallel(
-      function buildRuntimeTests() {
-        return gulp
-          .src(paths.runtimeTests, {follow: true})
-          .pipe(once())
-          .pipe(babel(babelTestPresets))
-          .pipe(flatten())
-          .pipe(gulp.dest(paths.lib + '/__tests__'));
-      },
-      function buildRuntimeMocks() {
-        return gulp
-          .src(paths.runtimeMocks, {follow: true})
-          .pipe(once())
-          .pipe(babel(babelTestPresets))
-          .pipe(flatten())
-          .pipe(gulp.dest(paths.lib + '/__mocks__'));
-      },
-    ),
+    gulp.parallel(buildRuntimeTests, buildRuntimeMocks),
   ),
 );
 
 // Copy raw source with rewritten modules to *.js.flow
-gulp.task(
-  'flow',
-  gulp.parallel(
-    function flowCheck() {
-      return flatLib(
-        gulp
-          .src(paths.runtime, {follow: true})
-          .pipe(rename({extname: '.js.flow'}))
-          .pipe(rewriteModules({map: moduleMap})),
-      );
-    },
-    function copyFlowTypedModules() {
-      return flatLib(gulp.src(paths.typedModules, {follow: true}));
-    },
-  ),
-);
+const flowCheck = () =>
+  flatLib(
+    gulp
+      .src(paths.runtime, {follow: true})
+      .pipe(rename({extname: '.js.flow'}))
+      .pipe(rewriteModules({map: moduleMap})),
+  );
 
-gulp.task(
-  'css',
-  gulp.series(function buildCSS() {
-    return gulp
-      .src(paths.css, {follow: true})
-      .pipe(concat('fbt.css'))
-      .pipe(cleanCSS({advanced: false}))
-      .pipe(header(COPYRIGHT_HEADER, {version}))
-      .pipe(gulp.dest(paths.lib));
-  }),
-);
+const copyFlowTypedModules = () =>
+  flatLib(gulp.src(paths.typedModules, {follow: true}));
 
-gulp.task(
-  'dist',
-  gulp.series('modules', 'css', function buildDistTask() {
-    const opts = {
-      debug: true,
-      output: 'fbt.js',
-    };
-    return gulp
-      .src('./packages/fbt/lib/FbtPublic.js')
-      .pipe(buildDist(opts))
-      .pipe(derequire())
-      .pipe(gulpif('*.js', header(COPYRIGHT_HEADER, {version})))
-      .pipe(gulp.dest(paths.dist));
-  }),
-);
+gulp.task('flow', gulp.parallel(flowCheck, copyFlowTypedModules));
 
-gulp.task(
-  'dist:min',
-  gulp.series('modules', function buildDistMinTask() {
-    const opts = {
-      debug: false,
-      output: 'fbt.min.js',
-    };
-    return gulp
-      .src('./packages/fbt/lib/FbtPublic.js')
-      .pipe(buildDist(opts))
-      .pipe(gulpif('*.js', header(COPYRIGHT_HEADER, {version})))
-      .pipe(gulp.dest(paths.dist));
-  }),
-);
+const buildCSS = () =>
+  gulp
+    .src(paths.css, {follow: true})
+    .pipe(concat('fbt.css'))
+    .pipe(cleanCSS({advanced: false}))
+    .pipe(header(COPYRIGHT_HEADER, {version}))
+    .pipe(gulp.dest(paths.lib));
 
-gulp.task(
-  'clean',
-  gulp.parallel(babelPluginFbtGulp.clean, function cleanTask() {
-    return del([
-      '.checksums',
-      paths.published + '/*',
-      '!' + paths.published + '/package.json',
-      '!' + paths.published + '/README.md',
-    ]);
-  }),
-);
+gulp.task('css', gulp.series(buildCSS));
+
+const buildDistTask = () =>
+  gulp
+    .src('./packages/fbt/lib/FbtPublic.js')
+    .pipe(buildDist({debug: true, output: 'fbt.js'}))
+    .pipe(derequire())
+    .pipe(gulpif('*.js', header(COPYRIGHT_HEADER, {version})))
+    .pipe(gulp.dest(paths.dist));
+
+gulp.task('dist', gulp.series('modules', 'css', buildDistTask));
+
+const buildDistMinTask = () =>
+  gulp
+    .src('./packages/fbt/lib/FbtPublic.js')
+    .pipe(buildDist({debug: false, output: 'fbt.min.js'}))
+    .pipe(gulpif('*.js', header(COPYRIGHT_HEADER, {version})))
+    .pipe(gulp.dest(paths.dist));
+
+gulp.task('dist:min', gulp.series('modules', buildDistMinTask));
+
+const cleanTask = () =>
+  del([
+    '.checksums',
+    paths.published + '/*',
+    '!' + paths.published + '/package.json',
+    '!' + paths.published + '/README.md',
+  ]);
+
+gulp.task('clean', gulp.parallel(babelPluginFbtGulp.clean, cleanTask));
 
 gulp.task(
   'build-runtime',
