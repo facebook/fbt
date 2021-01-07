@@ -39,7 +39,7 @@
     "directory": "packages/babel-plugin-fbt"
   },
   "scripts": {
-    "prepack": "gulp build",
+    "prepack": "gulp --series clean build",
     "publish_to_npm_latest": "yarn publish . && git push --tags && git push"
   }
 }

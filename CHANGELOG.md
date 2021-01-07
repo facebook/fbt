@@ -51,8 +51,8 @@ List of changes for each released npm package version.
 </details>
 
 - 0.16.1:
-  - [fix] Improved Flow typing of `intlList`.
-
+  - [fix] Updated peer dependencies, and devEngines dependencies.
+  - [fix] Improved Flow typing of `intlList`
 - 0.16.0:
   - [major] Merge two `GenderConst` entries that had the same value to avoid confusion. <br/>
     I.e. `MIXED_SINGULAR` and `MIXED_PLURAL` will both be referred as `MIXED_UNKNOWN` and it'll keep the same value (`MIXED_UNKNOWN=5`).
@@ -213,6 +213,9 @@ List of changes for each released npm package version.
   - [c11e9fd](https://github.com/facebook/fbt/commit/c11e9fd) Enable custom Babel plugins for FBT collection
 
 ### babel-plugin-fbt-runtime versions
+
+- 0.9.13:
+  - [fix] Updated peer dependencies
 
 - 0.9.12:
   - [fix] Relax required version patterns of npm dependencies
