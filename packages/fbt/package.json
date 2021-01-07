@@ -33,13 +33,13 @@
     "invariant": "^2.2.4"
   },
   "peerDependencies": {
-    "babel-plugin-fbt": "^0.10.x",
+    "babel-plugin-fbt": "^0.16.x",
     "babel-plugin-fbt-runtime": "^0.9.x",
-    "react": "0.12.0 - 16.x.x"
+    "react": "0.12.0 - 17.x.x"
   },
   "devDependencies": {},
   "devEngines": {
-    "node": "6.x || 7.x || 8.x || 9.x || 10.x || 11.x",
+    "node": "6.x || 7.x || 8.x || 9.x || 10.x || 11.x || 12.x",
     "npm": "6.x"
   },
   "scripts": {
