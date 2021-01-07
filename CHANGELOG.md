@@ -120,10 +120,7 @@ List of changes for each released npm package version.
 
   </details>
 
-- 0.17.0-beta-2:
-  - [fix] Add missing `object-assign` npm dependency
-
-- 0.17.0-beta:
+- 0.17.0:
   - [chore!] `collectFBT` renamed to `collectFbt` (BREAKING CHANGE: updates paths to binary)
   - [minor!] Add ability to write Flow annotations in JS code directly.
       Npm packages will contain both ES5 and Flow JS file versions.
