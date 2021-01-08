@@ -20,24 +20,23 @@
  */
 
 /* eslint max-len: ["warn", 120] */
-require('FbtEnv').setupOnce();
 
 import type {FbtInputOpts, FbtRuntimeInput, FbtTableArgs} from 'FbtHooks';
 
-const FbtHooks = require('FbtHooks');
-const {overrides} = require('FbtQTOverrides');
-const FbtResultBase = require('FbtResultBase');
-const FbtTable = require('FbtTable');
-const FbtTableAccessor = require('FbtTableAccessor');
-const GenderConst = require('GenderConst');
-const {
-  getGenderVariations,
-  getNumberVariations,
-} = require('IntlVariationResolver');
+import {FbtEnv} from 'FbtEnv';
+FbtEnv.setupOnce();
 
-const intlNumUtils = require('intlNumUtils');
-const invariant = require('invariant');
-const substituteTokens = require('substituteTokens');
+import FbtHooks from 'FbtHooks';
+import {overrides} from 'FbtQTOverrides';
+import FbtResultBase from 'FbtResultBase';
+import FbtTable from 'FbtTable';
+import FbtTableAccessor from 'FbtTableAccessor';
+import GenderConst from 'GenderConst';
+import {getGenderVariations, getNumberVariations} from 'IntlVariationResolver';
+
+import intlNumUtils from 'intlNumUtils';
+import invariant from 'invariant';
+import substituteTokens from 'substituteTokens';
 
 let jsonExportMode = false; // Used only in React Native
 
