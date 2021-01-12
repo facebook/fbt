@@ -85,9 +85,9 @@ export type FbtHookRegistrations = $Shape<{|
   onTranslationOverride: ?(hash: string) => void,
 |}>;
 
-import {FbtEnv} from 'FbtEnv';
-import FbtHooksImpl from 'FbtHooksImpl';
+const FbtEnv = require('FbtEnv');
+const FbtHooksImpl = require('FbtHooksImpl');
 
-export default FbtHooksImpl;
+module.exports = FbtHooksImpl;
 
 FbtEnv.setupOnce();
