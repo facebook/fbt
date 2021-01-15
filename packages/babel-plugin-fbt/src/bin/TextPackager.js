@@ -12,7 +12,7 @@ import type {PackagerPhrase} from './FbtCollector';
 // The hash function signature should look like:
 // [{desc: '...', texts: ['t1',...,'tN']},...]) =>
 //   [[hash1,...,hashN],...]
-type HashFunction = (textsGroupedByDesc: Array<{
+export type HashFunction = (textsGroupedByDesc: Array<{
   desc: string,
   texts: Array<PatternString>
 }>) => Array<Array<PatternHash>>;

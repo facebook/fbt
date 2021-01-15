@@ -1,8 +1,8 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
- * @noformat
  * @flow
+ * @format
  */
 
 /*global process:false*/
@@ -10,6 +10,8 @@
 /* eslint max-len: ["warn", 120] */
 
 'use strict';
+
+import type {HashFunction} from './TextPackager';
 
 const FbtCollector = require('./FbtCollector');
 const PhrasePackager = require('./PhrasePackager');
@@ -122,10 +124,10 @@ const argv = yargs
 
 const packager = argv[args.PACKAGER];
 
-function getHasher() {
+function getHasher(): HashFunction {
   let hashPhrases = null;
   if (packager === packagerTypes.TEXT || packager === packagerTypes.BOTH) {
-    // $FlowFixMe Requiring dynamic module
+    // $FlowExpectedError[unsupported-syntax] Requiring dynamic module
     hashPhrases = require(argv[args.HASH]);
     if (hashPhrases.hashPhrases != null) {
       hashPhrases = hashPhrases.hashPhrases;
@@ -137,7 +139,6 @@ function getHasher() {
 const extraOptions = {};
 const cliExtraOptions = argv[args.OPTIONS];
 if (cliExtraOptions) {
-  // $FlowFixMe
   const opts = cliExtraOptions.split(',');
   for (let ii = 0; ii < opts.length; ++ii) {
     extraOptions[opts[ii]] = true;
@@ -145,7 +146,6 @@ if (cliExtraOptions) {
 }
 
 const fbtCollector = new FbtCollector(
-  // $FlowFixMe
   {
     auxiliaryTexts: argv[args.AUXILIARY_TEXTS],
     plugins: argv[args.PLUGINS].map(require),
@@ -158,10 +158,9 @@ const fbtCollector = new FbtCollector(
 
 function processJsonSource(source) {
   const json = JSON.parse(source);
-  Object.keys(json).forEach(function(manifest_path) {
+  Object.keys(json).forEach(function (manifest_path) {
     let manifest = {};
     if (fs.existsSync(manifest_path)) {
-      // $FlowFixMe
       manifest = require(path.resolve(process.cwd(), manifest_path));
     }
     fbtCollector.collectFromFiles(json[manifest_path], manifest);
@@ -196,7 +195,9 @@ function writeOutput() {
   if (errCount > 0) {
     for (const filePath in errs) {
       const error = errs[filePath];
-      process.stderr.write(`[file="${filePath}"]:\n\t` + String(error.stack || error) + '\n');
+      process.stderr.write(
+        `[file="${filePath}"]:\n\t` + String(error.stack || error) + '\n',
+      );
     }
     throw new Error(`Failed in ${errCount} file(s).`);
   }
@@ -232,10 +233,10 @@ if (argv[args.HELP]) {
   const stream = process.stdin;
   let source = '';
   stream.setEncoding('utf8');
-  stream.on('data', function(chunk) {
+  stream.on('data', function (chunk) {
     source += chunk;
   });
-  stream.on('end', function() {
+  stream.on('end', function () {
     processSource(source);
     writeOutput();
   });
