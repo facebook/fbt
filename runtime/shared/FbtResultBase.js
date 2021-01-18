@@ -174,7 +174,7 @@ class FbtResultBase implements IFbtResultBase {
 ].forEach(methodName => {
   /* eslint-disable fb-www/should-use-class */
   // $FlowFixMe[prop-missing] index signature
-  FbtResultBase.prototype[methodName] = function(...args) {
+  FbtResultBase.prototype[methodName] = function (...args) {
     this.__errorListener?.onStringMethodUsed?.(methodName);
     // $FlowFixMe[incompatible-type] Mock stringish methods
     // $FlowFixMe[prop-missing] Mock stringish methods
