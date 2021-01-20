@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "manifest": "babel-node ./node_modules/babel-plugin-fbt/bin/manifest --src src/ --enum-manifest i18n/fbt/.enum_manifest.json --src-manifest i18n/fbt/.src_manifest.json",
-    "collect-fbts": "babel-node ./node_modules/babel-plugin-fbt/bin/collectFBT --hash-module 'fb-tiger-hash/src/hashPhrases' --react-native-mode --manifest < i18n/fbt/.src_manifest.json > i18n/fbt/.source_strings.json",
-    "translate-fbts": "babel-node ./node_modules/babel-plugin-fbt/bin/translate.js --jenkins --source-strings i18n/fbt/.source_strings.json --translations i18n/fbt/translationScriptInput/*.json > i18n/fbt/translatedFbts.json",
+    "manifest": "fbt-manifest --src src/ --enum-manifest i18n/fbt/.enum_manifest.json --src-manifest i18n/fbt/.src_manifest.json",
+    "collect-fbts": "fbt-collect --hash-module 'fb-tiger-hash/src/hashPhrases' --react-native-mode --manifest < i18n/fbt/.src_manifest.json > i18n/fbt/.source_strings.json",
+    "translate-fbts": "fbt-translate --jenkins --source-strings i18n/fbt/.source_strings.json --translations i18n/fbt/translationScriptInput/*.json > i18n/fbt/translatedFbts.json",
     "generate-android-fbt": "babel-node i18n/scripts/generate-android-localizables-executor.js",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
