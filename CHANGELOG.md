@@ -120,6 +120,8 @@ List of changes for each released npm package version.
 
   </details>
 
+- 0.17.1:
+  - [fix] Remove extraneous files `dist/bin/collectFBT*.js` that caused filename collisions with `dist/bin/collectFbt*.js` on case-insensitive filesystems (MacOS/Win)
 - 0.17.0:
   - [chore!] `collectFBT` renamed to `collectFbt` (BREAKING CHANGE: updates paths to binary)
   - [minor!] Add ability to write Flow annotations in JS code directly.
