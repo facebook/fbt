@@ -83,8 +83,8 @@ const FbtEnumRegistrar = {
    * if applicable.
    *
    * We only support the following top level import styles:
-   *   - `import aEnum from 'A$Enum';
-   *   - `import * as aEnum from 'A$Enum';
+   *   - `import anEnum from 'Some$FbtEnum';`
+   *   - `import * as aEnum from 'Some$FbtEnum';`
    *
    * @param path Babel path of a `import` statement
    */
