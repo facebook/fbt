@@ -18,7 +18,8 @@ jobs:
           'babel-plugin-fbt-runtime:test',
           'demo-app:test',
           'fb-tiger-hash:test',
-          'gulp-rewrite-flowtyped-modules:test'
+          'gulp-rewrite-flowtyped-modules:test',
+          'gulp-strip-docblock-pragmas:test'
         ]
     name: "v${{ matrix.node }}: ${{ matrix.test }}"
     steps:

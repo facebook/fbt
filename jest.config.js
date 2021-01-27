@@ -53,6 +53,10 @@ module.exports = {
       roots: [fs.realpathSync(path.resolve('packages', 'gulp-rewrite-flowtyped-modules'))],
     },
     {
+      displayName: 'gulp-strip-docblock-pragmas',
+      roots: [fs.realpathSync(path.resolve('packages', 'gulp-strip-docblock-pragmas'))],
+    },
+    {
       displayName: 'fb-tiger-hash',
       roots: [fs.realpathSync(path.resolve('packages', 'fb-tiger-hash'))],
       testRegex: '/__tests__/.*\\.js$',
