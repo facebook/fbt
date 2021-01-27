@@ -56,7 +56,11 @@ const argv = yargs
       "  'both' - Both phrase and text hashing are performed\n" +
       "  'none' - No hashing or alteration of phrase data\n",
   )
-  .choices(args.PACKAGER, Object.values(packagerTypes))
+  .choices(
+    args.PACKAGER,
+    // $FlowFixMe[incompatible-cast] needed because Object.values() returns mixed only...
+    (Object.values(packagerTypes): Array<$Values<typeof packagerTypes>>),
+  )
   .boolean(args.TERSE)
   .default(args.TERSE, false)
   .describe(

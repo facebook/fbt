@@ -118,6 +118,7 @@ List of changes for each released npm package version.
       Unreleased changes that have landed in master. Click to see more.
     </summary>
 
+  - [fix] Add missing flow types for `yargs` npm module
   </details>
 
 - 0.17.0:
