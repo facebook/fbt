@@ -3,8 +3,8 @@
  *
  * @flow strict
  */
-// flow-typed signature: 364797dba1420e19e7b182ba21d4d10a
-// flow-typed version: f07c21ab0d/yargs_v15.x.x/flow_>=v0.118.x
+// flow-typed signature: 1f51ede354b708d1bf2ac3d98fd21d0b
+// flow-typed version: fe275d55fd/yargs_v15.x.x/flow_>=v0.118.x
 
 declare module "yargs" {
   declare type Argv = {
@@ -75,7 +75,7 @@ declare module "yargs" {
     | (argv: Argv, yargsInstance?: Yargs) => void
     | (argv: Argv, yargsInstance?: Yargs) => Promise<void>;
 
-  declare type Middleware = MiddlewareCallback | Array<MiddleWareCallback>;
+  declare type Middleware = MiddleWareCallback | Array<MiddleWareCallback>;
 
   declare class Yargs {
     (args: Array<string>): Yargs;
