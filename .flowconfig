@@ -57,8 +57,6 @@ suppress_type=$FlowFixMeState
 suppress_type=$FlowFixMeEmpty
 suppress_type=$FlowExpectedError
 
-well_formed_exports=true
-types_first=true
 experimental.abstract_locations=true
 
 [strict]
@@ -71,4 +69,4 @@ untyped-import
 untyped-type-import
 
 [version]
-^0.141.0
+^0.143.1

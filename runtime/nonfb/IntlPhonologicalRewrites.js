@@ -1,7 +1,7 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
- * @generated SignedSource<<b24c7c624d10329431ec0590f15a13fc>>
+ * @generated SignedSource<<c9d6b63e596354674b916a86fed05d00>>
  *
  * @flow strict
  * @codegen-command: JSModulesToClientScript
@@ -11,17 +11,18 @@
 
 'use strict';
 
-type StringToStringMap = $ReadOnly<{
+type StringToStringMap = $ReadOnly<{|
   [string]: string,
-  ...
-}>;
-type PhonologicalRewriteMap = $ReadOnly<{
+|}>;
+type PhonologicalRewriteMap = $ReadOnly<{|
   meta: StringToStringMap,
   patterns: StringToStringMap,
-  ...
-}>;
+  male?: StringToStringMap,
+  female?: StringToStringMap,
+  unknown?: StringToStringMap,
+|}>;
 
-const REWRITES = {
+const REWRITES: {[string]: PhonologicalRewriteMap} = {
   en_GB: {
     meta: {},
     patterns: {
@@ -244,7 +245,7 @@ const REWRITES = {
     },
   },
 };
-const GLOBAL_REWRITES = {
+const GLOBAL_REWRITES: PhonologicalRewriteMap = {
   meta: {
     '/_B/': '([.,!?\\s]|^)',
     '/_E/': '([.,!?\\s]|$)',
