@@ -15,6 +15,6 @@ const hashPhrases = require('./hashPhrases');
 module.exports = {
   __esModule: true,
   default: Tiger,
-  Tiger: Tiger,
-  hashPhrases: hashPhrases,
+  Tiger,
+  hashPhrases,
 };
