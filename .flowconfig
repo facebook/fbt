@@ -33,7 +33,7 @@ module.name_mapper='^\(\(invariant\|graceful-fs\|nullthrows\|optimist\|fb-babel-
 module.name_mapper='^\(ReactDOM\)$' -> '<PROJECT_ROOT>/node_modules/react-dom'
 
 # Redirect non-FB JS modules to a dedicated folder
-module.name_mapper='^\(FBLocaleToLang\|fbtInit\|FbtEnv\|FbtPublic\|FbtTranslations\|GenderConst\|intlInlineMode\|IntlNumberType\|IntlPhonologicalRewrites\|IntlVariationResolver\|IntlVariations\|NumberFormatConsts\)$' -> '<PROJECT_ROOT>/runtime/nonfb/\1'
+module.name_mapper='^\(FBLocaleToLang\|fbtInit\|FbtEnv\|FbtPublic\|FbtTranslations\|GenderConst\|intlInlineMode\|IntlNumberType\|IntlPhonologicalRewrites\|IntlRedundantStops\|IntlVariationResolver\|IntlVariations\|NumberFormatConsts\)$' -> '<PROJECT_ROOT>/runtime/nonfb/\1'
 module.name_mapper='^\(cx\|FBLogger\|FBLogMessage\|FbtQTOverrides\|FbtResultGK\|IntlViewerContext\|killswitch\)$' -> '<PROJECT_ROOT>/runtime/nonfb/mocks/\1'
 module.name_mapper='^\(DisplayGenderConst\)$' -> '<PROJECT_ROOT>/runtime/shared_deps/\1'
 

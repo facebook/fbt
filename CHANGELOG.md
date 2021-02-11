@@ -48,6 +48,8 @@ List of changes for each released npm package version.
     Unreleased changes that have landed in master. Click to see more.
   </summary>
 
+  - [fix] Don't strip punctuation that isn't redundant with token punctuation
+
 </details>
 
 - 0.16.1:

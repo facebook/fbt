@@ -81,12 +81,12 @@ describe('fbt', () => {
   });
 
   it('should remove punctuation when a value ends with it', function () {
-    expect(
-      fbt('They said ' + fbt.param('quote', '"Hi!"') + '.', 'test'),
-    ).toEqual('They said "Hi!"');
-    expect(fbt('They said ' + fbt.param('quote', 'bye') + '.', 'test')).toEqual(
-      'They said bye.',
+    expect(fbt('Play ' + fbt.param('game', 'Chess!') + '!', 'test')).toEqual(
+      'Play Chess!',
     );
+    expect(
+      fbt("What's on your mind " + fbt.param('name', 'T.J.') + '?', 'test'),
+    ).toEqual("What's on your mind T.J.?");
   });
 
   it('should allow values that look like token patterns', function () {

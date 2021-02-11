@@ -16,15 +16,19 @@
 
 // flowlint ambiguous-object-type:error
 
-const IntlPunctuation = require('IntlPunctuation');
+import {
+  PUNCT_CHAR_CLASS,
+  applyPhonologicalRules,
+  dedupeStops,
+} from 'IntlPunctuation';
 
-const invariant = require('invariant');
+import invariant from 'invariant';
 
 // This pattern finds tokens inside a string: 'string with {token} inside'.
 // It also grabs any punctuation that may be present after the token, such as
 // brackets, fullstops and elipsis (for various locales too!)
 const parameterRegexp = new RegExp(
-  '\\{([^}]+)\\}(' + IntlPunctuation.PUNCT_CHAR_CLASS + '*)',
+  '\\{([^}]+)\\}(' + PUNCT_CHAR_CLASS + '*)',
   'g',
 );
 
@@ -104,14 +108,11 @@ function substituteTokens<Arg: mixed>(
         } else if (argument === null) {
           return '';
         }
-        return (
-          String(argument) +
-          (IntlPunctuation.endsInPunct(String(argument)) ? '' : punctuation)
-        );
+        return String(argument) + dedupeStops(String(argument), punctuation);
       },
     )
     .split('\x17')
-    .map(IntlPunctuation.applyPhonologicalRules);
+    .map(applyPhonologicalRules);
 
   if (stringPieces.length === 1) {
     return stringPieces[0];
