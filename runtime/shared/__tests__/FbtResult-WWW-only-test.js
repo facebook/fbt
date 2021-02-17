@@ -6,15 +6,24 @@
  */
 
 jest.disableAutomock();
-console.error = jest.fn();
 
-const FbtErrorListenerWWW = require('FbtErrorListenerWWW');
-const FbtResult = require('FbtResult');
 const React = require('React');
 const ReactTestUtils = require('ReactTestUtils');
+let FbtErrorListenerWWW;
+let FbtResult;
 
-describe('FbtResult: WWW-only', function() {
-  it('Behaves like a React element & works w/ React rendering', function() {
+describe('FbtResult: WWW-only', function () {
+  beforeEach(() => {
+    jest.spyOn(console, 'error').mockImplementation(() => {});
+    FbtErrorListenerWWW = require('FbtErrorListenerWWW');
+    FbtResult = require('FbtResult');
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  it('Behaves like a React element & works w/ React rendering', function () {
     const result = new FbtResult(['hippopotamus']);
     expect(React.isValidElement(result)).toBe(true);
     expect(result.toString()).toBe('hippopotamus');
@@ -45,7 +54,7 @@ describe('FbtResult: WWW-only', function() {
       );
     });
 
-    it('will invoke onStringSerializationError() ', function() {
+    it('will invoke onStringSerializationError() ', function () {
       const nonFbtContent = /non_fbt_content/;
       const listener = new FbtErrorListenerWWW({
         translation,
@@ -53,12 +62,7 @@ describe('FbtResult: WWW-only', function() {
       });
 
       // spy on the original method, but preserve original behavior
-      listener.onStringSerializationError = jest.fn(function() {
-        return FbtErrorListenerWWW.prototype.onStringSerializationError.apply(
-          this,
-          arguments,
-        );
-      });
+      jest.spyOn(listener, 'onStringSerializationError');
 
       const result = new FbtResult(['kombucha', nonFbtContent], listener);
       result.toString();
