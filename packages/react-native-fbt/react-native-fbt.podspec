@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
                    DESC
   s.homepage     = "https://github.com/facebook/fbt.git"
   s.license      = "MIT"
-  s.platforms    = { :ios => "10.0", :tvos => "10.0" }
+  s.platforms    = { :ios => "11.0", :tvos => "11.0" }
   s.authors      = { "Your Name" => "yourname@email.com" }
   s.source       = { :git => "https://github.com/facebook/fbt.git", :tag => "#{s.version}" }
 
