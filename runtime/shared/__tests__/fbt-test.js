@@ -191,7 +191,7 @@ describe('fbt', () => {
   it('should not warn when unkeyed React components are params', function () {
     jest.spyOn(console, 'warn').mockImplementation(() => {});
     const nodes = renderAndExtractChildDivs(
-      <TestComponent value="A" childA={<div />} childB={<div />} />,
+      <TestComponent childA={<div />} childB={<div />} value="A" />,
     );
     expect(nodes.length).toBe(2);
     /* $FlowFixMe[prop-missing] (>=0.99.0 site=www) This comment suppresses an
@@ -202,10 +202,10 @@ describe('fbt', () => {
 
   function expectChildSetsToRetainIdentity(setA, setB) {
     const nodesA = renderAndExtractChildDivs(
-      <TestComponent value="A" childA={setA} childB={setB} />,
+      <TestComponent childA={setA} childB={setB} value="A" />,
     );
     const nodesB = renderAndExtractChildDivs(
-      <TestComponent value="B" childA={setA} childB={setB} />,
+      <TestComponent childA={setA} childB={setB} value="B" />,
     );
 
     expect(nodesA.length).toBe(2);
