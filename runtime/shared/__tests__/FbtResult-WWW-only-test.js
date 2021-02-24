@@ -80,5 +80,34 @@ describe('FbtResult: WWW-only', function () {
         'RegExp',
       );
     });
+
+    it('will handle infinite recursion from onStringSerializationError() ', function () {
+      const nonFbtContent = {};
+      const listener = new FbtErrorListenerWWW({
+        translation,
+        hash,
+      });
+
+      // spy on the original method, but preserve original behavior
+      jest.spyOn(listener, 'onStringSerializationError');
+
+      const result = new FbtResult(['kombucha', nonFbtContent], listener);
+      nonFbtContent.cycleRef = result;
+
+      result.toString();
+      expect(listener.onStringSerializationError).toHaveBeenCalledTimes(1);
+      expect(listener.onStringSerializationError).toHaveBeenCalledWith(
+        nonFbtContent,
+      );
+      expect(FBLogger).toHaveBeenCalledWith('fbt');
+      expect(FbtFBLogger.mustfix).toHaveBeenCalledWith(
+        'Converting to a string will drop content data. Hash="%s" Translation="%s" Content="%s" (type=%s,%s)',
+        hash,
+        translation,
+        '{"cycleRef":"<<Reentering fbt.toString() is forbidden>>"}',
+        'object',
+        'Object',
+      );
+    });
   });
 });
