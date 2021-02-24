@@ -3,6 +3,7 @@
  *
  * @format
  * @flow strict
+ * @emails oncall+internationalization
  */
 
 const FbtResultGK = {

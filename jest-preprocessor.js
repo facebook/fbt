@@ -3,6 +3,7 @@
  *
  * @format
  * @noflow
+ * @emails oncall+internationalization
  */
 const babel = require('@babel/core');
 const createCacheKeyFunction = require('fbjs-scripts/jest/createCacheKeyFunction');

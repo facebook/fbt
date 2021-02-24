@@ -6,6 +6,7 @@
  * @format
  * @noflow
  * @fbt {"project": "fbt-demo-project"}
+ * @emails oncall+internationalization
  */
 
 import './css/Example.css';

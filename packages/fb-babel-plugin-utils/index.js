@@ -6,6 +6,7 @@
  *
  * @format
  * @noflow
+ * @emails oncall+internationalization
  */
 
 module.exports = {

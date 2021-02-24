@@ -3,6 +3,7 @@
  *
  * @format
  * @flow strict
+ * @emails oncall+internationalization
  */
 
 // eslint-disable-next-line fb-www/check-dev-condition

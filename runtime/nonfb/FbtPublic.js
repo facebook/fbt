@@ -3,6 +3,7 @@
  *
  * @format
  * @flow strict-local
+ * @emails oncall+internationalization
  */
 
 const FbtResult = require('FbtResult');

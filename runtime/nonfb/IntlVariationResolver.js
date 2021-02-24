@@ -3,5 +3,6 @@
  *
  * @flow strict-local
  * @format
+ * @emails oncall+internationalization
  */
 module.exports = require('IntlVariationResolverImpl');

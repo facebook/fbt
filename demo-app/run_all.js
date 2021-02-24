@@ -3,6 +3,7 @@
  *
  * @format
  * @flow
+ * @emails oncall+internationalization
  */
 
 const {execSync} = require('child_process');

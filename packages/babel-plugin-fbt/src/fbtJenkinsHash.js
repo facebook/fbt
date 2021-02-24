@@ -2,6 +2,7 @@
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
  * @flow strict-local
+ * @emails oncall+internationalization
  */
 /* eslint no-bitwise: 0 */
 

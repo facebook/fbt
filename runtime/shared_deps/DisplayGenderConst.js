@@ -7,6 +7,7 @@
  *
  * @flow strict
  * @nolint
+ * @emails oncall+internationalization
  */
 
 export type DisplayGenderConstType = "UNKNOWN" | "FEMALE" | "MALE" | "NEUTER";

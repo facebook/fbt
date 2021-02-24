@@ -4,6 +4,7 @@
  *
  * @format
  * @flow strict-local
+ * @emails oncall+internationalization
  */
 
 'use strict';

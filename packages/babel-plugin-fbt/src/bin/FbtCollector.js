@@ -4,6 +4,7 @@
  * DO NOT AUTO-FORMAT TO PRESERVE FLOW TYPES
  * @noformat
  * @flow
+ * @emails oncall+internationalization
  */
 
 /* eslint max-len: ["warn", 120] */

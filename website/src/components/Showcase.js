@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  *
  * @noflow
+ * @emails oncall+internationalization
  */
 
 import React from "react";

@@ -1,10 +1,11 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
+ * Wrapper module for fbt.js (the implementation)
+ *
+ * @emails oncall+internationalization
  * @flow
  * @format
- *
- * Wrapper module for fbt.js (the implementation)
  */
 const FbtHooks = require('FbtHooks');
 const FbtPureStringResult = require('FbtPureStringResult');
