@@ -3,6 +3,7 @@
  *
  * @format
  * @noflow
+ * @emails oncall+internationalization
  */
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');

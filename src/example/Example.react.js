@@ -6,6 +6,7 @@
  * @noflow
  * @noformat Needed to preserve flow types in comments
  * @fbt {"project": "fbt-live-demo-project"}
+ * @emails oncall+internationalization
  */
 
 import './css/Example.css';

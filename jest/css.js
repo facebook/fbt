@@ -3,6 +3,7 @@
  *
  * @format
  * @flow strict
+ * @emails oncall+internationalization
  */
 
 module.exports = ({}: {});

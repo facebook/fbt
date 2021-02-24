@@ -2,6 +2,7 @@
  * Copyright 2004-present Facebook. All Rights Reserved.
  * @noflow
  * @format
+ * @emails oncall+internationalization
  */
 
 module.exports = require('babel-jest').createTransformer({
