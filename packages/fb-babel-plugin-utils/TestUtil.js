@@ -8,6 +8,7 @@
  * @noflow
  * @emails oncall+internationalization
  */
+/*eslint max-len: ["error", 100]*/
 
 'use strict';
 
@@ -56,6 +57,12 @@ function getDefaultTransformForPlugins(plugins) {
 }
 
 function parse(code) {
+  if ((typeof code !== 'string' && typeof code !== 'object') || code == null) {
+    // eslint-disable-next-line fb-www/no-new-error
+    throw new Error(
+      `Code must be a string or AST object but got: ${typeof code}`,
+    );
+  }
   return babelParser.parse(code, {
     sourceType: 'module',
     plugins: ['flow', 'jsx', 'nullishCoalescingOperator'],
