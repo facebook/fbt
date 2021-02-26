@@ -198,7 +198,7 @@ function formatNumber(value: number, decimals?: ?number): string {
  * integer, `2` to round to nearest cent when displaying currency, etc.
  */
 function formatNumberWithThousandDelimiters(
-  value: number,
+  value: number | string,
   decimals?: ?number,
 ): string {
   const NumberFormatConfig = NumberFormatConsts.get(
