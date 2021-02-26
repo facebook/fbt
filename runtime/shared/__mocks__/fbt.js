@@ -23,7 +23,7 @@ const fbtRuntime = jest.requireActual('fbt');
 
 const WRAPPER = '__FBT__';
 
-fbt.mockImplementation(function() {
+fbt.mockImplementation(function () {
   throw new Error('should never be called');
 });
 
@@ -36,37 +36,37 @@ function unwrap(json) {
 }
 
 fbt._ = jest.fn();
-fbt._.mockImplementation(function(wrappedJSON, args) {
+fbt._.mockImplementation(function (wrappedJSON, args) {
   const unwrappedJson = unwrap(wrappedJSON);
   const jsfbt = unwrappedJson.jsfbt;
   return fbtRuntime._(unwrappedJson.type === 'text' ? jsfbt : jsfbt.t, args);
 });
 
-fbt._.getCallString = function(index) {
+fbt._.getCallString = function (index) {
   return unwrap(fbt._.mock.calls[index][0]);
 };
 
-fbt._param = function(name, value, variations) {
+fbt._param = function (name, value, variations) {
   return fbtRuntime._param(name, value, variations);
 };
 
-fbt._plural = function(count, label, value) {
+fbt._plural = function (count, label, value) {
   return fbtRuntime._plural(count, label, value);
 };
 
-fbt._pronoun = function(usage, gender, options) {
+fbt._pronoun = function (usage, gender, options) {
   return fbtRuntime._pronoun(usage, gender, options);
 };
 
-fbt._enum = function(value, range) {
+fbt._enum = function (value, range) {
   return fbtRuntime._enum(value, range);
 };
 
-fbt._subject = function(value) {
+fbt._subject = function (value) {
   return fbtRuntime._subject(value);
 };
 
-fbt._name = function(...whateveryo) {
+fbt._name = function (...whateveryo) {
   return fbtRuntime._name(...whateveryo);
 };
 
