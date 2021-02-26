@@ -25,8 +25,8 @@ describe('Test Fbt Enum', () => {
             actual +
             '` on locale: ' +
             locale,
-          actual: actual,
-          expected: expected,
+          actual,
+          expected,
         });
       }
     }
