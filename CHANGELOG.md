@@ -214,6 +214,9 @@ List of changes for each released npm package version.
 
 ### babel-plugin-fbt-runtime versions
 
+- 0.9.14:
+  - [fix] Updated peer dependency on babel-plugin-fbt
+
 - 0.9.13:
   - [fix] Updated peer dependencies
 
