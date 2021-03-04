@@ -51,11 +51,19 @@ module.exports = {
     },
     {
       displayName: 'gulp-rewrite-flowtyped-modules',
-      roots: [fs.realpathSync(path.resolve('packages', 'gulp-rewrite-flowtyped-modules'))],
+      roots: [
+        fs.realpathSync(
+          path.resolve('packages', 'gulp-rewrite-flowtyped-modules'),
+        ),
+      ],
     },
     {
       displayName: 'gulp-strip-docblock-pragmas',
-      roots: [fs.realpathSync(path.resolve('packages', 'gulp-strip-docblock-pragmas'))],
+      roots: [
+        fs.realpathSync(
+          path.resolve('packages', 'gulp-strip-docblock-pragmas'),
+        ),
+      ],
     },
     {
       displayName: 'fb-tiger-hash',
@@ -95,7 +103,13 @@ module.exports = {
             plugins: [
               [
                 'babel-plugin-fbt',
-                {fbtEnumPath: path.resolve('demo-app', '.enum_manifest.json')},
+                {
+                  fbtCommonPath: path.resolve(
+                    'demo-app',
+                    'common_strings.json',
+                  ),
+                  fbtEnumPath: path.resolve('demo-app', '.enum_manifest.json'),
+                },
               ],
               'babel-plugin-fbt-runtime',
             ],

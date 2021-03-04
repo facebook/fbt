@@ -14,6 +14,7 @@ import type {JSModuleNameType} from './FbtConstants';
 type FbtCommonMap = { [text: string]: string, ... };
 */
 
+const path = require('path');
 const textToDesc /*: FbtCommonMap */ = {};
 
 const FbtCommon = {
@@ -24,8 +25,16 @@ const FbtCommon = {
       Object.assign(textToDesc, opts.fbtCommon);
     }
     if (opts.fbtCommonPath != null) {
-      // $FlowFixMe - dynamic require
-      Object.assign(textToDesc, require(opts.fbtCommonPath));
+      let fbtCommonData;
+      try {
+        // $FlowFixMe - dynamic require
+        fbtCommonData = require(path.resolve(opts.fbtCommonPath));
+      } catch (error) {
+        error.message += `\nopts.fbtCommonPath: ${opts.fbtCommonPath}`;
+        error.message += `\nCurrent path: ${process.cwd()}`;
+        throw error;
+      }
+      Object.assign(textToDesc, fbtCommonData);
     }
   },
 
