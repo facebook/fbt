@@ -28,7 +28,7 @@ OR
 fbt(
   'You have ' +
     fbt.plural('a like', getLikeCount(), {
-      name: 'number of likes,
+      name: 'number of likes',
       showCount: 'ifMany',
       many: 'likes',
     }) +
