@@ -35,6 +35,7 @@ const args = {
   PRETTY: 'pretty',
   REACT_NATIVE_MODE: 'react-native-mode',
   TERSE: 'terse',
+  TRANSFORM: 'transform',
 };
 
 const packagerTypes = {
@@ -106,6 +107,14 @@ const argv = yargs
   .boolean(args.PRETTY)
   .default(args.PRETTY, false)
   .describe(args.PRETTY, 'Pretty-print the JSON output')
+  .string(args.TRANSFORM)
+  .default(args.TRANSFORM, null)
+  .describe(
+    args.TRANSFORM,
+    'A custom transform to call into rather than the default provided. ' +
+      'Expects a signature of (source, options, filename) => mixed, and ' +
+      'for babel-pluginf-fbt to be run within the transform.',
+  )
   .array(args.PLUGINS)
   .default(args.PLUGINS, [])
   .describe(
@@ -149,6 +158,9 @@ if (cliExtraOptions) {
     extraOptions[opts[ii]] = true;
   }
 }
+const transformPath = argv[args.TRANSFORM];
+// $FlowExpectedError[unsupported-syntax] Requiring dynamic module
+const transform = transformPath ? require(transformPath) : null;
 
 const fbtCollector = new FbtCollector(
   {
@@ -156,6 +168,7 @@ const fbtCollector = new FbtCollector(
     plugins: argv[args.PLUGINS].map(require),
     presets: argv[args.PRESETS].map(require),
     reactNativeMode: argv[args.REACT_NATIVE_MODE],
+    transform,
     fbtCommonPath: argv[args.COMMON_STRINGS],
   },
   extraOptions,

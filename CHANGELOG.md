@@ -121,9 +121,15 @@ List of changes for each released npm package version.
       Unreleased changes that have landed in master. Click to see more.
     </summary>
 
-  - [fix] Add missing flow types for `yargs` npm module
   </details>
 
+- 0.17.2:
+  - [feat] Add external `transform` option for collection script
+  - [fix] Add missing flow types for `yargs` npm module
+
+- 0.17.1:
+  - [chore] Additional flow typing in scripts
+  
 - 0.17.0:
   - [chore!] `collectFBT` renamed to `collectFbt` (BREAKING CHANGE: updates paths to binary)
   - [minor!] Add ability to write Flow annotations in JS code directly.

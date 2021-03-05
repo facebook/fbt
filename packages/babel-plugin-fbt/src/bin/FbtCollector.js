@@ -12,10 +12,13 @@
 'use strict';
 
 const {extractEnumsAndFlattenPhrases} = require('../FbtShiftEnums');
+// eslint-disable-next-line fb-www/no-module-aliasing
 const fbt = require('../index');
 const babel = require('@babel/core');
 const {SyntaxPlugins} = require('fb-babel-plugin-utils');
 const fs = require('graceful-fs');
+
+export type ExternalTransform = (src: string, opts: TransformOptions, filename: ?string) => mixed;
 
 /*::
 import type {BabelPluginList, BabelPresetList} from '@babel/core';
@@ -26,6 +29,7 @@ type CollectorConfig = {|
   plugins?: BabelPluginList,
   presets?: BabelPresetList,
   reactNativeMode?: boolean,
+  transform?: ?ExternalTransform,
 |};
 export type ChildParentMappings = {[prop: number]: number}
 export type Errors = {[file: string]: Error};
@@ -101,7 +105,11 @@ class FbtCollector {
       return;
     }
 
-    transform(source, options, this._config.plugins || [], this._config.presets || []);
+    if (this._config.transform) {
+      this._config.transform(source, options, filename); 
+    } else {
+      transform(source, options, this._config.plugins || [], this._config.presets || []);
+    }
 
     let newPhrases = fbt.getExtractedStrings();
     if (this._config.reactNativeMode) {
