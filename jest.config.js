@@ -14,10 +14,10 @@ const runtimePaths = [
   '<rootDir>/runtime/nonfb',
   '<rootDir>/runtime/nonfb/mocks',
 ];
-const {PLUGINS} = require('./babelPlugins');
 
 const globalConfig = {
   setupFiles: ['fbjs-scripts/jest/environment.js'],
+  testMatch: ['**/__tests__/**/*-test.js'],
   timers: 'fake',
   transform: {
     '\\.js$': '<rootDir>/jest-preprocessor.js',
@@ -68,7 +68,6 @@ module.exports = {
     {
       displayName: 'fb-tiger-hash',
       roots: [fs.realpathSync(path.resolve('packages', 'fb-tiger-hash'))],
-      testRegex: '/__tests__/.*\\.js$',
       transform: {
         '\\.js$': [
           '<rootDir>/jest-preprocessor.js',
