@@ -285,9 +285,10 @@ List of changes for each released npm package version.
      Unreleased changes that have landed in master. Click to see more.
     </summary>
 
-  - [chore] Adding @noflow annotations
-
   </details>
+
+- 0.11.1:
+  - [chore] Adding @noflow annotations
 
 - 0.11.0:
   - [feat] Add ability to test against Jest code snapshots
