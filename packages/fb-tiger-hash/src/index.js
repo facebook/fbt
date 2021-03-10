@@ -9,8 +9,8 @@
 
 'use strict';
 
-const Tiger = require('./Tiger');
 const hashPhrases = require('./hashPhrases');
+const Tiger = require('./Tiger');
 
 module.exports = {
   __esModule: true,
