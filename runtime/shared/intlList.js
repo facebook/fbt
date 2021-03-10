@@ -25,10 +25,9 @@
 
 'use strict';
 
-const React = require('React');
-
 const fbt = require('fbt');
 const invariant = require('invariant');
+const React = require('react');
 
 const CONJUNCTIONS = {
   AND: 'AND',

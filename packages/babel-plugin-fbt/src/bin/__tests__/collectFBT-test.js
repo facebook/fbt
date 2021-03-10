@@ -1,7 +1,6 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
- *
  * @emails oncall+internationalization
  * @format
  */
@@ -27,8 +26,11 @@ describe('collectFbt', () => {
       '--packager=none',
       '--fbt-common-path=' + commonPath,
     ];
-    if (options.react_native_mode || false) {
+    if (options.react_native_mode) {
       collectOptions.push('--react-native-mode');
+    }
+    if (options.customCollector) {
+      collectOptions.push('--custom-collector', options.customCollector);
     }
 
     var child = childProcess.spawnSync(
@@ -479,5 +481,13 @@ describe('collectFbt', () => {
         ].join('\n'),
       );
     expect(test).toThrow();
+  });
+
+  it('should extract strings from a custom collector', () => {
+    expect(
+      collect('nothing in JS code', {
+        customCollector: path.resolve(__dirname, 'CustomFbtCollector.js'),
+      }),
+    ).toMatchSnapshot();
   });
 });

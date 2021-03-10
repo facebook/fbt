@@ -23,7 +23,7 @@ export type ExternalTransform = (src: string, opts: TransformOptions, filename: 
 /*::
 import type {BabelPluginList, BabelPresetList} from '@babel/core';
 import type {Phrase} from '../index';
-type CollectorConfig = {|
+export type CollectorConfig = {|
   auxiliaryTexts: boolean,
   fbtCommonPath?: string,
   plugins?: BabelPluginList,
@@ -70,7 +70,24 @@ function transform(
   babel.transformSync(code, opts);
 }
 
-class FbtCollector {
+
+export interface IFbtCollector {
+  constructor(config : CollectorConfig, extraOptions : ExtraOptions): void;
+  collectFromOneFile(
+    source: string,
+    filename: ?string,
+    fbtEnumManifest?: FbtEnumManifest,
+  ): void;
+  collectFromFiles(
+    files : Array<string>,
+    fbtEnumManifest?: FbtEnumManifest,
+  ): boolean;
+  getPhrases(): Array<PackagerPhrase>;
+  getChildParentMappings(): ChildParentMappings;
+  getErrors(): Errors;
+}
+
+class FbtCollector implements IFbtCollector {
 /*::
   _phrases: Array<PackagerPhrase>;
   _errors: Errors;

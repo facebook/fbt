@@ -22,7 +22,7 @@ import type {FbtRuntimeCallInput, FbtTranslatedInput} from 'FbtHooks';
 // These ones can stay here for now since they have a consistent behavior across this test suite.
 const FbtNumberType = require('FbtNumberType');
 const IntlVariations = require('IntlVariations');
-const React = require('React');
+const React = require('react');
 const ReactDOM = require('ReactDOM');
 
 const invariant = require('invariant');

@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`collectFbt should extract strings from a custom collector 1`] = `
+Object {
+  "childParentMappings": Object {
+    "1": 0,
+  },
+  "phrases": Array [
+    Object {
+      "col_beg": 8,
+      "col_end": 14,
+      "desc": "description",
+      "filepath": "",
+      "jsfbt": "Hello {=World}!",
+      "line_beg": 3,
+      "line_end": 5,
+      "project": "",
+      "type": "text",
+    },
+    Object {
+      "col_beg": 16,
+      "col_end": 38,
+      "desc": "In the phrase: \\"Hello {=World}!\\"",
+      "filepath": "",
+      "jsfbt": "World",
+      "line_beg": 4,
+      "line_end": 4,
+      "project": "",
+      "type": "text",
+    },
+  ],
+}
+`;

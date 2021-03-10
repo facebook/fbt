@@ -12,6 +12,11 @@
 
 'use strict';
 
+import type {
+  CollectorConfig,
+  ExtraOptions,
+  IFbtCollector,
+} from './FbtCollector';
 import type {HashFunction} from './TextPackager';
 
 const FbtCollector = require('./FbtCollector');
@@ -25,6 +30,7 @@ const yargs = require('yargs');
 const args = {
   AUXILIARY_TEXTS: 'auxiliary-texts',
   COMMON_STRINGS: 'fbt-common-path',
+  CUSTOM_COLLECTOR: 'custom-collector',
   HASH: 'hash-module',
   HELP: 'h',
   MANIFEST: 'manifest',
@@ -134,6 +140,15 @@ const argv = yargs
     args.OPTIONS,
     'additional options that fbt(..., {can: "take"}).  ' +
       `i.e. --${args.OPTIONS} "locale,qux,id"`,
+  )
+  .string(args.CUSTOM_COLLECTOR)
+  .describe(
+    args.CUSTOM_COLLECTOR,
+    `In some complex scenarios, passing custom Babel presets or plugins to preprocess ` +
+      `the input JS is not flexible enough. As an alternative, you can provide your own ` +
+      `implementation of the FbtCollector module. ` +
+      `It must at least expose the same public methods to expose the extract fbt phrases.\n` +
+      `i.e. --${args.CUSTOM_COLLECTOR} myFbtCollector.js`,
   ).argv;
 
 const packager = argv[args.PACKAGER];
@@ -162,7 +177,25 @@ const transformPath = argv[args.TRANSFORM];
 // $FlowExpectedError[unsupported-syntax] Requiring dynamic module
 const transform = transformPath ? require(transformPath) : null;
 
-const fbtCollector = new FbtCollector(
+function getFbtCollector(
+  collectorConfig: CollectorConfig,
+  extraOptions: ExtraOptions,
+): IFbtCollector {
+  let customCollectorPath: string = argv[args.CUSTOM_COLLECTOR];
+  if (customCollectorPath) {
+    customCollectorPath = path.isAbsolute(customCollectorPath)
+      ? customCollectorPath
+      : path.resolve(process.cwd(), customCollectorPath);
+
+    // $FlowExpectedError[unsupported-syntax] Need to import custom module
+    const CustomCollector: Class<IFbtCollector> = require(customCollectorPath);
+    return new CustomCollector(collectorConfig, extraOptions);
+  } else {
+    return new FbtCollector(collectorConfig, extraOptions);
+  }
+}
+
+const fbtCollector = getFbtCollector(
   {
     auxiliaryTexts: argv[args.AUXILIARY_TEXTS],
     plugins: argv[args.PLUGINS].map(require),
