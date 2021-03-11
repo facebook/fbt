@@ -17,6 +17,7 @@ const fbt = require('../index');
 const babel = require('@babel/core');
 const {SyntaxPlugins} = require('fb-babel-plugin-utils');
 const fs = require('graceful-fs');
+const path = require('path');
 
 export type ExternalTransform = (src: string, opts: TransformOptions, filename: ?string) => mixed;
 
@@ -123,6 +124,7 @@ class FbtCollector implements IFbtCollector {
     }
 
     if (this._config.transform) {
+      options.fbtBabelPluginPath = path.join(__dirname, '../..');
       this._config.transform(source, options, filename); 
     } else {
       transform(source, options, this._config.plugins || [], this._config.presets || []);
