@@ -45,6 +45,7 @@ export type PackagerPhrase = {|
 export type TransformOptions = {|
   collectFbt?: boolean,
   soureType?: string,
+  fbtBabelPluginPath?: string,
   filename?: string,
   extraOptions?: mixed,
   fbtEnumManifest?: FbtEnumManifest,
@@ -123,9 +124,10 @@ class FbtCollector implements IFbtCollector {
       return;
     }
 
-    if (this._config.transform) {
+    const externalTransform = this._config.transform;
+    if (externalTransform) {
       options.fbtBabelPluginPath = path.join(__dirname, '../..');
-      this._config.transform(source, options, filename); 
+      externalTransform(source, options, filename);
     } else {
       transform(source, options, this._config.plugins || [], this._config.presets || []);
     }
