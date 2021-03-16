@@ -48,10 +48,11 @@ List of changes for each released npm package version.
   <summary>
     Unreleased changes that have landed in master. Click to see more.
   </summary>
-
-  - [fix] Don't strip punctuation that isn't redundant with token punctuation
-
 </details>
+
+- 0.16.2:
+  - [chore] Update babel-plugin-fbt dependency version to `^0.17.x`
+  - [fix] Don't strip punctuation that isn't redundant with token punctuation
 
 - 0.16.1:
   - [fix] Updated peer dependencies, and devEngines dependencies.
