@@ -11,6 +11,5 @@
 
 module.exports = {
   RequireCheck: require('./RequireCheck'),
-  SyntaxPlugins: require('./SyntaxPlugins'),
   TestUtil: require('./TestUtil'),
 };
