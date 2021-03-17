@@ -7,6 +7,7 @@ List of changes for each released npm package version.
 - [fbt versions](#fbt-versions)
 - [babel-plugin-fbt versions](#babel-plugin-fbt-versions)
 - [babel-plugin-fbt-runtime versions](#babel-plugin-fbt-runtime-versions)
+- [@fbtjs/default-collection-transform](#default-collection-transform)
 - [fb-tiger-hash versions](#fb-tiger-hash-versions)
 - [fb-babel-plugin-utils versions](#fb-babel-plugin-utils-versions)
 - [gulp-rewrite-flowtyped-modules](#gulp-rewrite-flowtyped-modules)
@@ -289,6 +290,11 @@ List of changes for each released npm package version.
 
 - 0.1.0:
   -  First commit. A native JavaScript implementation of the Tiger hash Algorithm.
+
+### default-collection-transform versions
+
+- 0.0.1:
+  - First commit.  A default Babel transform to use for fbt collection.
 
 ### fb-babel-plugin-utils versions
   <details>

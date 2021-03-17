@@ -84,6 +84,7 @@
     "demo-app",
     "packages/babel-plugin-fbt-runtime",
     "packages/babel-plugin-fbt",
+    "packages/default-collection-transform",
     "packages/fb-babel-plugin-utils",
     "packages/fb-tiger-hash",
     "packages/fbt",
