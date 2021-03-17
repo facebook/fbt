@@ -564,6 +564,25 @@ const testData = {
     throws: true,
   },
 
+  'should ignore __private attributes': {
+    input: withFbtRequireStatement(
+      `<fbt __self="fbt" desc="some-desc">
+        <fbt:param __self="param" name="foo">
+          {foo}
+        </fbt:param>
+      </fbt>`,
+    ),
+
+    output: withFbtRequireStatement(
+      `fbt._(
+        ${payload({
+          type: 'text',
+          jsfbt: '{foo}',
+          desc: 'some-desc',
+        })}, [fbt._param("foo", foo)]);`,
+    ),
+  },
+
   'should ignore non-expression children in fbt:param': {
     input: withFbtRequireStatement(
       `<fbt desc="some-desc">

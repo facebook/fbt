@@ -50,6 +50,9 @@ List of changes for each released npm package version.
   </summary>
 </details>
 
+- 0.16.3:
+  - [chore] Update babel-plugin-fbt dependency version to `^0.18.x`
+
 - 0.16.2:
   - [chore] Update babel-plugin-fbt dependency version to `^0.17.x`
   - [fix] Don't strip punctuation that isn't redundant with token punctuation
@@ -122,8 +125,11 @@ List of changes for each released npm package version.
       Unreleased changes that have landed in master. Click to see more.
     </summary>
 
-    - [feat] Add ability to collect strings from a custom `FbtCollector` module for collection script
   </details>
+
+- 0.18.0:
+  - [fix] Ignore __private JSX attributes when parsing
+  - [feat] Add ability to collect strings from a custom `FbtCollector` module for collection script
 
 - 0.17.2:
   - [feat] Add external `transform` option for collection script
@@ -222,6 +228,9 @@ List of changes for each released npm package version.
   - [c11e9fd](https://github.com/facebook/fbt/commit/c11e9fd) Enable custom Babel plugins for FBT collection
 
 ### babel-plugin-fbt-runtime versions
+
+- 0.9.15:
+  - [chore] Updated peer dependency on babel-plugin-fbt
 
 - 0.9.14:
   - [fix] Updated peer dependency on babel-plugin-fbt

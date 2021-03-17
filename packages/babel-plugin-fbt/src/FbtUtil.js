@@ -189,9 +189,13 @@ function getOptionsFromAttributes(
   attributesNode.forEach(function(node) {
     const option = node.name.name;
 
-    // Ignored attributes are passed as a separate argument in the fbt(...)
+    // Required attributes are passed as a separate argument in the fbt(...)
     // call, because they're required. They're not passed as options.
-    if (ignoredAttrs[option]) {
+    // Ignored attributes are simply stripped from the function call entirely
+    // and ignored.  By default, we ignore all "private" attributes with a
+    // leading '__' like '__source' and '__self' as added by certain
+    // babel/react plugins
+    if (ignoredAttrs[option] || option.startsWith('__')) {
       return;
     }
 
