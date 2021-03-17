@@ -14,8 +14,6 @@
 
 'use strict';
 
-const SyntaxPluginsConfig = require('./SyntaxPluginsConfig');
-
 // Keep these require's explicit for grep friendliness.
 const SYNTAX_PLUGINS_MAP /*: {[string]: ?Object | [Object, {...}], ...} */ = {
   '@babel/plugin-syntax-class-properties': require('@babel/plugin-syntax-class-properties'),
@@ -30,12 +28,6 @@ const SYNTAX_PLUGINS_MAP /*: {[string]: ?Object | [Object, {...}], ...} */ = {
   '@babel/plugin-syntax-nullish-coalescing-operator': require('@babel/plugin-syntax-nullish-coalescing-operator'),
   '@babel/plugin-syntax-optional-catch-binding': require('@babel/plugin-syntax-optional-catch-binding'),
 };
-
-if (SyntaxPluginsConfig.shouldEnableFBSourcePlugins) {
-  SYNTAX_PLUGINS_MAP[
-    '@babel/plugin-syntax-dynamic-import'
-  ] = require('@babel/plugin-syntax-dynamic-import');
-}
 
 const SYNTAX_PLUGINS /*: Array<Object> */ = [];
 for (const pluginName in SYNTAX_PLUGINS_MAP) {

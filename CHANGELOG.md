@@ -311,6 +311,8 @@ List of changes for each released npm package version.
      Unreleased changes that have landed in master. Click to see more.
     </summary>
 
+  - [chore] Remove SyntaxPluginsConfig
+
   </details>
 
 - 0.11.1:
