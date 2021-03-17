@@ -14,8 +14,6 @@
 const {extractEnumsAndFlattenPhrases} = require('../FbtShiftEnums');
 // eslint-disable-next-line fb-www/no-module-aliasing
 const fbt = require('../index');
-const babel = require('@babel/core');
-const {SyntaxPlugins} = require('fb-babel-plugin-utils');
 const fs = require('graceful-fs');
 const path = require('path');
 
@@ -54,24 +52,6 @@ export type TransformOptions = {|
   reactNativeMode?: boolean,
 |}
 */
-
-function transform(
-  code /*: string*/,
-  options /*: TransformOptions*/,
-  plugins /*: BabelPluginList */,
-  presets  /*: BabelPresetList */
-)/*: void*/ {
-  const opts = {
-    ast: false,
-    code: false,
-    filename: options.filename,
-    plugins: SyntaxPlugins.list.concat(plugins, [[fbt, options]]),
-    presets,
-    sourceType: 'unambiguous',
-  };
-  babel.transformSync(code, opts);
-}
-
 
 export interface IFbtCollector {
   constructor(config : CollectorConfig, extraOptions : ExtraOptions): void;
@@ -129,6 +109,7 @@ class FbtCollector implements IFbtCollector {
       options.fbtBabelPluginPath = path.join(__dirname, '../..');
       externalTransform(source, options, filename);
     } else {
+      const transform = require('@fbtjs/default-collection-transform');
       transform(source, options, this._config.plugins || [], this._config.presets || []);
     }
 

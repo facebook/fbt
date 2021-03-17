@@ -13,7 +13,7 @@
     "fbjs": "^1.0.0"
   },
   "peerDependencies": {
-    "babel-plugin-fbt": "^0.18.x"
+    "babel-plugin-fbt": "^0.19.x"
   },
   "repository": {
     "type": "git",

@@ -51,6 +51,9 @@ List of changes for each released npm package version.
   </summary>
 </details>
 
+- 0.16.4:
+  - [chore] Update babel-plugin-fbt dependency version to `^0.19.x`
+
 - 0.16.3:
   - [chore] Update babel-plugin-fbt dependency version to `^0.18.x`
 
@@ -127,6 +130,9 @@ List of changes for each released npm package version.
     </summary>
 
   </details>
+
+- 0.19.0:
+  - [refactor]! Move to @fbtjs/default-collection-transform and avoid fb-babel-plugin-utils/SyntaxPlugins
 
 - 0.18.0:
   - [fix] Ignore __private JSX attributes when parsing
@@ -229,6 +235,9 @@ List of changes for each released npm package version.
   - [c11e9fd](https://github.com/facebook/fbt/commit/c11e9fd) Enable custom Babel plugins for FBT collection
 
 ### babel-plugin-fbt-runtime versions
+
+- 0.9.16:
+  - [chore] Updated peer dependency on babel-plugin-fbt
 
 - 0.9.15:
   - [chore] Updated peer dependency on babel-plugin-fbt
