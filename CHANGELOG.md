@@ -316,6 +316,10 @@ List of changes for each released npm package version.
 
   </details>
 
+- 0.12.0:
+  - [refactor!] Remove SyntaxPlugins
+  - [chore] Remove SyntaxPluginsConfig
+
 - 0.11.1:
   - [chore] Adding @noflow annotations
 
