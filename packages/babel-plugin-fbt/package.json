@@ -4,7 +4,7 @@
   "name": "babel-plugin-fbt",
   "description": "The FBT Babel localization transform",
   "//version": "Follow SemVer specs at https://semver.org/",
-  "version": "0.19.0",
+  "version": "0.19.1",
   "bin": {
     "fbt-collect": "dist/bin/collectFbt.bin.js",
     "fbt-manifest": "dist/bin/manifest.bin.js",
@@ -25,7 +25,7 @@
     "@babel/plugin-transform-flow-strip-types": "^7.2.0",
     "@babel/plugin-transform-modules-commonjs": "^7.8.3",
     "@babel/types": "^7.2.2",
-    "fb-babel-plugin-utils": "^0.11.0",
+    "fb-babel-plugin-utils": "^0.12.0",
     "glob": "^7.1.6",
     "invariant": "^2.2.4",
     "jest-docblock": "^26.0.0",

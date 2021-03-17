@@ -131,6 +131,9 @@ List of changes for each released npm package version.
 
   </details>
 
+- 0.19.1:
+  - [chore] Update fb-babel-plugin-utils dependency version
+
 - 0.19.0:
   - [refactor]! Move to @fbtjs/default-collection-transform and avoid fb-babel-plugin-utils/SyntaxPlugins
 
