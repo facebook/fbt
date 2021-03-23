@@ -17,6 +17,7 @@ The required NPM modules to add to your `dependencies` in your app are:
    * Transforms the raw payloads within `fbt._(...)` so they can be used at runtime (by `fbt._`)
    * NOTE: [This plugin should get merged into `babel-plugin-fbt`](https://github.com/facebook/fbt/issues/125)
  * [**@fbtjs/default-collection-transform**](https://www.npmjs.com/package/@fbtjs/default-collection-transform)
+   * Only required if if you elect *not* to pass a custom `--transform` nor `--custom-collector` in the [collection script](https://github.com/facebook/fbt/blob/3fc75eb5b3303db6041df098b5f77a94b5f36309/packages/babel-plugin-fbt/src/bin/collectFbt.js#L116-L152)
 
 If you're unfamiliar with [Babel](https://babeljs.io/), you can read through [their documentation here](https://babeljs.io/)
 
@@ -55,6 +56,7 @@ These are:
    * **NOTE**: Enum modules must end in [$FbtEnum.(js|jsx|ts|tsx)](https://github.com/facebook/fbt/blob/3a5441708ca6b71c2c18fe5a952d1058a22306d1/packages/babel-plugin-fbt/bin/manifest.js#L66) (i.e. `Foo$FbtEnum.js`)
  * [fbt-collectFbt](https://github.com/facebook/fbt/blob/19531133625dab1d38995dcf578dcfdfa0b09048/packages/babel-plugin-fbt/package.json#L9) -
    Given source input, extract any source text and print them to STDOUT as JSON
+   * [**@fbtjs/default-collection-transform**](https://www.npmjs.com/package/@fbtjs/default-collection-transform) - As mentioned, this optional package provides a default transform for collection
 
 ### Translation
  * [fbt-translate](https://github.com/facebook/fbt/blob/19531133625dab1d38995dcf578dcfdfa0b09048/packages/babel-plugin-fbt/package.json#L11) -

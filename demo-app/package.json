@@ -71,6 +71,7 @@
     "@babel/plugin-syntax-numeric-separator": "^7.2.0",
     "@babel/plugin-transform-runtime": "^7.2.0",
     "babel-plugin-fbt": "x.x.x",
+    "@fbtjs/default-collection-transform": "x.x.x",
     "babel-plugin-fbt-runtime": "x.x.x",
     "babel-plugin-minify-replace": "^0.5.0",
     "fbjs": "^1.0.0",

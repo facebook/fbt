@@ -11,7 +11,7 @@ Check out our [FBT Native Module](https://www.npmjs.com/package/react-native-fbt
 ## Adding FBT and its dependencies
 
 * Dependencies
-  * `yarn add babel-plugin-fbt babel-plugin-fbt-runtime fbt react-native-fbt`
+  * `yarn add babel-plugin-fbt babel-plugin-fbt-runtime fbt react-native-fbt '@fbtjs/default-collection-transform'`
 
   * `yarn add babel-preset-react-native shelljs fb-tiger-hash --dev`
 
