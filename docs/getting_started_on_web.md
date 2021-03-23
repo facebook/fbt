@@ -16,6 +16,7 @@ The required NPM modules to add to your `dependencies` in your app are:
  * [**babel-plugin-fbt-runtime**](https://www.npmjs.com/package/babel-plugin-fbt-runtime) - The secondary Babel transform
    * Transforms the raw payloads within `fbt._(...)` so they can be used at runtime (by `fbt._`)
    * NOTE: [This plugin should get merged into `babel-plugin-fbt`](https://github.com/facebook/fbt/issues/125)
+ * [**@fbtjs/default-collection-transform**](https://www.npmjs.com/package/@fbtjs/default-collection-transform)
 
 If you're unfamiliar with [Babel](https://babeljs.io/), you can read through [their documentation here](https://babeljs.io/)
 
