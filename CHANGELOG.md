@@ -304,6 +304,8 @@ List of changes for each released npm package version.
   -  First commit. A native JavaScript implementation of the Tiger hash Algorithm.
 
 ### default-collection-transform versions
+- 0.0.2:
+  - Require Babel plugins directly
 
 - 0.0.1:
   - First commit.  A default Babel transform to use for fbt collection.

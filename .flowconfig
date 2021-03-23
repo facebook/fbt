@@ -28,6 +28,10 @@ esproposal.nullish_coalescing=enable
 facebook.fbs=Fbs
 facebook.fbt=FbtElement
 
+# Map imported internal plugins
+module.name_mapper='^babel-plugin-fbt$' -> '<PROJECT_ROOT>/packages/babel-plugin-fbt/src'
+module.name_mapper='^\(babel-plugin-fbt\)/dist/\(.*\)$' -> '<PROJECT_ROOT>/packages/\1/src/\2'
+
 # Import 3rd party node modules used by Babel transforms and runtime tests
 module.name_mapper='^\(\(invariant\|graceful-fs\|nullthrows\|optimist\|fb-babel-plugin-utils\|@babel\|fbjs\|jest-docblock\)\(/.*\)?\)$' -> '<PROJECT_ROOT>/node_modules/\1'
 module.name_mapper='^\(ReactDOM\)$' -> '<PROJECT_ROOT>/node_modules/react-dom'
