@@ -76,6 +76,10 @@ module.exports = {
       },
     },
     {
+      displayName: 'top-level',
+      roots: ['__tests__'],
+    },
+    {
       displayName: 'demo-app',
       setupFiles: [
         'fbjs-scripts/jest/environment.js',

@@ -46,6 +46,7 @@
     "jest-docblock": "^22.2.0",
     "prettier": "^2.0.5",
     "react-dom": "^16.10.2",
+    "semver": "^7.3.5",
     "webpack": "^5.4.0",
     "webpack-stream": "^5.2.1"
   },

@@ -15,6 +15,7 @@ List of changes for each released npm package version.
 - [fbt-rn-android-native versions [Deprecated]](#fbt-rn-android-native-versions-deprecated)
 
 ### Top-level Github
+- [build] Add test to ensure published versions are in sync
 - [feat] Add example of fbt common to the demo-app. See `<fbt common={true}>...</fbt>`.
 - [chore] Upgrade to Flow v0.141.0
 - [chore] Use GitHub Actions for Continuous Integration
@@ -50,6 +51,9 @@ List of changes for each released npm package version.
     Unreleased changes that have landed in master. Click to see more.
   </summary>
 </details>
+
+- 0.16.5:
+  - [chore] Update devDependency of `gulp-strip-docblock-pragmas` 
 
 - 0.16.4:
   - [chore] Update babel-plugin-fbt dependency version to `^0.19.x`
@@ -238,6 +242,9 @@ List of changes for each released npm package version.
   - [c11e9fd](https://github.com/facebook/fbt/commit/c11e9fd) Enable custom Babel plugins for FBT collection
 
 ### babel-plugin-fbt-runtime versions
+
+- 0.9.17:
+  - [chore] Updated devDependency on fb-babel-plugin-utils
 
 - 0.9.16:
   - [chore] Updated peer dependency on babel-plugin-fbt
