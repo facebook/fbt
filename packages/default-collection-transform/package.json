@@ -1,6 +1,6 @@
 {
   "name": "@fbtjs/default-collection-transform",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "The default collection transform to run for FBT collection",
   "license": "MIT",
   "main": "index.js",
@@ -15,8 +15,10 @@
     "@babel/plugin-syntax-numeric-separator": "^7.2.0",
     "@babel/plugin-syntax-object-rest-spread": "^7.0.0",
     "@babel/plugin-syntax-optional-catch-binding": "^7.0.0",
-    "@babel/plugin-syntax-optional-chaining": "^7.0.0",
-    "babel-plugin-fbt": "^0.19.x"
+    "@babel/plugin-syntax-optional-chaining": "^7.0.0"
+  },
+  "peerDependencies": {
+    "babel-plugin-fbt": "^0.20.x"
   },
   "scripts": {},
   "repository": {

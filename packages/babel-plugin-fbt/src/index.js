@@ -75,12 +75,19 @@ export type Phrase = {|
   ...ObjectWithJSFBT,
 |};
 type ChildToParentMap = {[childIndex: number]: number};
-*/
 
+export type BabelPluginFbt = {
+  ({types: BabelTypes, ...}): BabelTransformPlugin<ExtraBabelNodeProps>,
+  getExtractedStrings(): Array<Phrase>,
+  getChildToParentRelationships(): ChildToParentMap,
+  fbtHashKey(PatternString | FbtRuntimeInput, string, boolean): string
+};
+*/
+const FbtCommon = require('./FbtCommon');
 const FbtCommonFunctionCallProcessor = require('./babel-processors/FbtCommonFunctionCallProcessor');
 const FbtFunctionCallProcessor = require('./babel-processors/FbtFunctionCallProcessor');
+const FbtUtil = require('./FbtUtil');
 const JSXFbtProcessor = require('./babel-processors/JSXFbtProcessor');
-const FbtCommon = require('./FbtCommon');
 const {
   JSModuleName: {FBT},
   ValidFbtOptions,
@@ -91,7 +98,7 @@ const FbtShiftEnums = require('./FbtShiftEnums');
 const {
   checkOption,
   objMap,
-} = require('./FbtUtil');
+} = FbtUtil;
 const {
   RequireCheck: {isRequireAlias},
 } = require('fb-babel-plugin-utils');
@@ -112,7 +119,7 @@ let phrases/*: Array<Phrase>*/;
  */
 let childToParent/*: ChildToParentMap*/;
 
-function BabelPluginFbt(babel /*: {
+function FbtTransform(babel /*: {
   types: BabelTypes,
 }*/) /*: BabelTransformPlugin<ExtraBabelNodeProps>*/ {
   const t = babel.types;
@@ -225,9 +232,9 @@ function BabelPluginFbt(babel /*: {
   }; // babel plugin return
 }
 
-BabelPluginFbt.getExtractedStrings = () /*: Array<Phrase>*/ => phrases;
+FbtTransform.getExtractedStrings = () /*: Array<Phrase>*/ => phrases;
 
-BabelPluginFbt.getChildToParentRelationships = () /*: ChildToParentMap*/ =>
+FbtTransform.getChildToParentRelationships = () /*: ChildToParentMap*/ =>
   childToParent || {};
 
 function initExtraOptions(state) {
@@ -288,7 +295,8 @@ function getEnumManifest(opts) {
   return null;
 }
 
-BabelPluginFbt.fbtHashKey = fbtHashKey;
-BabelPluginFbt.FbtShiftEnums = FbtShiftEnums;
+FbtTransform.fbtHashKey = fbtHashKey;
+FbtTransform.FbtShiftEnums = FbtShiftEnums;
+FbtTransform.FbtUtil = FbtUtil;
 
-module.exports = BabelPluginFbt;
+module.exports = FbtTransform;

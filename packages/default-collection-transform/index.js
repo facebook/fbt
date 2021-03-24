@@ -17,7 +17,7 @@ import type {TransformOptions} from 'babel-plugin-fbt/dist/bin/FbtCollector';
 
 const defaultSyntaxPlugins = [
   require('@babel/plugin-syntax-class-properties'),
-  require('@babel/plugin-syntax-flow'),
+  [require('@babel/plugin-syntax-flow'), {enums: true}],
   require('@babel/plugin-syntax-jsx'),
   require('@babel/plugin-syntax-object-rest-spread'),
   require('@babel/plugin-syntax-numeric-separator'),
@@ -38,7 +38,7 @@ function transform(
     filename: options.filename,
     plugins: defaultSyntaxPlugins.concat(plugins, [
       // $FlowFixMe[incompatible-call]
-      [require('babel-plugin-fbt'), options],
+      [options.fbtModule, options],
     ]),
     presets,
     sourceType: 'unambiguous',
