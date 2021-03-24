@@ -59,6 +59,10 @@ declare module '@babel/core' {
       path: NodePathOf<BabelNodeCallExpression & ExtraProps>,
     ) => void,
     JSXElement?: (path: NodePathOf<BabelNodeJSXElement & ExtraProps>) => void,
+    JSXElement?: (path: NodePathOf<BabelNodeJSXElement & ExtraProps>) => void,
+    StringLiteral?: (
+      path: NodePathOf<BabelNodeStringLiteral & ExtraProps>,
+    ) => void,
   };
 
   declare type BabelTransformPlugin<ExtraProps: {}> = {

@@ -72,6 +72,12 @@ export type FbtFunctionCallPhrase = {|
   texts?: ExtractTableTextItems,
   ...ObjectWithJSFBT,
 |};
+
+export type SentinelPayload = {|
+  ...ObjectWithJSFBT,
+  desc: string,
+  project: string,
+|};
 */
 
 const {
@@ -633,12 +639,13 @@ class FbtFunctionCallProcessor {
 
   _createFbtRuntimeCall(phrase, runtimeArgs) {
     const {pluginOptions, t} = this;
-    const argsOutput = JSON.stringify({
+    // $FlowFixMe[speculation-ambiguous] we're deprecating the "type" property soon anyway
+    const argsOutput = JSON.stringify(({
       type: phrase.type,
       jsfbt: phrase.jsfbt,
       desc: phrase.desc,
       project: phrase.project,
-    });
+    }: SentinelPayload));
     const encodedOutput = pluginOptions.fbtBase64
       ? Buffer.from(argsOutput).toString('base64')
       : argsOutput;
