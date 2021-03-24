@@ -31,7 +31,7 @@ const Help = () => {
             <h2>Browse Docs</h2>
             <p>
               Learn more using the{" "}
-              <Link to={useBaseUrl("docs/getting-started")}>
+              <Link to={useBaseUrl("docs/getting_started_on_web")}>
                 documentation on this site.
               </Link>
             </p>
