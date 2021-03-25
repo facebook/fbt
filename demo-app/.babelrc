@@ -1,8 +1,8 @@
 {
   "presets": [
-    "@babel/env",
+    "@babel/preset-env",
     [
-      "@babel/react",
+      "@babel/preset-react",
       {
         "throwIfNamespace": false
       }

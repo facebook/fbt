@@ -23,6 +23,7 @@
     "@babel/plugin-syntax-optional-chaining": "^7.2.0",
     "@babel/plugin-transform-flow-strip-types": "^7.2.0",
     "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
     "@cnakazawa/watch": "^1.0.3",
     "babel-core": "7.0.0-bridge.0",
     "babel-preset-fbjs": "^3.1.2",

@@ -32,7 +32,7 @@ function createTransformer(opts /*: Object */ = {}) {
     process(src /*: string */, filename /*: string */) {
       const options = {
         presets: [
-          ['@babel/react', {throwIfNamespace: false}],
+          [require('@babel/preset-react'), {throwIfNamespace: false}],
           require('babel-preset-fbjs'),
         ],
         plugins: opts.plugins || [],

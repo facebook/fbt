@@ -15,6 +15,7 @@ List of changes for each released npm package version.
 - [fbt-rn-android-native versions [Deprecated]](#fbt-rn-android-native-versions-deprecated)
 
 ### Top-level Github
+- [fix] Add missing dependencies for `@babel/preset-react`
 - [build] Add test to ensure published versions are in sync
 - [feat] Add example of fbt common to the demo-app. See `<fbt common={true}>...</fbt>`.
 - [chore] Upgrade to Flow v0.141.0
@@ -140,7 +141,7 @@ List of changes for each released npm package version.
   - [refactor]! Replace `fbtBabelPluginPath` with actual referenct to `fbtModule` in external transform
 
 - 0.19.2:
-  - [chore] Update devDependency of `gulp-strip-docblock-pragmas` 
+  - [chore] Update devDependency of `gulp-strip-docblock-pragmas`
 
 - 0.19.1:
   - [chore] Update fb-babel-plugin-utils dependency version
