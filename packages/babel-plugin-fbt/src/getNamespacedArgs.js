@@ -5,6 +5,8 @@
  *
  * @emails oncall+internationalization
  * @format
+ * Disabling typing since this file will be deprecated by the fbt-autoparam project
+ * @noflow
  */
 'use strict';
 
