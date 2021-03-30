@@ -156,8 +156,8 @@ declare class FbtPureStringResult implements IFbtResultBase {
     contents: $ReadOnlyArray<any>,
     errorListener: ?IFbtErrorListener,
   ): void;
-  getContents: $PropertyType<IFbtResultBase, 'getContents'>;
-  toJSON: $PropertyType<IFbtResultBase, 'toJSON'>;
+  getContents(): any;
+  toJSON(): string;
   // TODO(T27672828) Move code of toString() inside unwrap()
   // Returns the translated string value (similar to a `toString()` method)
   // This is deliberately named differently to avoid making this class behave
@@ -196,7 +196,7 @@ type $GenericFbtFunctionAPI<Input, Output, ParamInput, ParamOutput> = {
       ...
     },
   ): Output,
-  param(
+  param: (
     name: string,
     value: ParamInput,
     options?: {
@@ -204,17 +204,17 @@ type $GenericFbtFunctionAPI<Input, Output, ParamInput, ParamOutput> = {
       gender?: $IntlVariationsEnum,
       ...
     },
-  ): ParamOutput,
-  enum(
+  ) => ParamOutput,
+  enum: (
     value: string,
     range: $ReadOnlyArray<string> | {[key: string]: string, ...},
-  ): ParamOutput,
-  name(
+  ) => ParamOutput,
+  name: (
     tokenName: string,
     value: string,
     gender: $IntlVariationsEnum,
-  ): ParamOutput,
-  plural(
+  ) => ParamOutput,
+  plural: (
     label: string,
     count: number,
     options?: {
@@ -223,8 +223,8 @@ type $GenericFbtFunctionAPI<Input, Output, ParamInput, ParamOutput> = {
       name?: string, // token name
       value?: $FbtContentItem, // optional value to replace token (rather than count)
     },
-  ): ParamOutput,
-  pronoun(
+  ) => ParamOutput,
+  pronoun: (
     usage: 'object' | 'possessive' | 'reflexive' | 'subject',
     gender: $GenderConstEnum,
     options?: {
@@ -232,16 +232,16 @@ type $GenericFbtFunctionAPI<Input, Output, ParamInput, ParamOutput> = {
       human?: boolean,
       ...
     },
-  ): ParamOutput,
-  sameParam(name: string): ParamOutput,
-  c(text: string): Output,
+  ) => ParamOutput,
+  sameParam: (name: string) => ParamOutput,
+  c: (text: string) => Output,
   jsonEncode: boolean,
   replaceParams: boolean,
   // Only used in React Native in fbsource
-  enableJsonExportMode(): void,
+  enableJsonExportMode: () => void,
   // Only used in React Native in fbsource
-  disableJsonExportMode(): void,
-  isFbtInstance(value: mixed): boolean,
+  disableJsonExportMode: () => void,
+  isFbtInstance: (value: mixed) => boolean,
   ...
 };
 
