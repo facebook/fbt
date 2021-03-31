@@ -18,7 +18,11 @@ const extractEnumsAndFlattenPhrasesTestData = [
   {
     name: 'text and table with no enums should stay the same',
     input: [
-      {type: FbtType.TEXT, jsfbt: 'Like', desc: 'Text Desc 1'},
+      {
+        type: FbtType.TEXT,
+        jsfbt: 'Like',
+        desc: 'Text Desc 1',
+      },
       {
         type: FbtType.TABLE,
         jsfbt: {
@@ -33,16 +37,32 @@ const extractEnumsAndFlattenPhrasesTestData = [
             },
           },
           m: [
-            {token: 'num', type: FbtVariationType.NUMBER, singular: true},
-            {token: 'count', type: FbtVariationType.NUMBER, singular: true},
+            {
+              token: 'num',
+              type: FbtVariationType.NUMBER,
+              singular: true,
+            },
+            {
+              token: 'count',
+              type: FbtVariationType.NUMBER,
+              singular: true,
+            },
           ],
         },
         desc: 'Table Desc',
       },
-      {type: FbtType.TEXT, jsfbt: 'Comment', desc: 'Text Desc 2'},
+      {
+        type: FbtType.TEXT,
+        jsfbt: 'Comment',
+        desc: 'Text Desc 2',
+      },
     ],
     output: [
-      {type: FbtType.TEXT, jsfbt: 'Like', desc: 'Text Desc 1'},
+      {
+        type: FbtType.TEXT,
+        jsfbt: 'Like',
+        desc: 'Text Desc 1',
+      },
       {
         type: FbtType.TABLE,
         jsfbt: {
@@ -57,19 +77,35 @@ const extractEnumsAndFlattenPhrasesTestData = [
             },
           },
           m: [
-            {token: 'num', type: FbtVariationType.NUMBER, singular: true},
-            {token: 'count', type: FbtVariationType.NUMBER, singular: true},
+            {
+              token: 'num',
+              type: FbtVariationType.NUMBER,
+              singular: true,
+            },
+            {
+              token: 'count',
+              type: FbtVariationType.NUMBER,
+              singular: true,
+            },
           ],
         },
         desc: 'Table Desc',
       },
-      {type: FbtType.TEXT, jsfbt: 'Comment', desc: 'Text Desc 2'},
+      {
+        type: FbtType.TEXT,
+        jsfbt: 'Comment',
+        desc: 'Text Desc 2',
+      },
     ],
   },
   {
     name: 'single level enum table should be flattened to texts',
     input: [
-      {type: FbtType.TEXT, jsfbt: 'Like', desc: 'Text Desc 1'},
+      {
+        type: FbtType.TEXT,
+        jsfbt: 'Like',
+        desc: 'Text Desc 1',
+      },
       {
         type: FbtType.TABLE,
         jsfbt: {
@@ -78,24 +114,56 @@ const extractEnumsAndFlattenPhrasesTestData = [
             groups: 'Click to see groups',
             comments: 'Click to see comments',
           },
-          m: [{range: ['photos', 'groups', 'comments']}],
+          m: [
+            {
+              range: ['photos', 'groups', 'comments'],
+            },
+          ],
         },
         desc: 'Table Desc',
       },
-      {type: FbtType.TEXT, jsfbt: 'Comment', desc: 'Text Desc 2'},
+      {
+        type: FbtType.TEXT,
+        jsfbt: 'Comment',
+        desc: 'Text Desc 2',
+      },
     ],
     output: [
-      {type: FbtType.TEXT, jsfbt: 'Like', desc: 'Text Desc 1'},
-      {type: FbtType.TEXT, jsfbt: 'Click to see photos', desc: 'Table Desc'},
-      {type: FbtType.TEXT, jsfbt: 'Click to see groups', desc: 'Table Desc'},
-      {type: FbtType.TEXT, jsfbt: 'Click to see comments', desc: 'Table Desc'},
-      {type: FbtType.TEXT, jsfbt: 'Comment', desc: 'Text Desc 2'},
+      {
+        type: FbtType.TEXT,
+        jsfbt: 'Like',
+        desc: 'Text Desc 1',
+      },
+      {
+        type: FbtType.TEXT,
+        jsfbt: 'Click to see photos',
+        desc: 'Table Desc',
+      },
+      {
+        type: FbtType.TEXT,
+        jsfbt: 'Click to see groups',
+        desc: 'Table Desc',
+      },
+      {
+        type: FbtType.TEXT,
+        jsfbt: 'Click to see comments',
+        desc: 'Table Desc',
+      },
+      {
+        type: FbtType.TEXT,
+        jsfbt: 'Comment',
+        desc: 'Text Desc 2',
+      },
     ],
   },
   {
     name: 'multiple level enum table should be flattened to texts',
     input: [
-      {type: FbtType.TEXT, jsfbt: 'Like', desc: 'Text Desc 1'},
+      {
+        type: FbtType.TEXT,
+        jsfbt: 'Like',
+        desc: 'Text Desc 1',
+      },
       {
         type: FbtType.TABLE,
         jsfbt: {
@@ -112,17 +180,29 @@ const extractEnumsAndFlattenPhrasesTestData = [
             },
           },
           m: [
-            {range: ['here', 'there']},
-            {range: ['photos', 'groups', 'comments']},
+            {
+              range: ['here', 'there'],
+            },
+            {
+              range: ['photos', 'groups', 'comments'],
+            },
           ],
         },
         desc: 'Table Desc',
       },
-      {type: FbtType.TEXT, jsfbt: 'Comment', desc: 'Text Desc 2'},
+      {
+        type: FbtType.TEXT,
+        jsfbt: 'Comment',
+        desc: 'Text Desc 2',
+      },
     ],
 
     output: [
-      {type: FbtType.TEXT, jsfbt: 'Like', desc: 'Text Desc 1'},
+      {
+        type: FbtType.TEXT,
+        jsfbt: 'Like',
+        desc: 'Text Desc 1',
+      },
       {
         type: FbtType.TEXT,
         jsfbt: 'Click here to see photos',
@@ -153,13 +233,21 @@ const extractEnumsAndFlattenPhrasesTestData = [
         jsfbt: 'Click there to see comments',
         desc: 'Table Desc',
       },
-      {type: FbtType.TEXT, jsfbt: 'Comment', desc: 'Text Desc 2'},
+      {
+        type: FbtType.TEXT,
+        jsfbt: 'Comment',
+        desc: 'Text Desc 2',
+      },
     ],
   },
   {
     name: 'sub-tables should be extracted (one enum)',
     input: [
-      {type: FbtType.TEXT, jsfbt: 'Like', desc: 'Text Desc 1'},
+      {
+        type: FbtType.TEXT,
+        jsfbt: 'Like',
+        desc: 'Text Desc 1',
+      },
       {
         type: FbtType.TABLE,
         jsfbt: {
@@ -174,16 +262,30 @@ const extractEnumsAndFlattenPhrasesTestData = [
             },
           },
           m: [
-            {token: 'num', type: FbtVariationType.NUMBER, singular: true},
-            {range: ['photos', 'posts']},
+            {
+              token: 'num',
+              type: FbtVariationType.NUMBER,
+              singular: true,
+            },
+            {
+              range: ['photos', 'posts'],
+            },
           ],
         },
         desc: 'Table Desc',
       },
-      {type: FbtType.TEXT, jsfbt: 'Comment', desc: 'Text Desc 2'},
+      {
+        type: FbtType.TEXT,
+        jsfbt: 'Comment',
+        desc: 'Text Desc 2',
+      },
     ],
     output: [
-      {type: FbtType.TEXT, jsfbt: 'Like', desc: 'Text Desc 1'},
+      {
+        type: FbtType.TEXT,
+        jsfbt: 'Like',
+        desc: 'Text Desc 1',
+      },
       {
         type: FbtType.TABLE,
         jsfbt: {
@@ -191,7 +293,13 @@ const extractEnumsAndFlattenPhrasesTestData = [
             _1: 'Click 1 time to see photos',
             '*': 'Click {num} times to see photos',
           },
-          m: [{token: 'num', type: FbtVariationType.NUMBER, singular: true}],
+          m: [
+            {
+              token: 'num',
+              type: FbtVariationType.NUMBER,
+              singular: true,
+            },
+          ],
         },
         desc: 'Table Desc',
       },
@@ -202,17 +310,31 @@ const extractEnumsAndFlattenPhrasesTestData = [
             _1: 'Click 1 time to see posts',
             '*': 'Click {num} times to see posts',
           },
-          m: [{token: 'num', type: FbtVariationType.NUMBER, singular: true}],
+          m: [
+            {
+              token: 'num',
+              type: FbtVariationType.NUMBER,
+              singular: true,
+            },
+          ],
         },
         desc: 'Table Desc',
       },
-      {type: FbtType.TEXT, jsfbt: 'Comment', desc: 'Text Desc 2'},
+      {
+        type: FbtType.TEXT,
+        jsfbt: 'Comment',
+        desc: 'Text Desc 2',
+      },
     ],
   },
   {
     name: 'sub-tables should be extracted (multiple enums)',
     input: [
-      {type: FbtType.TEXT, jsfbt: 'Like', desc: 'Text Desc 1'},
+      {
+        type: FbtType.TEXT,
+        jsfbt: 'Like',
+        desc: 'Text Desc 1',
+      },
       {
         type: FbtType.TABLE,
         jsfbt: {
@@ -239,17 +361,33 @@ const extractEnumsAndFlattenPhrasesTestData = [
             },
           },
           m: [
-            {range: ['here', 'there']},
-            {token: 'num', type: FbtVariationType.NUMBER, singular: true},
-            {range: ['photos', 'posts']},
+            {
+              range: ['here', 'there'],
+            },
+            {
+              token: 'num',
+              type: FbtVariationType.NUMBER,
+              singular: true,
+            },
+            {
+              range: ['photos', 'posts'],
+            },
           ],
         },
         desc: 'Table Desc',
       },
-      {type: FbtType.TEXT, jsfbt: 'Comment', desc: 'Text Desc 2'},
+      {
+        type: FbtType.TEXT,
+        jsfbt: 'Comment',
+        desc: 'Text Desc 2',
+      },
     ],
     output: [
-      {type: FbtType.TEXT, jsfbt: 'Like', desc: 'Text Desc 1'},
+      {
+        type: FbtType.TEXT,
+        jsfbt: 'Like',
+        desc: 'Text Desc 1',
+      },
       {
         type: FbtType.TABLE,
         jsfbt: {
@@ -257,7 +395,13 @@ const extractEnumsAndFlattenPhrasesTestData = [
             _1: 'Click here 1 time to see photos',
             '*': 'Click here {num} times to see photos',
           },
-          m: [{token: 'num', type: FbtVariationType.NUMBER, singular: true}],
+          m: [
+            {
+              token: 'num',
+              type: FbtVariationType.NUMBER,
+              singular: true,
+            },
+          ],
         },
         desc: 'Table Desc',
       },
@@ -268,7 +412,13 @@ const extractEnumsAndFlattenPhrasesTestData = [
             _1: 'Click here 1 time to see posts',
             '*': 'Click here {num} times to see posts',
           },
-          m: [{token: 'num', type: FbtVariationType.NUMBER, singular: true}],
+          m: [
+            {
+              token: 'num',
+              type: FbtVariationType.NUMBER,
+              singular: true,
+            },
+          ],
         },
         desc: 'Table Desc',
       },
@@ -279,7 +429,13 @@ const extractEnumsAndFlattenPhrasesTestData = [
             _1: 'Click there 1 time to see photos',
             '*': 'Click there {num} times to see photos',
           },
-          m: [{token: 'num', type: FbtVariationType.NUMBER, singular: true}],
+          m: [
+            {
+              token: 'num',
+              type: FbtVariationType.NUMBER,
+              singular: true,
+            },
+          ],
         },
         desc: 'Table Desc',
       },
@@ -290,17 +446,31 @@ const extractEnumsAndFlattenPhrasesTestData = [
             _1: 'Click there 1 time to see posts',
             '*': 'Click there {num} times to see posts',
           },
-          m: [{token: 'num', type: FbtVariationType.NUMBER, singular: true}],
+          m: [
+            {
+              token: 'num',
+              type: FbtVariationType.NUMBER,
+              singular: true,
+            },
+          ],
         },
         desc: 'Table Desc',
       },
-      {type: FbtType.TEXT, jsfbt: 'Comment', desc: 'Text Desc 2'},
+      {
+        type: FbtType.TEXT,
+        jsfbt: 'Comment',
+        desc: 'Text Desc 2',
+      },
     ],
   },
   {
     name: 'sub-tables should be extracted (multiple enums at bottom)',
     input: [
-      {type: FbtType.TEXT, jsfbt: 'Like', desc: 'Text Desc 1'},
+      {
+        type: FbtType.TEXT,
+        jsfbt: 'Like',
+        desc: 'Text Desc 1',
+      },
       {
         type: FbtType.TABLE,
         jsfbt: {
@@ -327,17 +497,33 @@ const extractEnumsAndFlattenPhrasesTestData = [
             },
           },
           m: [
-            {token: 'num', type: FbtVariationType.NUMBER, singular: true},
-            {range: ['see', 'eat']},
-            {range: ['photos', 'posts']},
+            {
+              token: 'num',
+              type: FbtVariationType.NUMBER,
+              singular: true,
+            },
+            {
+              range: ['see', 'eat'],
+            },
+            {
+              range: ['photos', 'posts'],
+            },
           ],
         },
         desc: 'Table Desc',
       },
-      {type: FbtType.TEXT, jsfbt: 'Comment', desc: 'Text Desc 2'},
+      {
+        type: FbtType.TEXT,
+        jsfbt: 'Comment',
+        desc: 'Text Desc 2',
+      },
     ],
     output: [
-      {type: FbtType.TEXT, jsfbt: 'Like', desc: 'Text Desc 1'},
+      {
+        type: FbtType.TEXT,
+        jsfbt: 'Like',
+        desc: 'Text Desc 1',
+      },
       {
         type: FbtType.TABLE,
         jsfbt: {
@@ -345,7 +531,13 @@ const extractEnumsAndFlattenPhrasesTestData = [
             _1: 'Click here 1 time to see photos',
             '*': 'Click here {num} times to see photos',
           },
-          m: [{token: 'num', type: FbtVariationType.NUMBER, singular: true}],
+          m: [
+            {
+              token: 'num',
+              type: FbtVariationType.NUMBER,
+              singular: true,
+            },
+          ],
         },
         desc: 'Table Desc',
       },
@@ -356,7 +548,13 @@ const extractEnumsAndFlattenPhrasesTestData = [
             _1: 'Click here 1 time to see posts',
             '*': 'Click here {num} times to see posts',
           },
-          m: [{token: 'num', type: FbtVariationType.NUMBER, singular: true}],
+          m: [
+            {
+              token: 'num',
+              type: FbtVariationType.NUMBER,
+              singular: true,
+            },
+          ],
         },
         desc: 'Table Desc',
       },
@@ -367,7 +565,13 @@ const extractEnumsAndFlattenPhrasesTestData = [
             _1: 'Click here 1 time to eat photos',
             '*': 'Click here {num} times to eat photos',
           },
-          m: [{token: 'num', type: FbtVariationType.NUMBER, singular: true}],
+          m: [
+            {
+              token: 'num',
+              type: FbtVariationType.NUMBER,
+              singular: true,
+            },
+          ],
         },
         desc: 'Table Desc',
       },
@@ -378,11 +582,21 @@ const extractEnumsAndFlattenPhrasesTestData = [
             _1: 'Click here 1 time to eat posts',
             '*': 'Click here {num} times to eat posts',
           },
-          m: [{token: 'num', type: FbtVariationType.NUMBER, singular: true}],
+          m: [
+            {
+              token: 'num',
+              type: FbtVariationType.NUMBER,
+              singular: true,
+            },
+          ],
         },
         desc: 'Table Desc',
       },
-      {type: FbtType.TEXT, jsfbt: 'Comment', desc: 'Text Desc 2'},
+      {
+        type: FbtType.TEXT,
+        jsfbt: 'Comment',
+        desc: 'Text Desc 2',
+      },
     ],
   },
 ];
@@ -399,7 +613,10 @@ const shiftEnumsToTopTestData = [
   {
     name: 'text should stay the same',
     input: 'Like',
-    output: {shiftedJsfbt: 'Like', enumCount: 0},
+    output: {
+      shiftedJsfbt: 'Like',
+      enumCount: 0,
+    },
   },
   {
     name: 'table with no enums should stay the same',
@@ -415,8 +632,16 @@ const shiftEnumsToTopTestData = [
         },
       },
       m: [
-        {token: 'num', type: FbtVariationType.NUMBER, singular: true},
-        {token: 'count', type: FbtVariationType.NUMBER, singular: true},
+        {
+          token: 'num',
+          type: FbtVariationType.NUMBER,
+          singular: true,
+        },
+        {
+          token: 'count',
+          type: FbtVariationType.NUMBER,
+          singular: true,
+        },
       ],
     },
     output: {
@@ -441,7 +666,11 @@ const shiftEnumsToTopTestData = [
         groups: 'Click to see groups',
         comments: 'Click to see comments',
       },
-      m: [{range: ['photos', 'groups', 'comments']}],
+      m: [
+        {
+          range: ['photos', 'groups', 'comments'],
+        },
+      ],
     },
     output: {
       shiftedJsfbt: {
@@ -468,8 +697,12 @@ const shiftEnumsToTopTestData = [
         },
       },
       m: [
-        {range: ['here', 'there']},
-        {range: ['photos', 'groups', 'comments']},
+        {
+          range: ['here', 'there'],
+        },
+        {
+          range: ['photos', 'groups', 'comments'],
+        },
       ],
     },
     output: {
@@ -502,8 +735,14 @@ const shiftEnumsToTopTestData = [
         },
       },
       m: [
-        {token: 'num', type: FbtVariationType.NUMBER, singular: true},
-        {range: ['photos', 'posts']},
+        {
+          token: 'num',
+          type: FbtVariationType.NUMBER,
+          singular: true,
+        },
+        {
+          range: ['photos', 'posts'],
+        },
       ],
     },
     output: {
@@ -546,9 +785,17 @@ const shiftEnumsToTopTestData = [
         },
       },
       m: [
-        {range: ['here', 'there']},
-        {token: 'num', type: FbtVariationType.NUMBER, singular: true},
-        {range: ['photos', 'posts']},
+        {
+          range: ['here', 'there'],
+        },
+        {
+          token: 'num',
+          type: FbtVariationType.NUMBER,
+          singular: true,
+        },
+        {
+          range: ['photos', 'posts'],
+        },
       ],
     },
     output: {
@@ -603,9 +850,17 @@ const shiftEnumsToTopTestData = [
         },
       },
       m: [
-        {token: 'num', type: FbtVariationType.NUMBER, singular: true},
-        {range: ['see', 'eat']},
-        {range: ['photos', 'posts']},
+        {
+          token: 'num',
+          type: FbtVariationType.NUMBER,
+          singular: true,
+        },
+        {
+          range: ['see', 'eat'],
+        },
+        {
+          range: ['photos', 'posts'],
+        },
       ],
     },
     output: {
