@@ -30,7 +30,7 @@ export type PluginOptions = {|
 const {fbtHashKey: jenkinsHashKey} = require('babel-plugin-fbt');
 const {shiftEnumsToTop} = require('babel-plugin-fbt').FbtShiftEnums;
 const {SENTINEL} = require('babel-plugin-fbt/dist/FbtConstants');
-const invariant = require('fbjs/lib/invariant');
+const invariant = require('invariant');
 
 let fbtHashKey /*: typeof jenkinsHashKey */ = jenkinsHashKey;
 

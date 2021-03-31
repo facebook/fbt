@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@babel/core": "^7.0.0",
-    "fbjs": "^1.0.0",
     "invariant": "^2.2.4"
   },
   "peerDependencies": {

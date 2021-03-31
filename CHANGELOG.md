@@ -250,6 +250,13 @@ List of changes for each released npm package version.
   - [c11e9fd](https://github.com/facebook/fbt/commit/c11e9fd) Enable custom Babel plugins for FBT collection
 
 ### babel-plugin-fbt-runtime versions
+  <details>
+    <summary>
+      Unreleased changes that have landed in master. Click to see more.
+    </summary>
+
+  - [chore] Use `invariant()` from the `invariant` npm package instead of `fbjs/lib/invariant`
+  </details>
 
 - 0.9.18:
   - [chore] Updated peer dependency on babel-plugin-fbt
