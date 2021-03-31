@@ -1,5 +1,282 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`collectFbt When using string templates should extract correctly multiple params 1`] = `
+Object {
+  "childParentMappings": Object {},
+  "phrases": Array [
+    Object {
+      "col_beg": 0,
+      "col_end": 86,
+      "desc": "counting",
+      "jsfbt": "{1} {2} {3} 4",
+      "line_beg": 3,
+      "line_end": 3,
+      "project": "",
+      "type": "text",
+    },
+  ],
+}
+`;
+
+exports[`collectFbt When using string templates should extract correctly name, pronoun, plural (react native) 1`] = `
+Object {
+  "childParentMappings": Object {},
+  "phrases": Array [
+    Object {
+      "col_beg": 0,
+      "col_end": 119,
+      "desc": "desc",
+      "jsfbt": Object {
+        "m": Array [
+          Object {
+            "token": "name",
+            "type": 1,
+          },
+          Object {
+            "type": 3,
+          },
+          Object {
+            "type": 2,
+          },
+        ],
+        "t": Object {
+          "*": Object {
+            "*": Object {
+              "*": "{name} sells their items",
+              "_1": "{name} sells their item",
+            },
+            "1": Object {
+              "*": "{name} sells her items",
+              "_1": "{name} sells her item",
+            },
+            "2": Object {
+              "*": "{name} sells his items",
+              "_1": "{name} sells his item",
+            },
+          },
+        },
+      },
+      "line_beg": 4,
+      "line_end": 4,
+      "project": "",
+      "type": "table",
+    },
+  ],
+}
+`;
+
+exports[`collectFbt When using string templates should extract correctly name, pronoun, plural 1`] = `
+Object {
+  "childParentMappings": Object {},
+  "phrases": Array [
+    Object {
+      "col_beg": 0,
+      "col_end": 119,
+      "desc": "desc",
+      "jsfbt": Object {
+        "m": Array [
+          Object {
+            "token": "name",
+            "type": 1,
+          },
+          null,
+          null,
+        ],
+        "t": Object {
+          "*": Object {
+            "*": Object {
+              "*": "{name} sells their items",
+              "_1": "{name} sells their item",
+            },
+            "1": Object {
+              "*": "{name} sells her items",
+              "_1": "{name} sells her item",
+            },
+            "2": Object {
+              "*": "{name} sells his items",
+              "_1": "{name} sells his item",
+            },
+          },
+        },
+      },
+      "line_beg": 4,
+      "line_end": 4,
+      "project": "",
+      "type": "table",
+    },
+  ],
+}
+`;
+
+exports[`collectFbt When using string templates should extract correctly supports tables ie fbt:enum 1`] = `
+Object {
+  "childParentMappings": Object {},
+  "phrases": Array [
+    Object {
+      "col_beg": 0,
+      "col_end": 37,
+      "desc": "counting",
+      "jsfbt": Object {
+        "m": Array [
+          null,
+        ],
+        "t": Object {
+          "0": "a {2} {3} 4",
+          "1": "b {2} {3} 4",
+        },
+      },
+      "line_beg": 3,
+      "line_end": 4,
+      "project": "",
+      "type": "table",
+    },
+  ],
+}
+`;
+
+exports[`collectFbt When using string templates should extract correctly with a param 1`] = `
+Object {
+  "childParentMappings": Object {},
+  "phrases": Array [
+    Object {
+      "col_beg": 0,
+      "col_end": 52,
+      "desc": "great",
+      "jsfbt": "testing {it} works",
+      "line_beg": 3,
+      "line_end": 3,
+      "project": "",
+      "type": "text",
+    },
+  ],
+}
+`;
+
+exports[`collectFbt When using string templates should extract correctly with just string contents 1`] = `
+Object {
+  "childParentMappings": Object {},
+  "phrases": Array [
+    Object {
+      "col_beg": 0,
+      "col_end": 19,
+      "desc": "ok",
+      "jsfbt": "simple",
+      "line_beg": 3,
+      "line_end": 3,
+      "project": "",
+      "type": "text",
+    },
+  ],
+}
+`;
+
+exports[`collectFbt When using string templates should extract correctly with the param being first 1`] = `
+Object {
+  "childParentMappings": Object {},
+  "phrases": Array [
+    Object {
+      "col_beg": 0,
+      "col_end": 49,
+      "desc": "well",
+      "jsfbt": "{it} still works",
+      "line_beg": 3,
+      "line_end": 3,
+      "project": "",
+      "type": "text",
+    },
+  ],
+}
+`;
+
+exports[`collectFbt should dedupe fbt:plurals 1`] = `
+Object {
+  "childParentMappings": Object {},
+  "phrases": Array [
+    Object {
+      "col_beg": 0,
+      "col_end": 6,
+      "desc": "desc...",
+      "jsfbt": Object {
+        "m": Array [
+          null,
+          Object {
+            "singular": true,
+            "token": "number",
+            "type": 2,
+          },
+        ],
+        "t": Object {
+          "*": Object {
+            "*": "There are {number} photos.",
+          },
+          "_1": Object {
+            "_1": "There is 1 photo.",
+          },
+        },
+      },
+      "line_beg": 2,
+      "line_end": 9,
+      "project": "",
+      "type": "table",
+    },
+  ],
+}
+`;
+
+exports[`collectFbt should extract common strings 1`] = `
+Object {
+  "childParentMappings": Object {},
+  "phrases": Array [
+    Object {
+      "col_beg": 27,
+      "col_end": 60,
+      "desc": "Indicates an editor field is required.",
+      "jsfbt": "Required",
+      "line_beg": 1,
+      "line_end": 1,
+      "project": "",
+      "type": "text",
+    },
+  ],
+}
+`;
+
+exports[`collectFbt should extract fbt.c strings 1`] = `
+Object {
+  "childParentMappings": Object {},
+  "phrases": Array [
+    Object {
+      "col_beg": 27,
+      "col_end": 44,
+      "desc": "Indicates an editor field is required.",
+      "jsfbt": "Required",
+      "line_beg": 1,
+      "line_end": 1,
+      "project": "",
+      "type": "text",
+    },
+  ],
+}
+`;
+
+exports[`collectFbt should extract strings 1`] = `
+Object {
+  "childParentMappings": Object {},
+  "phrases": Array [
+    Object {
+      "col_beg": 27,
+      "col_end": 52,
+      "desc": "foo",
+      "jsfbt": "bar",
+      "line_beg": 1,
+      "line_end": 1,
+      "project": "",
+      "type": "text",
+    },
+  ],
+}
+`;
+
 exports[`collectFbt should extract strings from a custom collector 1`] = `
 Object {
   "childParentMappings": Object {
@@ -25,6 +302,81 @@ Object {
       "jsfbt": "World",
       "line_beg": 4,
       "line_end": 4,
+      "project": "",
+      "type": "text",
+    },
+  ],
+}
+`;
+
+exports[`collectFbt should not throw because of CSX 1`] = `
+Object {
+  "childParentMappings": Object {},
+  "phrases": Array [
+    Object {
+      "col_beg": 0,
+      "col_end": 25,
+      "desc": "foo",
+      "jsfbt": "bar",
+      "line_beg": 3,
+      "line_end": 3,
+      "project": "",
+      "type": "text",
+    },
+  ],
+}
+`;
+
+exports[`collectFbt should still extract strings if fbt call param doNotExtract is set to false 1`] = `
+Object {
+  "childParentMappings": Object {},
+  "phrases": Array [
+    Object {
+      "col_beg": 0,
+      "col_end": 40,
+      "desc": "foo",
+      "doNotExtract": false,
+      "jsfbt": "bar",
+      "line_beg": 2,
+      "line_end": 2,
+      "project": "",
+      "type": "text",
+    },
+  ],
+}
+`;
+
+exports[`collectFbt should still extract strings if file-level doNotExtract is set to false 1`] = `
+Object {
+  "childParentMappings": Object {},
+  "phrases": Array [
+    Object {
+      "col_beg": 0,
+      "col_end": 25,
+      "desc": "foo",
+      "doNotExtract": false,
+      "jsfbt": "bar",
+      "line_beg": 3,
+      "line_end": 3,
+      "project": "someproject",
+      "type": "text",
+    },
+  ],
+}
+`;
+
+exports[`collectFbt should still extract strings if in-line doNotExtract is set to false 1`] = `
+Object {
+  "childParentMappings": Object {},
+  "phrases": Array [
+    Object {
+      "col_beg": 0,
+      "col_end": 46,
+      "desc": "foo",
+      "doNotExtract": false,
+      "jsfbt": "bar",
+      "line_beg": 2,
+      "line_end": 2,
       "project": "",
       "type": "text",
     },
