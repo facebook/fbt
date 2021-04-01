@@ -62,7 +62,10 @@
     "babel-plugin-fbt:test": "jest packages/babel-plugin-fbt",
     "fbt:test": "jest packages/fbt",
     "build-runtime": "gulp build-runtime",
-    "clean-test": "yarn install && yarn workspace demo-app clean-build && yarn workspace demo-app test-build-scripts && yarn test && yarn flow:check",
+    "clean-build": "yarn install && yarn workspace demo-app clean-build",
+    "clean-build-offline": "yarn install --offline && yarn workspace demo-app clean-build",
+    "clean-test": "yarn clean-build && yarn test",
+    "clean-test-offline": "yarn clean-build-offline && yarn test",
     "clean": "gulp clean",
     "demo-app:test": "yarn workspace demo-app test",
     "fb-tiger-hash:test": "jest fb-tiger-hash && yarn workspace fb-tiger-hash test-types",
@@ -70,12 +73,12 @@
     "gulp-strip-docblock-pragmas:test": "yarn workspace gulp-strip-docblock-pragmas test",
     "flow:check": "flow check --show-all-errors",
     "flow:watch": "yarn watch 'yarn flow stop && yarn flow check --show-all-errors 2>&1 | tee .flow-results' . --ignoreDotFiles",
-    "postinstall": "yarn gulp --series clean build-runtime",
+    "postinstall": "gulp --series clean build-runtime",
     "//": "Needed because the yarn+workspace `install` process creates the bin scripts' symbolic links ONLY BEFORE running the install steps",
     "create_dummy_bin_scripts_for_yarn_install": "mkdir -p packages/babel-plugin-fbt/dist/bin 2> /dev/null ; cp packages/babel-plugin-fbt/src/bin/*.bin.js packages/babel-plugin-fbt/dist/bin",
     "preinstall": "yarn create_dummy_bin_scripts_for_yarn_install",
     "test:watch": "jest --watch",
-    "test": "jest"
+    "test": "yarn workspace demo-app test-build-scripts && jest && yarn flow:check"
   },
   "resolutions": {
     "**/@babel/core": "^7.2.0",
