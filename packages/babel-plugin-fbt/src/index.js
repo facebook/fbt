@@ -274,10 +274,6 @@ function addEnclosingString(childIdx, parentIdx) {
   childToParent[childIdx] = parentIdx;
 }
 
-function getUnknownCommonStringErrorMessage(moduleName, text) {
-  return `Unknown string "${text}" for <${moduleName} common={true}>`;
-}
-
 function getEnumManifest(opts) {
   const {fbtEnumManifest, fbtEnumPath, fbtEnumToPath} = opts;
   if (fbtEnumManifest != null) {
