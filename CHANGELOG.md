@@ -51,6 +51,9 @@ List of changes for each released npm package version.
   <summary>
     Unreleased changes that have landed in master. Click to see more.
   </summary>
+
+  - [feat] Add a new `FbtTranslations.getRegisteredTranslations` function
+  - [feat] Add a new `FbtTranslations.mergeTranslations` function
 </details>
 
 - 0.16.5:
