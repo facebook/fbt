@@ -7,8 +7,6 @@
  * @flow
  */
 
-/* eslint-disable fb-www/dot-notation, fb-www/fbt-no-project */
-
 'use strict';
 
 import typeof intlNumUtilsType from 'intlNumUtils';
@@ -16,8 +14,6 @@ import typeof intlNumUtilsType from 'intlNumUtils';
 // Warning: importing JS modules outside of beforeEach blocks is generally bad practice
 // in jest tests. We might need to move these modules inside beforeEach().
 // These ones can stay here for now since they have a consistent behavior across this test suite.
-jest.mock('FbtNumberType');
-const FbtNumberType = require('FbtNumberType');
 const IntlVariations = require('IntlVariations');
 const IntlViewerContext = require('IntlViewerContext');
 
@@ -44,7 +40,6 @@ describe('fbt', () => {
       // IntlCLDRNumberType31
       getViewerContext: () => ({...IntlViewerContext, locale: 'br_FR'}),
     });
-    const previousNumberTypeGetter = FbtNumberType.getVariation;
     const numToType = {
       '21': IntlVariations.NUMBER_ONE,
       '22': IntlVariations.NUMBER_TWO,
@@ -62,7 +57,6 @@ describe('fbt', () => {
         {num: displayNumber},
       ]);
     }
-    FbtNumberType.getVariation = previousNumberTypeGetter;
   });
 
   it('should access table with fallback logic', function () {

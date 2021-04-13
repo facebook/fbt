@@ -11,8 +11,6 @@
 
 'use strict';
 
-import typeof intlNumUtilsType from 'intlNumUtils';
-
 jest.mock('FbtNumberType');
 
 import type {FbtRuntimeCallInput, FbtTranslatedInput} from 'FbtHooks';
@@ -20,27 +18,19 @@ import type {FbtRuntimeCallInput, FbtTranslatedInput} from 'FbtHooks';
 // Warning: importing JS modules outside of beforeEach blocks is generally bad practice
 // in jest tests. We might need to move these modules inside beforeEach().
 // These ones can stay here for now since they have a consistent behavior across this test suite.
-const FbtNumberType = require('FbtNumberType');
 const IntlVariations = require('IntlVariations');
 const React = require('react');
 const ReactDOM = require('ReactDOM');
 
 const invariant = require('invariant');
 
-const ONE = String(IntlVariations.NUMBER_ONE);
-const FEW = String(IntlVariations.NUMBER_FEW);
-const MALE = String(IntlVariations.GENDER_MALE);
-const FEMALE = String(IntlVariations.GENDER_FEMALE);
-
 let domContainer;
 let fbt;
 let fbtRuntime;
-let intlNumUtils;
 
 describe('fbt', () => {
   beforeEach(() => {
     jest.resetModules();
-    intlNumUtils = jest.requireActual<intlNumUtilsType>('intlNumUtils');
     fbtRuntime = jest.requireActual('fbt');
     fbt = require('fbt');
     domContainer = document.createElement('div');
