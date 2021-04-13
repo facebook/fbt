@@ -54,13 +54,13 @@ const babelPluginFbt_buildDistJS = () =>
     .pipe(
       babel({
         plugins: [
-          '@babel/plugin-proposal-optional-catch-binding',
-          '@babel/plugin-syntax-class-properties',
-          '@babel/plugin-syntax-flow',
-          'babel-preset-fbjs/plugins/dev-expression',
-          '@babel/plugin-proposal-nullish-coalescing-operator',
-          '@babel/plugin-proposal-optional-chaining',
-          '@babel/plugin-transform-flow-strip-types',
+          require('@babel/plugin-proposal-optional-catch-binding'),
+          require('@babel/plugin-syntax-class-properties'),
+          require('@babel/plugin-syntax-flow'),
+          require('babel-preset-fbjs/plugins/dev-expression'),
+          require('@babel/plugin-proposal-nullish-coalescing-operator'),
+          require('@babel/plugin-proposal-optional-chaining'),
+          require('@babel/plugin-transform-flow-strip-types'),
         ],
       }),
     )
