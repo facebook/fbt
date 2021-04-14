@@ -250,7 +250,10 @@ function writeOutput() {
         `[file="${filePath}"]:\n\t` + String(error.stack || error) + '\n',
       );
     }
-    throw new Error(`Failed in ${errCount} file(s).`);
+    throw new Error(
+      `Failed in ${errCount} file(s).` +
+        `\nCurrent working directory: '${process.cwd()}'`,
+    );
   }
 }
 
