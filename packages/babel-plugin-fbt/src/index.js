@@ -295,18 +295,15 @@ function FbtTransform(babel /*: {
         // path.replaceWith(callNode);
 
         if (pluginOptions.collectFbt) {
-          let topLevelStringIndex;
-          metaPhrases.forEach(({fbtNode, phrase}, index) => {
+          const initialPhraseCount = phrases.length;
+          metaPhrases.forEach(({fbtNode, phrase, parentIndex}, index) => {
             if (phrase.doNotExtract) {
               return;
             }
             addPhrase(fbtNode.node, phrase, visitor);
-            if (index > 0) {
-              if (topLevelStringIndex == null) {
-                // `-2` because we just inserted a top-level string and a nested string
-                topLevelStringIndex = phrases.length - 2;
-              }
-              addEnclosingString(phrases.length - 1, topLevelStringIndex);
+
+            if (parentIndex != null) {
+              addEnclosingString(index + initialPhraseCount, parentIndex + initialPhraseCount);
             }
           });
         }

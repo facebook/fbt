@@ -88,6 +88,9 @@ type MetaPhrase = {|
   fbtNode: FbtElementNode | FbtImplicitParamNode,
   // Phrase data
   phrase: FbtFunctionCallPhrase,
+  // Index of the outer-phrase (assuming that the current phrase is an inner-phrase)
+  // If the current phrase is the top-level phrase, it won't be defined.
+  parentIndex: ?number,
 |};
 */
 
@@ -113,6 +116,7 @@ const {
   getOptionBooleanValue,
   getRawSource,
   normalizeSpaces,
+  varDump,
 } = require('../FbtUtil');
 const JSFbtBuilder = require('../JSFbtBuilder');
 const addLeafToTree = require('../utils/addLeafToTree');
@@ -124,6 +128,7 @@ const {
   isStringLiteral,
   isTemplateLiteral,
 } = require('@babel/types');
+const invariant = require('invariant');
 const nullthrows = require('nullthrows');
 
 /**
@@ -646,6 +651,17 @@ class FbtFunctionCallProcessor {
     };
   }
 
+  _getPhraseParentIndex(fbtNode: AnyFbtNode, list: $ReadOnlyArray<AnyFbtNode>): ?number {
+    if (fbtNode.parent == null) {
+      return null;
+    }
+    const parentIndex = list.indexOf(fbtNode.parent);
+    invariant(parentIndex > -1, 'Unable to find parent fbt node: node=%s',
+      varDump(fbtNode),
+    );
+    return parentIndex;
+  }
+
   /**
    * Generates a list of meta-phrases from a given FbtElement node
    */
@@ -662,8 +678,12 @@ class FbtFunctionCallProcessor {
     const {author, project} = fbtElement.options;
     const doNotExtract = fbtElement.options.doNotExtract ?? this.defaultFbtOptions.doNotExtract;
     return [fbtElement, ...fbtElement.getImplicitParamNodes()]
-      .map(fbtNode => {
+      .map((fbtNode, _index, list) => {
         try {
+          const stubMetaPhrase = {
+            parentIndex: this._getPhraseParentIndex(fbtNode, list),
+            fbtNode,
+          };
           const stubPhrase = {
             ...this.defaultFbtOptions,
           };
@@ -680,13 +700,13 @@ class FbtFunctionCallProcessor {
           if (argsCombinations.length === 0) { // simple string without any variation
             const svArgsMap = new StringVariationArgsMap([]);
             return {
+              ...stubMetaPhrase,
               phrase: {
                 ...stubPhrase,
                 desc: fbtNode.getDescription(svArgsMap),
                 jsfbt: fbtNode.getText(svArgsMap),
                 type: 'text',
               },
-              fbtNode,
             };
           }
 
@@ -737,8 +757,8 @@ class FbtFunctionCallProcessor {
           }
 
           return {
+            ...stubMetaPhrase,
             phrase,
-            fbtNode,
           };
         } catch (error) {
           throw errorAt(fbtNode.node, error);
