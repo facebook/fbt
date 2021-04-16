@@ -9,9 +9,15 @@
 'use strict';
 
 /*::
+import type {EnumKey} from '../FbtEnumRegistrar';
 import type {GenderConstEnum} from '../Gender';
+import typeof {
+  EXACTLY_ONE,
+  GENDER_ANY,
+  NUMBER_ANY,
+} from '../translate/IntlVariations';
 import type CursorArray from '../utils/CursorArray';
-import type {IntlVariationsEnum} from '../translate/IntlVariations';
+import type {AnyFbtNode} from './FbtNode';
 
 export type AnyStringVariationArg =
   | EnumStringVariationArg
@@ -19,12 +25,16 @@ export type AnyStringVariationArg =
   | NumberStringVariationArg
   ;
 export type AnyFbtArgument = GenericArg | AnyStringVariationArg;
-
 // List of String Variation Arguments with a mutable cursor index field
 export type SVArgsList = CursorArray<AnyStringVariationArg>;
 */
 
-const {compactBabelNodeProps} = require('../FbtUtil');
+const {
+  compactBabelNodeProps,
+  getRawSource,
+  varDump,
+} = require('../FbtUtil');
+const invariant = require('invariant');
 
 /**
  * Base class representing fbt construct arguments that support dynamic values at runtime.
@@ -45,11 +55,14 @@ const {compactBabelNodeProps} = require('../FbtUtil');
  */
 class FbtArgumentBase /*:: <B: ?BabelNode> */ {
   /*::
+  // Reference of the FbtNode creator of this instance
+  +fbtNode: AnyFbtNode;
   // BabelNode representing the value of this argument
   +node: B;
   */
 
-  constructor(node /*: B */) {
+  constructor(fbtNode /*: AnyFbtNode */, node /*: B */) {
+    this.fbtNode = fbtNode;
     this.node = node;
   }
 
@@ -66,13 +79,26 @@ class FbtArgumentBase /*:: <B: ?BabelNode> */ {
    * See snapshot `fbtFunctional-test.js.snap` to find output examples.
    */
   __toJSONForTestsOnly() /*: mixed */ {
-    const ret = compactBabelNodeProps(this);
+    const {fbtNode} = this;
+    const ret = compactBabelNodeProps({
+      ...this,
+      fbtNode: fbtNode != null ? fbtNode.constructor.name : fbtNode,
+    });
     Object.defineProperty(ret, 'constructor', {value: this.constructor, enumerable: false});
     return ret;
   }
 
   toJSON() /*: mixed */ {
     return this.__toJSONForTestsOnly();
+  }
+
+  getArgCode(code: string): string {
+    invariant(
+      !!this.node,
+      'Unable to find Babel node object from string variation argument: %s',
+      varDump(this),
+    );
+    return getRawSource(code, this.node);
   }
 }
 
@@ -121,34 +147,54 @@ class GenericArg extends FbtArgumentBase /*:: <BabelNode> */ {
  */
 class StringVariationArg /*:: <Value, B: ?BabelNode = BabelNode> */
   extends FbtArgumentBase /*:: <B> */ {
-  /*::
-  +value: ?Value;
-  // TODO(T40113359) Add a reference to the FbtNode creator of this instance
-  // +fbtNode: FbtNode,
-  */
 
-  constructor(node /*: B */, value /*: ?Value */) {
-    super(node);
+  /**
+   * List of candidate values that this SVArgument might have.
+   */
+  +candidateValues: $ReadOnlyArray<Value>;
+
+  /**
+   * Current SVArgument value of this instance among candidates from `candidateValues`.
+   */
+  +value: ?Value;
+
+  constructor(
+    fbtNode /*: AnyFbtNode */,
+    node /*: B */,
+    candidateValues /*: $ReadOnlyArray<Value> */,
+    value /*: ?Value */,
+  ) {
+    super(fbtNode, node);
+    this.candidateValues = candidateValues;
     this.value = value;
+  }
+
+  cloneWithValue(value /*: Value */) /*: this */ {
+    return new this.constructor(
+      this.fbtNode,
+      this.node,
+      this.candidateValues,
+      value,
+    );
   }
 }
 
 /**
  * String variation argument that produces variations based on a string enum
  */
-class EnumStringVariationArg extends StringVariationArg /*:: <string> */ {
+class EnumStringVariationArg extends StringVariationArg /*:: <EnumKey> */ {
 }
 
 /**
  * String variation argument that produces variations based on genders
  */
-class GenderStringVariationArg extends StringVariationArg /*:: <GenderConstEnum> */ {
+class GenderStringVariationArg extends StringVariationArg /*:: <GenderConstEnum | GENDER_ANY> */ {
 }
 
 /**
  * String variation argument that produces variations based on numbers
  */
-class NumberStringVariationArg extends StringVariationArg /*:: <IntlVariationsEnum, ?BabelNode> */ {
+class NumberStringVariationArg extends StringVariationArg<NUMBER_ANY | EXACTLY_ONE, ?BabelNode> {
 }
 
 module.exports = {

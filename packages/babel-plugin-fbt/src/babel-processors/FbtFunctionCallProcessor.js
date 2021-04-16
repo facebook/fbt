@@ -54,7 +54,7 @@ export type ExtractTableTextItems = Array<
     |}
   | {|
       type: 'plural',
-      count: ?FbtOptionValue,
+      count: string,
       showCount: 'yes' | 'no' | 'ifMany',
       name: string,
       singular: string,
@@ -92,7 +92,6 @@ type MetaPhrase = {|
 const FbtElementNode = require('../fbt-nodes/FbtElementNode');
 const {
   FbtBooleanOptions,
-  FbtType,
   PLURAL_PARAM_TOKEN,
   SENTINEL,
   ValidFbtOptions,
@@ -586,25 +585,6 @@ class FbtFunctionCallProcessor {
     ).trim();
   }
 
-  _getPhrase(texts, desc, options, isTable) {
-    const phraseType = isTable ? FbtType.TABLE : FbtType.TEXT;
-    const jsfbt = JSFbtBuilder.build(
-      phraseType,
-      texts,
-      this.pluginOptions.reactNativeMode,
-    );
-    return {
-      desc,
-      // Merge with fbt callsite options
-      ...this.defaultFbtOptions,
-      ...options,
-      ...(isTable // Need to set type explicitly for Flow checks
-        ? {type: FbtType.TABLE, jsfbt}
-        : {type: FbtType.TEXT, jsfbt}
-      )
-    };
-  }
-
   _createFbtRuntimeCall(phrase, runtimeArgs) {
     const {pluginOptions, t} = this;
     // $FlowFixMe[speculation-ambiguous] we're deprecating the "type" property soon anyway
@@ -658,7 +638,6 @@ class FbtFunctionCallProcessor {
    * Assuming numberSV produces candidate variation values as: singular, plural
    *
    * The output would be:
-   *
    * [
    *   [  genderSV(male),     numberSV(singular)  ],
    *   [  genderSV(male),     numberSV(plural)    ],
@@ -670,10 +649,11 @@ class FbtFunctionCallProcessor {
    */
   _getStringVariationCombinations(args /*: $ReadOnlyArray<AnyStringVariationArg> */)
   /*: $ReadOnlyArray<$ReadOnlyArray<AnyStringVariationArg>> */ {
-    const compactStringVariationArgs = this._compactStringVariationArgs(args);
-
-    // TODO(T40113359): implement this method
-    return [];
+    return new JSFbtBuilder(
+      this.fileSource,
+      args,
+      this.pluginOptions.reactNativeMode,
+    ).getStringVariationCombinations();
   }
 
   /**

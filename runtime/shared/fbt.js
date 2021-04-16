@@ -313,7 +313,9 @@ fbt._pronoun = function (usage, gender, options) {
   return FbtTableAccessor.getPronounResult(genderKey);
 };
 
-// See JSFbtTable::getPronounGenderKey().
+/**
+ * Must match implementation from babel-plugin-fbt/src/fbt-nodes/FbtPronounNode.js
+ */
 function getPronounGenderKey(usage, gender) {
   switch (gender) {
     case GenderConst.NOT_A_PERSON:

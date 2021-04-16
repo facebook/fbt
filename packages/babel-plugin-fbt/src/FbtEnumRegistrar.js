@@ -13,7 +13,9 @@ import type {NodePathOf} from '@babel/core';
 
 type NodeCallExpression = NodePathOf<FbtBabelNodeCallExpression>;
 type NodeImportDeclaration = NodePathOf<BabelNodeImportDeclaration>;
-export type EnumModule = {|+[enumKey: string]: string|};
+export type EnumKey = string;
+type EnumValue = string;
+export type EnumModule = {|+[EnumKey]: EnumValue|};
 export type EnumManifest = {+[enumModuleName: string]: ?EnumModule};
 */
 

@@ -197,6 +197,8 @@ class FbtNode/*:: <
     const ret /*: {options?: ?{}, ...} */ = {
       ...compactBabelNodeProps(this),
       __stringVariationArgs: stringVariationArgs,
+      // Avoid cyclic recursion issues
+      parent: this.parent != null ? this.parent.constructor.name : this.parent,
     };
 
     if (this.options != null) {

@@ -62,6 +62,7 @@ const {
   normalizeSpaces,
   setUniqueToken,
 } = require('../FbtUtil');
+const {GENDER_ANY} = require('../translate/IntlVariations');
 const {GenderStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
 const {
@@ -138,10 +139,18 @@ class FbtElementNode
     }
   }
 
+  static getArgsForStringVariationCalcForFbtElement(
+    instance: AnyFbtNode,
+    subject: ?BabelNode,
+  ) /*: $ReadOnlyArray<AnyStringVariationArg> */ {
+    return (isNode(subject)
+      ? [new GenderStringVariationArg(instance, subject, [GENDER_ANY])]
+      : []
+    ).concat(...instance.children.map(c => c.getArgsForStringVariationCalc()));
+  }
+
   getArgsForStringVariationCalc() /*: $ReadOnlyArray<AnyStringVariationArg> */ {
-    const {subject} = this.options;
-    return (isNode(subject) ? [new GenderStringVariationArg(subject)] : [])
-      .concat(...this.children.map(c => c.getArgsForStringVariationCalc()));
+    return this.constructor.getArgsForStringVariationCalcForFbtElement(this, this.options.subject);
   }
 
   getText(args /*: SVArgsList */) /*: string */ {

@@ -3511,7 +3511,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -3527,6 +3527,7 @@ FbtElementNode {
     "project": "Super Secret",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -3547,7 +3548,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -3563,6 +3564,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -3583,7 +3585,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -3599,6 +3601,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -3759,7 +3762,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -3775,6 +3778,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -4628,7 +4632,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('personName', truthy ? ifTrue : ifFalse)",
@@ -4645,7 +4649,7 @@ FbtElementNode {
         "name": "personName",
         "number": null,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -4661,6 +4665,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -5277,7 +5282,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "'bar'",
@@ -5289,7 +5294,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "'baz'",
@@ -5301,7 +5306,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "'qux'",
@@ -5313,7 +5318,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -5329,6 +5334,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -5349,7 +5355,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "'bar'",
@@ -5361,7 +5367,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "'baz'",
@@ -5373,7 +5379,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "'qux'",
@@ -5385,7 +5391,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -5401,6 +5407,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -5421,7 +5428,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "'bar'",
@@ -5433,7 +5440,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "'baz'",
@@ -5445,7 +5452,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "'qux'",
@@ -5457,7 +5464,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -5473,6 +5480,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -5500,7 +5508,7 @@ FbtElementNode {
         "name": "name1",
         "number": null,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' and '",
@@ -5512,7 +5520,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtSameParamNode {
       "__nodeCode": "fbt.sameParam('name1')",
@@ -5524,7 +5532,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -5540,6 +5548,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -5572,7 +5581,7 @@ FbtElementNode {
         "name": "name1",
         "number": null,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' blah '",
@@ -5584,7 +5593,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name2', qux)",
@@ -5601,7 +5610,7 @@ FbtElementNode {
         "name": "name2",
         "number": null,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -5617,6 +5626,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -5637,7 +5647,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -5653,6 +5663,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -5677,7 +5688,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' b '",
@@ -5689,7 +5700,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name1', val1)",
@@ -5706,7 +5717,7 @@ FbtElementNode {
         "name": "name1",
         "number": null,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' c '",
@@ -5718,7 +5729,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "// comments
@@ -5731,7 +5742,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name2', val2)",
@@ -5748,7 +5759,7 @@ FbtElementNode {
         "name": "name2",
         "number": null,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' e '",
@@ -5760,7 +5771,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -5776,6 +5787,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -9417,7 +9429,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -9433,6 +9445,7 @@ FbtElementNode {
     "project": "Super Secret",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -9453,7 +9466,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -9469,6 +9482,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -9489,7 +9503,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -9505,6 +9519,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -9525,7 +9540,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -9541,6 +9556,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -9841,7 +9857,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -9857,6 +9873,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -10495,7 +10512,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('personName', truthy ? ifTrue : ifFalse)",
@@ -10512,7 +10529,7 @@ FbtElementNode {
         "name": "personName",
         "number": null,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -10528,6 +10545,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -11144,7 +11162,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "'bar'",
@@ -11156,7 +11174,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "'baz'",
@@ -11168,7 +11186,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "'qux'",
@@ -11180,7 +11198,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -11196,6 +11214,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -11216,7 +11235,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "'bar'",
@@ -11228,7 +11247,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "'baz'",
@@ -11240,7 +11259,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "'qux'",
@@ -11252,7 +11271,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -11268,6 +11287,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -11288,7 +11308,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "'bar'",
@@ -11300,7 +11320,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "'baz'",
@@ -11312,7 +11332,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "'qux'",
@@ -11324,7 +11344,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -11340,6 +11360,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -11367,7 +11388,7 @@ FbtElementNode {
         "name": "name1",
         "number": null,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' and '",
@@ -11379,7 +11400,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtSameParamNode {
       "__nodeCode": "fbt.sameParam('name1')",
@@ -11391,7 +11412,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -11407,6 +11428,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -11439,7 +11461,7 @@ FbtElementNode {
         "name": "name1",
         "number": null,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' blah '",
@@ -11451,7 +11473,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name2', qux)",
@@ -11468,7 +11490,7 @@ FbtElementNode {
         "name": "name2",
         "number": null,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -11484,6 +11506,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -11504,7 +11527,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -11520,6 +11543,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -11544,7 +11568,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' b '",
@@ -11556,7 +11580,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name1', val1)",
@@ -11573,7 +11597,7 @@ FbtElementNode {
         "name": "name1",
         "number": null,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' c '",
@@ -11585,7 +11609,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "// comments
@@ -11598,7 +11622,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name2', val2)",
@@ -11615,7 +11639,7 @@ FbtElementNode {
         "name": "name2",
         "number": null,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' e '",
@@ -11627,7 +11651,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -11643,6 +11667,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -11663,7 +11688,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "'with some other stuff.'",
@@ -11675,7 +11700,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -11691,5 +11716,6 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;

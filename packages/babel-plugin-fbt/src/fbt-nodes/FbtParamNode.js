@@ -32,6 +32,7 @@ const {
   enforceBabelNode,
   errorAt,
 } = require('../FbtUtil');
+const {GENDER_ANY, NUMBER_ANY} = require('../translate/IntlVariations');
 const {GenderStringVariationArg, NumberStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
 const {
@@ -110,9 +111,9 @@ class FbtParamNode extends FbtNode/*:: <
     const ret = [];
     invariant(!gender || !number, 'Gender and number options must not be set at the same time');
     if (gender) {
-      ret.push(new GenderStringVariationArg(gender));
+      ret.push(new GenderStringVariationArg(this, gender, [GENDER_ANY]));
     } else if (number) {
-      ret.push(new NumberStringVariationArg(number === true ? null : number));
+      ret.push(new NumberStringVariationArg(this, number === true ? null : number, [NUMBER_ANY]));
     }
     return ret;
   }

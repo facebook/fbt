@@ -9,7 +9,7 @@
 'use strict';
 
 /*::
-import type {EnumModule} from '../FbtEnumRegistrar';
+import type {EnumModule, EnumKey} from '../FbtEnumRegistrar';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 
 type Options = {|
@@ -121,7 +121,7 @@ class FbtEnumNode
     // That probably needs to be done at the FbtElementNode level
     // Should we also add the enum-range to EnumStringVariationArg? Or this instance?
     // That would help detect cases where fbt:enum is used with non-identical enum-range keys.
-    return [new EnumStringVariationArg(this.options.value)];
+    return [new EnumStringVariationArg(this, this.options.value, Object.keys(this.options.range))];
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes

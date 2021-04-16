@@ -10,6 +10,8 @@
 'use strict';
 
 /*::
+import type {ValidPronounUsagesKey} from '../FbtConstants';
+import type {GenderConstEnum} from '../Gender';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 
 type Options = {|
@@ -20,13 +22,14 @@ type Options = {|
   // If true, exclude non-human-related pronouns from the generated string variations
   human?: ?boolean,
   // Type of pronoun
-  type: $Keys<typeof ValidPronounUsages>,
+  type: ValidPronounUsagesKey,
 |};
 */
 
 const {
   ValidPronounOptions,
   ValidPronounUsages,
+  ValidPronounUsagesKeys,
 } = require('../FbtConstants');
 const {
   collectOptionsFromFbtConstruct,
@@ -35,6 +38,8 @@ const {
   enforceStringEnum,
   errorAt,
 } = require('../FbtUtil');
+const {GENDER_CONST} = require('../Gender');
+const {GENDER_ANY} = require('../translate/IntlVariations');
 const {GenderStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
 const {createInstanceFromFbtConstructCallsite} = require('./FbtNodeUtil');
@@ -43,6 +48,10 @@ const {
 } = require('@babel/types');
 const invariant = require('invariant');
 const nullthrows = require('nullthrows');
+
+const candidatePronounGenders: $ReadOnlyArray<GenderConstEnum> = (
+  (Object.values(GENDER_CONST): $FlowExpectedError): Array<$Values<typeof GENDER_CONST>>
+);
 
 /**
  * Represents an <fbt:pronoun> or fbt.pronoun() construct.
@@ -111,7 +120,66 @@ class FbtPronounNode extends FbtNode/*:: <
   }
 
   getArgsForStringVariationCalc() /*: $ReadOnlyArray<GenderStringVariationArg> */ {
-    return [new GenderStringVariationArg(this.options.gender)];
+    const {options} = this;
+    const candidates = new Set();
+
+    for (const gender of candidatePronounGenders) {
+      if (options.human === true && gender === GENDER_CONST.NOT_A_PERSON) {
+        continue;
+      }
+      const resolvedGender = this._getPronounGenderKey(
+        options.type,
+        gender,
+      );
+      candidates.add(
+        resolvedGender === GENDER_CONST.UNKNOWN_PLURAL
+          ? GENDER_ANY
+          : resolvedGender
+      );
+    }
+
+    return [new GenderStringVariationArg(this, options.gender, Array.from(candidates))];
+  }
+
+  /**
+   * Must match implementation from fbt.js
+    * @see (FB) https://fburl.com/diffusion/3gbcj3aq
+    * @see (OSS) https://github.com/facebook/fbt/blob/19531133625dab1d38995dcf578dcfdfa0b09048/runtime/shared/fbt.js#L316-L348
+   */
+  _getPronounGenderKey(
+    usage: ValidPronounUsagesKey,
+    gender: GenderConstEnum,
+  ): GenderConstEnum {
+    switch (gender) {
+      case GENDER_CONST.NOT_A_PERSON:
+        return usage === ValidPronounUsagesKeys.object ||
+          usage === ValidPronounUsagesKeys.reflexive
+          ? GENDER_CONST.NOT_A_PERSON
+          : GENDER_CONST.UNKNOWN_PLURAL;
+
+      case GENDER_CONST.FEMALE_SINGULAR:
+      case GENDER_CONST.FEMALE_SINGULAR_GUESS:
+        return GENDER_CONST.FEMALE_SINGULAR;
+
+      case GENDER_CONST.MALE_SINGULAR:
+      case GENDER_CONST.MALE_SINGULAR_GUESS:
+        return GENDER_CONST.MALE_SINGULAR;
+
+      case GENDER_CONST.MIXED_UNKNOWN:
+      case GENDER_CONST.FEMALE_PLURAL:
+      case GENDER_CONST.MALE_PLURAL:
+      case GENDER_CONST.NEUTER_PLURAL:
+      case GENDER_CONST.UNKNOWN_PLURAL:
+        return GENDER_CONST.UNKNOWN_PLURAL;
+
+      case GENDER_CONST.NEUTER_SINGULAR:
+      case GENDER_CONST.UNKNOWN_SINGULAR:
+        return usage === ValidPronounUsagesKeys.reflexive
+          ? GENDER_CONST.NOT_A_PERSON
+          : GENDER_CONST.UNKNOWN_PLURAL;
+    }
+
+    invariant(false, 'Unknown GENDER_CONST value.');
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes

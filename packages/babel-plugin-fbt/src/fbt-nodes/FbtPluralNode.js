@@ -30,6 +30,7 @@ const {
   enforceStringEnum,
   errorAt,
 } = require('../FbtUtil');
+const {EXACTLY_ONE, NUMBER_ANY} = require('../translate/IntlVariations');
 const {NumberStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
 const {createInstanceFromFbtConstructCallsite} = require('./FbtNodeUtil');
@@ -101,7 +102,7 @@ class FbtPluralNode extends FbtNode/*:: <
   }
 
   getArgsForStringVariationCalc() /*: $ReadOnlyArray<NumberStringVariationArg> */ {
-    return [new NumberStringVariationArg(this.options.count)];
+    return [new NumberStringVariationArg(this, this.options.count, [NUMBER_ANY, EXACTLY_ONE])];
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes

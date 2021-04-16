@@ -54,6 +54,7 @@ const {
   stringLiteral,
 } = require('@babel/types');
 const {generateFormattedCodeFromAST} = require('fb-babel-plugin-utils/TestUtil');
+const util = require('util');
 
 function normalizeSpaces(
   value /*: string */,
@@ -842,7 +843,7 @@ function compactBabelNodeProps(object /*: {} */) /*: {} */ {
  * It's a variant of JSON.stringify() that supports `undefined`
  */
 function varDump(value /*: mixed */) /*: string */ {
-  return JSON.stringify(value) || 'undefined';
+  return util.inspect(value, {depth: 4}) || 'undefined';
 }
 
 function enforceString(value /*: mixed */, valueDesc /*: ?string */) /*: string */ {

@@ -8,9 +8,11 @@
  * to-be-localized text.
  *
  * @emails oncall+internationalization
- * @flow strict
+ * @flow strict-local
  */
 /*eslint max-len: ["error", 100]*/
+
+const keyMirror = require('fbjs/lib/keyMirror');
 
 /*::
 export type FbtOptionValue = string | boolean | BabelNode;
@@ -66,6 +68,9 @@ const ValidPronounUsages = {
   reflexive: 2,
   subject: 3,
 };
+
+const ValidPronounUsagesKeys: $ObjMapi<typeof ValidPronounUsages, <K>(K) => K>
+  = keyMirror(ValidPronounUsages);
 
 const ValidPronounOptions = {
   human: {true: true, false: true},
@@ -149,4 +154,5 @@ module.exports = {
   ValidPluralOptions,
   ValidPronounOptions,
   ValidPronounUsages,
+  ValidPronounUsagesKeys,
 };

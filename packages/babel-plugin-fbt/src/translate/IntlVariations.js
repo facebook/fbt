@@ -41,10 +41,15 @@ const IntlFbtVariationType = {
   PRONOUN: 3,
 };
 
+// Gender variation key used in JSFBT to represent any gender
+const GENDER_ANY /*: '*' */ = '*';
+// Number variation key used in JSFBT to represent "many" (i.e. non-exactly one)
+const NUMBER_ANY /*: '*' */ = '*';
+
 // This is not CLDR, but an fbt-specific marker that exists so that
 // singular phrases are not overwritten by multiplexed plural phrases
 // with a singular entry
-const EXACTLY_ONE = '_1';
+const EXACTLY_ONE /*: '_1' */ = '_1';
 
 const SPECIALS = {
   // The default entry.  When no entry exists, we fallback to this in the fbt
@@ -85,4 +90,6 @@ module.exports = {
   EXACTLY_ONE,
   VIEWING_USER: '__viewing_user__',
   SUBJECT: '__subject__',
+  GENDER_ANY,
+  NUMBER_ANY,
 };

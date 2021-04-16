@@ -29,6 +29,7 @@ const {
   enforceBabelNode,
   errorAt,
 } = require('../FbtUtil');
+const {GENDER_ANY} = require('../translate/IntlVariations');
 const {GenderStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
 const {createInstanceFromFbtConstructCallsite} = require('./FbtNodeUtil');
@@ -87,7 +88,7 @@ class FbtNameNode extends FbtNode/*:: <
   }
 
   getArgsForStringVariationCalc() /*: $ReadOnlyArray<GenderStringVariationArg> */ {
-    return [new GenderStringVariationArg(this.options.gender)];
+    return [new GenderStringVariationArg(this, this.options.gender, [GENDER_ANY])];
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes

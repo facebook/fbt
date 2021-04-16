@@ -21,14 +21,12 @@ const {
   errorAt,
   setUniqueToken,
 } = require('../FbtUtil');
-const {GenderStringVariationArg} = require('./FbtArguments');
 const FbtElementNode = require('./FbtElementNode');
 const FbtNode = require('./FbtNode');
 const FbtTextNode = require('./FbtTextNode');
 const {
   isBinaryExpression,
   isJSXElement,
-  isNode,
   isStringLiteral,
   isTemplateLiteral,
 } = require('@babel/types');
@@ -64,8 +62,7 @@ class FbtImplicitParamNode
   getArgsForStringVariationCalc() /*: $ReadOnlyArray<AnyStringVariationArg> */ {
     // The implicit fbt string may depend on a subject, inferred from the top-level FbtElementNode
     const subject = this._getSubjectNode();
-    return (isNode(subject) ? [new GenderStringVariationArg(subject)] : [])
-      .concat(...this.children.map(c => c.getArgsForStringVariationCalc()));
+    return FbtElementNode.getArgsForStringVariationCalcForFbtElement(this, subject);
   }
 
   /**
