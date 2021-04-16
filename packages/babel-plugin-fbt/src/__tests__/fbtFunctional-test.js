@@ -18,7 +18,6 @@ const {$it} = TestUtil;
 
 const generalTestData = {
   'should convert simple strings': {
-    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt('A simple string', "It's simple");`,
     ),
@@ -44,7 +43,6 @@ const generalTestData = {
   },
 
   'should allow description concatenation': {
-    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'A short string',
@@ -66,7 +64,6 @@ const generalTestData = {
   },
 
   'should maintain newlines': {
-    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'A simple string... ' +
@@ -816,7 +813,6 @@ const generalTestData = {
   },
 
   'should get project from docblock': {
-    filter: 'skip',
     input: `/** @fbt {"project": "dev"}*/
       ${withFbtRequireStatement(
         `var x = fbt('Also simple string', "It's simple");`,
@@ -841,7 +837,6 @@ const generalTestData = {
   },
 
   'should handler wrapping parens': {
-    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt('foo' + 'bar' + 'baz' + 'qux', 'desc');
       var y = fbt('foo' + ('bar' + 'baz' + 'qux'), 'desc');
@@ -1219,7 +1214,6 @@ const generalTestData = {
   // This is useful only for testing column/line coordinates
   // Newlines are not preserved in the extracted fbt string
   'should maintain newlines when using string templates': {
-    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         \`A simple string...
@@ -1417,15 +1411,11 @@ function describeTestScenarios(testData) {
       });
     }
 
-    // TODO(T40113359): remove focused test once it's implemented properly
-    // eslint-disable-next-line jest/no-focused-tests
-    fdescribe('should collect correct meta data', () => {
+    describe('should collect correct meta data', () => {
       forEachTestScenario(testFbtMetaData);
     });
 
-    // TODO(T40113359): remove focused test once it's implemented properly
-    // eslint-disable-next-line jest/no-focused-tests
-    fdescribe('should collect correct meta data (react native)', () => {
+    describe('should collect correct meta data (react native)', () => {
       forEachTestScenario(testFbtMetaData, {reactNativeMode: true});
     });
 

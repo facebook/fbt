@@ -10,7 +10,7 @@
 'use strict';
 
 /*::
-import type {AnyStringVariationArg, AnyFbtArgument} from './FbtArguments';
+import type {AnyStringVariationArg, AnyFbtArgument, SVArgsList} from './FbtArguments';
 import type {BabelNodeCallExpressionArgument} from '../FbtUtil';
 import type {GenderConstEnum} from '../Gender';
 import type {JSModuleNameType} from '../FbtConstants';
@@ -163,7 +163,7 @@ class FbtNode/*:: <
     throw errorAt(this.node, 'This method must be implemented in a child class');
   }
 
-  getText(argsCombination /*: $ReadOnlyArray<SVArgument> */ = []) /*: string */ {
+  getText(_args /*: SVArgsList */) /*: string */ {
     throw errorAt(this.node, 'This method must be implemented in a child class');
   }
 

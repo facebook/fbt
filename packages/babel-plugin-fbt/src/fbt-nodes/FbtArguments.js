@@ -10,6 +10,7 @@
 
 /*::
 import type {GenderConstEnum} from '../Gender';
+import type CursorArray from '../utils/CursorArray';
 import type {IntlVariationsEnum} from '../translate/IntlVariations';
 
 export type AnyStringVariationArg =
@@ -18,6 +19,9 @@ export type AnyStringVariationArg =
   | NumberStringVariationArg
   ;
 export type AnyFbtArgument = GenericArg | AnyStringVariationArg;
+
+// List of String Variation Arguments with a mutable cursor index field
+export type SVArgsList = CursorArray<AnyStringVariationArg>;
 */
 
 const {compactBabelNodeProps} = require('../FbtUtil');

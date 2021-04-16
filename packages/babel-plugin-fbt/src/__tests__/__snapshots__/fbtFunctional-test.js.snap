@@ -88,8 +88,8 @@ Array [
     "desc": "It's simple",
     "filepath": undefined,
     "jsfbt": "Also simple string",
-    "line_beg": 2,
-    "line_end": 2,
+    "line_beg": 3,
+    "line_end": 3,
     "project": "",
     "type": "text",
   },
@@ -3498,6 +3498,7 @@ FbtElementNode {
   project: 'Super Secret'
 })",
   "__stringVariationArgs": Array [],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -3533,41 +3534,7 @@ exports[`Functional FBT API using array arguments: Meta-data collection should c
 FbtElementNode {
   "__nodeCode": "fbt(['A nested string'], 'nested!')",
   "__stringVariationArgs": Array [],
-  "_variationFactorValues": Array [],
-  "children": Array [
-    FbtTextNode {
-      "__nodeCode": "'A nested string'",
-      "__stringVariationArgs": Array [],
-      "_variationFactorValues": Array [],
-      "children": Array [],
-      "moduleName": "fbt",
-      "node": "BabelNode[type=StringLiteral]",
-      "nodeChecker": FbtNodeChecker {
-        "moduleName": "fbt",
-      },
-      "parent": [Circular],
-    },
-  ],
-  "moduleName": "fbt",
-  "node": "BabelNode[type=CallExpression]",
-  "nodeChecker": FbtNodeChecker {
-    "moduleName": "fbt",
-  },
-  "options": Object {
-    "author": null,
-    "common": false,
-    "doNotExtract": false,
-    "preserveWhitespace": false,
-    "project": "",
-    "subject": null,
-  },
-}
-`;
-
-exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should be able to nest within React nodes" 2`] = `
-FbtElementNode {
-  "__nodeCode": "fbt(['A nested string'], 'nested!')",
-  "__stringVariationArgs": Array [],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -4644,6 +4611,9 @@ exports[`Functional FBT API using array arguments: Meta-data collection should c
 FbtElementNode {
   "__nodeCode": "fbt(['A parameterized message to ', fbt.param('personName', truthy ? ifTrue : ifFalse)], 'Moar params')",
   "__stringVariationArgs": Array [],
+  "_tokenSet": Object {
+    "personName": true,
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -5505,6 +5475,9 @@ exports[`Functional FBT API using array arguments: Meta-data collection should c
 FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', val1), ' and ', fbt.sameParam('name1')], 'd')",
   "__stringVariationArgs": Array [],
+  "_tokenSet": Object {
+    "name1": true,
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtParamNode {
@@ -5571,6 +5544,10 @@ FbtElementNode {
                 bar
               </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')",
   "__stringVariationArgs": Array [],
+  "_tokenSet": Object {
+    "name1": true,
+    "name2": true,
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtParamNode {
@@ -5678,6 +5655,10 @@ FbtElementNode {
   "__nodeCode": "fbt(['a', ' b ', fbt.param('name1', val1), ' c ', // comments
 ' d ', fbt.param('name2', val2), ' e '], 'a')",
   "__stringVariationArgs": Array [],
+  "_tokenSet": Object {
+    "name1": true,
+    "name2": true,
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -5927,8 +5908,8 @@ Array [
     "desc": "It's simple",
     "filepath": undefined,
     "jsfbt": "Also simple string",
-    "line_beg": 2,
-    "line_end": 2,
+    "line_beg": 3,
+    "line_end": 3,
     "project": "",
     "type": "text",
   },
@@ -9417,6 +9398,7 @@ FbtElementNode {
   project: 'Super Secret'
 })",
   "__stringVariationArgs": Array [],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -9487,41 +9469,7 @@ exports[`Functional FBT API using string-concatenated arguments: Meta-data colle
 FbtElementNode {
   "__nodeCode": "fbt(['A nested string'], 'nested!')",
   "__stringVariationArgs": Array [],
-  "_variationFactorValues": Array [],
-  "children": Array [
-    FbtTextNode {
-      "__nodeCode": "'A nested string'",
-      "__stringVariationArgs": Array [],
-      "_variationFactorValues": Array [],
-      "children": Array [],
-      "moduleName": "fbt",
-      "node": "BabelNode[type=StringLiteral]",
-      "nodeChecker": FbtNodeChecker {
-        "moduleName": "fbt",
-      },
-      "parent": [Circular],
-    },
-  ],
-  "moduleName": "fbt",
-  "node": "BabelNode[type=CallExpression]",
-  "nodeChecker": FbtNodeChecker {
-    "moduleName": "fbt",
-  },
-  "options": Object {
-    "author": null,
-    "common": false,
-    "doNotExtract": false,
-    "preserveWhitespace": false,
-    "project": "",
-    "subject": null,
-  },
-}
-`;
-
-exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should be able to nest within React nodes" 2`] = `
-FbtElementNode {
-  "__nodeCode": "fbt(['A nested string'], 'nested!')",
-  "__stringVariationArgs": Array [],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -10523,6 +10471,9 @@ exports[`Functional FBT API using string-concatenated arguments: Meta-data colle
 FbtElementNode {
   "__nodeCode": "fbt(['A parameterized message to ', fbt.param('personName', truthy ? ifTrue : ifFalse)], 'Moar params')",
   "__stringVariationArgs": Array [],
+  "_tokenSet": Object {
+    "personName": true,
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -11384,6 +11335,9 @@ exports[`Functional FBT API using string-concatenated arguments: Meta-data colle
 FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', val1), ' and ', fbt.sameParam('name1')], 'd')",
   "__stringVariationArgs": Array [],
+  "_tokenSet": Object {
+    "name1": true,
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtParamNode {
@@ -11450,6 +11404,10 @@ FbtElementNode {
               bar
             </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')",
   "__stringVariationArgs": Array [],
+  "_tokenSet": Object {
+    "name1": true,
+    "name2": true,
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtParamNode {
@@ -11557,6 +11515,10 @@ FbtElementNode {
   "__nodeCode": "fbt(['a', ' b ', fbt.param('name1', val1), ' c ', // comments
 ' d ', fbt.param('name2', val2), ' e '], 'a')",
   "__stringVariationArgs": Array [],
+  "_tokenSet": Object {
+    "name1": true,
+    "name2": true,
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {

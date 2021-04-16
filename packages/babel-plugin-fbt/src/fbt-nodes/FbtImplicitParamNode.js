@@ -12,7 +12,7 @@
 import type {
   FbtChildNode,
 } from './FbtNode';
-import type {AnyStringVariationArg} from './FbtArguments';
+import type {AnyStringVariationArg, SVArgsList} from './FbtArguments';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 */
 
@@ -45,7 +45,7 @@ class FbtImplicitParamNode
   */
 
   // Returns the string description which depends on the string variation factor values
-  getDescription(argsCombination /*: $ReadOnlyArray<AnyStringVariationArg> */ = []) /*: string */ {
+  getDescription(_args /*: SVArgsList */) /*: string */ {
     throw errorAt(this.node, 'Not implemented yet');
   }
 

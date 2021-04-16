@@ -9,6 +9,7 @@
 'use strict';
 
 /*::
+import type {SVArgsList} from './FbtArguments';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 */
 
@@ -51,6 +52,10 @@ class FbtTextNode
 
   getArgsForStringVariationCalc() /*: $ReadOnlyArray<empty> */ {
     return [];
+  }
+
+  getText(_args /*: SVArgsList */) /*: string */ {
+    return this.node.value;
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes

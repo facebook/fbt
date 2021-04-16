@@ -113,6 +113,7 @@ const {
   normalizeSpaces,
 } = require('../FbtUtil');
 const JSFbtBuilder = require('../JSFbtBuilder');
+const CursorArray = require('../utils/CursorArray');
 const {
   isArrayExpression,
   isCallExpression,
@@ -685,11 +686,11 @@ class FbtFunctionCallProcessor {
     return [fbtElement, ...fbtElement.getImplicitParamNodes()]
       .map(fbtNode => {
         const project = fbtNode.getProject();
-        if (argsCombinations.length === 0) { // simple text string
+        if (argsCombinations.length === 0) { // simple string without any variation
           return {
             phrase: {
-              desc: fbtNode.getDescription(),
-              jsfbt: fbtNode.getText(),
+              desc: fbtNode.getDescription(new CursorArray([])),
+              jsfbt: fbtNode.getText(new CursorArray([])),
               project,
               type: 'text',
             },
@@ -712,8 +713,8 @@ class FbtFunctionCallProcessor {
             phrase.jsfbt.t,
             argsCombination,
             {
-              desc: fbtNode.getDescription(argsCombination),
-              text: fbtNode.getText(argsCombination),
+              desc: fbtNode.getDescription(new CursorArray(argsCombination)),
+              text: fbtNode.getText(new CursorArray(argsCombination)),
             }
           );
         }
