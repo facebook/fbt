@@ -38,13 +38,6 @@ export type ShowCountKey = $Keys<typeof ShowCount>;
 
 const SENTINEL = '__FBT__';
 
-const ValidPronounUsages = {
-  object: 0,
-  possessive: 1,
-  reflexive: 2,
-  subject: 3,
-};
-
 const PluralRequiredAttributes = {
   count: true,
 };
@@ -67,9 +60,21 @@ const ValidPluralOptions = {
   ...PluralRequiredAttributes,
 };
 
+const ValidPronounUsages = {
+  object: 0,
+  possessive: 1,
+  reflexive: 2,
+  subject: 3,
+};
+
 const ValidPronounOptions = {
   human: {true: true, false: true},
   capitalize: {true: true, false: true},
+};
+
+const PronounRequiredAttributes = {
+  type: true, // See ValidPronounUsages for valid strings
+  gender: true,
 };
 
 /**
@@ -93,11 +98,6 @@ const FbtCallMustHaveAtLeastOneOfTheseAttributes = ['desc', 'common'];
 
 const FbtRequiredAttributes = {
   desc: true,
-};
-
-const PronounRequiredAttributes = {
-  type: true,
-  gender: true,
 };
 
 const PLURAL_PARAM_TOKEN = 'number';

@@ -168,15 +168,18 @@ function checkOption/*:: <K: string> */(
     } else if (isNode(value) && (isStringLiteral(value) || isBooleanLiteral(value))) {
       valueStr = value && value.value.toString();
     } else {
-      throw errorAt(isNode(value) ? value : null,
-        `Expected a string literal but got \`${varDump(value)}\` (${typeof value})`,
+      throw errorAt(
+        isNode(value) ? value : null,
+        `Option "${optionName}" has an invalid value. ` +
+        `Expected a string literal but value is \`${varDump(value)}\` (${typeof value})`,
       );
     }
 
     if (!validValues[valueStr]) {
-      throw new Error(
-        `Invalid value, "${valueStr}" for "${optionName}". ` +
-          `Only allowed: ${Object.keys(validValues).join(', ')}`,
+      throw errorAt(
+        isNode(value) ? value : null,
+        `Option "${optionName}" has an invalid value: "${valueStr}". ` +
+        `Only allowed: ${Object.keys(validValues).join(', ')}`,
       );
     }
   }
@@ -481,6 +484,8 @@ function expandStringArray(
   );
 }
 
+// Check that the value of the given option name is a BabeNodeBooleanLiteral
+// and return its value
 function getOptionBooleanValue/*:: <K: string> */(
   options /*: FbtOptionValues<K> */,
   name /*: K */,

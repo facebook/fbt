@@ -9,24 +9,40 @@
 
 'use strict';
 
-/////////////////////////////////////////////////////////////////////
-// Planned fbt arguments that will be used by various fbt constructs
-// `*` means that it's a static argument (whose value won't change at runtime)
-/////////////////////////////////////////////////////////////////////
-// pronoun : genderValue
-
 /*::
-import type {
-  GenderStringVariationArg,
-} from './FbtArguments';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
+
+type Options = {|
+  // If true, capitalize the pronoun text
+  capitalize?: ?boolean,
+  // BabelNode representing the value of the `gender`
+  gender: BabelNode,
+  // If true, exclude non-human-related pronouns from the generated string variations
+  human?: ?boolean,
+  // Type of pronoun
+  type: $Keys<typeof ValidPronounUsages>,
+|};
 */
 
 const {
+  ValidPronounOptions,
+  ValidPronounUsages,
+} = require('../FbtConstants');
+const {
+  collectOptionsFromFbtConstruct,
+  enforceBabelNode,
+  enforceBoolean,
+  enforceStringEnum,
   errorAt,
 } = require('../FbtUtil');
+const {GenderStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
 const {createInstanceFromFbtConstructCallsite} = require('./FbtNodeUtil');
+const {
+  isStringLiteral,
+} = require('@babel/types');
+const invariant = require('invariant');
+const nullthrows = require('nullthrows');
 
 /**
  * Represents an <fbt:pronoun> or fbt.pronoun() construct.
@@ -37,7 +53,10 @@ class FbtPronounNode extends FbtNode/*:: <
   BabelNodeCallExpression,
   > */ {
 
-  /*:: static +type: 'pronoun'; */
+  /*::
+  static +type: 'pronoun';
+  +options: Options;
+  */
 
   /**
    * Create a new class instance given a BabelNode root node.
@@ -50,8 +69,49 @@ class FbtPronounNode extends FbtNode/*:: <
     return createInstanceFromFbtConstructCallsite(moduleName, node, this);
   }
 
+  getOptions() /*: Options */ {
+    const rawOptions = collectOptionsFromFbtConstruct(
+      this.moduleName,
+      this.node,
+      ValidPronounOptions,
+    );
+
+    try {
+      const args = this.getCallNodeArguments() || [];
+      const [usageArg, genderArg] = args;
+      invariant(isStringLiteral(usageArg), '`type`, the first argument');
+      const type = enforceStringEnum(
+        usageArg.value,
+        ValidPronounUsages,
+        '`type`, the first argument',
+      );
+      const gender = enforceBabelNode(genderArg, '`gender`, the second argument');
+      const mergedOptions = nullthrows(rawOptions);
+      return {
+        capitalize: enforceBoolean.orNull(mergedOptions.capitalize),
+        gender,
+        human: enforceBoolean.orNull(mergedOptions.human),
+        type,
+      };
+    } catch (error) {
+      throw errorAt(this.node, error);
+    }
+  }
+
+  initCheck() /*: void */ {
+    const args = this.getCallNodeArguments();
+    invariant(args && (args.length === 2 || args.length === 3) || !args,
+      "Expected '(usage, gender [, options])' arguments to %s.pronoun",
+      this.moduleName,
+    );
+  }
+
   _getGenderNode() /*: BabelNode */ {
     throw errorAt(this.node, 'not implemented yet');
+  }
+
+  getArgsForStringVariationCalc() /*: $ReadOnlyArray<GenderStringVariationArg> */ {
+    return [new GenderStringVariationArg(this.options.gender)];
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes

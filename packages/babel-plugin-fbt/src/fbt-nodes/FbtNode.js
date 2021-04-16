@@ -96,10 +96,22 @@ class FbtNode/*:: <
     if (options) {
       this.options = options;
     }
+    this.initCheck();
   }
 
+  /**
+   * Return this fbt construct's options that'll be stored in `this.options`
+   * just after constructing this class instance.
+   */
   getOptions() /*: ?{} */ {
     return null;
+  }
+
+  /**
+   * Run integrity checks to ensure this fbt construct is in a valid state
+   * These checks are non-exhaustive. Some new exceptions may arise later on.
+   */
+  initCheck() /*: void */ {
   }
 
   _clone() /*: this */ {
