@@ -66,6 +66,10 @@ export type PluginOptions = {|
 
 type TokenAlias = string;
 
+export type TokenAliases = {|
+  [clearTokenName: string]: TokenAlias,
+|};
+
 // This is the main payload collected from the fbt callsite.
 //
 // - For simple fbt calls without interpolation (fbt.param) or multiplexing (fbt.plural,
@@ -84,9 +88,7 @@ export type TableJSFBTTreeLeaflet = {|
   desc: string,
   hash?: PatternHash,
   text: PatternString,
-  tokenAliases: {|
-    [clearTokenName: string]: TokenAlias
-  |},
+  tokenAliases: TokenAliases,
   // The token name (at the outer string level) referring to this inner string
   //
   // E.g. For the fbt string `<fbt>Hello <i>World</i></fbt>`,

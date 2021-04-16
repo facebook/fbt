@@ -706,7 +706,7 @@ class FbtFunctionCallProcessor {
             const leaf = ({
               desc: fbtNode.getDescription(svArgsMap),
               text: fbtNode.getText(svArgsMap),
-              tokenAliases: {}, // TODO(T86645322) Implement "mangled" token aliases
+              tokenAliases: fbtNode.getTokenAliases(svArgsMap),
             }: TableJSFBTTreeLeaf);
 
             if (this.pluginOptions.generateOuterTokenName && !(fbtNode instanceof FbtElementNode)) {

@@ -10,6 +10,7 @@
 
 /*::
 import type {ParamSet} from '../FbtUtil';
+import type {TokenAliases} from '../index';
 import type {FbtChildNode, AnyFbtNode} from './FbtNode';
 import type {IFbtElementNode} from './FbtElementNode';
 import type {AnyStringVariationArg, StringVariationArgsMap} from './FbtArguments';
@@ -28,6 +29,7 @@ const {
   getChildNodeText,
   getChildNodeTextForDescription,
   getTextFromFbtNodeTree,
+  getTokenAliasesFromFbtNodeTree,
 } = require('./FbtNodeUtil');
 const FbtTextNode = require('./FbtTextNode');
 const {
@@ -120,6 +122,10 @@ class FbtImplicitParamNode
    */
   getDescription(argsMap: StringVariationArgsMap): string {
     return `In the phrase: "${this._getElementNode().getTextForDescription(argsMap, this)}"`;
+  }
+
+  getTokenAliases(argsMap: StringVariationArgsMap): TokenAliases {
+    return getTokenAliasesFromFbtNodeTree(this, argsMap);
   }
 
   /**

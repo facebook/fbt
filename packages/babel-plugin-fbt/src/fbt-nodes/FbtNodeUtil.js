@@ -9,6 +9,7 @@
 'use strict';
 
 /*::
+import type {TokenAliases} from '../index';
 import type {AnyFbtNode, FbtChildNode} from './FbtNode';
 import type {JSModuleNameType} from '../FbtConstants';
 import type FbtElementNode from './FbtElementNode';
@@ -124,6 +125,34 @@ function getChildNodeText(argsMap: StringVariationArgsMap, child: FbtChildNode):
     : child.getText(argsMap);
 }
 
+function getTokenAliasesFromFbtNodeTree(
+  instance: FbtElementNode | FbtImplicitParamNodeType,
+  argsMap: StringVariationArgsMap,
+): TokenAliases {
+  const childrentokenAliases = instance.children.map((node, tokenIndex) =>
+    getChildNodeTokenAliases(argsMap, node, tokenIndex)
+  );
+  return Object.assign({}, ...childrentokenAliases);
+}
+
+function getChildNodeTokenAliases(
+  argsMap: StringVariationArgsMap,
+  child: FbtChildNode,
+  tokenIndex: number,
+): TokenAliases {
+  const FbtImplicitParamNode = require('./FbtImplicitParamNode');
+  if (child instanceof FbtImplicitParamNode) {
+    const childToken = child.getTokenName(argsMap);
+    invariant(
+      childToken != null,
+      'The token of FbtImplicitParamNode %s is expected to be non-null',
+      varDump(child),
+    );
+    return {[childToken]: convertToTokenName(`m${tokenIndex}`)};
+  }
+  return {};
+}
+
 function getChildNodeTextForDescription(
   targetFbtNode: FbtImplicitParamNodeType,
   argsMap: StringVariationArgsMap,
@@ -146,6 +175,7 @@ module.exports = {
   getChildNodeTextForDescription,
   getClosestElementOrImplicitParamNodeAncestor,
   getTextFromFbtNodeTree,
+  getTokenAliasesFromFbtNodeTree,
   runOnNestedChildren,
   tokenNameToTextPattern,
 };

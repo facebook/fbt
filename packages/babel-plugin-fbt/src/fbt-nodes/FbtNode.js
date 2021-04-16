@@ -14,6 +14,7 @@ import type {AnyStringVariationArg, AnyFbtArgument, StringVariationArgsMap} from
 import type {BabelNodeCallExpressionArgument} from '../FbtUtil';
 import type {GenderConstEnum} from '../Gender';
 import type {JSModuleNameType} from '../FbtConstants';
+import type {TokenAliases} from '../index.js';
 
 import type FbtElementNode from './FbtElementNode';
 import type FbtEnumNode from './FbtEnumNode';
@@ -157,6 +158,10 @@ class FbtNode/*:: <
 
   getText(_argsMap /*: StringVariationArgsMap */) /*: string */ {
     throw errorAt(this.node, 'This method must be implemented in a child class');
+  }
+
+  getTokenAliases(_argsMap: StringVariationArgsMap): ?TokenAliases {
+    return null;
   }
 
   getTokenName(_argsMap: StringVariationArgsMap): ?string {

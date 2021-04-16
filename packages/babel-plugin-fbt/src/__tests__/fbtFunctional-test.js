@@ -369,6 +369,35 @@ const generalTestData = {
     ),
   },
 
+  'should handle JSX fbt with multiple levels of nested strings': {
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var React = require('react');
+      <span className="sentence example_row">
+        <fbt desc="example 1">
+          <b className="padRight">
+            <fbt:enum enum-range={['today', 'yesterday']} value={enumVal} />
+          </b>,
+          <fbt:param name="name" gender={viewerGender}>
+            <b className="padRight">{viewerName}</b>
+          </fbt:param>
+          has shared
+          <a className="neatoLink" href="#">
+            <fbt:plural many="photos" showCount="ifMany" count={photoCount}>
+              a photo
+            </fbt:plural>{' '}
+            with
+            <strong>
+              <fbt:pronoun
+                type="object"
+                gender={otherGender}
+                human="true" />
+            </strong>
+          </a>
+        </fbt>
+      </span>;`,
+    ),
+  },
+
   'should throw when multiple tokens have the same names due to implicit params': {
     inputWithArraySyntax: withFbtRequireStatement(
       `var z = fbt(
