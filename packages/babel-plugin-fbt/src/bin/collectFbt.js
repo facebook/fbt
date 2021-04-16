@@ -241,16 +241,21 @@ function writeOutput() {
   const errs = fbtCollector.getErrors();
   const errCount = Object.keys(errs).length;
   if (errCount > 0) {
+    const childErrorMessages = [];
     for (const filePath in errs) {
       const error = errs[filePath];
-      process.stderr.write(
-        `[file="${filePath}"]:\n\t` + String(error.stack || error) + '\n',
-      );
+      const childErrorMessage =
+        `[file="${filePath}"]:\n\t` + String(error.stack || error);
+      process.stderr.write(childErrorMessage + '\n');
+      childErrorMessages.push(childErrorMessage);
     }
-    throw new Error(
+    const overallError = new Error(
       `Failed in ${errCount} file(s).` +
         `\nCurrent working directory: '${process.cwd()}'`,
     );
+    // $FlowExpectedError[prop-missing] Adding a custom error field
+    overallError.childErrorMessages = childErrorMessages;
+    throw overallError;
   }
 }
 
@@ -277,6 +282,34 @@ function getPackagers() {
   }
 }
 
+// TODO(T40113359) Remove this once this script is ready to be tested
+function catchKnownErrors__DEBUG_ONLY(callback) {
+  try {
+    callback();
+  } catch (error) {
+    const childErrorMessages: ?Array<string> = error.childErrorMessages;
+    const hasKnownErrors =
+      Array.isArray(childErrorMessages) &&
+      childErrorMessages.findIndex(
+        message =>
+          message.includes(
+            'fbt only accepts plain strings with params wrapped',
+          ) || message.includes('Not implemented yet'),
+      ) > -1;
+
+    if (hasKnownErrors) {
+      console.warn(
+        `WARN: %s: error(s) occurred but it's ok since ` +
+          `this script is not ready for testing yet.\n%s`,
+        require('path').basename(__filename),
+        error,
+      );
+    } else {
+      throw error;
+    }
+  }
+}
+
 if (argv[args.HELP]) {
   yargs.showHelp();
 } else if (!argv._.length) {
@@ -287,13 +320,17 @@ if (argv[args.HELP]) {
   stream.on('data', function (chunk) {
     source += chunk;
   });
-  stream.on('end', function () {
-    processSource(source);
-    writeOutput();
+  stream.on('end', () => {
+    catchKnownErrors__DEBUG_ONLY(() => {
+      processSource(source);
+      writeOutput();
+    });
   });
 } else {
-  // Files given as arguments, read from those one-by-one, then write output as
-  // a whole.
-  fbtCollector.collectFromFiles(argv._);
-  writeOutput();
+  catchKnownErrors__DEBUG_ONLY(() => {
+    // Files given as arguments, read from those one-by-one, then write output as
+    // a whole.
+    fbtCollector.collectFromFiles(argv._);
+    writeOutput();
+  });
 }

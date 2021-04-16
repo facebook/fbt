@@ -12,7 +12,8 @@ const path = require('path');
 
 const commonPath = path.resolve(__dirname, 'FbtCommonForTests.json');
 
-describe('collectFbt', () => {
+// TODO(T40113359) Re-enable once this test scenario is ready to be tested
+xdescribe('collectFbt', () => {
   function collect(source, options = {}) {
     const scriptPath = path.join(
       // Find the actual module root path

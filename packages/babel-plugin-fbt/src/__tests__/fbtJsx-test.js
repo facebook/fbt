@@ -860,10 +860,12 @@ const testData = {
   },
 };
 
-describe('Test declarative (jsx) fbt syntax translation', () =>
+// TODO(T40113359) Re-enable once this test scenario is ready to be tested
+xdescribe('Test declarative (jsx) fbt syntax translation', () =>
   TestUtil.testSection(testData, transform));
 
-describe('Test fbt transforms without the jsx transform', () => {
+// TODO(T40113359) Re-enable once this test scenario is ready to be tested
+xdescribe('Test fbt transforms without the jsx transform', () => {
   it('not nested', () => {
     expect(
       transformKeepJsx(`

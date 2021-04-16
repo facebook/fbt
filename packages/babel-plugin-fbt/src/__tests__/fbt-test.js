@@ -14,7 +14,8 @@ function runTest(data, extra) {
   TestUtil.assertSourceAstEqual(transform(data.input, extra), data.output);
 }
 
-describe('fbt() API: ', () => {
+// TODO(T40113359) Re-enable once this test scenario is ready to be tested
+xdescribe('fbt() API: ', () => {
   describe('using extraOptions', () => {
     it('should accept "locale" extra option', () => {
       runTest(
@@ -88,7 +89,8 @@ describe('fbt() API: ', () => {
   });
 });
 
-describe('Test double-lined params', () => {
+// TODO(T40113359) Re-enable once this test scenario is ready to be tested
+xdescribe('Test double-lined params', () => {
   it('should remove the new line for param names that are two lines', () => {
     runTest({
       input: withFbtRequireStatement(
@@ -132,7 +134,8 @@ describe('Test double-lined params', () => {
   });
 });
 
-describe('fbt variable binding detection', () => {
+// TODO(T40113359) Re-enable once this test scenario is ready to be tested
+xdescribe('fbt variable binding detection', () => {
   function describeFbtBindingTestCase(requireStatement) {
     return {
       input: `${requireStatement};

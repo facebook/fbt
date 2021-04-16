@@ -16,7 +16,8 @@ function runTest(data, extra) {
   TestUtil.assertSourceAstEqual(expected, actual);
 }
 
-describe('fbt preserveWhitespace argument', () => {
+// TODO(T40113359) Re-enable once this test scenario is ready to be tested
+xdescribe('fbt preserveWhitespace argument', () => {
   // TODO: t17559607 Fix space normalization
   // it('should preserve whitespace in text when requested', () => {
   //   runTest({

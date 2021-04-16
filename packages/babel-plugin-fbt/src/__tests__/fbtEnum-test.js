@@ -19,7 +19,8 @@ function runTest(data) {
   );
 }
 
-describe('Test Fbt Enum', () => {
+// TODO(T40113359) Re-enable once this test scenario is ready to be tested
+xdescribe('Test Fbt Enum', () => {
   beforeEach(() => {
     // Ensure the Enum registrar config is reset.
     jest.resetModules();

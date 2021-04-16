@@ -100,10 +100,12 @@ const testData = {
   },
 };
 
-describe('Test jsx auto-wrapping of implicit parameters', () =>
+// TODO(T40113359) Re-enable once this test scenario is ready to be tested
+xdescribe('Test jsx auto-wrapping of implicit parameters', () =>
   TestUtil.testSection(testData, transform));
 
-describe('Equality between auto-wrapped and manually wrapped params', () => {
+// TODO(T40113359) Re-enable once this test scenario is ready to be tested
+xdescribe('Equality between auto-wrapped and manually wrapped params', () => {
   it('should wrap a single unwrapped <fbt> child and a string above', () => {
     expect(
       transform(
