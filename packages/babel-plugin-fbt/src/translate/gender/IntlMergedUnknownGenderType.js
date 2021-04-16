@@ -1,7 +1,7 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
- * @generated SignedSource<<e36148f4ba776f56126f288ecfe57cf3>>
+ * @generated SignedSource<<16d321a0f7e888a15d9ac6a9d5f0b893>>
  *
  * Run `phps GenderGenScript` to regenerate this file.
  *
@@ -13,11 +13,11 @@
 const {Gender} = require('../IntlVariations');
 
 const IntlMergedUnknownGenderType = {
-  getFallback() /*: typeof Gender.MALE */ {
+  getFallback(): typeof Gender.MALE {
     return Gender.MALE;
   },
 
-  getGenderVariations() /*: $ReadOnlyArray<$Values<typeof Gender>> */ {
+  getGenderVariations(): $ReadOnlyArray<$Values<typeof Gender>> {
     return [Gender.MALE, Gender.FEMALE];
   },
 };

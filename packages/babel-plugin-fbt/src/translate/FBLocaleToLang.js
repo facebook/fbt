@@ -1,7 +1,7 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
- * @generated SignedSource<<269ed2cf3afd49c2194910a39947ab5e>>
+ * @generated SignedSource<<dcee4b941505bf4c0abda7f27858251f>>
  *
  * @codegen-command : phps FBLocToLangScript
  *
@@ -51,7 +51,7 @@ const locToLang = {
 };
 
 const FBLocaleToLang = {
-  get(locale /*: string */) /*: string */ {
+  get(locale: string): string {
     // If given an fb-locale ("xx_XX"), try to map it to a language.  Otherwise
     // return "xx".  If no '_' is found, return locale as-is.
     const idx = locale.indexOf('_');
