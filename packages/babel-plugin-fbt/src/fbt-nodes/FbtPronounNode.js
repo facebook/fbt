@@ -49,12 +49,12 @@ const {createInstanceFromFbtConstructCallsite} = require('./FbtNodeUtil');
 const {
   isStringLiteral,
 } = require('@babel/types');
+const forEachObject = require('fbjs/lib/forEachObject');
 const invariant = require('invariant');
 const nullthrows = require('nullthrows');
 
-const candidatePronounGenders: $ReadOnlyArray<GenderConstEnum> = (
-  (Object.values(GENDER_CONST): $FlowExpectedError): Array<$Values<typeof GENDER_CONST>>
-);
+const candidatePronounGenders: $ReadOnlyArray<GenderConstEnum> =
+  consolidatedPronounGenders();
 
 /**
  * Represents an <fbt:pronoun> or fbt.pronoun() construct.
@@ -155,7 +155,7 @@ class FbtPronounNode extends FbtNode/*:: <
       if (options.human === true && gender === GENDER_CONST.NOT_A_PERSON) {
         continue;
       }
-      const resolvedGender = this._getPronounGenderKey(
+      const resolvedGender = getPronounGenderKey(
         options.type,
         gender,
       );
@@ -168,49 +168,60 @@ class FbtPronounNode extends FbtNode/*:: <
 
     return [new GenderStringVariationArg(this, options.gender, Array.from(candidates))];
   }
-
-  /**
-   * Must match implementation from fbt.js
-    * @see (FB) https://fburl.com/diffusion/3gbcj3aq
-    * @see (OSS) https://github.com/facebook/fbt/blob/19531133625dab1d38995dcf578dcfdfa0b09048/runtime/shared/fbt.js#L316-L348
-   */
-  _getPronounGenderKey(
-    usage: ValidPronounUsagesKey,
-    gender: GenderConstEnum,
-  ): GenderConstEnum {
-    switch (gender) {
-      case GENDER_CONST.NOT_A_PERSON:
-        return usage === ValidPronounUsagesKeys.object ||
-          usage === ValidPronounUsagesKeys.reflexive
-          ? GENDER_CONST.NOT_A_PERSON
-          : GENDER_CONST.UNKNOWN_PLURAL;
-
-      case GENDER_CONST.FEMALE_SINGULAR:
-      case GENDER_CONST.FEMALE_SINGULAR_GUESS:
-        return GENDER_CONST.FEMALE_SINGULAR;
-
-      case GENDER_CONST.MALE_SINGULAR:
-      case GENDER_CONST.MALE_SINGULAR_GUESS:
-        return GENDER_CONST.MALE_SINGULAR;
-
-      case GENDER_CONST.MIXED_UNKNOWN:
-      case GENDER_CONST.FEMALE_PLURAL:
-      case GENDER_CONST.MALE_PLURAL:
-      case GENDER_CONST.NEUTER_PLURAL:
-      case GENDER_CONST.UNKNOWN_PLURAL:
-        return GENDER_CONST.UNKNOWN_PLURAL;
-
-      case GENDER_CONST.NEUTER_SINGULAR:
-      case GENDER_CONST.UNKNOWN_SINGULAR:
-        return usage === ValidPronounUsagesKeys.reflexive
-          ? GENDER_CONST.NOT_A_PERSON
-          : GENDER_CONST.UNKNOWN_PLURAL;
-    }
-
-    invariant(false, 'Unknown GENDER_CONST value: %s', varDump(gender));
-  }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes
 FbtPronounNode.type = 'pronoun';
+
+/**
+ * Must match implementation from fbt.js
+ * @see (FB) https://fburl.com/diffusion/3gbcj3aq
+ * @see (OSS) https://github.com/facebook/fbt/blob/19531133625dab1d38995dcf578dcfdfa0b09048/runtime/shared/fbt.js#L316-L348
+ */
+function getPronounGenderKey(
+  usage: ValidPronounUsagesKey,
+  gender: GenderConstEnum,
+): GenderConstEnum {
+  switch (gender) {
+    case GENDER_CONST.NOT_A_PERSON:
+      return usage === ValidPronounUsagesKeys.object ||
+        usage === ValidPronounUsagesKeys.reflexive
+        ? GENDER_CONST.NOT_A_PERSON
+        : GENDER_CONST.UNKNOWN_PLURAL;
+
+    case GENDER_CONST.FEMALE_SINGULAR:
+    case GENDER_CONST.FEMALE_SINGULAR_GUESS:
+      return GENDER_CONST.FEMALE_SINGULAR;
+
+    case GENDER_CONST.MALE_SINGULAR:
+    case GENDER_CONST.MALE_SINGULAR_GUESS:
+      return GENDER_CONST.MALE_SINGULAR;
+
+    case GENDER_CONST.MIXED_UNKNOWN:
+    case GENDER_CONST.FEMALE_PLURAL:
+    case GENDER_CONST.MALE_PLURAL:
+    case GENDER_CONST.NEUTER_PLURAL:
+    case GENDER_CONST.UNKNOWN_PLURAL:
+      return GENDER_CONST.UNKNOWN_PLURAL;
+
+    case GENDER_CONST.NEUTER_SINGULAR:
+    case GENDER_CONST.UNKNOWN_SINGULAR:
+      return usage === ValidPronounUsagesKeys.reflexive
+        ? GENDER_CONST.NOT_A_PERSON
+        : GENDER_CONST.UNKNOWN_PLURAL;
+  }
+
+  invariant(false, 'Unknown GENDER_CONST value: %s', varDump(gender));
+}
+
+// Prepare the list of genders actually used by the pronoun construct
+function consolidatedPronounGenders(): $ReadOnlyArray<GenderConstEnum> {
+  const set = new Set();
+  forEachObject(GENDER_CONST, gender => {
+    forEachObject(ValidPronounUsagesKeys, usage => {
+      set.add(getPronounGenderKey(usage, gender));
+    });
+  });
+  return Array.from(set).sort((left, right) => left - right);
+}
 
 module.exports = FbtPronounNode;
