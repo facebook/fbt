@@ -1021,7 +1021,6 @@ const generalTestData = {
   },
 
   'should handle object pronoun': {
-    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
           'I know ' +
@@ -1063,7 +1062,6 @@ const generalTestData = {
   },
 
   'should handle subject and reflexive pronouns': {
-    filter: 'skip',
     input:
       // eslint-disable-next-line fb-www/gender-neutral-language
       // I.e. He wished himself a happy birthday.
@@ -1120,7 +1118,6 @@ const generalTestData = {
   },
 
   'should handle possessive pronoun': {
-    filter: 'skip',
     input:
       // eslint-disable-next-line fb-www/gender-neutral-language
       // I.e. It is her birthday.
@@ -1164,7 +1161,6 @@ const generalTestData = {
   },
 
   'should throw on pronoun usage not StringLiteral': {
-    filter: 'skip',
     input:
       // Note use of variable for pronoun usage.
       withFbtRequireStatement(
@@ -1188,11 +1184,11 @@ const generalTestData = {
         );`,
       ),
 
-    throws: true,
+    throws:
+      '`usage`, the first argument of fbt.pronoun() must be a `StringLiteral` but we got `Identifier`',
   },
 
   'should throw on pronoun usage invalid': {
-    filter: 'skip',
     input:
       // Note 'POSSESSION' instead of 'possessive'.
       withFbtRequireStatement(
@@ -1214,7 +1210,10 @@ const generalTestData = {
         );`,
       ),
 
-    throws: true,
+    throws:
+      `\`usage\`, the first argument of fbt.pronoun() - ` +
+      `Expected value to be one of [object, possessive, reflexive, subject] ` +
+      `but we got 'POSSESSION' (string) instead`,
   },
 
   'should throw when concatenating an fbt construct to a string while using the array argument syntax': {

@@ -4563,10 +4563,18 @@ FbtElementNode {
   "__stringVariationArgs": Array [
     GenderStringVariationArg {
       "__nodeCode": "gender",
+      "candidateValues": Array [
+        0,
+        1,
+        2,
+        "*",
+      ],
+      "fbtNode": "FbtPronounNode",
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -4579,13 +4587,20 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtPronounNode {
       "__nodeCode": "fbt.pronoun('object', gender)",
       "__stringVariationArgs": Array [
         GenderStringVariationArg {
           "__nodeCode": "gender",
+          "candidateValues": Array [
+            0,
+            1,
+            2,
+            "*",
+          ],
+          "fbtNode": "FbtPronounNode",
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -4604,7 +4619,7 @@ FbtElementNode {
         "human": null,
         "type": "object",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "'.'",
@@ -4616,7 +4631,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -4632,6 +4647,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -4961,10 +4977,17 @@ FbtElementNode {
   "__stringVariationArgs": Array [
     GenderStringVariationArg {
       "__nodeCode": "gender",
+      "candidateValues": Array [
+        "*",
+        1,
+        2,
+      ],
+      "fbtNode": "FbtPronounNode",
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -4977,13 +5000,19 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtPronounNode {
       "__nodeCode": "fbt.pronoun('possessive', gender)",
       "__stringVariationArgs": Array [
         GenderStringVariationArg {
           "__nodeCode": "gender",
+          "candidateValues": Array [
+            "*",
+            1,
+            2,
+          ],
+          "fbtNode": "FbtPronounNode",
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -5002,7 +5031,7 @@ FbtElementNode {
         "human": null,
         "type": "possessive",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' birthday.'",
@@ -5014,7 +5043,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -5030,6 +5059,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -5044,15 +5074,29 @@ FbtElementNode {
   "__stringVariationArgs": Array [
     GenderStringVariationArg {
       "__nodeCode": "gender",
+      "candidateValues": Array [
+        1,
+        2,
+        "*",
+      ],
+      "fbtNode": "FbtPronounNode",
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
     GenderStringVariationArg {
       "__nodeCode": "gender",
+      "candidateValues": Array [
+        1,
+        2,
+        "*",
+        0,
+      ],
+      "fbtNode": "FbtPronounNode",
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtPronounNode {
@@ -5063,6 +5107,12 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         GenderStringVariationArg {
           "__nodeCode": "gender",
+          "candidateValues": Array [
+            1,
+            2,
+            "*",
+          ],
+          "fbtNode": "FbtPronounNode",
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -5081,7 +5131,7 @@ FbtElementNode {
         "human": true,
         "type": "subject",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' wished '",
@@ -5093,7 +5143,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtPronounNode {
       "__nodeCode": "fbt.pronoun('reflexive', gender, {
@@ -5102,6 +5152,13 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         GenderStringVariationArg {
           "__nodeCode": "gender",
+          "candidateValues": Array [
+            1,
+            2,
+            "*",
+            0,
+          ],
+          "fbtNode": "FbtPronounNode",
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -5120,7 +5177,7 @@ FbtElementNode {
         "human": true,
         "type": "reflexive",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' a happy birthday.'",
@@ -5132,7 +5189,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -5148,6 +5205,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -10509,10 +10567,18 @@ FbtElementNode {
   "__stringVariationArgs": Array [
     GenderStringVariationArg {
       "__nodeCode": "gender",
+      "candidateValues": Array [
+        0,
+        1,
+        2,
+        "*",
+      ],
+      "fbtNode": "FbtPronounNode",
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -10525,13 +10591,20 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtPronounNode {
       "__nodeCode": "fbt.pronoun('object', gender)",
       "__stringVariationArgs": Array [
         GenderStringVariationArg {
           "__nodeCode": "gender",
+          "candidateValues": Array [
+            0,
+            1,
+            2,
+            "*",
+          ],
+          "fbtNode": "FbtPronounNode",
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -10550,7 +10623,7 @@ FbtElementNode {
         "human": null,
         "type": "object",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "'.'",
@@ -10562,7 +10635,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -10578,6 +10651,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -10907,10 +10981,17 @@ FbtElementNode {
   "__stringVariationArgs": Array [
     GenderStringVariationArg {
       "__nodeCode": "gender",
+      "candidateValues": Array [
+        "*",
+        1,
+        2,
+      ],
+      "fbtNode": "FbtPronounNode",
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -10923,13 +11004,19 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtPronounNode {
       "__nodeCode": "fbt.pronoun('possessive', gender)",
       "__stringVariationArgs": Array [
         GenderStringVariationArg {
           "__nodeCode": "gender",
+          "candidateValues": Array [
+            "*",
+            1,
+            2,
+          ],
+          "fbtNode": "FbtPronounNode",
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -10948,7 +11035,7 @@ FbtElementNode {
         "human": null,
         "type": "possessive",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' birthday.'",
@@ -10960,7 +11047,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -10976,6 +11063,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -10990,15 +11078,29 @@ FbtElementNode {
   "__stringVariationArgs": Array [
     GenderStringVariationArg {
       "__nodeCode": "gender",
+      "candidateValues": Array [
+        1,
+        2,
+        "*",
+      ],
+      "fbtNode": "FbtPronounNode",
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
     GenderStringVariationArg {
       "__nodeCode": "gender",
+      "candidateValues": Array [
+        1,
+        2,
+        "*",
+        0,
+      ],
+      "fbtNode": "FbtPronounNode",
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtPronounNode {
@@ -11009,6 +11111,12 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         GenderStringVariationArg {
           "__nodeCode": "gender",
+          "candidateValues": Array [
+            1,
+            2,
+            "*",
+          ],
+          "fbtNode": "FbtPronounNode",
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -11027,7 +11135,7 @@ FbtElementNode {
         "human": true,
         "type": "subject",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' wished '",
@@ -11039,7 +11147,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtPronounNode {
       "__nodeCode": "fbt.pronoun('reflexive', gender, {
@@ -11048,6 +11156,13 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         GenderStringVariationArg {
           "__nodeCode": "gender",
+          "candidateValues": Array [
+            1,
+            2,
+            "*",
+            0,
+          ],
+          "fbtNode": "FbtPronounNode",
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -11066,7 +11181,7 @@ FbtElementNode {
         "human": true,
         "type": "reflexive",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' a happy birthday.'",
@@ -11078,7 +11193,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -11094,6 +11209,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 

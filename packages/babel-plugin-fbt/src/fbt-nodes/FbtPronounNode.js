@@ -10,6 +10,7 @@
 'use strict';
 
 /*::
+import type {SVArgsList} from './FbtArguments';
 import type {ValidPronounUsagesKey} from '../FbtConstants';
 import type {GenderConstEnum} from '../Gender';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
@@ -37,8 +38,10 @@ const {
   enforceBoolean,
   enforceStringEnum,
   errorAt,
+  varDump,
 } = require('../FbtUtil');
-const {GENDER_CONST} = require('../Gender');
+const Gender = require('../Gender');
+const {GENDER_CONST} = Gender;
 const {GENDER_ANY} = require('../translate/IntlVariations');
 const {GenderStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
@@ -79,8 +82,9 @@ class FbtPronounNode extends FbtNode/*:: <
   }
 
   getOptions() /*: Options */ {
+    const {moduleName} = this;
     const rawOptions = collectOptionsFromFbtConstruct(
-      this.moduleName,
+      moduleName,
       this.node,
       ValidPronounOptions,
     );
@@ -88,11 +92,15 @@ class FbtPronounNode extends FbtNode/*:: <
     try {
       const args = this.getCallNodeArguments() || [];
       const [usageArg, genderArg] = args;
-      invariant(isStringLiteral(usageArg), '`type`, the first argument');
+      invariant(isStringLiteral(usageArg),
+        '`usage`, the first argument of %s.pronoun() must be a `StringLiteral` but we got `%s`',
+        moduleName,
+        usageArg?.type || 'unknown',
+      );
       const type = enforceStringEnum(
         usageArg.value,
         ValidPronounUsages,
-        '`type`, the first argument',
+        `\`usage\`, the first argument of ${moduleName}.pronoun()`,
       );
       const gender = enforceBabelNode(genderArg, '`gender`, the second argument');
       const mergedOptions = nullthrows(rawOptions);
@@ -110,13 +118,33 @@ class FbtPronounNode extends FbtNode/*:: <
   initCheck() /*: void */ {
     const args = this.getCallNodeArguments();
     invariant(args && (args.length === 2 || args.length === 3) || !args,
-      "Expected '(usage, gender [, options])' arguments to %s.pronoun",
+      "Expected '(usage, gender [, options])' arguments to %s.pronoun()",
       this.moduleName,
     );
   }
 
-  _getGenderNode() /*: BabelNode */ {
-    throw errorAt(this.node, 'not implemented yet');
+  getText(argsList: SVArgsList): string {
+    try {
+      const svArg = GenderStringVariationArg.assert(argsList.consumeOne());
+      const svArgValue = nullthrows(svArg.value);
+      const {options} = this;
+
+      const word = Gender.getData(
+        svArgValue === GENDER_ANY
+          ? GENDER_CONST.UNKNOWN_PLURAL
+          // $FlowExpectedError(incompatible-cast) We type-checked for `GENDER_ANY` just above
+          : (svArgValue: GenderConstEnum),
+        options.type,
+      );
+      invariant(typeof word === 'string',
+        'Expected pronoun word to be a string but we got %s', varDump(word));
+
+      return options.capitalize
+        ? word.charAt(0).toUpperCase() + word.substr(1)
+        : word;
+    } catch (error) {
+      throw errorAt(this.node, error);
+    }
   }
 
   getArgsForStringVariationCalc() /*: $ReadOnlyArray<GenderStringVariationArg> */ {
@@ -179,7 +207,7 @@ class FbtPronounNode extends FbtNode/*:: <
           : GENDER_CONST.UNKNOWN_PLURAL;
     }
 
-    invariant(false, 'Unknown GENDER_CONST value.');
+    invariant(false, 'Unknown GENDER_CONST value: %s', varDump(gender));
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes
