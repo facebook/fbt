@@ -1657,16 +1657,18 @@ C1
             },
             FbtParamNode {
               "__nodeCode": "fbt.param('paramName', paramValue)",
-              "__stringVariationArgs": [Error: Line 14 Column 16: This method must be implemented in a child class
----
-fbt.param('paramName', paramValue)
----],
+              "__stringVariationArgs": Array [],
               "_variationFactorValues": Array [],
               "children": Array [],
               "moduleName": "fbt",
               "node": "BabelNode[type=CallExpression]",
               "nodeChecker": FbtNodeChecker {
                 "moduleName": "fbt",
+              },
+              "options": Object {
+                "gender": null,
+                "name": "paramName",
+                "number": null,
               },
               "parent": [Circular],
             },
@@ -2307,16 +2309,18 @@ FbtElementNode {
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('personName', truthy ? ifTrue : ifFalse)",
-      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
----
-fbt.param('personName', truthy ? ifTrue : ifFalse)
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "personName",
+        "number": null,
       },
       "parent": [Circular],
     },
@@ -2723,18 +2727,23 @@ FbtElementNode {
       "__nodeCode": "fbt.param('count', val, {
   number: true
 })",
-      "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
----
-fbt.param('count', val, {
-  number: true
-})
----],
+      "__stringVariationArgs": Array [
+        NumberStringVariationArg {
+          "node": null,
+          "value": undefined,
+        },
+      ],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "count",
+        "number": true,
       },
       "parent": [Circular],
     },
@@ -2755,10 +2764,7 @@ fbt.param('count', val, {
     },
     FbtSameParamNode {
       "__nodeCode": "fbt.sameParam('count')",
-      "__stringVariationArgs": [Error: Line 8 Column 11: This method must be implemented in a child class
----
-fbt.sameParam('count')
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2830,18 +2836,23 @@ FbtElementNode {
       "__nodeCode": "fbt.param('count', c, {
   number: true
 })",
-      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
----
-fbt.param('count', c, {
-  number: true
-})
----],
+      "__stringVariationArgs": Array [
+        NumberStringVariationArg {
+          "node": null,
+          "value": undefined,
+        },
+      ],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "count",
+        "number": true,
       },
       "parent": [Circular],
     },
@@ -3138,24 +3149,26 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should insert param in place of fbt.sameParam if it exists" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', val1), ' and ', fbt.sameParam('name1')], 'd')",
-  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
 ---
-fbt.param('name1', val1)
+' and '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtParamNode {
       "__nodeCode": "fbt.param('name1', val1)",
-      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
----
-fbt.param('name1', val1)
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "name1",
+        "number": null,
       },
       "parent": [Circular],
     },
@@ -3176,10 +3189,7 @@ fbt.param('name1', val1)
     },
     FbtSameParamNode {
       "__nodeCode": "fbt.sameParam('name1')",
-      "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
----
-fbt.sameParam('name1')
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3211,11 +3221,9 @@ FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', foo ? <a>
                 bar
               </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')",
-  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 14 Column 11: This method must be implemented in a child class
 ---
-fbt.param('name1', foo ? <a>
-                bar
-              </a> : qux)
+' blah '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -3223,18 +3231,18 @@ fbt.param('name1', foo ? <a>
       "__nodeCode": "fbt.param('name1', foo ? <a>
                 bar
               </a> : qux)",
-      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
----
-fbt.param('name1', foo ? <a>
-                bar
-              </a> : qux)
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "name1",
+        "number": null,
       },
       "parent": [Circular],
     },
@@ -3255,16 +3263,18 @@ fbt.param('name1', foo ? <a>
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name2', qux)",
-      "__stringVariationArgs": [Error: Line 15 Column 11: This method must be implemented in a child class
----
-fbt.param('name2', qux)
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "name2",
+        "number": null,
       },
       "parent": [Circular],
     },
@@ -3368,16 +3378,18 @@ FbtElementNode {
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name1', val1)",
-      "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
----
-fbt.param('name1', val1)
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "name1",
+        "number": null,
       },
       "parent": [Circular],
     },
@@ -3415,16 +3427,18 @@ fbt.param('name1', val1)
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name2', val2)",
-      "__stringVariationArgs": [Error: Line 10 Column 11: This method must be implemented in a child class
----
-fbt.param('name2', val2)
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "name2",
+        "number": null,
       },
       "parent": [Circular],
     },
@@ -3927,16 +3941,18 @@ C1
             },
             FbtParamNode {
               "__nodeCode": "fbt.param('paramName', paramValue)",
-              "__stringVariationArgs": [Error: Line 14 Column 16: This method must be implemented in a child class
----
-fbt.param('paramName', paramValue)
----],
+              "__stringVariationArgs": Array [],
               "_variationFactorValues": Array [],
               "children": Array [],
               "moduleName": "fbt",
               "node": "BabelNode[type=CallExpression]",
               "nodeChecker": FbtNodeChecker {
                 "moduleName": "fbt",
+              },
+              "options": Object {
+                "gender": null,
+                "name": "paramName",
+                "number": null,
               },
               "parent": [Circular],
             },
@@ -4577,16 +4593,18 @@ FbtElementNode {
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('personName', truthy ? ifTrue : ifFalse)",
-      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
----
-fbt.param('personName', truthy ? ifTrue : ifFalse)
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "personName",
+        "number": null,
       },
       "parent": [Circular],
     },
@@ -4993,18 +5011,23 @@ FbtElementNode {
       "__nodeCode": "fbt.param('count', val, {
   number: true
 })",
-      "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
----
-fbt.param('count', val, {
-  number: true
-})
----],
+      "__stringVariationArgs": Array [
+        NumberStringVariationArg {
+          "node": null,
+          "value": undefined,
+        },
+      ],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "count",
+        "number": true,
       },
       "parent": [Circular],
     },
@@ -5025,10 +5048,7 @@ fbt.param('count', val, {
     },
     FbtSameParamNode {
       "__nodeCode": "fbt.sameParam('count')",
-      "__stringVariationArgs": [Error: Line 8 Column 11: This method must be implemented in a child class
----
-fbt.sameParam('count')
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5100,18 +5120,23 @@ FbtElementNode {
       "__nodeCode": "fbt.param('count', c, {
   number: true
 })",
-      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
----
-fbt.param('count', c, {
-  number: true
-})
----],
+      "__stringVariationArgs": Array [
+        NumberStringVariationArg {
+          "node": null,
+          "value": undefined,
+        },
+      ],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "count",
+        "number": true,
       },
       "parent": [Circular],
     },
@@ -5408,24 +5433,26 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should insert param in place of fbt.sameParam if it exists" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', val1), ' and ', fbt.sameParam('name1')], 'd')",
-  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
 ---
-fbt.param('name1', val1)
+' and '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtParamNode {
       "__nodeCode": "fbt.param('name1', val1)",
-      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
----
-fbt.param('name1', val1)
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "name1",
+        "number": null,
       },
       "parent": [Circular],
     },
@@ -5446,10 +5473,7 @@ fbt.param('name1', val1)
     },
     FbtSameParamNode {
       "__nodeCode": "fbt.sameParam('name1')",
-      "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
----
-fbt.sameParam('name1')
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5481,11 +5505,9 @@ FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', foo ? <a>
                 bar
               </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')",
-  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 14 Column 11: This method must be implemented in a child class
 ---
-fbt.param('name1', foo ? <a>
-                bar
-              </a> : qux)
+' blah '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -5493,18 +5515,18 @@ fbt.param('name1', foo ? <a>
       "__nodeCode": "fbt.param('name1', foo ? <a>
                 bar
               </a> : qux)",
-      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
----
-fbt.param('name1', foo ? <a>
-                bar
-              </a> : qux)
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "name1",
+        "number": null,
       },
       "parent": [Circular],
     },
@@ -5525,16 +5547,18 @@ fbt.param('name1', foo ? <a>
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name2', qux)",
-      "__stringVariationArgs": [Error: Line 15 Column 11: This method must be implemented in a child class
----
-fbt.param('name2', qux)
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "name2",
+        "number": null,
       },
       "parent": [Circular],
     },
@@ -5638,16 +5662,18 @@ FbtElementNode {
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name1', val1)",
-      "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
----
-fbt.param('name1', val1)
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "name1",
+        "number": null,
       },
       "parent": [Circular],
     },
@@ -5685,16 +5711,18 @@ fbt.param('name1', val1)
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name2', val2)",
-      "__stringVariationArgs": [Error: Line 10 Column 11: This method must be implemented in a child class
----
-fbt.param('name2', val2)
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "name2",
+        "number": null,
       },
       "parent": [Circular],
     },
@@ -8098,16 +8126,18 @@ FbtElementNode {
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('personName', truthy ? ifTrue : ifFalse)",
-      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
----
-fbt.param('personName', truthy ? ifTrue : ifFalse)
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "personName",
+        "number": null,
       },
       "parent": [Circular],
     },
@@ -8514,18 +8544,23 @@ FbtElementNode {
       "__nodeCode": "fbt.param('count', val, {
   number: true
 })",
-      "__stringVariationArgs": [Error: Line 5 Column 9: This method must be implemented in a child class
----
-fbt.param('count', val, {
-  number: true
-})
----],
+      "__stringVariationArgs": Array [
+        NumberStringVariationArg {
+          "node": null,
+          "value": undefined,
+        },
+      ],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "count",
+        "number": true,
       },
       "parent": [Circular],
     },
@@ -8546,10 +8581,7 @@ fbt.param('count', val, {
     },
     FbtSameParamNode {
       "__nodeCode": "fbt.sameParam('count')",
-      "__stringVariationArgs": [Error: Line 7 Column 9: This method must be implemented in a child class
----
-fbt.sameParam('count')
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -8621,18 +8653,23 @@ FbtElementNode {
       "__nodeCode": "fbt.param('count', c, {
   number: true
 })",
-      "__stringVariationArgs": [Error: Line 3 Column 27: This method must be implemented in a child class
----
-fbt.param('count', c, {
-  number: true
-})
----],
+      "__stringVariationArgs": Array [
+        NumberStringVariationArg {
+          "node": null,
+          "value": undefined,
+        },
+      ],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "count",
+        "number": true,
       },
       "parent": [Circular],
     },
@@ -8929,24 +8966,26 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should insert param in place of fbt.sameParam if it exists" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', val1), ' and ', fbt.sameParam('name1')], 'd')",
-  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 36: This method must be implemented in a child class
 ---
-fbt.param('name1', val1)
+' and '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtParamNode {
       "__nodeCode": "fbt.param('name1', val1)",
-      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
----
-fbt.param('name1', val1)
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "name1",
+        "number": null,
       },
       "parent": [Circular],
     },
@@ -8967,10 +9006,7 @@ fbt.param('name1', val1)
     },
     FbtSameParamNode {
       "__nodeCode": "fbt.sameParam('name1')",
-      "__stringVariationArgs": [Error: Line 3 Column 46: This method must be implemented in a child class
----
-fbt.sameParam('name1')
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -9002,11 +9038,9 @@ FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', foo ? <a>
               bar
             </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')",
-  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 13 Column 11: This method must be implemented in a child class
 ---
-fbt.param('name1', foo ? <a>
-              bar
-            </a> : qux)
+' blah '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -9014,18 +9048,18 @@ fbt.param('name1', foo ? <a>
       "__nodeCode": "fbt.param('name1', foo ? <a>
               bar
             </a> : qux)",
-      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
----
-fbt.param('name1', foo ? <a>
-              bar
-            </a> : qux)
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "name1",
+        "number": null,
       },
       "parent": [Circular],
     },
@@ -9046,16 +9080,18 @@ fbt.param('name1', foo ? <a>
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name2', qux)",
-      "__stringVariationArgs": [Error: Line 14 Column 11: This method must be implemented in a child class
----
-fbt.param('name2', qux)
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "name2",
+        "number": null,
       },
       "parent": [Circular],
     },
@@ -9159,16 +9195,18 @@ FbtElementNode {
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name1', val1)",
-      "__stringVariationArgs": [Error: Line 5 Column 9: This method must be implemented in a child class
----
-fbt.param('name1', val1)
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "name1",
+        "number": null,
       },
       "parent": [Circular],
     },
@@ -9206,16 +9244,18 @@ fbt.param('name1', val1)
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name2', val2)",
-      "__stringVariationArgs": [Error: Line 9 Column 9: This method must be implemented in a child class
----
-fbt.param('name2', val2)
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "name2",
+        "number": null,
       },
       "parent": [Circular],
     },
@@ -10365,16 +10405,18 @@ FbtElementNode {
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('personName', truthy ? ifTrue : ifFalse)",
-      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
----
-fbt.param('personName', truthy ? ifTrue : ifFalse)
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "personName",
+        "number": null,
       },
       "parent": [Circular],
     },
@@ -10781,18 +10823,23 @@ FbtElementNode {
       "__nodeCode": "fbt.param('count', val, {
   number: true
 })",
-      "__stringVariationArgs": [Error: Line 5 Column 9: This method must be implemented in a child class
----
-fbt.param('count', val, {
-  number: true
-})
----],
+      "__stringVariationArgs": Array [
+        NumberStringVariationArg {
+          "node": null,
+          "value": undefined,
+        },
+      ],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "count",
+        "number": true,
       },
       "parent": [Circular],
     },
@@ -10813,10 +10860,7 @@ fbt.param('count', val, {
     },
     FbtSameParamNode {
       "__nodeCode": "fbt.sameParam('count')",
-      "__stringVariationArgs": [Error: Line 7 Column 9: This method must be implemented in a child class
----
-fbt.sameParam('count')
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -10888,18 +10932,23 @@ FbtElementNode {
       "__nodeCode": "fbt.param('count', c, {
   number: true
 })",
-      "__stringVariationArgs": [Error: Line 3 Column 27: This method must be implemented in a child class
----
-fbt.param('count', c, {
-  number: true
-})
----],
+      "__stringVariationArgs": Array [
+        NumberStringVariationArg {
+          "node": null,
+          "value": undefined,
+        },
+      ],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "count",
+        "number": true,
       },
       "parent": [Circular],
     },
@@ -11196,24 +11245,26 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should insert param in place of fbt.sameParam if it exists" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', val1), ' and ', fbt.sameParam('name1')], 'd')",
-  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 36: This method must be implemented in a child class
 ---
-fbt.param('name1', val1)
+' and '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtParamNode {
       "__nodeCode": "fbt.param('name1', val1)",
-      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
----
-fbt.param('name1', val1)
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "name1",
+        "number": null,
       },
       "parent": [Circular],
     },
@@ -11234,10 +11285,7 @@ fbt.param('name1', val1)
     },
     FbtSameParamNode {
       "__nodeCode": "fbt.sameParam('name1')",
-      "__stringVariationArgs": [Error: Line 3 Column 46: This method must be implemented in a child class
----
-fbt.sameParam('name1')
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -11269,11 +11317,9 @@ FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', foo ? <a>
               bar
             </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')",
-  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 13 Column 11: This method must be implemented in a child class
 ---
-fbt.param('name1', foo ? <a>
-              bar
-            </a> : qux)
+' blah '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -11281,18 +11327,18 @@ fbt.param('name1', foo ? <a>
       "__nodeCode": "fbt.param('name1', foo ? <a>
               bar
             </a> : qux)",
-      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
----
-fbt.param('name1', foo ? <a>
-              bar
-            </a> : qux)
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "name1",
+        "number": null,
       },
       "parent": [Circular],
     },
@@ -11313,16 +11359,18 @@ fbt.param('name1', foo ? <a>
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name2', qux)",
-      "__stringVariationArgs": [Error: Line 14 Column 11: This method must be implemented in a child class
----
-fbt.param('name2', qux)
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "name2",
+        "number": null,
       },
       "parent": [Circular],
     },
@@ -11426,16 +11474,18 @@ FbtElementNode {
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name1', val1)",
-      "__stringVariationArgs": [Error: Line 5 Column 9: This method must be implemented in a child class
----
-fbt.param('name1', val1)
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "name1",
+        "number": null,
       },
       "parent": [Circular],
     },
@@ -11473,16 +11523,18 @@ fbt.param('name1', val1)
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name2', val2)",
-      "__stringVariationArgs": [Error: Line 9 Column 9: This method must be implemented in a child class
----
-fbt.param('name2', val2)
----],
+      "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "gender": null,
+        "name": "name2",
+        "number": null,
       },
       "parent": [Circular],
     },

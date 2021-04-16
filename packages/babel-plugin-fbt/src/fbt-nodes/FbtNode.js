@@ -10,9 +10,10 @@
 'use strict';
 
 /*::
-import type {JSModuleNameType} from '../FbtConstants';
-import type {GenderConstEnum} from '../Gender';
 import type {AnyStringVariationArg, AnyFbtArgument} from './FbtArguments';
+import type {BabelNodeCallExpressionArgument} from '../FbtUtil';
+import type {GenderConstEnum} from '../Gender';
+import type {JSModuleNameType} from '../FbtConstants';
 
 import type FbtEnumNode from './FbtEnumNode';
 import type FbtImplicitParamNode from './FbtImplicitParamNode';
@@ -202,6 +203,20 @@ class FbtNode/*:: <
    */
   getCallNode() /*: ?BabelNodeCallExpression */ {
     return isCallExpression(this.node) ? this.node : null;
+  }
+
+  /**
+   * Returns the list of BabelNode arguments of this fbt node
+   * (assuming that it's based on a JS function call), or null.
+   */
+  getCallNodeArguments() /*: ?Array<?BabelNodeCallExpressionArgument> */ {
+    const callNode = this.getCallNode();
+    return callNode
+      // Force null/undefined to be part of the array so that the consumer of this function
+      // will have to do null-checks.
+      // $FlowExpectedError[incompatible-return]
+      ? callNode.arguments
+      : null;
   }
 }
 

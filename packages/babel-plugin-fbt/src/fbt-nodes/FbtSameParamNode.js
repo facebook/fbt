@@ -8,12 +8,6 @@
 
 'use strict';
 
-/////////////////////////////////////////////////////////////////////
-// Planned fbt arguments that will be used by various fbt constructs
-// `*` means that it's a static argument (whose value won't change at runtime)
-/////////////////////////////////////////////////////////////////////
-// sameParam : tokenName*
-
 /*::
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 */
@@ -46,6 +40,10 @@ class FbtSameParamNode
 
   _getTokenName() /*: ?string */ {
     throw errorAt(this.node, 'not implemented yet');
+  }
+
+  getArgsForStringVariationCalc() /*: $ReadOnlyArray<null> */ {
+    return [];
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes
