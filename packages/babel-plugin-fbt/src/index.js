@@ -79,7 +79,7 @@ export type TableJSFBTTree = {|
 export type TableJSFBTTreeLeaflet = {|
   desc: string,
   hash?: PatternHash,
-  text: string,
+  text: PatternString,
   tokenAliases: {|
     [clearTokenName: string]: TokenAlias
   |},
@@ -103,7 +103,7 @@ export type JSFBTMetaEntry = $ReadOnly<{|
   range: $ReadOnlyArray<string>,
 |}>;
 
-type TableJSFBT = $ReadOnly<{|
+export type TableJSFBT = $ReadOnly<{|
   t: $ReadOnly<TableJSFBTTree>,
   m: $ReadOnlyArray<?JSFBTMetaEntry>,
 |}>;

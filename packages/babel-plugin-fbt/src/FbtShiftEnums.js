@@ -3,10 +3,14 @@
  *
  * @emails oncall+internationalization
  * @format
- * @noflow
+ * @flow strict-local
  */
+/* eslint-disable fb-www/flow-exact-by-default-object-types */
 
 'use strict';
+
+import type {PatternString} from '../../../runtime/shared/FbtTable';
+import type {Phrase, TableJSFBT, TableJSFBTTree} from './index';
 
 const {FbtType} = require('./FbtConstants');
 const invariant = require('invariant');
@@ -15,13 +19,15 @@ const invariant = require('invariant');
  * Used by collectFbt to output multiple phrases in a flat array.
  * See FbtShiftEnumsTest for example input and output.
  */
-function extractEnumsAndFlattenPhrases(phrases) {
-  return _flatMap(phrases, phrase => {
+function extractEnumsAndFlattenPhrases(
+  phrases: $ReadOnlyArray<Phrase>,
+): Array<Phrase> {
+  return _flatMap<Phrase, Phrase>(phrases, phrase => {
     if (phrase.type === FbtType.TEXT) {
       return phrase;
     }
 
-    const jsfbt = phrase.jsfbt;
+    const {jsfbt} = phrase;
     const {enums, metadata} = _extractEnumsFromMetadata(jsfbt.m);
     const strippedJsfbts = _buildTablesWithoutEnums(jsfbt.t, enums, []).map(
       table => {
@@ -37,11 +43,19 @@ function extractEnumsAndFlattenPhrases(phrases) {
             };
       },
     );
+
     return strippedJsfbts.map(strippedJsfbt =>
-      Object.assign({}, phrase, {
-        jsfbt: strippedJsfbt,
-        type: typeof strippedJsfbt === 'string' ? FbtType.TEXT : FbtType.TABLE,
-      }),
+      typeof strippedJsfbt === 'object'
+        ? {
+            ...phrase,
+            jsfbt: strippedJsfbt,
+            type: FbtType.TABLE,
+          }
+        : {
+            ...phrase,
+            jsfbt: strippedJsfbt,
+            type: FbtType.TEXT,
+          },
     );
   });
 }
@@ -50,7 +64,12 @@ function extractEnumsAndFlattenPhrases(phrases) {
  * Used by fbt-runtime babel plugin to build a table of enums to hashes of leaf
  * tables. See FbtShiftEnumsTest for example input and output.
  */
-function shiftEnumsToTop(jsfbt) {
+function shiftEnumsToTop(
+  jsfbt: PatternString | TableJSFBT,
+): {|
+  shiftedJsfbt: PatternString | $ReadOnly<TableJSFBTTree>,
+  enumCount: number,
+|} {
   if (typeof jsfbt === 'string') {
     return {shiftedJsfbt: jsfbt, enumCount: 0};
   } else {
@@ -63,10 +82,10 @@ function shiftEnumsToTop(jsfbt) {
 }
 
 function _extractEnumsFromMetadata(metadata) {
-  const enums = [];
+  const enums: Array<$ReadOnlyArray<string>> = [];
   const metadataWithoutEnums = [];
   metadata.forEach(entry => {
-    if (entry && entry.range) {
+    if (entry?.range) {
       enums.push(entry.range);
     } else {
       metadataWithoutEnums.push(entry);
@@ -75,7 +94,11 @@ function _extractEnumsFromMetadata(metadata) {
   return {enums, metadata: metadataWithoutEnums};
 }
 
-function _buildTablesWithoutEnums(table, enums, currentEnumKeys) {
+function _buildTablesWithoutEnums(
+  table: $ReadOnly<TableJSFBTTree>,
+  enums: Array<$ReadOnlyArray<string>>,
+  currentEnumKeys: $ReadOnlyArray<string>,
+): Array<PatternString | $ReadOnly<TableJSFBTTree>> {
   if (enums.length === 0) {
     return [table];
   }
@@ -85,12 +108,18 @@ function _buildTablesWithoutEnums(table, enums, currentEnumKeys) {
     return [_buildTableWithoutEnums(table, currentEnumKeys, 0)];
   }
 
-  return _flatMap(enums[index], enumKey =>
-    _buildTablesWithoutEnums(table, enums, currentEnumKeys.concat([enumKey])),
+  return _flatMap<string, PatternString | $ReadOnly<TableJSFBTTree>>(
+    enums[index],
+    enumKey =>
+      _buildTablesWithoutEnums(table, enums, currentEnumKeys.concat([enumKey])),
   );
 }
 
-function _shiftEnumsToTop(allEnums, currentEnumKeys, table) {
+function _shiftEnumsToTop(
+  allEnums,
+  currentEnumKeys,
+  table,
+): PatternString | $ReadOnly<TableJSFBTTree> {
   if (allEnums.length === 0) {
     return table;
   }
@@ -112,7 +141,11 @@ function _shiftEnumsToTop(allEnums, currentEnumKeys, table) {
   return newTable;
 }
 
-function _buildTableWithoutEnums(curLevel, enums, index) {
+function _buildTableWithoutEnums(
+  curLevel,
+  enums,
+  index,
+): PatternString | TableJSFBTTree {
   if (typeof curLevel === 'string') {
     return curLevel;
   }
@@ -130,8 +163,12 @@ function _buildTableWithoutEnums(curLevel, enums, index) {
  * Maps each element using a mapping function, then flattens the result into a
  * new array. It is identical to a map followed by flattening to a depth of 1.
  */
-const _flatMap = (arr, f) =>
-  arr.map(f).reduce((arr1, arr2) => arr1.concat(arr2), []);
+function _flatMap<V, O>(
+  arr: $ReadOnlyArray<V>,
+  f: V => O | Array<O>,
+): Array<O> {
+  return arr.map(f).reduce((arr1, arr2) => arr1.concat(arr2), []);
+}
 
 module.exports = {
   extractEnumsAndFlattenPhrases,

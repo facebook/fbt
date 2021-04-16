@@ -19,6 +19,8 @@
 import typeof BabelTypes from '@babel/types';
 import type {BabelTransformPlugin} from '@babel/core';
 import type {SentinelPayload} from 'babel-plugin-fbt/dist/babel-processors/FbtFunctionCallProcessor';
+import type {PatternString} from "../../../../../../../html/shared/intl/fbt/FbtTable";
+import type {TableJSFBTTree} from "babel-plugin-fbt";
 
 export type PluginOptions = {|
   fbtHashKeyModule?: string,
@@ -57,9 +59,14 @@ module.exports = function BabelPluginFbtRuntime(babel /*: {
   // Need to extract this as a standalone function for Flow type check refinements
   const {isCallExpression} = t;
 
-  function _buildEnumToHashKeyObjectExpression(curLevel, desc, enumsLeft) {
+  function _buildEnumToHashKeyObjectExpression(
+    curLevel /*: PatternString | $ReadOnly<TableJSFBTTree> */,
+    desc /*: string */,
+    enumsLeft /*: number */,
+  ) /*: BabelNodeObjectExpression */ {
     const properties = [];
-
+    invariant(typeof curLevel === 'object',
+      'Expected curLevel to be an object instead of %s', typeof curLevel);
     for (const enumKey in curLevel) {
       properties.push(
         t.objectProperty(
@@ -67,6 +74,8 @@ module.exports = function BabelPluginFbtRuntime(babel /*: {
           enumsLeft === 1
             ? t.stringLiteral(fbtHashKey(curLevel[enumKey], desc))
             : _buildEnumToHashKeyObjectExpression(
+              // TODO(T86653403) Add support for consolidated JSFBT structure to RN
+              // $FlowFixMe[incompatible-call]
               curLevel[enumKey],
               desc,
               enumsLeft - 1,
@@ -161,6 +170,10 @@ module.exports = function BabelPluginFbtRuntime(babel /*: {
         }
 
         if (enumCount > 0) {
+          invariant(
+            shiftedJsfbt != null,
+            'Expecting shiftedJsfbt to be defined',
+          );
           parentNode.arguments.push(
             // The expected method name is `objectExpression` but
             // it already works as-is apparently...
