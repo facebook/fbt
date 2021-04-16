@@ -13,6 +13,7 @@ import typeof BabelTypes from '@babel/types';
 import type {
   BabelTransformPlugin,
 } from '@babel/core';
+import type {FbtCommonMap} from './FbtCommon';
 import type {
   FbtCallSiteOptions,
 } from './FbtConstants';
@@ -22,6 +23,7 @@ import type {
 } from './babel-processors/FbtFunctionCallProcessor';
 import type {FbtRuntimeInput} from '../../../runtime/shared/FbtHooks';
 import type {PatternString} from '../../../runtime/shared/FbtTable';
+import type {EnumManifest, EnumModule} from './FbtEnumRegistrar';
 
 export type ExtraBabelNodeProps = {
   implicitDesc?: string,
@@ -31,25 +33,29 @@ export type ExtraBabelNodeProps = {
 export type FbtBabelNodeCallExpression = BabelNodeCallExpression & ExtraBabelNodeProps;
 export type FbtBabelNodeJSXElement = BabelNodeJSXElement & ExtraBabelNodeProps;
 export type FbtBabelNodeShape = $Shape<ExtraBabelNodeProps>;
+
+export type ExtraOptions = {[optionName: string]: boolean};
+type FbtEnumLoader = (enumFilePath: string) => EnumModule;
 export type PluginOptions = {|
-  auxiliaryTexts: boolean,
-  collectFbt: boolean,
-  extraOptions: {[optionName: string]: mixed},
-  fbtBase64: boolean,
+  auxiliaryTexts?: boolean,
+  collectFbt?: boolean,
+  extraOptions: ExtraOptions,
+  fbtBase64?: boolean,
+  fbtCommon?: FbtCommonMap,
+  fbtCommonPath?: ?string,
   // Path to a JS module that must export a function that is responsible for
   // loading an fbt enum (by file path) and return its object.
-  // I.e. fbt enum loading function signature:
-  // (enumFilePath) => typeof $PropertyType<PluginOptions, 'fbtEnumManifest'>
+  // I.e. fbt enum loading function signature: `FbtEnumLoader`
   fbtEnumLoader?: ?string,
   // Function that would return an fbt manifest object
-  fbtEnumManifest?: ?{[enumModuleName: string]: {[enumKey: string]: string}},
+  fbtEnumManifest?: ?EnumManifest,
   // Fbt enum file path
   fbtEnumPath?: ?string,
   // Object map of file paths keyed by fbt enum module names
   fbtEnumToPath?: ?{[enumName: string]: string},
-  fbtSentinel?: string,
-  filename: string,
-  reactNativeMode: boolean,
+  fbtSentinel?: ?string,
+  filename?: ?string,
+  reactNativeMode?: boolean,
 |};
 type TableJSFBT = {
   t: FbtRuntimeInput,
@@ -83,11 +89,10 @@ export type BabelPluginFbt = {
   fbtHashKey(PatternString | FbtRuntimeInput, string, boolean): string
 };
 */
-const FbtCommon = require('./FbtCommon');
 const FbtCommonFunctionCallProcessor = require('./babel-processors/FbtCommonFunctionCallProcessor');
 const FbtFunctionCallProcessor = require('./babel-processors/FbtFunctionCallProcessor');
-const FbtUtil = require('./FbtUtil');
 const JSXFbtProcessor = require('./babel-processors/JSXFbtProcessor');
+const FbtCommon = require('./FbtCommon');
 const {
   JSModuleName: {FBT},
   ValidFbtOptions,
@@ -95,6 +100,7 @@ const {
 const FbtEnumRegistrar = require('./FbtEnumRegistrar');
 const fbtHashKey = require('./fbtHashKey');
 const FbtShiftEnums = require('./FbtShiftEnums');
+const FbtUtil = require('./FbtUtil');
 const {
   checkOption,
   objMap,
@@ -126,11 +132,11 @@ function FbtTransform(babel /*: {
 
   return {
     pre() {
-      // TODO(T56277508) Type this.opts to match `PluginOptions`
-      this.opts.fbtBase64 = this.opts.fbtBase64;
+      const pluginOptions: PluginOptions = this.opts;
+      pluginOptions.fbtBase64 = pluginOptions.fbtBase64;
 
-      FbtCommon.init(this.opts);
-      FbtEnumRegistrar.setEnumManifest(getEnumManifest(this.opts));
+      FbtCommon.init(pluginOptions);
+      FbtEnumRegistrar.setEnumManifest(getEnumManifest(pluginOptions));
       initExtraOptions(this);
       initDefaultOptions(this);
       phrases = [];
@@ -274,7 +280,7 @@ function addEnclosingString(childIdx, parentIdx) {
   childToParent[childIdx] = parentIdx;
 }
 
-function getEnumManifest(opts) {
+function getEnumManifest(opts): ?EnumManifest {
   const {fbtEnumManifest, fbtEnumPath, fbtEnumToPath} = opts;
   if (fbtEnumManifest != null) {
     return fbtEnumManifest;
@@ -282,11 +288,11 @@ function getEnumManifest(opts) {
     // $FlowExpectedError node.js require() needs to be dynamic
     return require(fbtEnumPath);
   } else if (fbtEnumToPath != null) {
-    const loadEnum = opts.fbtEnumLoader
+    const loadEnum: FbtEnumLoader = opts.fbtEnumLoader
       ? // $FlowExpectedError node.js require() needs to be dynamic
-        require(opts.fbtEnumLoader)
+      require(opts.fbtEnumLoader)
       : require;
-    return objMap(opts.fbtEnumToPath, loadEnum);
+    return objMap(fbtEnumToPath, loadEnum);
   }
   return null;
 }

@@ -11,7 +11,7 @@
 
 /*::
 import type {JSModuleNameType} from './FbtConstants';
-type FbtCommonMap = { [text: string]: string, ... };
+export type FbtCommonMap = { [text: string]: string, ... };
 */
 
 const path = require('path');
@@ -19,7 +19,7 @@ const textToDesc /*: FbtCommonMap */ = {};
 
 const FbtCommon = {
   init(
-    opts /*: {fbtCommon?: FbtCommonMap, fbtCommonPath?: string, ...} */ = {},
+    opts /*: {fbtCommon?: FbtCommonMap, fbtCommonPath?: ?string, ...} */ = {},
   ) /*: void */ {
     if (opts.fbtCommon) {
       Object.assign(textToDesc, opts.fbtCommon);

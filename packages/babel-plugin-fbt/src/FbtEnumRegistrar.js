@@ -14,7 +14,7 @@ import type {NodePathOf} from '@babel/core';
 type NodeCallExpression = NodePathOf<FbtBabelNodeCallExpression>;
 type NodeImportDeclaration = NodePathOf<BabelNodeImportDeclaration>;
 export type EnumModule = {|+[enumKey: string]: string|};
-type EnumManifest = {+[enumModuleName: string]: ?EnumModule};
+export type EnumManifest = {+[enumModuleName: string]: ?EnumModule};
 */
 
 const {FBT_ENUM_MODULE_SUFFIX} = require('./FbtConstants');

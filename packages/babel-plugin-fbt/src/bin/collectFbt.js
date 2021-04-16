@@ -12,11 +12,8 @@
 
 'use strict';
 
-import type {
-  CollectorConfig,
-  ExtraOptions,
-  IFbtCollector,
-} from './FbtCollector';
+import type {ExtraOptions} from '../index';
+import type {CollectorConfig, IFbtCollector} from './FbtCollector';
 import type {HashFunction} from './TextPackager';
 
 const FbtCollector = require('./FbtCollector');

@@ -12,16 +12,15 @@
 'use strict';
 
 const {extractEnumsAndFlattenPhrases} = require('../FbtShiftEnums');
-// eslint-disable-next-line fb-www/no-module-aliasing
 const fbt = require('../index');
 const fs = require('graceful-fs');
-const path = require('path');
 
 export type ExternalTransform = (src: string, opts: TransformOptions, filename: ?string) => mixed;
 
 /*::
 import type {BabelPluginList, BabelPresetList} from '@babel/core';
-import type {BabelPluginFbt, Phrase} from '../index';
+import type {EnumManifest} from '../FbtEnumRegistrar';
+import type {BabelPluginFbt, Phrase, ExtraOptions, PluginOptions} from '../index';
 export type CollectorConfig = {|
   auxiliaryTexts: boolean,
   fbtCommonPath?: string,
@@ -32,8 +31,6 @@ export type CollectorConfig = {|
 |};
 export type ChildParentMappings = {[prop: number]: number}
 export type Errors = {[file: string]: Error};
-export type ExtraOptions = {[prop: string]: boolean};
-export type FbtEnumManifest = {};
 export type PackagerPhrase = {|
   ...Phrase,
   hash_code?: number,
@@ -41,15 +38,8 @@ export type PackagerPhrase = {|
   hashToText?: {[hash: string]: string},
 |};
 export type TransformOptions = {|
-  collectFbt?: boolean,
-  soureType?: string,
-  fbtModule?: BabelPluginFbt,
-  filename?: string,
-  extraOptions?: mixed,
-  fbtEnumManifest?: FbtEnumManifest,
-  fbtCommonPath?: string,
-  auxiliaryTexts?: boolean,
-  reactNativeMode?: boolean,
+  ...PluginOptions,
+  fbtModule: BabelPluginFbt,
 |}
 */
 
@@ -58,11 +48,11 @@ export interface IFbtCollector {
   collectFromOneFile(
     source: string,
     filename: ?string,
-    fbtEnumManifest?: FbtEnumManifest,
+    fbtEnumManifest?: EnumManifest,
   ): void;
   collectFromFiles(
     files : Array<string>,
-    fbtEnumManifest?: FbtEnumManifest,
+    fbtEnumManifest?: EnumManifest,
   ): boolean;
   getPhrases(): Array<PackagerPhrase>;
   getChildParentMappings(): ChildParentMappings;
@@ -86,20 +76,18 @@ class FbtCollector implements IFbtCollector {
   collectFromOneFile(
     source /*: string*/,
     filename /*: ?string*/,
-    fbtEnumManifest /*::?: FbtEnumManifest*/,
+    fbtEnumManifest /*::?: EnumManifest*/,
   ) /*: void*/ {
-    const options /*: TransformOptions*/ = {
+    const options = {
+      auxiliaryTexts: this._config.auxiliaryTexts,
       collectFbt: true,
       extraOptions: this._extraOptions,
-      fbtEnumManifest,
-      auxiliaryTexts: this._config.auxiliaryTexts,
-      reactNativeMode: this._config.reactNativeMode,
       fbtCommonPath: this._config.fbtCommonPath,
+      fbtEnumManifest,
       fbtModule: fbt,
+      filename,
+      reactNativeMode: this._config.reactNativeMode,
     };
-    if (filename != null) {
-      options.filename = filename;
-    }
 
     if (!/<[Ff]bt|fbt(\.c)?\s*\(/.test(source)) {
       return;
@@ -126,7 +114,7 @@ class FbtCollector implements IFbtCollector {
 
   collectFromFiles(
     files /*: Array<string>*/,
-    fbtEnumManifest /*:: ?: FbtEnumManifest */,
+    fbtEnumManifest /*:: ?: EnumManifest */,
   ) /*: boolean*/ {
     let hasFailure = false;
     files.forEach(file => {

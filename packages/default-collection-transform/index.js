@@ -13,6 +13,7 @@ const babel = require('@babel/core');
 /*::
 import type {BabelPluginList, BabelPresetList} from '@babel/core';
 import type {TransformOptions} from 'babel-plugin-fbt/dist/bin/FbtCollector';
+import type {BabelPluginFbt, PluginOptions} from "babel-plugin-fbt";
 */
 
 const defaultSyntaxPlugins = [
@@ -32,13 +33,17 @@ function transform(
   plugins /*: BabelPluginList */,
   presets /*: BabelPresetList */,
 ) /*: void */ {
+  const {fbtModule, ...pluginOptions} = options;
   const opts = {
     ast: false,
     code: false,
     filename: options.filename,
     plugins: defaultSyntaxPlugins.concat(plugins, [
       // $FlowFixMe[incompatible-call]
-      [options.fbtModule, options],
+      [
+        (fbtModule /*: BabelPluginFbt */),
+        (pluginOptions /*: PluginOptions */)
+      ],
     ]),
     presets,
     sourceType: 'unambiguous',

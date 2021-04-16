@@ -10,10 +10,10 @@
 
 'use strict';
 
+import type {EnumManifest} from '../../FbtEnumRegistrar';
 import type {
   ChildParentMappings,
   Errors,
-  FbtEnumManifest,
   IFbtCollector,
   PackagerPhrase,
 } from '../FbtCollector';
@@ -25,12 +25,12 @@ class CustomFbtCollector implements IFbtCollector {
   collectFromOneFile(
     _source: string,
     _filename: ?string,
-    _fbtEnumManifest?: FbtEnumManifest,
+    _fbtEnumManifest?: EnumManifest,
   ): void {}
 
   collectFromFiles(
     _files: Array<string>,
-    _fbtEnumManifest?: FbtEnumManifest,
+    _fbtEnumManifest?: EnumManifest,
   ): boolean {
     throw new Error('Not implemented');
   }

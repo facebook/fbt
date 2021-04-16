@@ -82,7 +82,7 @@ declare module '@babel/core' {
     opts: {
       ast?: boolean,
       code?: boolean,
-      filename?: string,
+      filename?: ?string,
       plugins: BabelPluginList,
       sourceType?: string,
     },
