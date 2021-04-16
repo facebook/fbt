@@ -169,8 +169,20 @@ class FbtNode/*:: <
    * See snapshot `fbtFunctional-test.js.snap` to find output examples.
    */
   __toJSONForTestsOnly() /*: mixed */ {
+    let stringVariationArgs;
+    try {
+      stringVariationArgs = this.getArgsForStringVariationCalc();
+    } catch (error) {
+      if (error.message.includes('This method must be implemented in a child class')) {
+        stringVariationArgs = error;
+      } else {
+        throw error;
+      }
+    }
+
     const ret /*: {options?: ?{}, ...} */ = {
       ...compactBabelNodeProps(this),
+      __stringVariationArgs: stringVariationArgs,
     };
 
     if (this.options != null) {

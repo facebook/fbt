@@ -6,10 +6,21 @@ FbtElementNode {
   author: 'jwatson',
   project: 'Super Secret'
 })",
+  "__stringVariationArgs": [Error: Line 2 Column 3: This method must be implemented in a child class
+---
+fbt(['A string that moved files'], 'options!', {
+  author: 'jwatson',
+  project: 'Super Secret'
+})
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'A string that moved files'",
+      "__stringVariationArgs": [Error: Line 2 Column 8: This method must be implemented in a child class
+---
+'A string that moved files'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -31,10 +42,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should be able to nest within React nodes" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A nested string'], 'nested!')",
+  "__stringVariationArgs": [Error: Line 3 Column 21: This method must be implemented in a child class
+---
+fbt(['A nested string'], 'nested!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'A nested string'",
+      "__stringVariationArgs": [Error: Line 3 Column 26: This method must be implemented in a child class
+---
+'A nested string'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -56,10 +75,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should be able to nest within React nodes" 2`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A nested string'], 'nested!')",
+  "__stringVariationArgs": [Error: Line 3 Column 21: This method must be implemented in a child class
+---
+fbt(['A nested string'], 'nested!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'A nested string'",
+      "__stringVariationArgs": [Error: Line 3 Column 26: This method must be implemented in a child class
+---
+'A nested string'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -81,10 +108,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should convert simple strings" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A simple string'], \\"It's simple\\")",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['A simple string'], "It's simple")
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'A simple string'",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+'A simple string'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -114,10 +149,26 @@ FbtElementNode {
   photos: 'photos',
   videos: 'videos'
 }), '!'], 'enums!')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Look! ', fbt.enum('groups', {
+  groups: 'Groups',
+  photos: 'Photos',
+  videos: 'Videos'
+}), ' and ', fbt.enum('groups', {
+  groups: 'groups',
+  photos: 'photos',
+  videos: 'videos'
+}), '!'], 'enums!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Look! '",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+'Look! '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -133,6 +184,14 @@ FbtElementNode {
   photos: 'Photos',
   videos: 'Videos'
 })",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+fbt.enum('groups', {
+  groups: 'Groups',
+  photos: 'Photos',
+  videos: 'Videos'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -144,6 +203,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' and '",
+      "__stringVariationArgs": [Error: Line 10 Column 11: This method must be implemented in a child class
+---
+' and '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -159,6 +222,14 @@ FbtElementNode {
   photos: 'photos',
   videos: 'videos'
 })",
+      "__stringVariationArgs": [Error: Line 11 Column 11: This method must be implemented in a child class
+---
+fbt.enum('groups', {
+  groups: 'groups',
+  photos: 'photos',
+  videos: 'videos'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -170,6 +241,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'!'",
+      "__stringVariationArgs": [Error: Line 16 Column 11: This method must be implemented in a child class
+---
+'!'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -191,10 +266,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should get project from docblock" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['Also simple string'], \\"It's simple\\")",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Also simple string'], "It's simple")
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Also simple string'",
+      "__stringVariationArgs": [Error: Line 2 Column 16: This method must be implemented in a child class
+---
+'Also simple string'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -227,10 +310,29 @@ FbtElementNode {
             </b>
             B2
           </a>, 'A2'], 'nested!')",
+  "__stringVariationArgs": [Error: Line 3 Column 15: This method must be implemented in a child class
+---
+fbt(['A1', <a>
+            B1
+            <b>
+              C1
+              {// TODO(T27672828) fbt constructs like fbt.pronoun() should return some opaque type
+      // like FbtElement to work with React components
+    }
+              {fbt.param('paramName', paramValue)}
+              C2
+            </b>
+            B2
+          </a>, 'A2'], 'nested!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'A1'",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+'A1'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -253,10 +355,29 @@ FbtElementNode {
             </b>
             B2
           </a>",
+      "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
+---
+<a>
+            B1
+            <b>
+              C1
+              {// TODO(T27672828) fbt constructs like fbt.pronoun() should return some opaque type
+      // like FbtElement to work with React components
+    }
+              {fbt.param('paramName', paramValue)}
+              C2
+            </b>
+            B2
+          </a>
+---],
       "_variationFactorValues": Array [],
       "children": Array [
         FbtTextNode {
           "__nodeCode": "B1",
+          "__stringVariationArgs": [Error: Line 6 Column 14: This method must be implemented in a child class
+---
+B1
+---],
           "_variationFactorValues": Array [],
           "children": Array [],
           "moduleName": "fbt",
@@ -275,10 +396,25 @@ FbtElementNode {
               {fbt.param('paramName', paramValue)}
               C2
             </b>",
+          "__stringVariationArgs": [Error: Line 8 Column 13: This method must be implemented in a child class
+---
+<b>
+              C1
+              {// TODO(T27672828) fbt constructs like fbt.pronoun() should return some opaque type
+    // like FbtElement to work with React components
+  }
+              {fbt.param('paramName', paramValue)}
+              C2
+            </b>
+---],
           "_variationFactorValues": Array [],
           "children": Array [
             FbtTextNode {
               "__nodeCode": "C1",
+              "__stringVariationArgs": [Error: Line 8 Column 16: This method must be implemented in a child class
+---
+C1
+---],
               "_variationFactorValues": Array [],
               "children": Array [],
               "moduleName": "fbt",
@@ -290,6 +426,10 @@ FbtElementNode {
             },
             FbtTextNode {
               "__nodeCode": "",
+              "__stringVariationArgs": [Error: Line 13 Column 16: This method must be implemented in a child class
+---
+
+---],
               "_variationFactorValues": Array [],
               "children": Array [],
               "moduleName": "fbt",
@@ -301,6 +441,10 @@ FbtElementNode {
             },
             FbtParamNode {
               "__nodeCode": "fbt.param('paramName', paramValue)",
+              "__stringVariationArgs": [Error: Line 14 Column 16: This method must be implemented in a child class
+---
+fbt.param('paramName', paramValue)
+---],
               "_variationFactorValues": Array [],
               "children": Array [],
               "moduleName": "fbt",
@@ -312,6 +456,10 @@ FbtElementNode {
             },
             FbtTextNode {
               "__nodeCode": "C2",
+              "__stringVariationArgs": [Error: Line 14 Column 51: This method must be implemented in a child class
+---
+C2
+---],
               "_variationFactorValues": Array [],
               "children": Array [],
               "moduleName": "fbt",
@@ -331,6 +479,10 @@ FbtElementNode {
         },
         FbtTextNode {
           "__nodeCode": "B2",
+          "__stringVariationArgs": [Error: Line 16 Column 17: This method must be implemented in a child class
+---
+B2
+---],
           "_variationFactorValues": Array [],
           "children": Array [],
           "moduleName": "fbt",
@@ -350,6 +502,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'A2'",
+      "__stringVariationArgs": [Error: Line 19 Column 11: This method must be implemented in a child class
+---
+'A2'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -379,10 +535,26 @@ FbtElementNode {
   photos: 'photos',
   videos: 'videos'
 }), '!'], 'enums!')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Look! ', fbt.enum('groups', {
+  groups: 'Groups',
+  photos: 'Photos',
+  videos: 'Videos'
+}), ' and ', fbt.enum('groups', {
+  groups: 'groups',
+  photos: 'photos',
+  videos: 'videos'
+}), '!'], 'enums!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Look! '",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+'Look! '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -398,6 +570,14 @@ FbtElementNode {
   photos: 'Photos',
   videos: 'Videos'
 })",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+fbt.enum('groups', {
+  groups: 'Groups',
+  photos: 'Photos',
+  videos: 'Videos'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -409,6 +589,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' and '",
+      "__stringVariationArgs": [Error: Line 10 Column 11: This method must be implemented in a child class
+---
+' and '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -424,6 +608,14 @@ FbtElementNode {
   photos: 'photos',
   videos: 'videos'
 })",
+      "__stringVariationArgs": [Error: Line 11 Column 11: This method must be implemented in a child class
+---
+fbt.enum('groups', {
+  groups: 'groups',
+  photos: 'photos',
+  videos: 'videos'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -435,6 +627,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'!'",
+      "__stringVariationArgs": [Error: Line 16 Column 11: This method must be implemented in a child class
+---
+'!'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -456,10 +652,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle enums (with array values)" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['Click to see ', fbt.enum('groups', ['groups', 'photos', 'videos'])], 'enum as an array')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Click to see ', fbt.enum('groups', ['groups', 'photos', 'videos'])], 'enum as an array')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Click to see '",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+'Click to see '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -471,6 +675,10 @@ FbtElementNode {
     },
     FbtEnumNode {
       "__nodeCode": "fbt.enum('groups', ['groups', 'photos', 'videos'])",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+fbt.enum('groups', ['groups', 'photos', 'videos'])
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -496,10 +704,22 @@ FbtElementNode {
   id2: 'photos',
   id3: 'videos'
 })], 'enum as an object')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Click to see ', fbt.enum('id1', {
+  id1: 'groups',
+  id2: 'photos',
+  id3: 'videos'
+})], 'enum as an object')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Click to see '",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+'Click to see '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -515,6 +735,14 @@ FbtElementNode {
   id2: 'photos',
   id3: 'videos'
 })",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+fbt.enum('id1', {
+  id1: 'groups',
+  id2: 'photos',
+  id3: 'videos'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -536,10 +764,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle enums with more text after" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['Hello, ', fbt.enum('groups', ['groups', 'photos', 'videos']), '!'], 'enums!')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Hello, ', fbt.enum('groups', ['groups', 'photos', 'videos']), '!'], 'enums!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Hello, '",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+'Hello, '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -551,6 +787,10 @@ FbtElementNode {
     },
     FbtEnumNode {
       "__nodeCode": "fbt.enum('groups', ['groups', 'photos', 'videos'])",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+fbt.enum('groups', ['groups', 'photos', 'videos'])
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -562,6 +802,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'!'",
+      "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
+---
+'!'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -588,10 +832,23 @@ FbtElementNode {
   showCount: 'ifMany',
   many: 'likes'
 })], 'plurals')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['There ', fbt.plural('is ', count, {
+  many: 'are '
+}), fbt.plural('a like', count, {
+  showCount: 'ifMany',
+  many: 'likes'
+})], 'plurals')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'There '",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+'There '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -605,6 +862,12 @@ FbtElementNode {
       "__nodeCode": "fbt.plural('is ', count, {
   many: 'are '
 })",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+fbt.plural('is ', count, {
+  many: 'are '
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -619,6 +882,13 @@ FbtElementNode {
   showCount: 'ifMany',
   many: 'likes'
 })",
+      "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
+---
+fbt.plural('a like', count, {
+  showCount: 'ifMany',
+  many: 'likes'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -640,10 +910,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle names" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['You just friended ', fbt.name('name', personname, gender)], 'names')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['You just friended ', fbt.name('name', personname, gender)], 'names')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'You just friended '",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+'You just friended '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -655,6 +933,10 @@ FbtElementNode {
     },
     FbtNameNode {
       "__nodeCode": "fbt.name('name', personname, gender)",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+fbt.name('name', personname, gender)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -676,10 +958,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle object pronoun" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['I know ', fbt.pronoun('object', gender), '.'], 'object pronoun')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['I know ', fbt.pronoun('object', gender), '.'], 'object pronoun')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'I know '",
+      "__stringVariationArgs": [Error: Line 4 Column 13: This method must be implemented in a child class
+---
+'I know '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -691,6 +981,10 @@ FbtElementNode {
     },
     FbtPronounNode {
       "__nodeCode": "fbt.pronoun('object', gender)",
+      "__stringVariationArgs": [Error: Line 5 Column 13: This method must be implemented in a child class
+---
+fbt.pronoun('object', gender)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -702,6 +996,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'.'",
+      "__stringVariationArgs": [Error: Line 6 Column 13: This method must be implemented in a child class
+---
+'.'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -723,10 +1021,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle params" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A parameterized message to ', fbt.param('personName', truthy ? ifTrue : ifFalse)], 'Moar params')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['A parameterized message to ', fbt.param('personName', truthy ? ifTrue : ifFalse)], 'Moar params')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'A parameterized message to '",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+'A parameterized message to '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -738,6 +1044,10 @@ FbtElementNode {
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('personName', truthy ? ifTrue : ifFalse)",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+fbt.param('personName', truthy ? ifTrue : ifFalse)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -765,6 +1075,16 @@ FbtElementNode {
   name: 'dog_token',
   showCount: 'yes'
 })], 'plurals')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt([fbt.plural('cat', catCount, {
+  name: 'cat_token',
+  showCount: 'yes'
+}), ' and ', fbt.plural('dog', dogCount, {
+  name: 'dog_token',
+  showCount: 'yes'
+})], 'plurals')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtPluralNode {
@@ -772,6 +1092,13 @@ FbtElementNode {
   name: 'cat_token',
   showCount: 'yes'
 })",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+fbt.plural('cat', catCount, {
+  name: 'cat_token',
+  showCount: 'yes'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -783,6 +1110,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' and '",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+' and '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -797,6 +1128,13 @@ FbtElementNode {
   name: 'dog_token',
   showCount: 'yes'
 })",
+      "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
+---
+fbt.plural('dog', dogCount, {
+  name: 'dog_token',
+  showCount: 'yes'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -824,10 +1162,24 @@ FbtElementNode {
   showCount: 'ifMany',
   many: 'likes'
 })], 'plurals')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['There ', fbt.plural('was ', count, {
+  showCount: 'no',
+  many: 'were '
+}), fbt.plural('a like', count, {
+  showCount: 'ifMany',
+  many: 'likes'
+})], 'plurals')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'There '",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+'There '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -842,6 +1194,13 @@ FbtElementNode {
   showCount: 'no',
   many: 'were '
 })",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+fbt.plural('was ', count, {
+  showCount: 'no',
+  many: 'were '
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -856,6 +1215,13 @@ FbtElementNode {
   showCount: 'ifMany',
   many: 'likes'
 })",
+      "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
+---
+fbt.plural('a like', count, {
+  showCount: 'ifMany',
+  many: 'likes'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -877,10 +1243,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle possessive pronoun" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['It is ', fbt.pronoun('possessive', gender), ' birthday.'], 'possessive pronoun')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['It is ', fbt.pronoun('possessive', gender), ' birthday.'], 'possessive pronoun')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'It is '",
+      "__stringVariationArgs": [Error: Line 4 Column 13: This method must be implemented in a child class
+---
+'It is '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -892,6 +1266,10 @@ FbtElementNode {
     },
     FbtPronounNode {
       "__nodeCode": "fbt.pronoun('possessive', gender)",
+      "__stringVariationArgs": [Error: Line 5 Column 13: This method must be implemented in a child class
+---
+fbt.pronoun('possessive', gender)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -903,6 +1281,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' birthday.'",
+      "__stringVariationArgs": [Error: Line 6 Column 13: This method must be implemented in a child class
+---
+' birthday.'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -929,6 +1311,15 @@ FbtElementNode {
 }), ' wished ', fbt.pronoun('reflexive', gender, {
   human: true
 }), ' a happy birthday.'], 'subject+reflexive pronouns')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt([fbt.pronoun('subject', gender, {
+  capitalize: true,
+  human: true
+}), ' wished ', fbt.pronoun('reflexive', gender, {
+  human: true
+}), ' a happy birthday.'], 'subject+reflexive pronouns')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtPronounNode {
@@ -936,6 +1327,13 @@ FbtElementNode {
   capitalize: true,
   human: true
 })",
+      "__stringVariationArgs": [Error: Line 4 Column 13: This method must be implemented in a child class
+---
+fbt.pronoun('subject', gender, {
+  capitalize: true,
+  human: true
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -947,6 +1345,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' wished '",
+      "__stringVariationArgs": [Error: Line 5 Column 13: This method must be implemented in a child class
+---
+' wished '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -960,6 +1362,12 @@ FbtElementNode {
       "__nodeCode": "fbt.pronoun('reflexive', gender, {
   human: true
 })",
+      "__stringVariationArgs": [Error: Line 6 Column 13: This method must be implemented in a child class
+---
+fbt.pronoun('reflexive', gender, {
+  human: true
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -971,6 +1379,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' a happy birthday.'",
+      "__stringVariationArgs": [Error: Line 7 Column 13: This method must be implemented in a child class
+---
+' a happy birthday.'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -994,10 +1406,20 @@ FbtElementNode {
   "__nodeCode": "fbt(['You have ', fbt.param('count', val, {
   number: true
 }), ' likes. Comment on it to get more than ', fbt.sameParam('count'), ' likes'], 'test variations + sameParam')",
+  "__stringVariationArgs": [Error: Line 3 Column 7: This method must be implemented in a child class
+---
+fbt(['You have ', fbt.param('count', val, {
+  number: true
+}), ' likes. Comment on it to get more than ', fbt.sameParam('count'), ' likes'], 'test variations + sameParam')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'You have '",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+'You have '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1011,6 +1433,12 @@ FbtElementNode {
       "__nodeCode": "fbt.param('count', val, {
   number: true
 })",
+      "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
+---
+fbt.param('count', val, {
+  number: true
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1022,6 +1450,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' likes. Comment on it to get more than '",
+      "__stringVariationArgs": [Error: Line 7 Column 11: This method must be implemented in a child class
+---
+' likes. Comment on it to get more than '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1033,6 +1465,10 @@ FbtElementNode {
     },
     FbtSameParamNode {
       "__nodeCode": "fbt.sameParam('count')",
+      "__stringVariationArgs": [Error: Line 8 Column 11: This method must be implemented in a child class
+---
+fbt.sameParam('count')
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1044,6 +1480,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' likes'",
+      "__stringVariationArgs": [Error: Line 9 Column 11: This method must be implemented in a child class
+---
+' likes'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1067,10 +1507,20 @@ FbtElementNode {
   "__nodeCode": "fbt(['Click to see ', fbt.param('count', c, {
   number: true
 }), ' links'], 'variations!')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Click to see ', fbt.param('count', c, {
+  number: true
+}), ' links'], 'variations!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Click to see '",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+'Click to see '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1084,6 +1534,12 @@ FbtElementNode {
       "__nodeCode": "fbt.param('count', c, {
   number: true
 })",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+fbt.param('count', c, {
+  number: true
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1095,6 +1551,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' links'",
+      "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
+---
+' links'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1116,10 +1576,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handler wrapping parens" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'foo'",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+'foo'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1131,6 +1599,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'bar'",
+      "__stringVariationArgs": [Error: Line 4 Column 19: This method must be implemented in a child class
+---
+'bar'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1142,6 +1614,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'baz'",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+'baz'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1153,6 +1629,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'qux'",
+      "__stringVariationArgs": [Error: Line 5 Column 19: This method must be implemented in a child class
+---
+'qux'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1174,10 +1654,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handler wrapping parens" 2`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
+  "__stringVariationArgs": [Error: Line 8 Column 15: This method must be implemented in a child class
+---
+fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'foo'",
+      "__stringVariationArgs": [Error: Line 10 Column 11: This method must be implemented in a child class
+---
+'foo'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1189,6 +1677,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'bar'",
+      "__stringVariationArgs": [Error: Line 11 Column 12: This method must be implemented in a child class
+---
+'bar'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1200,6 +1692,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'baz'",
+      "__stringVariationArgs": [Error: Line 11 Column 20: This method must be implemented in a child class
+---
+'baz'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1211,6 +1707,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'qux'",
+      "__stringVariationArgs": [Error: Line 11 Column 28: This method must be implemented in a child class
+---
+'qux'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1232,10 +1732,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handler wrapping parens" 3`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
+  "__stringVariationArgs": [Error: Line 14 Column 15: This method must be implemented in a child class
+---
+fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'foo'",
+      "__stringVariationArgs": [Error: Line 16 Column 11: This method must be implemented in a child class
+---
+'foo'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1247,6 +1755,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'bar'",
+      "__stringVariationArgs": [Error: Line 17 Column 11: This method must be implemented in a child class
+---
+'bar'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1258,6 +1770,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'baz'",
+      "__stringVariationArgs": [Error: Line 17 Column 20: This method must be implemented in a child class
+---
+'baz'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1269,6 +1785,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'qux'",
+      "__stringVariationArgs": [Error: Line 17 Column 28: This method must be implemented in a child class
+---
+'qux'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1290,10 +1810,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should insert param in place of fbt.sameParam if it exists" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', val1), ' and ', fbt.sameParam('name1')], 'd')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt([fbt.param('name1', val1), ' and ', fbt.sameParam('name1')], 'd')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtParamNode {
       "__nodeCode": "fbt.param('name1', val1)",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+fbt.param('name1', val1)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1305,6 +1833,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' and '",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+' and '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1316,6 +1848,10 @@ FbtElementNode {
     },
     FbtSameParamNode {
       "__nodeCode": "fbt.sameParam('name1')",
+      "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
+---
+fbt.sameParam('name1')
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1339,12 +1875,24 @@ FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', foo ? <a>
                 bar
               </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt([fbt.param('name1', foo ? <a>
+                bar
+              </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtParamNode {
       "__nodeCode": "fbt.param('name1', foo ? <a>
                 bar
               </a> : qux)",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+fbt.param('name1', foo ? <a>
+                bar
+              </a> : qux)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1356,6 +1904,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' blah '",
+      "__stringVariationArgs": [Error: Line 14 Column 11: This method must be implemented in a child class
+---
+' blah '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1367,6 +1919,10 @@ FbtElementNode {
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name2', qux)",
+      "__stringVariationArgs": [Error: Line 15 Column 11: This method must be implemented in a child class
+---
+fbt.param('name2', qux)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1388,10 +1944,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should maintain newlines when using string templates" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt([\\"A simple string...\\\\nwith some other stuff.\\"], 'blah')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(["A simple string...\\nwith some other stuff."], 'blah')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "\\"A simple string...\\\\nwith some other stuff.\\"",
+      "__stringVariationArgs": [Error: This method must be implemented in a child class
+---
+"A simple string...\\nwith some other stuff."
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1414,10 +1978,19 @@ exports[`Functional FBT API using array arguments: Meta-data collection should c
 FbtElementNode {
   "__nodeCode": "fbt(['a', ' b ', fbt.param('name1', val1), ' c ', // comments
 ' d ', fbt.param('name2', val2), ' e '], 'a')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['a', ' b ', fbt.param('name1', val1), ' c ', // comments
+' d ', fbt.param('name2', val2), ' e '], 'a')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'a'",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+'a'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1429,6 +2002,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' b '",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+' b '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1440,6 +2017,10 @@ FbtElementNode {
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name1', val1)",
+      "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
+---
+fbt.param('name1', val1)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1451,6 +2032,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' c '",
+      "__stringVariationArgs": [Error: Line 7 Column 11: This method must be implemented in a child class
+---
+' c '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1463,6 +2048,11 @@ FbtElementNode {
     FbtTextNode {
       "__nodeCode": "// comments
 ' d '",
+      "__stringVariationArgs": [Error: Line 9 Column 11: This method must be implemented in a child class
+---
+// comments
+' d '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1474,6 +2064,10 @@ FbtElementNode {
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name2', val2)",
+      "__stringVariationArgs": [Error: Line 10 Column 11: This method must be implemented in a child class
+---
+fbt.param('name2', val2)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1485,6 +2079,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' e '",
+      "__stringVariationArgs": [Error: Line 11 Column 11: This method must be implemented in a child class
+---
+' e '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1509,10 +2107,21 @@ FbtElementNode {
   author: 'jwatson',
   project: 'Super Secret'
 })",
+  "__stringVariationArgs": [Error: Line 2 Column 3: This method must be implemented in a child class
+---
+fbt(['A string that moved files'], 'options!', {
+  author: 'jwatson',
+  project: 'Super Secret'
+})
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'A string that moved files'",
+      "__stringVariationArgs": [Error: Line 2 Column 8: This method must be implemented in a child class
+---
+'A string that moved files'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1534,10 +2143,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should be able to nest within React nodes" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A nested string'], 'nested!')",
+  "__stringVariationArgs": [Error: Line 3 Column 21: This method must be implemented in a child class
+---
+fbt(['A nested string'], 'nested!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'A nested string'",
+      "__stringVariationArgs": [Error: Line 3 Column 26: This method must be implemented in a child class
+---
+'A nested string'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1559,10 +2176,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should be able to nest within React nodes" 2`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A nested string'], 'nested!')",
+  "__stringVariationArgs": [Error: Line 3 Column 21: This method must be implemented in a child class
+---
+fbt(['A nested string'], 'nested!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'A nested string'",
+      "__stringVariationArgs": [Error: Line 3 Column 26: This method must be implemented in a child class
+---
+'A nested string'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1584,10 +2209,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should convert simple strings" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A simple string'], \\"It's simple\\")",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['A simple string'], "It's simple")
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'A simple string'",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+'A simple string'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1617,10 +2250,26 @@ FbtElementNode {
   photos: 'photos',
   videos: 'videos'
 }), '!'], 'enums!')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Look! ', fbt.enum('groups', {
+  groups: 'Groups',
+  photos: 'Photos',
+  videos: 'Videos'
+}), ' and ', fbt.enum('groups', {
+  groups: 'groups',
+  photos: 'photos',
+  videos: 'videos'
+}), '!'], 'enums!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Look! '",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+'Look! '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1636,6 +2285,14 @@ FbtElementNode {
   photos: 'Photos',
   videos: 'Videos'
 })",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+fbt.enum('groups', {
+  groups: 'Groups',
+  photos: 'Photos',
+  videos: 'Videos'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1647,6 +2304,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' and '",
+      "__stringVariationArgs": [Error: Line 10 Column 11: This method must be implemented in a child class
+---
+' and '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1662,6 +2323,14 @@ FbtElementNode {
   photos: 'photos',
   videos: 'videos'
 })",
+      "__stringVariationArgs": [Error: Line 11 Column 11: This method must be implemented in a child class
+---
+fbt.enum('groups', {
+  groups: 'groups',
+  photos: 'photos',
+  videos: 'videos'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1673,6 +2342,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'!'",
+      "__stringVariationArgs": [Error: Line 16 Column 11: This method must be implemented in a child class
+---
+'!'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1694,10 +2367,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should get project from docblock" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['Also simple string'], \\"It's simple\\")",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Also simple string'], "It's simple")
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Also simple string'",
+      "__stringVariationArgs": [Error: Line 2 Column 16: This method must be implemented in a child class
+---
+'Also simple string'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1730,10 +2411,29 @@ FbtElementNode {
             </b>
             B2
           </a>, 'A2'], 'nested!')",
+  "__stringVariationArgs": [Error: Line 3 Column 15: This method must be implemented in a child class
+---
+fbt(['A1', <a>
+            B1
+            <b>
+              C1
+              {// TODO(T27672828) fbt constructs like fbt.pronoun() should return some opaque type
+      // like FbtElement to work with React components
+    }
+              {fbt.param('paramName', paramValue)}
+              C2
+            </b>
+            B2
+          </a>, 'A2'], 'nested!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'A1'",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+'A1'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1756,10 +2456,29 @@ FbtElementNode {
             </b>
             B2
           </a>",
+      "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
+---
+<a>
+            B1
+            <b>
+              C1
+              {// TODO(T27672828) fbt constructs like fbt.pronoun() should return some opaque type
+      // like FbtElement to work with React components
+    }
+              {fbt.param('paramName', paramValue)}
+              C2
+            </b>
+            B2
+          </a>
+---],
       "_variationFactorValues": Array [],
       "children": Array [
         FbtTextNode {
           "__nodeCode": "B1",
+          "__stringVariationArgs": [Error: Line 6 Column 14: This method must be implemented in a child class
+---
+B1
+---],
           "_variationFactorValues": Array [],
           "children": Array [],
           "moduleName": "fbt",
@@ -1778,10 +2497,25 @@ FbtElementNode {
               {fbt.param('paramName', paramValue)}
               C2
             </b>",
+          "__stringVariationArgs": [Error: Line 8 Column 13: This method must be implemented in a child class
+---
+<b>
+              C1
+              {// TODO(T27672828) fbt constructs like fbt.pronoun() should return some opaque type
+    // like FbtElement to work with React components
+  }
+              {fbt.param('paramName', paramValue)}
+              C2
+            </b>
+---],
           "_variationFactorValues": Array [],
           "children": Array [
             FbtTextNode {
               "__nodeCode": "C1",
+              "__stringVariationArgs": [Error: Line 8 Column 16: This method must be implemented in a child class
+---
+C1
+---],
               "_variationFactorValues": Array [],
               "children": Array [],
               "moduleName": "fbt",
@@ -1793,6 +2527,10 @@ FbtElementNode {
             },
             FbtTextNode {
               "__nodeCode": "",
+              "__stringVariationArgs": [Error: Line 13 Column 16: This method must be implemented in a child class
+---
+
+---],
               "_variationFactorValues": Array [],
               "children": Array [],
               "moduleName": "fbt",
@@ -1804,6 +2542,10 @@ FbtElementNode {
             },
             FbtParamNode {
               "__nodeCode": "fbt.param('paramName', paramValue)",
+              "__stringVariationArgs": [Error: Line 14 Column 16: This method must be implemented in a child class
+---
+fbt.param('paramName', paramValue)
+---],
               "_variationFactorValues": Array [],
               "children": Array [],
               "moduleName": "fbt",
@@ -1815,6 +2557,10 @@ FbtElementNode {
             },
             FbtTextNode {
               "__nodeCode": "C2",
+              "__stringVariationArgs": [Error: Line 14 Column 51: This method must be implemented in a child class
+---
+C2
+---],
               "_variationFactorValues": Array [],
               "children": Array [],
               "moduleName": "fbt",
@@ -1834,6 +2580,10 @@ FbtElementNode {
         },
         FbtTextNode {
           "__nodeCode": "B2",
+          "__stringVariationArgs": [Error: Line 16 Column 17: This method must be implemented in a child class
+---
+B2
+---],
           "_variationFactorValues": Array [],
           "children": Array [],
           "moduleName": "fbt",
@@ -1853,6 +2603,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'A2'",
+      "__stringVariationArgs": [Error: Line 19 Column 11: This method must be implemented in a child class
+---
+'A2'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1882,10 +2636,26 @@ FbtElementNode {
   photos: 'photos',
   videos: 'videos'
 }), '!'], 'enums!')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Look! ', fbt.enum('groups', {
+  groups: 'Groups',
+  photos: 'Photos',
+  videos: 'Videos'
+}), ' and ', fbt.enum('groups', {
+  groups: 'groups',
+  photos: 'photos',
+  videos: 'videos'
+}), '!'], 'enums!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Look! '",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+'Look! '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1901,6 +2671,14 @@ FbtElementNode {
   photos: 'Photos',
   videos: 'Videos'
 })",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+fbt.enum('groups', {
+  groups: 'Groups',
+  photos: 'Photos',
+  videos: 'Videos'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1912,6 +2690,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' and '",
+      "__stringVariationArgs": [Error: Line 10 Column 11: This method must be implemented in a child class
+---
+' and '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1927,6 +2709,14 @@ FbtElementNode {
   photos: 'photos',
   videos: 'videos'
 })",
+      "__stringVariationArgs": [Error: Line 11 Column 11: This method must be implemented in a child class
+---
+fbt.enum('groups', {
+  groups: 'groups',
+  photos: 'photos',
+  videos: 'videos'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1938,6 +2728,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'!'",
+      "__stringVariationArgs": [Error: Line 16 Column 11: This method must be implemented in a child class
+---
+'!'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1959,10 +2753,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle enums (with array values)" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['Click to see ', fbt.enum('groups', ['groups', 'photos', 'videos'])], 'enum as an array')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Click to see ', fbt.enum('groups', ['groups', 'photos', 'videos'])], 'enum as an array')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Click to see '",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+'Click to see '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1974,6 +2776,10 @@ FbtElementNode {
     },
     FbtEnumNode {
       "__nodeCode": "fbt.enum('groups', ['groups', 'photos', 'videos'])",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+fbt.enum('groups', ['groups', 'photos', 'videos'])
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -1999,10 +2805,22 @@ FbtElementNode {
   id2: 'photos',
   id3: 'videos'
 })], 'enum as an object')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Click to see ', fbt.enum('id1', {
+  id1: 'groups',
+  id2: 'photos',
+  id3: 'videos'
+})], 'enum as an object')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Click to see '",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+'Click to see '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2018,6 +2836,14 @@ FbtElementNode {
   id2: 'photos',
   id3: 'videos'
 })",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+fbt.enum('id1', {
+  id1: 'groups',
+  id2: 'photos',
+  id3: 'videos'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2039,10 +2865,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle enums with more text after" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['Hello, ', fbt.enum('groups', ['groups', 'photos', 'videos']), '!'], 'enums!')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Hello, ', fbt.enum('groups', ['groups', 'photos', 'videos']), '!'], 'enums!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Hello, '",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+'Hello, '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2054,6 +2888,10 @@ FbtElementNode {
     },
     FbtEnumNode {
       "__nodeCode": "fbt.enum('groups', ['groups', 'photos', 'videos'])",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+fbt.enum('groups', ['groups', 'photos', 'videos'])
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2065,6 +2903,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'!'",
+      "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
+---
+'!'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2091,10 +2933,23 @@ FbtElementNode {
   showCount: 'ifMany',
   many: 'likes'
 })], 'plurals')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['There ', fbt.plural('is ', count, {
+  many: 'are '
+}), fbt.plural('a like', count, {
+  showCount: 'ifMany',
+  many: 'likes'
+})], 'plurals')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'There '",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+'There '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2108,6 +2963,12 @@ FbtElementNode {
       "__nodeCode": "fbt.plural('is ', count, {
   many: 'are '
 })",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+fbt.plural('is ', count, {
+  many: 'are '
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2122,6 +2983,13 @@ FbtElementNode {
   showCount: 'ifMany',
   many: 'likes'
 })",
+      "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
+---
+fbt.plural('a like', count, {
+  showCount: 'ifMany',
+  many: 'likes'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2143,10 +3011,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle names" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['You just friended ', fbt.name('name', personname, gender)], 'names')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['You just friended ', fbt.name('name', personname, gender)], 'names')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'You just friended '",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+'You just friended '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2158,6 +3034,10 @@ FbtElementNode {
     },
     FbtNameNode {
       "__nodeCode": "fbt.name('name', personname, gender)",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+fbt.name('name', personname, gender)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2179,10 +3059,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle object pronoun" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['I know ', fbt.pronoun('object', gender), '.'], 'object pronoun')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['I know ', fbt.pronoun('object', gender), '.'], 'object pronoun')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'I know '",
+      "__stringVariationArgs": [Error: Line 4 Column 13: This method must be implemented in a child class
+---
+'I know '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2194,6 +3082,10 @@ FbtElementNode {
     },
     FbtPronounNode {
       "__nodeCode": "fbt.pronoun('object', gender)",
+      "__stringVariationArgs": [Error: Line 5 Column 13: This method must be implemented in a child class
+---
+fbt.pronoun('object', gender)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2205,6 +3097,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'.'",
+      "__stringVariationArgs": [Error: Line 6 Column 13: This method must be implemented in a child class
+---
+'.'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2226,10 +3122,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle params" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A parameterized message to ', fbt.param('personName', truthy ? ifTrue : ifFalse)], 'Moar params')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['A parameterized message to ', fbt.param('personName', truthy ? ifTrue : ifFalse)], 'Moar params')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'A parameterized message to '",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+'A parameterized message to '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2241,6 +3145,10 @@ FbtElementNode {
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('personName', truthy ? ifTrue : ifFalse)",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+fbt.param('personName', truthy ? ifTrue : ifFalse)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2268,6 +3176,16 @@ FbtElementNode {
   name: 'dog_token',
   showCount: 'yes'
 })], 'plurals')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt([fbt.plural('cat', catCount, {
+  name: 'cat_token',
+  showCount: 'yes'
+}), ' and ', fbt.plural('dog', dogCount, {
+  name: 'dog_token',
+  showCount: 'yes'
+})], 'plurals')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtPluralNode {
@@ -2275,6 +3193,13 @@ FbtElementNode {
   name: 'cat_token',
   showCount: 'yes'
 })",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+fbt.plural('cat', catCount, {
+  name: 'cat_token',
+  showCount: 'yes'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2286,6 +3211,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' and '",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+' and '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2300,6 +3229,13 @@ FbtElementNode {
   name: 'dog_token',
   showCount: 'yes'
 })",
+      "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
+---
+fbt.plural('dog', dogCount, {
+  name: 'dog_token',
+  showCount: 'yes'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2327,10 +3263,24 @@ FbtElementNode {
   showCount: 'ifMany',
   many: 'likes'
 })], 'plurals')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['There ', fbt.plural('was ', count, {
+  showCount: 'no',
+  many: 'were '
+}), fbt.plural('a like', count, {
+  showCount: 'ifMany',
+  many: 'likes'
+})], 'plurals')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'There '",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+'There '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2345,6 +3295,13 @@ FbtElementNode {
   showCount: 'no',
   many: 'were '
 })",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+fbt.plural('was ', count, {
+  showCount: 'no',
+  many: 'were '
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2359,6 +3316,13 @@ FbtElementNode {
   showCount: 'ifMany',
   many: 'likes'
 })",
+      "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
+---
+fbt.plural('a like', count, {
+  showCount: 'ifMany',
+  many: 'likes'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2380,10 +3344,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle possessive pronoun" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['It is ', fbt.pronoun('possessive', gender), ' birthday.'], 'possessive pronoun')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['It is ', fbt.pronoun('possessive', gender), ' birthday.'], 'possessive pronoun')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'It is '",
+      "__stringVariationArgs": [Error: Line 4 Column 13: This method must be implemented in a child class
+---
+'It is '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2395,6 +3367,10 @@ FbtElementNode {
     },
     FbtPronounNode {
       "__nodeCode": "fbt.pronoun('possessive', gender)",
+      "__stringVariationArgs": [Error: Line 5 Column 13: This method must be implemented in a child class
+---
+fbt.pronoun('possessive', gender)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2406,6 +3382,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' birthday.'",
+      "__stringVariationArgs": [Error: Line 6 Column 13: This method must be implemented in a child class
+---
+' birthday.'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2432,6 +3412,15 @@ FbtElementNode {
 }), ' wished ', fbt.pronoun('reflexive', gender, {
   human: true
 }), ' a happy birthday.'], 'subject+reflexive pronouns')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt([fbt.pronoun('subject', gender, {
+  capitalize: true,
+  human: true
+}), ' wished ', fbt.pronoun('reflexive', gender, {
+  human: true
+}), ' a happy birthday.'], 'subject+reflexive pronouns')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtPronounNode {
@@ -2439,6 +3428,13 @@ FbtElementNode {
   capitalize: true,
   human: true
 })",
+      "__stringVariationArgs": [Error: Line 4 Column 13: This method must be implemented in a child class
+---
+fbt.pronoun('subject', gender, {
+  capitalize: true,
+  human: true
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2450,6 +3446,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' wished '",
+      "__stringVariationArgs": [Error: Line 5 Column 13: This method must be implemented in a child class
+---
+' wished '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2463,6 +3463,12 @@ FbtElementNode {
       "__nodeCode": "fbt.pronoun('reflexive', gender, {
   human: true
 })",
+      "__stringVariationArgs": [Error: Line 6 Column 13: This method must be implemented in a child class
+---
+fbt.pronoun('reflexive', gender, {
+  human: true
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2474,6 +3480,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' a happy birthday.'",
+      "__stringVariationArgs": [Error: Line 7 Column 13: This method must be implemented in a child class
+---
+' a happy birthday.'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2497,10 +3507,20 @@ FbtElementNode {
   "__nodeCode": "fbt(['You have ', fbt.param('count', val, {
   number: true
 }), ' likes. Comment on it to get more than ', fbt.sameParam('count'), ' likes'], 'test variations + sameParam')",
+  "__stringVariationArgs": [Error: Line 3 Column 7: This method must be implemented in a child class
+---
+fbt(['You have ', fbt.param('count', val, {
+  number: true
+}), ' likes. Comment on it to get more than ', fbt.sameParam('count'), ' likes'], 'test variations + sameParam')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'You have '",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+'You have '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2514,6 +3534,12 @@ FbtElementNode {
       "__nodeCode": "fbt.param('count', val, {
   number: true
 })",
+      "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
+---
+fbt.param('count', val, {
+  number: true
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2525,6 +3551,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' likes. Comment on it to get more than '",
+      "__stringVariationArgs": [Error: Line 7 Column 11: This method must be implemented in a child class
+---
+' likes. Comment on it to get more than '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2536,6 +3566,10 @@ FbtElementNode {
     },
     FbtSameParamNode {
       "__nodeCode": "fbt.sameParam('count')",
+      "__stringVariationArgs": [Error: Line 8 Column 11: This method must be implemented in a child class
+---
+fbt.sameParam('count')
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2547,6 +3581,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' likes'",
+      "__stringVariationArgs": [Error: Line 9 Column 11: This method must be implemented in a child class
+---
+' likes'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2570,10 +3608,20 @@ FbtElementNode {
   "__nodeCode": "fbt(['Click to see ', fbt.param('count', c, {
   number: true
 }), ' links'], 'variations!')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Click to see ', fbt.param('count', c, {
+  number: true
+}), ' links'], 'variations!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Click to see '",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+'Click to see '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2587,6 +3635,12 @@ FbtElementNode {
       "__nodeCode": "fbt.param('count', c, {
   number: true
 })",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+fbt.param('count', c, {
+  number: true
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2598,6 +3652,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' links'",
+      "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
+---
+' links'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2619,10 +3677,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should handler wrapping parens" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'foo'",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+'foo'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2634,6 +3700,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'bar'",
+      "__stringVariationArgs": [Error: Line 4 Column 19: This method must be implemented in a child class
+---
+'bar'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2645,6 +3715,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'baz'",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+'baz'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2656,6 +3730,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'qux'",
+      "__stringVariationArgs": [Error: Line 5 Column 19: This method must be implemented in a child class
+---
+'qux'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2677,10 +3755,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should handler wrapping parens" 2`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
+  "__stringVariationArgs": [Error: Line 8 Column 15: This method must be implemented in a child class
+---
+fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'foo'",
+      "__stringVariationArgs": [Error: Line 10 Column 11: This method must be implemented in a child class
+---
+'foo'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2692,6 +3778,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'bar'",
+      "__stringVariationArgs": [Error: Line 11 Column 12: This method must be implemented in a child class
+---
+'bar'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2703,6 +3793,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'baz'",
+      "__stringVariationArgs": [Error: Line 11 Column 20: This method must be implemented in a child class
+---
+'baz'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2714,6 +3808,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'qux'",
+      "__stringVariationArgs": [Error: Line 11 Column 28: This method must be implemented in a child class
+---
+'qux'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2735,10 +3833,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should handler wrapping parens" 3`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
+  "__stringVariationArgs": [Error: Line 14 Column 15: This method must be implemented in a child class
+---
+fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'foo'",
+      "__stringVariationArgs": [Error: Line 16 Column 11: This method must be implemented in a child class
+---
+'foo'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2750,6 +3856,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'bar'",
+      "__stringVariationArgs": [Error: Line 17 Column 11: This method must be implemented in a child class
+---
+'bar'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2761,6 +3871,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'baz'",
+      "__stringVariationArgs": [Error: Line 17 Column 20: This method must be implemented in a child class
+---
+'baz'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2772,6 +3886,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'qux'",
+      "__stringVariationArgs": [Error: Line 17 Column 28: This method must be implemented in a child class
+---
+'qux'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2793,10 +3911,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should insert param in place of fbt.sameParam if it exists" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', val1), ' and ', fbt.sameParam('name1')], 'd')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt([fbt.param('name1', val1), ' and ', fbt.sameParam('name1')], 'd')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtParamNode {
       "__nodeCode": "fbt.param('name1', val1)",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+fbt.param('name1', val1)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2808,6 +3934,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' and '",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+' and '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2819,6 +3949,10 @@ FbtElementNode {
     },
     FbtSameParamNode {
       "__nodeCode": "fbt.sameParam('name1')",
+      "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
+---
+fbt.sameParam('name1')
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2842,12 +3976,24 @@ FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', foo ? <a>
                 bar
               </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt([fbt.param('name1', foo ? <a>
+                bar
+              </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtParamNode {
       "__nodeCode": "fbt.param('name1', foo ? <a>
                 bar
               </a> : qux)",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+fbt.param('name1', foo ? <a>
+                bar
+              </a> : qux)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2859,6 +4005,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' blah '",
+      "__stringVariationArgs": [Error: Line 14 Column 11: This method must be implemented in a child class
+---
+' blah '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2870,6 +4020,10 @@ FbtElementNode {
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name2', qux)",
+      "__stringVariationArgs": [Error: Line 15 Column 11: This method must be implemented in a child class
+---
+fbt.param('name2', qux)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2891,10 +4045,18 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should maintain newlines when using string templates" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt([\\"A simple string...\\\\nwith some other stuff.\\"], 'blah')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(["A simple string...\\nwith some other stuff."], 'blah')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "\\"A simple string...\\\\nwith some other stuff.\\"",
+      "__stringVariationArgs": [Error: This method must be implemented in a child class
+---
+"A simple string...\\nwith some other stuff."
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2917,10 +4079,19 @@ exports[`Functional FBT API using array arguments: Meta-data collection should c
 FbtElementNode {
   "__nodeCode": "fbt(['a', ' b ', fbt.param('name1', val1), ' c ', // comments
 ' d ', fbt.param('name2', val2), ' e '], 'a')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['a', ' b ', fbt.param('name1', val1), ' c ', // comments
+' d ', fbt.param('name2', val2), ' e '], 'a')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'a'",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+'a'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2932,6 +4103,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' b '",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+' b '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2943,6 +4118,10 @@ FbtElementNode {
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name1', val1)",
+      "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
+---
+fbt.param('name1', val1)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2954,6 +4133,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' c '",
+      "__stringVariationArgs": [Error: Line 7 Column 11: This method must be implemented in a child class
+---
+' c '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2966,6 +4149,11 @@ FbtElementNode {
     FbtTextNode {
       "__nodeCode": "// comments
 ' d '",
+      "__stringVariationArgs": [Error: Line 9 Column 11: This method must be implemented in a child class
+---
+// comments
+' d '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2977,6 +4165,10 @@ FbtElementNode {
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name2', val2)",
+      "__stringVariationArgs": [Error: Line 10 Column 11: This method must be implemented in a child class
+---
+fbt.param('name2', val2)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -2988,6 +4180,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' e '",
+      "__stringVariationArgs": [Error: Line 11 Column 11: This method must be implemented in a child class
+---
+' e '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3012,10 +4208,21 @@ FbtElementNode {
   author: 'jwatson',
   project: 'Super Secret'
 })",
+  "__stringVariationArgs": [Error: Line 2 Column 3: This method must be implemented in a child class
+---
+fbt(['A string that moved files'], 'options!', {
+  author: 'jwatson',
+  project: 'Super Secret'
+})
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'A string that moved files'",
+      "__stringVariationArgs": [Error: Line 2 Column 7: This method must be implemented in a child class
+---
+'A string that moved files'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3037,10 +4244,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should allow description concatenation" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A short string'], 'With a ridiculously long description that' + ' requires concatenation')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['A short string'], 'With a ridiculously long description that' + ' requires concatenation')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'A short string'",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+'A short string'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3062,10 +4277,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should be able to nest within React nodes" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A nested string'], 'nested!')",
+  "__stringVariationArgs": [Error: Line 3 Column 21: This method must be implemented in a child class
+---
+fbt(['A nested string'], 'nested!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'A nested string'",
+      "__stringVariationArgs": [Error: Line 3 Column 25: This method must be implemented in a child class
+---
+'A nested string'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3087,10 +4310,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should be able to nest within React nodes" 2`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A nested string'], 'nested!')",
+  "__stringVariationArgs": [Error: Line 3 Column 21: This method must be implemented in a child class
+---
+fbt(['A nested string'], 'nested!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'A nested string'",
+      "__stringVariationArgs": [Error: Line 3 Column 25: This method must be implemented in a child class
+---
+'A nested string'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3112,10 +4343,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should convert simple strings" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A simple string'], \\"It's simple\\")",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['A simple string'], "It's simple")
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'A simple string'",
+      "__stringVariationArgs": [Error: Line 2 Column 15: This method must be implemented in a child class
+---
+'A simple string'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3145,10 +4384,26 @@ FbtElementNode {
   \\"photos\\": 'photos',
   \\"videos\\": 'videos'
 }), \\"!\\"], 'enums!')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(["Look!  ", fbt.enum('groups', {
+  groups: 'Groups',
+  photos: 'Photos',
+  videos: 'Videos'
+}), "  and  ", fbt.enum('groups', {
+  "groups": 'groups',
+  "photos": 'photos',
+  "videos": 'videos'
+}), "!"], 'enums!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "\\"Look!  \\"",
+      "__stringVariationArgs": [Error: This method must be implemented in a child class
+---
+"Look!  "
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3164,6 +4419,14 @@ FbtElementNode {
   photos: 'Photos',
   videos: 'Videos'
 })",
+      "__stringVariationArgs": [Error: Line 3 Column 19: This method must be implemented in a child class
+---
+fbt.enum('groups', {
+  groups: 'Groups',
+  photos: 'Photos',
+  videos: 'Videos'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3175,6 +4438,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "\\"  and  \\"",
+      "__stringVariationArgs": [Error: This method must be implemented in a child class
+---
+"  and  "
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3190,6 +4457,14 @@ FbtElementNode {
   \\"photos\\": 'photos',
   \\"videos\\": 'videos'
 })",
+      "__stringVariationArgs": [Error: Line 7 Column 21: This method must be implemented in a child class
+---
+fbt.enum('groups', {
+  "groups": 'groups',
+  "photos": 'photos',
+  "videos": 'videos'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3201,6 +4476,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "\\"!\\"",
+      "__stringVariationArgs": [Error: This method must be implemented in a child class
+---
+"!"
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3230,10 +4509,26 @@ FbtElementNode {
   photos: 'photos',
   videos: 'videos'
 }), '!'], 'enums!')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Look! ', fbt.enum('groups', {
+  groups: 'Groups',
+  photos: 'Photos',
+  videos: 'Videos'
+}), ' and ', fbt.enum('groups', {
+  groups: 'groups',
+  photos: 'photos',
+  videos: 'videos'
+}), '!'], 'enums!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Look! '",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+'Look! '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3249,6 +4544,14 @@ FbtElementNode {
   photos: 'Photos',
   videos: 'Videos'
 })",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+fbt.enum('groups', {
+  groups: 'Groups',
+  photos: 'Photos',
+  videos: 'Videos'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3260,6 +4563,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' and '",
+      "__stringVariationArgs": [Error: Line 9 Column 11: This method must be implemented in a child class
+---
+' and '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3275,6 +4582,14 @@ FbtElementNode {
   photos: 'photos',
   videos: 'videos'
 })",
+      "__stringVariationArgs": [Error: Line 10 Column 11: This method must be implemented in a child class
+---
+fbt.enum('groups', {
+  groups: 'groups',
+  photos: 'photos',
+  videos: 'videos'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3286,6 +4601,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'!'",
+      "__stringVariationArgs": [Error: Line 15 Column 11: This method must be implemented in a child class
+---
+'!'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3307,10 +4626,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should get project from docblock" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['Also simple string'], \\"It's simple\\")",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Also simple string'], "It's simple")
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Also simple string'",
+      "__stringVariationArgs": [Error: Line 2 Column 15: This method must be implemented in a child class
+---
+'Also simple string'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3340,10 +4667,26 @@ FbtElementNode {
   photos: 'photos',
   videos: 'videos'
 }), '!'], 'enums!')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Look! ', fbt.enum('groups', {
+  groups: 'Groups',
+  photos: 'Photos',
+  videos: 'Videos'
+}), ' and ', fbt.enum('groups', {
+  groups: 'groups',
+  photos: 'photos',
+  videos: 'videos'
+}), '!'], 'enums!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Look! '",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+'Look! '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3359,6 +4702,14 @@ FbtElementNode {
   photos: 'Photos',
   videos: 'Videos'
 })",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+fbt.enum('groups', {
+  groups: 'Groups',
+  photos: 'Photos',
+  videos: 'Videos'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3370,6 +4721,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' and '",
+      "__stringVariationArgs": [Error: Line 9 Column 11: This method must be implemented in a child class
+---
+' and '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3385,6 +4740,14 @@ FbtElementNode {
   photos: 'photos',
   videos: 'videos'
 })",
+      "__stringVariationArgs": [Error: Line 10 Column 11: This method must be implemented in a child class
+---
+fbt.enum('groups', {
+  groups: 'groups',
+  photos: 'photos',
+  videos: 'videos'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3396,6 +4759,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'!'",
+      "__stringVariationArgs": [Error: Line 15 Column 11: This method must be implemented in a child class
+---
+'!'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3417,10 +4784,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle enums (with array values)" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['Click to see ', fbt.enum('groups', ['groups', 'photos', 'videos'])], 'enum as an array')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Click to see ', fbt.enum('groups', ['groups', 'photos', 'videos'])], 'enum as an array')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Click to see '",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+'Click to see '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3432,6 +4807,10 @@ FbtElementNode {
     },
     FbtEnumNode {
       "__nodeCode": "fbt.enum('groups', ['groups', 'photos', 'videos'])",
+      "__stringVariationArgs": [Error: Line 3 Column 27: This method must be implemented in a child class
+---
+fbt.enum('groups', ['groups', 'photos', 'videos'])
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3457,10 +4836,22 @@ FbtElementNode {
   id2: 'photos',
   id3: 'videos'
 })], 'enum as an object')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Click to see ', fbt.enum('id1', {
+  id1: 'groups',
+  id2: 'photos',
+  id3: 'videos'
+})], 'enum as an object')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Click to see '",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+'Click to see '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3476,6 +4867,14 @@ FbtElementNode {
   id2: 'photos',
   id3: 'videos'
 })",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+fbt.enum('id1', {
+  id1: 'groups',
+  id2: 'photos',
+  id3: 'videos'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3497,10 +4896,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle enums with more text after" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['Hello, ', fbt.enum('groups', ['groups', 'photos', 'videos']), '!'], 'enums!')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Hello, ', fbt.enum('groups', ['groups', 'photos', 'videos']), '!'], 'enums!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Hello, '",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+'Hello, '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3512,6 +4919,10 @@ FbtElementNode {
     },
     FbtEnumNode {
       "__nodeCode": "fbt.enum('groups', ['groups', 'photos', 'videos'])",
+      "__stringVariationArgs": [Error: Line 3 Column 21: This method must be implemented in a child class
+---
+fbt.enum('groups', ['groups', 'photos', 'videos'])
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3523,6 +4934,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'!'",
+      "__stringVariationArgs": [Error: Line 3 Column 74: This method must be implemented in a child class
+---
+'!'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3549,10 +4964,23 @@ FbtElementNode {
   showCount: 'ifMany',
   many: 'likes'
 })], 'plurals')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['There ', fbt.plural('is ', count, {
+  many: 'are '
+}), fbt.plural('a like', count, {
+  showCount: 'ifMany',
+  many: 'likes'
+})], 'plurals')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'There '",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+'There '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3566,6 +4994,12 @@ FbtElementNode {
       "__nodeCode": "fbt.plural('is ', count, {
   many: 'are '
 })",
+      "__stringVariationArgs": [Error: Line 4 Column 9: This method must be implemented in a child class
+---
+fbt.plural('is ', count, {
+  many: 'are '
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3580,6 +5014,13 @@ FbtElementNode {
   showCount: 'ifMany',
   many: 'likes'
 })",
+      "__stringVariationArgs": [Error: Line 5 Column 9: This method must be implemented in a child class
+---
+fbt.plural('a like', count, {
+  showCount: 'ifMany',
+  many: 'likes'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3601,10 +5042,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle names" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['You just friended ', fbt.name('name', personname, gender)], 'names')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['You just friended ', fbt.name('name', personname, gender)], 'names')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'You just friended '",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+'You just friended '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3616,6 +5065,10 @@ FbtElementNode {
     },
     FbtNameNode {
       "__nodeCode": "fbt.name('name', personname, gender)",
+      "__stringVariationArgs": [Error: Line 3 Column 32: This method must be implemented in a child class
+---
+fbt.name('name', personname, gender)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3637,10 +5090,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle object pronoun" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['I know ', fbt.pronoun('object', gender), '.'], 'object pronoun')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['I know ', fbt.pronoun('object', gender), '.'], 'object pronoun')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'I know '",
+      "__stringVariationArgs": [Error: Line 3 Column 11: This method must be implemented in a child class
+---
+'I know '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3652,6 +5113,10 @@ FbtElementNode {
     },
     FbtPronounNode {
       "__nodeCode": "fbt.pronoun('object', gender)",
+      "__stringVariationArgs": [Error: Line 4 Column 13: This method must be implemented in a child class
+---
+fbt.pronoun('object', gender)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3663,6 +5128,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'.'",
+      "__stringVariationArgs": [Error: Line 5 Column 13: This method must be implemented in a child class
+---
+'.'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3684,10 +5153,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle params" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A parameterized message to ', fbt.param('personName', truthy ? ifTrue : ifFalse)], 'Moar params')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['A parameterized message to ', fbt.param('personName', truthy ? ifTrue : ifFalse)], 'Moar params')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'A parameterized message to '",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+'A parameterized message to '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3699,6 +5176,10 @@ FbtElementNode {
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('personName', truthy ? ifTrue : ifFalse)",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+fbt.param('personName', truthy ? ifTrue : ifFalse)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3726,6 +5207,16 @@ FbtElementNode {
   name: 'dog_token',
   showCount: 'yes'
 })], 'plurals')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt([fbt.plural('cat', catCount, {
+  name: 'cat_token',
+  showCount: 'yes'
+}), ' and ', fbt.plural('dog', dogCount, {
+  name: 'dog_token',
+  showCount: 'yes'
+})], 'plurals')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtPluralNode {
@@ -3733,6 +5224,13 @@ FbtElementNode {
   name: 'cat_token',
   showCount: 'yes'
 })",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+fbt.plural('cat', catCount, {
+  name: 'cat_token',
+  showCount: 'yes'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3744,6 +5242,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' and '",
+      "__stringVariationArgs": [Error: Line 4 Column 9: This method must be implemented in a child class
+---
+' and '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3758,6 +5260,13 @@ FbtElementNode {
   name: 'dog_token',
   showCount: 'yes'
 })",
+      "__stringVariationArgs": [Error: Line 5 Column 9: This method must be implemented in a child class
+---
+fbt.plural('dog', dogCount, {
+  name: 'dog_token',
+  showCount: 'yes'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3785,10 +5294,24 @@ FbtElementNode {
   showCount: 'ifMany',
   many: 'likes'
 })], 'plurals')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['There ', fbt.plural('was ', count, {
+  showCount: 'no',
+  many: 'were '
+}), fbt.plural('a like', count, {
+  showCount: 'ifMany',
+  many: 'likes'
+})], 'plurals')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'There '",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+'There '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3803,6 +5326,13 @@ FbtElementNode {
   showCount: 'no',
   many: 'were '
 })",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+fbt.plural('was ', count, {
+  showCount: 'no',
+  many: 'were '
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3817,6 +5347,13 @@ FbtElementNode {
   showCount: 'ifMany',
   many: 'likes'
 })",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+fbt.plural('a like', count, {
+  showCount: 'ifMany',
+  many: 'likes'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3838,10 +5375,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle possessive pronoun" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['It is ', fbt.pronoun('possessive', gender), ' birthday.'], 'possessive pronoun')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['It is ', fbt.pronoun('possessive', gender), ' birthday.'], 'possessive pronoun')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'It is '",
+      "__stringVariationArgs": [Error: Line 3 Column 11: This method must be implemented in a child class
+---
+'It is '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3853,6 +5398,10 @@ FbtElementNode {
     },
     FbtPronounNode {
       "__nodeCode": "fbt.pronoun('possessive', gender)",
+      "__stringVariationArgs": [Error: Line 3 Column 22: This method must be implemented in a child class
+---
+fbt.pronoun('possessive', gender)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3864,6 +5413,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' birthday.'",
+      "__stringVariationArgs": [Error: Line 3 Column 58: This method must be implemented in a child class
+---
+' birthday.'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3890,6 +5443,15 @@ FbtElementNode {
 }), ' wished ', fbt.pronoun('reflexive', gender, {
   human: true
 }), ' a happy birthday.'], 'subject+reflexive pronouns')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt([fbt.pronoun('subject', gender, {
+  capitalize: true,
+  human: true
+}), ' wished ', fbt.pronoun('reflexive', gender, {
+  human: true
+}), ' a happy birthday.'], 'subject+reflexive pronouns')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtPronounNode {
@@ -3897,6 +5459,13 @@ FbtElementNode {
   capitalize: true,
   human: true
 })",
+      "__stringVariationArgs": [Error: Line 3 Column 11: This method must be implemented in a child class
+---
+fbt.pronoun('subject', gender, {
+  capitalize: true,
+  human: true
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3908,6 +5477,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' wished '",
+      "__stringVariationArgs": [Error: Line 4 Column 13: This method must be implemented in a child class
+---
+' wished '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3921,6 +5494,12 @@ FbtElementNode {
       "__nodeCode": "fbt.pronoun('reflexive', gender, {
   human: true
 })",
+      "__stringVariationArgs": [Error: Line 5 Column 13: This method must be implemented in a child class
+---
+fbt.pronoun('reflexive', gender, {
+  human: true
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3932,6 +5511,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' a happy birthday.'",
+      "__stringVariationArgs": [Error: Line 6 Column 13: This method must be implemented in a child class
+---
+' a happy birthday.'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3955,10 +5538,20 @@ FbtElementNode {
   "__nodeCode": "fbt(['You have ', fbt.param('count', val, {
   number: true
 }), ' likes. Comment on it to get more than ', fbt.sameParam('count'), ' likes'], 'test variations + sameParam')",
+  "__stringVariationArgs": [Error: Line 3 Column 7: This method must be implemented in a child class
+---
+fbt(['You have ', fbt.param('count', val, {
+  number: true
+}), ' likes. Comment on it to get more than ', fbt.sameParam('count'), ' likes'], 'test variations + sameParam')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'You have '",
+      "__stringVariationArgs": [Error: Line 4 Column 9: This method must be implemented in a child class
+---
+'You have '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3972,6 +5565,12 @@ FbtElementNode {
       "__nodeCode": "fbt.param('count', val, {
   number: true
 })",
+      "__stringVariationArgs": [Error: Line 5 Column 9: This method must be implemented in a child class
+---
+fbt.param('count', val, {
+  number: true
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3983,6 +5582,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' likes. Comment on it to get more than '",
+      "__stringVariationArgs": [Error: Line 6 Column 9: This method must be implemented in a child class
+---
+' likes. Comment on it to get more than '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -3994,6 +5597,10 @@ FbtElementNode {
     },
     FbtSameParamNode {
       "__nodeCode": "fbt.sameParam('count')",
+      "__stringVariationArgs": [Error: Line 7 Column 9: This method must be implemented in a child class
+---
+fbt.sameParam('count')
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4005,6 +5612,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' likes'",
+      "__stringVariationArgs": [Error: Line 8 Column 9: This method must be implemented in a child class
+---
+' likes'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4028,10 +5639,20 @@ FbtElementNode {
   "__nodeCode": "fbt(['Click to see ', fbt.param('count', c, {
   number: true
 }), ' links'], 'variations!')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Click to see ', fbt.param('count', c, {
+  number: true
+}), ' links'], 'variations!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Click to see '",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+'Click to see '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4045,6 +5666,12 @@ FbtElementNode {
       "__nodeCode": "fbt.param('count', c, {
   number: true
 })",
+      "__stringVariationArgs": [Error: Line 3 Column 27: This method must be implemented in a child class
+---
+fbt.param('count', c, {
+  number: true
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4056,6 +5683,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' links'",
+      "__stringVariationArgs": [Error: Line 3 Column 67: This method must be implemented in a child class
+---
+' links'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4077,10 +5708,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handler wrapping parens" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'foo'",
+      "__stringVariationArgs": [Error: Line 2 Column 15: This method must be implemented in a child class
+---
+'foo'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4092,6 +5731,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'bar'",
+      "__stringVariationArgs": [Error: Line 2 Column 23: This method must be implemented in a child class
+---
+'bar'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4103,6 +5746,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'baz'",
+      "__stringVariationArgs": [Error: Line 2 Column 31: This method must be implemented in a child class
+---
+'baz'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4114,6 +5761,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'qux'",
+      "__stringVariationArgs": [Error: Line 2 Column 39: This method must be implemented in a child class
+---
+'qux'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4135,10 +5786,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handler wrapping parens" 2`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
+  "__stringVariationArgs": [Error: Line 3 Column 15: This method must be implemented in a child class
+---
+fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'foo'",
+      "__stringVariationArgs": [Error: Line 3 Column 19: This method must be implemented in a child class
+---
+'foo'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4150,6 +5809,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'bar'",
+      "__stringVariationArgs": [Error: Line 3 Column 28: This method must be implemented in a child class
+---
+'bar'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4161,6 +5824,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'baz'",
+      "__stringVariationArgs": [Error: Line 3 Column 36: This method must be implemented in a child class
+---
+'baz'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4172,6 +5839,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'qux'",
+      "__stringVariationArgs": [Error: Line 3 Column 44: This method must be implemented in a child class
+---
+'qux'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4193,10 +5864,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handler wrapping parens" 3`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
+  "__stringVariationArgs": [Error: Line 4 Column 15: This method must be implemented in a child class
+---
+fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'foo'",
+      "__stringVariationArgs": [Error: Line 4 Column 19: This method must be implemented in a child class
+---
+'foo'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4208,6 +5887,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'bar'",
+      "__stringVariationArgs": [Error: Line 4 Column 27: This method must be implemented in a child class
+---
+'bar'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4219,6 +5902,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'baz'",
+      "__stringVariationArgs": [Error: Line 4 Column 36: This method must be implemented in a child class
+---
+'baz'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4230,6 +5917,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'qux'",
+      "__stringVariationArgs": [Error: Line 4 Column 44: This method must be implemented in a child class
+---
+'qux'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4251,10 +5942,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should insert param in place of fbt.sameParam if it exists" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', val1), ' and ', fbt.sameParam('name1')], 'd')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt([fbt.param('name1', val1), ' and ', fbt.sameParam('name1')], 'd')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtParamNode {
       "__nodeCode": "fbt.param('name1', val1)",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+fbt.param('name1', val1)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4266,6 +5965,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' and '",
+      "__stringVariationArgs": [Error: Line 3 Column 36: This method must be implemented in a child class
+---
+' and '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4277,6 +5980,10 @@ FbtElementNode {
     },
     FbtSameParamNode {
       "__nodeCode": "fbt.sameParam('name1')",
+      "__stringVariationArgs": [Error: Line 3 Column 46: This method must be implemented in a child class
+---
+fbt.sameParam('name1')
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4300,12 +6007,24 @@ FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', foo ? <a>
               bar
             </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt([fbt.param('name1', foo ? <a>
+              bar
+            </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtParamNode {
       "__nodeCode": "fbt.param('name1', foo ? <a>
               bar
             </a> : qux)",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+fbt.param('name1', foo ? <a>
+              bar
+            </a> : qux)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4317,6 +6036,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' blah '",
+      "__stringVariationArgs": [Error: Line 13 Column 11: This method must be implemented in a child class
+---
+' blah '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4328,6 +6051,10 @@ FbtElementNode {
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name2', qux)",
+      "__stringVariationArgs": [Error: Line 14 Column 11: This method must be implemented in a child class
+---
+fbt.param('name2', qux)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4349,10 +6076,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should maintain newlines when using string templates" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt([\\"A simple string...\\\\nwith some other stuff.\\"], 'blah')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(["A simple string...\\nwith some other stuff."], 'blah')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "\\"A simple string...\\\\nwith some other stuff.\\"",
+      "__stringVariationArgs": [Error: This method must be implemented in a child class
+---
+"A simple string...\\nwith some other stuff."
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4375,10 +6110,19 @@ exports[`Functional FBT API using string-concatenated arguments: Meta-data colle
 FbtElementNode {
   "__nodeCode": "fbt(['a', ' b ', fbt.param('name1', val1), ' c ', // comments
 ' d ', fbt.param('name2', val2), ' e '], 'a')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['a', ' b ', fbt.param('name1', val1), ' c ', // comments
+' d ', fbt.param('name2', val2), ' e '], 'a')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'a'",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+'a'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4390,6 +6134,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' b '",
+      "__stringVariationArgs": [Error: Line 4 Column 9: This method must be implemented in a child class
+---
+' b '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4401,6 +6149,10 @@ FbtElementNode {
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name1', val1)",
+      "__stringVariationArgs": [Error: Line 5 Column 9: This method must be implemented in a child class
+---
+fbt.param('name1', val1)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4412,6 +6164,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' c '",
+      "__stringVariationArgs": [Error: Line 6 Column 9: This method must be implemented in a child class
+---
+' c '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4424,6 +6180,11 @@ FbtElementNode {
     FbtTextNode {
       "__nodeCode": "// comments
 ' d '",
+      "__stringVariationArgs": [Error: Line 8 Column 9: This method must be implemented in a child class
+---
+// comments
+' d '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4435,6 +6196,10 @@ FbtElementNode {
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name2', val2)",
+      "__stringVariationArgs": [Error: Line 9 Column 9: This method must be implemented in a child class
+---
+fbt.param('name2', val2)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4446,6 +6211,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' e '",
+      "__stringVariationArgs": [Error: Line 10 Column 9: This method must be implemented in a child class
+---
+' e '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4467,10 +6236,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should maintain newlines" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A simple string... ', 'with some other stuff.'], 'blah')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['A simple string... ', 'with some other stuff.'], 'blah')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'A simple string... '",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+'A simple string... '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4482,6 +6259,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'with some other stuff.'",
+      "__stringVariationArgs": [Error: Line 4 Column 9: This method must be implemented in a child class
+---
+'with some other stuff.'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4506,10 +6287,21 @@ FbtElementNode {
   author: 'jwatson',
   project: 'Super Secret'
 })",
+  "__stringVariationArgs": [Error: Line 2 Column 3: This method must be implemented in a child class
+---
+fbt(['A string that moved files'], 'options!', {
+  author: 'jwatson',
+  project: 'Super Secret'
+})
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'A string that moved files'",
+      "__stringVariationArgs": [Error: Line 2 Column 7: This method must be implemented in a child class
+---
+'A string that moved files'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4531,10 +6323,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should allow description concatenation" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A short string'], 'With a ridiculously long description that' + ' requires concatenation')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['A short string'], 'With a ridiculously long description that' + ' requires concatenation')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'A short string'",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+'A short string'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4556,10 +6356,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should be able to nest within React nodes" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A nested string'], 'nested!')",
+  "__stringVariationArgs": [Error: Line 3 Column 21: This method must be implemented in a child class
+---
+fbt(['A nested string'], 'nested!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'A nested string'",
+      "__stringVariationArgs": [Error: Line 3 Column 25: This method must be implemented in a child class
+---
+'A nested string'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4581,10 +6389,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should be able to nest within React nodes" 2`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A nested string'], 'nested!')",
+  "__stringVariationArgs": [Error: Line 3 Column 21: This method must be implemented in a child class
+---
+fbt(['A nested string'], 'nested!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'A nested string'",
+      "__stringVariationArgs": [Error: Line 3 Column 25: This method must be implemented in a child class
+---
+'A nested string'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4606,10 +6422,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should convert simple strings" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A simple string'], \\"It's simple\\")",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['A simple string'], "It's simple")
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'A simple string'",
+      "__stringVariationArgs": [Error: Line 2 Column 15: This method must be implemented in a child class
+---
+'A simple string'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4639,10 +6463,26 @@ FbtElementNode {
   \\"photos\\": 'photos',
   \\"videos\\": 'videos'
 }), \\"!\\"], 'enums!')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(["Look!  ", fbt.enum('groups', {
+  groups: 'Groups',
+  photos: 'Photos',
+  videos: 'Videos'
+}), "  and  ", fbt.enum('groups', {
+  "groups": 'groups',
+  "photos": 'photos',
+  "videos": 'videos'
+}), "!"], 'enums!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "\\"Look!  \\"",
+      "__stringVariationArgs": [Error: This method must be implemented in a child class
+---
+"Look!  "
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4658,6 +6498,14 @@ FbtElementNode {
   photos: 'Photos',
   videos: 'Videos'
 })",
+      "__stringVariationArgs": [Error: Line 3 Column 19: This method must be implemented in a child class
+---
+fbt.enum('groups', {
+  groups: 'Groups',
+  photos: 'Photos',
+  videos: 'Videos'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4669,6 +6517,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "\\"  and  \\"",
+      "__stringVariationArgs": [Error: This method must be implemented in a child class
+---
+"  and  "
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4684,6 +6536,14 @@ FbtElementNode {
   \\"photos\\": 'photos',
   \\"videos\\": 'videos'
 })",
+      "__stringVariationArgs": [Error: Line 7 Column 21: This method must be implemented in a child class
+---
+fbt.enum('groups', {
+  "groups": 'groups',
+  "photos": 'photos',
+  "videos": 'videos'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4695,6 +6555,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "\\"!\\"",
+      "__stringVariationArgs": [Error: This method must be implemented in a child class
+---
+"!"
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4724,10 +6588,26 @@ FbtElementNode {
   photos: 'photos',
   videos: 'videos'
 }), '!'], 'enums!')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Look! ', fbt.enum('groups', {
+  groups: 'Groups',
+  photos: 'Photos',
+  videos: 'Videos'
+}), ' and ', fbt.enum('groups', {
+  groups: 'groups',
+  photos: 'photos',
+  videos: 'videos'
+}), '!'], 'enums!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Look! '",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+'Look! '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4743,6 +6623,14 @@ FbtElementNode {
   photos: 'Photos',
   videos: 'Videos'
 })",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+fbt.enum('groups', {
+  groups: 'Groups',
+  photos: 'Photos',
+  videos: 'Videos'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4754,6 +6642,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' and '",
+      "__stringVariationArgs": [Error: Line 9 Column 11: This method must be implemented in a child class
+---
+' and '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4769,6 +6661,14 @@ FbtElementNode {
   photos: 'photos',
   videos: 'videos'
 })",
+      "__stringVariationArgs": [Error: Line 10 Column 11: This method must be implemented in a child class
+---
+fbt.enum('groups', {
+  groups: 'groups',
+  photos: 'photos',
+  videos: 'videos'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4780,6 +6680,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'!'",
+      "__stringVariationArgs": [Error: Line 15 Column 11: This method must be implemented in a child class
+---
+'!'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4801,10 +6705,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should get project from docblock" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['Also simple string'], \\"It's simple\\")",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Also simple string'], "It's simple")
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Also simple string'",
+      "__stringVariationArgs": [Error: Line 2 Column 15: This method must be implemented in a child class
+---
+'Also simple string'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4834,10 +6746,26 @@ FbtElementNode {
   photos: 'photos',
   videos: 'videos'
 }), '!'], 'enums!')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Look! ', fbt.enum('groups', {
+  groups: 'Groups',
+  photos: 'Photos',
+  videos: 'Videos'
+}), ' and ', fbt.enum('groups', {
+  groups: 'groups',
+  photos: 'photos',
+  videos: 'videos'
+}), '!'], 'enums!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Look! '",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+'Look! '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4853,6 +6781,14 @@ FbtElementNode {
   photos: 'Photos',
   videos: 'Videos'
 })",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+fbt.enum('groups', {
+  groups: 'Groups',
+  photos: 'Photos',
+  videos: 'Videos'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4864,6 +6800,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' and '",
+      "__stringVariationArgs": [Error: Line 9 Column 11: This method must be implemented in a child class
+---
+' and '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4879,6 +6819,14 @@ FbtElementNode {
   photos: 'photos',
   videos: 'videos'
 })",
+      "__stringVariationArgs": [Error: Line 10 Column 11: This method must be implemented in a child class
+---
+fbt.enum('groups', {
+  groups: 'groups',
+  photos: 'photos',
+  videos: 'videos'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4890,6 +6838,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'!'",
+      "__stringVariationArgs": [Error: Line 15 Column 11: This method must be implemented in a child class
+---
+'!'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4911,10 +6863,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle enums (with array values)" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['Click to see ', fbt.enum('groups', ['groups', 'photos', 'videos'])], 'enum as an array')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Click to see ', fbt.enum('groups', ['groups', 'photos', 'videos'])], 'enum as an array')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Click to see '",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+'Click to see '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4926,6 +6886,10 @@ FbtElementNode {
     },
     FbtEnumNode {
       "__nodeCode": "fbt.enum('groups', ['groups', 'photos', 'videos'])",
+      "__stringVariationArgs": [Error: Line 3 Column 27: This method must be implemented in a child class
+---
+fbt.enum('groups', ['groups', 'photos', 'videos'])
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4951,10 +6915,22 @@ FbtElementNode {
   id2: 'photos',
   id3: 'videos'
 })], 'enum as an object')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Click to see ', fbt.enum('id1', {
+  id1: 'groups',
+  id2: 'photos',
+  id3: 'videos'
+})], 'enum as an object')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Click to see '",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+'Click to see '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4970,6 +6946,14 @@ FbtElementNode {
   id2: 'photos',
   id3: 'videos'
 })",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+fbt.enum('id1', {
+  id1: 'groups',
+  id2: 'photos',
+  id3: 'videos'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -4991,10 +6975,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle enums with more text after" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['Hello, ', fbt.enum('groups', ['groups', 'photos', 'videos']), '!'], 'enums!')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Hello, ', fbt.enum('groups', ['groups', 'photos', 'videos']), '!'], 'enums!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Hello, '",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+'Hello, '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5006,6 +6998,10 @@ FbtElementNode {
     },
     FbtEnumNode {
       "__nodeCode": "fbt.enum('groups', ['groups', 'photos', 'videos'])",
+      "__stringVariationArgs": [Error: Line 3 Column 21: This method must be implemented in a child class
+---
+fbt.enum('groups', ['groups', 'photos', 'videos'])
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5017,6 +7013,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'!'",
+      "__stringVariationArgs": [Error: Line 3 Column 74: This method must be implemented in a child class
+---
+'!'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5043,10 +7043,23 @@ FbtElementNode {
   showCount: 'ifMany',
   many: 'likes'
 })], 'plurals')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['There ', fbt.plural('is ', count, {
+  many: 'are '
+}), fbt.plural('a like', count, {
+  showCount: 'ifMany',
+  many: 'likes'
+})], 'plurals')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'There '",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+'There '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5060,6 +7073,12 @@ FbtElementNode {
       "__nodeCode": "fbt.plural('is ', count, {
   many: 'are '
 })",
+      "__stringVariationArgs": [Error: Line 4 Column 9: This method must be implemented in a child class
+---
+fbt.plural('is ', count, {
+  many: 'are '
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5074,6 +7093,13 @@ FbtElementNode {
   showCount: 'ifMany',
   many: 'likes'
 })",
+      "__stringVariationArgs": [Error: Line 5 Column 9: This method must be implemented in a child class
+---
+fbt.plural('a like', count, {
+  showCount: 'ifMany',
+  many: 'likes'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5095,10 +7121,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle names" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['You just friended ', fbt.name('name', personname, gender)], 'names')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['You just friended ', fbt.name('name', personname, gender)], 'names')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'You just friended '",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+'You just friended '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5110,6 +7144,10 @@ FbtElementNode {
     },
     FbtNameNode {
       "__nodeCode": "fbt.name('name', personname, gender)",
+      "__stringVariationArgs": [Error: Line 3 Column 32: This method must be implemented in a child class
+---
+fbt.name('name', personname, gender)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5131,10 +7169,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle object pronoun" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['I know ', fbt.pronoun('object', gender), '.'], 'object pronoun')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['I know ', fbt.pronoun('object', gender), '.'], 'object pronoun')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'I know '",
+      "__stringVariationArgs": [Error: Line 3 Column 11: This method must be implemented in a child class
+---
+'I know '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5146,6 +7192,10 @@ FbtElementNode {
     },
     FbtPronounNode {
       "__nodeCode": "fbt.pronoun('object', gender)",
+      "__stringVariationArgs": [Error: Line 4 Column 13: This method must be implemented in a child class
+---
+fbt.pronoun('object', gender)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5157,6 +7207,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'.'",
+      "__stringVariationArgs": [Error: Line 5 Column 13: This method must be implemented in a child class
+---
+'.'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5178,10 +7232,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle params" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A parameterized message to ', fbt.param('personName', truthy ? ifTrue : ifFalse)], 'Moar params')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['A parameterized message to ', fbt.param('personName', truthy ? ifTrue : ifFalse)], 'Moar params')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'A parameterized message to '",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+'A parameterized message to '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5193,6 +7255,10 @@ FbtElementNode {
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('personName', truthy ? ifTrue : ifFalse)",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+fbt.param('personName', truthy ? ifTrue : ifFalse)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5220,6 +7286,16 @@ FbtElementNode {
   name: 'dog_token',
   showCount: 'yes'
 })], 'plurals')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt([fbt.plural('cat', catCount, {
+  name: 'cat_token',
+  showCount: 'yes'
+}), ' and ', fbt.plural('dog', dogCount, {
+  name: 'dog_token',
+  showCount: 'yes'
+})], 'plurals')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtPluralNode {
@@ -5227,6 +7303,13 @@ FbtElementNode {
   name: 'cat_token',
   showCount: 'yes'
 })",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+fbt.plural('cat', catCount, {
+  name: 'cat_token',
+  showCount: 'yes'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5238,6 +7321,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' and '",
+      "__stringVariationArgs": [Error: Line 4 Column 9: This method must be implemented in a child class
+---
+' and '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5252,6 +7339,13 @@ FbtElementNode {
   name: 'dog_token',
   showCount: 'yes'
 })",
+      "__stringVariationArgs": [Error: Line 5 Column 9: This method must be implemented in a child class
+---
+fbt.plural('dog', dogCount, {
+  name: 'dog_token',
+  showCount: 'yes'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5279,10 +7373,24 @@ FbtElementNode {
   showCount: 'ifMany',
   many: 'likes'
 })], 'plurals')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['There ', fbt.plural('was ', count, {
+  showCount: 'no',
+  many: 'were '
+}), fbt.plural('a like', count, {
+  showCount: 'ifMany',
+  many: 'likes'
+})], 'plurals')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'There '",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+'There '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5297,6 +7405,13 @@ FbtElementNode {
   showCount: 'no',
   many: 'were '
 })",
+      "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
+---
+fbt.plural('was ', count, {
+  showCount: 'no',
+  many: 'were '
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5311,6 +7426,13 @@ FbtElementNode {
   showCount: 'ifMany',
   many: 'likes'
 })",
+      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
+---
+fbt.plural('a like', count, {
+  showCount: 'ifMany',
+  many: 'likes'
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5332,10 +7454,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle possessive pronoun" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['It is ', fbt.pronoun('possessive', gender), ' birthday.'], 'possessive pronoun')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['It is ', fbt.pronoun('possessive', gender), ' birthday.'], 'possessive pronoun')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'It is '",
+      "__stringVariationArgs": [Error: Line 3 Column 11: This method must be implemented in a child class
+---
+'It is '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5347,6 +7477,10 @@ FbtElementNode {
     },
     FbtPronounNode {
       "__nodeCode": "fbt.pronoun('possessive', gender)",
+      "__stringVariationArgs": [Error: Line 3 Column 22: This method must be implemented in a child class
+---
+fbt.pronoun('possessive', gender)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5358,6 +7492,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' birthday.'",
+      "__stringVariationArgs": [Error: Line 3 Column 58: This method must be implemented in a child class
+---
+' birthday.'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5384,6 +7522,15 @@ FbtElementNode {
 }), ' wished ', fbt.pronoun('reflexive', gender, {
   human: true
 }), ' a happy birthday.'], 'subject+reflexive pronouns')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt([fbt.pronoun('subject', gender, {
+  capitalize: true,
+  human: true
+}), ' wished ', fbt.pronoun('reflexive', gender, {
+  human: true
+}), ' a happy birthday.'], 'subject+reflexive pronouns')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtPronounNode {
@@ -5391,6 +7538,13 @@ FbtElementNode {
   capitalize: true,
   human: true
 })",
+      "__stringVariationArgs": [Error: Line 3 Column 11: This method must be implemented in a child class
+---
+fbt.pronoun('subject', gender, {
+  capitalize: true,
+  human: true
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5402,6 +7556,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' wished '",
+      "__stringVariationArgs": [Error: Line 4 Column 13: This method must be implemented in a child class
+---
+' wished '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5415,6 +7573,12 @@ FbtElementNode {
       "__nodeCode": "fbt.pronoun('reflexive', gender, {
   human: true
 })",
+      "__stringVariationArgs": [Error: Line 5 Column 13: This method must be implemented in a child class
+---
+fbt.pronoun('reflexive', gender, {
+  human: true
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5426,6 +7590,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' a happy birthday.'",
+      "__stringVariationArgs": [Error: Line 6 Column 13: This method must be implemented in a child class
+---
+' a happy birthday.'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5449,10 +7617,20 @@ FbtElementNode {
   "__nodeCode": "fbt(['You have ', fbt.param('count', val, {
   number: true
 }), ' likes. Comment on it to get more than ', fbt.sameParam('count'), ' likes'], 'test variations + sameParam')",
+  "__stringVariationArgs": [Error: Line 3 Column 7: This method must be implemented in a child class
+---
+fbt(['You have ', fbt.param('count', val, {
+  number: true
+}), ' likes. Comment on it to get more than ', fbt.sameParam('count'), ' likes'], 'test variations + sameParam')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'You have '",
+      "__stringVariationArgs": [Error: Line 4 Column 9: This method must be implemented in a child class
+---
+'You have '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5466,6 +7644,12 @@ FbtElementNode {
       "__nodeCode": "fbt.param('count', val, {
   number: true
 })",
+      "__stringVariationArgs": [Error: Line 5 Column 9: This method must be implemented in a child class
+---
+fbt.param('count', val, {
+  number: true
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5477,6 +7661,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' likes. Comment on it to get more than '",
+      "__stringVariationArgs": [Error: Line 6 Column 9: This method must be implemented in a child class
+---
+' likes. Comment on it to get more than '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5488,6 +7676,10 @@ FbtElementNode {
     },
     FbtSameParamNode {
       "__nodeCode": "fbt.sameParam('count')",
+      "__stringVariationArgs": [Error: Line 7 Column 9: This method must be implemented in a child class
+---
+fbt.sameParam('count')
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5499,6 +7691,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' likes'",
+      "__stringVariationArgs": [Error: Line 8 Column 9: This method must be implemented in a child class
+---
+' likes'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5522,10 +7718,20 @@ FbtElementNode {
   "__nodeCode": "fbt(['Click to see ', fbt.param('count', c, {
   number: true
 }), ' links'], 'variations!')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['Click to see ', fbt.param('count', c, {
+  number: true
+}), ' links'], 'variations!')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'Click to see '",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+'Click to see '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5539,6 +7745,12 @@ FbtElementNode {
       "__nodeCode": "fbt.param('count', c, {
   number: true
 })",
+      "__stringVariationArgs": [Error: Line 3 Column 27: This method must be implemented in a child class
+---
+fbt.param('count', c, {
+  number: true
+})
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5550,6 +7762,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' links'",
+      "__stringVariationArgs": [Error: Line 3 Column 67: This method must be implemented in a child class
+---
+' links'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5571,10 +7787,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should handler wrapping parens" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'foo'",
+      "__stringVariationArgs": [Error: Line 2 Column 15: This method must be implemented in a child class
+---
+'foo'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5586,6 +7810,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'bar'",
+      "__stringVariationArgs": [Error: Line 2 Column 23: This method must be implemented in a child class
+---
+'bar'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5597,6 +7825,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'baz'",
+      "__stringVariationArgs": [Error: Line 2 Column 31: This method must be implemented in a child class
+---
+'baz'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5608,6 +7840,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'qux'",
+      "__stringVariationArgs": [Error: Line 2 Column 39: This method must be implemented in a child class
+---
+'qux'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5629,10 +7865,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should handler wrapping parens" 2`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
+  "__stringVariationArgs": [Error: Line 3 Column 15: This method must be implemented in a child class
+---
+fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'foo'",
+      "__stringVariationArgs": [Error: Line 3 Column 19: This method must be implemented in a child class
+---
+'foo'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5644,6 +7888,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'bar'",
+      "__stringVariationArgs": [Error: Line 3 Column 28: This method must be implemented in a child class
+---
+'bar'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5655,6 +7903,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'baz'",
+      "__stringVariationArgs": [Error: Line 3 Column 36: This method must be implemented in a child class
+---
+'baz'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5666,6 +7918,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'qux'",
+      "__stringVariationArgs": [Error: Line 3 Column 44: This method must be implemented in a child class
+---
+'qux'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5687,10 +7943,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should handler wrapping parens" 3`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
+  "__stringVariationArgs": [Error: Line 4 Column 15: This method must be implemented in a child class
+---
+fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'foo'",
+      "__stringVariationArgs": [Error: Line 4 Column 19: This method must be implemented in a child class
+---
+'foo'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5702,6 +7966,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'bar'",
+      "__stringVariationArgs": [Error: Line 4 Column 27: This method must be implemented in a child class
+---
+'bar'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5713,6 +7981,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'baz'",
+      "__stringVariationArgs": [Error: Line 4 Column 36: This method must be implemented in a child class
+---
+'baz'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5724,6 +7996,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'qux'",
+      "__stringVariationArgs": [Error: Line 4 Column 44: This method must be implemented in a child class
+---
+'qux'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5745,10 +8021,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should insert param in place of fbt.sameParam if it exists" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', val1), ' and ', fbt.sameParam('name1')], 'd')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt([fbt.param('name1', val1), ' and ', fbt.sameParam('name1')], 'd')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtParamNode {
       "__nodeCode": "fbt.param('name1', val1)",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+fbt.param('name1', val1)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5760,6 +8044,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' and '",
+      "__stringVariationArgs": [Error: Line 3 Column 36: This method must be implemented in a child class
+---
+' and '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5771,6 +8059,10 @@ FbtElementNode {
     },
     FbtSameParamNode {
       "__nodeCode": "fbt.sameParam('name1')",
+      "__stringVariationArgs": [Error: Line 3 Column 46: This method must be implemented in a child class
+---
+fbt.sameParam('name1')
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5794,12 +8086,24 @@ FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', foo ? <a>
               bar
             </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt([fbt.param('name1', foo ? <a>
+              bar
+            </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtParamNode {
       "__nodeCode": "fbt.param('name1', foo ? <a>
               bar
             </a> : qux)",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+fbt.param('name1', foo ? <a>
+              bar
+            </a> : qux)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5811,6 +8115,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' blah '",
+      "__stringVariationArgs": [Error: Line 13 Column 11: This method must be implemented in a child class
+---
+' blah '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5822,6 +8130,10 @@ FbtElementNode {
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name2', qux)",
+      "__stringVariationArgs": [Error: Line 14 Column 11: This method must be implemented in a child class
+---
+fbt.param('name2', qux)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5843,10 +8155,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should maintain newlines when using string templates" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt([\\"A simple string...\\\\nwith some other stuff.\\"], 'blah')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(["A simple string...\\nwith some other stuff."], 'blah')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "\\"A simple string...\\\\nwith some other stuff.\\"",
+      "__stringVariationArgs": [Error: This method must be implemented in a child class
+---
+"A simple string...\\nwith some other stuff."
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5869,10 +8189,19 @@ exports[`Functional FBT API using string-concatenated arguments: Meta-data colle
 FbtElementNode {
   "__nodeCode": "fbt(['a', ' b ', fbt.param('name1', val1), ' c ', // comments
 ' d ', fbt.param('name2', val2), ' e '], 'a')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['a', ' b ', fbt.param('name1', val1), ' c ', // comments
+' d ', fbt.param('name2', val2), ' e '], 'a')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'a'",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+'a'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5884,6 +8213,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' b '",
+      "__stringVariationArgs": [Error: Line 4 Column 9: This method must be implemented in a child class
+---
+' b '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5895,6 +8228,10 @@ FbtElementNode {
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name1', val1)",
+      "__stringVariationArgs": [Error: Line 5 Column 9: This method must be implemented in a child class
+---
+fbt.param('name1', val1)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5906,6 +8243,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' c '",
+      "__stringVariationArgs": [Error: Line 6 Column 9: This method must be implemented in a child class
+---
+' c '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5918,6 +8259,11 @@ FbtElementNode {
     FbtTextNode {
       "__nodeCode": "// comments
 ' d '",
+      "__stringVariationArgs": [Error: Line 8 Column 9: This method must be implemented in a child class
+---
+// comments
+' d '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5929,6 +8275,10 @@ FbtElementNode {
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('name2', val2)",
+      "__stringVariationArgs": [Error: Line 9 Column 9: This method must be implemented in a child class
+---
+fbt.param('name2', val2)
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5940,6 +8290,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' e '",
+      "__stringVariationArgs": [Error: Line 10 Column 9: This method must be implemented in a child class
+---
+' e '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5961,10 +8315,18 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should maintain newlines" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A simple string... ', 'with some other stuff.'], 'blah')",
+  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+---
+fbt(['A simple string... ', 'with some other stuff.'], 'blah')
+---],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
       "__nodeCode": "'A simple string... '",
+      "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
+---
+'A simple string... '
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
@@ -5976,6 +8338,10 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "'with some other stuff.'",
+      "__stringVariationArgs": [Error: Line 4 Column 9: This method must be implemented in a child class
+---
+'with some other stuff.'
+---],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
