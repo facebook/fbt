@@ -3619,15 +3619,30 @@ FbtElementNode {
   "__stringVariationArgs": Array [
     EnumStringVariationArg {
       "__nodeCode": "'groups'",
+      "candidateValues": Array [
+        "groups",
+        "photos",
+        "videos",
+      ],
+      "fbtNode": "FbtEnumNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=StringLiteral]",
       "value": undefined,
     },
     EnumStringVariationArg {
       "__nodeCode": "'groups'",
+      "candidateValues": Array [
+        "groups",
+        "photos",
+        "videos",
+      ],
+      "fbtNode": "FbtEnumNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=StringLiteral]",
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -3640,7 +3655,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtEnumNode {
       "__nodeCode": "fbt.enum('groups', {
@@ -3651,6 +3666,13 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         EnumStringVariationArg {
           "__nodeCode": "'groups'",
+          "candidateValues": Array [
+            "groups",
+            "photos",
+            "videos",
+          ],
+          "fbtNode": "FbtEnumNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=StringLiteral]",
           "value": undefined,
         },
@@ -3671,7 +3693,7 @@ FbtElementNode {
         },
         "value": "BabelNode[type=StringLiteral]",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' and '",
@@ -3683,7 +3705,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtEnumNode {
       "__nodeCode": "fbt.enum('groups', {
@@ -3694,6 +3716,13 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         EnumStringVariationArg {
           "__nodeCode": "'groups'",
+          "candidateValues": Array [
+            "groups",
+            "photos",
+            "videos",
+          ],
+          "fbtNode": "FbtEnumNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=StringLiteral]",
           "value": undefined,
         },
@@ -3714,7 +3743,7 @@ FbtElementNode {
         },
         "value": "BabelNode[type=StringLiteral]",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "'!'",
@@ -3726,7 +3755,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -3742,6 +3771,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -4011,15 +4041,30 @@ FbtElementNode {
   "__stringVariationArgs": Array [
     EnumStringVariationArg {
       "__nodeCode": "'groups'",
+      "candidateValues": Array [
+        "groups",
+        "photos",
+        "videos",
+      ],
+      "fbtNode": "FbtEnumNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=StringLiteral]",
       "value": undefined,
     },
     EnumStringVariationArg {
       "__nodeCode": "'groups'",
+      "candidateValues": Array [
+        "groups",
+        "photos",
+        "videos",
+      ],
+      "fbtNode": "FbtEnumNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=StringLiteral]",
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -4032,7 +4077,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtEnumNode {
       "__nodeCode": "fbt.enum('groups', {
@@ -4043,6 +4088,13 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         EnumStringVariationArg {
           "__nodeCode": "'groups'",
+          "candidateValues": Array [
+            "groups",
+            "photos",
+            "videos",
+          ],
+          "fbtNode": "FbtEnumNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=StringLiteral]",
           "value": undefined,
         },
@@ -4063,7 +4115,7 @@ FbtElementNode {
         },
         "value": "BabelNode[type=StringLiteral]",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' and '",
@@ -4075,7 +4127,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtEnumNode {
       "__nodeCode": "fbt.enum('groups', {
@@ -4086,6 +4138,13 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         EnumStringVariationArg {
           "__nodeCode": "'groups'",
+          "candidateValues": Array [
+            "groups",
+            "photos",
+            "videos",
+          ],
+          "fbtNode": "FbtEnumNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=StringLiteral]",
           "value": undefined,
         },
@@ -4106,7 +4165,7 @@ FbtElementNode {
         },
         "value": "BabelNode[type=StringLiteral]",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "'!'",
@@ -4118,7 +4177,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -4134,6 +4193,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -4143,10 +4203,18 @@ FbtElementNode {
   "__stringVariationArgs": Array [
     EnumStringVariationArg {
       "__nodeCode": "'groups'",
+      "candidateValues": Array [
+        "groups",
+        "photos",
+        "videos",
+      ],
+      "fbtNode": "FbtEnumNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=StringLiteral]",
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -4159,13 +4227,20 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtEnumNode {
       "__nodeCode": "fbt.enum('groups', ['groups', 'photos', 'videos'])",
       "__stringVariationArgs": Array [
         EnumStringVariationArg {
           "__nodeCode": "'groups'",
+          "candidateValues": Array [
+            "groups",
+            "photos",
+            "videos",
+          ],
+          "fbtNode": "FbtEnumNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=StringLiteral]",
           "value": undefined,
         },
@@ -4186,7 +4261,7 @@ FbtElementNode {
         },
         "value": "BabelNode[type=StringLiteral]",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -4202,6 +4277,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -4215,10 +4291,18 @@ FbtElementNode {
   "__stringVariationArgs": Array [
     EnumStringVariationArg {
       "__nodeCode": "'id1'",
+      "candidateValues": Array [
+        "id1",
+        "id2",
+        "id3",
+      ],
+      "fbtNode": "FbtEnumNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=StringLiteral]",
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -4231,7 +4315,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtEnumNode {
       "__nodeCode": "fbt.enum('id1', {
@@ -4242,6 +4326,13 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         EnumStringVariationArg {
           "__nodeCode": "'id1'",
+          "candidateValues": Array [
+            "id1",
+            "id2",
+            "id3",
+          ],
+          "fbtNode": "FbtEnumNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=StringLiteral]",
           "value": undefined,
         },
@@ -4262,7 +4353,7 @@ FbtElementNode {
         },
         "value": "BabelNode[type=StringLiteral]",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -4278,6 +4369,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -4287,10 +4379,18 @@ FbtElementNode {
   "__stringVariationArgs": Array [
     EnumStringVariationArg {
       "__nodeCode": "'groups'",
+      "candidateValues": Array [
+        "groups",
+        "photos",
+        "videos",
+      ],
+      "fbtNode": "FbtEnumNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=StringLiteral]",
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -4303,13 +4403,20 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtEnumNode {
       "__nodeCode": "fbt.enum('groups', ['groups', 'photos', 'videos'])",
       "__stringVariationArgs": Array [
         EnumStringVariationArg {
           "__nodeCode": "'groups'",
+          "candidateValues": Array [
+            "groups",
+            "photos",
+            "videos",
+          ],
+          "fbtNode": "FbtEnumNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=StringLiteral]",
           "value": undefined,
         },
@@ -4330,7 +4437,7 @@ FbtElementNode {
         },
         "value": "BabelNode[type=StringLiteral]",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "'!'",
@@ -4342,7 +4449,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -4358,6 +4465,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -4377,6 +4485,7 @@ FbtElementNode {
         "_1",
       ],
       "fbtNode": "FbtPluralNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
@@ -4387,6 +4496,7 @@ FbtElementNode {
         "_1",
       ],
       "fbtNode": "FbtPluralNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
@@ -4418,6 +4528,7 @@ FbtElementNode {
             "_1",
           ],
           "fbtNode": "FbtPluralNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -4452,6 +4563,7 @@ FbtElementNode {
             "_1",
           ],
           "fbtNode": "FbtPluralNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -4570,6 +4682,7 @@ FbtElementNode {
         "*",
       ],
       "fbtNode": "FbtPronounNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
@@ -4601,6 +4714,7 @@ FbtElementNode {
             "*",
           ],
           "fbtNode": "FbtPronounNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -4724,6 +4838,7 @@ FbtElementNode {
         "_1",
       ],
       "fbtNode": "FbtPluralNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
@@ -4734,6 +4849,7 @@ FbtElementNode {
         "_1",
       ],
       "fbtNode": "FbtPluralNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
@@ -4754,6 +4870,7 @@ FbtElementNode {
             "_1",
           ],
           "fbtNode": "FbtPluralNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -4800,6 +4917,7 @@ FbtElementNode {
             "_1",
           ],
           "fbtNode": "FbtPluralNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -4856,6 +4974,7 @@ FbtElementNode {
         "_1",
       ],
       "fbtNode": "FbtPluralNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
@@ -4866,6 +4985,7 @@ FbtElementNode {
         "_1",
       ],
       "fbtNode": "FbtPluralNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
@@ -4898,6 +5018,7 @@ FbtElementNode {
             "_1",
           ],
           "fbtNode": "FbtPluralNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -4932,6 +5053,7 @@ FbtElementNode {
             "_1",
           ],
           "fbtNode": "FbtPluralNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -4983,6 +5105,7 @@ FbtElementNode {
         2,
       ],
       "fbtNode": "FbtPronounNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
@@ -5013,6 +5136,7 @@ FbtElementNode {
             2,
           ],
           "fbtNode": "FbtPronounNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -5080,6 +5204,7 @@ FbtElementNode {
         "*",
       ],
       "fbtNode": "FbtPronounNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
@@ -5091,6 +5216,7 @@ FbtElementNode {
         "*",
       ],
       "fbtNode": "FbtPronounNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
@@ -5112,6 +5238,7 @@ FbtElementNode {
             "*",
           ],
           "fbtNode": "FbtPronounNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -5157,6 +5284,7 @@ FbtElementNode {
             "*",
           ],
           "fbtNode": "FbtPronounNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -9696,15 +9824,30 @@ FbtElementNode {
   "__stringVariationArgs": Array [
     EnumStringVariationArg {
       "__nodeCode": "'groups'",
+      "candidateValues": Array [
+        "groups",
+        "photos",
+        "videos",
+      ],
+      "fbtNode": "FbtEnumNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=StringLiteral]",
       "value": undefined,
     },
     EnumStringVariationArg {
       "__nodeCode": "'groups'",
+      "candidateValues": Array [
+        "groups",
+        "photos",
+        "videos",
+      ],
+      "fbtNode": "FbtEnumNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=StringLiteral]",
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -9717,7 +9860,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtEnumNode {
       "__nodeCode": "fbt.enum('groups', {
@@ -9728,6 +9871,13 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         EnumStringVariationArg {
           "__nodeCode": "'groups'",
+          "candidateValues": Array [
+            "groups",
+            "photos",
+            "videos",
+          ],
+          "fbtNode": "FbtEnumNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=StringLiteral]",
           "value": undefined,
         },
@@ -9748,7 +9898,7 @@ FbtElementNode {
         },
         "value": "BabelNode[type=StringLiteral]",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "\\"  and  \\"",
@@ -9760,7 +9910,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtEnumNode {
       "__nodeCode": "fbt.enum('groups', {
@@ -9771,6 +9921,13 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         EnumStringVariationArg {
           "__nodeCode": "'groups'",
+          "candidateValues": Array [
+            "groups",
+            "photos",
+            "videos",
+          ],
+          "fbtNode": "FbtEnumNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=StringLiteral]",
           "value": undefined,
         },
@@ -9791,7 +9948,7 @@ FbtElementNode {
         },
         "value": "BabelNode[type=StringLiteral]",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "\\"!\\"",
@@ -9803,7 +9960,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -9819,6 +9976,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -9836,15 +9994,30 @@ FbtElementNode {
   "__stringVariationArgs": Array [
     EnumStringVariationArg {
       "__nodeCode": "'groups'",
+      "candidateValues": Array [
+        "groups",
+        "photos",
+        "videos",
+      ],
+      "fbtNode": "FbtEnumNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=StringLiteral]",
       "value": undefined,
     },
     EnumStringVariationArg {
       "__nodeCode": "'groups'",
+      "candidateValues": Array [
+        "groups",
+        "photos",
+        "videos",
+      ],
+      "fbtNode": "FbtEnumNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=StringLiteral]",
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -9857,7 +10030,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtEnumNode {
       "__nodeCode": "fbt.enum('groups', {
@@ -9868,6 +10041,13 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         EnumStringVariationArg {
           "__nodeCode": "'groups'",
+          "candidateValues": Array [
+            "groups",
+            "photos",
+            "videos",
+          ],
+          "fbtNode": "FbtEnumNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=StringLiteral]",
           "value": undefined,
         },
@@ -9888,7 +10068,7 @@ FbtElementNode {
         },
         "value": "BabelNode[type=StringLiteral]",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' and '",
@@ -9900,7 +10080,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtEnumNode {
       "__nodeCode": "fbt.enum('groups', {
@@ -9911,6 +10091,13 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         EnumStringVariationArg {
           "__nodeCode": "'groups'",
+          "candidateValues": Array [
+            "groups",
+            "photos",
+            "videos",
+          ],
+          "fbtNode": "FbtEnumNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=StringLiteral]",
           "value": undefined,
         },
@@ -9931,7 +10118,7 @@ FbtElementNode {
         },
         "value": "BabelNode[type=StringLiteral]",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "'!'",
@@ -9943,7 +10130,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -9959,6 +10146,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -10013,15 +10201,30 @@ FbtElementNode {
   "__stringVariationArgs": Array [
     EnumStringVariationArg {
       "__nodeCode": "'groups'",
+      "candidateValues": Array [
+        "groups",
+        "photos",
+        "videos",
+      ],
+      "fbtNode": "FbtEnumNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=StringLiteral]",
       "value": undefined,
     },
     EnumStringVariationArg {
       "__nodeCode": "'groups'",
+      "candidateValues": Array [
+        "groups",
+        "photos",
+        "videos",
+      ],
+      "fbtNode": "FbtEnumNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=StringLiteral]",
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -10034,7 +10237,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtEnumNode {
       "__nodeCode": "fbt.enum('groups', {
@@ -10045,6 +10248,13 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         EnumStringVariationArg {
           "__nodeCode": "'groups'",
+          "candidateValues": Array [
+            "groups",
+            "photos",
+            "videos",
+          ],
+          "fbtNode": "FbtEnumNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=StringLiteral]",
           "value": undefined,
         },
@@ -10065,7 +10275,7 @@ FbtElementNode {
         },
         "value": "BabelNode[type=StringLiteral]",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' and '",
@@ -10077,7 +10287,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtEnumNode {
       "__nodeCode": "fbt.enum('groups', {
@@ -10088,6 +10298,13 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         EnumStringVariationArg {
           "__nodeCode": "'groups'",
+          "candidateValues": Array [
+            "groups",
+            "photos",
+            "videos",
+          ],
+          "fbtNode": "FbtEnumNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=StringLiteral]",
           "value": undefined,
         },
@@ -10108,7 +10325,7 @@ FbtElementNode {
         },
         "value": "BabelNode[type=StringLiteral]",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "'!'",
@@ -10120,7 +10337,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -10136,6 +10353,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -10145,10 +10363,18 @@ FbtElementNode {
   "__stringVariationArgs": Array [
     EnumStringVariationArg {
       "__nodeCode": "'groups'",
+      "candidateValues": Array [
+        "groups",
+        "photos",
+        "videos",
+      ],
+      "fbtNode": "FbtEnumNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=StringLiteral]",
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -10161,13 +10387,20 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtEnumNode {
       "__nodeCode": "fbt.enum('groups', ['groups', 'photos', 'videos'])",
       "__stringVariationArgs": Array [
         EnumStringVariationArg {
           "__nodeCode": "'groups'",
+          "candidateValues": Array [
+            "groups",
+            "photos",
+            "videos",
+          ],
+          "fbtNode": "FbtEnumNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=StringLiteral]",
           "value": undefined,
         },
@@ -10188,7 +10421,7 @@ FbtElementNode {
         },
         "value": "BabelNode[type=StringLiteral]",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -10204,6 +10437,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -10217,10 +10451,18 @@ FbtElementNode {
   "__stringVariationArgs": Array [
     EnumStringVariationArg {
       "__nodeCode": "'id1'",
+      "candidateValues": Array [
+        "id1",
+        "id2",
+        "id3",
+      ],
+      "fbtNode": "FbtEnumNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=StringLiteral]",
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -10233,7 +10475,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtEnumNode {
       "__nodeCode": "fbt.enum('id1', {
@@ -10244,6 +10486,13 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         EnumStringVariationArg {
           "__nodeCode": "'id1'",
+          "candidateValues": Array [
+            "id1",
+            "id2",
+            "id3",
+          ],
+          "fbtNode": "FbtEnumNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=StringLiteral]",
           "value": undefined,
         },
@@ -10264,7 +10513,7 @@ FbtElementNode {
         },
         "value": "BabelNode[type=StringLiteral]",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -10280,6 +10529,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -10289,10 +10539,18 @@ FbtElementNode {
   "__stringVariationArgs": Array [
     EnumStringVariationArg {
       "__nodeCode": "'groups'",
+      "candidateValues": Array [
+        "groups",
+        "photos",
+        "videos",
+      ],
+      "fbtNode": "FbtEnumNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=StringLiteral]",
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -10305,13 +10563,20 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtEnumNode {
       "__nodeCode": "fbt.enum('groups', ['groups', 'photos', 'videos'])",
       "__stringVariationArgs": Array [
         EnumStringVariationArg {
           "__nodeCode": "'groups'",
+          "candidateValues": Array [
+            "groups",
+            "photos",
+            "videos",
+          ],
+          "fbtNode": "FbtEnumNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=StringLiteral]",
           "value": undefined,
         },
@@ -10332,7 +10597,7 @@ FbtElementNode {
         },
         "value": "BabelNode[type=StringLiteral]",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "'!'",
@@ -10344,7 +10609,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -10360,6 +10625,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -10379,6 +10645,7 @@ FbtElementNode {
         "_1",
       ],
       "fbtNode": "FbtPluralNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
@@ -10389,6 +10656,7 @@ FbtElementNode {
         "_1",
       ],
       "fbtNode": "FbtPluralNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
@@ -10420,6 +10688,7 @@ FbtElementNode {
             "_1",
           ],
           "fbtNode": "FbtPluralNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -10454,6 +10723,7 @@ FbtElementNode {
             "_1",
           ],
           "fbtNode": "FbtPluralNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -10572,6 +10842,7 @@ FbtElementNode {
         "*",
       ],
       "fbtNode": "FbtPronounNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
@@ -10603,6 +10874,7 @@ FbtElementNode {
             "*",
           ],
           "fbtNode": "FbtPronounNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -10726,6 +10998,7 @@ FbtElementNode {
         "_1",
       ],
       "fbtNode": "FbtPluralNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
@@ -10736,6 +11009,7 @@ FbtElementNode {
         "_1",
       ],
       "fbtNode": "FbtPluralNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
@@ -10756,6 +11030,7 @@ FbtElementNode {
             "_1",
           ],
           "fbtNode": "FbtPluralNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -10802,6 +11077,7 @@ FbtElementNode {
             "_1",
           ],
           "fbtNode": "FbtPluralNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -10858,6 +11134,7 @@ FbtElementNode {
         "_1",
       ],
       "fbtNode": "FbtPluralNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
@@ -10868,6 +11145,7 @@ FbtElementNode {
         "_1",
       ],
       "fbtNode": "FbtPluralNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
@@ -10900,6 +11178,7 @@ FbtElementNode {
             "_1",
           ],
           "fbtNode": "FbtPluralNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -10934,6 +11213,7 @@ FbtElementNode {
             "_1",
           ],
           "fbtNode": "FbtPluralNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -10985,6 +11265,7 @@ FbtElementNode {
         2,
       ],
       "fbtNode": "FbtPronounNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
@@ -11015,6 +11296,7 @@ FbtElementNode {
             2,
           ],
           "fbtNode": "FbtPronounNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -11082,6 +11364,7 @@ FbtElementNode {
         "*",
       ],
       "fbtNode": "FbtPronounNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
@@ -11093,6 +11376,7 @@ FbtElementNode {
         "*",
       ],
       "fbtNode": "FbtPronounNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
@@ -11114,6 +11398,7 @@ FbtElementNode {
             "*",
           ],
           "fbtNode": "FbtPronounNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -11159,6 +11444,7 @@ FbtElementNode {
             "*",
           ],
           "fbtNode": "FbtPronounNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },

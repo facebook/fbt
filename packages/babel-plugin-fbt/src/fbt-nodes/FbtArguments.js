@@ -158,23 +158,34 @@ class StringVariationArg /*:: <Value, B: ?BabelNode = BabelNode> */
    */
   +value: ?Value;
 
+  /**
+   * Given a list of SV arguments, some of them can be omitted because they're "redundant".
+   * Note: a SV argument cam be omitted because another one of the same type and same BabelNode
+   * source code expression already exist in the list of SV arguments.
+   * Set this property to `true` if that's the case.
+   */
+  +isCollapsible: boolean;
+
   constructor(
     fbtNode /*: AnyFbtNode */,
     node /*: B */,
     candidateValues /*: $ReadOnlyArray<Value> */,
     value /*: ?Value */,
+    isCollapsible: boolean = false,
   ) {
     super(fbtNode, node);
     this.candidateValues = candidateValues;
     this.value = value;
+    this.isCollapsible = isCollapsible;
   }
 
-  cloneWithValue(value /*: Value */) /*: this */ {
+  cloneWithValue(value: Value, isCollapsible: boolean) /*: this */ {
     return new this.constructor(
       this.fbtNode,
       this.node,
       this.candidateValues,
       value,
+      isCollapsible,
     );
   }
 }

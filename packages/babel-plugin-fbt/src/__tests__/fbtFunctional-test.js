@@ -380,7 +380,6 @@ const generalTestData = {
   },
 
   'should handle enums (with array values)': {
-    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'Click to see ' + fbt.enum('groups', ['groups', 'photos', 'videos']),
@@ -424,7 +423,6 @@ const generalTestData = {
   },
 
   'should handle enums (with value map)': {
-    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'Click to see ' +
@@ -910,7 +908,6 @@ const generalTestData = {
   },
 
   'should handle enums with more text after': {
-    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'Hello, ' + fbt.enum('groups', ['groups', 'photos', 'videos']) + '!',
@@ -954,7 +951,6 @@ const generalTestData = {
   },
 
   'should handle duplicate enums': {
-    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'Look! ' +
@@ -1267,7 +1263,6 @@ with some other stuff.\`
   },
 
   'should deduplicate branches when fbt.enum() calls share the same key in string templates': {
-    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         \`Look!  \${fbt.enum('groups', {
@@ -1309,7 +1304,6 @@ with some other stuff.\`
   },
 
   'should deduplicate branches when fbt.enum() calls share the same key': {
-    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'Look! ' +

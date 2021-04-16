@@ -9,6 +9,7 @@
 'use strict';
 
 /*::
+import type {SVArgsList} from './FbtArguments';
 import type {EnumModule, EnumKey} from '../FbtEnumRegistrar';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 
@@ -25,6 +26,7 @@ const FbtEnumRegistrar = require('../FbtEnumRegistrar');
 const {
   enforceBabelNode,
   errorAt,
+  varDump,
 } = require('../FbtUtil');
 const {EnumStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
@@ -111,6 +113,19 @@ class FbtEnumNode
         range,
         value: enforceBabelNode(value, '`value`'),
       };
+    } catch (error) {
+      throw errorAt(this.node, error);
+    }
+  }
+
+  getText(argsList: SVArgsList): string {
+    try {
+      const svArg = EnumStringVariationArg.assert(argsList.consumeOne());
+      const svArgValue = nullthrows(svArg.value);
+      return nullthrows(
+        this.options.range[svArgValue],
+        `Unable to find enum text for key=${varDump(svArgValue)}`,
+      );
     } catch (error) {
       throw errorAt(this.node, error);
     }

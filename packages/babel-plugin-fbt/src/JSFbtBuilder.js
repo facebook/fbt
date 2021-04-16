@@ -98,43 +98,33 @@ class JSFbtBuilder {
   buildMetadata(
     compactStringVariationArgs: $ReadOnlyArray<AnyStringVariationArg>,
   ): Array<?JSFBTMetaEntry> {
-    const metadata: Array<?JSFBTMetaEntry> = [];
-    const enums = {};
-
-    compactStringVariationArgs.forEach(svArg => {
+    return compactStringVariationArgs.map(svArg => {
       const {fbtNode} = svArg;
 
       if (fbtNode instanceof FbtPluralNode) {
         if (fbtNode.options.showCount !== ShowCountKeys.no) {
-          metadata.push({
+          return {
             token: nullthrows(fbtNode.options.name),
             type: FbtVariationType.NUMBER,
             singular: true,
-          });
+          };
         } else {
-          metadata.push(
-            this.reactNativeMode ? {type: FbtVariationType.NUMBER} : null,
-          );
+          return this.reactNativeMode ? {type: FbtVariationType.NUMBER} : null;
         }
-        return;
       }
 
       if (
         fbtNode instanceof FbtElementNode ||
         fbtNode instanceof FbtImplicitParamNode
       ) {
-        metadata.push({
+        return {
           token: SUBJECT,
           type: FbtVariationType.GENDER,
-        });
-        return;
+        };
       }
 
       if (fbtNode instanceof FbtPronounNode) {
-        metadata.push(
-          this.reactNativeMode ? {type: FbtVariationType.PRONOUN} : null,
-        );
-        return;
+        return this.reactNativeMode ? {type: FbtVariationType.PRONOUN} : null;
       }
 
       if (svArg instanceof EnumStringVariationArg) {
@@ -159,20 +149,10 @@ class JSFbtBuilder {
         // Expected metadata entry:
         //   for non-RN -> `null`
         //   for RN     -> `{range: ['groups', 'photos', 'videos']}`
-
-        // Only add an enum if it adds a level. Duplicated enum values do not add levels.
-        const argCode = svArg.getArgCode(this.fileSource);
-        if (!(argCode in enums)) {
-          enums[argCode] = true;
-          let metadataEntry = null;
-          if (this.reactNativeMode) {
-            // Enum range will later be used to extract enums from the payload
-            // for React Native
-            metadataEntry = {range: Object.keys(fbtNode.options.range)};
-          }
-          metadata.push(metadataEntry);
-        }
-        return;
+        return this.reactNativeMode
+          ? // Enum range will later be used to extract enums from the payload for React Native
+            {range: Object.keys(fbtNode.options.range)}
+          : null;
       }
 
       if (
@@ -184,18 +164,15 @@ class JSFbtBuilder {
           'Expected fbtNode to be an instance of FbtNameNode or FbtParamNode but got `%s` instead',
           fbtNode.constructor.name || varDump(fbtNode),
         );
-        metadata.push(
-          svArg instanceof NumberStringVariationArg
-            ? {
-                token: fbtNode.options.name,
-                type: FbtVariationType.NUMBER,
-              }
-            : {
-                token: fbtNode.options.name,
-                type: FbtVariationType.GENDER,
-              },
-        );
-        return;
+        return svArg instanceof NumberStringVariationArg
+          ? {
+              token: fbtNode.options.name,
+              type: FbtVariationType.NUMBER,
+            }
+          : {
+              token: fbtNode.options.name,
+              type: FbtVariationType.GENDER,
+            };
       }
 
       invariant(
@@ -204,8 +181,6 @@ class JSFbtBuilder {
         varDump(svArg),
       );
     });
-
-    return metadata;
   }
 
   /**
@@ -271,6 +246,7 @@ class JSFbtBuilder {
     const recurse = <V>(
       candidateValues: $ReadOnlyArray<V>,
       beforeRecurse?: V => mixed,
+      isCollapsible: boolean = false,
     ): void =>
       candidateValues.forEach(value => {
         if (beforeRecurse) {
@@ -279,8 +255,13 @@ class JSFbtBuilder {
         this._getStringVariationCombinations(
           combos,
           curArgIndex + 1,
-          // $FlowFixMe[incompatible-call] `value` type should be compatible with cloneWithValue()
-          prevArgs.concat(curArg.cloneWithValue(value)),
+          prevArgs.concat(
+            curArg.cloneWithValue(
+              // $FlowFixMe[incompatible-call] `value` should be compatible with cloneWithValue()
+              value,
+              isCollapsible,
+            ),
+          ),
         );
       });
 
@@ -301,7 +282,7 @@ class JSFbtBuilder {
           varDump(fbtNode.options.range),
         );
 
-        recurse([enumKey]);
+        recurse([enumKey], undefined, true);
         return combos;
       }
 
@@ -344,7 +325,6 @@ class JSFbtBuilder {
       }
 
       recurse(curArg.candidateValues, value => (usedPronouns[argCode] = value));
-
       delete usedPronouns[argCode];
     } else if (
       curArg instanceof NumberStringVariationArg ||

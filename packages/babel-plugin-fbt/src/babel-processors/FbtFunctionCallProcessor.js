@@ -5,6 +5,7 @@
  * @flow
  */
 /*eslint max-len: ["error", 100]*/
+/* eslint-disable fb-www/flow-exact-by-default-object-types */
 
 'use strict';
 
@@ -622,10 +623,26 @@ class FbtFunctionCallProcessor {
    *
    * Other types of variation arguments are accepted as-is.
    */
-  _compactStringVariationArgs(args /*: $ReadOnlyArray<AnyStringVariationArg> */)
-  /*: $ReadOnlyArray<AnyStringVariationArg> */ {
-    // TODO(T40113359): implement this method
-    return global.TODO_IMPLEMENT_MEEEE;
+  _compactStringVariationArgs(args: $ReadOnlyArray<AnyStringVariationArg>): {|
+    // Compacted string variation argument list
+    array: $ReadOnlyArray<AnyStringVariationArg>,
+    // Mapping of the original item indexes so that:
+    //   For the output array item at index `k`, the original SVArgument index is `indexMap[k]`
+    indexMap: $ReadOnlyArray<number>,
+  |} {
+    const indexMap = [];
+    const array = args.filter((arg, i) => {
+      if (arg.isCollapsible) {
+        return false;
+      }
+      indexMap.push(i);
+      return true;
+    });
+
+    return {
+      array,
+      indexMap,
+    };
   }
 
   /**
@@ -639,7 +656,8 @@ class FbtFunctionCallProcessor {
       this.pluginOptions.reactNativeMode,
     );
     const argsCombinations = jsfbtBuilder.getStringVariationCombinations();
-    const jsfbtMetadata = jsfbtBuilder.buildMetadata(stringVariationArgs);
+    const compactStringVariations = this._compactStringVariationArgs(argsCombinations[0] || []);
+    const jsfbtMetadata = jsfbtBuilder.buildMetadata(compactStringVariations.array);
     const {author, project} = fbtElement.options;
     return [fbtElement, ...fbtElement.getImplicitParamNodes()]
       .map(fbtNode => {
@@ -679,16 +697,16 @@ class FbtFunctionCallProcessor {
         argsCombinations.map(argsCombination => { // collect text/description pairs
           const desc = fbtNode.getDescription(new CursorArray(argsCombination));
           descriptions.add(desc);
-
           return {
-            argValues: argsCombination.map(svArg => String( // Convert GenderConstEnum to string
-              nullthrows(svArg.value)
-            )),
+            argValues: compactStringVariations.indexMap.map(originIndex =>
+              // Convert GenderConstEnum to string
+              String(nullthrows(argsCombination[originIndex]?.value))
+            ),
             desc,
             text: fbtNode.getText(new CursorArray(argsCombination)),
           };
-        }).forEach(item => { // assemble jsfbt table
-          addLeafToTree(
+        })
+          .forEach(item => addLeafToTree( // assemble jsfbt table
             phrase.jsfbt.t,
             item.argValues,
             descriptions.size > 1
@@ -698,8 +716,7 @@ class FbtFunctionCallProcessor {
               }
               // output only texts if there's only a single description at this fbt callsite
               : item.text
-          );
-        });
+          ));
 
         // set description at phrase root level
         // if there's only a single description at this fbt callsite
