@@ -137,6 +137,10 @@ List of changes for each released npm package version.
       Unreleased changes that have landed in master. Click to see more.
     </summary>
 
+    - [feat]! Refactor the string extraction algorithm to properly generate meaningful text/description pairs for fbt callsites that contain JSX presentational elements.
+    We're also adding support for a new way to call fbt() using an array of inputs instead of string concatenation.
+    See [#35](https://github.com/facebook/fbt/issues/35)
+
   </details>
 
 - 0.20.0:
