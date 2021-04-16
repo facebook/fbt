@@ -1430,15 +1430,7 @@ function describeTestScenarios(testData) {
       };
     }
 
-    function testFbtMetaData(title, originalSingleTestData, options) {
-      // TODO(T40113359): enable testing for React Native once the non-RN version is done
-      const singleTestData = {
-        ...originalSingleTestData,
-        filter: options.reactNativeMode
-          ? 'skip'
-          : originalSingleTestData.filter,
-      };
-
+    function testFbtMetaData(title, singleTestData, options) {
       $it(singleTestData)(
         `for scenario "${title}"`,
         withThrowExpectation(singleTestData.throws, () => {
@@ -1461,15 +1453,7 @@ function describeTestScenarios(testData) {
       forEachTestScenario(testFbtMetaData, {reactNativeMode: true});
     });
 
-    function testFbtNodeCreation(title, originalSingleTestData, options) {
-      // TODO(T40113359): enable testing for React Native once the non-RN version is done
-      const singleTestData = {
-        ...originalSingleTestData,
-        filter: options.reactNativeMode
-          ? 'skip'
-          : originalSingleTestData.filter,
-      };
-
+    function testFbtNodeCreation(title, singleTestData, options) {
       $it(singleTestData)(
         `for scenario "${title}"`,
         withThrowExpectation(singleTestData.throws, () => {
