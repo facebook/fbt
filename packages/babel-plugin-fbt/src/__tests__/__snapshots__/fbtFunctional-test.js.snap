@@ -183,11 +183,13 @@ Array [
         "*": Object {
           "*": Object {
             "desc": "In the phrase: \\"{name} has shared {=[number] photos} with you\\"",
+            "outerTokenName": "=[number] photos",
             "text": "{number} photos",
             "tokenAliases": Object {},
           },
           "_1": Object {
             "desc": "In the phrase: \\"{name} has shared {=a photo} with you\\"",
+            "outerTokenName": "=a photo",
             "text": "a photo",
             "tokenAliases": Object {},
           },
@@ -240,6 +242,7 @@ Array [
       "t": Object {
         "*": Object {
           "desc": "In the phrase: \\"A1 {=B1 C1 [paramName] C2 B2} A2\\"",
+          "outerTokenName": "=B1 C1 [paramName] C2 B2",
           "text": "B1 {=C1 [paramName] C2} B2",
           "tokenAliases": Object {},
         },
@@ -263,6 +266,7 @@ Array [
       "t": Object {
         "*": Object {
           "desc": "In the phrase: \\"A1 B1 {=C1 [paramName] C2} B2 A2\\"",
+          "outerTokenName": "=C1 [paramName] C2",
           "text": "C1 {paramName} C2",
           "tokenAliases": Object {},
         },
@@ -1120,11 +1124,13 @@ Array [
         "*": Object {
           "*": Object {
             "desc": "In the phrase: \\"{name} has shared {=[number] photos} with you\\"",
+            "outerTokenName": "=[number] photos",
             "text": "{number} photos",
             "tokenAliases": Object {},
           },
           "_1": Object {
             "desc": "In the phrase: \\"{name} has shared {=a photo} with you\\"",
+            "outerTokenName": "=a photo",
             "text": "a photo",
             "tokenAliases": Object {},
           },
@@ -1177,6 +1183,7 @@ Array [
       "t": Object {
         "*": Object {
           "desc": "In the phrase: \\"A1 {=B1 C1 [paramName] C2 B2} A2\\"",
+          "outerTokenName": "=B1 C1 [paramName] C2 B2",
           "text": "B1 {=C1 [paramName] C2} B2",
           "tokenAliases": Object {},
         },
@@ -1200,6 +1207,7 @@ Array [
       "t": Object {
         "*": Object {
           "desc": "In the phrase: \\"A1 B1 {=C1 [paramName] C2} B2 A2\\"",
+          "outerTokenName": "=C1 [paramName] C2",
           "text": "C1 {paramName} C2",
           "tokenAliases": Object {},
         },

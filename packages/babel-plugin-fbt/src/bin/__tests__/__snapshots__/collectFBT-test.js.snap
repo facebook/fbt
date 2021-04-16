@@ -299,6 +299,47 @@ Object {
 }
 `;
 
+exports[`collectFbt should expose the outer token names if needed 1`] = `
+Object {
+  "childParentMappings": Object {
+    "1": 0,
+  },
+  "phrases": Array [
+    Object {
+      "col_beg": 8,
+      "col_end": 14,
+      "jsfbt": Object {
+        "m": Array [],
+        "t": Object {
+          "desc": "Expose outer token name when script option is given",
+          "text": "Hello {=World}",
+          "tokenAliases": Object {},
+        },
+      },
+      "line_beg": 2,
+      "line_end": 5,
+      "project": "",
+    },
+    Object {
+      "col_beg": 10,
+      "col_end": 22,
+      "jsfbt": Object {
+        "m": Array [],
+        "t": Object {
+          "desc": "In the phrase: \\"Hello {=World}\\"",
+          "outerTokenName": "=World",
+          "text": "World",
+          "tokenAliases": Object {},
+        },
+      },
+      "line_beg": 4,
+      "line_end": 4,
+      "project": "",
+    },
+  ],
+}
+`;
+
 exports[`collectFbt should extract common strings 1`] = `
 Object {
   "childParentMappings": Object {},
@@ -398,6 +439,47 @@ Object {
         "m": Array [],
         "t": Object {
           "desc": "In the phrase: \\"Hello {=World}!\\"",
+          "outerTokenName": "=World",
+          "text": "World",
+          "tokenAliases": Object {},
+        },
+      },
+      "line_beg": 4,
+      "line_end": 4,
+      "project": "",
+    },
+  ],
+}
+`;
+
+exports[`collectFbt should not expose the outer token names by default 1`] = `
+Object {
+  "childParentMappings": Object {
+    "1": 0,
+  },
+  "phrases": Array [
+    Object {
+      "col_beg": 8,
+      "col_end": 14,
+      "jsfbt": Object {
+        "m": Array [],
+        "t": Object {
+          "desc": "Do not expose outer token name by default",
+          "text": "Hello {=World}",
+          "tokenAliases": Object {},
+        },
+      },
+      "line_beg": 2,
+      "line_end": 5,
+      "project": "",
+    },
+    Object {
+      "col_beg": 10,
+      "col_end": 22,
+      "jsfbt": Object {
+        "m": Array [],
+        "t": Object {
+          "desc": "In the phrase: \\"Hello {=World}\\"",
           "text": "World",
           "tokenAliases": Object {},
         },

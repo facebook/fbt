@@ -709,6 +709,10 @@ class FbtFunctionCallProcessor {
               tokenAliases: {}, // TODO(T86645322) Implement "mangled" token aliases
             }: TableJSFBTTreeLeaf);
 
+            if (this.pluginOptions.generateOuterTokenName && !(fbtNode instanceof FbtElementNode)) {
+              leaf.outerTokenName = fbtNode.getTokenName(svArgsMap);
+            }
+
             if (argValues.length) {
               addLeafToTree<TableJSFBTTreeLeaf, TableJSFBTTree>(phrase.jsfbt.t, argValues, leaf);
             } else { // jsfbt only contains one leaf

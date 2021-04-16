@@ -59,6 +59,8 @@ export type PluginOptions = {|
   fbtEnumToPath?: ?{[enumName: string]: string},
   fbtSentinel?: ?string,
   filename?: ?string,
+  // If true, generate the `outerTokenName` property on the JSFbt tree leaves.
+  generateOuterTokenName?: boolean,
   reactNativeMode?: boolean,
 |};
 
@@ -85,6 +87,12 @@ export type TableJSFBTTreeLeaflet = {|
   tokenAliases: {|
     [clearTokenName: string]: TokenAlias
   |},
+  // The token name (at the outer string level) referring to this inner string
+  //
+  // E.g. For the fbt string `<fbt>Hello <i>World</i></fbt>`,
+  // the outer string is "Hello {=World}", and the inner string is: "World".
+  // So the outer token name of the inner string will be "=World"
+  outerTokenName?: string,
 |};
 
 // Describes the usage of one level of the JSFBT table tree

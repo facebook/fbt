@@ -28,6 +28,7 @@ const yargs = require('yargs');
 const args = {
   COMMON_STRINGS: 'fbt-common-path',
   CUSTOM_COLLECTOR: 'custom-collector',
+  GEN_OUTER_TOKEN_NAME: 'gen-outer-token-name',
   HASH: 'hash-module',
   HELP: 'h',
   MANIFEST: 'manifest',
@@ -104,6 +105,15 @@ const argv = yargs
   .boolean(args.PRETTY)
   .default(args.PRETTY, false)
   .describe(args.PRETTY, 'Pretty-print the JSON output')
+  .boolean(args.GEN_OUTER_TOKEN_NAME)
+  .default(args.GEN_OUTER_TOKEN_NAME, false)
+  .describe(
+    args.GEN_OUTER_TOKEN_NAME,
+    'Generate the outer token name of an inner string in the JSON output. ' +
+      'E.g. For the fbt string `<fbt>Hello <i>World</i></fbt>`, ' +
+      'the outer string is "Hello {=World}", and the inner string is: "World". ' +
+      'So the outer token name of the inner string will be "=World"',
+  )
   .string(args.TRANSFORM)
   .default(args.TRANSFORM, null)
   .describe(
@@ -200,6 +210,7 @@ function getFbtCollector(
 
 const fbtCollector = getFbtCollector(
   {
+    generateOuterTokenName: argv[args.GEN_OUTER_TOKEN_NAME],
     plugins: argv[args.PLUGINS].map(require),
     presets: argv[args.PRESETS].map(require),
     reactNativeMode: argv[args.REACT_NATIVE_MODE],

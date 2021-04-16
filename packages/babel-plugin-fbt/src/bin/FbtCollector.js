@@ -30,6 +30,7 @@ export type CollectorConfig = {|
   presets?: BabelPresetList,
   reactNativeMode?: boolean,
   transform?: ?ExternalTransform,
+  generateOuterTokenName?: boolean,
 |};
 export type ChildParentMappings = {[prop: number]: number}
 export type Errors = {[file: string]: Error};
@@ -91,6 +92,7 @@ class FbtCollector implements IFbtCollector {
       fbtEnumManifest,
       fbtModule: fbt,
       filename,
+      generateOuterTokenName: this._config.generateOuterTokenName,
       reactNativeMode: this._config.reactNativeMode,
     };
 

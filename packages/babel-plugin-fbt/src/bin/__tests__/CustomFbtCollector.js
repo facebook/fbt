@@ -63,6 +63,7 @@ class CustomFbtCollector implements IFbtCollector {
             desc: 'In the phrase: "Hello {=World}!"',
             text: 'World',
             tokenAliases: {},
+            outerTokenName: '=World',
           },
         },
         line_beg: 4,

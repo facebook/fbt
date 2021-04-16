@@ -1527,6 +1527,7 @@ function describeTestScenarios(testData) {
           const fbtTransform = require('../index');
           const pluginOptions = {
             collectFbt: true,
+            generateOuterTokenName: true,
             reactNativeMode: options.reactNativeMode || false,
           };
           transform(singleTestData.input, pluginOptions);
@@ -1555,6 +1556,7 @@ function describeTestScenarios(testData) {
 
           const pluginOptions = {
             collectFbt: true,
+            generateOuterTokenName: true,
             reactNativeMode: options.reactNativeMode || false,
           };
           transform(singleTestData.input, pluginOptions);

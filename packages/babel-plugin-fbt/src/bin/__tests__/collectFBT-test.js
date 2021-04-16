@@ -31,6 +31,9 @@ xdescribe('collectFbt', () => {
     if (options.react_native_mode) {
       collectOptions.push('--react-native-mode');
     }
+    if (options.genOuterTokenName) {
+      collectOptions.push('--gen-outer-token-name');
+    }
     if (options.customCollector) {
       collectOptions.push('--custom-collector', options.customCollector);
     }
@@ -297,6 +300,34 @@ xdescribe('collectFbt', () => {
       collect('nothing in JS code', {
         customCollector: path.resolve(__dirname, 'CustomFbtCollector.js'),
       }),
+    ).toMatchSnapshot();
+  });
+
+  it('should expose the outer token names if needed', () => {
+    expect(
+      collect(
+        `const fbt = require('fbt');
+        <fbt desc="Expose outer token name when script option is given">
+          Hello
+          <i>World</i>
+        </fbt>`,
+        {
+          genOuterTokenName: true,
+        },
+      ),
+    ).toMatchSnapshot();
+  });
+
+  it('should not expose the outer token names by default', () => {
+    expect(
+      collect(
+        `const fbt = require('fbt');
+        <fbt desc="Do not expose outer token name by default">
+          Hello
+          <i>World</i>
+        </fbt>`,
+        {},
+      ),
     ).toMatchSnapshot();
   });
 });
