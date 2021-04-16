@@ -11,8 +11,14 @@ const {payload, transform, withFbtRequireStatement} = require('../FbtTestUtil');
 const {FbtVariationType} = require('../translate/IntlVariations');
 const {TestUtil} = require('fb-babel-plugin-utils');
 
+// Given a test config's "filter" status, decides whether we should run it with
+// jest's it/fit/xit function.
+// This is useful when you want to run only a subset of unit tests from a testData object.
+const {$it} = TestUtil;
+
 const generalTestData = {
   'should convert simple strings': {
+    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt('A simple string', "It's simple");`,
     ),
@@ -38,6 +44,7 @@ const generalTestData = {
   },
 
   'should allow description concatenation': {
+    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'A short string',
@@ -59,6 +66,7 @@ const generalTestData = {
   },
 
   'should maintain newlines': {
+    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'A simple string... ' +
@@ -82,6 +90,7 @@ const generalTestData = {
 
   // Initially needed for JS source maps accuracy
   'should maintain newlines within arguments': {
+    filter: 'skip',
     input: withFbtRequireStatement(
       `var z = fbt(
         'a' +
@@ -125,6 +134,7 @@ const generalTestData = {
 
   // Initially needed for JS source maps accuracy
   'should maintain intra-argument newlines': {
+    filter: 'skip',
     input: withFbtRequireStatement(
       `var z = fbt(
         fbt.param(
@@ -187,6 +197,7 @@ const generalTestData = {
   },
 
   'should be able to nest within React nodes': {
+    filter: 'skip',
     input: withFbtRequireStatement(
       `var React = require('react');
       var x = <div>{fbt('A nested string', 'nested!')}</div>;`,
@@ -214,6 +225,7 @@ const generalTestData = {
   },
 
   'should handle a JSX fragment nested with fbt.param as an argument': {
+    filter: 'skip',
     // TODO(T38926768) Enable this once we support proper auto-parameterization in JSX
     inputWithArraySyntax: withFbtRequireStatement(
       `var React = require('react');
@@ -291,6 +303,7 @@ const generalTestData = {
   },
 
   'should handle params': {
+    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'A parameterized message to ' +
@@ -322,6 +335,7 @@ const generalTestData = {
   },
 
   'should accept well-formed options': {
+    filter: 'skip',
     input: withFbtRequireStatement(
       `fbt('A string that moved files', 'options!', {
         author: 'jwatson',
@@ -349,6 +363,7 @@ const generalTestData = {
   },
 
   'should handle enums (with array values)': {
+    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'Click to see ' + fbt.enum('groups', ['groups', 'photos', 'videos']),
@@ -392,6 +407,7 @@ const generalTestData = {
   },
 
   'should handle enums (with value map)': {
+    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'Click to see ' +
@@ -436,6 +452,7 @@ const generalTestData = {
   },
 
   'should handle plurals that have different count variables': {
+    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         fbt.plural('cat', catCount, {name: 'cat_token', showCount: 'yes'}) +
@@ -493,6 +510,7 @@ const generalTestData = {
   },
 
   'should handle plurals that share the same count variable': {
+    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'There ' +
@@ -543,6 +561,7 @@ const generalTestData = {
   },
 
   'should handle multiple plurals with no showCount (i.e. no named params)': {
+    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'There ' +
@@ -592,6 +611,7 @@ const generalTestData = {
   },
 
   'should throw on bad showCount value': {
+    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'There were ' + fbt.plural('a like', count, {showCount: 'badkey'}),
@@ -612,6 +632,7 @@ const generalTestData = {
   },
 
   'should throw on unknown options': {
+    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'There were ' + fbt.plural('a like', count, {whatisthis: 'huh?'}),
@@ -632,6 +653,7 @@ const generalTestData = {
   },
 
   'should handle names': {
+    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'You just friended ' + fbt.name('name', personname, gender),
@@ -671,6 +693,7 @@ const generalTestData = {
   },
 
   'should handle variations': {
+    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'Click to see ' + fbt.param('count', c, {number: true}) + ' links',
@@ -711,6 +734,7 @@ const generalTestData = {
   },
 
   'should insert param in place of fbt.sameParam if it exists': {
+    filter: 'skip',
     input: withFbtRequireStatement(
       `var z = fbt(
         fbt.param('name1', val1) + ' and ' + fbt.sameParam('name1'),
@@ -741,6 +765,7 @@ const generalTestData = {
   },
 
   'should handle variations + same param': {
+    filter: 'skip',
     input: withFbtRequireStatement(
       `var val = 42;
       fbt(
@@ -791,6 +816,7 @@ const generalTestData = {
   },
 
   'should get project from docblock': {
+    filter: 'skip',
     input: `/** @fbt {"project": "dev"}*/
       ${withFbtRequireStatement(
         `var x = fbt('Also simple string', "It's simple");`,
@@ -815,6 +841,7 @@ const generalTestData = {
   },
 
   'should handler wrapping parens': {
+    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt('foo' + 'bar' + 'baz' + 'qux', 'desc');
       var y = fbt('foo' + ('bar' + 'baz' + 'qux'), 'desc');
@@ -868,6 +895,7 @@ const generalTestData = {
   },
 
   'should handle enums with more text after': {
+    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'Hello, ' + fbt.enum('groups', ['groups', 'photos', 'videos']) + '!',
@@ -911,6 +939,7 @@ const generalTestData = {
   },
 
   'should handle duplicate enums': {
+    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'Look! ' +
@@ -977,6 +1006,7 @@ const generalTestData = {
   },
 
   'should handle object pronoun': {
+    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
           'I know ' +
@@ -1018,6 +1048,7 @@ const generalTestData = {
   },
 
   'should handle subject and reflexive pronouns': {
+    filter: 'skip',
     input:
       // eslint-disable-next-line fb-www/gender-neutral-language
       // I.e. He wished himself a happy birthday.
@@ -1074,6 +1105,7 @@ const generalTestData = {
   },
 
   'should handle possessive pronoun': {
+    filter: 'skip',
     input:
       // eslint-disable-next-line fb-www/gender-neutral-language
       // I.e. It is her birthday.
@@ -1117,6 +1149,7 @@ const generalTestData = {
   },
 
   'should throw on pronoun usage not StringLiteral': {
+    filter: 'skip',
     input:
       // Note use of variable for pronoun usage.
       withFbtRequireStatement(
@@ -1144,6 +1177,7 @@ const generalTestData = {
   },
 
   'should throw on pronoun usage invalid': {
+    filter: 'skip',
     input:
       // Note 'POSSESSION' instead of 'possessive'.
       withFbtRequireStatement(
@@ -1169,6 +1203,7 @@ const generalTestData = {
   },
 
   'should throw when concatenating an fbt construct to a string while using the array argument syntax': {
+    filter: 'skip',
     inputWithArraySyntax: withFbtRequireStatement(
       `var x = fbt(
           [
@@ -1184,6 +1219,7 @@ const generalTestData = {
   // This is useful only for testing column/line coordinates
   // Newlines are not preserved in the extracted fbt string
   'should maintain newlines when using string templates': {
+    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         \`A simple string...
@@ -1217,6 +1253,7 @@ with some other stuff.\`
   },
 
   'should deduplicate branches when fbt.enum() calls share the same key in string templates': {
+    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         \`Look!  \${fbt.enum('groups', {
@@ -1258,6 +1295,7 @@ with some other stuff.\`
   },
 
   'should deduplicate branches when fbt.enum() calls share the same key': {
+    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'Look! ' +
@@ -1339,7 +1377,8 @@ function prepareTestDataForInputKey(inputKeyName) {
 }
 
 function describeTestScenarios(testData) {
-  describe('Translation transform', () =>
+  // TODO(T40113359): re-enable this when the clientside JS transform is implemented
+  xdescribe('Translation transform', () =>
     TestUtil.testSection(testData, transform));
 
   describe('Meta-data collection', () => {
@@ -1353,13 +1392,21 @@ function describeTestScenarios(testData) {
       return code.replace(/\/\*\*(?:\/|[^*]|\*+[^*\/])*\*+\/\n/, '');
     }
 
-    function testFbtMetaData(title, singleTestData, options) {
+    function testFbtMetaData(title, originalSingleTestData, options) {
+      // TODO(T40113359): enable testing for React Native once the non-RN version is done
+      const singleTestData = {
+        ...originalSingleTestData,
+        filter: options.reactNativeMode
+          ? 'skip'
+          : originalSingleTestData.filter,
+      };
+
       // Skip scenarios that test an error
       if (singleTestData.throws) {
         return;
       }
 
-      it(`for scenario "${title}"`, () => {
+      $it(singleTestData)(`for scenario "${title}"`, () => {
         const fbtTransform = require('../index');
         const pluginOptions = {
           collectFbt: true,
@@ -1378,13 +1425,21 @@ function describeTestScenarios(testData) {
       forEachTestScenario(testFbtMetaData, {reactNativeMode: true});
     });
 
-    function testFbtNodeCreation(title, singleTestData, options) {
+    function testFbtNodeCreation(title, originalSingleTestData, options) {
+      // TODO(T40113359): enable testing for React Native once the non-RN version is done
+      const singleTestData = {
+        ...originalSingleTestData,
+        filter: options.reactNativeMode
+          ? 'skip'
+          : originalSingleTestData.filter,
+      };
+
       // Skip scenarios that test an error
       if (singleTestData.throws) {
         return;
       }
 
-      it(`for scenario "${title}"`, () => {
+      $it(singleTestData)(`for scenario "${title}"`, () => {
         const FbtFunctionCallProcessor = require('../babel-processors/FbtFunctionCallProcessor');
         const spy = jest.spyOn(
           FbtFunctionCallProcessor.prototype,
@@ -1406,15 +1461,11 @@ function describeTestScenarios(testData) {
       });
     }
 
-    // TODO(T40113359): remove focused test once it's implemented properly
-    // eslint-disable-next-line jest/no-focused-tests
-    fdescribe('should create correct FbtNode objects', () => {
+    describe('should create correct FbtNode objects', () => {
       forEachTestScenario(testFbtNodeCreation);
     });
 
-    // TODO(T40113359): remove focused test once it's implemented properly
-    // eslint-disable-next-line jest/no-focused-tests
-    fdescribe('should create correct FbtNode objects (react native)', () => {
+    describe('should create correct FbtNode objects (react native)', () => {
       forEachTestScenario(testFbtNodeCreation, {reactNativeMode: true});
     });
   });
