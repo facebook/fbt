@@ -55,6 +55,7 @@ const {
   identifier,
   isCallExpression,
   isJSXElement,
+  isStringLiteral,
   jsxExpressionContainer,
   memberExpression,
   stringLiteral,
@@ -103,26 +104,38 @@ class JSXFbtProcessor {
   }
 
   _getText(
-    childNodes /*: $ReadOnlyArray<
+    childNodes: $ReadOnlyArray<
       | BabelNodeCallExpression
       | BabelNodeJSXElement
       | BabelNodeStringLiteral
-    > */
-  ) /*: BabelNodeArrayExpression | BabelNodeStringLiteral | BabelNodeCallExpression */ {
+    >
+  ): BabelNodeArrayExpression {
     return convertToStringArrayNodeIfNeeded(
       this.moduleName,
       arrayExpression(childNodes),
     );
   }
 
-  _getDescription(text) {
+  _getDescription(texts: BabelNodeArrayExpression) {
     const {moduleName, node} = this;
     const commonAttributeValue = this._getCommonAttributeValue();
     let desc;
+
+    // TODO(T83043301) create an <fbt common={true}> test case in the JSX fbt test suite
     if (commonAttributeValue && commonAttributeValue.value) {
-      const textValue = normalizeSpaces(
-        expandStringConcat(moduleName, text).value.trim(),
-      );
+      const rawTextValue = (texts.elements || []).map(stringNode => {
+        try {
+          invariant(isStringLiteral(stringNode),
+            'Expected a StringLiteral but found `%s` instead',
+            stringNode?.type || 'unknown',
+          );
+          return stringNode.value;
+        } catch (error) {
+          throw errorAt(stringNode, error.message);
+        }
+      }).join('');
+
+      const textValue = normalizeSpaces(rawTextValue).trim();
       const descValue = FbtCommon.getDesc(textValue);
       if (descValue == null || descValue === '') {
         throw errorAt(
