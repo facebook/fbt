@@ -24,37 +24,25 @@ function formatNumber(value: number, decimals?: ?number): string {
 }
 
 function getAtLeastString(maxnumber: number, decimals?: ?number): string {
-  // TODO(T40113359) Re-enable once the babel-plugin-fbt library is able to parse this
-  // const result = (
-  //   <fbt desc="Label with meaning 'at least number'" project="locale_data">
-  //     <fbt:param name="number" number={maxnumber}>
-  //       {intlNumUtils.formatNumberWithThousandDelimiters(maxnumber, decimals)}
-  //     </fbt:param>+
-  //   </fbt>
-  // );
-  const result = `${intlNumUtils.formatNumberWithThousandDelimiters(
-    maxnumber,
-    decimals,
-  )}+`;
-
+  const result = (
+    <fbt desc="Label with meaning 'at least number'" project="locale_data">
+      <fbt:param name="number" number={maxnumber}>
+        {intlNumUtils.formatNumberWithThousandDelimiters(maxnumber, decimals)}
+      </fbt:param>+
+    </fbt>
+  );
   // after we start using CLDR data, it will not be fbt anymore.
   return result.toString();
 }
 
 function getLessThanString(minnumber: number, decimals?: ?number): string {
-  // TODO(T40113359) Re-enable once the babel-plugin-fbt library is able to parse this
-  // const result = (
-  //   <fbt desc="Label with meaning 'less than number'" project="locale_data">
-  //     &lt;<fbt:param name="number" number={minnumber}>
-  //       {intlNumUtils.formatNumberWithThousandDelimiters(minnumber, decimals)}
-  //     </fbt:param>
-  //   </fbt>
-  // );
-  const result = `<${intlNumUtils.formatNumberWithThousandDelimiters(
-    minnumber,
-    decimals,
-  )}`;
-
+  const result = (
+    <fbt desc="Label with meaning 'less than number'" project="locale_data">
+      &lt;<fbt:param name="number" number={minnumber}>
+        {intlNumUtils.formatNumberWithThousandDelimiters(minnumber, decimals)}
+      </fbt:param>
+    </fbt>
+  );
   // after we start using CLDR data, it will not be fbt anymore.
   return result.toString();
 }
