@@ -157,7 +157,7 @@ function FbtTransform(babel /*: {
         if (!root) {
           return;
         }
-        path.replaceWith(root.convertToFbtFunctionCallNode(phrases.length));
+        root.convertToFbtFunctionCallNode(phrases.length);
       },
 
       /**
@@ -214,25 +214,32 @@ function FbtTransform(babel /*: {
           return;
         }
 
-        const {
-          callNode,
-          phrase,
-          texts,
-        } = root.convertToFbtRuntimeCall();
+        // TODO(T40113359): remove this once we're done implementing proper conversion to fbt nodes
+        root.convertToFbtNode();
+        // TODO(T40113359): maybe remove this once we've started replacing fbt() -> fbt._()
+        // This is currently needed to avoid processing fbt() twice
+        // (during the enter/exit traversal phases of the babel transform)
+        path.skip();
 
-        path.replaceWith(callNode);
+        // const {
+        //   callNode,
+        //   phrase,
+        //   texts,
+        // } = root.convertToFbtRuntimeCall();
 
-        if (pluginOptions.collectFbt && !phrase.doNotExtract) {
-          if (pluginOptions.auxiliaryTexts) {
-            phrase.texts = texts;
-          }
+        // path.replaceWith(callNode);
 
-          addPhrase(node, phrase, visitor);
+        // if (pluginOptions.collectFbt && !phrase.doNotExtract) {
+        //   if (pluginOptions.auxiliaryTexts) {
+        //     phrase.texts = texts;
+        //   }
 
-          if (node.parentIndex !== undefined) {
-            addEnclosingString(phrases.length - 1, node.parentIndex);
-          }
-        }
+        //   addPhrase(node, phrase, visitor);
+
+        //   if (node.parentIndex !== undefined) {
+        //     addEnclosingString(phrases.length - 1, node.parentIndex);
+        //   }
+        // }
       }, // CallExpression
     }, // visitor
   }; // babel plugin return

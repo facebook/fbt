@@ -37,15 +37,6 @@ const {jsxExpressionContainer, stringLiteral} = t;
 const getNamespacedArgs = function (moduleName) {
   return {
     /**
-     * Node that is a child of a <fbt> node that should be handled as
-     * <fbt:param>
-     */
-    implicitParamMarker(node) {
-      const newNode = FbtAutoWrap.wrapImplicitFBTParam(moduleName, t, node);
-      return [stringLiteral('=' + newNode.paramName), newNode];
-    },
-
-    /**
      * <fbt:param> or <FbtParam>
      */
     param(node) {

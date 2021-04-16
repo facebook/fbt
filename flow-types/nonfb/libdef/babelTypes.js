@@ -1563,7 +1563,7 @@ type BabelNodeTSType = BabelNodeTSAnyKeyword | BabelNodeTSBooleanKeyword | Babel
 type BabelNodeTSBaseType = BabelNodeTSAnyKeyword | BabelNodeTSBooleanKeyword | BabelNodeTSBigIntKeyword | BabelNodeTSNeverKeyword | BabelNodeTSNullKeyword | BabelNodeTSNumberKeyword | BabelNodeTSObjectKeyword | BabelNodeTSStringKeyword | BabelNodeTSSymbolKeyword | BabelNodeTSUndefinedKeyword | BabelNodeTSUnknownKeyword | BabelNodeTSVoidKeyword | BabelNodeTSThisType | BabelNodeTSLiteralType;
 
 declare module "@babel/types" {
-  declare export function arrayExpression(elements?: Array<null | BabelNodeExpression | BabelNodeSpreadElement>): BabelNodeArrayExpression;
+  declare export function arrayExpression(elements?: $ReadOnlyArray<null | BabelNodeExpression | BabelNodeSpreadElement>): BabelNodeArrayExpression;
   declare export function assignmentExpression(operator: string, left: BabelNodeLVal, right: BabelNodeExpression): BabelNodeAssignmentExpression;
   declare export function binaryExpression(operator: "+" | "-" | "/" | "%" | "*" | "**" | "&" | "|" | ">>" | ">>>" | "<<" | "^" | "==" | "===" | "!=" | "!==" | "in" | "instanceof" | ">" | "<" | ">=" | "<=", left: any, right: BabelNodeExpression): BabelNodeBinaryExpression;
   declare export function interpreterDirective(value: string): BabelNodeInterpreterDirective;

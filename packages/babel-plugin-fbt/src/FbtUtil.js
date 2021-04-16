@@ -30,6 +30,7 @@ const invariant = require('invariant');
 const nullthrows = require('nullthrows');
 const {FBS, FBT} = JSModuleName;
 const {
+  arrayExpression,
   isArrowFunctionExpression,
   isBinaryExpression,
   isBooleanLiteral,
@@ -39,6 +40,7 @@ const {
   isJSXIdentifier,
   isJSXNamespacedName,
   isJSXText,
+  isNode,
   isObjectProperty,
   isStringLiteral,
   isTemplateLiteral,
@@ -58,16 +60,15 @@ function normalizeSpaces(
 }
 
 /**
- * Validates allowed children inside <fbt>.
- * Currently allowed:
+ * Validates the type of fbt construct inside <fbt>.
+ * Currently detected:
  *   <fbt:param>, <FbtParam>
  *   <fbt:enum>,  <FbtEnum>
  *   <fbt:name>,  <FbtName>
- * And returns a name of a corresponding handler.
- * If a child is not valid, it is flagged as an Implicit Parameter and is
- * automatically wrapped with <fbt:param>
- * @param node The node that contains the name of any parent node. For
- * example, for a JSXElement, the containing name is the openingElement's name.
+ *   etc...
+ * @param node The node that may be a JSX fbt construct
+ * @return Returns the name of a corresponding handler (fbt construct).
+ * If a child is not valid, it is flagged as an Implicit Parameter (`implicitParamMarker`)
  */
 function validateNamespacedFbtElement(
   moduleName /*: string */,
@@ -228,14 +229,22 @@ function errorAt(
   astNode /*: {
     loc: ?BabelNodeSourceLocation,
   } */,
-  msg /*: string */,
+  msg /*: string */ = '',
+  options /*: {
+    suggestOSSWebsite?: boolean,
+  } */ = {},
 ) /*: Error */ {
   const location = astNode.loc;
+  const optionalMessage = options.suggestOSSWebsite
+    ? 'See the docs at https://facebook.github.io/fbt/ for more info.'
+    : null;
   const errorMsg =
     (location != null
       ? `Line ${location.start.line} Column ${location.start.column + 1}: `
       : '') +
-    `${msg}\n---\n${generateFormattedCodeFromAST(astNode)}\n---`;
+    `${msg}${
+      optionalMessage ? `\n${optionalMessage}` : ''
+    }\n---\n${generateFormattedCodeFromAST(astNode)}\n---`;
   return new Error(errorMsg);
 }
 
@@ -553,10 +562,172 @@ function textContainsFbtLikeModule(text /*: string */) /*: boolean */ {
   return ModuleNameRegExp.test(text);
 }
 
+function convertTemplateLiteralToArrayElements(
+  moduleName: JSModuleNameType,
+  node: BabelNodeTemplateLiteral,
+) : Array<BabelNodeStringLiteral | BabelNodeCallExpression | BabelNodeJSXElement> {
+  const {expressions, quasis} = node;
+  const nodes = [];
+
+  let index = 0;
+  // quasis items are the text literal portion of the template literal
+  for (const item of quasis) {
+    const text = item.value.cooked || '';
+    if (text != '') {
+      nodes.push(stringLiteral(text));
+    }
+    if (index < expressions.length) {
+      const expression = expressions[index++];
+      if (expression.type === 'StringLiteral' ||
+        expression.type === 'CallExpression' ||
+        expression.type === 'JSXElement') {
+        nodes.push(expression);
+      } else {
+        throw errorAt(
+          expression,
+          `Unexpected node type: ${expression.type}. ${moduleName}() only supports ` +
+          `the following syntax within template literals:` +
+          `string literal, a construct like ${moduleName}.param() or a JSX element.`,
+        );
+      }
+    }
+  }
+  return nodes;
+}
+
+function getBinaryExpressionOperands(
+  moduleName /*: JSModuleNameType */,
+  node /*: BabelNodeExpression */,
+) /*: Array<BabelNodeCallExpression | BabelNodeStringLiteral | BabelNodeTemplateLiteral> */ {
+  switch (node.type) {
+    case 'BinaryExpression':
+      if (node.operator !== '+') {
+        throw errorAt(node, 'Expected to see a string concatenation');
+      }
+      return [
+        ...getBinaryExpressionOperands(moduleName, node.left),
+        ...getBinaryExpressionOperands(moduleName, node.right),
+      ];
+    case 'CallExpression':
+    case 'StringLiteral':
+    case 'TemplateLiteral':
+      return [node];
+    default:
+      throw errorAt(
+        node,
+        `Unexpected node type: ${node.type}. ` +
+        `The ${moduleName}() string concatenation pattern only supports ` +
+        ` string literals or constructs like ${moduleName}.param().`,
+      );
+  }
+}
+
+function convertToStringArrayNodeIfNeeded(
+  moduleName /*: JSModuleNameType */,
+  node /*: $ElementType<$PropertyType<BabelNodeCallExpression, 'arguments'>, number> */,
+) /*: BabelNodeArrayExpression */ {
+  let initialElements;
+  switch (node.type) {
+    case 'ArrayExpression':
+      initialElements = nullthrows(node.elements);
+      break;
+    case 'CallExpression':
+    case 'StringLiteral':
+      initialElements = [node];
+      break;
+
+    case 'BinaryExpression': {
+      initialElements = getBinaryExpressionOperands(moduleName, node);
+      break;
+    }
+    case 'TemplateLiteral': {
+      initialElements = convertTemplateLiteralToArrayElements(moduleName, node);
+      break;
+    }
+
+    default:
+      throw errorAt(
+        node,
+        `Unexpected node type: ${node.type}. ` +
+        `${moduleName}()'s first argument should be a string literal, ` +
+        `a construct like ${moduleName}.param() or an array of those.`,
+      );
+  }
+
+  // Let's also convert the 1st level of elements of the array
+  // to process nested string concatenations and template literals one last time.
+  // We're not making this fully recursive since, from a syntax POV,
+  // it wouldn't be elegant to allow developers to nest lots of template literals.
+  return arrayExpression(initialElements.reduce((elements, element) => {
+    if (element == null) {
+      return elements;
+    }
+    switch (element.type) {
+      case 'BinaryExpression': {
+        elements.push(
+          ...getBinaryExpressionOperands(moduleName, element)
+        );
+        break;
+      }
+      case 'TemplateLiteral': {
+        elements.push(
+          ...convertTemplateLiteralToArrayElements(moduleName, element)
+        );
+        break;
+      }
+      default:
+        elements.push(element);
+    }
+    return elements;
+  }, []));
+}
+
+/**
+ * For a given object, replace any property that refers to a BabelNode with a string like
+ * `'BabelNode[type=SomeBabelType]'`.
+ * We'll also create a new property that'll contain the serialized JS code from the BabelNode.
+ *
+ * @example
+ *   compactBabelNodeProps({
+ *     node: t.stringLiteral('hello')
+ *   })
+ *
+ *   // Output:
+ *   {
+ *     node: 'BabelNode[type=StringLiteral]'
+ *     __nodeCode: "'hello'"
+ *   }
+ */
+function compactBabelNodeProps(object /*: {} */) /*: {} */ {
+  const ret = {...object};
+  for (const propName in ret) {
+    if (Object.prototype.hasOwnProperty.call(ret, propName)) {
+      const propValue = ret[propName];
+      if (!isNode(propValue)) {
+        continue;
+      }
+      ret[`__${propName}Code`] = generateFormattedCodeFromAST(propValue);
+      ret[propName] = `BabelNode[type=${propValue.type || ''}]`;
+    }
+  }
+  return ret;
+}
+
+/**
+ * Serialize a variable for debugging.
+ * It's a variant of JSON.stringify() that supports `undefined`
+ */
+function varDump(value /*: mixed */) /*: string */ {
+  return JSON.stringify(value) || 'undefined';
+}
+
 module.exports = {
   assertModuleName,
   checkOption,
   collectOptions,
+  compactBabelNodeProps,
+  convertTemplateLiteralToArrayElements,
+  convertToStringArrayNodeIfNeeded,
   errorAt,
   expandStringArray,
   expandStringConcat,
@@ -564,6 +735,7 @@ module.exports = {
   filterEmptyNodes,
   getAttributeByName,
   getAttributeByNameOrThrow,
+  getBinaryExpressionOperands,
   getOptionBooleanValue,
   getOptionsFromAttributes,
   getRawSource,
@@ -574,4 +746,5 @@ module.exports = {
   setUniqueToken,
   textContainsFbtLikeModule,
   validateNamespacedFbtElement,
+  varDump,
 };

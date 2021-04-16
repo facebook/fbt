@@ -19,6 +19,8 @@ const {
   isCallExpression,
   isIdentifier,
   isJSXElement,
+  isJSXIdentifier,
+  isJSXNamespacedName,
   isMemberExpression,
 } = require('@babel/types');
 
@@ -50,10 +52,7 @@ class FbtNodeChecker {
       return false;
     }
     const nameNode = node.openingElement.name;
-    return (
-      nameNode.type === 'JSXNamespacedName' &&
-      this.isNameOfModule(nameNode.namespace.name)
-    );
+    return isJSXNamespacedName(nameNode) && this.isNameOfModule(nameNode.namespace.name);
   }
 
   // Detects this pattern: `fbt(...)`
@@ -61,6 +60,15 @@ class FbtNodeChecker {
     return (
       isCallExpression(node) && isIdentifier(node.callee) && this.isNameOfModule(node.callee.name)
     );
+  }
+
+  getFbtConstructNameFromFunctionCall(node /*: BabelNode */) /*: ?string */ {
+    return isCallExpression(node) && isMemberExpression(node.callee) &&
+      isIdentifier(node.callee.object) &&
+      this.isNameOfModule(node.callee.object.name) &&
+      isIdentifier(node.callee.property) &&
+      typeof (node.callee.property.name) === 'string' &&
+      node.callee.property.name || null;
   }
 
   isMemberExpression(node /*: BabelNode */) /*: boolean */ {

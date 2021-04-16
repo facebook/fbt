@@ -47,9 +47,10 @@ declare module '@babel/core' {
     replaceWith(replacement: BabelNode): this;
     traverse<State: {...}, ExtraProps: {}>(
       transform: BabelTransform<ExtraProps>,
-      state: State,
+      state?: State,
     ): void;
     context: TraversalContext<B>;
+    skip(): void;
   }
 
   declare type NodePathOf<BabelNode> = NodePath<BabelNode>;

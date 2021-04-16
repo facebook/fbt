@@ -80,6 +80,7 @@ export type SentinelPayload = {|
 |};
 */
 
+const FbtElementNode = require('../fbt-nodes/FbtElementNode');
 const {
   FbtBooleanOptions,
   FbtType,
@@ -93,6 +94,7 @@ const FbtMethodCallVisitors = require('../FbtMethodCallVisitors');
 const FbtNodeChecker = require('../FbtNodeChecker');
 const {
   collectOptions,
+  convertToStringArrayNodeIfNeeded,
   errorAt,
   expandStringArray,
   expandStringConcat,
@@ -103,7 +105,7 @@ const {
 } = require('../FbtUtil');
 const JSFbtBuilder = require('../JSFbtBuilder');
 const {
-  arrayExpression,
+  isArrayExpression,
   isCallExpression,
   isObjectExpression,
   isObjectProperty,
@@ -310,8 +312,10 @@ class FbtFunctionCallProcessor {
   }
 
   _getTexts(variations, options, isTable /*: boolean */) {
-    const {moduleName, node: {arguments: [textNode]}} = this;
-    const arrayTextNode = this._convertToStringArrayNodeIfNeeded(textNode);
+    const {moduleName, node: {arguments: [arrayTextNode]}} = this;
+    if (!isArrayExpression(arrayTextNode)) {
+      throw errorAt(arrayTextNode, `expected first ${moduleName}() argument to be an array`);
+    }
     let texts;
 
     if (isTable) {
@@ -336,52 +340,6 @@ class FbtFunctionCallProcessor {
       });
     }
     return texts;
-  }
-
-  _convertToStringArrayNodeIfNeeded(textNode) /*: BabelNodeArrayExpression */ {
-    switch (textNode.type) {
-      case 'ArrayExpression':
-        return textNode;
-      case 'BinaryExpression': {
-        const operands = this._getBinaryExpressionOperands(textNode);
-        return arrayExpression(operands);
-      }
-      case 'CallExpression':
-      case 'StringLiteral':
-      case 'TemplateLiteral':
-        return arrayExpression([textNode]);
-      default:
-        throw errorAt(
-          textNode,
-          `Unexpected node type: ${textNode.type}. ` +
-          `${this.moduleName}()'s first argument should be a string literal, ` +
-          `a construct like ${this.moduleName}.param() or an array of those.`,
-        );
-    }
-  }
-
-  _getBinaryExpressionOperands(node /*: BabelNodeExpression */) {
-    switch (node.type) {
-      case 'BinaryExpression':
-        if (node.operator !== '+') {
-          throw errorAt(node, 'Expected to see a string concatenation');
-        }
-        return [
-          ...this._getBinaryExpressionOperands(node.left),
-          ...this._getBinaryExpressionOperands(node.right),
-        ];
-      case 'CallExpression':
-      case 'StringLiteral':
-      case 'TemplateLiteral':
-        return [node];
-      default:
-        throw errorAt(
-          node,
-          `Unexpected node type: ${node.type}. ` +
-          `The ${this.moduleName}() string concatenation pattern only supports ` +
-          ` string literals or constructs like ${this.moduleName}.param().`,
-        );
-    }
   }
 
   /**
@@ -674,6 +632,9 @@ class FbtFunctionCallProcessor {
     this._assertHasEnoughArguments();
     const options = this._getOptions();
 
+    const {moduleName, node: {arguments: fbtCallArgs}} = this;
+    fbtCallArgs[0] = convertToStringArrayNodeIfNeeded(moduleName, fbtCallArgs[0]);
+
     const methodsState = this._collectFbtCalls(options);
     const {runtimeArgs, variations} = methodsState;
     const isTable = this._isTableNeeded(methodsState);
@@ -687,6 +648,22 @@ class FbtFunctionCallProcessor {
       phrase,
       texts,
     };
+  }
+
+  convertToFbtNode() /*: FbtElementNode */ {
+    this._assertJSModuleWasAlreadyRequired();
+    this._assertHasEnoughArguments();
+
+    const {moduleName, node} = this;
+    const {arguments: fbtCallArgs} = node;
+    const fbtContentsNode = convertToStringArrayNodeIfNeeded(moduleName, fbtCallArgs[0]);
+    fbtCallArgs[0] = fbtContentsNode;
+
+    const elementNode = FbtElementNode.fromBabelNode({moduleName, node});
+    if (elementNode == null) {
+      throw errorAt(node, `${moduleName}: unable to create FbtElementNode from given Babel node`);
+    }
+    return elementNode;
   }
 }
 

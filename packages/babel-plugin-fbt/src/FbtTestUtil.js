@@ -25,7 +25,12 @@ function transform(
     ast: false,
     plugins: [
       require('@babel/plugin-syntax-jsx'),
-      require('@babel/plugin-transform-react-jsx'),
+      [
+        require('@babel/plugin-transform-react-jsx'),
+        {
+          throwIfNamespace: false,
+        },
+      ],
       [require('./index'), pluginOptions],
     ],
     sourceType: 'module',

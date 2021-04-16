@@ -215,7 +215,7 @@ const generalTestData = {
 
   'should handle a JSX fragment nested with fbt.param as an argument': {
     // TODO(T38926768) Enable this once we support proper auto-parameterization in JSX
-    _inputWithArraySyntax: withFbtRequireStatement(
+    inputWithArraySyntax: withFbtRequireStatement(
       `var React = require('react');
       var x = fbt(
         [
@@ -225,10 +225,10 @@ const generalTestData = {
             <b>
               C1
               {
-                // TODO(T27672828) <FbtParam> or <fbt:param> should be typed like a React component
-                // whose render() method returns the type of its "children" property
+                // TODO(T27672828) fbt constructs like fbt.pronoun() should return some opaque type
+                // like FbtElement to work with React components
               }
-              <fbt:param name="paramName">{paramValue}</fbt:param>
+              {fbt.param('paramName', paramValue)}
               C2
             </b>
             B2
@@ -1339,47 +1339,88 @@ function describeTestScenarios(testData) {
     TestUtil.testSection(testData, transform));
 
   describe('Meta-data collection', () => {
-    const fbtTransform = require('../index');
-
-    function testFbtMetadata(options = {}) {
+    function forEachTestScenario(callback, options = {}) {
       for (const title in testData) {
-        defineSingleTest(title, testData[title], options);
+        callback(title, testData[title], options);
       }
     }
 
-    function defineSingleTest(title, singleTestData, options) {
+    function stripDocBlock(code) {
+      return code.replace(/\/\*\*(?:\/|[^*]|\*+[^*\/])*\*+\/\n/, '');
+    }
+
+    function testFbtMetaData(title, singleTestData, options) {
       // Skip scenarios that test an error
       if (singleTestData.throws) {
         return;
       }
 
       it(`for scenario "${title}"`, () => {
-        // Drop docblock
-        const cleanedCode = singleTestData.input.replace(
-          /\/\*\*(?:\/|[^*]|\*+[^*\/])*\*+\/\n/,
-          '',
+        const fbtTransform = require('../index');
+        const pluginOptions = {
+          collectFbt: true,
+          reactNativeMode: options.reactNativeMode || false,
+        };
+        transform(stripDocBlock(singleTestData.input), pluginOptions);
+        expect(fbtTransform.getExtractedStrings()).toMatchSnapshot();
+      });
+    }
+
+    describe('should collect correct meta data', () => {
+      forEachTestScenario(testFbtMetaData);
+    });
+
+    describe('should collect correct meta data (react native)', () => {
+      forEachTestScenario(testFbtMetaData, {reactNativeMode: true});
+    });
+
+    function testFbtNodeCreation(title, singleTestData, options) {
+      // Skip scenarios that test an error
+      if (singleTestData.throws) {
+        return;
+      }
+
+      it(`for scenario "${title}"`, () => {
+        const FbtFunctionCallProcessor = require('../babel-processors/FbtFunctionCallProcessor');
+        const spy = jest.spyOn(
+          FbtFunctionCallProcessor.prototype,
+          'convertToFbtNode',
         );
 
         const pluginOptions = {
           collectFbt: true,
           reactNativeMode: options.reactNativeMode || false,
         };
-        transform(cleanedCode, pluginOptions);
-        expect(fbtTransform.getExtractedStrings()).toMatchSnapshot();
+        transform(stripDocBlock(singleTestData.input), pluginOptions);
+
+        expect(spy).toHaveBeenCalled();
+        for (const result of spy.mock.results) {
+          if (result.type === 'return') {
+            expect(result.value).toMatchSnapshot();
+          }
+        }
       });
     }
 
-    describe('should collect correct meta data', () => {
-      testFbtMetadata();
+    // TODO(T40113359): remove focused test once it's implemented properly
+    // eslint-disable-next-line jest/no-focused-tests
+    fdescribe('should create correct FbtNode objects', () => {
+      forEachTestScenario(testFbtNodeCreation);
     });
 
-    describe('should collect correct meta data (react native)', () => {
-      testFbtMetadata({reactNativeMode: true});
+    // TODO(T40113359): remove focused test once it's implemented properly
+    // eslint-disable-next-line jest/no-focused-tests
+    fdescribe('should create correct FbtNode objects (react native)', () => {
+      forEachTestScenario(testFbtNodeCreation, {reactNativeMode: true});
     });
   });
 }
 
 describe('Functional FBT API', () => {
+  beforeEach(() => {
+    jest.resetModules();
+  });
+
   describe('using string-concatenated arguments:', () => {
     describeTestScenarios(prepareTestDataForInputKey('input'));
   });
