@@ -66,6 +66,12 @@ const {GENDER_ANY} = require('../translate/IntlVariations');
 const {GenderStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
 const {
+  getChildNodeText,
+  getChildNodeTextForDescription,
+  getTextFromFbtNodeTree,
+  runOnNestedChildren,
+} = require('./FbtNodeUtil');
+const {
   isArrayExpression,
   isCallExpression,
   isJSXElement,
@@ -140,7 +146,7 @@ class FbtElementNode
   }
 
   static getArgsForStringVariationCalcForFbtElement(
-    instance: AnyFbtNode,
+    instance: FbtElementNode | FbtImplicitParamNodeType,
     subject: ?BabelNode,
   ) /*: $ReadOnlyArray<AnyStringVariationArg> */ {
     return (isNode(subject)
@@ -153,16 +159,29 @@ class FbtElementNode
     return this.constructor.getArgsForStringVariationCalcForFbtElement(this, this.options.subject);
   }
 
-  getText(args /*: SVArgsList */) /*: string */ {
-    try {
-      const texts = this.children.map(
-        child => child.getText(args)
-      );
-      const opts = {preserveWhitespace: !!this.options.preserveWhitespace};
-      return normalizeSpaces(texts.join(''), opts).trim();
-    } catch (error) {
-      throw errorAt(this.node, error);
-    }
+  getText(
+    argsList: SVArgsList,
+  ): string {
+    return getTextFromFbtNodeTree(
+      this,
+      argsList,
+      this.options.subject,
+      this.options.preserveWhitespace,
+      getChildNodeText,
+    );
+  }
+
+  getTextForDescription(
+    argsList: SVArgsList,
+    targetFbtNode: FbtImplicitParamNodeType,
+  ): string {
+    return getTextFromFbtNodeTree(
+      this,
+      argsList,
+      this.options.subject,
+      this.options.preserveWhitespace,
+      getChildNodeTextForDescription.bind(null, targetFbtNode),
+    );
   }
 
   /**
@@ -276,9 +295,16 @@ class FbtElementNode
     throw errorAt(node, `${moduleName}: unsupported babel node: ${node.type}`);
   }
 
-  getImplicitParamNodes() /*: $ReadOnlyArray<FbtImplicitParamNodeType> */ {
-    // TODO(T40113359): implement this method
-    return [];
+  getImplicitParamNodes(): $ReadOnlyArray<FbtImplicitParamNodeType> {
+    // Importing this module only here to avoid dependency cycle
+    const FbtImplicitParamNode = require('./FbtImplicitParamNode');
+    const ret = [];
+    runOnNestedChildren(this, child => {
+      if (child instanceof FbtImplicitParamNode) {
+        ret.push(child);
+      }
+    });
+    return ret;
   }
 
   /**

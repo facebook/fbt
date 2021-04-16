@@ -37,7 +37,7 @@ const {
 const {EXACTLY_ONE, NUMBER_ANY} = require('../translate/IntlVariations');
 const {NumberStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
-const {createInstanceFromFbtConstructCallsite} = require('./FbtNodeUtil');
+const {createInstanceFromFbtConstructCallsite, tokenNameToTextPattern} = require('./FbtNodeUtil');
 const {
   isStringLiteral,
 } = require('@babel/types');
@@ -112,7 +112,7 @@ class FbtPluralNode extends FbtNode/*:: <
         case NUMBER_ANY: {
           const many = this.options.many ?? this._getSingularText() + 's';
           return showCount !== ShowCountKeys.no
-            ? '{' + nullthrows(name) + '} ' + many
+            ? tokenNameToTextPattern(nullthrows(name)) + ' ' + many
             : many;
         }
         default:

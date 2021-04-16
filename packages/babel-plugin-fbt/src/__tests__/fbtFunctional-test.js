@@ -244,13 +244,11 @@ const generalTestData = {
   },
 
   'should handle a JSX fragment nested with fbt.param as an argument': {
-    filter: 'skip',
-    // TODO(T38926768) Enable this once we support proper auto-parameterization in JSX
     inputWithArraySyntax: withFbtRequireStatement(
       `var React = require('react');
       var x = fbt(
         [
-          'A1',
+          'A1 ',
           <a>
             B1
             <b>
@@ -264,9 +262,9 @@ const generalTestData = {
             </b>
             B2
           </a>,
-          'A2',
+          ' A2',
         ],
-        'nested!',
+        'string with nested JSX fragments',
         {
           subject: subjectValue,
         }
@@ -318,6 +316,30 @@ const generalTestData = {
           ),
         ],
       )`,
+    ),
+  },
+
+  // TODO(T38926768) Move this to the JSX test suite
+  'should handle JSX fbt with a nested fbt:plural': {
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var React = require('react');
+      <span className="sentence example_row">
+        <fbt desc="example 1">
+          <fbt:param name="name" gender={this.state.ex1Gender}>
+            <b className="padRight">{this.state.ex1Name}</b>
+          </fbt:param>
+          has shared
+          <a className="neatoLink" href="#">
+            <fbt:plural
+              many="photos"
+              showCount="ifMany"
+              count={this.state.ex1Count}>
+              a photo
+            </fbt:plural>
+          </a>
+          with you
+        </fbt>
+      </span>;`,
     ),
   },
 

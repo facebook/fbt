@@ -12,7 +12,6 @@
 /*::
 import type {AnyStringVariationArg} from '../fbt-nodes/FbtArguments';
 import type {AnyFbtNode} from '../fbt-nodes/FbtNode';
-import type FbtImplicitParamNode from '../fbt-nodes/FbtImplicitParamNode';
 import type {
   FbtCallSiteOptions,
   FbtOptionValue,
@@ -22,6 +21,7 @@ import type {
 import type {
   ParamSet,
 } from '../FbtUtil';
+import type {TableJSFBTTreeLeaf, TableJSFBTTree} from '../index';
 import type {
   FbtBabelNodeCallExpression,
   FbtBabelNodeJSXElement,
@@ -91,6 +91,7 @@ type MetaPhrase = {|
 */
 
 const FbtElementNode = require('../fbt-nodes/FbtElementNode');
+const FbtImplicitParamNode = require('../fbt-nodes/FbtImplicitParamNode');
 const {
   FbtBooleanOptions,
   PLURAL_PARAM_TOKEN,
@@ -115,6 +116,9 @@ const {
 const JSFbtBuilder = require('../JSFbtBuilder');
 const addLeafToTree = require('../utils/addLeafToTree');
 const CursorArray = require('../utils/CursorArray');
+const {
+  getClosestElementOrImplicitParamNodeAncestor,
+} = require('../fbt-nodes/FbtNodeUtil');
 const {
   isArrayExpression,
   isCallExpression,
@@ -661,75 +665,108 @@ class FbtFunctionCallProcessor {
     const {author, project} = fbtElement.options;
     return [fbtElement, ...fbtElement.getImplicitParamNodes()]
       .map(fbtNode => {
-        const stubPhrase = {
-          ...this.defaultFbtOptions,
-        };
-        if (author) {
-          stubPhrase.author = author;
-        }
-        if (project) {
-          stubPhrase.project = project;
-        }
+        try {
+          const stubPhrase = {
+            ...this.defaultFbtOptions,
+          };
+          if (author) {
+            stubPhrase.author = author;
+          }
+          if (project) {
+            stubPhrase.project = project;
+          }
 
-        if (argsCombinations.length === 0) { // simple string without any variation
-          return {
-            phrase: {
-              ...stubPhrase,
-              desc: fbtNode.getDescription(new CursorArray([])),
-              jsfbt: fbtNode.getText(new CursorArray([])),
-              type: 'text',
+          if (argsCombinations.length === 0) { // simple string without any variation
+            return {
+              phrase: {
+                ...stubPhrase,
+                desc: fbtNode.getDescription(new CursorArray([])),
+                jsfbt: fbtNode.getText(new CursorArray([])),
+                type: 'text',
+              },
+              fbtNode,
+            };
+          }
+
+          const descriptions = new Set();
+          const phrase = {
+            ...stubPhrase,
+            desc: '',
+            jsfbt: {
+              m: jsfbtMetadata,
+              t: {},
             },
+            type: 'table',
+          };
+
+          const argsCombinationStartIndex = this._findSVArgsStartIndex(
+            fbtNode,
+            argsCombinations[0],
+          );
+
+          argsCombinations.map(argsCombination => { // collect text/description pairs
+            const desc = fbtNode.getDescription(new CursorArray(
+              argsCombination,
+              fbtNode instanceof FbtImplicitParamNode
+                ? 0 // need a description from the phrase top-level perspective
+                : argsCombinationStartIndex,
+            ));
+            descriptions.add(desc);
+            return {
+              argValues: compactStringVariations.indexMap.map(
+                originIndex => nullthrows(argsCombination[originIndex]?.value)
+              ),
+              desc,
+              text: fbtNode.getText(new CursorArray(argsCombination, argsCombinationStartIndex)),
+            };
+          })
+            .forEach(item =>
+              // assemble jsfbt table
+              addLeafToTree<TableJSFBTTreeLeaf, TableJSFBTTree>(
+                phrase.jsfbt.t,
+                item.argValues,
+                descriptions.size > 1
+                  ? {
+                    desc: item.desc,
+                    text: item.text,
+                    tokenAliases: {}, // TODO(T81971330) Implement "mangled" token aliases
+                  }
+                  // output only texts if there's only a single description at this fbt callsite
+                  : item.text
+              )
+            );
+
+          // set description at phrase root level
+          // if there's only a single description at this fbt callsite
+          // TODO(T81971330): JSFBT tree leaves structure should be more consistent
+          if (descriptions.size === 1) {
+            phrase.desc = Array.from(descriptions)[0];
+          }
+
+          return {
+            phrase,
             fbtNode,
           };
+        } catch (error) {
+          throw errorAt(fbtNode.node, error);
         }
-
-        const descriptions = new Set();
-        const phrase = {
-          ...stubPhrase,
-          desc: '',
-          jsfbt: {
-            m: jsfbtMetadata,
-            t: {},
-          },
-          type: 'table',
-        };
-
-        argsCombinations.map(argsCombination => { // collect text/description pairs
-          const desc = fbtNode.getDescription(new CursorArray(argsCombination));
-          descriptions.add(desc);
-          return {
-            argValues: compactStringVariations.indexMap.map(originIndex =>
-              // Convert GenderConstEnum to string
-              String(nullthrows(argsCombination[originIndex]?.value))
-            ),
-            desc,
-            text: fbtNode.getText(new CursorArray(argsCombination)),
-          };
-        })
-          .forEach(item => addLeafToTree( // assemble jsfbt table
-            phrase.jsfbt.t,
-            item.argValues,
-            descriptions.size > 1
-              ? {
-                desc: item.desc,
-                text: item.text,
-              }
-              // output only texts if there's only a single description at this fbt callsite
-              : item.text
-          ));
-
-        // set description at phrase root level
-        // if there's only a single description at this fbt callsite
-        // TODO(T81971330): JSFBT tree leaves structure should be more consistent
-        if (descriptions.size === 1) {
-          phrase.desc = Array.from(descriptions)[0];
-        }
-
-        return {
-          phrase,
-          fbtNode,
-        };
       });
+  }
+
+  _findSVArgsStartIndex(
+    fbtNode: AnyFbtNode,
+    svArgs: $ReadOnlyArray<AnyStringVariationArg>,
+  ): number {
+    const index = fbtNode instanceof FbtElementNode
+      ? 0
+      : svArgs.findIndex(arg =>
+        arg.fbtNode === fbtNode ||
+        (arg.fbtNode instanceof FbtElementNode ||
+        arg.fbtNode instanceof FbtImplicitParamNode
+          ? arg.fbtNode
+          : getClosestElementOrImplicitParamNodeAncestor(arg.fbtNode)) === fbtNode
+      );
+    return index >= 0 ? index : 0;
   }
 
   /**

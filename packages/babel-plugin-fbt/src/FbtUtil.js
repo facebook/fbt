@@ -852,8 +852,8 @@ function compactBabelNodeProps(object /*: {} */) /*: {} */ {
  * Serialize a variable for debugging.
  * It's a variant of JSON.stringify() that supports `undefined`
  */
-function varDump(value /*: mixed */) /*: string */ {
-  return util.inspect(value, {depth: 4}) || 'undefined';
+function varDump(value: mixed, depth: number = 1) /*: string */ {
+  return util.inspect(value, {depth}) || 'undefined';
 }
 
 function enforceString(value /*: mixed */, valueDesc /*: ?string */) /*: string */ {

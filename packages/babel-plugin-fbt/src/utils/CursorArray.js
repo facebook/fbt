@@ -17,8 +17,11 @@ class CursorArray<V> {
   _index: number = 0;
   _values: $ReadOnlyArray<V>;
 
-  constructor(values: $ReadOnlyArray<V>): void {
+  constructor(values: $ReadOnlyArray<V>, initCursorIndex?: number): void {
     this._values = values;
+    if (initCursorIndex != null) {
+      this.setCursor(initCursorIndex);
+    }
   }
 
   /**
@@ -44,6 +47,26 @@ class CursorArray<V> {
    */
   consumeOne(): V {
     return this.consume(1)[0];
+  }
+
+  _assertIndex(index: number): this {
+    invariant(
+      index === 0 || (0 < index && index < this._values.length),
+      'Expected index value %s to be in range [0, %s[',
+      index,
+      this._values.length,
+    );
+    return this;
+  }
+
+  /**
+   * Set cursor index.
+   * Does not change the array values.
+   */
+  setCursor(index: number): this {
+    this._assertIndex(index);
+    this._index = index;
+    return this;
   }
 }
 

@@ -330,7 +330,12 @@ class JSFbtBuilder {
       curArg instanceof NumberStringVariationArg ||
       curArg instanceof GenderStringVariationArg
     ) {
-      recurse(curArg.candidateValues);
+      recurse(
+        curArg.candidateValues,
+        undefined,
+        curArg instanceof GenderStringVariationArg &&
+          fbtNode instanceof FbtImplicitParamNode,
+      );
     } else {
       invariant(
         false,

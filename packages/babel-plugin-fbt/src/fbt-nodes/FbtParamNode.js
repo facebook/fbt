@@ -39,6 +39,7 @@ const FbtNode = require('./FbtNode');
 const {
   createInstanceFromFbtConstructCallsite,
   getClosestElementOrImplicitParamNodeAncestor,
+  tokenNameToTextPattern,
 } = require('./FbtNodeUtil');
 const {
   isStringLiteral,
@@ -137,7 +138,7 @@ class FbtParamNode extends FbtNode/*:: <
           varDump(svArg),
         );
       });
-      return `{${this.options.name}}`;
+      return tokenNameToTextPattern(this.options.name);
     } catch (error) {
       throw errorAt(this.node, error);
     }

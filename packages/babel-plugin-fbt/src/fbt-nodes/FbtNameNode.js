@@ -33,7 +33,7 @@ const {
 const {GENDER_ANY} = require('../translate/IntlVariations');
 const {GenderStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
-const {createInstanceFromFbtConstructCallsite} = require('./FbtNodeUtil');
+const {createInstanceFromFbtConstructCallsite, tokenNameToTextPattern} = require('./FbtNodeUtil');
 const {
   isStringLiteral,
 } = require('@babel/types');
@@ -95,7 +95,7 @@ class FbtNameNode extends FbtNode/*:: <
   getText(argsList: SVArgsList): string {
     try {
       GenderStringVariationArg.assert(argsList.consumeOne());
-      return `{${this.options.name}}`;
+      return tokenNameToTextPattern(this.options.name);
     } catch (error) {
       throw errorAt(this.node, error);
     }

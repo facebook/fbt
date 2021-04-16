@@ -73,19 +73,22 @@ type TokenAlias = string;
 //   parameters passed to the various fbt constructs (param, plural, pronoun) of this callsite.
 //
 //  See the docblock for fbt._ for an example of the nested table and its behavior
-type TableJSFBTTree = {|
+export type TableJSFBTTree = {|
   [key: FbtTableKey]: TableJSFBTTree | TableJSFBTTreeLeaf
 |};
 
-type TableJSFBTTreeLeaf =
+export type TableJSFBTTreeLeaflet = {|
+  desc: string,
+  hash?: PatternHash,
+  text: string,
+  tokenAliases: {|
+    [clearTokenName: string]: TokenAlias
+  |},
+|};
+
+export type TableJSFBTTreeLeaf =
   | PatternString
-  | {|
-      desc: string,
-      text: string,
-      tokenAliases: {|
-        [clearTokenName: string]: TokenAlias
-      |},
-  |};
+  | TableJSFBTTreeLeaflet;
 
 // Describes the usage of one level of the JSFBT table tree
 export type JSFBTMetaEntry = $ReadOnly<{|

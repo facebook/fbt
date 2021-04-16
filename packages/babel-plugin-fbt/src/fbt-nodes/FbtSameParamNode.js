@@ -17,7 +17,7 @@ const {
   errorAt,
 } = require('../FbtUtil');
 const FbtNode = require('./FbtNode');
-const {createInstanceFromFbtConstructCallsite} = require('./FbtNodeUtil');
+const {createInstanceFromFbtConstructCallsite, tokenNameToTextPattern} = require('./FbtNodeUtil');
 const {
   isStringLiteral,
 } = require('@babel/types');
@@ -58,7 +58,7 @@ class FbtSameParamNode
   getText(_argsList /*: SVArgsList */) /*: string */ {
     try {
       // TODO(T79804447): verify that the token name was already defined at the sentence level
-      return `{${this._getTokenName()}}`;
+      return tokenNameToTextPattern(this._getTokenName());
     } catch (error) {
       throw errorAt(this.node, error);
     }

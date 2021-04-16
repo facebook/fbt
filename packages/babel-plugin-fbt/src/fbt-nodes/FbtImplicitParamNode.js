@@ -23,6 +23,12 @@ const {
 } = require('../FbtUtil');
 const FbtElementNode = require('./FbtElementNode');
 const FbtNode = require('./FbtNode');
+const {
+  convertToTokenName,
+  getChildNodeText,
+  getChildNodeTextForDescription,
+  getTextFromFbtNodeTree,
+} = require('./FbtNodeUtil');
 const FbtTextNode = require('./FbtTextNode');
 const {
   isBinaryExpression,
@@ -46,11 +52,6 @@ class FbtImplicitParamNode
 
   _tokenSet /*: ParamSet */ = {};
 
-  // Returns the string description which depends on the string variation factor values
-  getDescription(_args /*: SVArgsList */) /*: string */ {
-    throw errorAt(this.node, 'Not implemented yet');
-  }
-
   _getElementNode() /*: FbtElementNode */ {
     return nullthrows(this.getFirstAncestorOfType(FbtElementNode));
   }
@@ -60,9 +61,60 @@ class FbtImplicitParamNode
   }
 
   getArgsForStringVariationCalc() /*: $ReadOnlyArray<AnyStringVariationArg> */ {
-    // The implicit fbt string may depend on a subject, inferred from the top-level FbtElementNode
-    const subject = this._getSubjectNode();
-    return FbtElementNode.getArgsForStringVariationCalcForFbtElement(this, subject);
+    return FbtElementNode.getArgsForStringVariationCalcForFbtElement(
+      this,
+      // The implicit fbt string may depend on a subject, inferred from the top-level FbtElementNode
+      this._getSubjectNode(),
+    );
+  }
+
+  getText(
+    argsList: SVArgsList,
+  ): string {
+    return getTextFromFbtNodeTree(
+      this,
+      argsList,
+      this._getSubjectNode(),
+      this._getElementNode().options.preserveWhitespace,
+      getChildNodeText,
+    );
+  }
+
+  getTextForDescription(
+    argsList: SVArgsList,
+    targetFbtNode: FbtImplicitParamNode,
+  ): string {
+    return getTextFromFbtNodeTree(
+      this,
+      argsList,
+      this._getSubjectNode(),
+      this._getElementNode().options.preserveWhitespace,
+      getChildNodeTextForDescription.bind(null, targetFbtNode),
+    );
+  }
+
+  /**
+   * Returns the text of this FbtNode in a "token name" format.
+   * Note: it's prefixed by `=` to differentiate normal token names from implicit param nodes.
+   *
+   * E.g. `=Hello [name]`
+   */
+  getTokenName(argsList: SVArgsList): string {
+    return convertToTokenName(getTextFromFbtNodeTree(
+      this,
+      argsList,
+      this._getSubjectNode(),
+      this._getElementNode().options.preserveWhitespace,
+      (_, child) => child.getText(argsList),
+    ));
+  }
+
+  /**
+   * Returns the string description which depends on the string variation factor values
+   * from the whole fbt callsite.
+   */
+  getDescription(argsList: SVArgsList): string {
+    return `In the phrase: "${this._getElementNode().getTextForDescription(argsList, this)}"`;
   }
 
   /**
