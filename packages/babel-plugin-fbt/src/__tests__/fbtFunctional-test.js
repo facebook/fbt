@@ -663,7 +663,6 @@ const generalTestData = {
   },
 
   'should handle names': {
-    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'You just friended ' + fbt.name('name', personname, gender),

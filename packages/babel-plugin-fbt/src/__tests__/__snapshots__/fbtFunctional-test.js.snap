@@ -4609,10 +4609,16 @@ FbtElementNode {
   "__stringVariationArgs": Array [
     GenderStringVariationArg {
       "__nodeCode": "gender",
+      "candidateValues": Array [
+        "*",
+      ],
+      "fbtNode": "FbtNameNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -4625,13 +4631,18 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtNameNode {
       "__nodeCode": "fbt.name('name', personname, gender)",
       "__stringVariationArgs": Array [
         GenderStringVariationArg {
           "__nodeCode": "gender",
+          "candidateValues": Array [
+            "*",
+          ],
+          "fbtNode": "FbtNameNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -4650,7 +4661,7 @@ FbtElementNode {
         "name": "name",
         "value": "BabelNode[type=Identifier]",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -4666,6 +4677,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -10769,10 +10781,16 @@ FbtElementNode {
   "__stringVariationArgs": Array [
     GenderStringVariationArg {
       "__nodeCode": "gender",
+      "candidateValues": Array [
+        "*",
+      ],
+      "fbtNode": "FbtNameNode",
+      "isCollapsible": false,
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -10785,13 +10803,18 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtNameNode {
       "__nodeCode": "fbt.name('name', personname, gender)",
       "__stringVariationArgs": Array [
         GenderStringVariationArg {
           "__nodeCode": "gender",
+          "candidateValues": Array [
+            "*",
+          ],
+          "fbtNode": "FbtNameNode",
+          "isCollapsible": false,
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -10810,7 +10833,7 @@ FbtElementNode {
         "name": "name",
         "value": "BabelNode[type=Identifier]",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -10826,6 +10849,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 

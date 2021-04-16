@@ -16,6 +16,7 @@
 // name : tokenName*, nameStr, genderValue
 
 /*::
+import type {SVArgsList} from './FbtArguments';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 
 type Options = {|
@@ -89,6 +90,15 @@ class FbtNameNode extends FbtNode/*:: <
 
   getArgsForStringVariationCalc() /*: $ReadOnlyArray<GenderStringVariationArg> */ {
     return [new GenderStringVariationArg(this, this.options.gender, [GENDER_ANY])];
+  }
+
+  getText(argsList: SVArgsList): string {
+    try {
+      GenderStringVariationArg.assert(argsList.consumeOne());
+      return `{${this.options.name}}`;
+    } catch (error) {
+      throw errorAt(this.node, error);
+    }
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes
