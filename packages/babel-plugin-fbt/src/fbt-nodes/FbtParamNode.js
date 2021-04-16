@@ -31,6 +31,7 @@ const {
   collectOptionsFromFbtConstruct,
   enforceBabelNode,
   errorAt,
+  varDump,
 } = require('../FbtUtil');
 const {GENDER_ANY, NUMBER_ANY} = require('../translate/IntlVariations');
 const {GenderStringVariationArg, NumberStringVariationArg} = require('./FbtArguments');
@@ -124,8 +125,22 @@ class FbtParamNode extends FbtNode/*:: <
     return this;
   }
 
-  getText(_argsList /*: SVArgsList */) /*: string */ {
-    return `{${this.options.name}}`;
+  getText(argsList /*: SVArgsList */) /*: string */ {
+    try {
+      this.getArgsForStringVariationCalc().forEach(expectedArg => {
+        const svArg = argsList.consumeOne();
+        invariant(
+          svArg instanceof expectedArg.constructor,
+          'Expected instance of %s but got %s: %s',
+          expectedArg.constructor.name,
+          svArg.constructor.name || 'unknown',
+          varDump(svArg),
+        );
+      });
+      return `{${this.options.name}}`;
+    } catch (error) {
+      throw errorAt(this.node, error);
+    }
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes

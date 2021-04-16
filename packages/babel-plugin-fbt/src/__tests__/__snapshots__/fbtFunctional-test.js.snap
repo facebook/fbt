@@ -5354,10 +5354,18 @@ FbtElementNode {
 }), ' likes. Comment on it to get more than ', fbt.sameParam('count'), ' likes'], 'test variations + sameParam')",
   "__stringVariationArgs": Array [
     NumberStringVariationArg {
+      "candidateValues": Array [
+        "*",
+      ],
+      "fbtNode": "FbtParamNode",
+      "isCollapsible": false,
       "node": null,
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {
+    "count": true,
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -5370,7 +5378,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('count', val, {
@@ -5378,6 +5386,11 @@ FbtElementNode {
 })",
       "__stringVariationArgs": Array [
         NumberStringVariationArg {
+          "candidateValues": Array [
+            "*",
+          ],
+          "fbtNode": "FbtParamNode",
+          "isCollapsible": false,
           "node": null,
           "value": undefined,
         },
@@ -5394,7 +5407,7 @@ FbtElementNode {
         "name": "count",
         "number": true,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' likes. Comment on it to get more than '",
@@ -5406,7 +5419,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtSameParamNode {
       "__nodeCode": "fbt.sameParam('count')",
@@ -5418,7 +5431,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' likes'",
@@ -5430,7 +5443,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -5446,6 +5459,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -5456,10 +5470,18 @@ FbtElementNode {
 }), ' links'], 'variations!')",
   "__stringVariationArgs": Array [
     NumberStringVariationArg {
+      "candidateValues": Array [
+        "*",
+      ],
+      "fbtNode": "FbtParamNode",
+      "isCollapsible": false,
       "node": null,
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {
+    "count": true,
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -5472,7 +5494,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('count', c, {
@@ -5480,6 +5502,11 @@ FbtElementNode {
 })",
       "__stringVariationArgs": Array [
         NumberStringVariationArg {
+          "candidateValues": Array [
+            "*",
+          ],
+          "fbtNode": "FbtParamNode",
+          "isCollapsible": false,
           "node": null,
           "value": undefined,
         },
@@ -5496,7 +5523,7 @@ FbtElementNode {
         "name": "count",
         "number": true,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' links'",
@@ -5508,7 +5535,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -5524,6 +5551,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -11526,10 +11554,18 @@ FbtElementNode {
 }), ' likes. Comment on it to get more than ', fbt.sameParam('count'), ' likes'], 'test variations + sameParam')",
   "__stringVariationArgs": Array [
     NumberStringVariationArg {
+      "candidateValues": Array [
+        "*",
+      ],
+      "fbtNode": "FbtParamNode",
+      "isCollapsible": false,
       "node": null,
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {
+    "count": true,
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -11542,7 +11578,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('count', val, {
@@ -11550,6 +11586,11 @@ FbtElementNode {
 })",
       "__stringVariationArgs": Array [
         NumberStringVariationArg {
+          "candidateValues": Array [
+            "*",
+          ],
+          "fbtNode": "FbtParamNode",
+          "isCollapsible": false,
           "node": null,
           "value": undefined,
         },
@@ -11566,7 +11607,7 @@ FbtElementNode {
         "name": "count",
         "number": true,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' likes. Comment on it to get more than '",
@@ -11578,7 +11619,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtSameParamNode {
       "__nodeCode": "fbt.sameParam('count')",
@@ -11590,7 +11631,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' likes'",
@@ -11602,7 +11643,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -11618,6 +11659,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -11628,10 +11670,18 @@ FbtElementNode {
 }), ' links'], 'variations!')",
   "__stringVariationArgs": Array [
     NumberStringVariationArg {
+      "candidateValues": Array [
+        "*",
+      ],
+      "fbtNode": "FbtParamNode",
+      "isCollapsible": false,
       "node": null,
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {
+    "count": true,
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -11644,7 +11694,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtParamNode {
       "__nodeCode": "fbt.param('count', c, {
@@ -11652,6 +11702,11 @@ FbtElementNode {
 })",
       "__stringVariationArgs": Array [
         NumberStringVariationArg {
+          "candidateValues": Array [
+            "*",
+          ],
+          "fbtNode": "FbtParamNode",
+          "isCollapsible": false,
           "node": null,
           "value": undefined,
         },
@@ -11668,7 +11723,7 @@ FbtElementNode {
         "name": "count",
         "number": true,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' links'",
@@ -11680,7 +11735,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -11696,6 +11751,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 

@@ -702,7 +702,6 @@ const generalTestData = {
   },
 
   'should handle variations': {
-    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'Click to see ' + fbt.param('count', c, {number: true}) + ' links',
@@ -773,7 +772,6 @@ const generalTestData = {
   },
 
   'should handle variations + same param': {
-    filter: 'skip',
     input: withFbtRequireStatement(
       `var val = 42;
       fbt(
