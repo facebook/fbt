@@ -104,7 +104,7 @@ const generalTestData = {
     inputWithArraySyntax: withFbtRequireStatement(
       `var z = fbt(
         [
-          'a' +
+          'a',
           ' b ',
           fbt.param('name1', val1),
           ' c ',
@@ -865,20 +865,26 @@ const generalTestData = {
     inputWithArraySyntax: withFbtRequireStatement(
       `var x = fbt(
         [
-          'foo' + 'bar',
-          'baz' + 'qux'
+          ('foo'),
+          ('bar'),
+          ('baz'),
+          ('qux'),
         ], 'desc'
       );
       var y = fbt(
         [
-          'foo',
-          ('bar' + 'baz' + 'qux'),
+          ('foo'),
+          ('bar'),
+          ('baz'),
+          ('qux'),
         ], 'desc'
       );
       var q = fbt(
         [
-          'foo',
-          'bar' + ('baz' + 'qux'),
+          ('foo'),
+          ('bar'),
+          ('baz'),
+          ('qux'),
         ], 'desc'
       );`,
     ),
@@ -1217,16 +1223,17 @@ const generalTestData = {
   },
 
   'should throw when concatenating an fbt construct to a string while using the array argument syntax': {
-    filter: 'skip',
     inputWithArraySyntax: withFbtRequireStatement(
       `var x = fbt(
           [
-            'It is ' + fbt.pronoun('possession', gender) + ' birthday.'
+            'It is ' + fbt.pronoun('possessive', gender) + ' birthday.'
           ], 'throw because fbt constructs should be used as array items only',
         );`,
     ),
 
-    throws: true,
+    throws:
+      'fbt(array) only supports items that are string literals, ' +
+      'template literals without any expressions, or fbt constructs',
   },
 
   // Initially needed for JS source maps accuracy

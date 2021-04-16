@@ -752,9 +752,11 @@ function convertToStringArrayNodeIfNeeded(
   node /*: $ElementType<$PropertyType<BabelNodeCallExpression, 'arguments'>, number> */,
 ) /*: BabelNodeArrayExpression */ {
   let initialElements;
+  let didStartWithArray = false;
   switch (node.type) {
     case 'ArrayExpression':
       initialElements = nullthrows(node.elements);
+      didStartWithArray = true;
       break;
     case 'CallExpression':
     case 'StringLiteral':
@@ -786,6 +788,14 @@ function convertToStringArrayNodeIfNeeded(
   return arrayExpression(initialElements.reduce((elements, element) => {
     if (element == null) {
       return elements;
+    }
+    if (didStartWithArray && (
+      element.type === 'BinaryExpression' ||
+      (element.type === 'TemplateLiteral' && element.expressions.length))) {
+      throw errorAt(element,
+        `${moduleName}(array) only supports items that are string literals, ` +
+        `template literals without any expressions, or fbt constructs`,
+      );
     }
     switch (element.type) {
       case 'BinaryExpression': {
