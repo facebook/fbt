@@ -51,14 +51,22 @@ The `IntlVariations` used in those cases only has `GENDER_MALE`, `GENDER_FEMALE`
 The example above generates:
 ```
 {
-  "hashToText": {
-    "I/p+TWpGhrtv9gnABybPMw==": "{name} shared her photo with you.",
-    "3Yb/zNhF8nZ8aR+NSPaeJQ==": "{name} shared his photo with you.",
-    "JYTtgHGMpBOM2Vrc9JLeUw==": "{name} shared their photo with you."
+  "hashToLeaf": {
+    "I/p+TWpGhrtv9gnABybPMw==": {
+      "text": "{name} shared her photo with you.",
+      "desc": "pronoun example",
+    },
+    "3Yb/zNhF8nZ8aR+NSPaeJQ==": {
+      "text": "{name} shared his photo with you.",
+      "desc": "pronoun example",
+    },
+    "JYTtgHGMpBOM2Vrc9JLeUw==": {
+      "text": "{name} shared their photo with you."
+      "desc": "pronoun example",
+    },
   },
   ...,
   "type": "table",
-  "desc": "pronoun example",
   "jsfbt": {
     "t": {
       "1": "{name} shared her photo with you.",

@@ -43,8 +43,11 @@ _`manifest.js` is also exposed as a binary named `fbt-manifest` from `babel-plug
 {
   "phrases": [
     {
-      "hashToText": {
-        <hash>: <text>,
+      "hashToLeaf": {
+        <hash>: {
+          "text": <text>,
+          "desc": <description>,
+        },
         ...
       },
       "line_beg": <beginning_line>,
@@ -52,7 +55,6 @@ _`manifest.js` is also exposed as a binary named `fbt-manifest` from `babel-plug
       "line_end": <end_line>,
       "col_end": <col_end>,
       "type": "text"|"table",
-      "desc": <description>,
       "project": <project>,
       "jsfbt": string|{t: <table>, m: <metadata>},
     }
@@ -65,18 +67,18 @@ _`manifest.js` is also exposed as a binary named `fbt-manifest` from `babel-plug
 
 `phrases` here represents all the *source* information we need to
 process and produce an `fbt._(...)` callsite's final payload.  When
-combined with corresponding translations to each `hashToText` entry we
+combined with corresponding translations to each `hashToLeaf` entry we
 can produce the translated payloads `fbt._()` expects.
 
 When it comes to moving from source text to translations, what is most
-pertinent is the `hashToText` payload containing all relevant texts
+pertinent is the `hashToLeaf` payload containing all relevant texts
 with their identifying hash.  You can provide a custom hash module to
 `collectFbts` if you so choose.  It defaults to md5.
 
 ### A note on hashes
 
 In the FBT framework, there are 2 main places we uses hashes for
-identification: **text** and **fbt callsite**.  The `hashToText` mapping
+identification: **text** and **fbt callsite**.  The `hashToLeaf` mapping
 above represents the hash (using whichever algorithm was chosen in
 `collectFbt`) of the **text** and its **description**.  This is used
 when *building* the translated payloads.

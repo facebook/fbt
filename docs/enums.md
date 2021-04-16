@@ -54,14 +54,24 @@ All the above examples [extract](collection.md) the same 4 separate strings for 
 {
   "phrases": [
     {
-      "hashToText": {
-        "tGN0j5ePJCeH9fIlp3Yq6w==": "Buy a new car!",
-        "ElXst6oKNLh1XU8GjJucQQ==": "Buy a new house!",
-        "fAHV109uPI7aCxZqNmuTfg==": "Buy a new boat!",
-        "end24pKDi2/oxKff1YEXzQ==": "Buy a new houseboat!"
+      "hashToLeaf": {
+        "tGN0j5ePJCeH9fIlp3Yq6w==": {
+          "text": "Buy a new car!",
+          "desc": "buy prompt",
+        },
+        "ElXst6oKNLh1XU8GjJucQQ==": {
+          "text": "Buy a new house!",
+          "desc": "buy prompt",
+        },
+        "fAHV109uPI7aCxZqNmuTfg==": {
+          "text": "Buy a new boat!",
+          "desc": "buy prompt",
+        },
+        "end24pKDi2/oxKff1YEXzQ==": {
+          "text": "Buy a new houseboat!"
+          "desc": "buy prompt",
+        },
       },
-      ...,
-      "desc": "buy prompt",
       ...
     },
 ```

@@ -7,10 +7,9 @@ sidebar_label: Auto-parameterization
 `<fbt>` will automatically wrap any non-fbt children in the top-level
 `<fbt>` as though they were written with an `<fbt:param>` with a
 `name` attribute containing the child's text.  It will pull any child
-text into the parameter name, including those of recursive structures.   
-**<span style={{ color: "red" }}> Note this is inherently not available to
-the `fbt(...)` API </span>**
+text into the parameter name, including those of recursive structures.
 
+- JSX fbt syntax:
 
 ```xml
 <fbt desc="auto-wrap example">
@@ -21,38 +20,59 @@ the `fbt(...)` API </span>**
 </fbt>
 ```
 
+- Function syntax:
+
+```js
+fbt(
+  [
+    'Go on an',
+    <a href="#">
+      <span>awesome</span> vacation
+    </a>,
+  ],
+  'auto-wrap example',
+);
+```
+
 When extracted for translation, the result is:
 
 ```
 {
-  "phrases": [
-    {
-      "hashToText": {
-        "6b034a8291e7e7a8241fe7b914106066": "Go on an {=awesome vacation}"
-      },
-      "desc": "auto-wrap example",
-      ...,
-    },
-    {
-      "hashToText": {
-        "e9b2d1a9d1ae7961c40dfac907d50d64": "{=awesome} vacation"
-      },
-      "desc": "In the phrase: \"Go on an {=awesome vacation}\"",
-      ...,
-    },
-    {
-      "hashToText": {
-        "63a89a77a42a9681b88086dc938ec5e3": "awesome"
-      },
-      "desc": "In the phrase: \"Go on an {=awesome} vacation\"",
-      ...,
+ "phrases": [
+  {
+   "hashToLeaf": {
+    "V2xk3OfcDrMIA7HC/rIXIg==": {
+     "text": "Go on an {=awesome vacation}",
+     "desc": "auto-wrap example"
     }
-  ],
-  "childParentMappings": {
-    "1": 0,
-    "2": 1
+   },
+   // ...
+  },
+  {
+   "hashToLeaf": {
+    "feX2lgKwwomWUYP5/78klg==": {
+     "text": "{=awesome} vacation",
+     "desc": "In the phrase: \"Go on an {=awesome vacation}\""
+    }
+   },
+   // ...
+  },
+  {
+   "hashToLeaf": {
+    "a7sBUhipyZur9yE8H6dk2A==": {
+     "text": "awesome",
+     "desc": "In the phrase: \"Go on an {=awesome} vacation\""
+    }
+   },
+   // ...
   }
+ ],
+ "childParentMappings": {
+  "1": 0,
+  "2": 1
+ }
 }
+
 ```
 
 Notice the description for "vacation" is auto-generated with an `"In

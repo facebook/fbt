@@ -1,7 +1,6 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
- * DO NOT AUTO-FORMAT TO PRESERVE FLOW TYPES
  * @noformat
  * @flow
  * @emails oncall+internationalization
@@ -20,6 +19,10 @@ export type ExternalTransform = (src: string, opts: TransformOptions, filename: 
 /*::
 import type {BabelPluginList, BabelPresetList} from '@babel/core';
 import type {EnumManifest} from '../FbtEnumRegistrar';
+import type {
+  PatternHash,
+  PatternString,
+} from '../../../../runtime/shared/FbtTable';
 import type {BabelPluginFbt, Phrase, ExtraOptions, PluginOptions} from '../index';
 export type CollectorConfig = {|
   fbtCommonPath?: string,
@@ -30,11 +33,15 @@ export type CollectorConfig = {|
 |};
 export type ChildParentMappings = {[prop: number]: number}
 export type Errors = {[file: string]: Error};
+export type HashToLeaf = {[hash: PatternHash]: {|
+  desc: string,
+  text: PatternString,
+|}};
 export type PackagerPhrase = {|
   ...Phrase,
   hash_code?: number,
   hash_key?: string,
-  hashToText?: {[hash: string]: string},
+  hashToLeaf?: HashToLeaf,
 |};
 export type TransformOptions = {|
   ...PluginOptions,
@@ -104,10 +111,9 @@ class FbtCollector implements IFbtCollector {
       newPhrases = extractEnumsAndFlattenPhrases(newPhrases);
     }
 
-    this._phrases.push.apply(
-      this._phrases,
-      newPhrases,
-    );
+    // PackagerPhrase is an extended type of Phrase
+    // $FlowExpectedError[prop-missing] ignore missing hashToLeaf issue
+    this._phrases.push(...(newPhrases: Array<PackagerPhrase>));
   }
 
   collectFromFiles(

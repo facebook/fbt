@@ -4,21 +4,20 @@
  * @emails oncall+internationalization
  * @flow
  */
+/*eslint max-len: ["error", 100]*/
 
 /*::
 import type {PatternHash, PatternString} from '../../../../runtime/shared/FbtTable';
-import type {PackagerPhrase} from './FbtCollector';
+import type {TableJSFBTTree, TableJSFBTTreeLeaflet} from '../index';
+import type {PackagerPhrase, HashToLeaf} from './FbtCollector';
 
-// The hash function signature should look like:
-// [{desc: '...', texts: ['t1',...,'tN']},...]) =>
-//   [[hash1,...,hashN],...]
-export type HashFunction = (textsGroupedByDesc: Array<{
-  desc: string,
-  texts: Array<PatternString>
-}>) => Array<Array<PatternHash>>;
+export type HashFunction = (
+  text: PatternString,
+  description: string,
+) => PatternHash;
 */
 
-const {FbtType} = require('../FbtConstants');
+const {onEachLeaf} = require('../JSFbtUtil');
 
 /**
  * TextPackager massages the data to handle multiple texts in fbt payloads (like
@@ -32,25 +31,23 @@ class TextPackager {
   }
 
   pack(phrases /*: Array<PackagerPhrase> */) /*: Array<PackagerPhrase> */ {
-    const flatTexts = phrases.map(phrase => ({
-      desc: phrase.desc,
-      texts: _flattenTexts(
-        phrase.type === FbtType.TEXT ? phrase.jsfbt : phrase.jsfbt.t,
-      ),
-    }));
-    const hashes = this._hash(flatTexts);
-    return flatTexts.map((flatText, phraseIdx) => {
-      const hashToText = {};
-      flatText.texts.forEach((text, textIdx) => {
-        const hash = hashes[phraseIdx][textIdx];
-        if (hash == null) {
-          throw new Error('Missing hash for text: ' + text);
+    return phrases.map(phrase => {
+      const hashToLeaf: HashToLeaf = {};
+      onEachLeaf(
+        phrase,
+        phrase.desc,
+        ({text, desc}) => {
+          hashToLeaf[this._hash(text, desc)] = {
+            text,
+            desc
+          };
         }
-        hashToText[hash] = text;
-      });
+      );
+
       return {
-        hashToText,
-        ...phrases[phraseIdx],
+        hashToLeaf,
+        ...(phrase: PackagerPhrase),
+        desc: '', // TODO(T81971330) remove this field eventually
       };
     });
   }
@@ -61,9 +58,6 @@ function _flattenTexts(texts) {
     // Return all tree leaves of a jsfbt TABLE or singleton array in the case of
     // a TEXT type
     return [texts];
-  }
-  if (texts instanceof Array) {
-    return [texts[0]];
   }
 
   const aggregate = [];

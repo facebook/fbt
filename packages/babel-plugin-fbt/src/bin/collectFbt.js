@@ -20,6 +20,7 @@ const FbtCollector = require('./FbtCollector');
 const PhrasePackager = require('./PhrasePackager');
 const TextPackager = require('./TextPackager');
 const fs = require('fs');
+const invariant = require('invariant');
 const nullthrows = require('nullthrows');
 const path = require('path');
 const yargs = require('yargs');
@@ -144,15 +145,27 @@ const argv = yargs
 const packager = argv[args.PACKAGER];
 
 function getHasher(): HashFunction {
-  let hashPhrases = null;
+  let hashFunction = null;
   if (packager === packagerTypes.TEXT || packager === packagerTypes.BOTH) {
     // $FlowExpectedError[unsupported-syntax] Requiring dynamic module
-    hashPhrases = require(argv[args.HASH]);
-    if (hashPhrases.hashPhrases != null) {
-      hashPhrases = hashPhrases.hashPhrases;
-    }
+    const hashingModule = (require(argv[args.HASH]):
+      | HashFunction
+      | {getFbtHash: HashFunction});
+
+    invariant(
+      typeof hashingModule === 'function' ||
+        (typeof hashingModule === 'object' &&
+          typeof hashingModule.getFbtHash === 'function'),
+      'Expected hashing module to expose a default value that is a function, ' +
+        'or an object with a getFbtHash() function property. Hashing module location: `%s`',
+      argv[args.HASH],
+    );
+    hashFunction =
+      typeof hashingModule === 'function'
+        ? hashingModule
+        : hashingModule.getFbtHash;
   }
-  return nullthrows(hashPhrases);
+  return nullthrows(hashFunction);
 }
 
 const extraOptions = {};

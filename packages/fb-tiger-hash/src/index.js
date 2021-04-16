@@ -9,12 +9,12 @@
 
 'use strict';
 
-const hashPhrases = require('./hashPhrases');
+const getFbtHash = require('./getFbtHash');
 const Tiger = require('./Tiger');
 
 module.exports = {
   __esModule: true,
   default: Tiger,
+  getFbtHash,
   Tiger,
-  hashPhrases,
 };

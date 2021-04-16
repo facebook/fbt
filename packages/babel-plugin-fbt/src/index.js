@@ -108,6 +108,7 @@ export type TableJSFBT = $ReadOnly<{|
   m: $ReadOnlyArray<?JSFBTMetaEntry>,
 |}>;
 
+// TODO(T81971330) Remove type=text scenario and save a one TableJSFBTTreeLeaflet in jsfbt instead
 export type ObjectWithJSFBT = {|
   type: 'text',
   jsfbt: PatternString,
@@ -120,8 +121,7 @@ export type Phrase = {|
   ...FbtCallSiteOptions,
   col_beg: number,
   col_end: number,
-  // TODO(T38926768): move this to `ObjectWithJSFBT[type=text]` since it should not be
-  // defined when we have a JSFBT table
+  // TODO(T81971330) remove this field eventually since it should be defined in the "jsfbt" field
   desc: string,
   filepath: string,
   line_beg: number,

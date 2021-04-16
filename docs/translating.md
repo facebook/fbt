@@ -16,11 +16,14 @@ is a good reference on the "schema" used for the translations.
 ```json
 {
   "phrases": [
-    "hashToText": {
-      <text_hash>: <text>,
+    "hashToLeaf": {
+      <text_hash>: {
+        "text": <text>,
+        "desc": <description>,
+      },
       ...
     },
-    "jsfbt": string|{t:<table>, m:<metadata>}
+    "jsfbt": string | {t: <table>, m: <metadata>}
   ],
   ...
   "translationGroups": [{
@@ -43,7 +46,7 @@ is a good reference on the "schema" used for the translations.
 
 The `<text_hash>` and `<translation_hash>` correspond in the above example.
 That is `translations[<hash>]` is the translation entry for
-`phrases.hashToText[<hash>]`.
+`phrases.hashToLeaf[<hash>]`.
 
 Here `tokens`, `types` and `variations` are all associative arrays.  That is, in
 the above example, `types[i]` represents the variation type (or mask) of
@@ -56,15 +59,16 @@ Variation types can be one of
 IntlVariations.BITMASK_NUMBER: 28
 IntlVariations.BITMASK_GENDER:  3
 ```
+
 This signifies what the given token can variate on.  Token types of type `GENDER` can be:
 ```
 IntlVariations.GENDER_MALE:   1
 IntlVariations.GENDER_FEMALE  2
 IntlVariations.GENDER_UNKNOWN 3
 ```
+
 while token types of `NUMBER` can be:
 ```
-
 IntlVariations.NUMBER_ONE:    4
 IntlVariations.NUMBER_TWO:    8
 IntlVariations.NUMBER_MANY:  12
