@@ -163,7 +163,7 @@ class FbtNode/*:: <
     throw errorAt(this.node, 'This method must be implemented in a child class');
   }
 
-  getText() /*: string */ {
+  getText(argsCombination /*: $ReadOnlyArray<SVArgument> */ = []) /*: string */ {
     throw errorAt(this.node, 'This method must be implemented in a child class');
   }
 

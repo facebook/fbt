@@ -45,12 +45,20 @@ class FbtImplicitParamNode
   */
 
   // Returns the string description which depends on the string variation factor values
-  getDescription() /*: string */ {
-    throw errorAt(this.node, 'not implemented yet');
+  getDescription(argsCombination /*: $ReadOnlyArray<AnyStringVariationArg> */ = []) /*: string */ {
+    throw errorAt(this.node, 'Not implemented yet');
+  }
+
+  _getElementNode() /*: FbtElementNode */ {
+    return nullthrows(this.getFirstAncestorOfType(FbtElementNode));
   }
 
   _getSubjectNode() /*: ?BabelNode */ {
-    return nullthrows(this.getFirstAncestorOfType(FbtElementNode)).options.subject;
+    return this._getElementNode().options.subject;
+  }
+
+  getProject() /*: string */ {
+    return this._getElementNode().getProject();
   }
 
   getArgsForStringVariationCalc() /*: $ReadOnlyArray<AnyStringVariationArg> */ {

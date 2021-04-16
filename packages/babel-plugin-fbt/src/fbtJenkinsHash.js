@@ -9,7 +9,6 @@
 'use strict';
 
 /*::
-import type {FbtRuntimeInput} from '../../../runtime/shared/FbtHooks';
 import type {PatternString} from '../../../runtime/shared/FbtTable';
 */
 
@@ -17,7 +16,7 @@ const jenkinsHash = require('./jenkinsHash');
 const invariant = require('invariant');
 
 function fbtJenkinsHash(
-  jsfbt /*: PatternString | FbtRuntimeInput */,
+  jsfbt /*: PatternString | {...} */,
   desc /*: string */,
   noStringify /*: boolean */ = false,
 ) /*: number */ {

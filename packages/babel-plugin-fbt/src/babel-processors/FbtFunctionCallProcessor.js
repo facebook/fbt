@@ -9,6 +9,9 @@
 'use strict';
 
 /*::
+import type {AnyStringVariationArg} from '../fbt-nodes/FbtArguments';
+import type {AnyFbtNode} from '../fbt-nodes/FbtNode';
+import type FbtImplicitParamNode from '../fbt-nodes/FbtImplicitParamNode';
 import type {
   FbtCallSiteOptions,
   FbtOptionValue,
@@ -69,7 +72,6 @@ export type ExtractTableTextItems = Array<
 export type FbtFunctionCallPhrase = {|
   ...FbtCallSiteOptions,
   desc: string,
-  texts?: ExtractTableTextItems,
   ...ObjectWithJSFBT,
 |};
 
@@ -77,6 +79,13 @@ export type SentinelPayload = {|
   ...ObjectWithJSFBT,
   desc: string,
   project: string,
+|};
+
+type MetaPhrase = {|
+  // FbtNode abstraction whose phrase's data comes from
+  fbtNode: FbtElementNode | FbtImplicitParamNode,
+  // Phrase data
+  phrase: FbtFunctionCallPhrase,
 |};
 */
 
@@ -623,33 +632,125 @@ class FbtFunctionCallProcessor {
     );
   }
 
+  /**
+   * Consolidate a list of string variation arguments under the following conditions:
+   *
+   * Enum variation arguments are consolidated to avoid creating duplicates of string variations
+   * (from a candidate values POV)
+   *
+   * Other types of variation arguments are accepted as-is.
+   */
+  _compactStringVariationArgs(args /*: $ReadOnlyArray<AnyStringVariationArg> */)
+  /*: $ReadOnlyArray<AnyStringVariationArg> */ {
+    // TODO(T40113359): implement this method
+    return global.TODO_IMPLEMENT_MEEEE;
+  }
+
+  /**
+   * Get all the string variation combinations derived from a list of string variation arguments.
+   *
+   * E.g. If we have a list of string variation arguments as:
+   *
+   * [genderSV, numberSV]
+   *
+   * Assuming genderSV produces candidate variation values as: male, female, unknown
+   * Assuming numberSV produces candidate variation values as: singular, plural
+   *
+   * The output would be:
+   *
+   * [
+   *   [  genderSV(male),     numberSV(singular)  ],
+   *   [  genderSV(male),     numberSV(plural)    ],
+   *   [  genderSV(female),   numberSV(singular)  ],
+   *   [  genderSV(female),   numberSV(plural)    ],
+   *   [  genderSV(unknown),  numberSV(singular)  ],
+   *   [  genderSV(unknown),  numberSV(plural)    ],
+   * ]
+   */
+  _getStringVariationCombinations(args /*: $ReadOnlyArray<AnyStringVariationArg> */)
+  /*: $ReadOnlyArray<$ReadOnlyArray<AnyStringVariationArg>> */ {
+    const compactStringVariationArgs = this._compactStringVariationArgs(args);
+
+    // TODO(T40113359): implement this method
+    return [];
+  }
+
+  /**
+   * Generates a list of meta-phrases from a given FbtElement node
+   */
+  _metaPhrases(fbtElement /*: FbtElementNode */) /*: $ReadOnlyArray<MetaPhrase> */ {
+    const stringVariationArgs = fbtElement.getArgsForStringVariationCalc();
+    // Create all combinations of string variation arguments
+    const argsCombinations = this._getStringVariationCombinations(stringVariationArgs);
+    return [fbtElement, ...fbtElement.getImplicitParamNodes()]
+      .map(fbtNode => {
+        const project = fbtNode.getProject();
+        if (argsCombinations.length === 0) { // simple text string
+          return {
+            phrase: {
+              desc: fbtNode.getDescription(),
+              jsfbt: fbtNode.getText(),
+              project,
+              type: 'text',
+            },
+            fbtNode,
+          };
+        }
+
+        const phrase = {
+          desc: '',
+          jsfbt: {
+            t: {},
+            m: {},
+          },
+          project,
+          type: 'table',
+        };
+
+        for (const argsCombination of argsCombinations) {
+          addLeafToTree(
+            phrase.jsfbt.t,
+            argsCombination,
+            {
+              desc: fbtNode.getDescription(argsCombination),
+              text: fbtNode.getText(argsCombination),
+            }
+          );
+        }
+
+        return {
+          phrase,
+          fbtNode,
+        };
+      });
+  }
+
+  /**
+   * Process current `fbt()` callsite (BabelNode) to generate:
+   * - an `fbt._()` callsite
+   * - a list of meta-phrases describing the collected text strings from this fbt() callsite
+   */
   convertToFbtRuntimeCall() /*: {
+    // Client-side fbt._() call usable in a web browser generated from the given fbt() callsite
     callNode: BabelNodeCallExpression,
-    phrase: FbtFunctionCallPhrase,
-    texts: ExtractTableTextItems,
+    // List of phrases collected from the fbt() callsite
+    metaPhrases: $ReadOnlyArray<MetaPhrase>,
   } */ {
-    this._assertJSModuleWasAlreadyRequired();
-    this._assertHasEnoughArguments();
-    const options = this._getOptions();
+    const fbtElement = this.convertToFbtNode();
+    const metaPhrases = this._metaPhrases(fbtElement);
 
-    const {moduleName, node: {arguments: fbtCallArgs}} = this;
-    fbtCallArgs[0] = convertToStringArrayNodeIfNeeded(moduleName, fbtCallArgs[0]);
-
-    const methodsState = this._collectFbtCalls(options);
-    const {runtimeArgs, variations} = methodsState;
-    const isTable = this._isTableNeeded(methodsState);
-    const texts = this._getTexts(variations, options, isTable);
-    const desc = this._getDescription(options);
-    const phrase = this._getPhrase(texts, desc, options, isTable);
-    const callNode = this._createFbtRuntimeCall(phrase, runtimeArgs);
+    // TODO(T40113359): implement this
+    const callNode = global.TODO_IMPLEMENT_MEEEE;
 
     return {
       callNode,
-      phrase,
-      texts,
+      metaPhrases,
     };
   }
 
+  /**
+   * Converts current fbt() BabelNode to an FbtNode equivalent
+   */
   convertToFbtNode() /*: FbtElementNode */ {
     this._assertJSModuleWasAlreadyRequired();
     this._assertHasEnoughArguments();
@@ -665,6 +766,73 @@ class FbtFunctionCallProcessor {
     }
     return elementNode;
   }
+}
+
+/**
+ * Adds a leaf value to a given tree-like object, using the given list of keys.
+ * If the object doesn't a given key, we'll create an object container for it.
+ *
+ * @example
+ *
+ * // empty starting tree
+ * addLeafToTree(
+ *   {},
+ *   ['a', 'b', 'c'],
+ *   {
+ *     val: 111
+ *   }
+ * )
+ *
+ * Returns:
+ *   {
+ *     a: {
+ *       b: {
+ *         c: {
+ *           val: 111
+ *         }
+ *       }
+ *     }
+ *   }
+ *
+ * // With an existing tree
+ * addLeafToTree(
+ *   {
+ *     a: {
+ *       b: {
+ *         c: {
+ *           val: 111
+ *         }
+ *       }
+ *     }
+ *   }
+ *   ['a', 'b', 'd'],
+ *   {
+ *     val: 222
+ *   }
+ * )
+ *
+ * Returns:
+ *   {
+ *     a: {
+ *       b: {
+ *         c: {
+ *           val: 111
+ *         },
+ *         d: {
+ *           val: 222
+ *         },
+ *       }
+ *     }
+ *   }
+ *
+ */
+function addLeafToTree/*:: <K, V, T: {| [key: K]: V |}> */(
+  tree /*: T */,
+  keys /*: $ReadOnlyArray<?AnyStringVariationArg> */,
+  leaf /*: V */,
+) /*: void */ {
+  // TODO(T40113359): implement this method
+  return global.TODO_IMPLEMENT_MEEEE;
 }
 
 module.exports = FbtFunctionCallProcessor;

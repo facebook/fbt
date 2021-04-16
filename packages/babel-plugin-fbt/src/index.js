@@ -22,8 +22,12 @@ import type {
   FbtFunctionCallPhrase,
 } from './babel-processors/FbtFunctionCallProcessor';
 import type {FbtRuntimeInput} from '../../../runtime/shared/FbtHooks';
-import type {PatternString} from '../../../runtime/shared/FbtTable';
 import type {EnumManifest, EnumModule} from './FbtEnumRegistrar';
+import type {
+  FbtTableKey,
+  PatternHash,
+  PatternString,
+} from '../../../runtime/shared/FbtTable';
 
 export type ExtraBabelNodeProps = {
   implicitDesc?: string,
@@ -57,10 +61,36 @@ export type PluginOptions = {|
   filename?: ?string,
   reactNativeMode?: boolean,
 |};
+
+type TokenAlias = string;
+
+// This is the main payload collected from the fbt callsite.
+//
+// - For simple fbt calls without interpolation (fbt.param) or multiplexing (fbt.plural,
+//   fbt.enum, viewer context variation, etc), this is a simple vanilla string.
+// - Otherwise this is a table whose keys correspond to the associated string variation
+//   parameters passed to the various fbt constructs (param, plural, pronoun) of this callsite.
+//
+//  See the docblock for fbt._ for an example of the nested table and its behavior
+type TableJSFBTTree = {|
+  [key: FbtTableKey]: TableJSFBTTree | TableJSFBTTreeLeaf
+|};
+
+type TableJSFBTTreeLeaf =
+  | PatternString
+  | {|
+      desc: string,
+      text: string,
+      tokenAliases: {|
+        [clearTokenName: string]: TokenAlias
+      |},
+  |};
+
 type TableJSFBT = {
-  t: FbtRuntimeInput,
+  t: TableJSFBTTree,
   m: {}
 };
+
 export type ObjectWithJSFBT = {|
   type: 'text',
   jsfbt: PatternString,
@@ -68,10 +98,13 @@ export type ObjectWithJSFBT = {|
   type: 'table',
   jsfbt: TableJSFBT,
 |};
+
 export type Phrase = {|
   ...FbtCallSiteOptions,
   col_beg: number,
   col_end: number,
+  // TODO(T38926768): move this to `ObjectWithJSFBT[type=text]` since it should not be
+  // defined when we have a JSFBT table
   desc: string,
   filepath: string,
   line_beg: number,
@@ -202,6 +235,15 @@ function FbtTransform(babel /*: {
           return;
         }
 
+        // TODO(T40113359): remove this once we've started replacing fbt() -> fbt._()
+        // This is currently needed to avoid processing fbt() twice.
+        // I.e. when Babel converts JSX -> React.createElement(),
+        // it ends up re-evaluating nested CallExpressions
+        // $FlowFixMe
+        if (node._fbtProcessed) {
+          return;
+        }
+
         root = FbtFunctionCallProcessor.create({
           babelTypes: t,
           defaultFbtOptions: defaultOptions,
@@ -215,31 +257,48 @@ function FbtTransform(babel /*: {
         }
 
         // TODO(T40113359): remove this once we're done implementing proper conversion to fbt nodes
-        root.convertToFbtNode();
+        // root.convertToFbtNode();
+
+        const {
+          callNode,
+          metaPhrases,
+        } = root.convertToFbtRuntimeCall();
+
         // TODO(T40113359): maybe remove this once we've started replacing fbt() -> fbt._()
         // This is currently needed to avoid processing fbt() twice
         // (during the enter/exit traversal phases of the babel transform)
         path.skip();
+        // TODO(T40113359): remove this once we've started replacing fbt() -> fbt._()
+        // This is currently needed to avoid processing fbt() twice.
+        // I.e. when Babel converts JSX -> React.createElement(),
+        // it ends up re-evaluating nested CallExpressions
+        // $FlowFixMe
+        node._fbtProcessed = true;
 
-        // const {
-        //   callNode,
-        //   phrase,
-        //   texts,
-        // } = root.convertToFbtRuntimeCall();
-
+        // TODO(T40113359): implement converted fbt._() callsite
         // path.replaceWith(callNode);
 
-        // if (pluginOptions.collectFbt && !phrase.doNotExtract) {
-        //   if (pluginOptions.auxiliaryTexts) {
-        //     phrase.texts = texts;
-        //   }
+        if (pluginOptions.collectFbt) {
+          // TODO(T40113359): implement attaching the "texts" data onto the "phrase" object
+          // if (pluginOptions.auxiliaryTexts) {
+          //   phrase.texts = texts;
+          // }
 
-        //   addPhrase(node, phrase, visitor);
-
-        //   if (node.parentIndex !== undefined) {
-        //     addEnclosingString(phrases.length - 1, node.parentIndex);
-        //   }
-        // }
+          let topLevelStringIndex;
+          metaPhrases.forEach(({fbtNode, phrase}, index) => {
+            if (phrase.doNotExtract) {
+              return;
+            }
+            addPhrase(fbtNode.node, phrase, visitor);
+            if (index > 0) {
+              if (topLevelStringIndex == null) {
+                // `-2` because we just inserted a top-level string and a nested string
+                topLevelStringIndex = phrases.length - 2;
+              }
+              addEnclosingString(phrases.length - 1, topLevelStringIndex);
+            }
+          });
+        }
       }, // CallExpression
     }, // visitor
   }; // babel plugin return

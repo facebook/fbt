@@ -10,6 +10,7 @@
 'use strict';
 
 /*::
+import type FbtImplicitParamNodeType from './FbtImplicitParamNode';
 import type {JSModuleNameType} from '../FbtConstants';
 import type {AnyStringVariationArg} from './FbtArguments';
 import type {
@@ -123,12 +124,16 @@ class FbtElementNode
       .concat(...this.children.map(c => c.getArgsForStringVariationCalc()));
   }
 
-  getText() /*: string */ {
+  getText(argsCombination /*: $ReadOnlyArray<AnyStringVariationArg> */ = []) /*: string */ {
     throw errorAt(this.node, 'Not implemented yet');
   }
 
-  getDescription() /*: string */ {
+  getDescription(argsCombination /*: $ReadOnlyArray<AnyStringVariationArg> */ = []) /*: string */ {
     throw errorAt(this.node, 'Not implemented yet');
+  }
+
+  getProject() /*: string */ {
+    return this.options.project;
   }
 
   /**
@@ -224,6 +229,11 @@ class FbtElementNode
       return fbtChildNode;
     }
     throw errorAt(node, `${moduleName}: unsupported babel node: ${node.type}`);
+  }
+
+  getImplicitParamNodes() /*: $ReadOnlyArray<FbtImplicitParamNodeType> */ {
+    // TODO(T40113359): implement this method
+    return [];
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes

@@ -10,7 +10,6 @@
 
 
 /*::
-import type {FbtRuntimeInput} from '../../../runtime/shared/FbtHooks';
 import type {PatternString} from '../../../runtime/shared/FbtTable';
 */
 
@@ -34,7 +33,7 @@ function uintToBaseN(numberArg, base) {
 }
 
 function fbtHashKey(
-  jsfbt /*: PatternString | FbtRuntimeInput */,
+  jsfbt /*: PatternString | {...} */,
   desc /*: string */,
   noStringify /*: boolean = false */,
 ) /*: string */ {

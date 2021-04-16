@@ -1417,11 +1417,15 @@ function describeTestScenarios(testData) {
       });
     }
 
-    describe('should collect correct meta data', () => {
+    // TODO(T40113359): remove focused test once it's implemented properly
+    // eslint-disable-next-line jest/no-focused-tests
+    fdescribe('should collect correct meta data', () => {
       forEachTestScenario(testFbtMetaData);
     });
 
-    describe('should collect correct meta data (react native)', () => {
+    // TODO(T40113359): remove focused test once it's implemented properly
+    // eslint-disable-next-line jest/no-focused-tests
+    fdescribe('should collect correct meta data (react native)', () => {
       forEachTestScenario(testFbtMetaData, {reactNativeMode: true});
     });
 
