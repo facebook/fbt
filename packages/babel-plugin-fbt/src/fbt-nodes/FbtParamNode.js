@@ -106,8 +106,7 @@ class FbtParamNode extends FbtNode/*:: <
     invariant(!gender || !number, 'Gender and number options must not be set at the same time');
     if (gender) {
       ret.push(new GenderStringVariationArg(gender));
-    }
-    if (number) {
+    } else if (number) {
       ret.push(new NumberStringVariationArg(number === true ? null : number));
     }
     return ret;

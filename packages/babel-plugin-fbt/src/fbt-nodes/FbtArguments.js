@@ -10,6 +10,7 @@
 
 /*::
 import type {GenderConstEnum} from '../Gender';
+import type {IntlVariationsEnum} from '../translate/IntlVariations';
 
 export type AnyStringVariationArg =
   | EnumStringVariationArg
@@ -111,11 +112,11 @@ class GenericArg extends FbtArgumentBase /*:: <BabelNode> */ {
  *
  * The string variation argument would be based on the `personGender` variable.
  */
-class StringVariationArg /*:: <V, B: ?BabelNode = BabelNode> */
+class StringVariationArg /*:: <Value, B: ?BabelNode = BabelNode> */
   extends FbtArgumentBase /*:: <B> */ {
-  /*:: +value: ?V; */
+  /*:: +value: ?Value; */
 
-  constructor(node /*: B */, value /*: ?V */) {
+  constructor(node /*: B */, value /*: ?Value */) {
     super(node);
     this.value = value;
   }
@@ -136,7 +137,7 @@ class GenderStringVariationArg extends StringVariationArg /*:: <GenderConstEnum>
 /**
  * String variation argument that produces variations based on numbers
  */
-class NumberStringVariationArg extends StringVariationArg /*:: <number, ?BabelNode> */ {
+class NumberStringVariationArg extends StringVariationArg /*:: <IntlVariationsEnum, ?BabelNode> */ {
 }
 
 module.exports = {

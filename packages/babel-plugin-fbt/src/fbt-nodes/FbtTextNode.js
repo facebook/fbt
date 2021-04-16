@@ -48,6 +48,10 @@ class FbtTextNode
       })
       : null;
   }
+
+  getArgsForStringVariationCalc() /*: $ReadOnlyArray<null> */ {
+    return [];
+  }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes
 FbtTextNode.type = 'text';

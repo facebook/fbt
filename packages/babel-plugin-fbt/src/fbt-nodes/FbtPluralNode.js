@@ -9,24 +9,32 @@
 
 'use strict';
 
-/////////////////////////////////////////////////////////////////////
-// Planned fbt arguments that will be used by various fbt constructs
-// `*` means that it's a static argument (whose value won't change at runtime)
-/////////////////////////////////////////////////////////////////////
-// plural : tokenName*, count, valueStr, optionalValues...
-
 /*::
-import type {
-  NumberStringVariationArg,
-} from './FbtArguments';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
+
+type Options = {|
+  count: BabelNode, // Represents the number used for determining the plural case at runtime
+  many?: ?string, // text to show when count>1
+  name?: ?string, // token name
+  // If true, show the `count` number as a prefix of the current plural text
+  showCount?: ?$Keys<$PropertyType<typeof ValidPluralOptions, 'showCount'>>,
+  value?: ?BabelNode, // optional value to replace token (rather than count)
+|};
 */
 
+const {ValidPluralOptions} = require('../FbtConstants');
 const {
+  collectOptionsFromFbtConstruct,
+  enforceBabelNode,
+  enforceString,
+  enforceStringEnum,
   errorAt,
 } = require('../FbtUtil');
+const {NumberStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
 const {createInstanceFromFbtConstructCallsite} = require('./FbtNodeUtil');
+
+const DEFAULT_TOKEN_NAME = 'number';
 
 /**
  * Represents an <fbt:plural> or fbt.plural() construct.
@@ -37,7 +45,11 @@ class FbtPluralNode extends FbtNode/*:: <
   BabelNodeCallExpression,
   > */ {
 
-  /*:: static +type: 'plural'; */
+  /*::
+  static +type: 'plural';
+
+  +options: Options;
+  */
 
   /**
    * Create a new class instance given a BabelNode root node.
@@ -50,6 +62,32 @@ class FbtPluralNode extends FbtNode/*:: <
     return createInstanceFromFbtConstructCallsite(moduleName, node, this);
   }
 
+  getOptions() /*: Options */ {
+    const rawOptions = collectOptionsFromFbtConstruct(
+      this.moduleName,
+      this.node,
+      ValidPluralOptions,
+    );
+
+    try {
+      const [_, countArg] = this.getCallNodeArguments() || [];
+      const count = enforceBabelNode(countArg, '`count`, the second function argument');
+      return {
+        count,
+        many: enforceString.orNull(rawOptions.many, '`many` option'),
+        name: enforceString.orNull(rawOptions.name, '`name` option') || DEFAULT_TOKEN_NAME,
+        showCount: enforceStringEnum.orNull(
+          rawOptions.showCount,
+          ValidPluralOptions.showCount,
+          '`showCount` option',
+        ),
+        value: enforceBabelNode.orNull(rawOptions.value, '`value` option'),
+      };
+    } catch (error) {
+      throw errorAt(this.node, error);
+    }
+  }
+
   _getTokenName() /*: ?string */ {
     throw errorAt(this.node, 'not implemented yet');
   }
@@ -60,6 +98,10 @@ class FbtPluralNode extends FbtNode/*:: <
 
   _getCountNode() /*: BabelNode */ {
     throw errorAt(this.node, 'not implemented yet');
+  }
+
+  getArgsForStringVariationCalc() /*: $ReadOnlyArray<NumberStringVariationArg> */ {
+    return [new NumberStringVariationArg(this.options.count)];
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes
