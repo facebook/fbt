@@ -42,6 +42,32 @@ const generalTestData = {
     ),
   },
 
+  'should respect the doNotExtract option': {
+    input: withFbtRequireStatement(
+      `var x = fbt('A doNotExtract string', "should not be extracted", {doNotExtract: true});`,
+    ),
+
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var x = fbt(
+        [
+          'A doNotExtract string',
+        ],
+        "should not be extracted",
+        {doNotExtract: true}
+      );`,
+    ),
+
+    output: withFbtRequireStatement(
+      `var x = fbt._(
+        ${payload({
+          type: 'text',
+          jsfbt: 'A doNotExtract string',
+          desc: 'should not be extracted',
+        })},
+      );`,
+    ),
+  },
+
   'should allow description concatenation': {
     input: withFbtRequireStatement(
       `var x = fbt(

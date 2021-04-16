@@ -660,12 +660,16 @@ class FbtFunctionCallProcessor {
     const compactStringVariations = this._compactStringVariationArgs(argsCombinations[0] || []);
     const jsfbtMetadata = jsfbtBuilder.buildMetadata(compactStringVariations.array);
     const {author, project} = fbtElement.options;
+    const doNotExtract = fbtElement.options.doNotExtract ?? this.defaultFbtOptions.doNotExtract;
     return [fbtElement, ...fbtElement.getImplicitParamNodes()]
       .map(fbtNode => {
         try {
           const stubPhrase = {
             ...this.defaultFbtOptions,
           };
+          if (doNotExtract != null) {
+            stubPhrase.doNotExtract = doNotExtract;
+          }
           if (author) {
             stubPhrase.author = author;
           }

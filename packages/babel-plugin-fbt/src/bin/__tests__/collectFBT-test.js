@@ -90,6 +90,18 @@ xdescribe('collectFbt', () => {
     expect(res.phrases.length).toEqual(0);
   });
 
+  it('should still extract strings when in-line doNotExtract is set to false despite the file-level has doNotExtract set to true', () => {
+    var res = collect(
+      [
+        '// @fbt {"project": "someproject", "doNotExtract": true}',
+        "const fbt = require('fbt');",
+        '<fbt desc="foo" doNotExtract="false">bar</fbt>',
+      ].join('\n'),
+    );
+
+    expect(res.phrases.length).toEqual(1);
+  });
+
   it('should still extract strings if in-line doNotExtract is set to false', () => {
     var res = collect(
       [

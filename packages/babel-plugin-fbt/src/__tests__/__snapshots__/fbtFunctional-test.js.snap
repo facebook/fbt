@@ -755,6 +755,8 @@ Array [
 ]
 `;
 
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should respect the doNotExtract option" 1`] = `Array []`;
+
 exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should accept well-formed options" 1`] = `
 Array [
   Object {
@@ -1468,6 +1470,8 @@ Array [
 ]
 `;
 
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should respect the doNotExtract option" 1`] = `Array []`;
+
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should accept well-formed options" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A string that moved files'], 'options!', {
@@ -1499,7 +1503,7 @@ FbtElementNode {
   "options": Object {
     "author": "jwatson",
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "Super Secret",
     "subject": null,
@@ -1536,7 +1540,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -1573,7 +1577,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -1743,7 +1747,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -1780,7 +1784,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -1984,7 +1988,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -2235,7 +2239,7 @@ FbtElementNode {
     "__subjectCode": "subjectValue",
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": "BabelNode[type=Identifier]",
@@ -2405,7 +2409,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -2489,7 +2493,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -2581,7 +2585,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -2677,7 +2681,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -2811,7 +2815,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -2889,7 +2893,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -2985,7 +2989,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -3041,7 +3045,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -3177,7 +3181,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -3313,7 +3317,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -3407,7 +3411,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -3555,7 +3559,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -3671,7 +3675,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -3763,7 +3767,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -3836,7 +3840,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -3909,7 +3913,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -3982,7 +3986,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -4050,7 +4054,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -4128,7 +4132,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -4165,7 +4169,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -4289,7 +4293,46 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
+  "parent": undefined,
+}
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should respect the doNotExtract option" 1`] = `
+FbtElementNode {
+  "__nodeCode": "fbt(['A doNotExtract string'], \\"should not be extracted\\", {
+  doNotExtract: true
+})",
+  "__stringVariationArgs": Array [],
+  "_tokenSet": Object {},
+  "_variationFactorValues": Array [],
+  "children": Array [
+    FbtTextNode {
+      "__nodeCode": "'A doNotExtract string'",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=StringLiteral]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "parent": "FbtElementNode",
+    },
+  ],
+  "moduleName": "fbt",
+  "node": "BabelNode[type=CallExpression]",
+  "nodeChecker": FbtNodeChecker {
+    "moduleName": "fbt",
+  },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": true,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -4329,7 +4372,7 @@ FbtElementNode {
   "options": Object {
     "author": "jwatson",
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "Super Secret",
     "subject": null,
@@ -4366,7 +4409,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -4403,7 +4446,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -4573,7 +4616,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -4610,7 +4653,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -4814,7 +4857,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -5065,7 +5108,7 @@ FbtElementNode {
     "__subjectCode": "subjectValue",
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": "BabelNode[type=Identifier]",
@@ -5235,7 +5278,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -5319,7 +5362,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -5411,7 +5454,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -5507,7 +5550,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -5641,7 +5684,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -5719,7 +5762,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -5815,7 +5858,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -5871,7 +5914,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -6007,7 +6050,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -6143,7 +6186,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -6237,7 +6280,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -6385,7 +6428,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -6501,7 +6544,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -6593,7 +6636,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -6666,7 +6709,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -6739,7 +6782,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -6812,7 +6855,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -6880,7 +6923,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -6958,7 +7001,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -6995,7 +7038,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -7119,7 +7162,46 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
+  "parent": undefined,
+}
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should respect the doNotExtract option" 1`] = `
+FbtElementNode {
+  "__nodeCode": "fbt(['A doNotExtract string'], \\"should not be extracted\\", {
+  doNotExtract: true
+})",
+  "__stringVariationArgs": Array [],
+  "_tokenSet": Object {},
+  "_variationFactorValues": Array [],
+  "children": Array [
+    FbtTextNode {
+      "__nodeCode": "'A doNotExtract string'",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=StringLiteral]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "parent": "FbtElementNode",
+    },
+  ],
+  "moduleName": "fbt",
+  "node": "BabelNode[type=CallExpression]",
+  "nodeChecker": FbtNodeChecker {
+    "moduleName": "fbt",
+  },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": true,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -7807,6 +7889,8 @@ Array [
 ]
 `;
 
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should respect the doNotExtract option" 1`] = `Array []`;
+
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should accept well-formed options" 1`] = `
 Array [
   Object {
@@ -8438,6 +8522,8 @@ Array [
 ]
 `;
 
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should respect the doNotExtract option" 1`] = `Array []`;
+
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should accept well-formed options" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A string that moved files'], 'options!', {
@@ -8469,7 +8555,7 @@ FbtElementNode {
   "options": Object {
     "author": "jwatson",
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "Super Secret",
     "subject": null,
@@ -8506,7 +8592,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -8543,7 +8629,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -8580,7 +8666,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -8750,7 +8836,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -8920,7 +9006,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -8957,7 +9043,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -9127,7 +9213,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -9211,7 +9297,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -9303,7 +9389,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -9399,7 +9485,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -9533,7 +9619,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -9611,7 +9697,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -9707,7 +9793,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -9763,7 +9849,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -9899,7 +9985,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -10035,7 +10121,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -10129,7 +10215,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -10277,7 +10363,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -10393,7 +10479,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -10485,7 +10571,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -10558,7 +10644,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -10631,7 +10717,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -10704,7 +10790,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -10772,7 +10858,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -10850,7 +10936,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -10887,7 +10973,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -11011,7 +11097,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -11060,7 +11146,46 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
+  "parent": undefined,
+}
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should respect the doNotExtract option" 1`] = `
+FbtElementNode {
+  "__nodeCode": "fbt(['A doNotExtract string'], \\"should not be extracted\\", {
+  doNotExtract: true
+})",
+  "__stringVariationArgs": Array [],
+  "_tokenSet": Object {},
+  "_variationFactorValues": Array [],
+  "children": Array [
+    FbtTextNode {
+      "__nodeCode": "'A doNotExtract string'",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=StringLiteral]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "parent": "FbtElementNode",
+    },
+  ],
+  "moduleName": "fbt",
+  "node": "BabelNode[type=CallExpression]",
+  "nodeChecker": FbtNodeChecker {
+    "moduleName": "fbt",
+  },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": true,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -11100,7 +11225,7 @@ FbtElementNode {
   "options": Object {
     "author": "jwatson",
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "Super Secret",
     "subject": null,
@@ -11137,7 +11262,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -11174,7 +11299,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -11211,7 +11336,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -11381,7 +11506,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -11551,7 +11676,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -11588,7 +11713,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -11758,7 +11883,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -11842,7 +11967,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -11934,7 +12059,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -12030,7 +12155,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -12164,7 +12289,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -12242,7 +12367,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -12338,7 +12463,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -12394,7 +12519,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -12530,7 +12655,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -12666,7 +12791,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -12760,7 +12885,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -12908,7 +13033,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -13024,7 +13149,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -13116,7 +13241,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -13189,7 +13314,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -13262,7 +13387,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -13335,7 +13460,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -13403,7 +13528,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -13481,7 +13606,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -13518,7 +13643,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -13642,7 +13767,7 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,
@@ -13691,7 +13816,46 @@ FbtElementNode {
   "options": Object {
     "author": null,
     "common": false,
-    "doNotExtract": false,
+    "doNotExtract": null,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
+  "parent": undefined,
+}
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should respect the doNotExtract option" 1`] = `
+FbtElementNode {
+  "__nodeCode": "fbt(['A doNotExtract string'], \\"should not be extracted\\", {
+  doNotExtract: true
+})",
+  "__stringVariationArgs": Array [],
+  "_tokenSet": Object {},
+  "_variationFactorValues": Array [],
+  "children": Array [
+    FbtTextNode {
+      "__nodeCode": "'A doNotExtract string'",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=StringLiteral]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "parent": "FbtElementNode",
+    },
+  ],
+  "moduleName": "fbt",
+  "node": "BabelNode[type=CallExpression]",
+  "nodeChecker": FbtNodeChecker {
+    "moduleName": "fbt",
+  },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": true,
     "preserveWhitespace": false,
     "project": "",
     "subject": null,

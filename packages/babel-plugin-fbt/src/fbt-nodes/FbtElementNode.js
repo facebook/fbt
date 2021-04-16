@@ -24,7 +24,9 @@ type Options = {|
   common: boolean;
   // If `true`, do not extract strings from this fbt callsite.
   // We'll still transform this callsite to a regular fbt._() using untranslated texts though.
-  doNotExtract: boolean;
+  // When nullish, we'll give priority to the file-level `doNotExtract` annotation
+  // to determine whether to extract the phrase.
+  doNotExtract: ?boolean;
   // We normally consolidates whitespace down to one space (`' '`).
   // Turn this off by setting this to `true`
   preserveWhitespace: boolean;
@@ -135,7 +137,7 @@ class FbtElementNode
       return {
         author: enforceString.orNull(rawOptions.author),
         common: enforceBoolean.orNull(rawOptions.common) || false,
-        doNotExtract: enforceBoolean.orNull(rawOptions.doNotExtract) || false,
+        doNotExtract: enforceBoolean.orNull(rawOptions.doNotExtract),
         preserveWhitespace: enforceBoolean.orNull(rawOptions.preserveWhitespace) || false,
         project: enforceString(rawOptions.project || ''),
         subject: enforceBabelNode.orNull(rawOptions.subject),
