@@ -10,32 +10,39 @@
 'use strict';
 
 /*::
+import type {SVArgsList} from './FbtArguments';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 
 type Options = {|
   count: BabelNode, // Represents the number used for determining the plural case at runtime
   many?: ?string, // text to show when count>1
-  name: string, // token name
-  // If true, show the `count` number as a prefix of the current plural text
-  showCount?: ?$Keys<$PropertyType<typeof ValidPluralOptions, 'showCount'>>,
+  name: ?string, // token name
+  // If `yes`, show the `count` number as a prefix of the current plural text
+  // If `ifMany`, behaves as `yes` when the count value is greater than 1
+  // Else, `no` to hide the `count` number
+  showCount: $Keys<typeof ShowCountKeys>,
   value?: ?BabelNode, // optional value to replace token (rather than count)
 |};
 */
 
-const {ValidPluralOptions} = require('../FbtConstants');
+const {PLURAL_PARAM_TOKEN, ShowCountKeys, ValidPluralOptions} = require('../FbtConstants');
 const {
   collectOptionsFromFbtConstruct,
   enforceBabelNode,
   enforceString,
   enforceStringEnum,
   errorAt,
+  varDump,
 } = require('../FbtUtil');
 const {EXACTLY_ONE, NUMBER_ANY} = require('../translate/IntlVariations');
 const {NumberStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
 const {createInstanceFromFbtConstructCallsite} = require('./FbtNodeUtil');
-
-const DEFAULT_TOKEN_NAME = 'number';
+const {
+  isStringLiteral,
+} = require('@babel/types');
+const invariant = require('invariant');
+const nullthrows = require('nullthrows');
 
 /**
  * Represents an <fbt:plural> or fbt.plural() construct.
@@ -73,15 +80,18 @@ class FbtPluralNode extends FbtNode/*:: <
     try {
       const [_, countArg] = this.getCallNodeArguments() || [];
       const count = enforceBabelNode(countArg, '`count`, the second function argument');
+      const showCount = enforceStringEnum.orNull(
+        rawOptions.showCount,
+        ValidPluralOptions.showCount,
+        '`showCount` option',
+      ) || ShowCountKeys.no;
+      const name = enforceString.orNull(rawOptions.name, '`name` option') ||
+        (showCount !== ShowCountKeys.no ? PLURAL_PARAM_TOKEN : null);
       return {
         count,
         many: enforceString.orNull(rawOptions.many, '`many` option'),
-        name: enforceString.orNull(rawOptions.name, '`name` option') || DEFAULT_TOKEN_NAME,
-        showCount: enforceStringEnum.orNull(
-          rawOptions.showCount,
-          ValidPluralOptions.showCount,
-          '`showCount` option',
-        ),
+        name,
+        showCount,
         value: enforceBabelNode.orNull(rawOptions.value, '`value` option'),
       };
     } catch (error) {
@@ -89,8 +99,37 @@ class FbtPluralNode extends FbtNode/*:: <
     }
   }
 
-  _getTokenName() /*: ?string */ {
-    throw errorAt(this.node, 'not implemented yet');
+  getText(argsList: SVArgsList): string {
+    try {
+      const svArg = NumberStringVariationArg.assert(argsList.consumeOne());
+      const svArgValue = nullthrows(svArg.value);
+      const {name, showCount} = this.options;
+
+      switch (svArgValue) {
+        case EXACTLY_ONE: {
+          return (showCount === ShowCountKeys.yes ? '1 ' : '') + this._getSingularText();
+        }
+        case NUMBER_ANY: {
+          const many = this.options.many ?? this._getSingularText() + 's';
+          return showCount !== ShowCountKeys.no
+            ? '{' + nullthrows(name) + '} ' + many
+            : many;
+        }
+        default:
+          invariant(false, 'Unsupported string variation value: %s', varDump(svArgValue));
+      }
+    } catch (error) {
+      throw errorAt(this.node, error);
+    }
+  }
+
+  _getSingularText(): string {
+    const callArg0 = nullthrows((this.getCallNodeArguments() || [])[0]);
+    invariant(isStringLiteral(callArg0),
+      'Expected a StringLiteral but got "%s" instead',
+      callArg0.type,
+    );
+    return callArg0.value;
   }
 
   _getValueNode() /*: BabelNode */ {

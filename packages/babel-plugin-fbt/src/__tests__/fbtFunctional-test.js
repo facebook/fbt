@@ -469,7 +469,6 @@ const generalTestData = {
   },
 
   'should handle plurals that have different count variables': {
-    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         fbt.plural('cat', catCount, {name: 'cat_token', showCount: 'yes'}) +
@@ -527,7 +526,6 @@ const generalTestData = {
   },
 
   'should handle plurals that share the same count variable': {
-    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'There ' +
@@ -578,7 +576,6 @@ const generalTestData = {
   },
 
   'should handle multiple plurals with no showCount (i.e. no named params)': {
-    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'There ' +
@@ -628,7 +625,6 @@ const generalTestData = {
   },
 
   'should throw on bad showCount value': {
-    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'There were ' + fbt.plural('a like', count, {showCount: 'badkey'}),
@@ -645,11 +641,10 @@ const generalTestData = {
       );`,
     ),
 
-    throws: true,
+    throws: `Option "showCount" has an invalid value: "badkey". Only allowed: yes, no, ifMany`,
   },
 
   'should throw on unknown options': {
-    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'There were ' + fbt.plural('a like', count, {whatisthis: 'huh?'}),
@@ -666,7 +661,7 @@ const generalTestData = {
       );`,
     ),
 
-    throws: true,
+    throws: `Invalid option "whatisthis". Only allowed: value, showCount, name, many, count`,
   },
 
   'should handle names': {

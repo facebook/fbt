@@ -4372,15 +4372,26 @@ FbtElementNode {
   "__stringVariationArgs": Array [
     NumberStringVariationArg {
       "__nodeCode": "count",
+      "candidateValues": Array [
+        "*",
+        "_1",
+      ],
+      "fbtNode": "FbtPluralNode",
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
     NumberStringVariationArg {
       "__nodeCode": "count",
+      "candidateValues": Array [
+        "*",
+        "_1",
+      ],
+      "fbtNode": "FbtPluralNode",
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -4393,7 +4404,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtPluralNode {
       "__nodeCode": "fbt.plural('is ', count, {
@@ -4402,6 +4413,11 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         NumberStringVariationArg {
           "__nodeCode": "count",
+          "candidateValues": Array [
+            "*",
+            "_1",
+          ],
+          "fbtNode": "FbtPluralNode",
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -4417,11 +4433,11 @@ FbtElementNode {
         "__countCode": "count",
         "count": "BabelNode[type=Identifier]",
         "many": "are ",
-        "name": "number",
-        "showCount": null,
+        "name": null,
+        "showCount": "no",
         "value": null,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtPluralNode {
       "__nodeCode": "fbt.plural('a like', count, {
@@ -4431,6 +4447,11 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         NumberStringVariationArg {
           "__nodeCode": "count",
+          "candidateValues": Array [
+            "*",
+            "_1",
+          ],
+          "fbtNode": "FbtPluralNode",
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -4450,7 +4471,7 @@ FbtElementNode {
         "showCount": "ifMany",
         "value": null,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -4466,6 +4487,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -4681,15 +4703,26 @@ FbtElementNode {
   "__stringVariationArgs": Array [
     NumberStringVariationArg {
       "__nodeCode": "catCount",
+      "candidateValues": Array [
+        "*",
+        "_1",
+      ],
+      "fbtNode": "FbtPluralNode",
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
     NumberStringVariationArg {
       "__nodeCode": "dogCount",
+      "candidateValues": Array [
+        "*",
+        "_1",
+      ],
+      "fbtNode": "FbtPluralNode",
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtPluralNode {
@@ -4700,6 +4733,11 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         NumberStringVariationArg {
           "__nodeCode": "catCount",
+          "candidateValues": Array [
+            "*",
+            "_1",
+          ],
+          "fbtNode": "FbtPluralNode",
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -4719,7 +4757,7 @@ FbtElementNode {
         "showCount": "yes",
         "value": null,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' and '",
@@ -4731,7 +4769,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtPluralNode {
       "__nodeCode": "fbt.plural('dog', dogCount, {
@@ -4741,6 +4779,11 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         NumberStringVariationArg {
           "__nodeCode": "dogCount",
+          "candidateValues": Array [
+            "*",
+            "_1",
+          ],
+          "fbtNode": "FbtPluralNode",
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -4760,7 +4803,7 @@ FbtElementNode {
         "showCount": "yes",
         "value": null,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -4776,6 +4819,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -4791,15 +4835,26 @@ FbtElementNode {
   "__stringVariationArgs": Array [
     NumberStringVariationArg {
       "__nodeCode": "count",
+      "candidateValues": Array [
+        "*",
+        "_1",
+      ],
+      "fbtNode": "FbtPluralNode",
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
     NumberStringVariationArg {
       "__nodeCode": "count",
+      "candidateValues": Array [
+        "*",
+        "_1",
+      ],
+      "fbtNode": "FbtPluralNode",
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -4812,7 +4867,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtPluralNode {
       "__nodeCode": "fbt.plural('was ', count, {
@@ -4822,6 +4877,11 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         NumberStringVariationArg {
           "__nodeCode": "count",
+          "candidateValues": Array [
+            "*",
+            "_1",
+          ],
+          "fbtNode": "FbtPluralNode",
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -4837,11 +4897,11 @@ FbtElementNode {
         "__countCode": "count",
         "count": "BabelNode[type=Identifier]",
         "many": "were ",
-        "name": "number",
+        "name": null,
         "showCount": "no",
         "value": null,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtPluralNode {
       "__nodeCode": "fbt.plural('a like', count, {
@@ -4851,6 +4911,11 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         NumberStringVariationArg {
           "__nodeCode": "count",
+          "candidateValues": Array [
+            "*",
+            "_1",
+          ],
+          "fbtNode": "FbtPluralNode",
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -4870,7 +4935,7 @@ FbtElementNode {
         "showCount": "ifMany",
         "value": null,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -4886,6 +4951,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -10252,15 +10318,26 @@ FbtElementNode {
   "__stringVariationArgs": Array [
     NumberStringVariationArg {
       "__nodeCode": "count",
+      "candidateValues": Array [
+        "*",
+        "_1",
+      ],
+      "fbtNode": "FbtPluralNode",
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
     NumberStringVariationArg {
       "__nodeCode": "count",
+      "candidateValues": Array [
+        "*",
+        "_1",
+      ],
+      "fbtNode": "FbtPluralNode",
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -10273,7 +10350,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtPluralNode {
       "__nodeCode": "fbt.plural('is ', count, {
@@ -10282,6 +10359,11 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         NumberStringVariationArg {
           "__nodeCode": "count",
+          "candidateValues": Array [
+            "*",
+            "_1",
+          ],
+          "fbtNode": "FbtPluralNode",
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -10297,11 +10379,11 @@ FbtElementNode {
         "__countCode": "count",
         "count": "BabelNode[type=Identifier]",
         "many": "are ",
-        "name": "number",
-        "showCount": null,
+        "name": null,
+        "showCount": "no",
         "value": null,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtPluralNode {
       "__nodeCode": "fbt.plural('a like', count, {
@@ -10311,6 +10393,11 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         NumberStringVariationArg {
           "__nodeCode": "count",
+          "candidateValues": Array [
+            "*",
+            "_1",
+          ],
+          "fbtNode": "FbtPluralNode",
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -10330,7 +10417,7 @@ FbtElementNode {
         "showCount": "ifMany",
         "value": null,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -10346,6 +10433,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -10561,15 +10649,26 @@ FbtElementNode {
   "__stringVariationArgs": Array [
     NumberStringVariationArg {
       "__nodeCode": "catCount",
+      "candidateValues": Array [
+        "*",
+        "_1",
+      ],
+      "fbtNode": "FbtPluralNode",
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
     NumberStringVariationArg {
       "__nodeCode": "dogCount",
+      "candidateValues": Array [
+        "*",
+        "_1",
+      ],
+      "fbtNode": "FbtPluralNode",
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtPluralNode {
@@ -10580,6 +10679,11 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         NumberStringVariationArg {
           "__nodeCode": "catCount",
+          "candidateValues": Array [
+            "*",
+            "_1",
+          ],
+          "fbtNode": "FbtPluralNode",
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -10599,7 +10703,7 @@ FbtElementNode {
         "showCount": "yes",
         "value": null,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtTextNode {
       "__nodeCode": "' and '",
@@ -10611,7 +10715,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtPluralNode {
       "__nodeCode": "fbt.plural('dog', dogCount, {
@@ -10621,6 +10725,11 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         NumberStringVariationArg {
           "__nodeCode": "dogCount",
+          "candidateValues": Array [
+            "*",
+            "_1",
+          ],
+          "fbtNode": "FbtPluralNode",
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -10640,7 +10749,7 @@ FbtElementNode {
         "showCount": "yes",
         "value": null,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -10656,6 +10765,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 
@@ -10671,15 +10781,26 @@ FbtElementNode {
   "__stringVariationArgs": Array [
     NumberStringVariationArg {
       "__nodeCode": "count",
+      "candidateValues": Array [
+        "*",
+        "_1",
+      ],
+      "fbtNode": "FbtPluralNode",
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
     NumberStringVariationArg {
       "__nodeCode": "count",
+      "candidateValues": Array [
+        "*",
+        "_1",
+      ],
+      "fbtNode": "FbtPluralNode",
       "node": "BabelNode[type=Identifier]",
       "value": undefined,
     },
   ],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -10692,7 +10813,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtPluralNode {
       "__nodeCode": "fbt.plural('was ', count, {
@@ -10702,6 +10823,11 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         NumberStringVariationArg {
           "__nodeCode": "count",
+          "candidateValues": Array [
+            "*",
+            "_1",
+          ],
+          "fbtNode": "FbtPluralNode",
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -10717,11 +10843,11 @@ FbtElementNode {
         "__countCode": "count",
         "count": "BabelNode[type=Identifier]",
         "many": "were ",
-        "name": "number",
+        "name": null,
         "showCount": "no",
         "value": null,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
     FbtPluralNode {
       "__nodeCode": "fbt.plural('a like', count, {
@@ -10731,6 +10857,11 @@ FbtElementNode {
       "__stringVariationArgs": Array [
         NumberStringVariationArg {
           "__nodeCode": "count",
+          "candidateValues": Array [
+            "*",
+            "_1",
+          ],
+          "fbtNode": "FbtPluralNode",
           "node": "BabelNode[type=Identifier]",
           "value": undefined,
         },
@@ -10750,7 +10881,7 @@ FbtElementNode {
         "showCount": "ifMany",
         "value": null,
       },
-      "parent": [Circular],
+      "parent": "FbtElementNode",
     },
   ],
   "moduleName": "fbt",
@@ -10766,6 +10897,7 @@ FbtElementNode {
     "project": "",
     "subject": null,
   },
+  "parent": undefined,
 }
 `;
 

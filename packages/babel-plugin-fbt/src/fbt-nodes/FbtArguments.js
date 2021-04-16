@@ -183,18 +183,43 @@ class StringVariationArg /*:: <Value, B: ?BabelNode = BabelNode> */
  * String variation argument that produces variations based on a string enum
  */
 class EnumStringVariationArg extends StringVariationArg /*:: <EnumKey> */ {
+
+  static assert(value: mixed): EnumStringVariationArg {
+    return assertInstanceOf(value, EnumStringVariationArg);
+  }
 }
 
 /**
  * String variation argument that produces variations based on genders
  */
 class GenderStringVariationArg extends StringVariationArg /*:: <GenderConstEnum | GENDER_ANY> */ {
+
+  static assert(value: mixed): GenderStringVariationArg {
+    return assertInstanceOf(value, GenderStringVariationArg);
+  }
 }
 
 /**
  * String variation argument that produces variations based on numbers
  */
 class NumberStringVariationArg extends StringVariationArg<NUMBER_ANY | EXACTLY_ONE, ?BabelNode> {
+
+  static assert(value: mixed): NumberStringVariationArg {
+    return assertInstanceOf(value, NumberStringVariationArg);
+  }
+}
+
+function assertInstanceOf<C: {}>(
+  value: mixed,
+  Constructor: Class<C> & {name: string},
+): C {
+  invariant(value instanceof Constructor,
+    'Expected instance of %s but got instead: (%s) %s',
+    Constructor.name,
+    typeof value,
+    varDump(value),
+  );
+  return value;
 }
 
 module.exports = {

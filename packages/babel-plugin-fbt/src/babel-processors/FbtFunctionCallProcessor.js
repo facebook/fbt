@@ -112,6 +112,7 @@ const {
   normalizeSpaces,
 } = require('../FbtUtil');
 const JSFbtBuilder = require('../JSFbtBuilder');
+const addLeafToTree = require('../utils/addLeafToTree');
 const CursorArray = require('../utils/CursorArray');
 const {
   isArrayExpression,
@@ -664,6 +665,7 @@ class FbtFunctionCallProcessor {
           };
         }
 
+        const descriptions = new Set();
         const phrase = {
           ...stubPhrase,
           desc: '',
@@ -674,15 +676,36 @@ class FbtFunctionCallProcessor {
           type: 'table',
         };
 
-        for (const argsCombination of argsCombinations) {
+        argsCombinations.map(argsCombination => { // collect text/description pairs
+          const desc = fbtNode.getDescription(new CursorArray(argsCombination));
+          descriptions.add(desc);
+
+          return {
+            argValues: argsCombination.map(svArg => String( // Convert GenderConstEnum to string
+              nullthrows(svArg.value)
+            )),
+            desc,
+            text: fbtNode.getText(new CursorArray(argsCombination)),
+          };
+        }).forEach(item => { // assemble jsfbt table
           addLeafToTree(
             phrase.jsfbt.t,
-            argsCombination,
-            {
-              desc: fbtNode.getDescription(new CursorArray(argsCombination)),
-              text: fbtNode.getText(new CursorArray(argsCombination)),
-            }
+            item.argValues,
+            descriptions.size > 1
+              ? {
+                desc: item.desc,
+                text: item.text,
+              }
+              // output only texts if there's only a single description at this fbt callsite
+              : item.text
           );
+        });
+
+        // set description at phrase root level
+        // if there's only a single description at this fbt callsite
+        // TODO(T81971330): JSFBT tree leaves structure should be more consistent
+        if (descriptions.size === 1) {
+          phrase.desc = Array.from(descriptions)[0];
         }
 
         return {
@@ -733,73 +756,6 @@ class FbtFunctionCallProcessor {
     }
     return elementNode;
   }
-}
-
-/**
- * Adds a leaf value to a given tree-like object, using the given list of keys.
- * If the object doesn't a given key, we'll create an object container for it.
- *
- * @example
- *
- * // empty starting tree
- * addLeafToTree(
- *   {},
- *   ['a', 'b', 'c'],
- *   {
- *     val: 111
- *   }
- * )
- *
- * Returns:
- *   {
- *     a: {
- *       b: {
- *         c: {
- *           val: 111
- *         }
- *       }
- *     }
- *   }
- *
- * // With an existing tree
- * addLeafToTree(
- *   {
- *     a: {
- *       b: {
- *         c: {
- *           val: 111
- *         }
- *       }
- *     }
- *   }
- *   ['a', 'b', 'd'],
- *   {
- *     val: 222
- *   }
- * )
- *
- * Returns:
- *   {
- *     a: {
- *       b: {
- *         c: {
- *           val: 111
- *         },
- *         d: {
- *           val: 222
- *         },
- *       }
- *     }
- *   }
- *
- */
-function addLeafToTree/*:: <K, V, T: {| [key: K]: V |}> */(
-  tree /*: T */,
-  keys /*: $ReadOnlyArray<?AnyStringVariationArg> */,
-  leaf /*: V */,
-) /*: void */ {
-  // TODO(T40113359): implement this method
-  return global.TODO_IMPLEMENT_MEEEE;
 }
 
 module.exports = FbtFunctionCallProcessor;
