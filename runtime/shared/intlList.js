@@ -67,33 +67,37 @@ const intlList = function <TItem: React.Node>(
   for (let i = 1; i < count - 1; ++i) {
     switch (delimiter) {
       case DELIMITERS.SEMICOLON:
-        output = (
-          <fbt
-            desc={
-              'A list of items of various types, for example: ' +
-              '"Menlo Park, CA; Seattle, WA; New York City, NY". ' +
-              '{previous items} and {following items} are themselves ' +
-              'lists that contain one or more items.'
-            }>
-            <fbt:param name="previous items">{output}</fbt:param>
-            {'; '}
-            <fbt:param name="following items">{items[i]}</fbt:param>
-          </fbt>
-        );
+        // TODO(T40113359) Re-enable once the babel-plugin-fbt library is able to parse this
+        // output = (
+        //   <fbt
+        //     desc={
+        //       'A list of items of various types, for example: ' +
+        //       '"Menlo Park, CA; Seattle, WA; New York City, NY". ' +
+        //       '{previous items} and {following items} are themselves ' +
+        //       'lists that contain one or more items.'
+        //     }>
+        //     <fbt:param name="previous items">{output}</fbt:param>
+        //     {'; '}
+        //     <fbt:param name="following items">{items[i]}</fbt:param>
+        //   </fbt>
+        // );
+        output = `${String(output)}; ${String(items[i])}`;
         break;
       default:
-        output = (
-          <fbt
-            desc={
-              'A list of items of various types. {previous items} and' +
-              ' {following items} are themselves lists that contain one or' +
-              ' more items.'
-            }>
-            <fbt:param name="previous items">{output}</fbt:param>
-            {', '}
-            <fbt:param name="following items">{items[i]}</fbt:param>
-          </fbt>
-        );
+        // TODO(T40113359) Re-enable once the babel-plugin-fbt library is able to parse this
+        // output = (
+        //   <fbt
+        //     desc={
+        //       'A list of items of various types. {previous items} and' +
+        //       ' {following items} are themselves lists that contain one or' +
+        //       ' more items.'
+        //     }>
+        //     <fbt:param name="previous items">{output}</fbt:param>
+        //     {', '}
+        //     <fbt:param name="following items">{items[i]}</fbt:param>
+        //   </fbt>
+        // );
+        output = `${String(output)}, ${String(items[i])}`;
     }
   }
 
@@ -113,58 +117,66 @@ function _getConjunction(
 ): Fbt {
   switch (conjunction) {
     case CONJUNCTIONS.AND:
-      return (
-        <fbt
-          desc={
-            'A list of items of various types, for example:' +
-            ' "item1, item2, item3 and item4"'
-          }>
-          <fbt:param name="list of items">{list}</fbt:param>
-          and
-          <fbt:param name="last item">{lastItem}</fbt:param>
-        </fbt>
-      );
+      // TODO(T40113359) Re-enable once the babel-plugin-fbt library is able to parse this
+      // return (
+      //   <fbt
+      //     desc={
+      //       'A list of items of various types, for example:' +
+      //       ' "item1, item2, item3 and item4"'
+      //     }>
+      //     <fbt:param name="list of items">{list}</fbt:param>
+      //     and
+      //     <fbt:param name="last item">{lastItem}</fbt:param>
+      //   </fbt>
+      // );
+      return `${String(list)} and ${String(lastItem)}`;
 
     case CONJUNCTIONS.OR:
-      return (
-        <fbt
-          desc={
-            'A list of items of various types, for example:' +
-            ' "item1, item2, item3 or item4"'
-          }>
-          <fbt:param name="list of items">{list}</fbt:param>
-          or
-          <fbt:param name="last item">{lastItem}</fbt:param>
-        </fbt>
-      );
+      // TODO(T40113359) Re-enable once the babel-plugin-fbt library is able to parse this
+      // return (
+      //   <fbt
+      //     desc={
+      //       'A list of items of various types, for example:' +
+      //       ' "item1, item2, item3 or item4"'
+      //     }>
+      //     <fbt:param name="list of items">{list}</fbt:param>
+      //     or
+      //     <fbt:param name="last item">{lastItem}</fbt:param>
+      //   </fbt>
+      // );
+      return `${String(list)} or ${String(lastItem)}`;
 
     case CONJUNCTIONS.NONE:
       switch (delimiter) {
         case DELIMITERS.SEMICOLON:
-          return (
-            <fbt
-              desc={
-                'A list of items of various types, for example:' +
-                ' "Menlo Park, CA; Seattle, WA; New York City, NY". ' +
-                '{previous items} itself contains one or more items.'
-              }>
-              <fbt:param name="previous items">{list}</fbt:param>
-              {'; '}
-              <fbt:param name="last item">{lastItem}</fbt:param>
-            </fbt>
-          );
+          // TODO(T40113359) Re-enable once the babel-plugin-fbt library is able to parse this
+          // return (
+          //   <fbt
+          //     desc={
+          //       'A list of items of various types, for example:' +
+          //       ' "Menlo Park, CA; Seattle, WA; New York City, NY". ' +
+          //       '{previous items} itself contains one or more items.'
+          //     }>
+          //     <fbt:param name="previous items">{list}</fbt:param>
+          //     {'; '}
+          //     <fbt:param name="last item">{lastItem}</fbt:param>
+          //   </fbt>
+          // );
+          return `${String(list)}; ${String(lastItem)}`;
         default:
-          return (
-            <fbt
-              desc={
-                'A list of items of various types, for example:' +
-                ' "item1, item2, item3, item4"'
-              }>
-              <fbt:param name="list of items">{list}</fbt:param>
-              {', '}
-              <fbt:param name="last item">{lastItem}</fbt:param>
-            </fbt>
-          );
+          // TODO(T40113359) Re-enable once the babel-plugin-fbt library is able to parse this
+          // return (
+          //   <fbt
+          //     desc={
+          //       'A list of items of various types, for example:' +
+          //       ' "item1, item2, item3, item4"'
+          //     }>
+          //     <fbt:param name="list of items">{list}</fbt:param>
+          //     {', '}
+          //     <fbt:param name="last item">{lastItem}</fbt:param>
+          //   </fbt>
+          // );
+          return `${String(list)}, ${String(lastItem)}`;
       }
     default:
       invariant(
