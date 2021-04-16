@@ -8,10 +8,7 @@
 
 'use strict';
 
-
-/*::
-import type {PatternString} from '../../../runtime/shared/FbtTable';
-*/
+import type {TableJSFBTTree} from './index';
 
 const fbtJenkinsHash = require('./fbtJenkinsHash');
 
@@ -33,11 +30,10 @@ function uintToBaseN(numberArg, base) {
 }
 
 function fbtHashKey(
-  jsfbt /*: PatternString | {...} */,
-  desc /*: string */,
+  jsfbt /*: $ReadOnly<TableJSFBTTree> */,
   noStringify /*: boolean = false */,
 ) /*: string */ {
-  return uintToBaseN(fbtJenkinsHash(jsfbt, desc, noStringify), 62);
+  return uintToBaseN(fbtJenkinsHash(jsfbt, noStringify), 62);
 }
 
 module.exports = fbtHashKey;

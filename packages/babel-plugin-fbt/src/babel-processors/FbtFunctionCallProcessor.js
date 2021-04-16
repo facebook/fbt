@@ -73,13 +73,11 @@ export type ExtractTableTextItems = Array<
 
 export type FbtFunctionCallPhrase = {|
   ...FbtCallSiteOptions,
-  desc: string,
   ...ObjectWithJSFBT,
 |};
 
 export type SentinelPayload = {|
   ...ObjectWithJSFBT,
-  desc: string,
   project: string,
 |};
 
@@ -130,6 +128,8 @@ const {
 } = require('@babel/types');
 const invariant = require('invariant');
 const nullthrows = require('nullthrows');
+
+const emptyArgsCombinations: [[]] = [[]];
 
 /**
 * This class provides utility methods to process the babel node of the standard fbt function call
@@ -597,9 +597,7 @@ class FbtFunctionCallProcessor {
     const {pluginOptions, t} = this;
     // $FlowFixMe[speculation-ambiguous] we're deprecating the "type" property soon anyway
     const argsOutput = JSON.stringify(({
-      type: phrase.type,
       jsfbt: phrase.jsfbt,
-      desc: phrase.desc,
       project: phrase.project,
     }: SentinelPayload));
     const encodedOutput = pluginOptions.fbtBase64
@@ -680,84 +678,47 @@ class FbtFunctionCallProcessor {
     return [fbtElement, ...fbtElement.getImplicitParamNodes()]
       .map((fbtNode, _index, list) => {
         try {
-          const stubMetaPhrase = {
-            parentIndex: this._getPhraseParentIndex(fbtNode, list),
-            fbtNode,
-          };
-          const stubPhrase = {
-            ...this.defaultFbtOptions,
-          };
-          if (doNotExtract != null) {
-            stubPhrase.doNotExtract = doNotExtract;
-          }
-          if (author) {
-            stubPhrase.author = author;
-          }
-          if (project) {
-            stubPhrase.project = project;
-          }
-
-          if (argsCombinations.length === 0) { // simple string without any variation
-            const svArgsMap = new StringVariationArgsMap([]);
-            return {
-              ...stubMetaPhrase,
-              phrase: {
-                ...stubPhrase,
-                desc: fbtNode.getDescription(svArgsMap),
-                jsfbt: fbtNode.getText(svArgsMap),
-                type: 'text',
-              },
-            };
-          }
-
-          const descriptions = new Set();
           const phrase = {
-            ...stubPhrase,
-            desc: '',
+            ...this.defaultFbtOptions,
             jsfbt: {
               m: jsfbtMetadata,
               t: {},
             },
-            type: 'table',
           };
-
-          argsCombinations.map(argsCombination => { // collect text/description pairs
-            const svArgsMap = new StringVariationArgsMap(argsCombination);
-            const desc = fbtNode.getDescription(svArgsMap);
-            descriptions.add(desc);
-            return {
-              argValues: compactStringVariations.indexMap.map(
-                originIndex => nullthrows(argsCombination[originIndex]?.value)
-              ),
-              desc,
-              text: fbtNode.getText(svArgsMap),
-            };
-          })
-            .forEach(item =>
-              // assemble jsfbt table
-              addLeafToTree<TableJSFBTTreeLeaf, TableJSFBTTree>(
-                phrase.jsfbt.t,
-                item.argValues,
-                descriptions.size > 1
-                  ? {
-                    desc: item.desc,
-                    text: item.text,
-                    tokenAliases: {}, // TODO(T81971330) Implement "mangled" token aliases
-                  }
-                  // output only texts if there's only a single description at this fbt callsite
-                  : item.text
-              )
-            );
-
-          // set description at phrase root level
-          // if there's only a single description at this fbt callsite
-          // TODO(T81971330): JSFBT tree leaves structure should be more consistent
-          if (descriptions.size === 1) {
-            phrase.desc = Array.from(descriptions)[0];
+          if (doNotExtract != null) {
+            phrase.doNotExtract = doNotExtract;
+          }
+          if (author) {
+            phrase.author = author;
+          }
+          if (project) {
+            phrase.project = project;
           }
 
+          (argsCombinations.length
+            ? argsCombinations
+            : emptyArgsCombinations
+          ).forEach(argsCombination => { // collect text/description pairs
+            const svArgsMap = new StringVariationArgsMap(argsCombination);
+            const argValues = compactStringVariations.indexMap.map(
+              originIndex => nullthrows(argsCombination[originIndex]?.value)
+            );
+            const leaf = ({
+              desc: fbtNode.getDescription(svArgsMap),
+              text: fbtNode.getText(svArgsMap),
+              tokenAliases: {}, // TODO(T86645322) Implement "mangled" token aliases
+            }: TableJSFBTTreeLeaf);
+
+            if (argValues.length) {
+              addLeafToTree<TableJSFBTTreeLeaf, TableJSFBTTree>(phrase.jsfbt.t, argValues, leaf);
+            } else { // jsfbt only contains one leaf
+              phrase.jsfbt.t = leaf;
+            }
+          });
+
           return {
-            ...stubMetaPhrase,
+            fbtNode,
+            parentIndex: this._getPhraseParentIndex(fbtNode, list),
             phrase,
           };
         } catch (error) {

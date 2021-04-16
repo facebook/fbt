@@ -40,24 +40,34 @@ class CustomFbtCollector implements IFbtCollector {
       {
         col_beg: 8,
         col_end: 14,
-        desc: 'description',
         filepath: '',
-        jsfbt: 'Hello {=World}!',
+        jsfbt: {
+          m: [],
+          t: {
+            desc: 'description',
+            text: 'Hello {=World}!',
+            tokenAliases: {},
+          },
+        },
         line_beg: 3,
         line_end: 5,
         project: '',
-        type: 'text',
       },
       {
         col_beg: 16,
         col_end: 38,
-        desc: 'In the phrase: "Hello {=World}!"',
         filepath: '',
-        jsfbt: 'World',
+        jsfbt: {
+          m: [],
+          t: {
+            desc: 'In the phrase: "Hello {=World}!"',
+            text: 'World',
+            tokenAliases: {},
+          },
+        },
         line_beg: 4,
         line_end: 4,
         project: '',
-        type: 'text',
       },
     ];
   }

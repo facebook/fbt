@@ -7,12 +7,17 @@ Object {
     Object {
       "col_beg": 0,
       "col_end": 86,
-      "desc": "counting",
-      "jsfbt": "{1} {2} {3} 4",
+      "jsfbt": Object {
+        "m": Array [],
+        "t": Object {
+          "desc": "counting",
+          "text": "{1} {2} {3} 4",
+          "tokenAliases": Object {},
+        },
+      },
       "line_beg": 3,
       "line_end": 3,
       "project": "",
-      "type": "text",
     },
   ],
 }
@@ -25,7 +30,6 @@ Object {
     Object {
       "col_beg": 0,
       "col_end": 119,
-      "desc": "desc",
       "jsfbt": Object {
         "m": Array [
           Object {
@@ -42,16 +46,40 @@ Object {
         "t": Object {
           "*": Object {
             "*": Object {
-              "*": "{name} sells their items",
-              "_1": "{name} sells their item",
+              "*": Object {
+                "desc": "desc",
+                "text": "{name} sells their items",
+                "tokenAliases": Object {},
+              },
+              "_1": Object {
+                "desc": "desc",
+                "text": "{name} sells their item",
+                "tokenAliases": Object {},
+              },
             },
             "1": Object {
-              "*": "{name} sells her items",
-              "_1": "{name} sells her item",
+              "*": Object {
+                "desc": "desc",
+                "text": "{name} sells her items",
+                "tokenAliases": Object {},
+              },
+              "_1": Object {
+                "desc": "desc",
+                "text": "{name} sells her item",
+                "tokenAliases": Object {},
+              },
             },
             "2": Object {
-              "*": "{name} sells his items",
-              "_1": "{name} sells his item",
+              "*": Object {
+                "desc": "desc",
+                "text": "{name} sells his items",
+                "tokenAliases": Object {},
+              },
+              "_1": Object {
+                "desc": "desc",
+                "text": "{name} sells his item",
+                "tokenAliases": Object {},
+              },
             },
           },
         },
@@ -59,7 +87,6 @@ Object {
       "line_beg": 4,
       "line_end": 4,
       "project": "",
-      "type": "table",
     },
   ],
 }
@@ -72,7 +99,6 @@ Object {
     Object {
       "col_beg": 0,
       "col_end": 119,
-      "desc": "desc",
       "jsfbt": Object {
         "m": Array [
           Object {
@@ -85,16 +111,40 @@ Object {
         "t": Object {
           "*": Object {
             "*": Object {
-              "*": "{name} sells their items",
-              "_1": "{name} sells their item",
+              "*": Object {
+                "desc": "desc",
+                "text": "{name} sells their items",
+                "tokenAliases": Object {},
+              },
+              "_1": Object {
+                "desc": "desc",
+                "text": "{name} sells their item",
+                "tokenAliases": Object {},
+              },
             },
             "1": Object {
-              "*": "{name} sells her items",
-              "_1": "{name} sells her item",
+              "*": Object {
+                "desc": "desc",
+                "text": "{name} sells her items",
+                "tokenAliases": Object {},
+              },
+              "_1": Object {
+                "desc": "desc",
+                "text": "{name} sells her item",
+                "tokenAliases": Object {},
+              },
             },
             "2": Object {
-              "*": "{name} sells his items",
-              "_1": "{name} sells his item",
+              "*": Object {
+                "desc": "desc",
+                "text": "{name} sells his items",
+                "tokenAliases": Object {},
+              },
+              "_1": Object {
+                "desc": "desc",
+                "text": "{name} sells his item",
+                "tokenAliases": Object {},
+              },
             },
           },
         },
@@ -102,7 +152,6 @@ Object {
       "line_beg": 4,
       "line_end": 4,
       "project": "",
-      "type": "table",
     },
   ],
 }
@@ -115,20 +164,26 @@ Object {
     Object {
       "col_beg": 0,
       "col_end": 37,
-      "desc": "counting",
       "jsfbt": Object {
         "m": Array [
           null,
         ],
         "t": Object {
-          "0": "a {2} {3} 4",
-          "1": "b {2} {3} 4",
+          "0": Object {
+            "desc": "counting",
+            "text": "a {2} {3} 4",
+            "tokenAliases": Object {},
+          },
+          "1": Object {
+            "desc": "counting",
+            "text": "b {2} {3} 4",
+            "tokenAliases": Object {},
+          },
         },
       },
       "line_beg": 3,
       "line_end": 4,
       "project": "",
-      "type": "table",
     },
   ],
 }
@@ -141,12 +196,17 @@ Object {
     Object {
       "col_beg": 0,
       "col_end": 52,
-      "desc": "great",
-      "jsfbt": "testing {it} works",
+      "jsfbt": Object {
+        "m": Array [],
+        "t": Object {
+          "desc": "great",
+          "text": "testing {it} works",
+          "tokenAliases": Object {},
+        },
+      },
       "line_beg": 3,
       "line_end": 3,
       "project": "",
-      "type": "text",
     },
   ],
 }
@@ -159,12 +219,17 @@ Object {
     Object {
       "col_beg": 0,
       "col_end": 19,
-      "desc": "ok",
-      "jsfbt": "simple",
+      "jsfbt": Object {
+        "m": Array [],
+        "t": Object {
+          "desc": "ok",
+          "text": "simple",
+          "tokenAliases": Object {},
+        },
+      },
       "line_beg": 3,
       "line_end": 3,
       "project": "",
-      "type": "text",
     },
   ],
 }
@@ -177,12 +242,17 @@ Object {
     Object {
       "col_beg": 0,
       "col_end": 49,
-      "desc": "well",
-      "jsfbt": "{it} still works",
+      "jsfbt": Object {
+        "m": Array [],
+        "t": Object {
+          "desc": "well",
+          "text": "{it} still works",
+          "tokenAliases": Object {},
+        },
+      },
       "line_beg": 3,
       "line_end": 3,
       "project": "",
-      "type": "text",
     },
   ],
 }
@@ -195,7 +265,6 @@ Object {
     Object {
       "col_beg": 0,
       "col_end": 6,
-      "desc": "desc...",
       "jsfbt": Object {
         "m": Array [
           null,
@@ -207,17 +276,24 @@ Object {
         ],
         "t": Object {
           "*": Object {
-            "*": "There are {number} photos.",
+            "*": Object {
+              "desc": "desc...",
+              "text": "There are {number} photos.",
+              "tokenAliases": Object {},
+            },
           },
           "_1": Object {
-            "_1": "There is 1 photo.",
+            "_1": Object {
+              "desc": "desc...",
+              "text": "There is 1 photo.",
+              "tokenAliases": Object {},
+            },
           },
         },
       },
       "line_beg": 2,
       "line_end": 9,
       "project": "",
-      "type": "table",
     },
   ],
 }
@@ -230,12 +306,17 @@ Object {
     Object {
       "col_beg": 27,
       "col_end": 60,
-      "desc": "Indicates an editor field is required.",
-      "jsfbt": "Required",
+      "jsfbt": Object {
+        "m": Array [],
+        "t": Object {
+          "desc": "Indicates an editor field is required.",
+          "text": "Required",
+          "tokenAliases": Object {},
+        },
+      },
       "line_beg": 1,
       "line_end": 1,
       "project": "",
-      "type": "text",
     },
   ],
 }
@@ -248,12 +329,17 @@ Object {
     Object {
       "col_beg": 27,
       "col_end": 44,
-      "desc": "Indicates an editor field is required.",
-      "jsfbt": "Required",
+      "jsfbt": Object {
+        "m": Array [],
+        "t": Object {
+          "desc": "Indicates an editor field is required.",
+          "text": "Required",
+          "tokenAliases": Object {},
+        },
+      },
       "line_beg": 1,
       "line_end": 1,
       "project": "",
-      "type": "text",
     },
   ],
 }
@@ -266,12 +352,17 @@ Object {
     Object {
       "col_beg": 27,
       "col_end": 52,
-      "desc": "foo",
-      "jsfbt": "bar",
+      "jsfbt": Object {
+        "m": Array [],
+        "t": Object {
+          "desc": "foo",
+          "text": "bar",
+          "tokenAliases": Object {},
+        },
+      },
       "line_beg": 1,
       "line_end": 1,
       "project": "",
-      "type": "text",
     },
   ],
 }
@@ -286,24 +377,34 @@ Object {
     Object {
       "col_beg": 8,
       "col_end": 14,
-      "desc": "description",
       "filepath": "",
-      "jsfbt": "Hello {=World}!",
+      "jsfbt": Object {
+        "m": Array [],
+        "t": Object {
+          "desc": "description",
+          "text": "Hello {=World}!",
+          "tokenAliases": Object {},
+        },
+      },
       "line_beg": 3,
       "line_end": 5,
       "project": "",
-      "type": "text",
     },
     Object {
       "col_beg": 16,
       "col_end": 38,
-      "desc": "In the phrase: \\"Hello {=World}!\\"",
       "filepath": "",
-      "jsfbt": "World",
+      "jsfbt": Object {
+        "m": Array [],
+        "t": Object {
+          "desc": "In the phrase: \\"Hello {=World}!\\"",
+          "text": "World",
+          "tokenAliases": Object {},
+        },
+      },
       "line_beg": 4,
       "line_end": 4,
       "project": "",
-      "type": "text",
     },
   ],
 }
@@ -316,12 +417,17 @@ Object {
     Object {
       "col_beg": 0,
       "col_end": 25,
-      "desc": "foo",
-      "jsfbt": "bar",
+      "jsfbt": Object {
+        "m": Array [],
+        "t": Object {
+          "desc": "foo",
+          "text": "bar",
+          "tokenAliases": Object {},
+        },
+      },
       "line_beg": 3,
       "line_end": 3,
       "project": "",
-      "type": "text",
     },
   ],
 }
@@ -334,13 +440,18 @@ Object {
     Object {
       "col_beg": 0,
       "col_end": 40,
-      "desc": "foo",
       "doNotExtract": false,
-      "jsfbt": "bar",
+      "jsfbt": Object {
+        "m": Array [],
+        "t": Object {
+          "desc": "foo",
+          "text": "bar",
+          "tokenAliases": Object {},
+        },
+      },
       "line_beg": 2,
       "line_end": 2,
       "project": "",
-      "type": "text",
     },
   ],
 }
@@ -353,13 +464,18 @@ Object {
     Object {
       "col_beg": 0,
       "col_end": 25,
-      "desc": "foo",
       "doNotExtract": false,
-      "jsfbt": "bar",
+      "jsfbt": Object {
+        "m": Array [],
+        "t": Object {
+          "desc": "foo",
+          "text": "bar",
+          "tokenAliases": Object {},
+        },
+      },
       "line_beg": 3,
       "line_end": 3,
       "project": "someproject",
-      "type": "text",
     },
   ],
 }
@@ -372,13 +488,18 @@ Object {
     Object {
       "col_beg": 0,
       "col_end": 46,
-      "desc": "foo",
       "doNotExtract": false,
-      "jsfbt": "bar",
+      "jsfbt": Object {
+        "m": Array [],
+        "t": Object {
+          "desc": "foo",
+          "text": "bar",
+          "tokenAliases": Object {},
+        },
+      },
       "line_beg": 2,
       "line_end": 2,
       "project": "",
-      "type": "text",
     },
   ],
 }

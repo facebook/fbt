@@ -35,7 +35,6 @@ class TextPackager {
       const hashToLeaf: HashToLeaf = {};
       onEachLeaf(
         phrase,
-        phrase.desc,
         ({text, desc}) => {
           hashToLeaf[this._hash(text, desc)] = {
             text,
@@ -47,7 +46,6 @@ class TextPackager {
       return {
         hashToLeaf,
         ...(phrase: PackagerPhrase),
-        desc: '', // TODO(T81971330) remove this field eventually
       };
     });
   }

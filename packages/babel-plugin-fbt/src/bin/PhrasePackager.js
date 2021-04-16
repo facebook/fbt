@@ -21,11 +21,9 @@ const jenkinsHash = require('../fbtJenkinsHash');
 class PhrasePackager {
   pack/*:: */(phrases /*: Array<PackagerPhrase> */) /*: Array<PackagerPhrase> */ {
     return phrases.map(phrase => {
-      const payload =
-        phrase.type === FbtType.TABLE ? phrase.jsfbt.t : phrase.jsfbt;
       return {
-        hash_key: fbtHashKey(payload, phrase.desc),
-        hash_code: jenkinsHash(payload, phrase.desc),
+        hash_key: fbtHashKey(phrase.jsfbt.t),
+        hash_code: jenkinsHash(phrase.jsfbt.t),
         ...(phrase /*: PackagerPhrase */),
       };
     });

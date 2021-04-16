@@ -61,7 +61,6 @@ module.exports = function BabelPluginFbtRuntime(babel /*: {
 
   function _buildEnumToHashKeyObjectExpression(
     curLevel /*: PatternString | $ReadOnly<TableJSFBTTree> */,
-    desc /*: string */,
     enumsLeft /*: number */,
   ) /*: BabelNodeObjectExpression */ {
     const properties = [];
@@ -72,12 +71,11 @@ module.exports = function BabelPluginFbtRuntime(babel /*: {
         t.objectProperty(
           t.identifier(enumKey),
           enumsLeft === 1
-            ? t.stringLiteral(fbtHashKey(curLevel[enumKey], desc))
+            ? t.stringLiteral(fbtHashKey(curLevel[enumKey]))
             : _buildEnumToHashKeyObjectExpression(
               // TODO(T86653403) Add support for consolidated JSFBT structure to RN
               // $FlowFixMe[incompatible-call]
               curLevel[enumKey],
-              desc,
               enumsLeft - 1,
             ),
         ),
@@ -138,16 +136,9 @@ module.exports = function BabelPluginFbtRuntime(babel /*: {
           phrase.slice(sentinelLength, phrase.length - sentinelLength),
         ) /*: SentinelPayload */);
 
-        let payload;
-        if (phrase.type === 'text') {
-          payload = phrase.jsfbt;
-          path.replaceWith(t.stringLiteral(payload));
-        } else {
-          invariant(phrase.type === 'table', 'JSFbt only has 2 types');
-          payload = phrase.jsfbt.t;
-          // $FlowFixMe[prop-missing] `replaceWithSourceString`'s type is not defined yet
-          path.replaceWithSourceString(JSON.stringify(payload));
-        }
+        const payload = phrase.jsfbt.t;
+        // $FlowFixMe[prop-missing] replaceWithSourceString's type is not defined yet
+        path.replaceWithSourceString(JSON.stringify(phrase.jsfbt.t));
 
         const parentNode = path.parentPath && path.parentPath.node;
         invariant(isCallExpression(parentNode),
@@ -183,7 +174,6 @@ module.exports = function BabelPluginFbtRuntime(babel /*: {
                 t.identifier('ehk'), // enumHashKey
                 _buildEnumToHashKeyObjectExpression(
                   shiftedJsfbt,
-                  phrase.desc,
                   enumCount,
                 ),
               ),
@@ -197,7 +187,7 @@ module.exports = function BabelPluginFbtRuntime(babel /*: {
             t.ObjectExpression([
               t.objectProperty(
                 t.identifier('hk'),
-                t.stringLiteral(fbtHashKey(payload, phrase.desc)),
+                t.stringLiteral(fbtHashKey(payload)),
               ),
             ]),
           );

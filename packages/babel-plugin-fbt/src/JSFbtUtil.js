@@ -9,7 +9,6 @@
 
 'use strict';
 
-import type {PatternString} from '../../../runtime/shared/FbtTable';
 import type {
   ObjectWithJSFBT,
   TableJSFBTTree,
@@ -18,33 +17,26 @@ import type {
 
 const nullthrows = require('nullthrows');
 
-function _coerceToTableJSFBTTreeLeaflet(value: mixed): ?TableJSFBTTreeLeaflet {
+/**
+ * @returns an TableJSFBTTreeLeaflet object if the given object matches its shape, or null
+ */
+function coerceToTableJSFBTTreeLeaflet(
+  value: $Shape<TableJSFBTTreeLeaflet>,
+): ?TableJSFBTTreeLeaflet {
   return value &&
     typeof value === 'object' &&
     typeof value.desc === 'string' &&
     typeof value.text === 'string' &&
     (typeof value.tokenAliases === 'object' || value.tokenAliases == null)
-    ? // $FlowExpectedError[incompatible-indexer] we've done enough sanity checks
-      // $FlowExpectedError[incompatible-variance] we've done enough sanity checks
-      // $FlowExpectedError[incompatible-cast] we've done enough sanity checks
-      (value: TableJSFBTTreeLeaflet)
+    ? (value: TableJSFBTTreeLeaflet)
     : null;
 }
 
 function _runOnNormalizedJSFBTLeaves(
-  value: $ReadOnly<TableJSFBTTree> | PatternString,
-  defaultDesc: string,
+  value: $ReadOnly<TableJSFBTTree>,
   callback: (leaf: TableJSFBTTreeLeaflet) => void,
 ): void {
-  if (typeof value === 'string') {
-    return callback({
-      desc: defaultDesc,
-      text: value,
-      tokenAliases: {},
-    });
-  }
-
-  const leaflet = _coerceToTableJSFBTTreeLeaflet(value);
+  const leaflet = coerceToTableJSFBTTreeLeaflet(value);
   if (leaflet) {
     return callback(leaflet);
   }
@@ -53,7 +45,6 @@ function _runOnNormalizedJSFBTLeaves(
     _runOnNormalizedJSFBTLeaves(
       // $FlowExpectedError[incompatible-call] `value` should now be an intermediate tree level
       nullthrows(value[k]),
-      defaultDesc,
       callback,
     );
   }
@@ -61,16 +52,12 @@ function _runOnNormalizedJSFBTLeaves(
 
 function onEachLeaf(
   phrase: {...ObjectWithJSFBT},
-  defaultDesc: string,
   callback: (leaf: TableJSFBTTreeLeaflet) => void,
 ): void {
-  _runOnNormalizedJSFBTLeaves(
-    typeof phrase.jsfbt === 'string' ? phrase.jsfbt : phrase.jsfbt.t,
-    defaultDesc,
-    callback,
-  );
+  _runOnNormalizedJSFBTLeaves(phrase.jsfbt.t, callback);
 }
 
 module.exports = {
+  coerceToTableJSFBTTreeLeaflet,
   onEachLeaf,
 };

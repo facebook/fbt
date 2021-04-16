@@ -6,13 +6,18 @@ Array [
     "author": "jwatson",
     "col_beg": 2,
     "col_end": 8,
-    "desc": "options!",
     "filepath": undefined,
-    "jsfbt": "A string that moved files",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "options!",
+        "text": "A string that moved files",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 5,
     "project": "Super Secret",
-    "type": "text",
   },
 ]
 `;
@@ -22,13 +27,18 @@ Array [
   Object {
     "col_beg": 20,
     "col_end": 55,
-    "desc": "nested!",
     "filepath": undefined,
-    "jsfbt": "A nested string",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "nested!",
+        "text": "A nested string",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 3,
     "line_end": 3,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -38,13 +48,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "It's simple",
     "filepath": undefined,
-    "jsfbt": "A simple string",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "It's simple",
+        "text": "A simple string",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 7,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -54,7 +69,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "enums!",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -67,15 +81,26 @@ Array [
         },
       ],
       "t": Object {
-        "groups": "Look! Groups and groups!",
-        "photos": "Look! Photos and photos!",
-        "videos": "Look! Videos and videos!",
+        "groups": Object {
+          "desc": "enums!",
+          "text": "Look! Groups and groups!",
+          "tokenAliases": Object {},
+        },
+        "photos": Object {
+          "desc": "enums!",
+          "text": "Look! Photos and photos!",
+          "tokenAliases": Object {},
+        },
+        "videos": Object {
+          "desc": "enums!",
+          "text": "Look! Videos and videos!",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 18,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -85,13 +110,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 52,
-    "desc": "It's simple",
     "filepath": undefined,
-    "jsfbt": "Also simple string",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "It's simple",
+        "text": "Also simple string",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 3,
     "line_end": 3,
     "project": "dev",
-    "type": "text",
   },
 ]
 `;
@@ -101,7 +131,6 @@ Array [
   Object {
     "col_beg": 8,
     "col_end": 14,
-    "desc": "example 1",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -117,20 +146,26 @@ Array [
       ],
       "t": Object {
         "*": Object {
-          "*": "{name} has shared {=[number] photos} with you",
-          "_1": "{name} has shared {=a photo} with you",
+          "*": Object {
+            "desc": "example 1",
+            "text": "{name} has shared {=[number] photos} with you",
+            "tokenAliases": Object {},
+          },
+          "_1": Object {
+            "desc": "example 1",
+            "text": "{name} has shared {=a photo} with you",
+            "tokenAliases": Object {},
+          },
         },
       },
     },
     "line_beg": 4,
     "line_end": 18,
     "project": "",
-    "type": "table",
   },
   Object {
     "col_beg": 10,
     "col_end": 14,
-    "desc": "",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -162,7 +197,6 @@ Array [
     "line_beg": 9,
     "line_end": 16,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -172,7 +206,6 @@ Array [
   Object {
     "col_beg": 14,
     "col_end": 7,
-    "desc": "string with nested JSX fragments",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -182,18 +215,20 @@ Array [
         },
       ],
       "t": Object {
-        "*": "A1 {=B1 C1 [paramName] C2 B2} A2",
+        "*": Object {
+          "desc": "string with nested JSX fragments",
+          "text": "A1 {=B1 C1 [paramName] C2 B2} A2",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 3,
     "line_end": 25,
     "project": "",
-    "type": "table",
   },
   Object {
     "col_beg": 10,
     "col_end": 14,
-    "desc": "In the phrase: \\"A1 {=B1 C1 [paramName] C2 B2} A2\\"",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -203,18 +238,20 @@ Array [
         },
       ],
       "t": Object {
-        "*": "B1 {=C1 [paramName] C2} B2",
+        "*": Object {
+          "desc": "In the phrase: \\"A1 {=B1 C1 [paramName] C2 B2} A2\\"",
+          "text": "B1 {=C1 [paramName] C2} B2",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 6,
     "line_end": 18,
     "project": "",
-    "type": "table",
   },
   Object {
     "col_beg": 12,
     "col_end": 16,
-    "desc": "In the phrase: \\"A1 B1 {=C1 [paramName] C2} B2 A2\\"",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -224,13 +261,16 @@ Array [
         },
       ],
       "t": Object {
-        "*": "C1 {paramName} C2",
+        "*": Object {
+          "desc": "In the phrase: \\"A1 B1 {=C1 [paramName] C2} B2 A2\\"",
+          "text": "C1 {paramName} C2",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 8,
     "line_end": 16,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -240,7 +280,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "enums!",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -253,15 +292,26 @@ Array [
         },
       ],
       "t": Object {
-        "groups": "Look! Groups and groups!",
-        "photos": "Look! Photos and photos!",
-        "videos": "Look! Videos and videos!",
+        "groups": Object {
+          "desc": "enums!",
+          "text": "Look! Groups and groups!",
+          "tokenAliases": Object {},
+        },
+        "photos": Object {
+          "desc": "enums!",
+          "text": "Look! Photos and photos!",
+          "tokenAliases": Object {},
+        },
+        "videos": Object {
+          "desc": "enums!",
+          "text": "Look! Videos and videos!",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 19,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -271,7 +321,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "enum as an array",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -284,15 +333,26 @@ Array [
         },
       ],
       "t": Object {
-        "groups": "Click to see groups",
-        "photos": "Click to see photos",
-        "videos": "Click to see videos",
+        "groups": Object {
+          "desc": "enum as an array",
+          "text": "Click to see groups",
+          "tokenAliases": Object {},
+        },
+        "photos": Object {
+          "desc": "enum as an array",
+          "text": "Click to see photos",
+          "tokenAliases": Object {},
+        },
+        "videos": Object {
+          "desc": "enum as an array",
+          "text": "Click to see videos",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 8,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -302,7 +362,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "enum as an object",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -315,15 +374,26 @@ Array [
         },
       ],
       "t": Object {
-        "id1": "Click to see groups",
-        "id2": "Click to see photos",
-        "id3": "Click to see videos",
+        "id1": Object {
+          "desc": "enum as an object",
+          "text": "Click to see groups",
+          "tokenAliases": Object {},
+        },
+        "id2": Object {
+          "desc": "enum as an object",
+          "text": "Click to see photos",
+          "tokenAliases": Object {},
+        },
+        "id3": Object {
+          "desc": "enum as an object",
+          "text": "Click to see videos",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 8,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -333,7 +403,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "enums!",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -346,15 +415,26 @@ Array [
         },
       ],
       "t": Object {
-        "groups": "Hello, groups!",
-        "photos": "Hello, photos!",
-        "videos": "Hello, videos!",
+        "groups": Object {
+          "desc": "enums!",
+          "text": "Hello, groups!",
+          "tokenAliases": Object {},
+        },
+        "photos": Object {
+          "desc": "enums!",
+          "text": "Hello, photos!",
+          "tokenAliases": Object {},
+        },
+        "videos": Object {
+          "desc": "enums!",
+          "text": "Hello, videos!",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 8,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -364,7 +444,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "plurals",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -379,17 +458,24 @@ Array [
       ],
       "t": Object {
         "*": Object {
-          "*": "There are {number} likes",
+          "*": Object {
+            "desc": "plurals",
+            "text": "There are {number} likes",
+            "tokenAliases": Object {},
+          },
         },
         "_1": Object {
-          "_1": "There is a like",
+          "_1": Object {
+            "desc": "plurals",
+            "text": "There is a like",
+            "tokenAliases": Object {},
+          },
         },
       },
     },
     "line_beg": 2,
     "line_end": 8,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -399,7 +485,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "names",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -409,13 +494,16 @@ Array [
         },
       ],
       "t": Object {
-        "*": "You just friended {name}",
+        "*": Object {
+          "desc": "names",
+          "text": "You just friended {name}",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 7,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -425,7 +513,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 9,
-    "desc": "object pronoun",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -434,16 +521,31 @@ Array [
         },
       ],
       "t": Object {
-        "*": "I know them.",
-        "0": "I know this.",
-        "1": "I know her.",
-        "2": "I know him.",
+        "*": Object {
+          "desc": "object pronoun",
+          "text": "I know them.",
+          "tokenAliases": Object {},
+        },
+        "0": Object {
+          "desc": "object pronoun",
+          "text": "I know this.",
+          "tokenAliases": Object {},
+        },
+        "1": Object {
+          "desc": "object pronoun",
+          "text": "I know her.",
+          "tokenAliases": Object {},
+        },
+        "2": Object {
+          "desc": "object pronoun",
+          "text": "I know him.",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 9,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -453,13 +555,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "Moar params",
     "filepath": undefined,
-    "jsfbt": "A parameterized message to {personName}",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "Moar params",
+        "text": "A parameterized message to {personName}",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 8,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -469,7 +576,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "plurals",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -486,19 +592,34 @@ Array [
       ],
       "t": Object {
         "*": Object {
-          "*": "{cat_token} cats and {dog_token} dogs",
-          "_1": "{cat_token} cats and 1 dog",
+          "*": Object {
+            "desc": "plurals",
+            "text": "{cat_token} cats and {dog_token} dogs",
+            "tokenAliases": Object {},
+          },
+          "_1": Object {
+            "desc": "plurals",
+            "text": "{cat_token} cats and 1 dog",
+            "tokenAliases": Object {},
+          },
         },
         "_1": Object {
-          "*": "1 cat and {dog_token} dogs",
-          "_1": "1 cat and 1 dog",
+          "*": Object {
+            "desc": "plurals",
+            "text": "1 cat and {dog_token} dogs",
+            "tokenAliases": Object {},
+          },
+          "_1": Object {
+            "desc": "plurals",
+            "text": "1 cat and 1 dog",
+            "tokenAliases": Object {},
+          },
         },
       },
     },
     "line_beg": 2,
     "line_end": 9,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -508,7 +629,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "plurals",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -523,17 +643,24 @@ Array [
       ],
       "t": Object {
         "*": Object {
-          "*": "There were {number} likes",
+          "*": Object {
+            "desc": "plurals",
+            "text": "There were {number} likes",
+            "tokenAliases": Object {},
+          },
         },
         "_1": Object {
-          "_1": "There was a like",
+          "_1": Object {
+            "desc": "plurals",
+            "text": "There was a like",
+            "tokenAliases": Object {},
+          },
         },
       },
     },
     "line_beg": 2,
     "line_end": 9,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -543,7 +670,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 9,
-    "desc": "possessive pronoun",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -552,15 +678,26 @@ Array [
         },
       ],
       "t": Object {
-        "*": "It is their birthday.",
-        "1": "It is her birthday.",
-        "2": "It is his birthday.",
+        "*": Object {
+          "desc": "possessive pronoun",
+          "text": "It is their birthday.",
+          "tokenAliases": Object {},
+        },
+        "1": Object {
+          "desc": "possessive pronoun",
+          "text": "It is her birthday.",
+          "tokenAliases": Object {},
+        },
+        "2": Object {
+          "desc": "possessive pronoun",
+          "text": "It is his birthday.",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 8,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -570,7 +707,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 9,
-    "desc": "subject+reflexive pronouns",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -583,20 +719,31 @@ Array [
       ],
       "t": Object {
         "*": Object {
-          "*": "They wished themselves a happy birthday.",
+          "*": Object {
+            "desc": "subject+reflexive pronouns",
+            "text": "They wished themselves a happy birthday.",
+            "tokenAliases": Object {},
+          },
         },
         "1": Object {
-          "1": "She wished herself a happy birthday.",
+          "1": Object {
+            "desc": "subject+reflexive pronouns",
+            "text": "She wished herself a happy birthday.",
+            "tokenAliases": Object {},
+          },
         },
         "2": Object {
-          "2": "He wished himself a happy birthday.",
+          "2": Object {
+            "desc": "subject+reflexive pronouns",
+            "text": "He wished himself a happy birthday.",
+            "tokenAliases": Object {},
+          },
         },
       },
     },
     "line_beg": 2,
     "line_end": 9,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -606,7 +753,6 @@ Array [
   Object {
     "col_beg": 6,
     "col_end": 7,
-    "desc": "test variations + sameParam",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -616,13 +762,16 @@ Array [
         },
       ],
       "t": Object {
-        "*": "You have {count} likes. Comment on it to get more than {count} likes",
+        "*": Object {
+          "desc": "test variations + sameParam",
+          "text": "You have {count} likes. Comment on it to get more than {count} likes",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 3,
     "line_end": 11,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -632,7 +781,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "variations!",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -642,13 +790,16 @@ Array [
         },
       ],
       "t": Object {
-        "*": "Click to see {count} links",
+        "*": Object {
+          "desc": "variations!",
+          "text": "Click to see {count} links",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 8,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -658,35 +809,50 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "desc",
     "filepath": undefined,
-    "jsfbt": "foobarbazqux",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "desc",
+        "text": "foobarbazqux",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 9,
     "project": "",
-    "type": "text",
   },
   Object {
     "col_beg": 14,
     "col_end": 7,
-    "desc": "desc",
     "filepath": undefined,
-    "jsfbt": "foobarbazqux",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "desc",
+        "text": "foobarbazqux",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 10,
     "line_end": 17,
     "project": "",
-    "type": "text",
   },
   Object {
     "col_beg": 14,
     "col_end": 7,
-    "desc": "desc",
     "filepath": undefined,
-    "jsfbt": "foobarbazqux",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "desc",
+        "text": "foobarbazqux",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 18,
     "line_end": 25,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -696,13 +862,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "d",
     "filepath": undefined,
-    "jsfbt": "{name1} and {name1}",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "d",
+        "text": "{name1} and {name1}",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 8,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -712,13 +883,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "a",
     "filepath": undefined,
-    "jsfbt": "{name1} blah {name2}",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "a",
+        "text": "{name1} blah {name2}",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 17,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -728,13 +904,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "blah",
     "filepath": undefined,
-    "jsfbt": "A simple string... with some other stuff.",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "blah",
+        "text": "A simple string... with some other stuff.",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 8,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -744,13 +925,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "a",
     "filepath": undefined,
-    "jsfbt": "a b {name1} c d {name2} e",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "a",
+        "text": "a b {name1} c d {name2} e",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 13,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -763,13 +949,18 @@ Array [
     "author": "jwatson",
     "col_beg": 2,
     "col_end": 8,
-    "desc": "options!",
     "filepath": undefined,
-    "jsfbt": "A string that moved files",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "options!",
+        "text": "A string that moved files",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 5,
     "project": "Super Secret",
-    "type": "text",
   },
 ]
 `;
@@ -779,13 +970,18 @@ Array [
   Object {
     "col_beg": 20,
     "col_end": 55,
-    "desc": "nested!",
     "filepath": undefined,
-    "jsfbt": "A nested string",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "nested!",
+        "text": "A nested string",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 3,
     "line_end": 3,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -795,13 +991,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "It's simple",
     "filepath": undefined,
-    "jsfbt": "A simple string",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "It's simple",
+        "text": "A simple string",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 7,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -811,22 +1012,32 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "enums!",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
         null,
       ],
       "t": Object {
-        "groups": "Look! Groups and groups!",
-        "photos": "Look! Photos and photos!",
-        "videos": "Look! Videos and videos!",
+        "groups": Object {
+          "desc": "enums!",
+          "text": "Look! Groups and groups!",
+          "tokenAliases": Object {},
+        },
+        "photos": Object {
+          "desc": "enums!",
+          "text": "Look! Photos and photos!",
+          "tokenAliases": Object {},
+        },
+        "videos": Object {
+          "desc": "enums!",
+          "text": "Look! Videos and videos!",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 18,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -836,13 +1047,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 52,
-    "desc": "It's simple",
     "filepath": undefined,
-    "jsfbt": "Also simple string",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "It's simple",
+        "text": "Also simple string",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 3,
     "line_end": 3,
     "project": "dev",
-    "type": "text",
   },
 ]
 `;
@@ -852,7 +1068,6 @@ Array [
   Object {
     "col_beg": 8,
     "col_end": 14,
-    "desc": "example 1",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -868,20 +1083,26 @@ Array [
       ],
       "t": Object {
         "*": Object {
-          "*": "{name} has shared {=[number] photos} with you",
-          "_1": "{name} has shared {=a photo} with you",
+          "*": Object {
+            "desc": "example 1",
+            "text": "{name} has shared {=[number] photos} with you",
+            "tokenAliases": Object {},
+          },
+          "_1": Object {
+            "desc": "example 1",
+            "text": "{name} has shared {=a photo} with you",
+            "tokenAliases": Object {},
+          },
         },
       },
     },
     "line_beg": 4,
     "line_end": 18,
     "project": "",
-    "type": "table",
   },
   Object {
     "col_beg": 10,
     "col_end": 14,
-    "desc": "",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -913,7 +1134,6 @@ Array [
     "line_beg": 9,
     "line_end": 16,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -923,7 +1143,6 @@ Array [
   Object {
     "col_beg": 14,
     "col_end": 7,
-    "desc": "string with nested JSX fragments",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -933,18 +1152,20 @@ Array [
         },
       ],
       "t": Object {
-        "*": "A1 {=B1 C1 [paramName] C2 B2} A2",
+        "*": Object {
+          "desc": "string with nested JSX fragments",
+          "text": "A1 {=B1 C1 [paramName] C2 B2} A2",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 3,
     "line_end": 25,
     "project": "",
-    "type": "table",
   },
   Object {
     "col_beg": 10,
     "col_end": 14,
-    "desc": "In the phrase: \\"A1 {=B1 C1 [paramName] C2 B2} A2\\"",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -954,18 +1175,20 @@ Array [
         },
       ],
       "t": Object {
-        "*": "B1 {=C1 [paramName] C2} B2",
+        "*": Object {
+          "desc": "In the phrase: \\"A1 {=B1 C1 [paramName] C2 B2} A2\\"",
+          "text": "B1 {=C1 [paramName] C2} B2",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 6,
     "line_end": 18,
     "project": "",
-    "type": "table",
   },
   Object {
     "col_beg": 12,
     "col_end": 16,
-    "desc": "In the phrase: \\"A1 B1 {=C1 [paramName] C2} B2 A2\\"",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -975,13 +1198,16 @@ Array [
         },
       ],
       "t": Object {
-        "*": "C1 {paramName} C2",
+        "*": Object {
+          "desc": "In the phrase: \\"A1 B1 {=C1 [paramName] C2} B2 A2\\"",
+          "text": "C1 {paramName} C2",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 8,
     "line_end": 16,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -991,22 +1217,32 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "enums!",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
         null,
       ],
       "t": Object {
-        "groups": "Look! Groups and groups!",
-        "photos": "Look! Photos and photos!",
-        "videos": "Look! Videos and videos!",
+        "groups": Object {
+          "desc": "enums!",
+          "text": "Look! Groups and groups!",
+          "tokenAliases": Object {},
+        },
+        "photos": Object {
+          "desc": "enums!",
+          "text": "Look! Photos and photos!",
+          "tokenAliases": Object {},
+        },
+        "videos": Object {
+          "desc": "enums!",
+          "text": "Look! Videos and videos!",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 19,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -1016,22 +1252,32 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "enum as an array",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
         null,
       ],
       "t": Object {
-        "groups": "Click to see groups",
-        "photos": "Click to see photos",
-        "videos": "Click to see videos",
+        "groups": Object {
+          "desc": "enum as an array",
+          "text": "Click to see groups",
+          "tokenAliases": Object {},
+        },
+        "photos": Object {
+          "desc": "enum as an array",
+          "text": "Click to see photos",
+          "tokenAliases": Object {},
+        },
+        "videos": Object {
+          "desc": "enum as an array",
+          "text": "Click to see videos",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 8,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -1041,22 +1287,32 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "enum as an object",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
         null,
       ],
       "t": Object {
-        "id1": "Click to see groups",
-        "id2": "Click to see photos",
-        "id3": "Click to see videos",
+        "id1": Object {
+          "desc": "enum as an object",
+          "text": "Click to see groups",
+          "tokenAliases": Object {},
+        },
+        "id2": Object {
+          "desc": "enum as an object",
+          "text": "Click to see photos",
+          "tokenAliases": Object {},
+        },
+        "id3": Object {
+          "desc": "enum as an object",
+          "text": "Click to see videos",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 8,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -1066,22 +1322,32 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "enums!",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
         null,
       ],
       "t": Object {
-        "groups": "Hello, groups!",
-        "photos": "Hello, photos!",
-        "videos": "Hello, videos!",
+        "groups": Object {
+          "desc": "enums!",
+          "text": "Hello, groups!",
+          "tokenAliases": Object {},
+        },
+        "photos": Object {
+          "desc": "enums!",
+          "text": "Hello, photos!",
+          "tokenAliases": Object {},
+        },
+        "videos": Object {
+          "desc": "enums!",
+          "text": "Hello, videos!",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 8,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -1091,7 +1357,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "plurals",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -1104,17 +1369,24 @@ Array [
       ],
       "t": Object {
         "*": Object {
-          "*": "There are {number} likes",
+          "*": Object {
+            "desc": "plurals",
+            "text": "There are {number} likes",
+            "tokenAliases": Object {},
+          },
         },
         "_1": Object {
-          "_1": "There is a like",
+          "_1": Object {
+            "desc": "plurals",
+            "text": "There is a like",
+            "tokenAliases": Object {},
+          },
         },
       },
     },
     "line_beg": 2,
     "line_end": 8,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -1124,7 +1396,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "names",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -1134,13 +1405,16 @@ Array [
         },
       ],
       "t": Object {
-        "*": "You just friended {name}",
+        "*": Object {
+          "desc": "names",
+          "text": "You just friended {name}",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 7,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -1150,23 +1424,37 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 9,
-    "desc": "object pronoun",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
         null,
       ],
       "t": Object {
-        "*": "I know them.",
-        "0": "I know this.",
-        "1": "I know her.",
-        "2": "I know him.",
+        "*": Object {
+          "desc": "object pronoun",
+          "text": "I know them.",
+          "tokenAliases": Object {},
+        },
+        "0": Object {
+          "desc": "object pronoun",
+          "text": "I know this.",
+          "tokenAliases": Object {},
+        },
+        "1": Object {
+          "desc": "object pronoun",
+          "text": "I know her.",
+          "tokenAliases": Object {},
+        },
+        "2": Object {
+          "desc": "object pronoun",
+          "text": "I know him.",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 9,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -1176,13 +1464,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "Moar params",
     "filepath": undefined,
-    "jsfbt": "A parameterized message to {personName}",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "Moar params",
+        "text": "A parameterized message to {personName}",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 8,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -1192,7 +1485,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "plurals",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -1209,19 +1501,34 @@ Array [
       ],
       "t": Object {
         "*": Object {
-          "*": "{cat_token} cats and {dog_token} dogs",
-          "_1": "{cat_token} cats and 1 dog",
+          "*": Object {
+            "desc": "plurals",
+            "text": "{cat_token} cats and {dog_token} dogs",
+            "tokenAliases": Object {},
+          },
+          "_1": Object {
+            "desc": "plurals",
+            "text": "{cat_token} cats and 1 dog",
+            "tokenAliases": Object {},
+          },
         },
         "_1": Object {
-          "*": "1 cat and {dog_token} dogs",
-          "_1": "1 cat and 1 dog",
+          "*": Object {
+            "desc": "plurals",
+            "text": "1 cat and {dog_token} dogs",
+            "tokenAliases": Object {},
+          },
+          "_1": Object {
+            "desc": "plurals",
+            "text": "1 cat and 1 dog",
+            "tokenAliases": Object {},
+          },
         },
       },
     },
     "line_beg": 2,
     "line_end": 9,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -1231,7 +1538,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "plurals",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -1244,17 +1550,24 @@ Array [
       ],
       "t": Object {
         "*": Object {
-          "*": "There were {number} likes",
+          "*": Object {
+            "desc": "plurals",
+            "text": "There were {number} likes",
+            "tokenAliases": Object {},
+          },
         },
         "_1": Object {
-          "_1": "There was a like",
+          "_1": Object {
+            "desc": "plurals",
+            "text": "There was a like",
+            "tokenAliases": Object {},
+          },
         },
       },
     },
     "line_beg": 2,
     "line_end": 9,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -1264,22 +1577,32 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 9,
-    "desc": "possessive pronoun",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
         null,
       ],
       "t": Object {
-        "*": "It is their birthday.",
-        "1": "It is her birthday.",
-        "2": "It is his birthday.",
+        "*": Object {
+          "desc": "possessive pronoun",
+          "text": "It is their birthday.",
+          "tokenAliases": Object {},
+        },
+        "1": Object {
+          "desc": "possessive pronoun",
+          "text": "It is her birthday.",
+          "tokenAliases": Object {},
+        },
+        "2": Object {
+          "desc": "possessive pronoun",
+          "text": "It is his birthday.",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 8,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -1289,7 +1612,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 9,
-    "desc": "subject+reflexive pronouns",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -1298,20 +1620,31 @@ Array [
       ],
       "t": Object {
         "*": Object {
-          "*": "They wished themselves a happy birthday.",
+          "*": Object {
+            "desc": "subject+reflexive pronouns",
+            "text": "They wished themselves a happy birthday.",
+            "tokenAliases": Object {},
+          },
         },
         "1": Object {
-          "1": "She wished herself a happy birthday.",
+          "1": Object {
+            "desc": "subject+reflexive pronouns",
+            "text": "She wished herself a happy birthday.",
+            "tokenAliases": Object {},
+          },
         },
         "2": Object {
-          "2": "He wished himself a happy birthday.",
+          "2": Object {
+            "desc": "subject+reflexive pronouns",
+            "text": "He wished himself a happy birthday.",
+            "tokenAliases": Object {},
+          },
         },
       },
     },
     "line_beg": 2,
     "line_end": 9,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -1321,7 +1654,6 @@ Array [
   Object {
     "col_beg": 6,
     "col_end": 7,
-    "desc": "test variations + sameParam",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -1331,13 +1663,16 @@ Array [
         },
       ],
       "t": Object {
-        "*": "You have {count} likes. Comment on it to get more than {count} likes",
+        "*": Object {
+          "desc": "test variations + sameParam",
+          "text": "You have {count} likes. Comment on it to get more than {count} likes",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 3,
     "line_end": 11,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -1347,7 +1682,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "variations!",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -1357,13 +1691,16 @@ Array [
         },
       ],
       "t": Object {
-        "*": "Click to see {count} links",
+        "*": Object {
+          "desc": "variations!",
+          "text": "Click to see {count} links",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 8,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -1373,35 +1710,50 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "desc",
     "filepath": undefined,
-    "jsfbt": "foobarbazqux",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "desc",
+        "text": "foobarbazqux",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 9,
     "project": "",
-    "type": "text",
   },
   Object {
     "col_beg": 14,
     "col_end": 7,
-    "desc": "desc",
     "filepath": undefined,
-    "jsfbt": "foobarbazqux",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "desc",
+        "text": "foobarbazqux",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 10,
     "line_end": 17,
     "project": "",
-    "type": "text",
   },
   Object {
     "col_beg": 14,
     "col_end": 7,
-    "desc": "desc",
     "filepath": undefined,
-    "jsfbt": "foobarbazqux",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "desc",
+        "text": "foobarbazqux",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 18,
     "line_end": 25,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -1411,13 +1763,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "d",
     "filepath": undefined,
-    "jsfbt": "{name1} and {name1}",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "d",
+        "text": "{name1} and {name1}",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 8,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -1427,13 +1784,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "a",
     "filepath": undefined,
-    "jsfbt": "{name1} blah {name2}",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "a",
+        "text": "{name1} blah {name2}",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 17,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -1443,13 +1805,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "blah",
     "filepath": undefined,
-    "jsfbt": "A simple string... with some other stuff.",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "blah",
+        "text": "A simple string... with some other stuff.",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 8,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -1459,13 +1826,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "a",
     "filepath": undefined,
-    "jsfbt": "a b {name1} c d {name2} e",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "a",
+        "text": "a b {name1} c d {name2} e",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 13,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -7250,13 +7622,18 @@ Array [
     "author": "jwatson",
     "col_beg": 2,
     "col_end": 8,
-    "desc": "options!",
     "filepath": undefined,
-    "jsfbt": "A string that moved files",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "options!",
+        "text": "A string that moved files",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 5,
     "project": "Super Secret",
-    "type": "text",
   },
 ]
 `;
@@ -7266,13 +7643,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "With a ridiculously long description that requires concatenation",
     "filepath": undefined,
-    "jsfbt": "A short string",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "With a ridiculously long description that requires concatenation",
+        "text": "A short string",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 6,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -7282,13 +7664,18 @@ Array [
   Object {
     "col_beg": 20,
     "col_end": 53,
-    "desc": "nested!",
     "filepath": undefined,
-    "jsfbt": "A nested string",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "nested!",
+        "text": "A nested string",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 3,
     "line_end": 3,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -7298,13 +7685,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 47,
-    "desc": "It's simple",
     "filepath": undefined,
-    "jsfbt": "A simple string",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "It's simple",
+        "text": "A simple string",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 2,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -7314,7 +7706,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "enums!",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -7327,15 +7718,26 @@ Array [
         },
       ],
       "t": Object {
-        "groups": "Look! Groups and groups!",
-        "photos": "Look! Photos and photos!",
-        "videos": "Look! Videos and videos!",
+        "groups": Object {
+          "desc": "enums!",
+          "text": "Look! Groups and groups!",
+          "tokenAliases": Object {},
+        },
+        "photos": Object {
+          "desc": "enums!",
+          "text": "Look! Photos and photos!",
+          "tokenAliases": Object {},
+        },
+        "videos": Object {
+          "desc": "enums!",
+          "text": "Look! Videos and videos!",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 13,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -7345,7 +7747,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "enums!",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -7358,15 +7759,26 @@ Array [
         },
       ],
       "t": Object {
-        "groups": "Look! Groups and groups!",
-        "photos": "Look! Photos and photos!",
-        "videos": "Look! Videos and videos!",
+        "groups": Object {
+          "desc": "enums!",
+          "text": "Look! Groups and groups!",
+          "tokenAliases": Object {},
+        },
+        "photos": Object {
+          "desc": "enums!",
+          "text": "Look! Photos and photos!",
+          "tokenAliases": Object {},
+        },
+        "videos": Object {
+          "desc": "enums!",
+          "text": "Look! Videos and videos!",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 17,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -7376,13 +7788,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 50,
-    "desc": "It's simple",
     "filepath": undefined,
-    "jsfbt": "Also simple string",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "It's simple",
+        "text": "Also simple string",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 3,
     "line_end": 3,
     "project": "dev",
-    "type": "text",
   },
 ]
 `;
@@ -7392,7 +7809,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "enums!",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -7405,15 +7821,26 @@ Array [
         },
       ],
       "t": Object {
-        "groups": "Look! Groups and groups!",
-        "photos": "Look! Photos and photos!",
-        "videos": "Look! Videos and videos!",
+        "groups": Object {
+          "desc": "enums!",
+          "text": "Look! Groups and groups!",
+          "tokenAliases": Object {},
+        },
+        "photos": Object {
+          "desc": "enums!",
+          "text": "Look! Photos and photos!",
+          "tokenAliases": Object {},
+        },
+        "videos": Object {
+          "desc": "enums!",
+          "text": "Look! Videos and videos!",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 17,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -7423,7 +7850,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "enum as an array",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -7436,15 +7862,26 @@ Array [
         },
       ],
       "t": Object {
-        "groups": "Click to see groups",
-        "photos": "Click to see photos",
-        "videos": "Click to see videos",
+        "groups": Object {
+          "desc": "enum as an array",
+          "text": "Click to see groups",
+          "tokenAliases": Object {},
+        },
+        "photos": Object {
+          "desc": "enum as an array",
+          "text": "Click to see photos",
+          "tokenAliases": Object {},
+        },
+        "videos": Object {
+          "desc": "enum as an array",
+          "text": "Click to see videos",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 5,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -7454,7 +7891,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "enum as an object",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -7467,15 +7903,26 @@ Array [
         },
       ],
       "t": Object {
-        "id1": "Click to see groups",
-        "id2": "Click to see photos",
-        "id3": "Click to see videos",
+        "id1": Object {
+          "desc": "enum as an object",
+          "text": "Click to see groups",
+          "tokenAliases": Object {},
+        },
+        "id2": Object {
+          "desc": "enum as an object",
+          "text": "Click to see photos",
+          "tokenAliases": Object {},
+        },
+        "id3": Object {
+          "desc": "enum as an object",
+          "text": "Click to see videos",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 6,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -7485,7 +7932,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "enums!",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -7498,15 +7944,26 @@ Array [
         },
       ],
       "t": Object {
-        "groups": "Hello, groups!",
-        "photos": "Hello, photos!",
-        "videos": "Hello, videos!",
+        "groups": Object {
+          "desc": "enums!",
+          "text": "Hello, groups!",
+          "tokenAliases": Object {},
+        },
+        "photos": Object {
+          "desc": "enums!",
+          "text": "Hello, photos!",
+          "tokenAliases": Object {},
+        },
+        "videos": Object {
+          "desc": "enums!",
+          "text": "Hello, videos!",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 5,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -7516,7 +7973,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "plurals",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -7531,17 +7987,24 @@ Array [
       ],
       "t": Object {
         "*": Object {
-          "*": "There are {number} likes",
+          "*": Object {
+            "desc": "plurals",
+            "text": "There are {number} likes",
+            "tokenAliases": Object {},
+          },
         },
         "_1": Object {
-          "_1": "There is a like",
+          "_1": Object {
+            "desc": "plurals",
+            "text": "There is a like",
+            "tokenAliases": Object {},
+          },
         },
       },
     },
     "line_beg": 2,
     "line_end": 7,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -7551,7 +8014,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "names",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -7561,13 +8023,16 @@ Array [
         },
       ],
       "t": Object {
-        "*": "You just friended {name}",
+        "*": Object {
+          "desc": "names",
+          "text": "You just friended {name}",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 5,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -7577,7 +8042,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 9,
-    "desc": "object pronoun",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -7586,16 +8050,31 @@ Array [
         },
       ],
       "t": Object {
-        "*": "I know them.",
-        "0": "I know this.",
-        "1": "I know her.",
-        "2": "I know him.",
+        "*": Object {
+          "desc": "object pronoun",
+          "text": "I know them.",
+          "tokenAliases": Object {},
+        },
+        "0": Object {
+          "desc": "object pronoun",
+          "text": "I know this.",
+          "tokenAliases": Object {},
+        },
+        "1": Object {
+          "desc": "object pronoun",
+          "text": "I know her.",
+          "tokenAliases": Object {},
+        },
+        "2": Object {
+          "desc": "object pronoun",
+          "text": "I know him.",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 7,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -7605,13 +8084,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "Moar params",
     "filepath": undefined,
-    "jsfbt": "A parameterized message to {personName}",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "Moar params",
+        "text": "A parameterized message to {personName}",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 6,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -7621,7 +8105,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "plurals",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -7638,19 +8121,34 @@ Array [
       ],
       "t": Object {
         "*": Object {
-          "*": "{cat_token} cats and {dog_token} dogs",
-          "_1": "{cat_token} cats and 1 dog",
+          "*": Object {
+            "desc": "plurals",
+            "text": "{cat_token} cats and {dog_token} dogs",
+            "tokenAliases": Object {},
+          },
+          "_1": Object {
+            "desc": "plurals",
+            "text": "{cat_token} cats and 1 dog",
+            "tokenAliases": Object {},
+          },
         },
         "_1": Object {
-          "*": "1 cat and {dog_token} dogs",
-          "_1": "1 cat and 1 dog",
+          "*": Object {
+            "desc": "plurals",
+            "text": "1 cat and {dog_token} dogs",
+            "tokenAliases": Object {},
+          },
+          "_1": Object {
+            "desc": "plurals",
+            "text": "1 cat and 1 dog",
+            "tokenAliases": Object {},
+          },
         },
       },
     },
     "line_beg": 2,
     "line_end": 7,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -7660,7 +8158,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "plurals",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -7675,17 +8172,24 @@ Array [
       ],
       "t": Object {
         "*": Object {
-          "*": "There were {number} likes",
+          "*": Object {
+            "desc": "plurals",
+            "text": "There were {number} likes",
+            "tokenAliases": Object {},
+          },
         },
         "_1": Object {
-          "_1": "There was a like",
+          "_1": Object {
+            "desc": "plurals",
+            "text": "There was a like",
+            "tokenAliases": Object {},
+          },
         },
       },
     },
     "line_beg": 2,
     "line_end": 7,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -7695,7 +8199,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 9,
-    "desc": "possessive pronoun",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -7704,15 +8207,26 @@ Array [
         },
       ],
       "t": Object {
-        "*": "It is their birthday.",
-        "1": "It is her birthday.",
-        "2": "It is his birthday.",
+        "*": Object {
+          "desc": "possessive pronoun",
+          "text": "It is their birthday.",
+          "tokenAliases": Object {},
+        },
+        "1": Object {
+          "desc": "possessive pronoun",
+          "text": "It is her birthday.",
+          "tokenAliases": Object {},
+        },
+        "2": Object {
+          "desc": "possessive pronoun",
+          "text": "It is his birthday.",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 5,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -7722,7 +8236,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 9,
-    "desc": "subject+reflexive pronouns",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -7735,20 +8248,31 @@ Array [
       ],
       "t": Object {
         "*": Object {
-          "*": "They wished themselves a happy birthday.",
+          "*": Object {
+            "desc": "subject+reflexive pronouns",
+            "text": "They wished themselves a happy birthday.",
+            "tokenAliases": Object {},
+          },
         },
         "1": Object {
-          "1": "She wished herself a happy birthday.",
+          "1": Object {
+            "desc": "subject+reflexive pronouns",
+            "text": "She wished herself a happy birthday.",
+            "tokenAliases": Object {},
+          },
         },
         "2": Object {
-          "2": "He wished himself a happy birthday.",
+          "2": Object {
+            "desc": "subject+reflexive pronouns",
+            "text": "He wished himself a happy birthday.",
+            "tokenAliases": Object {},
+          },
         },
       },
     },
     "line_beg": 2,
     "line_end": 8,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -7758,7 +8282,6 @@ Array [
   Object {
     "col_beg": 6,
     "col_end": 7,
-    "desc": "test variations + sameParam",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -7768,13 +8291,16 @@ Array [
         },
       ],
       "t": Object {
-        "*": "You have {count} likes. Comment on it to get more than {count} likes",
+        "*": Object {
+          "desc": "test variations + sameParam",
+          "text": "You have {count} likes. Comment on it to get more than {count} likes",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 3,
     "line_end": 10,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -7784,7 +8310,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "variations!",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -7794,13 +8319,16 @@ Array [
         },
       ],
       "t": Object {
-        "*": "Click to see {count} links",
+        "*": Object {
+          "desc": "variations!",
+          "text": "Click to see {count} links",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 5,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -7810,35 +8338,50 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 52,
-    "desc": "desc",
     "filepath": undefined,
-    "jsfbt": "foobarbazqux",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "desc",
+        "text": "foobarbazqux",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 2,
     "project": "",
-    "type": "text",
   },
   Object {
     "col_beg": 14,
     "col_end": 58,
-    "desc": "desc",
     "filepath": undefined,
-    "jsfbt": "foobarbazqux",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "desc",
+        "text": "foobarbazqux",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 3,
     "line_end": 3,
     "project": "",
-    "type": "text",
   },
   Object {
     "col_beg": 14,
     "col_end": 58,
-    "desc": "desc",
     "filepath": undefined,
-    "jsfbt": "foobarbazqux",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "desc",
+        "text": "foobarbazqux",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 4,
     "line_end": 4,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -7848,13 +8391,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "d",
     "filepath": undefined,
-    "jsfbt": "{name1} and {name1}",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "d",
+        "text": "{name1} and {name1}",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 5,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -7864,13 +8412,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "a",
     "filepath": undefined,
-    "jsfbt": "{name1} blah {name2}",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "a",
+        "text": "{name1} blah {name2}",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 16,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -7880,13 +8433,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "blah",
     "filepath": undefined,
-    "jsfbt": "A simple string... with some other stuff.",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "blah",
+        "text": "A simple string... with some other stuff.",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 6,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -7896,13 +8454,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "a",
     "filepath": undefined,
-    "jsfbt": "a b {name1} c d {name2} e",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "a",
+        "text": "a b {name1} c d {name2} e",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 12,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -7912,13 +8475,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "blah",
     "filepath": undefined,
-    "jsfbt": "A simple string... with some other stuff.",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "blah",
+        "text": "A simple string... with some other stuff.",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 6,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -7931,13 +8499,18 @@ Array [
     "author": "jwatson",
     "col_beg": 2,
     "col_end": 8,
-    "desc": "options!",
     "filepath": undefined,
-    "jsfbt": "A string that moved files",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "options!",
+        "text": "A string that moved files",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 5,
     "project": "Super Secret",
-    "type": "text",
   },
 ]
 `;
@@ -7947,13 +8520,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "With a ridiculously long description that requires concatenation",
     "filepath": undefined,
-    "jsfbt": "A short string",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "With a ridiculously long description that requires concatenation",
+        "text": "A short string",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 6,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -7963,13 +8541,18 @@ Array [
   Object {
     "col_beg": 20,
     "col_end": 53,
-    "desc": "nested!",
     "filepath": undefined,
-    "jsfbt": "A nested string",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "nested!",
+        "text": "A nested string",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 3,
     "line_end": 3,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -7979,13 +8562,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 47,
-    "desc": "It's simple",
     "filepath": undefined,
-    "jsfbt": "A simple string",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "It's simple",
+        "text": "A simple string",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 2,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -7995,22 +8583,32 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "enums!",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
         null,
       ],
       "t": Object {
-        "groups": "Look! Groups and groups!",
-        "photos": "Look! Photos and photos!",
-        "videos": "Look! Videos and videos!",
+        "groups": Object {
+          "desc": "enums!",
+          "text": "Look! Groups and groups!",
+          "tokenAliases": Object {},
+        },
+        "photos": Object {
+          "desc": "enums!",
+          "text": "Look! Photos and photos!",
+          "tokenAliases": Object {},
+        },
+        "videos": Object {
+          "desc": "enums!",
+          "text": "Look! Videos and videos!",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 13,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -8020,22 +8618,32 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "enums!",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
         null,
       ],
       "t": Object {
-        "groups": "Look! Groups and groups!",
-        "photos": "Look! Photos and photos!",
-        "videos": "Look! Videos and videos!",
+        "groups": Object {
+          "desc": "enums!",
+          "text": "Look! Groups and groups!",
+          "tokenAliases": Object {},
+        },
+        "photos": Object {
+          "desc": "enums!",
+          "text": "Look! Photos and photos!",
+          "tokenAliases": Object {},
+        },
+        "videos": Object {
+          "desc": "enums!",
+          "text": "Look! Videos and videos!",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 17,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -8045,13 +8653,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 50,
-    "desc": "It's simple",
     "filepath": undefined,
-    "jsfbt": "Also simple string",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "It's simple",
+        "text": "Also simple string",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 3,
     "line_end": 3,
     "project": "dev",
-    "type": "text",
   },
 ]
 `;
@@ -8061,22 +8674,32 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "enums!",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
         null,
       ],
       "t": Object {
-        "groups": "Look! Groups and groups!",
-        "photos": "Look! Photos and photos!",
-        "videos": "Look! Videos and videos!",
+        "groups": Object {
+          "desc": "enums!",
+          "text": "Look! Groups and groups!",
+          "tokenAliases": Object {},
+        },
+        "photos": Object {
+          "desc": "enums!",
+          "text": "Look! Photos and photos!",
+          "tokenAliases": Object {},
+        },
+        "videos": Object {
+          "desc": "enums!",
+          "text": "Look! Videos and videos!",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 17,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -8086,22 +8709,32 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "enum as an array",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
         null,
       ],
       "t": Object {
-        "groups": "Click to see groups",
-        "photos": "Click to see photos",
-        "videos": "Click to see videos",
+        "groups": Object {
+          "desc": "enum as an array",
+          "text": "Click to see groups",
+          "tokenAliases": Object {},
+        },
+        "photos": Object {
+          "desc": "enum as an array",
+          "text": "Click to see photos",
+          "tokenAliases": Object {},
+        },
+        "videos": Object {
+          "desc": "enum as an array",
+          "text": "Click to see videos",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 5,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -8111,22 +8744,32 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "enum as an object",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
         null,
       ],
       "t": Object {
-        "id1": "Click to see groups",
-        "id2": "Click to see photos",
-        "id3": "Click to see videos",
+        "id1": Object {
+          "desc": "enum as an object",
+          "text": "Click to see groups",
+          "tokenAliases": Object {},
+        },
+        "id2": Object {
+          "desc": "enum as an object",
+          "text": "Click to see photos",
+          "tokenAliases": Object {},
+        },
+        "id3": Object {
+          "desc": "enum as an object",
+          "text": "Click to see videos",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 6,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -8136,22 +8779,32 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "enums!",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
         null,
       ],
       "t": Object {
-        "groups": "Hello, groups!",
-        "photos": "Hello, photos!",
-        "videos": "Hello, videos!",
+        "groups": Object {
+          "desc": "enums!",
+          "text": "Hello, groups!",
+          "tokenAliases": Object {},
+        },
+        "photos": Object {
+          "desc": "enums!",
+          "text": "Hello, photos!",
+          "tokenAliases": Object {},
+        },
+        "videos": Object {
+          "desc": "enums!",
+          "text": "Hello, videos!",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 5,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -8161,7 +8814,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "plurals",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -8174,17 +8826,24 @@ Array [
       ],
       "t": Object {
         "*": Object {
-          "*": "There are {number} likes",
+          "*": Object {
+            "desc": "plurals",
+            "text": "There are {number} likes",
+            "tokenAliases": Object {},
+          },
         },
         "_1": Object {
-          "_1": "There is a like",
+          "_1": Object {
+            "desc": "plurals",
+            "text": "There is a like",
+            "tokenAliases": Object {},
+          },
         },
       },
     },
     "line_beg": 2,
     "line_end": 7,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -8194,7 +8853,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "names",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -8204,13 +8862,16 @@ Array [
         },
       ],
       "t": Object {
-        "*": "You just friended {name}",
+        "*": Object {
+          "desc": "names",
+          "text": "You just friended {name}",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 5,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -8220,23 +8881,37 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 9,
-    "desc": "object pronoun",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
         null,
       ],
       "t": Object {
-        "*": "I know them.",
-        "0": "I know this.",
-        "1": "I know her.",
-        "2": "I know him.",
+        "*": Object {
+          "desc": "object pronoun",
+          "text": "I know them.",
+          "tokenAliases": Object {},
+        },
+        "0": Object {
+          "desc": "object pronoun",
+          "text": "I know this.",
+          "tokenAliases": Object {},
+        },
+        "1": Object {
+          "desc": "object pronoun",
+          "text": "I know her.",
+          "tokenAliases": Object {},
+        },
+        "2": Object {
+          "desc": "object pronoun",
+          "text": "I know him.",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 7,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -8246,13 +8921,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "Moar params",
     "filepath": undefined,
-    "jsfbt": "A parameterized message to {personName}",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "Moar params",
+        "text": "A parameterized message to {personName}",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 6,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -8262,7 +8942,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "plurals",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -8279,19 +8958,34 @@ Array [
       ],
       "t": Object {
         "*": Object {
-          "*": "{cat_token} cats and {dog_token} dogs",
-          "_1": "{cat_token} cats and 1 dog",
+          "*": Object {
+            "desc": "plurals",
+            "text": "{cat_token} cats and {dog_token} dogs",
+            "tokenAliases": Object {},
+          },
+          "_1": Object {
+            "desc": "plurals",
+            "text": "{cat_token} cats and 1 dog",
+            "tokenAliases": Object {},
+          },
         },
         "_1": Object {
-          "*": "1 cat and {dog_token} dogs",
-          "_1": "1 cat and 1 dog",
+          "*": Object {
+            "desc": "plurals",
+            "text": "1 cat and {dog_token} dogs",
+            "tokenAliases": Object {},
+          },
+          "_1": Object {
+            "desc": "plurals",
+            "text": "1 cat and 1 dog",
+            "tokenAliases": Object {},
+          },
         },
       },
     },
     "line_beg": 2,
     "line_end": 7,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -8301,7 +8995,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "plurals",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -8314,17 +9007,24 @@ Array [
       ],
       "t": Object {
         "*": Object {
-          "*": "There were {number} likes",
+          "*": Object {
+            "desc": "plurals",
+            "text": "There were {number} likes",
+            "tokenAliases": Object {},
+          },
         },
         "_1": Object {
-          "_1": "There was a like",
+          "_1": Object {
+            "desc": "plurals",
+            "text": "There was a like",
+            "tokenAliases": Object {},
+          },
         },
       },
     },
     "line_beg": 2,
     "line_end": 7,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -8334,22 +9034,32 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 9,
-    "desc": "possessive pronoun",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
         null,
       ],
       "t": Object {
-        "*": "It is their birthday.",
-        "1": "It is her birthday.",
-        "2": "It is his birthday.",
+        "*": Object {
+          "desc": "possessive pronoun",
+          "text": "It is their birthday.",
+          "tokenAliases": Object {},
+        },
+        "1": Object {
+          "desc": "possessive pronoun",
+          "text": "It is her birthday.",
+          "tokenAliases": Object {},
+        },
+        "2": Object {
+          "desc": "possessive pronoun",
+          "text": "It is his birthday.",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 5,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -8359,7 +9069,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 9,
-    "desc": "subject+reflexive pronouns",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -8368,20 +9077,31 @@ Array [
       ],
       "t": Object {
         "*": Object {
-          "*": "They wished themselves a happy birthday.",
+          "*": Object {
+            "desc": "subject+reflexive pronouns",
+            "text": "They wished themselves a happy birthday.",
+            "tokenAliases": Object {},
+          },
         },
         "1": Object {
-          "1": "She wished herself a happy birthday.",
+          "1": Object {
+            "desc": "subject+reflexive pronouns",
+            "text": "She wished herself a happy birthday.",
+            "tokenAliases": Object {},
+          },
         },
         "2": Object {
-          "2": "He wished himself a happy birthday.",
+          "2": Object {
+            "desc": "subject+reflexive pronouns",
+            "text": "He wished himself a happy birthday.",
+            "tokenAliases": Object {},
+          },
         },
       },
     },
     "line_beg": 2,
     "line_end": 8,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -8391,7 +9111,6 @@ Array [
   Object {
     "col_beg": 6,
     "col_end": 7,
-    "desc": "test variations + sameParam",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -8401,13 +9120,16 @@ Array [
         },
       ],
       "t": Object {
-        "*": "You have {count} likes. Comment on it to get more than {count} likes",
+        "*": Object {
+          "desc": "test variations + sameParam",
+          "text": "You have {count} likes. Comment on it to get more than {count} likes",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 3,
     "line_end": 10,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -8417,7 +9139,6 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "variations!",
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -8427,13 +9148,16 @@ Array [
         },
       ],
       "t": Object {
-        "*": "Click to see {count} links",
+        "*": Object {
+          "desc": "variations!",
+          "text": "Click to see {count} links",
+          "tokenAliases": Object {},
+        },
       },
     },
     "line_beg": 2,
     "line_end": 5,
     "project": "",
-    "type": "table",
   },
 ]
 `;
@@ -8443,35 +9167,50 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 52,
-    "desc": "desc",
     "filepath": undefined,
-    "jsfbt": "foobarbazqux",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "desc",
+        "text": "foobarbazqux",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 2,
     "project": "",
-    "type": "text",
   },
   Object {
     "col_beg": 14,
     "col_end": 58,
-    "desc": "desc",
     "filepath": undefined,
-    "jsfbt": "foobarbazqux",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "desc",
+        "text": "foobarbazqux",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 3,
     "line_end": 3,
     "project": "",
-    "type": "text",
   },
   Object {
     "col_beg": 14,
     "col_end": 58,
-    "desc": "desc",
     "filepath": undefined,
-    "jsfbt": "foobarbazqux",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "desc",
+        "text": "foobarbazqux",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 4,
     "line_end": 4,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -8481,13 +9220,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "d",
     "filepath": undefined,
-    "jsfbt": "{name1} and {name1}",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "d",
+        "text": "{name1} and {name1}",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 5,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -8497,13 +9241,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "a",
     "filepath": undefined,
-    "jsfbt": "{name1} blah {name2}",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "a",
+        "text": "{name1} blah {name2}",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 16,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -8513,13 +9262,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "blah",
     "filepath": undefined,
-    "jsfbt": "A simple string... with some other stuff.",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "blah",
+        "text": "A simple string... with some other stuff.",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 6,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -8529,13 +9283,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "a",
     "filepath": undefined,
-    "jsfbt": "a b {name1} c d {name2} e",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "a",
+        "text": "a b {name1} c d {name2} e",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 12,
     "project": "",
-    "type": "text",
   },
 ]
 `;
@@ -8545,13 +9304,18 @@ Array [
   Object {
     "col_beg": 10,
     "col_end": 7,
-    "desc": "blah",
     "filepath": undefined,
-    "jsfbt": "A simple string... with some other stuff.",
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "blah",
+        "text": "A simple string... with some other stuff.",
+        "tokenAliases": Object {},
+      },
+    },
     "line_beg": 2,
     "line_end": 6,
     "project": "",
-    "type": "text",
   },
 ]
 `;

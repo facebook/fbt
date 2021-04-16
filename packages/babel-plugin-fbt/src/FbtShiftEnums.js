@@ -13,6 +13,7 @@ import type {PatternString} from '../../../runtime/shared/FbtTable';
 import type {Phrase, TableJSFBT, TableJSFBTTree} from './index';
 
 const {FbtType} = require('./FbtConstants');
+const {coerceToTableJSFBTTreeLeaflet} = require('./JSFbtUtil');
 const invariant = require('invariant');
 
 /**
@@ -23,40 +24,24 @@ function extractEnumsAndFlattenPhrases(
   phrases: $ReadOnlyArray<Phrase>,
 ): Array<Phrase> {
   return _flatMap<Phrase, Phrase>(phrases, phrase => {
-    if (phrase.type === FbtType.TEXT) {
-      return phrase;
-    }
-
     const {jsfbt} = phrase;
     const {enums, metadata} = _extractEnumsFromMetadata(jsfbt.m);
-    const strippedJsfbts = _buildTablesWithoutEnums(jsfbt.t, enums, []).map(
-      table => {
-        invariant(
-          (metadata.length === 0) === (typeof table === 'string'),
-          "Plain text 'table' has no metadata.",
-        );
-        return typeof table === 'string'
-          ? table
-          : {
-              t: table,
-              m: metadata,
-            };
-      },
-    );
-
-    return strippedJsfbts.map(strippedJsfbt =>
-      typeof strippedJsfbt === 'object'
-        ? {
-            ...phrase,
-            jsfbt: strippedJsfbt,
-            type: FbtType.TABLE,
-          }
-        : {
-            ...phrase,
-            jsfbt: strippedJsfbt,
-            type: FbtType.TEXT,
-          },
-    );
+    return _buildTablesWithoutEnums(jsfbt.t, enums, []).map(table => {
+      const leaf = coerceToTableJSFBTTreeLeaflet(table);
+      invariant(
+        (metadata.length === 0) === (leaf != null),
+        'If the JSFBT table depth is 1, then the metadata array should be empty; ' +
+          'otherwise, when the depth is greater than 1, the metadata array should not be empty. Metadata length: %s, ',
+        metadata.length,
+      );
+      return {
+        ...phrase,
+        jsfbt: {
+          t: table,
+          m: metadata,
+        },
+      };
+    });
   });
 }
 
@@ -65,9 +50,9 @@ function extractEnumsAndFlattenPhrases(
  * tables. See FbtShiftEnumsTest for example input and output.
  */
 function shiftEnumsToTop(
-  jsfbt: PatternString | TableJSFBT,
+  jsfbt: TableJSFBT,
 ): {|
-  shiftedJsfbt: PatternString | $ReadOnly<TableJSFBTTree>,
+  shiftedJsfbt: $ReadOnly<TableJSFBTTree>,
   enumCount: number,
 |} {
   if (typeof jsfbt === 'string') {
@@ -98,7 +83,7 @@ function _buildTablesWithoutEnums(
   table: $ReadOnly<TableJSFBTTree>,
   enums: Array<$ReadOnlyArray<string>>,
   currentEnumKeys: $ReadOnlyArray<string>,
-): Array<PatternString | $ReadOnly<TableJSFBTTree>> {
+): Array<$ReadOnly<TableJSFBTTree>> {
   if (enums.length === 0) {
     return [table];
   }
@@ -108,10 +93,8 @@ function _buildTablesWithoutEnums(
     return [_buildTableWithoutEnums(table, currentEnumKeys, 0)];
   }
 
-  return _flatMap<string, PatternString | $ReadOnly<TableJSFBTTree>>(
-    enums[index],
-    enumKey =>
-      _buildTablesWithoutEnums(table, enums, currentEnumKeys.concat([enumKey])),
+  return _flatMap<string, $ReadOnly<TableJSFBTTree>>(enums[index], enumKey =>
+    _buildTablesWithoutEnums(table, enums, currentEnumKeys.concat([enumKey])),
   );
 }
 
@@ -119,15 +102,14 @@ function _shiftEnumsToTop(
   allEnums,
   currentEnumKeys,
   table,
-): PatternString | $ReadOnly<TableJSFBTTree> {
+): $ReadOnly<TableJSFBTTree> {
   if (allEnums.length === 0) {
     return table;
   }
 
   const index = currentEnumKeys.length;
   if (index === allEnums.length) {
-    // The top enum levels are done, not build the sub-table for current enum
-    // branch
+    // The top enum levels are done, now build the sub-table for current enum branch
     return _buildTableWithoutEnums(table, currentEnumKeys, 0);
   }
   const newTable = {};
@@ -142,17 +124,18 @@ function _shiftEnumsToTop(
 }
 
 function _buildTableWithoutEnums(
-  curLevel,
-  enums,
-  index,
-): PatternString | TableJSFBTTree {
-  if (typeof curLevel === 'string') {
-    return curLevel;
+  curLevel: $ReadOnly<TableJSFBTTree>,
+  enums: $ReadOnlyArray<string>,
+  index: number,
+): TableJSFBTTree {
+  const jsfbtTree = coerceToTableJSFBTTreeLeaflet(curLevel);
+  if (jsfbtTree) {
+    return jsfbtTree;
   }
   if (index < enums.length && curLevel.hasOwnProperty(enums[index])) {
     return _buildTableWithoutEnums(curLevel[enums[index]], enums, index + 1);
   }
-  const result = {};
+  const result: TableJSFBTTree = {};
   for (const key in curLevel) {
     result[key] = _buildTableWithoutEnums(curLevel[key], enums, index);
   }

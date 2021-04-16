@@ -72,9 +72,11 @@ type TokenAlias = string;
 //   parameters passed to the various fbt constructs (param, plural, pronoun) of this callsite.
 //
 //  See the docblock for fbt._ for an example of the nested table and its behavior
-export type TableJSFBTTree = {|
-  [key: FbtTableKey]: TableJSFBTTree | TableJSFBTTreeLeaf
+export type TableJSFBTTree = TableJSFBTTreeLeaf | {|
+  [key: FbtTableKey]: TableJSFBTTree,
 |};
+
+export type TableJSFBTTreeLeaf = TableJSFBTTreeLeaflet;
 
 export type TableJSFBTTreeLeaflet = {|
   desc: string,
@@ -84,10 +86,6 @@ export type TableJSFBTTreeLeaflet = {|
     [clearTokenName: string]: TokenAlias
   |},
 |};
-
-export type TableJSFBTTreeLeaf =
-  | PatternString
-  | TableJSFBTTreeLeaflet;
 
 // Describes the usage of one level of the JSFBT table tree
 export type JSFBTMetaEntry = $ReadOnly<{|
@@ -108,12 +106,7 @@ export type TableJSFBT = $ReadOnly<{|
   m: $ReadOnlyArray<?JSFBTMetaEntry>,
 |}>;
 
-// TODO(T81971330) Remove type=text scenario and save a one TableJSFBTTreeLeaflet in jsfbt instead
 export type ObjectWithJSFBT = {|
-  type: 'text',
-  jsfbt: PatternString,
-|} | {|
-  type: 'table',
   jsfbt: TableJSFBT,
 |};
 
@@ -121,8 +114,6 @@ export type Phrase = {|
   ...FbtCallSiteOptions,
   col_beg: number,
   col_end: number,
-  // TODO(T81971330) remove this field eventually since it should be defined in the "jsfbt" field
-  desc: string,
   filepath: string,
   line_beg: number,
   line_end: number,

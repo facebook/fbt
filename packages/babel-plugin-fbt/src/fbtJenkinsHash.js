@@ -8,16 +8,13 @@
 
 'use strict';
 
-/*::
-import type {PatternString} from '../../../runtime/shared/FbtTable';
-*/
+import type {TableJSFBTTree} from './index';
 
 const jenkinsHash = require('./jenkinsHash');
 const invariant = require('invariant');
 
 function fbtJenkinsHash(
-  jsfbt /*: PatternString | {...} */,
-  desc /*: string */,
+  jsfbt /*: $ReadOnly<TableJSFBTTree> */,
   noStringify /*: boolean */ = false,
 ) /*: number */ {
   const payload = noStringify ? jsfbt : JSON.stringify(jsfbt);
@@ -25,8 +22,7 @@ function fbtJenkinsHash(
     typeof payload === 'string',
     'JSFBT is not a string type. Please disable noStringify',
   );
-  const key = payload + '|' + desc;
-  return jenkinsHash(key);
+  return jenkinsHash(payload);
 }
 
 module.exports = fbtJenkinsHash;
