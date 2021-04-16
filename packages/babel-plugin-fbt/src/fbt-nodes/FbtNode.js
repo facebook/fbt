@@ -56,7 +56,7 @@ const {
  * We'll usually not use this class directly, favoring specialized child classes instead.
  */
 class FbtNode/*:: <
-    SVArgument: ?AnyStringVariationArg = ?AnyStringVariationArg,
+    SVArgument: AnyStringVariationArg | empty = empty,
     CurBabelNode: BabelNode = BabelNode,
     MaybeChildNode: ?FbtChildNode = null,
   > */ {
@@ -229,6 +229,18 @@ class FbtNode/*:: <
       // $FlowExpectedError[incompatible-return]
       ? callNode.arguments
       : null;
+  }
+
+  /**
+   * Returns the first parent FbtNode that is an instance of the given class.
+   */
+  getFirstAncestorOfType/*:: <N>*/(ancestorConstructor /*: Class<N> */) /*: ?N */ {
+    for (let {parent} = this; parent != null; parent = parent.parent) {
+      if (parent instanceof ancestorConstructor) {
+        return parent;
+      }
+    }
+    return null;
   }
 }
 

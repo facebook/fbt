@@ -1521,22 +1521,26 @@ FbtElementNode {
               C2
             </b>
             B2
-          </a>, 'A2'], 'nested!')",
-  "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
----
-<a>
-            B1
-            <b>
-              C1
-              {// TODO(T27672828) fbt constructs like fbt.pronoun() should return some opaque type
-      // like FbtElement to work with React components
-    }
-              {fbt.param('paramName', paramValue)}
-              C2
-            </b>
-            B2
-          </a>
----],
+          </a>, 'A2'], 'nested!', {
+  subject: subjectValue
+})",
+  "__stringVariationArgs": Array [
+    GenderStringVariationArg {
+      "__nodeCode": "subjectValue",
+      "node": "BabelNode[type=Identifier]",
+      "value": undefined,
+    },
+    GenderStringVariationArg {
+      "__nodeCode": "subjectValue",
+      "node": "BabelNode[type=Identifier]",
+      "value": undefined,
+    },
+    GenderStringVariationArg {
+      "__nodeCode": "subjectValue",
+      "node": "BabelNode[type=Identifier]",
+      "value": undefined,
+    },
+  ],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -1564,21 +1568,18 @@ FbtElementNode {
             </b>
             B2
           </a>",
-      "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
----
-<a>
-            B1
-            <b>
-              C1
-              {// TODO(T27672828) fbt constructs like fbt.pronoun() should return some opaque type
-      // like FbtElement to work with React components
-    }
-              {fbt.param('paramName', paramValue)}
-              C2
-            </b>
-            B2
-          </a>
----],
+      "__stringVariationArgs": Array [
+        GenderStringVariationArg {
+          "__nodeCode": "subjectValue",
+          "node": "BabelNode[type=Identifier]",
+          "value": undefined,
+        },
+        GenderStringVariationArg {
+          "__nodeCode": "subjectValue",
+          "node": "BabelNode[type=Identifier]",
+          "value": undefined,
+        },
+      ],
       "_variationFactorValues": Array [],
       "children": Array [
         FbtTextNode {
@@ -1602,17 +1603,13 @@ FbtElementNode {
               {fbt.param('paramName', paramValue)}
               C2
             </b>",
-          "__stringVariationArgs": [Error: Line 8 Column 13: This method must be implemented in a child class
----
-<b>
-              C1
-              {// TODO(T27672828) fbt constructs like fbt.pronoun() should return some opaque type
-    // like FbtElement to work with React components
-  }
-              {fbt.param('paramName', paramValue)}
-              C2
-            </b>
----],
+          "__stringVariationArgs": Array [
+            GenderStringVariationArg {
+              "__nodeCode": "subjectValue",
+              "node": "BabelNode[type=Identifier]",
+              "value": undefined,
+            },
+          ],
           "_variationFactorValues": Array [],
           "children": Array [
             FbtTextNode {
@@ -1715,12 +1712,13 @@ FbtElementNode {
     "moduleName": "fbt",
   },
   "options": Object {
+    "__subjectCode": "subjectValue",
     "author": null,
     "common": false,
     "doNotExtract": false,
     "preserveWhitespace": false,
     "project": "",
-    "subject": null,
+    "subject": "BabelNode[type=Identifier]",
   },
 }
 `;
@@ -3824,22 +3822,26 @@ FbtElementNode {
               C2
             </b>
             B2
-          </a>, 'A2'], 'nested!')",
-  "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
----
-<a>
-            B1
-            <b>
-              C1
-              {// TODO(T27672828) fbt constructs like fbt.pronoun() should return some opaque type
-      // like FbtElement to work with React components
-    }
-              {fbt.param('paramName', paramValue)}
-              C2
-            </b>
-            B2
-          </a>
----],
+          </a>, 'A2'], 'nested!', {
+  subject: subjectValue
+})",
+  "__stringVariationArgs": Array [
+    GenderStringVariationArg {
+      "__nodeCode": "subjectValue",
+      "node": "BabelNode[type=Identifier]",
+      "value": undefined,
+    },
+    GenderStringVariationArg {
+      "__nodeCode": "subjectValue",
+      "node": "BabelNode[type=Identifier]",
+      "value": undefined,
+    },
+    GenderStringVariationArg {
+      "__nodeCode": "subjectValue",
+      "node": "BabelNode[type=Identifier]",
+      "value": undefined,
+    },
+  ],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -3867,21 +3869,18 @@ FbtElementNode {
             </b>
             B2
           </a>",
-      "__stringVariationArgs": [Error: Line 6 Column 11: This method must be implemented in a child class
----
-<a>
-            B1
-            <b>
-              C1
-              {// TODO(T27672828) fbt constructs like fbt.pronoun() should return some opaque type
-      // like FbtElement to work with React components
-    }
-              {fbt.param('paramName', paramValue)}
-              C2
-            </b>
-            B2
-          </a>
----],
+      "__stringVariationArgs": Array [
+        GenderStringVariationArg {
+          "__nodeCode": "subjectValue",
+          "node": "BabelNode[type=Identifier]",
+          "value": undefined,
+        },
+        GenderStringVariationArg {
+          "__nodeCode": "subjectValue",
+          "node": "BabelNode[type=Identifier]",
+          "value": undefined,
+        },
+      ],
       "_variationFactorValues": Array [],
       "children": Array [
         FbtTextNode {
@@ -3905,17 +3904,13 @@ FbtElementNode {
               {fbt.param('paramName', paramValue)}
               C2
             </b>",
-          "__stringVariationArgs": [Error: Line 8 Column 13: This method must be implemented in a child class
----
-<b>
-              C1
-              {// TODO(T27672828) fbt constructs like fbt.pronoun() should return some opaque type
-    // like FbtElement to work with React components
-  }
-              {fbt.param('paramName', paramValue)}
-              C2
-            </b>
----],
+          "__stringVariationArgs": Array [
+            GenderStringVariationArg {
+              "__nodeCode": "subjectValue",
+              "node": "BabelNode[type=Identifier]",
+              "value": undefined,
+            },
+          ],
           "_variationFactorValues": Array [],
           "children": Array [
             FbtTextNode {
@@ -4018,12 +4013,13 @@ FbtElementNode {
     "moduleName": "fbt",
   },
   "options": Object {
+    "__subjectCode": "subjectValue",
     "author": null,
     "common": false,
     "doNotExtract": false,
     "preserveWhitespace": false,
     "project": "",
-    "subject": null,
+    "subject": "BabelNode[type=Identifier]",
   },
 }
 `;

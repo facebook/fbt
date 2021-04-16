@@ -23,7 +23,7 @@ const {createInstanceFromFbtConstructCallsite} = require('./FbtNodeUtil');
  * @see docs/params.md
  */
 class FbtSameParamNode
-  extends FbtNode/*:: <null, BabelNodeCallExpression> */ {
+  extends FbtNode/*:: <empty, BabelNodeCallExpression> */ {
 
   /*:: static +type: 'sameParam'; */
 
@@ -42,7 +42,7 @@ class FbtSameParamNode
     throw errorAt(this.node, 'not implemented yet');
   }
 
-  getArgsForStringVariationCalc() /*: $ReadOnlyArray<null> */ {
+  getArgsForStringVariationCalc() /*: $ReadOnlyArray<empty> */ {
     return [];
   }
 }

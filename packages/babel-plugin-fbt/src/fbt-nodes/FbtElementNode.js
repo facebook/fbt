@@ -119,9 +119,8 @@ class FbtElementNode
 
   getArgsForStringVariationCalc() /*: $ReadOnlyArray<AnyStringVariationArg> */ {
     const {subject} = this.options;
-    return [isNode(subject) ? new GenderStringVariationArg(subject) : null]
-      .concat(...this.children.map(c => c.getArgsForStringVariationCalc()))
-      .filter(Boolean);
+    return (isNode(subject) ? [new GenderStringVariationArg(subject)] : [])
+      .concat(...this.children.map(c => c.getArgsForStringVariationCalc()));
   }
 
   getText() /*: string */ {

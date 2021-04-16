@@ -8,17 +8,11 @@
 
 'use strict';
 
-/////////////////////////////////////////////////////////////////////
-// Planned fbt arguments that will be used by various fbt constructs
-// `*` means that it's a static argument (whose value won't change at runtime)
-/////////////////////////////////////////////////////////////////////
-// proxy the fbt-subject: genderValue
-
 /*::
-import type {GenderStringVariationArg} from './FbtArguments';
 import type {
   FbtChildNode,
 } from './FbtNode';
+import type {AnyStringVariationArg} from './FbtArguments';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 */
 
@@ -26,39 +20,44 @@ const {
   convertToStringArrayNodeIfNeeded,
   errorAt,
 } = require('../FbtUtil');
+const {GenderStringVariationArg} = require('./FbtArguments');
 const FbtElementNode = require('./FbtElementNode');
 const FbtNode = require('./FbtNode');
 const FbtTextNode = require('./FbtTextNode');
 const {
   isBinaryExpression,
   isJSXElement,
+  isNode,
   isStringLiteral,
   isTemplateLiteral,
 } = require('@babel/types');
+const nullthrows = require('nullthrows');
 
 /**
  * Represents non-fbt JSX element nested inside an fbt callsite.
  */
 class FbtImplicitParamNode
-  extends FbtNode /*:: <GenderStringVariationArg, BabelNodeJSXElement, FbtChildNode> */ {
+  extends FbtNode /*:: <AnyStringVariationArg, BabelNodeJSXElement, FbtChildNode> */ {
 
-  /*:: static +type: 'implicitElement'; */
-
-  getProject() /*: string */ {
-    throw errorAt(this.node, 'not implemented yet');
-  }
+  /*::
+  static +type: 'implicitElement';
+  +options: {||};
+  */
 
   // Returns the string description which depends on the string variation factor values
   getDescription() /*: string */ {
     throw errorAt(this.node, 'not implemented yet');
   }
 
-  _getTokenName() /*: ?string */ {
-    throw errorAt(this.node, 'not implemented yet');
+  _getSubjectNode() /*: ?BabelNode */ {
+    return nullthrows(this.getFirstAncestorOfType(FbtElementNode)).options.subject;
   }
 
-  getSubjectNode() /*: ?BabelNode */ {
-    throw errorAt(this.node, 'not implemented yet');
+  getArgsForStringVariationCalc() /*: $ReadOnlyArray<AnyStringVariationArg> */ {
+    // The implicit fbt string may depend on a subject, inferred from the top-level FbtElementNode
+    const subject = this._getSubjectNode();
+    return (isNode(subject) ? [new GenderStringVariationArg(subject)] : [])
+      .concat(...this.children.map(c => c.getArgsForStringVariationCalc()));
   }
 
   /**

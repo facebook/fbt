@@ -234,7 +234,11 @@ const generalTestData = {
             B2
           </a>,
           'A2',
-        ], 'nested!'
+        ],
+        'nested!',
+        {
+          subject: subjectValue,
+        }
       );`,
     ),
 

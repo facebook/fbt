@@ -29,7 +29,7 @@ const {
  *  )
  */
 class FbtTextNode
-  extends FbtNode/*:: <null, BabelNodeStringLiteral | BabelNodeJSXText> */ {
+  extends FbtNode/*:: <empty, BabelNodeStringLiteral | BabelNodeJSXText> */ {
 
   /*:: static +type: 'text'; */
 
@@ -49,7 +49,7 @@ class FbtTextNode
       : null;
   }
 
-  getArgsForStringVariationCalc() /*: $ReadOnlyArray<null> */ {
+  getArgsForStringVariationCalc() /*: $ReadOnlyArray<empty> */ {
     return [];
   }
 }
