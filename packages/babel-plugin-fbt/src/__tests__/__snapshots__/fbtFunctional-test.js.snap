@@ -2200,10 +2200,13 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle names" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['You just friended ', fbt.name('name', personname, gender)], 'names')",
-  "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
----
-fbt.name('name', personname, gender)
----],
+  "__stringVariationArgs": Array [
+    GenderStringVariationArg {
+      "__nodeCode": "gender",
+      "node": "BabelNode[type=Identifier]",
+      "value": undefined,
+    },
+  ],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -2220,16 +2223,26 @@ fbt.name('name', personname, gender)
     },
     FbtNameNode {
       "__nodeCode": "fbt.name('name', personname, gender)",
-      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
----
-fbt.name('name', personname, gender)
----],
+      "__stringVariationArgs": Array [
+        GenderStringVariationArg {
+          "__nodeCode": "gender",
+          "node": "BabelNode[type=Identifier]",
+          "value": undefined,
+        },
+      ],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "__genderCode": "gender",
+        "__valueCode": "personname",
+        "gender": "BabelNode[type=Identifier]",
+        "name": "name",
+        "value": "BabelNode[type=Identifier]",
       },
       "parent": [Circular],
     },
@@ -4490,10 +4503,13 @@ FbtElementNode {
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle names" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['You just friended ', fbt.name('name', personname, gender)], 'names')",
-  "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
----
-fbt.name('name', personname, gender)
----],
+  "__stringVariationArgs": Array [
+    GenderStringVariationArg {
+      "__nodeCode": "gender",
+      "node": "BabelNode[type=Identifier]",
+      "value": undefined,
+    },
+  ],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -4510,16 +4526,26 @@ fbt.name('name', personname, gender)
     },
     FbtNameNode {
       "__nodeCode": "fbt.name('name', personname, gender)",
-      "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
----
-fbt.name('name', personname, gender)
----],
+      "__stringVariationArgs": Array [
+        GenderStringVariationArg {
+          "__nodeCode": "gender",
+          "node": "BabelNode[type=Identifier]",
+          "value": undefined,
+        },
+      ],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "__genderCode": "gender",
+        "__valueCode": "personname",
+        "gender": "BabelNode[type=Identifier]",
+        "name": "name",
+        "value": "BabelNode[type=Identifier]",
       },
       "parent": [Circular],
     },
@@ -8048,10 +8074,13 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle names" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['You just friended ', fbt.name('name', personname, gender)], 'names')",
-  "__stringVariationArgs": [Error: Line 3 Column 32: This method must be implemented in a child class
----
-fbt.name('name', personname, gender)
----],
+  "__stringVariationArgs": Array [
+    GenderStringVariationArg {
+      "__nodeCode": "gender",
+      "node": "BabelNode[type=Identifier]",
+      "value": undefined,
+    },
+  ],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -8068,16 +8097,26 @@ fbt.name('name', personname, gender)
     },
     FbtNameNode {
       "__nodeCode": "fbt.name('name', personname, gender)",
-      "__stringVariationArgs": [Error: Line 3 Column 32: This method must be implemented in a child class
----
-fbt.name('name', personname, gender)
----],
+      "__stringVariationArgs": Array [
+        GenderStringVariationArg {
+          "__nodeCode": "gender",
+          "node": "BabelNode[type=Identifier]",
+          "value": undefined,
+        },
+      ],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "__genderCode": "gender",
+        "__valueCode": "personname",
+        "gender": "BabelNode[type=Identifier]",
+        "name": "name",
+        "value": "BabelNode[type=Identifier]",
       },
       "parent": [Circular],
     },
@@ -10343,10 +10382,13 @@ FbtElementNode {
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle names" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['You just friended ', fbt.name('name', personname, gender)], 'names')",
-  "__stringVariationArgs": [Error: Line 3 Column 32: This method must be implemented in a child class
----
-fbt.name('name', personname, gender)
----],
+  "__stringVariationArgs": Array [
+    GenderStringVariationArg {
+      "__nodeCode": "gender",
+      "node": "BabelNode[type=Identifier]",
+      "value": undefined,
+    },
+  ],
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -10363,16 +10405,26 @@ fbt.name('name', personname, gender)
     },
     FbtNameNode {
       "__nodeCode": "fbt.name('name', personname, gender)",
-      "__stringVariationArgs": [Error: Line 3 Column 32: This method must be implemented in a child class
----
-fbt.name('name', personname, gender)
----],
+      "__stringVariationArgs": Array [
+        GenderStringVariationArg {
+          "__nodeCode": "gender",
+          "node": "BabelNode[type=Identifier]",
+          "value": undefined,
+        },
+      ],
       "_variationFactorValues": Array [],
       "children": Array [],
       "moduleName": "fbt",
       "node": "BabelNode[type=CallExpression]",
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
+      },
+      "options": Object {
+        "__genderCode": "gender",
+        "__valueCode": "personname",
+        "gender": "BabelNode[type=Identifier]",
+        "name": "name",
+        "value": "BabelNode[type=Identifier]",
       },
       "parent": [Circular],
     },
