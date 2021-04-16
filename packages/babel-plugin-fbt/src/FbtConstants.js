@@ -14,6 +14,8 @@
 
 /*::
 export type FbtOptionValue = string | boolean | BabelNode;
+export type FbtOptionValues<K> = {|[K]: ?FbtOptionValue|};
+export type FbtOptionConfig<K> = {|[K]: {[optionValue: string]: true} | true |};
 // export type FbtCallSiteOptions = {[$Keys<typeof ValidFbtOptions>]: ?FbtOptionValue};
 export type FbtCallSiteOptions = $Shape<{|
    author?: ?FbtOptionValue;
@@ -74,12 +76,12 @@ const ValidPronounOptions = {
  * Valid options allowed in the fbt(...) calls.
  */
 const ValidFbtOptions = {
-  project: true,
   author: true,
-  preserveWhitespace: true,
-  subject: true,
   common: true,
   doNotExtract: true,
+  preserveWhitespace: true,
+  project: true,
+  subject: true,
 };
 
 const FbtBooleanOptions = {

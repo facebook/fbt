@@ -2143,7 +2143,7 @@ declare module "@babel/types" {
   declare export function isBlockScoped(node: BabelNode): boolean
   declare export function isImmutable(node: BabelNode): boolean
   declare export function isLet(node: BabelNode): boolean
-  declare export function isNode(node: ?Object): boolean
+  declare export function isNode(node: ?Object): boolean %checks (node instanceof BabelNode)
   declare export function isNodesEquivalent(a: any, b: any): boolean
   declare export function isPlaceholderType(placeholderType: string, targetType: string): boolean
   declare export function isReferenced(node: BabelNode, parent: BabelNode, grandparent?: BabelNode): boolean

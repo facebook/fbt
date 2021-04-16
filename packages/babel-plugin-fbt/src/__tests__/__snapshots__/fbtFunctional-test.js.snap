@@ -1,17 +1,1204 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should accept well-formed options" 1`] = `
+Array [
+  Object {
+    "author": "jwatson",
+    "col_beg": 2,
+    "col_end": 8,
+    "desc": "options!",
+    "filepath": undefined,
+    "jsfbt": "A string that moved files",
+    "line_beg": 2,
+    "line_end": 5,
+    "project": "Super Secret",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should be able to nest within React nodes" 1`] = `
+Array [
+  Object {
+    "col_beg": 20,
+    "col_end": 55,
+    "desc": "nested!",
+    "filepath": undefined,
+    "jsfbt": "A nested string",
+    "line_beg": 3,
+    "line_end": 3,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should convert simple strings" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "It's simple",
+    "filepath": undefined,
+    "jsfbt": "A simple string",
+    "line_beg": 2,
+    "line_end": 7,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should deduplicate branches when fbt.enum() calls share the same key" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "enums!",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "range": Array [
+            "groups",
+            "photos",
+            "videos",
+          ],
+        },
+      ],
+      "t": Object {
+        "groups": "Look! Groups and groups!",
+        "photos": "Look! Photos and photos!",
+        "videos": "Look! Videos and videos!",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 18,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should get project from docblock" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 52,
+    "desc": "It's simple",
+    "filepath": undefined,
+    "jsfbt": "Also simple string",
+    "line_beg": 2,
+    "line_end": 2,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle duplicate enums" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "enums!",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "range": Array [
+            "groups",
+            "photos",
+            "videos",
+          ],
+        },
+      ],
+      "t": Object {
+        "groups": "Look! Groups and groups!",
+        "photos": "Look! Photos and photos!",
+        "videos": "Look! Videos and videos!",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 19,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle enums (with array values)" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "enum as an array",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "range": Array [
+            "groups",
+            "photos",
+            "videos",
+          ],
+        },
+      ],
+      "t": Object {
+        "groups": "Click to see groups",
+        "photos": "Click to see photos",
+        "videos": "Click to see videos",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 8,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle enums (with value map)" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "enum as an object",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "range": Array [
+            "id1",
+            "id2",
+            "id3",
+          ],
+        },
+      ],
+      "t": Object {
+        "id1": "Click to see groups",
+        "id2": "Click to see photos",
+        "id3": "Click to see videos",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 8,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle enums with more text after" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "enums!",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "range": Array [
+            "groups",
+            "photos",
+            "videos",
+          ],
+        },
+      ],
+      "t": Object {
+        "groups": "Hello, groups!",
+        "photos": "Hello, photos!",
+        "videos": "Hello, videos!",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 8,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle multiple plurals with no showCount (i.e. no named params)" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "plurals",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "type": 2,
+        },
+        Object {
+          "singular": true,
+          "token": "number",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": "There are {number} likes",
+        },
+        "_1": Object {
+          "_1": "There is a like",
+        },
+      },
+    },
+    "line_beg": 2,
+    "line_end": 8,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle names" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "names",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "name",
+          "type": 1,
+        },
+      ],
+      "t": Object {
+        "*": "You just friended {name}",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 7,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle object pronoun" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 9,
+    "desc": "object pronoun",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "type": 3,
+        },
+      ],
+      "t": Object {
+        "*": "I know them.",
+        "0": "I know this.",
+        "1": "I know her.",
+        "2": "I know him.",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 9,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle params" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "Moar params",
+    "filepath": undefined,
+    "jsfbt": "A parameterized message to {personName}",
+    "line_beg": 2,
+    "line_end": 8,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle plurals that have different count variables" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "plurals",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "singular": true,
+          "token": "cat_token",
+          "type": 2,
+        },
+        Object {
+          "singular": true,
+          "token": "dog_token",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": "{cat_token} cats and {dog_token} dogs",
+          "_1": "{cat_token} cats and 1 dog",
+        },
+        "_1": Object {
+          "*": "1 cat and {dog_token} dogs",
+          "_1": "1 cat and 1 dog",
+        },
+      },
+    },
+    "line_beg": 2,
+    "line_end": 9,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle plurals that share the same count variable" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "plurals",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "type": 2,
+        },
+        Object {
+          "singular": true,
+          "token": "number",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": "There were {number} likes",
+        },
+        "_1": Object {
+          "_1": "There was a like",
+        },
+      },
+    },
+    "line_beg": 2,
+    "line_end": 9,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle possessive pronoun" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 9,
+    "desc": "possessive pronoun",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "type": 3,
+        },
+      ],
+      "t": Object {
+        "*": "It is their birthday.",
+        "1": "It is her birthday.",
+        "2": "It is his birthday.",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 8,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle subject and reflexive pronouns" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 9,
+    "desc": "subject+reflexive pronouns",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "type": 3,
+        },
+        Object {
+          "type": 3,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": "They wished themselves a happy birthday.",
+        },
+        "1": Object {
+          "1": "She wished herself a happy birthday.",
+        },
+        "2": Object {
+          "2": "He wished himself a happy birthday.",
+        },
+      },
+    },
+    "line_beg": 2,
+    "line_end": 9,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle variations + same param" 1`] = `
+Array [
+  Object {
+    "col_beg": 6,
+    "col_end": 7,
+    "desc": "test variations + sameParam",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "count",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": "You have {count} likes. Comment on it to get more than {count} likes",
+      },
+    },
+    "line_beg": 3,
+    "line_end": 11,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle variations" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "variations!",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "count",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": "Click to see {count} links",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 8,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handler wrapping parens" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "desc",
+    "filepath": undefined,
+    "jsfbt": "foobarbazqux",
+    "line_beg": 2,
+    "line_end": 7,
+    "project": "",
+    "type": "text",
+  },
+  Object {
+    "col_beg": 14,
+    "col_end": 7,
+    "desc": "desc",
+    "filepath": undefined,
+    "jsfbt": "foobarbazqux",
+    "line_beg": 8,
+    "line_end": 13,
+    "project": "",
+    "type": "text",
+  },
+  Object {
+    "col_beg": 14,
+    "col_end": 7,
+    "desc": "desc",
+    "filepath": undefined,
+    "jsfbt": "foobarbazqux",
+    "line_beg": 14,
+    "line_end": 19,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should insert param in place of fbt.sameParam if it exists" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "d",
+    "filepath": undefined,
+    "jsfbt": "{name1} and {name1}",
+    "line_beg": 2,
+    "line_end": 8,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should maintain intra-argument newlines" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "a",
+    "filepath": undefined,
+    "jsfbt": "{name1} blah {name2}",
+    "line_beg": 2,
+    "line_end": 17,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should maintain newlines when using string templates" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "blah",
+    "filepath": undefined,
+    "jsfbt": "A simple string... with some other stuff.",
+    "line_beg": 2,
+    "line_end": 8,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should maintain newlines within arguments" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "a",
+    "filepath": undefined,
+    "jsfbt": "a b {name1} c d {name2} e",
+    "line_beg": 2,
+    "line_end": 13,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should accept well-formed options" 1`] = `
+Array [
+  Object {
+    "author": "jwatson",
+    "col_beg": 2,
+    "col_end": 8,
+    "desc": "options!",
+    "filepath": undefined,
+    "jsfbt": "A string that moved files",
+    "line_beg": 2,
+    "line_end": 5,
+    "project": "Super Secret",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should be able to nest within React nodes" 1`] = `
+Array [
+  Object {
+    "col_beg": 20,
+    "col_end": 55,
+    "desc": "nested!",
+    "filepath": undefined,
+    "jsfbt": "A nested string",
+    "line_beg": 3,
+    "line_end": 3,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should convert simple strings" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "It's simple",
+    "filepath": undefined,
+    "jsfbt": "A simple string",
+    "line_beg": 2,
+    "line_end": 7,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should deduplicate branches when fbt.enum() calls share the same key" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "enums!",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        null,
+      ],
+      "t": Object {
+        "groups": "Look! Groups and groups!",
+        "photos": "Look! Photos and photos!",
+        "videos": "Look! Videos and videos!",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 18,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should get project from docblock" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 52,
+    "desc": "It's simple",
+    "filepath": undefined,
+    "jsfbt": "Also simple string",
+    "line_beg": 2,
+    "line_end": 2,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should handle duplicate enums" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "enums!",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        null,
+      ],
+      "t": Object {
+        "groups": "Look! Groups and groups!",
+        "photos": "Look! Photos and photos!",
+        "videos": "Look! Videos and videos!",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 19,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should handle enums (with array values)" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "enum as an array",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        null,
+      ],
+      "t": Object {
+        "groups": "Click to see groups",
+        "photos": "Click to see photos",
+        "videos": "Click to see videos",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 8,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should handle enums (with value map)" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "enum as an object",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        null,
+      ],
+      "t": Object {
+        "id1": "Click to see groups",
+        "id2": "Click to see photos",
+        "id3": "Click to see videos",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 8,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should handle enums with more text after" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "enums!",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        null,
+      ],
+      "t": Object {
+        "groups": "Hello, groups!",
+        "photos": "Hello, photos!",
+        "videos": "Hello, videos!",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 8,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should handle multiple plurals with no showCount (i.e. no named params)" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "plurals",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        null,
+        Object {
+          "singular": true,
+          "token": "number",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": "There are {number} likes",
+        },
+        "_1": Object {
+          "_1": "There is a like",
+        },
+      },
+    },
+    "line_beg": 2,
+    "line_end": 8,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should handle names" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "names",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "name",
+          "type": 1,
+        },
+      ],
+      "t": Object {
+        "*": "You just friended {name}",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 7,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should handle object pronoun" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 9,
+    "desc": "object pronoun",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        null,
+      ],
+      "t": Object {
+        "*": "I know them.",
+        "0": "I know this.",
+        "1": "I know her.",
+        "2": "I know him.",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 9,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should handle params" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "Moar params",
+    "filepath": undefined,
+    "jsfbt": "A parameterized message to {personName}",
+    "line_beg": 2,
+    "line_end": 8,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should handle plurals that have different count variables" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "plurals",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "singular": true,
+          "token": "cat_token",
+          "type": 2,
+        },
+        Object {
+          "singular": true,
+          "token": "dog_token",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": "{cat_token} cats and {dog_token} dogs",
+          "_1": "{cat_token} cats and 1 dog",
+        },
+        "_1": Object {
+          "*": "1 cat and {dog_token} dogs",
+          "_1": "1 cat and 1 dog",
+        },
+      },
+    },
+    "line_beg": 2,
+    "line_end": 9,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should handle plurals that share the same count variable" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "plurals",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        null,
+        Object {
+          "singular": true,
+          "token": "number",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": "There were {number} likes",
+        },
+        "_1": Object {
+          "_1": "There was a like",
+        },
+      },
+    },
+    "line_beg": 2,
+    "line_end": 9,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should handle possessive pronoun" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 9,
+    "desc": "possessive pronoun",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        null,
+      ],
+      "t": Object {
+        "*": "It is their birthday.",
+        "1": "It is her birthday.",
+        "2": "It is his birthday.",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 8,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should handle subject and reflexive pronouns" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 9,
+    "desc": "subject+reflexive pronouns",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        null,
+        null,
+      ],
+      "t": Object {
+        "*": Object {
+          "*": "They wished themselves a happy birthday.",
+        },
+        "1": Object {
+          "1": "She wished herself a happy birthday.",
+        },
+        "2": Object {
+          "2": "He wished himself a happy birthday.",
+        },
+      },
+    },
+    "line_beg": 2,
+    "line_end": 9,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should handle variations + same param" 1`] = `
+Array [
+  Object {
+    "col_beg": 6,
+    "col_end": 7,
+    "desc": "test variations + sameParam",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "count",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": "You have {count} likes. Comment on it to get more than {count} likes",
+      },
+    },
+    "line_beg": 3,
+    "line_end": 11,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should handle variations" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "variations!",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "count",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": "Click to see {count} links",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 8,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should handler wrapping parens" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "desc",
+    "filepath": undefined,
+    "jsfbt": "foobarbazqux",
+    "line_beg": 2,
+    "line_end": 7,
+    "project": "",
+    "type": "text",
+  },
+  Object {
+    "col_beg": 14,
+    "col_end": 7,
+    "desc": "desc",
+    "filepath": undefined,
+    "jsfbt": "foobarbazqux",
+    "line_beg": 8,
+    "line_end": 13,
+    "project": "",
+    "type": "text",
+  },
+  Object {
+    "col_beg": 14,
+    "col_end": 7,
+    "desc": "desc",
+    "filepath": undefined,
+    "jsfbt": "foobarbazqux",
+    "line_beg": 14,
+    "line_end": 19,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should insert param in place of fbt.sameParam if it exists" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "d",
+    "filepath": undefined,
+    "jsfbt": "{name1} and {name1}",
+    "line_beg": 2,
+    "line_end": 8,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should maintain intra-argument newlines" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "a",
+    "filepath": undefined,
+    "jsfbt": "{name1} blah {name2}",
+    "line_beg": 2,
+    "line_end": 17,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should maintain newlines when using string templates" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "blah",
+    "filepath": undefined,
+    "jsfbt": "A simple string... with some other stuff.",
+    "line_beg": 2,
+    "line_end": 8,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should maintain newlines within arguments" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "a",
+    "filepath": undefined,
+    "jsfbt": "a b {name1} c d {name2} e",
+    "line_beg": 2,
+    "line_end": 13,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should accept well-formed options" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A string that moved files'], 'options!', {
   author: 'jwatson',
   project: 'Super Secret'
 })",
-  "__stringVariationArgs": [Error: Line 2 Column 3: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 2 Column 8: This method must be implemented in a child class
 ---
-fbt(['A string that moved files'], 'options!', {
-  author: 'jwatson',
-  project: 'Super Secret'
-})
+'A string that moved files'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -36,15 +1223,23 @@ fbt(['A string that moved files'], 'options!', {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": "jwatson",
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "Super Secret",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should be able to nest within React nodes" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A nested string'], 'nested!')",
-  "__stringVariationArgs": [Error: Line 3 Column 21: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 26: This method must be implemented in a child class
 ---
-fbt(['A nested string'], 'nested!')
+'A nested string'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -68,6 +1263,14 @@ fbt(['A nested string'], 'nested!')
   "node": "BabelNode[type=CallExpression]",
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
+  },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
   },
 }
 `;
@@ -75,9 +1278,9 @@ fbt(['A nested string'], 'nested!')
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should be able to nest within React nodes" 2`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A nested string'], 'nested!')",
-  "__stringVariationArgs": [Error: Line 3 Column 21: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 26: This method must be implemented in a child class
 ---
-fbt(['A nested string'], 'nested!')
+'A nested string'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -102,15 +1305,23 @@ fbt(['A nested string'], 'nested!')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should convert simple strings" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A simple string'], \\"It's simple\\")",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt(['A simple string'], "It's simple")
+'A simple string'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -135,6 +1346,14 @@ fbt(['A simple string'], "It's simple")
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -149,17 +1368,9 @@ FbtElementNode {
   photos: 'photos',
   videos: 'videos'
 }), '!'], 'enums!')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt(['Look! ', fbt.enum('groups', {
-  groups: 'Groups',
-  photos: 'Photos',
-  videos: 'Videos'
-}), ' and ', fbt.enum('groups', {
-  groups: 'groups',
-  photos: 'photos',
-  videos: 'videos'
-}), '!'], 'enums!')
+'Look! '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -260,15 +1471,23 @@ fbt.enum('groups', {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should get project from docblock" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['Also simple string'], \\"It's simple\\")",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 2 Column 16: This method must be implemented in a child class
 ---
-fbt(['Also simple string'], "It's simple")
+'Also simple string'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -292,6 +1511,14 @@ fbt(['Also simple string'], "It's simple")
   "node": "BabelNode[type=CallExpression]",
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
+  },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
   },
 }
 `;
@@ -310,20 +1537,9 @@ FbtElementNode {
             </b>
             B2
           </a>, 'A2'], 'nested!')",
-  "__stringVariationArgs": [Error: Line 3 Column 15: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
 ---
-fbt(['A1', <a>
-            B1
-            <b>
-              C1
-              {// TODO(T27672828) fbt constructs like fbt.pronoun() should return some opaque type
-      // like FbtElement to work with React components
-    }
-              {fbt.param('paramName', paramValue)}
-              C2
-            </b>
-            B2
-          </a>, 'A2'], 'nested!')
+'A1'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -521,6 +1737,14 @@ B2
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -535,17 +1759,9 @@ FbtElementNode {
   photos: 'photos',
   videos: 'videos'
 }), '!'], 'enums!')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt(['Look! ', fbt.enum('groups', {
-  groups: 'Groups',
-  photos: 'Photos',
-  videos: 'Videos'
-}), ' and ', fbt.enum('groups', {
-  groups: 'groups',
-  photos: 'photos',
-  videos: 'videos'
-}), '!'], 'enums!')
+'Look! '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -646,15 +1862,23 @@ fbt.enum('groups', {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle enums (with array values)" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['Click to see ', fbt.enum('groups', ['groups', 'photos', 'videos'])], 'enum as an array')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt(['Click to see ', fbt.enum('groups', ['groups', 'photos', 'videos'])], 'enum as an array')
+'Click to see '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -694,6 +1918,14 @@ fbt.enum('groups', ['groups', 'photos', 'videos'])
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -704,13 +1936,9 @@ FbtElementNode {
   id2: 'photos',
   id3: 'videos'
 })], 'enum as an object')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt(['Click to see ', fbt.enum('id1', {
-  id1: 'groups',
-  id2: 'photos',
-  id3: 'videos'
-})], 'enum as an object')
+'Click to see '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -758,15 +1986,23 @@ fbt.enum('id1', {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle enums with more text after" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['Hello, ', fbt.enum('groups', ['groups', 'photos', 'videos']), '!'], 'enums!')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt(['Hello, ', fbt.enum('groups', ['groups', 'photos', 'videos']), '!'], 'enums!')
+'Hello, '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -821,6 +2057,14 @@ fbt.enum('groups', ['groups', 'photos', 'videos'])
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -832,14 +2076,9 @@ FbtElementNode {
   showCount: 'ifMany',
   many: 'likes'
 })], 'plurals')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt(['There ', fbt.plural('is ', count, {
-  many: 'are '
-}), fbt.plural('a like', count, {
-  showCount: 'ifMany',
-  many: 'likes'
-})], 'plurals')
+'There '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -904,15 +2143,23 @@ fbt.plural('a like', count, {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle names" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['You just friended ', fbt.name('name', personname, gender)], 'names')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt(['You just friended ', fbt.name('name', personname, gender)], 'names')
+'You just friended '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -952,15 +2199,23 @@ fbt.name('name', personname, gender)
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle object pronoun" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['I know ', fbt.pronoun('object', gender), '.'], 'object pronoun')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 13: This method must be implemented in a child class
 ---
-fbt(['I know ', fbt.pronoun('object', gender), '.'], 'object pronoun')
+'I know '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -1015,15 +2270,23 @@ fbt.pronoun('object', gender)
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle params" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A parameterized message to ', fbt.param('personName', truthy ? ifTrue : ifFalse)], 'Moar params')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt(['A parameterized message to ', fbt.param('personName', truthy ? ifTrue : ifFalse)], 'Moar params')
+'A parameterized message to '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -1063,6 +2326,14 @@ fbt.param('personName', truthy ? ifTrue : ifFalse)
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -1075,15 +2346,12 @@ FbtElementNode {
   name: 'dog_token',
   showCount: 'yes'
 })], 'plurals')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt([fbt.plural('cat', catCount, {
+fbt.plural('cat', catCount, {
   name: 'cat_token',
   showCount: 'yes'
-}), ' and ', fbt.plural('dog', dogCount, {
-  name: 'dog_token',
-  showCount: 'yes'
-})], 'plurals')
+})
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -1150,6 +2418,14 @@ fbt.plural('dog', dogCount, {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -1162,15 +2438,9 @@ FbtElementNode {
   showCount: 'ifMany',
   many: 'likes'
 })], 'plurals')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt(['There ', fbt.plural('was ', count, {
-  showCount: 'no',
-  many: 'were '
-}), fbt.plural('a like', count, {
-  showCount: 'ifMany',
-  many: 'likes'
-})], 'plurals')
+'There '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -1237,15 +2507,23 @@ fbt.plural('a like', count, {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle possessive pronoun" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['It is ', fbt.pronoun('possessive', gender), ' birthday.'], 'possessive pronoun')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 13: This method must be implemented in a child class
 ---
-fbt(['It is ', fbt.pronoun('possessive', gender), ' birthday.'], 'possessive pronoun')
+'It is '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -1300,6 +2578,14 @@ fbt.pronoun('possessive', gender)
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -1311,14 +2597,12 @@ FbtElementNode {
 }), ' wished ', fbt.pronoun('reflexive', gender, {
   human: true
 }), ' a happy birthday.'], 'subject+reflexive pronouns')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 13: This method must be implemented in a child class
 ---
-fbt([fbt.pronoun('subject', gender, {
+fbt.pronoun('subject', gender, {
   capitalize: true,
   human: true
-}), ' wished ', fbt.pronoun('reflexive', gender, {
-  human: true
-}), ' a happy birthday.'], 'subject+reflexive pronouns')
+})
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -1398,6 +2682,14 @@ fbt.pronoun('reflexive', gender, {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -1406,11 +2698,9 @@ FbtElementNode {
   "__nodeCode": "fbt(['You have ', fbt.param('count', val, {
   number: true
 }), ' likes. Comment on it to get more than ', fbt.sameParam('count'), ' likes'], 'test variations + sameParam')",
-  "__stringVariationArgs": [Error: Line 3 Column 7: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
 ---
-fbt(['You have ', fbt.param('count', val, {
-  number: true
-}), ' likes. Comment on it to get more than ', fbt.sameParam('count'), ' likes'], 'test variations + sameParam')
+'You have '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -1499,6 +2789,14 @@ fbt.sameParam('count')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -1507,11 +2805,9 @@ FbtElementNode {
   "__nodeCode": "fbt(['Click to see ', fbt.param('count', c, {
   number: true
 }), ' links'], 'variations!')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt(['Click to see ', fbt.param('count', c, {
-  number: true
-}), ' links'], 'variations!')
+'Click to see '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -1570,15 +2866,23 @@ fbt.param('count', c, {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handler wrapping parens" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
+'foo'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -1648,15 +2952,23 @@ fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handler wrapping parens" 2`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
-  "__stringVariationArgs": [Error: Line 8 Column 15: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 10 Column 11: This method must be implemented in a child class
 ---
-fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
+'foo'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -1726,15 +3038,23 @@ fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handler wrapping parens" 3`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
-  "__stringVariationArgs": [Error: Line 14 Column 15: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 16 Column 11: This method must be implemented in a child class
 ---
-fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
+'foo'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -1804,15 +3124,23 @@ fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should insert param in place of fbt.sameParam if it exists" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', val1), ' and ', fbt.sameParam('name1')], 'd')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt([fbt.param('name1', val1), ' and ', fbt.sameParam('name1')], 'd')
+fbt.param('name1', val1)
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -1867,6 +3195,14 @@ fbt.sameParam('name1')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -1875,11 +3211,11 @@ FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', foo ? <a>
                 bar
               </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt([fbt.param('name1', foo ? <a>
+fbt.param('name1', foo ? <a>
                 bar
-              </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')
+              </a> : qux)
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -1938,15 +3274,23 @@ fbt.param('name2', qux)
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should maintain newlines when using string templates" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt([\\"A simple string...\\\\nwith some other stuff.\\"], 'blah')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: This method must be implemented in a child class
 ---
-fbt(["A simple string...\\nwith some other stuff."], 'blah')
+"A simple string...\\nwith some other stuff."
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -1971,6 +3315,14 @@ fbt(["A simple string...\\nwith some other stuff."], 'blah')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -1978,10 +3330,9 @@ exports[`Functional FBT API using array arguments: Meta-data collection should c
 FbtElementNode {
   "__nodeCode": "fbt(['a', ' b ', fbt.param('name1', val1), ' c ', // comments
 ' d ', fbt.param('name2', val2), ' e '], 'a')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt(['a', ' b ', fbt.param('name1', val1), ' c ', // comments
-' d ', fbt.param('name2', val2), ' e '], 'a')
+'a'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -2098,6 +3449,14 @@ fbt.param('name2', val2)
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -2107,12 +3466,9 @@ FbtElementNode {
   author: 'jwatson',
   project: 'Super Secret'
 })",
-  "__stringVariationArgs": [Error: Line 2 Column 3: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 2 Column 8: This method must be implemented in a child class
 ---
-fbt(['A string that moved files'], 'options!', {
-  author: 'jwatson',
-  project: 'Super Secret'
-})
+'A string that moved files'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -2137,15 +3493,23 @@ fbt(['A string that moved files'], 'options!', {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": "jwatson",
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "Super Secret",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should be able to nest within React nodes" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A nested string'], 'nested!')",
-  "__stringVariationArgs": [Error: Line 3 Column 21: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 26: This method must be implemented in a child class
 ---
-fbt(['A nested string'], 'nested!')
+'A nested string'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -2169,6 +3533,14 @@ fbt(['A nested string'], 'nested!')
   "node": "BabelNode[type=CallExpression]",
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
+  },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
   },
 }
 `;
@@ -2176,9 +3548,9 @@ fbt(['A nested string'], 'nested!')
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should be able to nest within React nodes" 2`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A nested string'], 'nested!')",
-  "__stringVariationArgs": [Error: Line 3 Column 21: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 26: This method must be implemented in a child class
 ---
-fbt(['A nested string'], 'nested!')
+'A nested string'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -2203,15 +3575,23 @@ fbt(['A nested string'], 'nested!')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should convert simple strings" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A simple string'], \\"It's simple\\")",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt(['A simple string'], "It's simple")
+'A simple string'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -2236,6 +3616,14 @@ fbt(['A simple string'], "It's simple")
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -2250,17 +3638,9 @@ FbtElementNode {
   photos: 'photos',
   videos: 'videos'
 }), '!'], 'enums!')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt(['Look! ', fbt.enum('groups', {
-  groups: 'Groups',
-  photos: 'Photos',
-  videos: 'Videos'
-}), ' and ', fbt.enum('groups', {
-  groups: 'groups',
-  photos: 'photos',
-  videos: 'videos'
-}), '!'], 'enums!')
+'Look! '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -2361,15 +3741,23 @@ fbt.enum('groups', {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should get project from docblock" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['Also simple string'], \\"It's simple\\")",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 2 Column 16: This method must be implemented in a child class
 ---
-fbt(['Also simple string'], "It's simple")
+'Also simple string'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -2394,6 +3782,14 @@ fbt(['Also simple string'], "It's simple")
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -2411,20 +3807,9 @@ FbtElementNode {
             </b>
             B2
           </a>, 'A2'], 'nested!')",
-  "__stringVariationArgs": [Error: Line 3 Column 15: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
 ---
-fbt(['A1', <a>
-            B1
-            <b>
-              C1
-              {// TODO(T27672828) fbt constructs like fbt.pronoun() should return some opaque type
-      // like FbtElement to work with React components
-    }
-              {fbt.param('paramName', paramValue)}
-              C2
-            </b>
-            B2
-          </a>, 'A2'], 'nested!')
+'A1'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -2622,6 +4007,14 @@ B2
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -2636,17 +4029,9 @@ FbtElementNode {
   photos: 'photos',
   videos: 'videos'
 }), '!'], 'enums!')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt(['Look! ', fbt.enum('groups', {
-  groups: 'Groups',
-  photos: 'Photos',
-  videos: 'Videos'
-}), ' and ', fbt.enum('groups', {
-  groups: 'groups',
-  photos: 'photos',
-  videos: 'videos'
-}), '!'], 'enums!')
+'Look! '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -2747,15 +4132,23 @@ fbt.enum('groups', {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle enums (with array values)" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['Click to see ', fbt.enum('groups', ['groups', 'photos', 'videos'])], 'enum as an array')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt(['Click to see ', fbt.enum('groups', ['groups', 'photos', 'videos'])], 'enum as an array')
+'Click to see '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -2795,6 +4188,14 @@ fbt.enum('groups', ['groups', 'photos', 'videos'])
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -2805,13 +4206,9 @@ FbtElementNode {
   id2: 'photos',
   id3: 'videos'
 })], 'enum as an object')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt(['Click to see ', fbt.enum('id1', {
-  id1: 'groups',
-  id2: 'photos',
-  id3: 'videos'
-})], 'enum as an object')
+'Click to see '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -2859,15 +4256,23 @@ fbt.enum('id1', {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle enums with more text after" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['Hello, ', fbt.enum('groups', ['groups', 'photos', 'videos']), '!'], 'enums!')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt(['Hello, ', fbt.enum('groups', ['groups', 'photos', 'videos']), '!'], 'enums!')
+'Hello, '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -2922,6 +4327,14 @@ fbt.enum('groups', ['groups', 'photos', 'videos'])
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -2933,14 +4346,9 @@ FbtElementNode {
   showCount: 'ifMany',
   many: 'likes'
 })], 'plurals')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt(['There ', fbt.plural('is ', count, {
-  many: 'are '
-}), fbt.plural('a like', count, {
-  showCount: 'ifMany',
-  many: 'likes'
-})], 'plurals')
+'There '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -3005,15 +4413,23 @@ fbt.plural('a like', count, {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle names" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['You just friended ', fbt.name('name', personname, gender)], 'names')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt(['You just friended ', fbt.name('name', personname, gender)], 'names')
+'You just friended '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -3053,15 +4469,23 @@ fbt.name('name', personname, gender)
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle object pronoun" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['I know ', fbt.pronoun('object', gender), '.'], 'object pronoun')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 13: This method must be implemented in a child class
 ---
-fbt(['I know ', fbt.pronoun('object', gender), '.'], 'object pronoun')
+'I know '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -3116,15 +4540,23 @@ fbt.pronoun('object', gender)
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle params" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A parameterized message to ', fbt.param('personName', truthy ? ifTrue : ifFalse)], 'Moar params')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt(['A parameterized message to ', fbt.param('personName', truthy ? ifTrue : ifFalse)], 'Moar params')
+'A parameterized message to '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -3164,6 +4596,14 @@ fbt.param('personName', truthy ? ifTrue : ifFalse)
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -3176,15 +4616,12 @@ FbtElementNode {
   name: 'dog_token',
   showCount: 'yes'
 })], 'plurals')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt([fbt.plural('cat', catCount, {
+fbt.plural('cat', catCount, {
   name: 'cat_token',
   showCount: 'yes'
-}), ' and ', fbt.plural('dog', dogCount, {
-  name: 'dog_token',
-  showCount: 'yes'
-})], 'plurals')
+})
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -3251,6 +4688,14 @@ fbt.plural('dog', dogCount, {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -3263,15 +4708,9 @@ FbtElementNode {
   showCount: 'ifMany',
   many: 'likes'
 })], 'plurals')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt(['There ', fbt.plural('was ', count, {
-  showCount: 'no',
-  many: 'were '
-}), fbt.plural('a like', count, {
-  showCount: 'ifMany',
-  many: 'likes'
-})], 'plurals')
+'There '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -3338,15 +4777,23 @@ fbt.plural('a like', count, {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle possessive pronoun" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['It is ', fbt.pronoun('possessive', gender), ' birthday.'], 'possessive pronoun')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 13: This method must be implemented in a child class
 ---
-fbt(['It is ', fbt.pronoun('possessive', gender), ' birthday.'], 'possessive pronoun')
+'It is '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -3401,6 +4848,14 @@ fbt.pronoun('possessive', gender)
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -3412,14 +4867,12 @@ FbtElementNode {
 }), ' wished ', fbt.pronoun('reflexive', gender, {
   human: true
 }), ' a happy birthday.'], 'subject+reflexive pronouns')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 13: This method must be implemented in a child class
 ---
-fbt([fbt.pronoun('subject', gender, {
+fbt.pronoun('subject', gender, {
   capitalize: true,
   human: true
-}), ' wished ', fbt.pronoun('reflexive', gender, {
-  human: true
-}), ' a happy birthday.'], 'subject+reflexive pronouns')
+})
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -3499,6 +4952,14 @@ fbt.pronoun('reflexive', gender, {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -3507,11 +4968,9 @@ FbtElementNode {
   "__nodeCode": "fbt(['You have ', fbt.param('count', val, {
   number: true
 }), ' likes. Comment on it to get more than ', fbt.sameParam('count'), ' likes'], 'test variations + sameParam')",
-  "__stringVariationArgs": [Error: Line 3 Column 7: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 5 Column 11: This method must be implemented in a child class
 ---
-fbt(['You have ', fbt.param('count', val, {
-  number: true
-}), ' likes. Comment on it to get more than ', fbt.sameParam('count'), ' likes'], 'test variations + sameParam')
+'You have '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -3600,6 +5059,14 @@ fbt.sameParam('count')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -3608,11 +5075,9 @@ FbtElementNode {
   "__nodeCode": "fbt(['Click to see ', fbt.param('count', c, {
   number: true
 }), ' links'], 'variations!')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt(['Click to see ', fbt.param('count', c, {
-  number: true
-}), ' links'], 'variations!')
+'Click to see '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -3671,15 +5136,23 @@ fbt.param('count', c, {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should handler wrapping parens" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
+'foo'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -3749,15 +5222,23 @@ fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should handler wrapping parens" 2`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
-  "__stringVariationArgs": [Error: Line 8 Column 15: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 10 Column 11: This method must be implemented in a child class
 ---
-fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
+'foo'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -3827,15 +5308,23 @@ fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should handler wrapping parens" 3`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
-  "__stringVariationArgs": [Error: Line 14 Column 15: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 16 Column 11: This method must be implemented in a child class
 ---
-fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
+'foo'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -3905,15 +5394,23 @@ fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should insert param in place of fbt.sameParam if it exists" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', val1), ' and ', fbt.sameParam('name1')], 'd')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt([fbt.param('name1', val1), ' and ', fbt.sameParam('name1')], 'd')
+fbt.param('name1', val1)
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -3968,6 +5465,14 @@ fbt.sameParam('name1')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -3976,11 +5481,11 @@ FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', foo ? <a>
                 bar
               </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt([fbt.param('name1', foo ? <a>
+fbt.param('name1', foo ? <a>
                 bar
-              </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')
+              </a> : qux)
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -4039,15 +5544,23 @@ fbt.param('name2', qux)
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should maintain newlines when using string templates" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt([\\"A simple string...\\\\nwith some other stuff.\\"], 'blah')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: This method must be implemented in a child class
 ---
-fbt(["A simple string...\\nwith some other stuff."], 'blah')
+"A simple string...\\nwith some other stuff."
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -4072,6 +5585,14 @@ fbt(["A simple string...\\nwith some other stuff."], 'blah')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -4079,10 +5600,9 @@ exports[`Functional FBT API using array arguments: Meta-data collection should c
 FbtElementNode {
   "__nodeCode": "fbt(['a', ' b ', fbt.param('name1', val1), ' c ', // comments
 ' d ', fbt.param('name2', val2), ' e '], 'a')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 11: This method must be implemented in a child class
 ---
-fbt(['a', ' b ', fbt.param('name1', val1), ' c ', // comments
-' d ', fbt.param('name2', val2), ' e '], 'a')
+'a'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -4199,7 +5719,1325 @@ fbt.param('name2', val2)
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should accept well-formed options" 1`] = `
+Array [
+  Object {
+    "author": "jwatson",
+    "col_beg": 2,
+    "col_end": 8,
+    "desc": "options!",
+    "filepath": undefined,
+    "jsfbt": "A string that moved files",
+    "line_beg": 2,
+    "line_end": 5,
+    "project": "Super Secret",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should allow description concatenation" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "With a ridiculously long description that requires concatenation",
+    "filepath": undefined,
+    "jsfbt": "A short string",
+    "line_beg": 2,
+    "line_end": 6,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should be able to nest within React nodes" 1`] = `
+Array [
+  Object {
+    "col_beg": 20,
+    "col_end": 53,
+    "desc": "nested!",
+    "filepath": undefined,
+    "jsfbt": "A nested string",
+    "line_beg": 3,
+    "line_end": 3,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should convert simple strings" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 47,
+    "desc": "It's simple",
+    "filepath": undefined,
+    "jsfbt": "A simple string",
+    "line_beg": 2,
+    "line_end": 2,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should deduplicate branches when fbt.enum() calls share the same key in string templates" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "enums!",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "range": Array [
+            "groups",
+            "photos",
+            "videos",
+          ],
+        },
+      ],
+      "t": Object {
+        "groups": "Look! Groups and groups!",
+        "photos": "Look! Photos and photos!",
+        "videos": "Look! Videos and videos!",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 13,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should deduplicate branches when fbt.enum() calls share the same key" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "enums!",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "range": Array [
+            "groups",
+            "photos",
+            "videos",
+          ],
+        },
+      ],
+      "t": Object {
+        "groups": "Look! Groups and groups!",
+        "photos": "Look! Photos and photos!",
+        "videos": "Look! Videos and videos!",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 17,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should get project from docblock" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 50,
+    "desc": "It's simple",
+    "filepath": undefined,
+    "jsfbt": "Also simple string",
+    "line_beg": 2,
+    "line_end": 2,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle duplicate enums" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "enums!",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "range": Array [
+            "groups",
+            "photos",
+            "videos",
+          ],
+        },
+      ],
+      "t": Object {
+        "groups": "Look! Groups and groups!",
+        "photos": "Look! Photos and photos!",
+        "videos": "Look! Videos and videos!",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 17,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle enums (with array values)" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "enum as an array",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "range": Array [
+            "groups",
+            "photos",
+            "videos",
+          ],
+        },
+      ],
+      "t": Object {
+        "groups": "Click to see groups",
+        "photos": "Click to see photos",
+        "videos": "Click to see videos",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 5,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle enums (with value map)" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "enum as an object",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "range": Array [
+            "id1",
+            "id2",
+            "id3",
+          ],
+        },
+      ],
+      "t": Object {
+        "id1": "Click to see groups",
+        "id2": "Click to see photos",
+        "id3": "Click to see videos",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 6,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle enums with more text after" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "enums!",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "range": Array [
+            "groups",
+            "photos",
+            "videos",
+          ],
+        },
+      ],
+      "t": Object {
+        "groups": "Hello, groups!",
+        "photos": "Hello, photos!",
+        "videos": "Hello, videos!",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 5,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle multiple plurals with no showCount (i.e. no named params)" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "plurals",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "type": 2,
+        },
+        Object {
+          "singular": true,
+          "token": "number",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": "There are {number} likes",
+        },
+        "_1": Object {
+          "_1": "There is a like",
+        },
+      },
+    },
+    "line_beg": 2,
+    "line_end": 7,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle names" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "names",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "name",
+          "type": 1,
+        },
+      ],
+      "t": Object {
+        "*": "You just friended {name}",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 5,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle object pronoun" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 9,
+    "desc": "object pronoun",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "type": 3,
+        },
+      ],
+      "t": Object {
+        "*": "I know them.",
+        "0": "I know this.",
+        "1": "I know her.",
+        "2": "I know him.",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 7,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle params" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "Moar params",
+    "filepath": undefined,
+    "jsfbt": "A parameterized message to {personName}",
+    "line_beg": 2,
+    "line_end": 6,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle plurals that have different count variables" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "plurals",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "singular": true,
+          "token": "cat_token",
+          "type": 2,
+        },
+        Object {
+          "singular": true,
+          "token": "dog_token",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": "{cat_token} cats and {dog_token} dogs",
+          "_1": "{cat_token} cats and 1 dog",
+        },
+        "_1": Object {
+          "*": "1 cat and {dog_token} dogs",
+          "_1": "1 cat and 1 dog",
+        },
+      },
+    },
+    "line_beg": 2,
+    "line_end": 7,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle plurals that share the same count variable" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "plurals",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "type": 2,
+        },
+        Object {
+          "singular": true,
+          "token": "number",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": "There were {number} likes",
+        },
+        "_1": Object {
+          "_1": "There was a like",
+        },
+      },
+    },
+    "line_beg": 2,
+    "line_end": 7,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle possessive pronoun" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 9,
+    "desc": "possessive pronoun",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "type": 3,
+        },
+      ],
+      "t": Object {
+        "*": "It is their birthday.",
+        "1": "It is her birthday.",
+        "2": "It is his birthday.",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 5,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle subject and reflexive pronouns" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 9,
+    "desc": "subject+reflexive pronouns",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "type": 3,
+        },
+        Object {
+          "type": 3,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": "They wished themselves a happy birthday.",
+        },
+        "1": Object {
+          "1": "She wished herself a happy birthday.",
+        },
+        "2": Object {
+          "2": "He wished himself a happy birthday.",
+        },
+      },
+    },
+    "line_beg": 2,
+    "line_end": 8,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle variations + same param" 1`] = `
+Array [
+  Object {
+    "col_beg": 6,
+    "col_end": 7,
+    "desc": "test variations + sameParam",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "count",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": "You have {count} likes. Comment on it to get more than {count} likes",
+      },
+    },
+    "line_beg": 3,
+    "line_end": 10,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle variations" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "variations!",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "count",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": "Click to see {count} links",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 5,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handler wrapping parens" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 52,
+    "desc": "desc",
+    "filepath": undefined,
+    "jsfbt": "foobarbazqux",
+    "line_beg": 2,
+    "line_end": 2,
+    "project": "",
+    "type": "text",
+  },
+  Object {
+    "col_beg": 14,
+    "col_end": 58,
+    "desc": "desc",
+    "filepath": undefined,
+    "jsfbt": "foobarbazqux",
+    "line_beg": 3,
+    "line_end": 3,
+    "project": "",
+    "type": "text",
+  },
+  Object {
+    "col_beg": 14,
+    "col_end": 58,
+    "desc": "desc",
+    "filepath": undefined,
+    "jsfbt": "foobarbazqux",
+    "line_beg": 4,
+    "line_end": 4,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should insert param in place of fbt.sameParam if it exists" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "d",
+    "filepath": undefined,
+    "jsfbt": "{name1} and {name1}",
+    "line_beg": 2,
+    "line_end": 5,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should maintain intra-argument newlines" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "a",
+    "filepath": undefined,
+    "jsfbt": "{name1} blah {name2}",
+    "line_beg": 2,
+    "line_end": 16,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should maintain newlines when using string templates" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "blah",
+    "filepath": undefined,
+    "jsfbt": "A simple string... with some other stuff.",
+    "line_beg": 2,
+    "line_end": 6,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should maintain newlines within arguments" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "a",
+    "filepath": undefined,
+    "jsfbt": "a b {name1} c d {name2} e",
+    "line_beg": 2,
+    "line_end": 12,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should maintain newlines" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "blah",
+    "filepath": undefined,
+    "jsfbt": "A simple string... with some other stuff.",
+    "line_beg": 2,
+    "line_end": 6,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should accept well-formed options" 1`] = `
+Array [
+  Object {
+    "author": "jwatson",
+    "col_beg": 2,
+    "col_end": 8,
+    "desc": "options!",
+    "filepath": undefined,
+    "jsfbt": "A string that moved files",
+    "line_beg": 2,
+    "line_end": 5,
+    "project": "Super Secret",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should allow description concatenation" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "With a ridiculously long description that requires concatenation",
+    "filepath": undefined,
+    "jsfbt": "A short string",
+    "line_beg": 2,
+    "line_end": 6,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should be able to nest within React nodes" 1`] = `
+Array [
+  Object {
+    "col_beg": 20,
+    "col_end": 53,
+    "desc": "nested!",
+    "filepath": undefined,
+    "jsfbt": "A nested string",
+    "line_beg": 3,
+    "line_end": 3,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should convert simple strings" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 47,
+    "desc": "It's simple",
+    "filepath": undefined,
+    "jsfbt": "A simple string",
+    "line_beg": 2,
+    "line_end": 2,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should deduplicate branches when fbt.enum() calls share the same key in string templates" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "enums!",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        null,
+      ],
+      "t": Object {
+        "groups": "Look! Groups and groups!",
+        "photos": "Look! Photos and photos!",
+        "videos": "Look! Videos and videos!",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 13,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should deduplicate branches when fbt.enum() calls share the same key" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "enums!",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        null,
+      ],
+      "t": Object {
+        "groups": "Look! Groups and groups!",
+        "photos": "Look! Photos and photos!",
+        "videos": "Look! Videos and videos!",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 17,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should get project from docblock" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 50,
+    "desc": "It's simple",
+    "filepath": undefined,
+    "jsfbt": "Also simple string",
+    "line_beg": 2,
+    "line_end": 2,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle duplicate enums" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "enums!",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        null,
+      ],
+      "t": Object {
+        "groups": "Look! Groups and groups!",
+        "photos": "Look! Photos and photos!",
+        "videos": "Look! Videos and videos!",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 17,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle enums (with array values)" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "enum as an array",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        null,
+      ],
+      "t": Object {
+        "groups": "Click to see groups",
+        "photos": "Click to see photos",
+        "videos": "Click to see videos",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 5,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle enums (with value map)" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "enum as an object",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        null,
+      ],
+      "t": Object {
+        "id1": "Click to see groups",
+        "id2": "Click to see photos",
+        "id3": "Click to see videos",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 6,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle enums with more text after" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "enums!",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        null,
+      ],
+      "t": Object {
+        "groups": "Hello, groups!",
+        "photos": "Hello, photos!",
+        "videos": "Hello, videos!",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 5,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle multiple plurals with no showCount (i.e. no named params)" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "plurals",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        null,
+        Object {
+          "singular": true,
+          "token": "number",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": "There are {number} likes",
+        },
+        "_1": Object {
+          "_1": "There is a like",
+        },
+      },
+    },
+    "line_beg": 2,
+    "line_end": 7,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle names" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "names",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "name",
+          "type": 1,
+        },
+      ],
+      "t": Object {
+        "*": "You just friended {name}",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 5,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle object pronoun" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 9,
+    "desc": "object pronoun",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        null,
+      ],
+      "t": Object {
+        "*": "I know them.",
+        "0": "I know this.",
+        "1": "I know her.",
+        "2": "I know him.",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 7,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle params" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "Moar params",
+    "filepath": undefined,
+    "jsfbt": "A parameterized message to {personName}",
+    "line_beg": 2,
+    "line_end": 6,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle plurals that have different count variables" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "plurals",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "singular": true,
+          "token": "cat_token",
+          "type": 2,
+        },
+        Object {
+          "singular": true,
+          "token": "dog_token",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": "{cat_token} cats and {dog_token} dogs",
+          "_1": "{cat_token} cats and 1 dog",
+        },
+        "_1": Object {
+          "*": "1 cat and {dog_token} dogs",
+          "_1": "1 cat and 1 dog",
+        },
+      },
+    },
+    "line_beg": 2,
+    "line_end": 7,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle plurals that share the same count variable" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "plurals",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        null,
+        Object {
+          "singular": true,
+          "token": "number",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": "There were {number} likes",
+        },
+        "_1": Object {
+          "_1": "There was a like",
+        },
+      },
+    },
+    "line_beg": 2,
+    "line_end": 7,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle possessive pronoun" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 9,
+    "desc": "possessive pronoun",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        null,
+      ],
+      "t": Object {
+        "*": "It is their birthday.",
+        "1": "It is her birthday.",
+        "2": "It is his birthday.",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 5,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle subject and reflexive pronouns" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 9,
+    "desc": "subject+reflexive pronouns",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        null,
+        null,
+      ],
+      "t": Object {
+        "*": Object {
+          "*": "They wished themselves a happy birthday.",
+        },
+        "1": Object {
+          "1": "She wished herself a happy birthday.",
+        },
+        "2": Object {
+          "2": "He wished himself a happy birthday.",
+        },
+      },
+    },
+    "line_beg": 2,
+    "line_end": 8,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle variations + same param" 1`] = `
+Array [
+  Object {
+    "col_beg": 6,
+    "col_end": 7,
+    "desc": "test variations + sameParam",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "count",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": "You have {count} likes. Comment on it to get more than {count} likes",
+      },
+    },
+    "line_beg": 3,
+    "line_end": 10,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle variations" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "variations!",
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "count",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": "Click to see {count} links",
+      },
+    },
+    "line_beg": 2,
+    "line_end": 5,
+    "project": "",
+    "type": "table",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handler wrapping parens" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 52,
+    "desc": "desc",
+    "filepath": undefined,
+    "jsfbt": "foobarbazqux",
+    "line_beg": 2,
+    "line_end": 2,
+    "project": "",
+    "type": "text",
+  },
+  Object {
+    "col_beg": 14,
+    "col_end": 58,
+    "desc": "desc",
+    "filepath": undefined,
+    "jsfbt": "foobarbazqux",
+    "line_beg": 3,
+    "line_end": 3,
+    "project": "",
+    "type": "text",
+  },
+  Object {
+    "col_beg": 14,
+    "col_end": 58,
+    "desc": "desc",
+    "filepath": undefined,
+    "jsfbt": "foobarbazqux",
+    "line_beg": 4,
+    "line_end": 4,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should insert param in place of fbt.sameParam if it exists" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "d",
+    "filepath": undefined,
+    "jsfbt": "{name1} and {name1}",
+    "line_beg": 2,
+    "line_end": 5,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should maintain intra-argument newlines" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "a",
+    "filepath": undefined,
+    "jsfbt": "{name1} blah {name2}",
+    "line_beg": 2,
+    "line_end": 16,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should maintain newlines when using string templates" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "blah",
+    "filepath": undefined,
+    "jsfbt": "A simple string... with some other stuff.",
+    "line_beg": 2,
+    "line_end": 6,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should maintain newlines within arguments" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "a",
+    "filepath": undefined,
+    "jsfbt": "a b {name1} c d {name2} e",
+    "line_beg": 2,
+    "line_end": 12,
+    "project": "",
+    "type": "text",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should maintain newlines" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "desc": "blah",
+    "filepath": undefined,
+    "jsfbt": "A simple string... with some other stuff.",
+    "line_beg": 2,
+    "line_end": 6,
+    "project": "",
+    "type": "text",
+  },
+]
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should accept well-formed options" 1`] = `
@@ -4208,12 +7046,9 @@ FbtElementNode {
   author: 'jwatson',
   project: 'Super Secret'
 })",
-  "__stringVariationArgs": [Error: Line 2 Column 3: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 2 Column 7: This method must be implemented in a child class
 ---
-fbt(['A string that moved files'], 'options!', {
-  author: 'jwatson',
-  project: 'Super Secret'
-})
+'A string that moved files'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -4238,15 +7073,23 @@ fbt(['A string that moved files'], 'options!', {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": "jwatson",
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "Super Secret",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should allow description concatenation" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A short string'], 'With a ridiculously long description that' + ' requires concatenation')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt(['A short string'], 'With a ridiculously long description that' + ' requires concatenation')
+'A short string'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -4271,15 +7114,23 @@ fbt(['A short string'], 'With a ridiculously long description that' + ' requires
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should be able to nest within React nodes" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A nested string'], 'nested!')",
-  "__stringVariationArgs": [Error: Line 3 Column 21: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 25: This method must be implemented in a child class
 ---
-fbt(['A nested string'], 'nested!')
+'A nested string'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -4303,6 +7154,14 @@ fbt(['A nested string'], 'nested!')
   "node": "BabelNode[type=CallExpression]",
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
+  },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
   },
 }
 `;
@@ -4310,9 +7169,9 @@ fbt(['A nested string'], 'nested!')
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should be able to nest within React nodes" 2`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A nested string'], 'nested!')",
-  "__stringVariationArgs": [Error: Line 3 Column 21: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 25: This method must be implemented in a child class
 ---
-fbt(['A nested string'], 'nested!')
+'A nested string'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -4337,15 +7196,23 @@ fbt(['A nested string'], 'nested!')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should convert simple strings" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A simple string'], \\"It's simple\\")",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 2 Column 15: This method must be implemented in a child class
 ---
-fbt(['A simple string'], "It's simple")
+'A simple string'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -4369,6 +7236,14 @@ fbt(['A simple string'], "It's simple")
   "node": "BabelNode[type=CallExpression]",
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
+  },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
   },
 }
 `;
@@ -4384,17 +7259,9 @@ FbtElementNode {
   \\"photos\\": 'photos',
   \\"videos\\": 'videos'
 }), \\"!\\"], 'enums!')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: This method must be implemented in a child class
 ---
-fbt(["Look!  ", fbt.enum('groups', {
-  groups: 'Groups',
-  photos: 'Photos',
-  videos: 'Videos'
-}), "  and  ", fbt.enum('groups', {
-  "groups": 'groups',
-  "photos": 'photos',
-  "videos": 'videos'
-}), "!"], 'enums!')
+"Look!  "
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -4495,6 +7362,14 @@ fbt.enum('groups', {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -4509,17 +7384,9 @@ FbtElementNode {
   photos: 'photos',
   videos: 'videos'
 }), '!'], 'enums!')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt(['Look! ', fbt.enum('groups', {
-  groups: 'Groups',
-  photos: 'Photos',
-  videos: 'Videos'
-}), ' and ', fbt.enum('groups', {
-  groups: 'groups',
-  photos: 'photos',
-  videos: 'videos'
-}), '!'], 'enums!')
+'Look! '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -4620,15 +7487,23 @@ fbt.enum('groups', {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should get project from docblock" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['Also simple string'], \\"It's simple\\")",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 2 Column 15: This method must be implemented in a child class
 ---
-fbt(['Also simple string'], "It's simple")
+'Also simple string'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -4653,6 +7528,14 @@ fbt(['Also simple string'], "It's simple")
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -4667,17 +7550,9 @@ FbtElementNode {
   photos: 'photos',
   videos: 'videos'
 }), '!'], 'enums!')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt(['Look! ', fbt.enum('groups', {
-  groups: 'Groups',
-  photos: 'Photos',
-  videos: 'Videos'
-}), ' and ', fbt.enum('groups', {
-  groups: 'groups',
-  photos: 'photos',
-  videos: 'videos'
-}), '!'], 'enums!')
+'Look! '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -4778,15 +7653,23 @@ fbt.enum('groups', {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle enums (with array values)" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['Click to see ', fbt.enum('groups', ['groups', 'photos', 'videos'])], 'enum as an array')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt(['Click to see ', fbt.enum('groups', ['groups', 'photos', 'videos'])], 'enum as an array')
+'Click to see '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -4826,6 +7709,14 @@ fbt.enum('groups', ['groups', 'photos', 'videos'])
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -4836,13 +7727,9 @@ FbtElementNode {
   id2: 'photos',
   id3: 'videos'
 })], 'enum as an object')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt(['Click to see ', fbt.enum('id1', {
-  id1: 'groups',
-  id2: 'photos',
-  id3: 'videos'
-})], 'enum as an object')
+'Click to see '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -4890,15 +7777,23 @@ fbt.enum('id1', {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle enums with more text after" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['Hello, ', fbt.enum('groups', ['groups', 'photos', 'videos']), '!'], 'enums!')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt(['Hello, ', fbt.enum('groups', ['groups', 'photos', 'videos']), '!'], 'enums!')
+'Hello, '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -4953,6 +7848,14 @@ fbt.enum('groups', ['groups', 'photos', 'videos'])
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -4964,14 +7867,9 @@ FbtElementNode {
   showCount: 'ifMany',
   many: 'likes'
 })], 'plurals')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt(['There ', fbt.plural('is ', count, {
-  many: 'are '
-}), fbt.plural('a like', count, {
-  showCount: 'ifMany',
-  many: 'likes'
-})], 'plurals')
+'There '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -5036,15 +7934,23 @@ fbt.plural('a like', count, {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle names" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['You just friended ', fbt.name('name', personname, gender)], 'names')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt(['You just friended ', fbt.name('name', personname, gender)], 'names')
+'You just friended '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -5084,15 +7990,23 @@ fbt.name('name', personname, gender)
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle object pronoun" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['I know ', fbt.pronoun('object', gender), '.'], 'object pronoun')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 11: This method must be implemented in a child class
 ---
-fbt(['I know ', fbt.pronoun('object', gender), '.'], 'object pronoun')
+'I know '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -5147,15 +8061,23 @@ fbt.pronoun('object', gender)
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle params" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A parameterized message to ', fbt.param('personName', truthy ? ifTrue : ifFalse)], 'Moar params')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt(['A parameterized message to ', fbt.param('personName', truthy ? ifTrue : ifFalse)], 'Moar params')
+'A parameterized message to '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -5195,6 +8117,14 @@ fbt.param('personName', truthy ? ifTrue : ifFalse)
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -5207,15 +8137,12 @@ FbtElementNode {
   name: 'dog_token',
   showCount: 'yes'
 })], 'plurals')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt([fbt.plural('cat', catCount, {
+fbt.plural('cat', catCount, {
   name: 'cat_token',
   showCount: 'yes'
-}), ' and ', fbt.plural('dog', dogCount, {
-  name: 'dog_token',
-  showCount: 'yes'
-})], 'plurals')
+})
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -5282,6 +8209,14 @@ fbt.plural('dog', dogCount, {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -5294,15 +8229,9 @@ FbtElementNode {
   showCount: 'ifMany',
   many: 'likes'
 })], 'plurals')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt(['There ', fbt.plural('was ', count, {
-  showCount: 'no',
-  many: 'were '
-}), fbt.plural('a like', count, {
-  showCount: 'ifMany',
-  many: 'likes'
-})], 'plurals')
+'There '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -5369,15 +8298,23 @@ fbt.plural('a like', count, {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle possessive pronoun" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['It is ', fbt.pronoun('possessive', gender), ' birthday.'], 'possessive pronoun')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 11: This method must be implemented in a child class
 ---
-fbt(['It is ', fbt.pronoun('possessive', gender), ' birthday.'], 'possessive pronoun')
+'It is '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -5432,6 +8369,14 @@ fbt.pronoun('possessive', gender)
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -5443,14 +8388,12 @@ FbtElementNode {
 }), ' wished ', fbt.pronoun('reflexive', gender, {
   human: true
 }), ' a happy birthday.'], 'subject+reflexive pronouns')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 11: This method must be implemented in a child class
 ---
-fbt([fbt.pronoun('subject', gender, {
+fbt.pronoun('subject', gender, {
   capitalize: true,
   human: true
-}), ' wished ', fbt.pronoun('reflexive', gender, {
-  human: true
-}), ' a happy birthday.'], 'subject+reflexive pronouns')
+})
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -5530,6 +8473,14 @@ fbt.pronoun('reflexive', gender, {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -5538,11 +8489,9 @@ FbtElementNode {
   "__nodeCode": "fbt(['You have ', fbt.param('count', val, {
   number: true
 }), ' likes. Comment on it to get more than ', fbt.sameParam('count'), ' likes'], 'test variations + sameParam')",
-  "__stringVariationArgs": [Error: Line 3 Column 7: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 9: This method must be implemented in a child class
 ---
-fbt(['You have ', fbt.param('count', val, {
-  number: true
-}), ' likes. Comment on it to get more than ', fbt.sameParam('count'), ' likes'], 'test variations + sameParam')
+'You have '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -5631,6 +8580,14 @@ fbt.sameParam('count')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -5639,11 +8596,9 @@ FbtElementNode {
   "__nodeCode": "fbt(['Click to see ', fbt.param('count', c, {
   number: true
 }), ' links'], 'variations!')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt(['Click to see ', fbt.param('count', c, {
-  number: true
-}), ' links'], 'variations!')
+'Click to see '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -5702,15 +8657,23 @@ fbt.param('count', c, {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handler wrapping parens" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 2 Column 15: This method must be implemented in a child class
 ---
-fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
+'foo'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -5780,15 +8743,23 @@ fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handler wrapping parens" 2`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
-  "__stringVariationArgs": [Error: Line 3 Column 15: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 19: This method must be implemented in a child class
 ---
-fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
+'foo'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -5858,15 +8829,23 @@ fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handler wrapping parens" 3`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
-  "__stringVariationArgs": [Error: Line 4 Column 15: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 19: This method must be implemented in a child class
 ---
-fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
+'foo'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -5936,15 +8915,23 @@ fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should insert param in place of fbt.sameParam if it exists" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', val1), ' and ', fbt.sameParam('name1')], 'd')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt([fbt.param('name1', val1), ' and ', fbt.sameParam('name1')], 'd')
+fbt.param('name1', val1)
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -5999,6 +8986,14 @@ fbt.sameParam('name1')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -6007,11 +9002,11 @@ FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', foo ? <a>
               bar
             </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt([fbt.param('name1', foo ? <a>
+fbt.param('name1', foo ? <a>
               bar
-            </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')
+            </a> : qux)
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -6070,15 +9065,23 @@ fbt.param('name2', qux)
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should maintain newlines when using string templates" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt([\\"A simple string...\\\\nwith some other stuff.\\"], 'blah')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: This method must be implemented in a child class
 ---
-fbt(["A simple string...\\nwith some other stuff."], 'blah')
+"A simple string...\\nwith some other stuff."
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -6103,6 +9106,14 @@ fbt(["A simple string...\\nwith some other stuff."], 'blah')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -6110,10 +9121,9 @@ exports[`Functional FBT API using string-concatenated arguments: Meta-data colle
 FbtElementNode {
   "__nodeCode": "fbt(['a', ' b ', fbt.param('name1', val1), ' c ', // comments
 ' d ', fbt.param('name2', val2), ' e '], 'a')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt(['a', ' b ', fbt.param('name1', val1), ' c ', // comments
-' d ', fbt.param('name2', val2), ' e '], 'a')
+'a'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -6230,15 +9240,23 @@ fbt.param('name2', val2)
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should maintain newlines" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A simple string... ', 'with some other stuff.'], 'blah')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt(['A simple string... ', 'with some other stuff.'], 'blah')
+'A simple string... '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -6278,6 +9296,14 @@ fbt(['A simple string... ', 'with some other stuff.'], 'blah')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -6287,12 +9313,9 @@ FbtElementNode {
   author: 'jwatson',
   project: 'Super Secret'
 })",
-  "__stringVariationArgs": [Error: Line 2 Column 3: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 2 Column 7: This method must be implemented in a child class
 ---
-fbt(['A string that moved files'], 'options!', {
-  author: 'jwatson',
-  project: 'Super Secret'
-})
+'A string that moved files'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -6317,15 +9340,23 @@ fbt(['A string that moved files'], 'options!', {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": "jwatson",
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "Super Secret",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should allow description concatenation" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A short string'], 'With a ridiculously long description that' + ' requires concatenation')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt(['A short string'], 'With a ridiculously long description that' + ' requires concatenation')
+'A short string'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -6350,15 +9381,23 @@ fbt(['A short string'], 'With a ridiculously long description that' + ' requires
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should be able to nest within React nodes" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A nested string'], 'nested!')",
-  "__stringVariationArgs": [Error: Line 3 Column 21: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 25: This method must be implemented in a child class
 ---
-fbt(['A nested string'], 'nested!')
+'A nested string'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -6382,6 +9421,14 @@ fbt(['A nested string'], 'nested!')
   "node": "BabelNode[type=CallExpression]",
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
+  },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
   },
 }
 `;
@@ -6389,9 +9436,9 @@ fbt(['A nested string'], 'nested!')
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should be able to nest within React nodes" 2`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A nested string'], 'nested!')",
-  "__stringVariationArgs": [Error: Line 3 Column 21: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 25: This method must be implemented in a child class
 ---
-fbt(['A nested string'], 'nested!')
+'A nested string'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -6416,15 +9463,23 @@ fbt(['A nested string'], 'nested!')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should convert simple strings" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A simple string'], \\"It's simple\\")",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 2 Column 15: This method must be implemented in a child class
 ---
-fbt(['A simple string'], "It's simple")
+'A simple string'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -6449,6 +9504,14 @@ fbt(['A simple string'], "It's simple")
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -6463,17 +9526,9 @@ FbtElementNode {
   \\"photos\\": 'photos',
   \\"videos\\": 'videos'
 }), \\"!\\"], 'enums!')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: This method must be implemented in a child class
 ---
-fbt(["Look!  ", fbt.enum('groups', {
-  groups: 'Groups',
-  photos: 'Photos',
-  videos: 'Videos'
-}), "  and  ", fbt.enum('groups', {
-  "groups": 'groups',
-  "photos": 'photos',
-  "videos": 'videos'
-}), "!"], 'enums!')
+"Look!  "
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -6574,6 +9629,14 @@ fbt.enum('groups', {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -6588,17 +9651,9 @@ FbtElementNode {
   photos: 'photos',
   videos: 'videos'
 }), '!'], 'enums!')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt(['Look! ', fbt.enum('groups', {
-  groups: 'Groups',
-  photos: 'Photos',
-  videos: 'Videos'
-}), ' and ', fbt.enum('groups', {
-  groups: 'groups',
-  photos: 'photos',
-  videos: 'videos'
-}), '!'], 'enums!')
+'Look! '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -6699,15 +9754,23 @@ fbt.enum('groups', {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should get project from docblock" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['Also simple string'], \\"It's simple\\")",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 2 Column 15: This method must be implemented in a child class
 ---
-fbt(['Also simple string'], "It's simple")
+'Also simple string'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -6732,6 +9795,14 @@ fbt(['Also simple string'], "It's simple")
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -6746,17 +9817,9 @@ FbtElementNode {
   photos: 'photos',
   videos: 'videos'
 }), '!'], 'enums!')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt(['Look! ', fbt.enum('groups', {
-  groups: 'Groups',
-  photos: 'Photos',
-  videos: 'Videos'
-}), ' and ', fbt.enum('groups', {
-  groups: 'groups',
-  photos: 'photos',
-  videos: 'videos'
-}), '!'], 'enums!')
+'Look! '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -6857,15 +9920,23 @@ fbt.enum('groups', {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle enums (with array values)" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['Click to see ', fbt.enum('groups', ['groups', 'photos', 'videos'])], 'enum as an array')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt(['Click to see ', fbt.enum('groups', ['groups', 'photos', 'videos'])], 'enum as an array')
+'Click to see '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -6905,6 +9976,14 @@ fbt.enum('groups', ['groups', 'photos', 'videos'])
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -6915,13 +9994,9 @@ FbtElementNode {
   id2: 'photos',
   id3: 'videos'
 })], 'enum as an object')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt(['Click to see ', fbt.enum('id1', {
-  id1: 'groups',
-  id2: 'photos',
-  id3: 'videos'
-})], 'enum as an object')
+'Click to see '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -6969,15 +10044,23 @@ fbt.enum('id1', {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle enums with more text after" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['Hello, ', fbt.enum('groups', ['groups', 'photos', 'videos']), '!'], 'enums!')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt(['Hello, ', fbt.enum('groups', ['groups', 'photos', 'videos']), '!'], 'enums!')
+'Hello, '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -7032,6 +10115,14 @@ fbt.enum('groups', ['groups', 'photos', 'videos'])
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -7043,14 +10134,9 @@ FbtElementNode {
   showCount: 'ifMany',
   many: 'likes'
 })], 'plurals')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt(['There ', fbt.plural('is ', count, {
-  many: 'are '
-}), fbt.plural('a like', count, {
-  showCount: 'ifMany',
-  many: 'likes'
-})], 'plurals')
+'There '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -7115,15 +10201,23 @@ fbt.plural('a like', count, {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle names" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['You just friended ', fbt.name('name', personname, gender)], 'names')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt(['You just friended ', fbt.name('name', personname, gender)], 'names')
+'You just friended '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -7163,15 +10257,23 @@ fbt.name('name', personname, gender)
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle object pronoun" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['I know ', fbt.pronoun('object', gender), '.'], 'object pronoun')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 11: This method must be implemented in a child class
 ---
-fbt(['I know ', fbt.pronoun('object', gender), '.'], 'object pronoun')
+'I know '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -7226,15 +10328,23 @@ fbt.pronoun('object', gender)
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle params" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A parameterized message to ', fbt.param('personName', truthy ? ifTrue : ifFalse)], 'Moar params')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt(['A parameterized message to ', fbt.param('personName', truthy ? ifTrue : ifFalse)], 'Moar params')
+'A parameterized message to '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -7274,6 +10384,14 @@ fbt.param('personName', truthy ? ifTrue : ifFalse)
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -7286,15 +10404,12 @@ FbtElementNode {
   name: 'dog_token',
   showCount: 'yes'
 })], 'plurals')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt([fbt.plural('cat', catCount, {
+fbt.plural('cat', catCount, {
   name: 'cat_token',
   showCount: 'yes'
-}), ' and ', fbt.plural('dog', dogCount, {
-  name: 'dog_token',
-  showCount: 'yes'
-})], 'plurals')
+})
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -7361,6 +10476,14 @@ fbt.plural('dog', dogCount, {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -7373,15 +10496,9 @@ FbtElementNode {
   showCount: 'ifMany',
   many: 'likes'
 })], 'plurals')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt(['There ', fbt.plural('was ', count, {
-  showCount: 'no',
-  many: 'were '
-}), fbt.plural('a like', count, {
-  showCount: 'ifMany',
-  many: 'likes'
-})], 'plurals')
+'There '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -7448,15 +10565,23 @@ fbt.plural('a like', count, {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle possessive pronoun" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['It is ', fbt.pronoun('possessive', gender), ' birthday.'], 'possessive pronoun')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 11: This method must be implemented in a child class
 ---
-fbt(['It is ', fbt.pronoun('possessive', gender), ' birthday.'], 'possessive pronoun')
+'It is '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -7511,6 +10636,14 @@ fbt.pronoun('possessive', gender)
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -7522,14 +10655,12 @@ FbtElementNode {
 }), ' wished ', fbt.pronoun('reflexive', gender, {
   human: true
 }), ' a happy birthday.'], 'subject+reflexive pronouns')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 11: This method must be implemented in a child class
 ---
-fbt([fbt.pronoun('subject', gender, {
+fbt.pronoun('subject', gender, {
   capitalize: true,
   human: true
-}), ' wished ', fbt.pronoun('reflexive', gender, {
-  human: true
-}), ' a happy birthday.'], 'subject+reflexive pronouns')
+})
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -7609,6 +10740,14 @@ fbt.pronoun('reflexive', gender, {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -7617,11 +10756,9 @@ FbtElementNode {
   "__nodeCode": "fbt(['You have ', fbt.param('count', val, {
   number: true
 }), ' likes. Comment on it to get more than ', fbt.sameParam('count'), ' likes'], 'test variations + sameParam')",
-  "__stringVariationArgs": [Error: Line 3 Column 7: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 9: This method must be implemented in a child class
 ---
-fbt(['You have ', fbt.param('count', val, {
-  number: true
-}), ' likes. Comment on it to get more than ', fbt.sameParam('count'), ' likes'], 'test variations + sameParam')
+'You have '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -7710,6 +10847,14 @@ fbt.sameParam('count')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -7718,11 +10863,9 @@ FbtElementNode {
   "__nodeCode": "fbt(['Click to see ', fbt.param('count', c, {
   number: true
 }), ' links'], 'variations!')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt(['Click to see ', fbt.param('count', c, {
-  number: true
-}), ' links'], 'variations!')
+'Click to see '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -7781,15 +10924,23 @@ fbt.param('count', c, {
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should handler wrapping parens" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 2 Column 15: This method must be implemented in a child class
 ---
-fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
+'foo'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -7859,15 +11010,23 @@ fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should handler wrapping parens" 2`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
-  "__stringVariationArgs": [Error: Line 3 Column 15: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 19: This method must be implemented in a child class
 ---
-fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
+'foo'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -7937,15 +11096,23 @@ fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should handler wrapping parens" 3`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
-  "__stringVariationArgs": [Error: Line 4 Column 15: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 4 Column 19: This method must be implemented in a child class
 ---
-fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
+'foo'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -8015,15 +11182,23 @@ fbt(['foo', 'bar', 'baz', 'qux'], 'desc')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should insert param in place of fbt.sameParam if it exists" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', val1), ' and ', fbt.sameParam('name1')], 'd')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt([fbt.param('name1', val1), ' and ', fbt.sameParam('name1')], 'd')
+fbt.param('name1', val1)
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -8078,6 +11253,14 @@ fbt.sameParam('name1')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -8086,11 +11269,11 @@ FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', foo ? <a>
               bar
             </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt([fbt.param('name1', foo ? <a>
+fbt.param('name1', foo ? <a>
               bar
-            </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')
+            </a> : qux)
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -8149,15 +11332,23 @@ fbt.param('name2', qux)
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should maintain newlines when using string templates" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt([\\"A simple string...\\\\nwith some other stuff.\\"], 'blah')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: This method must be implemented in a child class
 ---
-fbt(["A simple string...\\nwith some other stuff."], 'blah')
+"A simple string...\\nwith some other stuff."
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -8182,6 +11373,14 @@ fbt(["A simple string...\\nwith some other stuff."], 'blah')
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
@@ -8189,10 +11388,9 @@ exports[`Functional FBT API using string-concatenated arguments: Meta-data colle
 FbtElementNode {
   "__nodeCode": "fbt(['a', ' b ', fbt.param('name1', val1), ' c ', // comments
 ' d ', fbt.param('name2', val2), ' e '], 'a')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt(['a', ' b ', fbt.param('name1', val1), ' c ', // comments
-' d ', fbt.param('name2', val2), ' e '], 'a')
+'a'
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -8309,15 +11507,23 @@ fbt.param('name2', val2)
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
   },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
 }
 `;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should maintain newlines" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A simple string... ', 'with some other stuff.'], 'blah')",
-  "__stringVariationArgs": [Error: Line 2 Column 11: This method must be implemented in a child class
+  "__stringVariationArgs": [Error: Line 3 Column 9: This method must be implemented in a child class
 ---
-fbt(['A simple string... ', 'with some other stuff.'], 'blah')
+'A simple string... '
 ---],
   "_variationFactorValues": Array [],
   "children": Array [
@@ -8356,6 +11562,14 @@ fbt(['A simple string... ', 'with some other stuff.'], 'blah')
   "node": "BabelNode[type=CallExpression]",
   "nodeChecker": FbtNodeChecker {
     "moduleName": "fbt",
+  },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": false,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
   },
 }
 `;
