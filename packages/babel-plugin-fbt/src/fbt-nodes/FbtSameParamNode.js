@@ -10,6 +10,7 @@
 
 /*::
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
+import type {SVArgsList} from './FbtArguments';
 */
 
 const {
@@ -17,6 +18,10 @@ const {
 } = require('../FbtUtil');
 const FbtNode = require('./FbtNode');
 const {createInstanceFromFbtConstructCallsite} = require('./FbtNodeUtil');
+const {
+  isStringLiteral,
+} = require('@babel/types');
+const invariant = require('invariant');
 
 /**
  * Represents an <fbt:sameParam> or fbt.sameParam() construct.
@@ -38,8 +43,25 @@ class FbtSameParamNode
     return createInstanceFromFbtConstructCallsite(moduleName, node, this);
   }
 
-  _getTokenName() /*: ?string */ {
-    throw errorAt(this.node, 'not implemented yet');
+  _getTokenName() /*: string */ {
+    const [name] = this.getCallNodeArguments() || [];
+
+    invariant(isStringLiteral(name),
+      'Expected first argument of %s.sameParam to be a string literal, but got `%s`',
+      this.moduleName,
+      name && name.type || 'unknown',
+    );
+
+    return name.value;
+  }
+
+  getText(_argsList /*: SVArgsList */) /*: string */ {
+    try {
+      // TODO(T79804447): verify that the token name was already defined at the sentence level
+      return `{${this._getTokenName()}}`;
+    } catch (error) {
+      throw errorAt(this.node, error);
+    }
   }
 
   getArgsForStringVariationCalc() /*: $ReadOnlyArray<empty> */ {

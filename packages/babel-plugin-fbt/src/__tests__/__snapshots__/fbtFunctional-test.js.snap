@@ -698,9 +698,9 @@ Array [
     "desc": "It's simple",
     "filepath": undefined,
     "jsfbt": "Also simple string",
-    "line_beg": 2,
-    "line_end": 2,
-    "project": "",
+    "line_beg": 3,
+    "line_end": 3,
+    "project": "dev",
     "type": "text",
   },
 ]
@@ -3570,6 +3570,7 @@ exports[`Functional FBT API using array arguments: Meta-data collection should c
 FbtElementNode {
   "__nodeCode": "fbt(['A simple string'], \\"It's simple\\")",
   "__stringVariationArgs": Array [],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -3745,6 +3746,7 @@ exports[`Functional FBT API using array arguments: Meta-data collection should c
 FbtElementNode {
   "__nodeCode": "fbt(['Also simple string'], \\"It's simple\\")",
   "__stringVariationArgs": Array [],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -5262,6 +5264,7 @@ exports[`Functional FBT API using array arguments: Meta-data collection should c
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
   "__stringVariationArgs": Array [],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -5333,6 +5336,7 @@ exports[`Functional FBT API using array arguments: Meta-data collection should c
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
   "__stringVariationArgs": Array [],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -5404,6 +5408,7 @@ exports[`Functional FBT API using array arguments: Meta-data collection should c
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
   "__stringVariationArgs": Array [],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -5619,6 +5624,7 @@ exports[`Functional FBT API using array arguments: Meta-data collection should c
 FbtElementNode {
   "__nodeCode": "fbt([\\"A simple string...\\\\nwith some other stuff.\\"], 'blah')",
   "__stringVariationArgs": Array [],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -6575,9 +6581,9 @@ Array [
     "desc": "It's simple",
     "filepath": undefined,
     "jsfbt": "Also simple string",
-    "line_beg": 2,
-    "line_end": 2,
-    "project": "",
+    "line_beg": 3,
+    "line_end": 3,
+    "project": "dev",
     "type": "text",
   },
 ]
@@ -9434,6 +9440,7 @@ exports[`Functional FBT API using string-concatenated arguments: Meta-data colle
 FbtElementNode {
   "__nodeCode": "fbt(['A short string'], 'With a ridiculously long description that' + ' requires concatenation')",
   "__stringVariationArgs": Array [],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -9505,6 +9512,7 @@ exports[`Functional FBT API using string-concatenated arguments: Meta-data colle
 FbtElementNode {
   "__nodeCode": "fbt(['A simple string'], \\"It's simple\\")",
   "__stringVariationArgs": Array [],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -9820,6 +9828,7 @@ exports[`Functional FBT API using string-concatenated arguments: Meta-data colle
 FbtElementNode {
   "__nodeCode": "fbt(['Also simple string'], \\"It's simple\\")",
   "__stringVariationArgs": Array [],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -11122,6 +11131,7 @@ exports[`Functional FBT API using string-concatenated arguments: Meta-data colle
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
   "__stringVariationArgs": Array [],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -11193,6 +11203,7 @@ exports[`Functional FBT API using string-concatenated arguments: Meta-data colle
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
   "__stringVariationArgs": Array [],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -11264,6 +11275,7 @@ exports[`Functional FBT API using string-concatenated arguments: Meta-data colle
 FbtElementNode {
   "__nodeCode": "fbt(['foo', 'bar', 'baz', 'qux'], 'desc')",
   "__stringVariationArgs": Array [],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -11479,6 +11491,7 @@ exports[`Functional FBT API using string-concatenated arguments: Meta-data colle
 FbtElementNode {
   "__nodeCode": "fbt([\\"A simple string...\\\\nwith some other stuff.\\"], 'blah')",
   "__stringVariationArgs": Array [],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -11637,6 +11650,7 @@ exports[`Functional FBT API using string-concatenated arguments: Meta-data colle
 FbtElementNode {
   "__nodeCode": "fbt(['A simple string... ', 'with some other stuff.'], 'blah')",
   "__stringVariationArgs": Array [],
+  "_tokenSet": Object {},
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {

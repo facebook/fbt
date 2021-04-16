@@ -87,7 +87,6 @@ const generalTestData = {
 
   // Initially needed for JS source maps accuracy
   'should maintain newlines within arguments': {
-    filter: 'skip',
     input: withFbtRequireStatement(
       `var z = fbt(
         'a' +
@@ -129,9 +128,33 @@ const generalTestData = {
     ),
   },
 
+  'should throw when two arguments have the same names': {
+    input: withFbtRequireStatement(
+      `var z = fbt(
+        'a ' +
+        fbt.param('name', val1) +
+        fbt.param('name', val2) +
+        ' b',
+        'desc',
+      );`,
+    ),
+
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var z = fbt(
+        [
+          'a ',
+          fbt.param('name', val1),
+          fbt.param('name', val2),
+          ' b',
+        ], 'desc',
+      );`,
+    ),
+
+    throws: `There's already a token called "name" in this fbt call`,
+  },
+
   // Initially needed for JS source maps accuracy
   'should maintain intra-argument newlines': {
-    filter: 'skip',
     input: withFbtRequireStatement(
       `var z = fbt(
         fbt.param(
@@ -194,7 +217,6 @@ const generalTestData = {
   },
 
   'should be able to nest within React nodes': {
-    filter: 'skip',
     input: withFbtRequireStatement(
       `var React = require('react');
       var x = <div>{fbt('A nested string', 'nested!')}</div>;`,
@@ -300,7 +322,6 @@ const generalTestData = {
   },
 
   'should handle params': {
-    filter: 'skip',
     input: withFbtRequireStatement(
       `var x = fbt(
         'A parameterized message to ' +
@@ -332,7 +353,6 @@ const generalTestData = {
   },
 
   'should accept well-formed options': {
-    filter: 'skip',
     input: withFbtRequireStatement(
       `fbt('A string that moved files', 'options!', {
         author: 'jwatson',
@@ -731,7 +751,6 @@ const generalTestData = {
   },
 
   'should insert param in place of fbt.sameParam if it exists': {
-    filter: 'skip',
     input: withFbtRequireStatement(
       `var z = fbt(
         fbt.param('name1', val1) + ' and ' + fbt.sameParam('name1'),
@@ -1382,8 +1401,19 @@ function describeTestScenarios(testData) {
       }
     }
 
-    function stripDocBlock(code) {
-      return code.replace(/\/\*\*(?:\/|[^*]|\*+[^*\/])*\*+\/\n/, '');
+    function withThrowExpectation(throwExpectation, callback) {
+      return () => {
+        if (throwExpectation === true) {
+          expect(callback).toThrow();
+        } else if (
+          typeof throwExpectation === 'string' ||
+          throwExpectation instanceof RegExp
+        ) {
+          expect(callback).toThrow(throwExpectation);
+        } else {
+          callback();
+        }
+      };
     }
 
     function testFbtMetaData(title, originalSingleTestData, options) {
@@ -1395,20 +1425,18 @@ function describeTestScenarios(testData) {
           : originalSingleTestData.filter,
       };
 
-      // Skip scenarios that test an error
-      if (singleTestData.throws) {
-        return;
-      }
-
-      $it(singleTestData)(`for scenario "${title}"`, () => {
-        const fbtTransform = require('../index');
-        const pluginOptions = {
-          collectFbt: true,
-          reactNativeMode: options.reactNativeMode || false,
-        };
-        transform(stripDocBlock(singleTestData.input), pluginOptions);
-        expect(fbtTransform.getExtractedStrings()).toMatchSnapshot();
-      });
+      $it(singleTestData)(
+        `for scenario "${title}"`,
+        withThrowExpectation(singleTestData.throws, () => {
+          const fbtTransform = require('../index');
+          const pluginOptions = {
+            collectFbt: true,
+            reactNativeMode: options.reactNativeMode || false,
+          };
+          transform(singleTestData.input, pluginOptions);
+          expect(fbtTransform.getExtractedStrings()).toMatchSnapshot();
+        }),
+      );
     }
 
     describe('should collect correct meta data', () => {
@@ -1428,31 +1456,29 @@ function describeTestScenarios(testData) {
           : originalSingleTestData.filter,
       };
 
-      // Skip scenarios that test an error
-      if (singleTestData.throws) {
-        return;
-      }
+      $it(singleTestData)(
+        `for scenario "${title}"`,
+        withThrowExpectation(singleTestData.throws, () => {
+          const FbtFunctionCallProcessor = require('../babel-processors/FbtFunctionCallProcessor');
+          const spy = jest.spyOn(
+            FbtFunctionCallProcessor.prototype,
+            'convertToFbtNode',
+          );
 
-      $it(singleTestData)(`for scenario "${title}"`, () => {
-        const FbtFunctionCallProcessor = require('../babel-processors/FbtFunctionCallProcessor');
-        const spy = jest.spyOn(
-          FbtFunctionCallProcessor.prototype,
-          'convertToFbtNode',
-        );
+          const pluginOptions = {
+            collectFbt: true,
+            reactNativeMode: options.reactNativeMode || false,
+          };
+          transform(singleTestData.input, pluginOptions);
 
-        const pluginOptions = {
-          collectFbt: true,
-          reactNativeMode: options.reactNativeMode || false,
-        };
-        transform(stripDocBlock(singleTestData.input), pluginOptions);
-
-        expect(spy).toHaveBeenCalled();
-        for (const result of spy.mock.results) {
-          if (result.type === 'return') {
-            expect(result.value).toMatchSnapshot();
+          expect(spy).toHaveBeenCalled();
+          for (const result of spy.mock.results) {
+            if (result.type === 'return') {
+              expect(result.value).toMatchSnapshot();
+            }
           }
-        }
-      });
+        }),
+      );
     }
 
     describe('should create correct FbtNode objects', () => {

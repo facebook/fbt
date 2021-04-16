@@ -9,9 +9,9 @@
 'use strict';
 
 /*::
-import type {
-  FbtChildNode,
-} from './FbtNode';
+import type {ParamSet} from '../FbtUtil';
+import type {FbtChildNode, AnyFbtNode} from './FbtNode';
+import type {IFbtElementNode} from './FbtElementNode';
 import type {AnyStringVariationArg, SVArgsList} from './FbtArguments';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 */
@@ -19,6 +19,7 @@ import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 const {
   convertToStringArrayNodeIfNeeded,
   errorAt,
+  setUniqueToken,
 } = require('../FbtUtil');
 const {GenderStringVariationArg} = require('./FbtArguments');
 const FbtElementNode = require('./FbtElementNode');
@@ -37,12 +38,15 @@ const nullthrows = require('nullthrows');
  * Represents non-fbt JSX element nested inside an fbt callsite.
  */
 class FbtImplicitParamNode
-  extends FbtNode /*:: <AnyStringVariationArg, BabelNodeJSXElement, FbtChildNode> */ {
+  extends FbtNode /*:: <AnyStringVariationArg, BabelNodeJSXElement, FbtChildNode>
+  implements IFbtElementNode */ {
 
   /*::
   static +type: 'implicitElement';
   +options: {||};
   */
+
+  _tokenSet /*: ParamSet */ = {};
 
   // Returns the string description which depends on the string variation factor values
   getDescription(_args /*: SVArgsList */) /*: string */ {
@@ -55,10 +59,6 @@ class FbtImplicitParamNode
 
   _getSubjectNode() /*: ?BabelNode */ {
     return this._getElementNode().options.subject;
-  }
-
-  getProject() /*: string */ {
-    return this._getElementNode().getProject();
   }
 
   getArgsForStringVariationCalc() /*: $ReadOnlyArray<AnyStringVariationArg> */ {
@@ -146,6 +146,10 @@ class FbtImplicitParamNode
 
     fbtChildren.forEach(implicitElement.appendChild, implicitElement);
     return implicitElement;
+  }
+
+  registerToken(name /*: string */, source /*: AnyFbtNode */) /*: void */ {
+    setUniqueToken(source.node, this.moduleName, name, this._tokenSet);
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes

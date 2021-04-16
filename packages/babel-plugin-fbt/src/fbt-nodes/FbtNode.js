@@ -15,6 +15,7 @@ import type {BabelNodeCallExpressionArgument} from '../FbtUtil';
 import type {GenderConstEnum} from '../Gender';
 import type {JSModuleNameType} from '../FbtConstants';
 
+import type FbtElementNode from './FbtElementNode';
 import type FbtEnumNode from './FbtEnumNode';
 import type FbtImplicitParamNode from './FbtImplicitParamNode';
 import type FbtNameNode from './FbtNameNode';
@@ -163,7 +164,7 @@ class FbtNode/*:: <
     throw errorAt(this.node, 'This method must be implemented in a child class');
   }
 
-  getText(_args /*: SVArgsList */) /*: string */ {
+  getText(_argsList /*: SVArgsList */) /*: string */ {
     throw errorAt(this.node, 'This method must be implemented in a child class');
   }
 

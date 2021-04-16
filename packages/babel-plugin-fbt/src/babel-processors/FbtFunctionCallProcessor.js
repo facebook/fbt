@@ -683,15 +683,25 @@ class FbtFunctionCallProcessor {
     const stringVariationArgs = fbtElement.getArgsForStringVariationCalc();
     // Create all combinations of string variation arguments
     const argsCombinations = this._getStringVariationCombinations(stringVariationArgs);
+    const {author, project} = fbtElement.options;
     return [fbtElement, ...fbtElement.getImplicitParamNodes()]
       .map(fbtNode => {
-        const project = fbtNode.getProject();
+        const stubPhrase = {
+          ...this.defaultFbtOptions,
+        };
+        if (author) {
+          stubPhrase.author = author;
+        }
+        if (project) {
+          stubPhrase.project = project;
+        }
+
         if (argsCombinations.length === 0) { // simple string without any variation
           return {
             phrase: {
+              ...stubPhrase,
               desc: fbtNode.getDescription(new CursorArray([])),
               jsfbt: fbtNode.getText(new CursorArray([])),
-              project,
               type: 'text',
             },
             fbtNode,
@@ -699,12 +709,12 @@ class FbtFunctionCallProcessor {
         }
 
         const phrase = {
+          ...stubPhrase,
           desc: '',
           jsfbt: {
             t: {},
             m: {},
           },
-          project,
           type: 'table',
         };
 

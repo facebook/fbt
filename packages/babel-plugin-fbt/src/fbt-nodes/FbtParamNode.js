@@ -10,7 +10,9 @@
 'use strict';
 
 /*::
+import type {SVArgsList} from './FbtArguments';
 import type {FbtOptionValue, JSModuleNameType} from '../FbtConstants';
+import type {AnyFbtNode} from './FbtNode';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 
 type Options = {|
@@ -32,7 +34,10 @@ const {
 } = require('../FbtUtil');
 const {GenderStringVariationArg, NumberStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
-const {createInstanceFromFbtConstructCallsite} = require('./FbtNodeUtil');
+const {
+  createInstanceFromFbtConstructCallsite,
+  getClosestElementOrImplicitParamNodeAncestor,
+} = require('./FbtNodeUtil');
 const {
   isStringLiteral,
 } = require('@babel/types');
@@ -110,6 +115,16 @@ class FbtParamNode extends FbtNode/*:: <
       ret.push(new NumberStringVariationArg(number === true ? null : number));
     }
     return ret;
+  }
+
+  setParent(parent /*: ?AnyFbtNode */) /*: this */ {
+    super.setParent(parent);
+    getClosestElementOrImplicitParamNodeAncestor(this).registerToken(this.options.name, this);
+    return this;
+  }
+
+  getText(_argsList /*: SVArgsList */) /*: string */ {
+    return `{${this.options.name}}`;
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes

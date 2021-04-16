@@ -54,7 +54,7 @@ class FbtTextNode
     return [];
   }
 
-  getText(_args /*: SVArgsList */) /*: string */ {
+  getText(_argsList /*: SVArgsList */) /*: string */ {
     return this.node.value;
   }
 }
