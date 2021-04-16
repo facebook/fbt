@@ -25,7 +25,6 @@ const path = require('path');
 const yargs = require('yargs');
 
 const args = {
-  AUXILIARY_TEXTS: 'auxiliary-texts',
   COMMON_STRINGS: 'fbt-common-path',
   CUSTOM_COLLECTOR: 'custom-collector',
   HASH: 'hash-module',
@@ -87,12 +86,6 @@ const argv = yargs
   )
   .describe(args.HELP, 'Display usage message')
   .alias(args.HELP, 'help')
-  .boolean(args.AUXILIARY_TEXTS)
-  .describe(
-    args.AUXILIARY_TEXTS,
-    'Include auxiliary intermediary data-structure `texts` that includes the ' +
-      'list of constructs passed to the fbt instance.',
-  )
   .boolean(args.MANIFEST)
   .default(args.MANIFEST, false)
   .describe(
@@ -194,7 +187,6 @@ function getFbtCollector(
 
 const fbtCollector = getFbtCollector(
   {
-    auxiliaryTexts: argv[args.AUXILIARY_TEXTS],
     plugins: argv[args.PLUGINS].map(require),
     presets: argv[args.PRESETS].map(require),
     reactNativeMode: argv[args.REACT_NATIVE_MODE],

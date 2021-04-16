@@ -22,7 +22,6 @@ import type {BabelPluginList, BabelPresetList} from '@babel/core';
 import type {EnumManifest} from '../FbtEnumRegistrar';
 import type {BabelPluginFbt, Phrase, ExtraOptions, PluginOptions} from '../index';
 export type CollectorConfig = {|
-  auxiliaryTexts: boolean,
   fbtCommonPath?: string,
   plugins?: BabelPluginList,
   presets?: BabelPresetList,
@@ -79,7 +78,6 @@ class FbtCollector implements IFbtCollector {
     fbtEnumManifest /*::?: EnumManifest*/,
   ) /*: void*/ {
     const options = {
-      auxiliaryTexts: this._config.auxiliaryTexts,
       collectFbt: true,
       extraOptions: this._extraOptions,
       fbtCommonPath: this._config.fbtCommonPath,

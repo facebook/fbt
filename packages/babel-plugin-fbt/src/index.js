@@ -42,7 +42,6 @@ export type FbtBabelNodeShape = $Shape<ExtraBabelNodeProps>;
 export type ExtraOptions = {[optionName: string]: boolean};
 type FbtEnumLoader = (enumFilePath: string) => EnumModule;
 export type PluginOptions = {|
-  auxiliaryTexts?: boolean,
   collectFbt?: boolean,
   extraOptions: ExtraOptions,
   fbtBase64?: boolean,
@@ -128,7 +127,6 @@ export type Phrase = {|
   line_beg: number,
   line_end: number,
   project: string,
-  texts?: ExtractTableTextItems,
   ...ObjectWithJSFBT,
 |};
 type ChildToParentMap = {[childIndex: number]: number};
@@ -297,11 +295,6 @@ function FbtTransform(babel /*: {
         // path.replaceWith(callNode);
 
         if (pluginOptions.collectFbt) {
-          // TODO(T40113359): implement attaching the "texts" data onto the "phrase" object
-          // if (pluginOptions.auxiliaryTexts) {
-          //   phrase.texts = texts;
-          // }
-
           let topLevelStringIndex;
           metaPhrases.forEach(({fbtNode, phrase}, index) => {
             if (phrase.doNotExtract) {
