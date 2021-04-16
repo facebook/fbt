@@ -28,6 +28,7 @@ import type {
   PatternHash,
   PatternString,
 } from '../../../runtime/shared/FbtTable';
+import typeof {FbtVariationType} from './translate/IntlVariations';
 
 export type ExtraBabelNodeProps = {
   implicitDesc?: string,
@@ -86,10 +87,24 @@ type TableJSFBTTreeLeaf =
       |},
   |};
 
-type TableJSFBT = {
-  t: TableJSFBTTree,
-  m: {}
-};
+// Describes the usage of one level of the JSFBT table tree
+export type JSFBTMetaEntry = $ReadOnly<{|
+  type: $PropertyType<FbtVariationType, 'NUMBER'>,
+  singular?: true, // TODO(T29504932) deprecate this
+  token?: string, // token name
+|} | {|
+  type: $PropertyType<FbtVariationType, 'GENDER'>,
+  token: string, // token name
+|} | {|
+  type: $PropertyType<FbtVariationType, 'PRONOUN'>,
+|} | {| // for enums
+  range: $ReadOnlyArray<string>,
+|}>;
+
+type TableJSFBT = $ReadOnly<{|
+  t: $ReadOnly<TableJSFBTTree>,
+  m: $ReadOnlyArray<?JSFBTMetaEntry>,
+|}>;
 
 export type ObjectWithJSFBT = {|
   type: 'text',

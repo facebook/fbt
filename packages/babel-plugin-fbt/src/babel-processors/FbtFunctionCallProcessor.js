@@ -628,41 +628,17 @@ class FbtFunctionCallProcessor {
   }
 
   /**
-   * Get all the string variation combinations derived from a list of string variation arguments.
-   *
-   * E.g. If we have a list of string variation arguments as:
-   *
-   * [genderSV, numberSV]
-   *
-   * Assuming genderSV produces candidate variation values as: male, female, unknown
-   * Assuming numberSV produces candidate variation values as: singular, plural
-   *
-   * The output would be:
-   * [
-   *   [  genderSV(male),     numberSV(singular)  ],
-   *   [  genderSV(male),     numberSV(plural)    ],
-   *   [  genderSV(female),   numberSV(singular)  ],
-   *   [  genderSV(female),   numberSV(plural)    ],
-   *   [  genderSV(unknown),  numberSV(singular)  ],
-   *   [  genderSV(unknown),  numberSV(plural)    ],
-   * ]
-   */
-  _getStringVariationCombinations(args /*: $ReadOnlyArray<AnyStringVariationArg> */)
-  /*: $ReadOnlyArray<$ReadOnlyArray<AnyStringVariationArg>> */ {
-    return new JSFbtBuilder(
-      this.fileSource,
-      args,
-      this.pluginOptions.reactNativeMode,
-    ).getStringVariationCombinations();
-  }
-
-  /**
    * Generates a list of meta-phrases from a given FbtElement node
    */
   _metaPhrases(fbtElement /*: FbtElementNode */) /*: $ReadOnlyArray<MetaPhrase> */ {
     const stringVariationArgs = fbtElement.getArgsForStringVariationCalc();
-    // Create all combinations of string variation arguments
-    const argsCombinations = this._getStringVariationCombinations(stringVariationArgs);
+    const jsfbtBuilder = new JSFbtBuilder(
+      this.fileSource,
+      stringVariationArgs,
+      this.pluginOptions.reactNativeMode,
+    );
+    const argsCombinations = jsfbtBuilder.getStringVariationCombinations();
+    const jsfbtMetadata = jsfbtBuilder.buildMetadata(stringVariationArgs);
     const {author, project} = fbtElement.options;
     return [fbtElement, ...fbtElement.getImplicitParamNodes()]
       .map(fbtNode => {
@@ -692,8 +668,8 @@ class FbtFunctionCallProcessor {
           ...stubPhrase,
           desc: '',
           jsfbt: {
+            m: jsfbtMetadata,
             t: {},
-            m: {},
           },
           type: 'table',
         };

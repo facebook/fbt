@@ -13,15 +13,21 @@
 import type {AnyStringVariationArg} from './fbt-nodes/FbtArguments';
 import type {EnumKey} from './FbtEnumRegistrar';
 import type {GenderConstEnum} from './Gender';
+import type {JSFBTMetaEntry} from './index';
 
 const {
   EnumStringVariationArg,
   GenderStringVariationArg,
   NumberStringVariationArg,
 } = require('./fbt-nodes/FbtArguments');
+const FbtElementNode = require('./fbt-nodes/FbtElementNode');
 const FbtEnumNode = require('./fbt-nodes/FbtEnumNode');
+const FbtImplicitParamNode = require('./fbt-nodes/FbtImplicitParamNode');
+const FbtNameNode = require('./fbt-nodes/FbtNameNode');
+const FbtParamNode = require('./fbt-nodes/FbtParamNode');
 const FbtPluralNode = require('./fbt-nodes/FbtPluralNode');
 const FbtPronounNode = require('./fbt-nodes/FbtPronounNode');
+const {ShowCountKeys} = require('./FbtConstants');
 const {varDump} = require('./FbtUtil');
 const {
   EXACTLY_ONE,
@@ -31,17 +37,43 @@ const {
   SUBJECT,
 } = require('./translate/IntlVariations');
 const invariant = require('invariant');
+const nullthrows = require('nullthrows');
 
+/**
+ * Helper class to assemble the JSFBT table data.
+ * It's responsible for:
+ * - producing all the combinations of string variations' candidate values,
+ * from a given list of string variation arguments.
+ * - generating metadata to describe the meaning of each level of the JSFBT table tree.
+ */
 class JSFbtBuilder {
+  /**
+   * Source code that matches the Babel nodes used in the provided `stringVariationArgs`
+   */
   +fileSource: string;
+  /**
+   * Map of fbt:enum at the current recursion level of `_getStringVariationCombinations()`
+   */
   +usedEnums: {[enumArgCode: string]: EnumKey};
+  /**
+   * Map of fbt:plural at the current recursion level of `_getStringVariationCombinations()`
+   */
   +usedPlurals: {
     [pluralsArgCode: string]: typeof EXACTLY_ONE | typeof NUMBER_ANY,
   };
+  /**
+   * Map of fbt:pronoun at the current recursion level of `_getStringVariationCombinations()`
+   */
   +usedPronouns: {
     [pronounsArgCode: string]: GenderConstEnum | typeof GENDER_ANY,
   };
+  /**
+   * Set this to `true` if we're extracting strings for React Native
+   */
   +reactNativeMode: boolean;
+  /**
+   * List of string variation arguments from a given fbt callsite
+   */
   +stringVariationArgs: $ReadOnlyArray<AnyStringVariationArg>;
 
   constructor(
@@ -57,77 +89,122 @@ class JSFbtBuilder {
     this.usedPronouns = {};
   }
 
-  buildMetadata(texts: $FlowFixMe): $FlowFixMe {
-    const metadata = [];
+  /**
+   * Generates a list of metadata entries that describe the usage of each level
+   * of the JSFBT table tree
+   * @param compactStringVariationArgs Consolidated list of string variation arguments.
+   * See FbtFunctionCallProcessor#_compactStringVariationArgs()
+   */
+  buildMetadata(
+    compactStringVariationArgs: $ReadOnlyArray<AnyStringVariationArg>,
+  ): Array<?JSFBTMetaEntry> {
+    const metadata: Array<?JSFBTMetaEntry> = [];
     const enums = {};
-    texts.forEach(function (item) {
-      if (typeof item === 'string') {
+
+    compactStringVariationArgs.forEach(svArg => {
+      const {fbtNode} = svArg;
+
+      if (fbtNode instanceof FbtPluralNode) {
+        if (fbtNode.options.showCount !== ShowCountKeys.no) {
+          metadata.push({
+            token: nullthrows(fbtNode.options.name),
+            type: FbtVariationType.NUMBER,
+            singular: true,
+          });
+        } else {
+          metadata.push(
+            this.reactNativeMode ? {type: FbtVariationType.NUMBER} : null,
+          );
+        }
         return;
       }
 
-      switch (item.type) {
-        case 'gender':
-        case 'number':
-          metadata.push({
-            token: item.token,
-            type:
-              item.type === 'number'
-                ? FbtVariationType.NUMBER
-                : FbtVariationType.GENDER,
-          });
-          break;
+      if (
+        fbtNode instanceof FbtElementNode ||
+        fbtNode instanceof FbtImplicitParamNode
+      ) {
+        metadata.push({
+          token: SUBJECT,
+          type: FbtVariationType.GENDER,
+        });
+        return;
+      }
 
-        case 'plural':
-          if (item.showCount !== 'no') {
-            metadata.push({
-              token: item.name,
-              type: FbtVariationType.NUMBER,
-              singular: true,
-            });
-          } else {
-            metadata.push(
-              this.reactNativeMode ? {type: FbtVariationType.NUMBER} : null,
-            );
-          }
-          break;
+      if (fbtNode instanceof FbtPronounNode) {
+        metadata.push(
+          this.reactNativeMode ? {type: FbtVariationType.PRONOUN} : null,
+        );
+        return;
+      }
 
-        case 'subject':
-          metadata.push({
-            token: SUBJECT,
-            type: FbtVariationType.GENDER,
-          });
-          break;
+      if (svArg instanceof EnumStringVariationArg) {
+        invariant(
+          fbtNode instanceof FbtEnumNode,
+          'Expected fbtNode to be an instance of FbtEnumNode but got `%s` instead',
+          fbtNode.constructor.name || varDump(fbtNode),
+        );
 
         // We ensure we have placeholders in our metadata because enums and
         // pronouns don't have metadata and will add "levels" to our resulting
-        // table. In the example in the docblock of buildTable(), we'd expect
-        //     array({range: ...}, array('token' => 'count', 'type' => ...))
-        case 'enum':
-          // Only add an enum if it adds a level. Duplicated enum values do not
-          // add levels.
-          if (!(item.value in enums)) {
-            enums[item.value] = true;
-            let metadataEntry = null;
-            if (this.reactNativeMode) {
-              // Enum range will later be used to extract enums from the payload
-              // for React Native
-              metadataEntry = {range: Object.keys(item.range)};
-            }
-            metadata.push(metadataEntry);
+        // table.
+        //
+        // Example for the code:
+        //
+        //   fbt.enum(value, {
+        //     groups: 'Groups',
+        //     photos: 'Photos',
+        //     videos: 'Videos',
+        //   })
+        //
+        // Expected metadata entry:
+        //   for non-RN -> `null`
+        //   for RN     -> `{range: ['groups', 'photos', 'videos']}`
+
+        // Only add an enum if it adds a level. Duplicated enum values do not add levels.
+        const argCode = svArg.getArgCode(this.fileSource);
+        if (!(argCode in enums)) {
+          enums[argCode] = true;
+          let metadataEntry = null;
+          if (this.reactNativeMode) {
+            // Enum range will later be used to extract enums from the payload
+            // for React Native
+            metadataEntry = {range: Object.keys(fbtNode.options.range)};
           }
-          break;
-
-        case 'pronoun':
-          metadata.push(
-            this.reactNativeMode ? {type: FbtVariationType.PRONOUN} : null,
-          );
-          break;
-
-        default:
-          metadata.push(null);
-          break;
+          metadata.push(metadataEntry);
+        }
+        return;
       }
-    }, this);
+
+      if (
+        svArg instanceof GenderStringVariationArg ||
+        svArg instanceof NumberStringVariationArg
+      ) {
+        invariant(
+          fbtNode instanceof FbtNameNode || fbtNode instanceof FbtParamNode,
+          'Expected fbtNode to be an instance of FbtNameNode or FbtParamNode but got `%s` instead',
+          fbtNode.constructor.name || varDump(fbtNode),
+        );
+        metadata.push(
+          svArg instanceof NumberStringVariationArg
+            ? {
+                token: fbtNode.options.name,
+                type: FbtVariationType.NUMBER,
+              }
+            : {
+                token: fbtNode.options.name,
+                type: FbtVariationType.GENDER,
+              },
+        );
+        return;
+      }
+
+      invariant(
+        false,
+        'Unsupported string variation argument: %s',
+        varDump(svArg),
+      );
+    });
+
     return metadata;
   }
 

@@ -5,9 +5,9 @@
  * @flow strict
  */
 
-/*::
+/* eslint-disable fb-www/flow-exact-by-default-object-types */
+
 export type IntlVariationsEnum = $IntlVariationsEnum;
-*/
 
 // Must match with `IntlVariations.js`
 const IntlNumberVariations = {
@@ -35,7 +35,11 @@ const IntlVariationMask = {
   GENDER: 0x03, // 0b00011
 };
 
-const IntlFbtVariationType = {
+const IntlFbtVariationType: $ReadOnly<{|
+  GENDER: 1,
+  NUMBER: 2,
+  PRONOUN: 3,
+|}> = {
   GENDER: 1,
   NUMBER: 2,
   PRONOUN: 3,

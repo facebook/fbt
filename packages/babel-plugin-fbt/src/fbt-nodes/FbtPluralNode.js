@@ -15,7 +15,7 @@ import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 type Options = {|
   count: BabelNode, // Represents the number used for determining the plural case at runtime
   many?: ?string, // text to show when count>1
-  name?: ?string, // token name
+  name: string, // token name
   // If true, show the `count` number as a prefix of the current plural text
   showCount?: ?$Keys<$PropertyType<typeof ValidPluralOptions, 'showCount'>>,
   value?: ?BabelNode, // optional value to replace token (rather than count)

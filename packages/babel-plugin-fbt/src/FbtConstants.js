@@ -11,10 +11,10 @@
  * @flow strict-local
  */
 /*eslint max-len: ["error", 100]*/
+/* eslint-disable fb-www/flow-exact-by-default-object-types */
 
 const keyMirror = require('fbjs/lib/keyMirror');
 
-/*::
 export type FbtOptionValue = string | boolean | BabelNode;
 export type FbtOptionValues<K> = {|[K]: ?FbtOptionValue|};
 export type FbtOptionConfig<K> = {|[K]: {[optionValue: string]: true} | true |};
@@ -35,8 +35,6 @@ export type FbtCallSiteOptions = $Shape<{|
 // JS module names without the "React FBT" variant
 export type JSModuleNameType = 'fbt' | 'fbs';
 export type ValidPronounUsagesKey = $Keys<typeof ValidPronounUsages>;
-export type ShowCountKey = $Keys<typeof ShowCount>;
-*/
 
 const SENTINEL = '__FBT__';
 
@@ -49,6 +47,8 @@ const ShowCount = {
   no: true,
   ifMany: true,
 };
+
+const ShowCountKeys: $ObjMapi<typeof ShowCount, <K>(K) => K> = keyMirror(ShowCount);
 
 const PluralOptions = {
   value: true, // optional value to replace token (rather than count)
@@ -149,6 +149,7 @@ module.exports = {
   PronounRequiredAttributes,
   RequiredParamOptions,
   SENTINEL,
+  ShowCountKeys,
   ValidFbtOptions,
   ValidParamOptions,
   ValidPluralOptions,
