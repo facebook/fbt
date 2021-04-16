@@ -40,7 +40,10 @@ const {compactBabelNodeProps} = require('../FbtUtil');
  *    </fbt:plural>
  */
 class FbtArgumentBase /*:: <B: ?BabelNode> */ {
-  /*:: +node: B; */
+  /*::
+  // BabelNode representing the value of this argument
+  +node: B;
+  */
 
   constructor(node /*: B */) {
     this.node = node;
@@ -114,7 +117,11 @@ class GenericArg extends FbtArgumentBase /*:: <BabelNode> */ {
  */
 class StringVariationArg /*:: <Value, B: ?BabelNode = BabelNode> */
   extends FbtArgumentBase /*:: <B> */ {
-  /*:: +value: ?Value; */
+  /*::
+  +value: ?Value;
+  // TODO(T40113359) Add a reference to the FbtNode creator of this instance
+  // +fbtNode: FbtNode,
+  */
 
   constructor(node /*: B */, value /*: ?Value */) {
     super(node);

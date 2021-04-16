@@ -579,12 +579,12 @@ function extractEnumRange(
   return node.properties.reduce((acc, prop) => {
     if (!isObjectProperty(prop)) {
       throw new Error(
-        `fbt enum range values must be StringLiteral, got ${prop.type}`,
+        `fbt enum range properties must be ObjectProperty, got ${prop.type}`,
       );
     }
     if (!isStringLiteral(prop.value)) {
       throw new Error(
-        `fbt enum range values must be StringLiteral, got ${prop.value.type}`,
+        `fbt enum range property values must be StringLiteral, got ${prop.value.type}`,
       );
     }
     acc[prop.key.name || prop.key.value] = prop.value.value;
