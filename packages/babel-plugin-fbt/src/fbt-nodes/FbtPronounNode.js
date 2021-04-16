@@ -10,7 +10,7 @@
 'use strict';
 
 /*::
-import type {SVArgsList} from './FbtArguments';
+import type {StringVariationArgsMap} from './FbtArguments';
 import type {ValidPronounUsagesKey} from '../FbtConstants';
 import type {GenderConstEnum} from '../Gender';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
@@ -123,9 +123,9 @@ class FbtPronounNode extends FbtNode/*:: <
     );
   }
 
-  getText(argsList: SVArgsList): string {
+  getText(argsMap: StringVariationArgsMap): string {
     try {
-      const svArg = GenderStringVariationArg.assert(argsList.consumeOne());
+      const svArg = argsMap.get(this);
       const svArgValue = nullthrows(svArg.value);
       const {options} = this;
 

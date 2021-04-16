@@ -9,7 +9,7 @@
 'use strict';
 
 /*::
-import type {SVArgsList} from './FbtArguments';
+import type {StringVariationArgsMap} from './FbtArguments';
 import type {EnumModule, EnumKey} from '../FbtEnumRegistrar';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 
@@ -118,9 +118,9 @@ class FbtEnumNode
     }
   }
 
-  getText(argsList: SVArgsList): string {
+  getText(argsMap: StringVariationArgsMap): string {
     try {
-      const svArg = EnumStringVariationArg.assert(argsList.consumeOne());
+      const svArg = argsMap.get(this);
       const svArgValue = nullthrows(svArg.value);
       return nullthrows(
         this.options.range[svArgValue],

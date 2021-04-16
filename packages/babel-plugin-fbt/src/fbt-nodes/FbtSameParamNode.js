@@ -10,7 +10,7 @@
 
 /*::
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
-import type {SVArgsList} from './FbtArguments';
+import type {StringVariationArgsMap} from './FbtArguments';
 */
 
 const {
@@ -55,7 +55,7 @@ class FbtSameParamNode
     return name.value;
   }
 
-  getText(_argsList /*: SVArgsList */) /*: string */ {
+  getText(_argsList /*: StringVariationArgsMap */) /*: string */ {
     try {
       // TODO(T79804447): verify that the token name was already defined at the sentence level
       return tokenNameToTextPattern(this._getTokenName());

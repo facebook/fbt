@@ -13,7 +13,7 @@
 import type {ParamSet} from '../FbtUtil';
 import type FbtImplicitParamNodeType from './FbtImplicitParamNode';
 import type {JSModuleNameType} from '../FbtConstants';
-import type {AnyStringVariationArg, SVArgsList} from './FbtArguments';
+import type {AnyStringVariationArg, StringVariationArgsMap} from './FbtArguments';
 import type {FbtChildNode, AnyFbtNode} from './FbtNode';
 
 type Options = {|
@@ -37,9 +37,9 @@ type Options = {|
 
 export interface IFbtElementNode {
   /**
-   * Returns description of this fbt string for the given list of string variation arguments
+   * Returns description of this fbt string for the given map of string variation arguments
    */
-  getDescription(argsList: SVArgsList): string;
+  getDescription(argsMap: StringVariationArgsMap): string;
   /**
    * Register a token name
    * @throws if the token name was already registered
@@ -160,11 +160,11 @@ class FbtElementNode
   }
 
   getText(
-    argsList: SVArgsList,
+    argsMap: StringVariationArgsMap,
   ): string {
     return getTextFromFbtNodeTree(
       this,
-      argsList,
+      argsMap,
       this.options.subject,
       this.options.preserveWhitespace,
       getChildNodeText,
@@ -172,12 +172,12 @@ class FbtElementNode
   }
 
   getTextForDescription(
-    argsList: SVArgsList,
+    argsMap: StringVariationArgsMap,
     targetFbtNode: FbtImplicitParamNodeType,
   ): string {
     return getTextFromFbtNodeTree(
       this,
-      argsList,
+      argsMap,
       this.options.subject,
       this.options.preserveWhitespace,
       getChildNodeTextForDescription.bind(null, targetFbtNode),
@@ -187,7 +187,7 @@ class FbtElementNode
   /**
    * @see IFbtElementNode#getDescription
    */
-  getDescription(_args /*: SVArgsList */) /*: string */ {
+  getDescription(_args /*: StringVariationArgsMap */) /*: string */ {
     const [_, descriptionNode] = this.getCallNodeArguments() || [];
     invariant(descriptionNode != null, 'fbt description argument cannot be found');
 

@@ -9,7 +9,7 @@
 'use strict';
 
 /*::
-import type {SVArgsList} from './FbtArguments';
+import type {StringVariationArgsMap} from './FbtArguments';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 */
 
@@ -54,7 +54,7 @@ class FbtTextNode
     return [];
   }
 
-  getText(_argsList /*: SVArgsList */) /*: string */ {
+  getText(_argsList /*: StringVariationArgsMap */) /*: string */ {
     return this.node.value;
   }
 }

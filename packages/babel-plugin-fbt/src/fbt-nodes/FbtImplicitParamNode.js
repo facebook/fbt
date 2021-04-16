@@ -12,7 +12,7 @@
 import type {ParamSet} from '../FbtUtil';
 import type {FbtChildNode, AnyFbtNode} from './FbtNode';
 import type {IFbtElementNode} from './FbtElementNode';
-import type {AnyStringVariationArg, SVArgsList} from './FbtArguments';
+import type {AnyStringVariationArg, StringVariationArgsMap} from './FbtArguments';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 */
 
@@ -69,11 +69,11 @@ class FbtImplicitParamNode
   }
 
   getText(
-    argsList: SVArgsList,
+    argsMap: StringVariationArgsMap,
   ): string {
     return getTextFromFbtNodeTree(
       this,
-      argsList,
+      argsMap,
       this._getSubjectNode(),
       this._getElementNode().options.preserveWhitespace,
       getChildNodeText,
@@ -81,12 +81,12 @@ class FbtImplicitParamNode
   }
 
   getTextForDescription(
-    argsList: SVArgsList,
+    argsMap: StringVariationArgsMap,
     targetFbtNode: FbtImplicitParamNode,
   ): string {
     return getTextFromFbtNodeTree(
       this,
-      argsList,
+      argsMap,
       this._getSubjectNode(),
       this._getElementNode().options.preserveWhitespace,
       getChildNodeTextForDescription.bind(null, targetFbtNode),
@@ -99,13 +99,13 @@ class FbtImplicitParamNode
    *
    * E.g. `=Hello [name]`
    */
-  getTokenName(argsList: SVArgsList): string {
+  getTokenName(argsMap: StringVariationArgsMap): string {
     return convertToTokenName(getTextFromFbtNodeTree(
       this,
-      argsList,
+      argsMap,
       this._getSubjectNode(),
       this._getElementNode().options.preserveWhitespace,
-      (_, child) => child.getText(argsList),
+      (_, child) => child.getText(argsMap),
     ));
   }
 
@@ -113,8 +113,8 @@ class FbtImplicitParamNode
    * Returns the string description which depends on the string variation factor values
    * from the whole fbt callsite.
    */
-  getDescription(argsList: SVArgsList): string {
-    return `In the phrase: "${this._getElementNode().getTextForDescription(argsList, this)}"`;
+  getDescription(argsMap: StringVariationArgsMap): string {
+    return `In the phrase: "${this._getElementNode().getTextForDescription(argsMap, this)}"`;
   }
 
   /**

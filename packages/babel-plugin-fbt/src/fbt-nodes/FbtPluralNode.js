@@ -10,7 +10,7 @@
 'use strict';
 
 /*::
-import type {SVArgsList} from './FbtArguments';
+import type {StringVariationArgsMap} from './FbtArguments';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 
 type Options = {|
@@ -99,9 +99,9 @@ class FbtPluralNode extends FbtNode/*:: <
     }
   }
 
-  getText(argsList: SVArgsList): string {
+  getText(argsMap: StringVariationArgsMap): string {
     try {
-      const svArg = NumberStringVariationArg.assert(argsList.consumeOne());
+      const svArg = argsMap.get(this);
       const svArgValue = nullthrows(svArg.value);
       const {name, showCount} = this.options;
 

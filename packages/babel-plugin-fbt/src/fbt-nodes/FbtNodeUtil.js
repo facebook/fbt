@@ -11,9 +11,9 @@
 /*::
 import type {AnyFbtNode, FbtChildNode} from './FbtNode';
 import type {JSModuleNameType} from '../FbtConstants';
-import type {SVArgsList} from './FbtArguments';
 import type FbtElementNode from './FbtElementNode';
 import type FbtImplicitParamNodeType from './FbtImplicitParamNode';
+import type {StringVariationArgsMap} from './FbtArguments';
 
 export type FromBabelNodeFunctionArgs = {|
   moduleName: JSModuleNameType,
@@ -27,7 +27,6 @@ const {
   normalizeSpaces,
   varDump,
 } = require('../FbtUtil');
-const {GenderStringVariationArg} = require('./FbtArguments');
 const invariant = require('invariant');
 
 function createInstanceFromFbtConstructCallsite/*:: <N: {}> */(
@@ -99,16 +98,16 @@ function tokenNameToTextPattern(tokenName: string): string {
  */
 function getTextFromFbtNodeTree(
   instance: FbtElementNode | FbtImplicitParamNodeType,
-  argsList: SVArgsList,
+  argsMap: StringVariationArgsMap,
   subject: ?BabelNode,
   preserveWhitespace: boolean,
-  getChildNodeText: (argsList: SVArgsList, child: FbtChildNode) => string,
+  getChildNodeText: (argsMap: StringVariationArgsMap, child: FbtChildNode) => string,
 ): string {
   try {
     if (subject) {
-      GenderStringVariationArg.assert(argsList.consumeOne());
+      argsMap.mustHave(instance);
     }
-    const texts = instance.children.map(getChildNodeText.bind(null, argsList));
+    const texts = instance.children.map(getChildNodeText.bind(null, argsMap));
     return normalizeSpaces(
       texts.join(''),
       {preserveWhitespace},
@@ -118,25 +117,25 @@ function getTextFromFbtNodeTree(
   }
 }
 
-function getChildNodeText(argsList: SVArgsList, child: FbtChildNode): string {
+function getChildNodeText(argsMap: StringVariationArgsMap, child: FbtChildNode): string {
   const FbtImplicitParamNode = require('./FbtImplicitParamNode');
   return child instanceof FbtImplicitParamNode
-    ? tokenNameToTextPattern(child.getTokenName(argsList))
-    : child.getText(argsList);
+    ? tokenNameToTextPattern(child.getTokenName(argsMap))
+    : child.getText(argsMap);
 }
 
 function getChildNodeTextForDescription(
   targetFbtNode: FbtImplicitParamNodeType,
-  argsList: SVArgsList,
+  argsMap: StringVariationArgsMap,
   child: FbtChildNode,
 ): string {
   const FbtImplicitParamNode = require('./FbtImplicitParamNode');
   if (child instanceof FbtImplicitParamNode) {
     return child === targetFbtNode
-      ? tokenNameToTextPattern(child.getTokenName(argsList))
-      : child.getTextForDescription(argsList, targetFbtNode);
+      ? tokenNameToTextPattern(child.getTokenName(argsMap))
+      : child.getTextForDescription(argsMap, targetFbtNode);
   } else {
-    return child.getText(argsList);
+    return child.getText(argsMap);
   }
 }
 

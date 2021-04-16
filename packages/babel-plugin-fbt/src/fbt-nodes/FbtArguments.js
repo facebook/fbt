@@ -16,8 +16,8 @@ import typeof {
   GENDER_ANY,
   NUMBER_ANY,
 } from '../translate/IntlVariations';
-import type CursorArray from '../utils/CursorArray';
-import type {AnyFbtNode} from './FbtNode';
+import type {AnyFbtNode, FbtChildNode} from './FbtNode';
+import type FbtNode from './FbtNode';
 
 export type AnyStringVariationArg =
   | EnumStringVariationArg
@@ -25,8 +25,6 @@ export type AnyStringVariationArg =
   | NumberStringVariationArg
   ;
 export type AnyFbtArgument = GenericArg | AnyStringVariationArg;
-// List of String Variation Arguments with a mutable cursor index field
-export type SVArgsList = CursorArray<AnyStringVariationArg>;
 */
 
 const {
@@ -233,6 +231,44 @@ function assertInstanceOf<C: {}>(
   return value;
 }
 
+/**
+ * Map of string variation arguments keyed by their source FbtNode
+ */
+class StringVariationArgsMap {
+  +_map: Map<AnyFbtNode, AnyStringVariationArg>;
+
+  constructor(svArgs: $ReadOnlyArray<AnyStringVariationArg>): void {
+    this._map = new Map(svArgs.map(arg => ([arg.fbtNode, arg])));
+    invariant(svArgs.length === this._map.size,
+      'Expected only one StringVariationArg per FbtNode. ' +
+      'Input array length=%s but resulting map size=%s',
+      svArgs.length,
+      this._map.size,
+    );
+  }
+
+  /**
+   * @return StringVariationArg corresponding to the given FbtNode
+   */
+  get<SV: AnyStringVariationArg>(
+    fbtNode: FbtNode<SV, any, any>,
+  ): SV {
+    const ret = this._map.get(fbtNode);
+    invariant(ret != null, 'Unable to find entry for FbtNode: %s', varDump(fbtNode));
+    // $FlowFixMe[incompatible-return] the found SVArgument came from the same fbtNode
+    return ret;
+  }
+
+  /**
+   * @throws if the given FbtNode cannot be found
+   */
+  mustHave<SV: AnyStringVariationArg>(
+    fbtNode: FbtNode<SV, any, any>,
+  ): void {
+    this.get(fbtNode);
+  }
+}
+
 module.exports = {
   EnumStringVariationArg,
   FbtArgumentBase,
@@ -240,4 +276,5 @@ module.exports = {
   GenericArg,
   NumberStringVariationArg,
   StringVariationArg,
+  StringVariationArgsMap,
 };

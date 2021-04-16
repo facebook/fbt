@@ -10,7 +10,7 @@
 'use strict';
 
 /*::
-import type {SVArgsList} from './FbtArguments';
+import type {StringVariationArgsMap} from './FbtArguments';
 import type {FbtOptionValue, JSModuleNameType} from '../FbtConstants';
 import type {AnyFbtNode} from './FbtNode';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
@@ -126,14 +126,14 @@ class FbtParamNode extends FbtNode/*:: <
     return this;
   }
 
-  getText(argsList /*: SVArgsList */) /*: string */ {
+  getText(argsMap /*: StringVariationArgsMap */) /*: string */ {
     try {
       this.getArgsForStringVariationCalc().forEach(expectedArg => {
-        const svArg = argsList.consumeOne();
+        const svArg = argsMap.get(this);
         invariant(
-          svArg instanceof expectedArg.constructor,
-          'Expected instance of %s but got %s: %s',
-          expectedArg.constructor.name,
+          svArg.constructor === expectedArg.constructor,
+          'Expected SVArgument instance of %s but got %s instead: %s',
+          expectedArg.constructor.name || 'unknown',
           svArg.constructor.name || 'unknown',
           varDump(svArg),
         );

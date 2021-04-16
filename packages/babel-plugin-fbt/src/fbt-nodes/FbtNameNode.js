@@ -16,7 +16,7 @@
 // name : tokenName*, nameStr, genderValue
 
 /*::
-import type {SVArgsList} from './FbtArguments';
+import type {StringVariationArgsMap} from './FbtArguments';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 
 type Options = {|
@@ -92,9 +92,9 @@ class FbtNameNode extends FbtNode/*:: <
     return [new GenderStringVariationArg(this, this.options.gender, [GENDER_ANY])];
   }
 
-  getText(argsList: SVArgsList): string {
+  getText(argsMap: StringVariationArgsMap): string {
     try {
-      GenderStringVariationArg.assert(argsList.consumeOne());
+      argsMap.mustHave(this);
       return tokenNameToTextPattern(this.options.name);
     } catch (error) {
       throw errorAt(this.node, error);

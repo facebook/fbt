@@ -10,6 +10,7 @@
 'use strict';
 
 /*::
+import type FbtImplicitParamNode from '../fbt-nodes/FbtImplicitParamNode';
 import type {AnyStringVariationArg} from '../fbt-nodes/FbtArguments';
 import type {AnyFbtNode} from '../fbt-nodes/FbtNode';
 import type {
@@ -90,8 +91,8 @@ type MetaPhrase = {|
 |};
 */
 
+const {StringVariationArgsMap} = require('../fbt-nodes/FbtArguments');
 const FbtElementNode = require('../fbt-nodes/FbtElementNode');
-const FbtImplicitParamNode = require('../fbt-nodes/FbtImplicitParamNode');
 const {
   FbtBooleanOptions,
   PLURAL_PARAM_TOKEN,
@@ -115,10 +116,6 @@ const {
 } = require('../FbtUtil');
 const JSFbtBuilder = require('../JSFbtBuilder');
 const addLeafToTree = require('../utils/addLeafToTree');
-const CursorArray = require('../utils/CursorArray');
-const {
-  getClosestElementOrImplicitParamNodeAncestor,
-} = require('../fbt-nodes/FbtNodeUtil');
 const {
   isArrayExpression,
   isCallExpression,
@@ -677,11 +674,12 @@ class FbtFunctionCallProcessor {
           }
 
           if (argsCombinations.length === 0) { // simple string without any variation
+            const svArgsMap = new StringVariationArgsMap([]);
             return {
               phrase: {
                 ...stubPhrase,
-                desc: fbtNode.getDescription(new CursorArray([])),
-                jsfbt: fbtNode.getText(new CursorArray([])),
+                desc: fbtNode.getDescription(svArgsMap),
+                jsfbt: fbtNode.getText(svArgsMap),
                 type: 'text',
               },
               fbtNode,
@@ -699,25 +697,16 @@ class FbtFunctionCallProcessor {
             type: 'table',
           };
 
-          const argsCombinationStartIndex = this._findSVArgsStartIndex(
-            fbtNode,
-            argsCombinations[0],
-          );
-
           argsCombinations.map(argsCombination => { // collect text/description pairs
-            const desc = fbtNode.getDescription(new CursorArray(
-              argsCombination,
-              fbtNode instanceof FbtImplicitParamNode
-                ? 0 // need a description from the phrase top-level perspective
-                : argsCombinationStartIndex,
-            ));
+            const svArgsMap = new StringVariationArgsMap(argsCombination);
+            const desc = fbtNode.getDescription(svArgsMap);
             descriptions.add(desc);
             return {
               argValues: compactStringVariations.indexMap.map(
                 originIndex => nullthrows(argsCombination[originIndex]?.value)
               ),
               desc,
-              text: fbtNode.getText(new CursorArray(argsCombination, argsCombinationStartIndex)),
+              text: fbtNode.getText(svArgsMap),
             };
           })
             .forEach(item =>
@@ -751,22 +740,6 @@ class FbtFunctionCallProcessor {
           throw errorAt(fbtNode.node, error);
         }
       });
-  }
-
-  _findSVArgsStartIndex(
-    fbtNode: AnyFbtNode,
-    svArgs: $ReadOnlyArray<AnyStringVariationArg>,
-  ): number {
-    const index = fbtNode instanceof FbtElementNode
-      ? 0
-      : svArgs.findIndex(arg =>
-        arg.fbtNode === fbtNode ||
-        (arg.fbtNode instanceof FbtElementNode ||
-        arg.fbtNode instanceof FbtImplicitParamNode
-          ? arg.fbtNode
-          : getClosestElementOrImplicitParamNodeAncestor(arg.fbtNode)) === fbtNode
-      );
-    return index >= 0 ? index : 0;
   }
 
   /**

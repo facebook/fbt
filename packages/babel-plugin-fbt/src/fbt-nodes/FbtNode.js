@@ -10,7 +10,7 @@
 'use strict';
 
 /*::
-import type {AnyStringVariationArg, AnyFbtArgument, SVArgsList} from './FbtArguments';
+import type {AnyStringVariationArg, AnyFbtArgument, StringVariationArgsMap} from './FbtArguments';
 import type {BabelNodeCallExpressionArgument} from '../FbtUtil';
 import type {GenderConstEnum} from '../Gender';
 import type {JSModuleNameType} from '../FbtConstants';
@@ -132,15 +132,6 @@ class FbtNode/*:: <
     return this;
   }
 
-  /**
-   * Clone this node and set new string variation factor values
-   */
-  cloneUsingStringVariationValues(
-    stringVariationValues /*: $ReadOnlyArray<SVArgument> */ = [],
-  ) /*: this */ {
-    return this._clone()._setStringVariationValues(stringVariationValues);
-  }
-
   setParent(parent /*: ?AnyFbtNode */) /*: this */ {
     // $FlowExpectedError[cannot-write] Allow writing this property internally
     this.parent = parent;
@@ -164,7 +155,7 @@ class FbtNode/*:: <
     throw errorAt(this.node, 'This method must be implemented in a child class');
   }
 
-  getText(_argsList /*: SVArgsList */) /*: string */ {
+  getText(_argsMap /*: StringVariationArgsMap */) /*: string */ {
     throw errorAt(this.node, 'This method must be implemented in a child class');
   }
 
