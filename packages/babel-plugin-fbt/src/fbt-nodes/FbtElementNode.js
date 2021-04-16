@@ -48,12 +48,14 @@ export interface IFbtElementNode {
    */
   registerToken(name: string, source: AnyFbtNode): void;
   _tokenSet: ParamSet;
+  __toJSONForTestsOnly(): mixed;
 }
 
 const {
   FbtBooleanOptions,
   ValidFbtOptions,
 } = require('../FbtConstants');
+const {compactBabelNodeProps} = require('../FbtUtil');
 const {
   collectOptionsFromFbtConstruct,
   enforceBabelNode,
@@ -161,16 +163,45 @@ class FbtElementNode
     return this.constructor.getArgsForStringVariationCalcForFbtElement(this, this.options.subject);
   }
 
+  /**
+   * Run some sanity checks before producing text
+   * @throws if some fbt nodes in the tree have duplicate token names
+   */
+  static beforeGetTextSanityCheck(
+    instance: FbtElementNode | FbtImplicitParamNodeType,
+    argsMap: StringVariationArgsMap,
+  ): void {
+    instance.children.forEach(child => {
+      const tokenName = child.getTokenName(argsMap);
+      if (tokenName != null) {
+        instance.registerToken(tokenName, child);
+      }
+    });
+  }
+
+  /**
+   * Run some sanity checks before producing text
+   * @throws if some fbt nodes in the tree have duplicate token names
+   */
+  _beforeGetTextSanityCheck(argsMap: StringVariationArgsMap): void {
+    this.constructor.beforeGetTextSanityCheck(this, argsMap);
+  }
+
   getText(
     argsMap: StringVariationArgsMap,
   ): string {
-    return getTextFromFbtNodeTree(
-      this,
-      argsMap,
-      this.options.subject,
-      this.options.preserveWhitespace,
-      getChildNodeText,
-    );
+    try {
+      this._beforeGetTextSanityCheck(argsMap);
+      return getTextFromFbtNodeTree(
+        this,
+        argsMap,
+        this.options.subject,
+        this.options.preserveWhitespace,
+        getChildNodeText,
+      );
+    } catch (error) {
+      throw errorAt(this.node, error);
+    }
   }
 
   getTextForDescription(
@@ -314,6 +345,19 @@ class FbtElementNode
    */
   registerToken(name /*: string */, source /*: AnyFbtNode */) /*: void */ {
     setUniqueToken(source.node, this.moduleName, name, this._tokenSet);
+  }
+
+  /**
+   * For debugging and unit tests
+   */
+  static __toJSONForTestsOnlyHelper(instance: FbtElementNode | FbtImplicitParamNodeType): mixed {
+    const ret = FbtNode.prototype.__toJSONForTestsOnly.call(instance);
+    ret._tokenSet = compactBabelNodeProps(ret._tokenSet, false);
+    return ret;
+  }
+
+  __toJSONForTestsOnly() /*: mixed */ {
+    return this.constructor.__toJSONForTestsOnlyHelper(this);
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes

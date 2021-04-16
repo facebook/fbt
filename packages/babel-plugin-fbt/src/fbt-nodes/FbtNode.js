@@ -159,6 +159,10 @@ class FbtNode/*:: <
     throw errorAt(this.node, 'This method must be implemented in a child class');
   }
 
+  getTokenName(_argsMap: StringVariationArgsMap): ?string {
+    return null;
+  }
+
   /**
    * For debugging and unit tests:
    *

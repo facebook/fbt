@@ -1830,7 +1830,9 @@ FbtElementNode {
     },
   ],
   "_tokenSet": Object {
-    "name": true,
+    "=[number] photos": "BabelNode[type=JSXElement]",
+    "=a photo": "BabelNode[type=JSXElement]",
+    "name": "BabelNode[type=CallExpression]",
   },
   "_variationFactorValues": Array [],
   "children": Array [
@@ -1897,7 +1899,9 @@ FbtElementNode {
           "value": undefined,
         },
       ],
-      "_tokenSet": Object {},
+      "_tokenSet": Object {
+        "number": "BabelNode[type=CallExpression]",
+      },
       "_variationFactorValues": Array [],
       "children": Array [
         FbtTextNode {
@@ -2045,7 +2049,9 @@ FbtElementNode {
       "value": undefined,
     },
   ],
-  "_tokenSet": Object {},
+  "_tokenSet": Object {
+    "=B1 C1 [paramName] C2 B2": "BabelNode[type=JSXElement]",
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -2095,7 +2101,9 @@ FbtElementNode {
           "value": undefined,
         },
       ],
-      "_tokenSet": Object {},
+      "_tokenSet": Object {
+        "=C1 [paramName] C2": "BabelNode[type=JSXElement]",
+      },
       "_variationFactorValues": Array [],
       "children": Array [
         FbtTextNode {
@@ -2132,7 +2140,7 @@ FbtElementNode {
             },
           ],
           "_tokenSet": Object {
-            "paramName": true,
+            "paramName": "BabelNode[type=CallExpression]",
           },
           "_variationFactorValues": Array [],
           "children": Array [
@@ -2722,7 +2730,9 @@ FbtElementNode {
       "value": undefined,
     },
   ],
-  "_tokenSet": Object {},
+  "_tokenSet": Object {
+    "number": "BabelNode[type=CallExpression]",
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -2839,7 +2849,9 @@ FbtElementNode {
       "value": undefined,
     },
   ],
-  "_tokenSet": Object {},
+  "_tokenSet": Object {
+    "name": "BabelNode[type=CallExpression]",
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -3003,7 +3015,7 @@ FbtElementNode {
   "__nodeCode": "fbt(['A parameterized message to ', fbt.param('personName', truthy ? ifTrue : ifFalse)], 'Moar params')",
   "__stringVariationArgs": Array [],
   "_tokenSet": Object {
-    "personName": true,
+    "personName": "BabelNode[type=CallExpression]",
   },
   "_variationFactorValues": Array [],
   "children": Array [
@@ -3087,7 +3099,10 @@ FbtElementNode {
       "value": undefined,
     },
   ],
-  "_tokenSet": Object {},
+  "_tokenSet": Object {
+    "cat_token": "BabelNode[type=CallExpression]",
+    "dog_token": "BabelNode[type=CallExpression]",
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtPluralNode {
@@ -3223,7 +3238,9 @@ FbtElementNode {
       "value": undefined,
     },
   ],
-  "_tokenSet": Object {},
+  "_tokenSet": Object {
+    "number": "BabelNode[type=CallExpression]",
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -3585,7 +3602,7 @@ FbtElementNode {
     },
   ],
   "_tokenSet": Object {
-    "count": true,
+    "count": "BabelNode[type=CallExpression]",
   },
   "_variationFactorValues": Array [],
   "children": Array [
@@ -3701,7 +3718,7 @@ FbtElementNode {
     },
   ],
   "_tokenSet": Object {
-    "count": true,
+    "count": "BabelNode[type=CallExpression]",
   },
   "_variationFactorValues": Array [],
   "children": Array [
@@ -4000,7 +4017,7 @@ FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', val1), ' and ', fbt.sameParam('name1')], 'd')",
   "__stringVariationArgs": Array [],
   "_tokenSet": Object {
-    "name1": true,
+    "name1": "BabelNode[type=CallExpression]",
   },
   "_variationFactorValues": Array [],
   "children": Array [
@@ -4070,8 +4087,8 @@ FbtElementNode {
               </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')",
   "__stringVariationArgs": Array [],
   "_tokenSet": Object {
-    "name1": true,
-    "name2": true,
+    "name1": "BabelNode[type=CallExpression]",
+    "name2": "BabelNode[type=CallExpression]",
   },
   "_variationFactorValues": Array [],
   "children": Array [
@@ -4184,8 +4201,8 @@ FbtElementNode {
 ' d ', fbt.param('name2', val2), ' e '], 'a')",
   "__stringVariationArgs": Array [],
   "_tokenSet": Object {
-    "name1": true,
-    "name2": true,
+    "name1": "BabelNode[type=CallExpression]",
+    "name2": "BabelNode[type=CallExpression]",
   },
   "_variationFactorValues": Array [],
   "children": Array [
@@ -4699,7 +4716,9 @@ FbtElementNode {
     },
   ],
   "_tokenSet": Object {
-    "name": true,
+    "=[number] photos": "BabelNode[type=JSXElement]",
+    "=a photo": "BabelNode[type=JSXElement]",
+    "name": "BabelNode[type=CallExpression]",
   },
   "_variationFactorValues": Array [],
   "children": Array [
@@ -4766,7 +4785,9 @@ FbtElementNode {
           "value": undefined,
         },
       ],
-      "_tokenSet": Object {},
+      "_tokenSet": Object {
+        "number": "BabelNode[type=CallExpression]",
+      },
       "_variationFactorValues": Array [],
       "children": Array [
         FbtTextNode {
@@ -4914,7 +4935,9 @@ FbtElementNode {
       "value": undefined,
     },
   ],
-  "_tokenSet": Object {},
+  "_tokenSet": Object {
+    "=B1 C1 [paramName] C2 B2": "BabelNode[type=JSXElement]",
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -4964,7 +4987,9 @@ FbtElementNode {
           "value": undefined,
         },
       ],
-      "_tokenSet": Object {},
+      "_tokenSet": Object {
+        "=C1 [paramName] C2": "BabelNode[type=JSXElement]",
+      },
       "_variationFactorValues": Array [],
       "children": Array [
         FbtTextNode {
@@ -5001,7 +5026,7 @@ FbtElementNode {
             },
           ],
           "_tokenSet": Object {
-            "paramName": true,
+            "paramName": "BabelNode[type=CallExpression]",
           },
           "_variationFactorValues": Array [],
           "children": Array [
@@ -5591,7 +5616,9 @@ FbtElementNode {
       "value": undefined,
     },
   ],
-  "_tokenSet": Object {},
+  "_tokenSet": Object {
+    "number": "BabelNode[type=CallExpression]",
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -5708,7 +5735,9 @@ FbtElementNode {
       "value": undefined,
     },
   ],
-  "_tokenSet": Object {},
+  "_tokenSet": Object {
+    "name": "BabelNode[type=CallExpression]",
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -5872,7 +5901,7 @@ FbtElementNode {
   "__nodeCode": "fbt(['A parameterized message to ', fbt.param('personName', truthy ? ifTrue : ifFalse)], 'Moar params')",
   "__stringVariationArgs": Array [],
   "_tokenSet": Object {
-    "personName": true,
+    "personName": "BabelNode[type=CallExpression]",
   },
   "_variationFactorValues": Array [],
   "children": Array [
@@ -5956,7 +5985,10 @@ FbtElementNode {
       "value": undefined,
     },
   ],
-  "_tokenSet": Object {},
+  "_tokenSet": Object {
+    "cat_token": "BabelNode[type=CallExpression]",
+    "dog_token": "BabelNode[type=CallExpression]",
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtPluralNode {
@@ -6092,7 +6124,9 @@ FbtElementNode {
       "value": undefined,
     },
   ],
-  "_tokenSet": Object {},
+  "_tokenSet": Object {
+    "number": "BabelNode[type=CallExpression]",
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -6454,7 +6488,7 @@ FbtElementNode {
     },
   ],
   "_tokenSet": Object {
-    "count": true,
+    "count": "BabelNode[type=CallExpression]",
   },
   "_variationFactorValues": Array [],
   "children": Array [
@@ -6570,7 +6604,7 @@ FbtElementNode {
     },
   ],
   "_tokenSet": Object {
-    "count": true,
+    "count": "BabelNode[type=CallExpression]",
   },
   "_variationFactorValues": Array [],
   "children": Array [
@@ -6869,7 +6903,7 @@ FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', val1), ' and ', fbt.sameParam('name1')], 'd')",
   "__stringVariationArgs": Array [],
   "_tokenSet": Object {
-    "name1": true,
+    "name1": "BabelNode[type=CallExpression]",
   },
   "_variationFactorValues": Array [],
   "children": Array [
@@ -6939,8 +6973,8 @@ FbtElementNode {
               </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')",
   "__stringVariationArgs": Array [],
   "_tokenSet": Object {
-    "name1": true,
-    "name2": true,
+    "name1": "BabelNode[type=CallExpression]",
+    "name2": "BabelNode[type=CallExpression]",
   },
   "_variationFactorValues": Array [],
   "children": Array [
@@ -7053,8 +7087,8 @@ FbtElementNode {
 ' d ', fbt.param('name2', val2), ' e '], 'a')",
   "__stringVariationArgs": Array [],
   "_tokenSet": Object {
-    "name1": true,
-    "name2": true,
+    "name1": "BabelNode[type=CallExpression]",
+    "name2": "BabelNode[type=CallExpression]",
   },
   "_variationFactorValues": Array [],
   "children": Array [
@@ -9526,7 +9560,9 @@ FbtElementNode {
       "value": undefined,
     },
   ],
-  "_tokenSet": Object {},
+  "_tokenSet": Object {
+    "number": "BabelNode[type=CallExpression]",
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -9643,7 +9679,9 @@ FbtElementNode {
       "value": undefined,
     },
   ],
-  "_tokenSet": Object {},
+  "_tokenSet": Object {
+    "name": "BabelNode[type=CallExpression]",
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -9807,7 +9845,7 @@ FbtElementNode {
   "__nodeCode": "fbt(['A parameterized message to ', fbt.param('personName', truthy ? ifTrue : ifFalse)], 'Moar params')",
   "__stringVariationArgs": Array [],
   "_tokenSet": Object {
-    "personName": true,
+    "personName": "BabelNode[type=CallExpression]",
   },
   "_variationFactorValues": Array [],
   "children": Array [
@@ -9891,7 +9929,10 @@ FbtElementNode {
       "value": undefined,
     },
   ],
-  "_tokenSet": Object {},
+  "_tokenSet": Object {
+    "cat_token": "BabelNode[type=CallExpression]",
+    "dog_token": "BabelNode[type=CallExpression]",
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtPluralNode {
@@ -10027,7 +10068,9 @@ FbtElementNode {
       "value": undefined,
     },
   ],
-  "_tokenSet": Object {},
+  "_tokenSet": Object {
+    "number": "BabelNode[type=CallExpression]",
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -10389,7 +10432,7 @@ FbtElementNode {
     },
   ],
   "_tokenSet": Object {
-    "count": true,
+    "count": "BabelNode[type=CallExpression]",
   },
   "_variationFactorValues": Array [],
   "children": Array [
@@ -10505,7 +10548,7 @@ FbtElementNode {
     },
   ],
   "_tokenSet": Object {
-    "count": true,
+    "count": "BabelNode[type=CallExpression]",
   },
   "_variationFactorValues": Array [],
   "children": Array [
@@ -10804,7 +10847,7 @@ FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', val1), ' and ', fbt.sameParam('name1')], 'd')",
   "__stringVariationArgs": Array [],
   "_tokenSet": Object {
-    "name1": true,
+    "name1": "BabelNode[type=CallExpression]",
   },
   "_variationFactorValues": Array [],
   "children": Array [
@@ -10874,8 +10917,8 @@ FbtElementNode {
             </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')",
   "__stringVariationArgs": Array [],
   "_tokenSet": Object {
-    "name1": true,
-    "name2": true,
+    "name1": "BabelNode[type=CallExpression]",
+    "name2": "BabelNode[type=CallExpression]",
   },
   "_variationFactorValues": Array [],
   "children": Array [
@@ -10988,8 +11031,8 @@ FbtElementNode {
 ' d ', fbt.param('name2', val2), ' e '], 'a')",
   "__stringVariationArgs": Array [],
   "_tokenSet": Object {
-    "name1": true,
-    "name2": true,
+    "name1": "BabelNode[type=CallExpression]",
+    "name2": "BabelNode[type=CallExpression]",
   },
   "_variationFactorValues": Array [],
   "children": Array [
@@ -12196,7 +12239,9 @@ FbtElementNode {
       "value": undefined,
     },
   ],
-  "_tokenSet": Object {},
+  "_tokenSet": Object {
+    "number": "BabelNode[type=CallExpression]",
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -12313,7 +12358,9 @@ FbtElementNode {
       "value": undefined,
     },
   ],
-  "_tokenSet": Object {},
+  "_tokenSet": Object {
+    "name": "BabelNode[type=CallExpression]",
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -12477,7 +12524,7 @@ FbtElementNode {
   "__nodeCode": "fbt(['A parameterized message to ', fbt.param('personName', truthy ? ifTrue : ifFalse)], 'Moar params')",
   "__stringVariationArgs": Array [],
   "_tokenSet": Object {
-    "personName": true,
+    "personName": "BabelNode[type=CallExpression]",
   },
   "_variationFactorValues": Array [],
   "children": Array [
@@ -12561,7 +12608,10 @@ FbtElementNode {
       "value": undefined,
     },
   ],
-  "_tokenSet": Object {},
+  "_tokenSet": Object {
+    "cat_token": "BabelNode[type=CallExpression]",
+    "dog_token": "BabelNode[type=CallExpression]",
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtPluralNode {
@@ -12697,7 +12747,9 @@ FbtElementNode {
       "value": undefined,
     },
   ],
-  "_tokenSet": Object {},
+  "_tokenSet": Object {
+    "number": "BabelNode[type=CallExpression]",
+  },
   "_variationFactorValues": Array [],
   "children": Array [
     FbtTextNode {
@@ -13059,7 +13111,7 @@ FbtElementNode {
     },
   ],
   "_tokenSet": Object {
-    "count": true,
+    "count": "BabelNode[type=CallExpression]",
   },
   "_variationFactorValues": Array [],
   "children": Array [
@@ -13175,7 +13227,7 @@ FbtElementNode {
     },
   ],
   "_tokenSet": Object {
-    "count": true,
+    "count": "BabelNode[type=CallExpression]",
   },
   "_variationFactorValues": Array [],
   "children": Array [
@@ -13474,7 +13526,7 @@ FbtElementNode {
   "__nodeCode": "fbt([fbt.param('name1', val1), ' and ', fbt.sameParam('name1')], 'd')",
   "__stringVariationArgs": Array [],
   "_tokenSet": Object {
-    "name1": true,
+    "name1": "BabelNode[type=CallExpression]",
   },
   "_variationFactorValues": Array [],
   "children": Array [
@@ -13544,8 +13596,8 @@ FbtElementNode {
             </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')",
   "__stringVariationArgs": Array [],
   "_tokenSet": Object {
-    "name1": true,
-    "name2": true,
+    "name1": "BabelNode[type=CallExpression]",
+    "name2": "BabelNode[type=CallExpression]",
   },
   "_variationFactorValues": Array [],
   "children": Array [
@@ -13658,8 +13710,8 @@ FbtElementNode {
 ' d ', fbt.param('name2', val2), ' e '], 'a')",
   "__stringVariationArgs": Array [],
   "_tokenSet": Object {
-    "name1": true,
-    "name2": true,
+    "name1": "BabelNode[type=CallExpression]",
+    "name2": "BabelNode[type=CallExpression]",
   },
   "_variationFactorValues": Array [],
   "children": Array [

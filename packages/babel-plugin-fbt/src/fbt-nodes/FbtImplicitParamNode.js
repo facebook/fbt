@@ -71,13 +71,18 @@ class FbtImplicitParamNode
   getText(
     argsMap: StringVariationArgsMap,
   ): string {
-    return getTextFromFbtNodeTree(
-      this,
-      argsMap,
-      this._getSubjectNode(),
-      this._getElementNode().options.preserveWhitespace,
-      getChildNodeText,
-    );
+    try {
+      FbtElementNode.beforeGetTextSanityCheck(this, argsMap);
+      return getTextFromFbtNodeTree(
+        this,
+        argsMap,
+        this._getSubjectNode(),
+        this._getElementNode().options.preserveWhitespace,
+        getChildNodeText,
+      );
+    } catch (error) {
+      throw errorAt(this.node, error);
+    }
   }
 
   getTextForDescription(
@@ -199,6 +204,10 @@ class FbtImplicitParamNode
 
   registerToken(name /*: string */, source /*: AnyFbtNode */) /*: void */ {
     setUniqueToken(source.node, this.moduleName, name, this._tokenSet);
+  }
+
+  __toJSONForTestsOnly() /*: mixed */ {
+    return FbtElementNode.__toJSONForTestsOnlyHelper(this);
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes

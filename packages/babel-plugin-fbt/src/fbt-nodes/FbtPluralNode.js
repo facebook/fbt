@@ -6,6 +6,7 @@
  */
 /*eslint max-len: ["error", 100]*/
 /* eslint-disable brace-style */ // Needed due to Flow types inlined in comments
+/* eslint-disable fb-www/flow-exact-by-default-object-types */
 
 'use strict';
 
@@ -99,25 +100,56 @@ class FbtPluralNode extends FbtNode/*:: <
     }
   }
 
+  _branchByNumberVariation<T>(
+    argsMap: StringVariationArgsMap,
+    scenario: {|
+      exactlyOne: () => T,
+      anyNumber: () => T,
+    |}
+  ): T {
+    const svArg = argsMap.get(this);
+    const svArgValue = nullthrows(svArg.value);
+
+    switch (svArgValue) {
+      case EXACTLY_ONE: {
+        return scenario.exactlyOne();
+      }
+      case NUMBER_ANY: {
+        return scenario.anyNumber();
+      }
+      default:
+        invariant(false, 'Unsupported string variation value: %s', varDump(svArgValue));
+    }
+  }
+
+  _getStaticTokenName(): string {
+    return nullthrows(this.options.name);
+  }
+
+  getTokenName(argsMap: StringVariationArgsMap): ?string {
+    return this._branchByNumberVariation(argsMap, {
+      exactlyOne: () => null,
+      anyNumber: () => {
+        return this.options.showCount !== ShowCountKeys.no
+          ? this._getStaticTokenName()
+          : null;
+      }
+    });
+  }
+
   getText(argsMap: StringVariationArgsMap): string {
     try {
-      const svArg = argsMap.get(this);
-      const svArgValue = nullthrows(svArg.value);
-      const {name, showCount} = this.options;
-
-      switch (svArgValue) {
-        case EXACTLY_ONE: {
-          return (showCount === ShowCountKeys.yes ? '1 ' : '') + this._getSingularText();
-        }
-        case NUMBER_ANY: {
+      const {showCount} = this.options;
+      return this._branchByNumberVariation(argsMap, {
+        exactlyOne: () =>
+          (showCount === ShowCountKeys.yes ? '1 ' : '') + this._getSingularText(),
+        anyNumber: () => {
           const many = this.options.many ?? this._getSingularText() + 's';
           return showCount !== ShowCountKeys.no
-            ? tokenNameToTextPattern(nullthrows(name)) + ' ' + many
+            ? tokenNameToTextPattern(this._getStaticTokenName()) + ' ' + many
             : many;
         }
-        default:
-          invariant(false, 'Unsupported string variation value: %s', varDump(svArgValue));
-      }
+      });
     } catch (error) {
       throw errorAt(this.node, error);
     }

@@ -10,6 +10,7 @@
 'use strict';
 
 /*::
+import type {FbtChildNode} from './fbt-nodes/FbtNode';
 import type {
   FbtOptionConfig,
   FbtOptionValue,
@@ -24,7 +25,7 @@ export type BabelNodeCallExpressionArgument = $ElementType<
   $PropertyType<BabelNodeCallExpression, 'arguments'>,
   number,
 >;
-export type ParamSet = {[parameterName: string]: ?true};
+export type ParamSet = {[parameterName: string]: ?BabelNode};
 */
 
 const {JSModuleName, ModuleNameRegExp} = require('./FbtConstants');
@@ -131,12 +132,13 @@ function isTextualNode(node /*: mixed */) /*: boolean */ {
 }
 
 function setUniqueToken(
-  node /*: BabelNode */,
-  moduleName /*: string */,
-  name /*: string */,
-  paramSet /*: ParamSet */,
-) /*: void */ {
-  if (paramSet[name]) {
+  node: BabelNode,
+  moduleName: string,
+  name: string,
+  paramSet: ParamSet,
+): void {
+  const cachedNode = paramSet[name];
+  if (cachedNode && cachedNode != node) {
     throw errorAt(
       node,
       `There's already a token called "${name}" in this ${moduleName} call. ` +
@@ -144,7 +146,7 @@ function setUniqueToken(
         `give this token a different name`,
     );
   }
-  paramSet[name] = true;
+  paramSet[name] = node;
 }
 
 function checkOption/*:: <K: string> */(
@@ -833,7 +835,10 @@ function convertToStringArrayNodeIfNeeded(
  *     __nodeCode: "'hello'"
  *   }
  */
-function compactBabelNodeProps(object /*: {} */) /*: {} */ {
+function compactBabelNodeProps(
+  object /*: {} */,
+  serializeSourceCode: boolean = true,
+) /*: {} */ {
   const ret = {...object};
   for (const propName in ret) {
     if (Object.prototype.hasOwnProperty.call(ret, propName)) {
@@ -841,7 +846,9 @@ function compactBabelNodeProps(object /*: {} */) /*: {} */ {
       if (!isNode(propValue)) {
         continue;
       }
-      ret[`__${propName}Code`] = generateFormattedCodeFromAST(propValue);
+      if (serializeSourceCode) {
+        ret[`__${propName}Code`] = generateFormattedCodeFromAST(propValue);
+      }
       ret[propName] = `BabelNode[type=${propValue.type || ''}]`;
     }
   }

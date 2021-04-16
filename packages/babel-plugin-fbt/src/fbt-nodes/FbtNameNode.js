@@ -92,6 +92,10 @@ class FbtNameNode extends FbtNode/*:: <
     return [new GenderStringVariationArg(this, this.options.gender, [GENDER_ANY])];
   }
 
+  getTokenName(_argsMap: StringVariationArgsMap): string {
+    return this.options.name;
+  }
+
   getText(argsMap: StringVariationArgsMap): string {
     try {
       argsMap.mustHave(this);

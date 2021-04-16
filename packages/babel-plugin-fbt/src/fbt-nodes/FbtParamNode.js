@@ -120,10 +120,8 @@ class FbtParamNode extends FbtNode/*:: <
     return ret;
   }
 
-  setParent(parent /*: ?AnyFbtNode */) /*: this */ {
-    super.setParent(parent);
-    getClosestElementOrImplicitParamNodeAncestor(this).registerToken(this.options.name, this);
-    return this;
+  getTokenName(_argsMap: StringVariationArgsMap): string {
+    return this.options.name;
   }
 
   getText(argsMap /*: StringVariationArgsMap */) /*: string */ {
@@ -138,7 +136,7 @@ class FbtParamNode extends FbtNode/*:: <
           varDump(svArg),
         );
       });
-      return tokenNameToTextPattern(this.options.name);
+      return tokenNameToTextPattern(this.getTokenName(argsMap));
     } catch (error) {
       throw errorAt(this.node, error);
     }

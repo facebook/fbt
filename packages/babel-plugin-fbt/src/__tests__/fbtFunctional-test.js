@@ -369,6 +369,70 @@ const generalTestData = {
     ),
   },
 
+  'should throw when multiple tokens have the same names due to implicit params': {
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var z = fbt(
+        [
+          'Hello ',
+          <a>world</a>,
+          ' ',
+          <a>world</a>,
+        ], 'token name collision due to autoparam',
+      );`,
+    ),
+
+    throws: `There's already a token called "=world" in this fbt call`,
+  },
+
+  'should throw when multiple tokens have the same names due to implicit params and fbt.enum': {
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var z = fbt(
+        [
+          'Hello ',
+          <a>world</a>,
+          ' ',
+          <a>{
+            fbt.enum(value, ['world'])
+          }</a>,
+        ], 'token name collision due to autoparam',
+      );`,
+    ),
+
+    throws: `There's already a token called "=world" in this fbt call`,
+  },
+
+  'should throw when multiple tokens have the same names due to implicit params and an fbt.param': {
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var z = fbt(
+        [
+          'Hello ',
+          <a>world</a>,
+          ' ',
+          fbt.param('=world', value),
+        ], 'token name collision due to autoparam',
+      );`,
+    ),
+
+    throws: `There's already a token called "=world" in this fbt call`,
+  },
+
+  'should throw when multiple tokens have the same names due to implicit params and an fbt.plural': {
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var z = fbt(
+        [
+          'Hello ',
+          <a>world</a>,
+          ' ',
+          <b>
+            {fbt.plural('world', value)}
+          </b>,
+        ], 'token name collision due to autoparam',
+      );`,
+    ),
+
+    throws: `There's already a token called "=world" in this fbt call`,
+  },
+
   'should handle params': {
     input: withFbtRequireStatement(
       `var x = fbt(
