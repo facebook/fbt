@@ -19,8 +19,8 @@
 import typeof BabelTypes from '@babel/types';
 import type {BabelTransformPlugin} from '@babel/core';
 import type {SentinelPayload} from 'babel-plugin-fbt/dist/babel-processors/FbtFunctionCallProcessor';
-import type {PatternString} from "../../../../../../../html/shared/intl/fbt/FbtTable";
-import type {TableJSFBTTree} from "babel-plugin-fbt";
+import type {PatternString} from '../../runtime/shared/FbtTable';
+import type {TableJSFBTTree} from 'babel-plugin-fbt';
 
 export type PluginOptions = {|
   fbtHashKeyModule?: string,
