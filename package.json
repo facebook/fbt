@@ -15,7 +15,6 @@
     "@babel/plugin-proposal-optional-catch-binding": "^7.2.0",
     "@babel/plugin-proposal-optional-chaining": "7.0.0",
     "@babel/plugin-syntax-bigint": "^7.0.0",
-    "@babel/plugin-syntax-class-properties": "^7.2.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-syntax-flow": "^7.2.0",
     "@babel/plugin-syntax-jsx": "^7.2.0",

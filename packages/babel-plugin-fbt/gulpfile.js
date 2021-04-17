@@ -55,7 +55,7 @@ const babelPluginFbt_buildDistJS = () =>
       babel({
         plugins: [
           require('@babel/plugin-proposal-optional-catch-binding'),
-          require('@babel/plugin-syntax-class-properties'),
+          require('@babel/plugin-proposal-class-properties'),
           require('@babel/plugin-syntax-flow'),
           require('babel-preset-fbjs/plugins/dev-expression'),
           require('@babel/plugin-proposal-nullish-coalescing-operator'),
