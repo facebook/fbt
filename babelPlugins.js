@@ -16,7 +16,7 @@
 module.exports = {
   PLUGINS: [
     require('@babel/plugin-proposal-optional-catch-binding'),
-    require('@babel/plugin-syntax-class-properties'),
+    require('@babel/plugin-proposal-class-properties'),
     require('@babel/plugin-syntax-flow'),
     require('babel-plugin-syntax-trailing-function-commas'),
     require('@babel/plugin-syntax-object-rest-spread'),
@@ -26,7 +26,6 @@ module.exports = {
     require('@babel/plugin-transform-function-name'),
     require('@babel/plugin-transform-arrow-functions'),
     require('@babel/plugin-transform-block-scoped-functions'),
-    require('@babel/plugin-proposal-class-properties'),
     require('@babel/plugin-proposal-nullish-coalescing-operator'),
     require('@babel/plugin-proposal-optional-chaining'),
     [require('@babel/plugin-transform-classes'), {loose: true}],
