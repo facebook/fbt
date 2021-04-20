@@ -9,14 +9,14 @@
 const intlList: JestMockFn<
   $ReadOnlyArray<
     ?$Keys<
-      $TEMPORARY$object<{
+      $TEMPORARY$object<{|
         COMMA: $TEMPORARY$string<'COMMA'>,
         SEMICOLON: $TEMPORARY$string<'SEMICOLON'>,
-      }>,
+      |}>,
     > &
       any &
       $ReadOnlyArray<React$Node> &
-      ?$Keys<$TEMPORARY$object<{AND: string, NONE: string, OR: string}>>,
+      ?$Keys<$TEMPORARY$object<{|AND: string, NONE: string, OR: string|}>>,
   >,
   string,
 > = jest.fn<$ReadOnlyArray<*>, string>(
