@@ -23,9 +23,11 @@
     "test": "yarn test-build-scripts && cd .. && jest demo-app",
     "test-build-scripts": "yarn test-collect-fbts && yarn test-collect-fbts-with-tiger-hash && yarn test-translate-fbts-into-output-dir && yarn translate-fbts-single-file",
     "translate-fbts-single-file": "fbt-translate --jenkins --stdin < translation_input.json > src/translatedFbts.json",
-    "translate-fbts": "fbt-translate --translations translations/*.json --jenkins > src/translatedFbts.json"
+    "translate-fbts": "fbt-translate --translations translations/*.json --jenkins > src/translatedFbts.json",
+    "watch:build": "yarn watch 'yarn workspace demo-app clean-fbts && yarn workspace demo-app all |& tee .watch_build.log' ../packages/babel-plugin-fbt/dist/ --ignoreDotFiles  --wait=1"
   },
   "devDependencies": {
+    "@cnakazawa/watch": "^1.0.4",
     "@babel/core": "7.2.2",
     "@babel/node": "7.2.2",
     "@babel/plugin-proposal-class-properties": "7.1.0",
