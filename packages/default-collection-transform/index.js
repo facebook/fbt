@@ -33,7 +33,10 @@ function transform(
   plugins /*: BabelPluginList */,
   presets /*: BabelPresetList */,
 ) /*: void */ {
-  const {fbtModule, ...pluginOptions} = options;
+  const {
+    fbtModule,
+    ...pluginOptions
+  } = options;
   const opts = {
     ast: false,
     code: false,

@@ -6,6 +6,7 @@
  */
 /*eslint max-len: ["error", 100]*/
 /* eslint-disable brace-style */ // Needed due to Flow types inlined in comments
+/* eslint-disable fb-www/flow-exact-by-default-object-types */
 
 'use strict';
 
@@ -38,14 +39,42 @@ export type FbtChildNode =
 export type AnyFbtNode = FbtNode<any, any, any>;
 */
 
+export type PlainJSXNode = {|
+  babelNode: BabelNodeJSXOpeningElement,
+  // Simplified representation of the JSX opening element's attributes for convenience.
+  // We're currently only representing string literal attributes because it's not fully clear
+  // how we'd want to represent other more complex types of attribute values.
+  // The `babelNode` field already provides full access to the Babel AST after all.
+  props: $ReadOnly<{[name: string]: string | number}>,
+  type: string,
+|};
+export type PlainFbtNode = {|
+  type:
+    | $PropertyType<Class<FbtElementNode>, 'type'>
+    | $PropertyType<Class<FbtEnumNode>, 'type'>
+    | $PropertyType<Class<FbtNameNode>, 'type'>
+    | $PropertyType<Class<FbtParamNode>, 'type'>
+    | $PropertyType<Class<FbtPluralNode>, 'type'>
+    | $PropertyType<Class<FbtPronounNode>, 'type'>
+    | $PropertyType<Class<FbtSameParamNode>, 'type'>
+    | $PropertyType<Class<FbtTextNode>, 'type'>
+    | $PropertyType<Class<FbtImplicitParamNode>, 'type'>,
+  +children?: $ReadOnlyArray<PlainFbtNode>,
+  // Not read-only because it needs to be set at a later stage, when all phrases have been extracted
+  phraseIndex?: number,
+  wrapperNode?: PlainJSXNode,
+|};
+
 const FbtNodeChecker = require('../FbtNodeChecker');
 const {
   compactBabelNodeProps,
   errorAt,
+  varDump,
 } = require('../FbtUtil');
 const {
   isCallExpression,
 } = require('@babel/types');
+const invariant = require('invariant');
 
 /**
  * Base class that represents an fbt construct like <fbt>, <fbt:param>, etc...
@@ -211,6 +240,23 @@ class FbtNode/*:: <
 
   toJSON() /*: mixed */ {
     return this.__toJSONForTestsOnly();
+  }
+
+  /**
+   * Returns a JSON-friendly representation of this instance that can be consumed
+   * in other programming languages.
+   * NOTE: this only represents the current node but not its children!
+   */
+  toPlainFbtNode(): PlainFbtNode {
+    // $FlowExpectedError[prop-missing] FbtNode child classes have a `type` static property
+    const {type} = this.constructor;
+    invariant(
+      typeof type === 'string',
+      'Expected instance constructor.type property to be a string instead of `%s`',
+      varDump(type)
+    );
+    // $FlowExpectedError[incompatible-return] FbtNode child classes have a `type` static property
+    return {type};
   }
 
   /**

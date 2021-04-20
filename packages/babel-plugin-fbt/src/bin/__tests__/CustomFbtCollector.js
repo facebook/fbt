@@ -10,6 +10,7 @@
 
 'use strict';
 
+import type {PlainFbtNode} from '../../fbt-nodes/FbtNode';
 import type {EnumManifest} from '../../FbtEnumRegistrar';
 import type {
   ChildParentMappings,
@@ -79,6 +80,42 @@ class CustomFbtCollector implements IFbtCollector {
       // eslint-disable-next-line no-useless-computed-key
       [1]: 0,
     };
+  }
+
+  getFbtElementNodes(): Array<PlainFbtNode> {
+    // $FlowExpectedError[incompatible-type]
+    const pseudoJSXOpeningElement: BabelNodeJSXOpeningElement = {
+      type: 'JSXOpeningElement',
+    };
+    return [
+      {
+        phraseIndex: 0,
+        children: [
+          {
+            type: 'text',
+          },
+          {
+            phraseIndex: 1,
+            children: [
+              {
+                type: 'text',
+              },
+            ],
+            type: 'implicitElement',
+            wrapperNode: {
+              type: 'a',
+              babelNode: pseudoJSXOpeningElement,
+              props: {
+                className: 'neatoLink',
+                href: 'https://somewhere.random',
+                tabindex: 123,
+              },
+            },
+          },
+        ],
+        type: 'element',
+      },
+    ];
   }
 
   getErrors(): Errors {

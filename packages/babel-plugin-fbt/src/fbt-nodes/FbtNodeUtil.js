@@ -10,7 +10,7 @@
 
 /*::
 import type {TokenAliases} from '../index';
-import type {AnyFbtNode, FbtChildNode} from './FbtNode';
+import type {AnyFbtNode, FbtChildNode, PlainFbtNode} from './FbtNode';
 import type {JSModuleNameType} from '../FbtConstants';
 import type FbtElementNode from './FbtElementNode';
 import type FbtImplicitParamNodeType from './FbtImplicitParamNode';
@@ -71,6 +71,35 @@ function runOnNestedChildren(
       runOnNestedChildren(child, callback);
     }
   }
+}
+
+function toPlainFbtNodeTree(
+  fbtNode: FbtElementNode,
+  phraseToIndexMap: Map<AnyFbtNode, number>,
+): PlainFbtNode {
+  return _toPlainFbtNodeTree(fbtNode, phraseToIndexMap);
+}
+
+function _toPlainFbtNodeTree(
+  fbtNode: AnyFbtNode,
+  phraseToIndexMap: Map<AnyFbtNode, number>,
+): PlainFbtNode {
+  const ret = {
+    phraseIndex: phraseToIndexMap.get(fbtNode),
+    children: fbtNode.children.map(child =>
+      child != null
+        ? _toPlainFbtNodeTree(child, phraseToIndexMap)
+        : null
+    ).filter(Boolean),
+    ...fbtNode.toPlainFbtNode(),
+  };
+  if (ret.phraseIndex == null) {
+    delete ret.phraseIndex;
+  }
+  if (ret.children?.length === 0) {
+    delete ret.children;
+  }
+  return ret;
 }
 
 /**
@@ -178,4 +207,5 @@ module.exports = {
   getTokenAliasesFromFbtNodeTree,
   runOnNestedChildren,
   tokenNameToTextPattern,
+  toPlainFbtNodeTree,
 };

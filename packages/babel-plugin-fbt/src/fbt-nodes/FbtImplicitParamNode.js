@@ -11,7 +11,7 @@
 /*::
 import type {ParamSet} from '../FbtUtil';
 import type {TokenAliases} from '../index';
-import type {FbtChildNode, AnyFbtNode} from './FbtNode';
+import type {FbtChildNode, AnyFbtNode, PlainFbtNode} from './FbtNode';
 import type {IFbtElementNode} from './FbtElementNode';
 import type {AnyStringVariationArg, StringVariationArgsMap} from './FbtArguments';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
@@ -21,6 +21,7 @@ const {
   convertToStringArrayNodeIfNeeded,
   errorAt,
   setUniqueToken,
+  varDump,
 } = require('../FbtUtil');
 const FbtElementNode = require('./FbtElementNode');
 const FbtNode = require('./FbtNode');
@@ -34,10 +35,15 @@ const {
 const FbtTextNode = require('./FbtTextNode');
 const {
   isBinaryExpression,
+  isJSXAttribute,
   isJSXElement,
+  isJSXExpressionContainer,
+  isJSXIdentifier,
+  isNumericLiteral,
   isStringLiteral,
   isTemplateLiteral,
 } = require('@babel/types');
+const invariant = require('invariant');
 const nullthrows = require('nullthrows');
 
 /**
@@ -214,6 +220,46 @@ class FbtImplicitParamNode
 
   __toJSONForTestsOnly() /*: mixed */ {
     return FbtElementNode.__toJSONForTestsOnlyHelper(this);
+  }
+
+  toPlainFbtNode(): PlainFbtNode {
+    const {node: {openingElement}} = this;
+    const wrapperType = openingElement.name;
+    invariant(isJSXIdentifier(wrapperType), 'Expected a isJSXIdentifier instead of `%s`',
+      varDump(wrapperType));
+
+    const wrapperNode = {
+      type: wrapperType.name,
+      babelNode: openingElement,
+      props: openingElement.attributes.reduce((props, attribute) => {
+        // Why filtering which props to render?
+        // See description of the PlainJSXNode.props field in the Flow type definition for more info
+        if (!isJSXAttribute(attribute)) {
+          return props;
+        }
+        const {name: attrName, value: attrValue} = attribute;
+        if (!isJSXIdentifier(attrName)) {
+          return props;
+        }
+
+        let propValue;
+        if (isStringLiteral(attrValue)) {
+          propValue = attrValue.value;
+        } else if (isJSXExpressionContainer(attrValue) && isNumericLiteral(attrValue.expression)) {
+          propValue = attrValue.expression.value;
+        } else {
+          return props;
+        }
+
+        props[attrName.name] = propValue;
+        return props;
+      }, ({}: {[string]: string | number}))
+    };
+
+    return {
+      type: FbtImplicitParamNode.type,
+      wrapperNode,
+    };
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes

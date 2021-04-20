@@ -355,7 +355,7 @@ const generalTestData = {
             <b className="padRight">{this.state.ex1Name}</b>
           </fbt:param>
           has shared
-          <a className="neatoLink" href="#">
+          <a className="neatoLink" href="#" tabindex={123} id={"uniq"}>
             <fbt:plural
               many="photos"
               showCount="ifMany"
@@ -367,6 +367,34 @@ const generalTestData = {
         </fbt>
       </span>;`,
     ),
+
+    output: 'TBD',
+  },
+
+  // TODO(T38926768) Move this to the JSX test suite
+  'should handle JSX fbt with two nested React elements': {
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var React = require('react');
+      <fbt desc="example 1">
+        <fbt:param name="name" gender={this.state.ex1Gender}>
+          <b className="padRight">{this.state.ex1Name}</b>
+        </fbt:param>
+        has shared
+        <a className="neatoLink" href="#" tabindex={123} id={"uniq"}>
+          <strong>
+            <fbt:plural
+              many="photos"
+              showCount="ifMany"
+              count={this.state.ex1Count}>
+              a photo
+            </fbt:plural>
+          </strong>
+        </a>
+        with you
+      </fbt>;`,
+    ),
+
+    output: 'TBD',
   },
 
   'should handle JSX fbt with multiple levels of nested strings': {

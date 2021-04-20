@@ -7,13 +7,13 @@
 
 'use strict';
 
+const {packagerTypes} = require('../collectFbtConstants');
 const childProcess = require('child_process');
 const path = require('path');
 
 const commonPath = path.resolve(__dirname, 'FbtCommonForTests.json');
 
-// TODO(T40113359) Re-enable once this test scenario is ready to be tested
-xdescribe('collectFbt', () => {
+describe('collectFbt', () => {
   function collect(source, options = {}) {
     const scriptPath = path.join(
       // Find the actual module root path
@@ -25,7 +25,7 @@ xdescribe('collectFbt', () => {
     );
     const collectOptions = [
       scriptPath,
-      '--packager=none',
+      '--packager=' + (options.packagerType ?? packagerTypes.NONE),
       '--fbt-common-path=' + commonPath,
     ];
     if (options.react_native_mode) {
@@ -33,6 +33,9 @@ xdescribe('collectFbt', () => {
     }
     if (options.genOuterTokenName) {
       collectOptions.push('--gen-outer-token-name');
+    }
+    if (options.genFbtNodes) {
+      collectOptions.push('--gen-fbt-nodes');
     }
     if (options.customCollector) {
       collectOptions.push('--custom-collector', options.customCollector);
@@ -329,5 +332,71 @@ xdescribe('collectFbt', () => {
         {},
       ),
     ).toMatchSnapshot();
+  });
+
+  describe('fbt nodes:', () => {
+    it('should expose the FbtElementNodes when needed', () => {
+      const ret = collect(
+        `const fbt = require('fbt');
+          <fbt desc="some desc">
+            This is a
+            <a className="neatoLink" href="https://somewhere.random" tabindex={123} id={"uniq"}>
+              link
+            </a>
+          </fbt>`,
+        {packagerType: packagerTypes.TEXT, genFbtNodes: true},
+      );
+
+      const {fbtElementNodes} = ret;
+
+      // Check overall data structure
+      expect(ret).toMatchSnapshot();
+
+      // Check some core data integrity
+      expect(fbtElementNodes.length).toBe(1);
+      expect(fbtElementNodes[0].children[1].phraseIndex).toBe(1);
+      expect(fbtElementNodes[0].phraseIndex).toBe(0);
+      expect(ret.childParentMappings).toEqual({1: 0});
+      expect(ret.phrases.length).toBe(2);
+    });
+
+    it('should expose the FbtElementNodes where there are two nested React elements', () => {
+      const ret = collect(
+        `const fbt = require('fbt');
+        <fbt desc="example 1">
+          <fbt:param name="name" gender={this.state.ex1Gender}>
+            <b className="padRight">{this.state.ex1Name}</b>
+          </fbt:param>
+          has shared
+          <a className="neatoLink" href="#" tabindex={123} id={"uniq"}>
+            <strong>
+              <fbt:plural
+                many="photos"
+                showCount="ifMany"
+                count={this.state.ex1Count}>
+                a photo
+              </fbt:plural>
+            </strong>
+          </a>
+          with you
+        </fbt>;`,
+        {packagerType: packagerTypes.TEXT, genFbtNodes: true},
+      );
+
+      const {fbtElementNodes} = ret;
+
+      // Check overall data structure
+      expect(ret).toMatchSnapshot();
+
+      // Check some core data integrity
+      expect(fbtElementNodes.length).toBe(1);
+      expect(fbtElementNodes[0].children[2].phraseIndex).toBe(1);
+      expect(fbtElementNodes[0].phraseIndex).toBe(0);
+      expect(ret.childParentMappings).toEqual({
+        1: 0,
+        2: 1,
+      });
+      expect(ret.phrases.length).toBe(3);
+    });
   });
 });
