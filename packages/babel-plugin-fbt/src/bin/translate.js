@@ -161,10 +161,7 @@ function parseJSONFile(filepath) {
   }
 }
 
-function processFiles(
-  stringFile /*: string */,
-  translationFiles /*: Array<string> */,
-) {
+function processFiles(stringFile: string, translationFiles: Array<string>) {
   const phrases = parseJSONFile(stringFile).phrases;
   const fbtSites = phrases.map(FbtSite.fromScan);
   const translatedGroups = translationFiles.map(file => {

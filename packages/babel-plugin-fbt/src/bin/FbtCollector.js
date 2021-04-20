@@ -1,6 +1,7 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
+ * @format
  * @noformat
  * @flow
  * @emails oncall+internationalization
@@ -14,9 +15,12 @@ const {extractEnumsAndFlattenPhrases} = require('../FbtShiftEnums');
 const fbt = require('../index');
 const fs = require('graceful-fs');
 
-export type ExternalTransform = (src: string, opts: TransformOptions, filename: ?string) => mixed;
+export type ExternalTransform = (
+  src: string,
+  opts: TransformOptions,
+  filename: ?string,
+) => mixed;
 
-/*::
 import type {BabelPluginList, BabelPresetList} from '@babel/core';
 import type {PlainFbtNode} from '../fbt-nodes/FbtNode';
 import type {EnumManifest} from '../FbtEnumRegistrar';
@@ -24,7 +28,12 @@ import type {
   PatternHash,
   PatternString,
 } from '../../../../runtime/shared/FbtTable';
-import type {BabelPluginFbt, Phrase, ExtraOptions, PluginOptions} from '../index';
+import type {
+  BabelPluginFbt,
+  Phrase,
+  ExtraOptions,
+  PluginOptions,
+} from '../index';
 export type CollectorConfig = {|
   fbtCommonPath?: string,
   plugins?: BabelPluginList,
@@ -33,12 +42,14 @@ export type CollectorConfig = {|
   transform?: ?ExternalTransform,
   generateOuterTokenName?: boolean,
 |};
-export type ChildParentMappings = {[prop: number]: number}
+export type ChildParentMappings = {[prop: number]: number};
 export type Errors = {[file: string]: Error};
-export type HashToLeaf = {[hash: PatternHash]: {|
-  desc: string,
-  text: PatternString,
-|}};
+export type HashToLeaf = {
+  [hash: PatternHash]: {|
+    desc: string,
+    text: PatternString,
+  |},
+};
 export type PackagerPhrase = {|
   ...Phrase,
   hash_code?: number,
@@ -48,18 +59,17 @@ export type PackagerPhrase = {|
 export type TransformOptions = {|
   ...PluginOptions,
   fbtModule: BabelPluginFbt,
-|}
-*/
+|};
 
 export interface IFbtCollector {
-  constructor(config : CollectorConfig, extraOptions : ExtraOptions): void;
+  constructor(config: CollectorConfig, extraOptions: ExtraOptions): void;
   collectFromOneFile(
     source: string,
     filename: ?string,
     fbtEnumManifest?: EnumManifest,
   ): void;
   collectFromFiles(
-    files : Array<string>,
+    files: Array<string>,
     fbtEnumManifest?: EnumManifest,
   ): boolean;
   getChildParentMappings(): ChildParentMappings;
@@ -69,13 +79,12 @@ export interface IFbtCollector {
 }
 
 class FbtCollector implements IFbtCollector {
-/*::
   _phrases: Array<PackagerPhrase>;
   _errors: Errors;
   _extraOptions: ExtraOptions;
   _config: CollectorConfig;
-*/
-  constructor(config /*: CollectorConfig*/, extraOptions /*: ExtraOptions*/) {
+
+  constructor(config: CollectorConfig, extraOptions: ExtraOptions) {
     this._phrases = [];
     this._errors = {};
     this._extraOptions = extraOptions;
@@ -83,10 +92,10 @@ class FbtCollector implements IFbtCollector {
   }
 
   collectFromOneFile(
-    source /*: string*/,
-    filename /*: ?string*/,
-    fbtEnumManifest /*::?: EnumManifest*/,
-  ) /*: void*/ {
+    source: string,
+    filename: ?string,
+    fbtEnumManifest?: EnumManifest,
+  ): void {
     const options = {
       collectFbt: true,
       extraOptions: this._extraOptions,
@@ -107,7 +116,12 @@ class FbtCollector implements IFbtCollector {
       externalTransform(source, options, filename);
     } else {
       const transform = require('@fbtjs/default-collection-transform');
-      transform(source, options, this._config.plugins || [], this._config.presets || []);
+      transform(
+        source,
+        options,
+        this._config.plugins || [],
+        this._config.presets || [],
+      );
     }
 
     let newPhrases = fbt.getExtractedStrings();
@@ -121,9 +135,9 @@ class FbtCollector implements IFbtCollector {
   }
 
   collectFromFiles(
-    files /*: Array<string>*/,
-    fbtEnumManifest /*:: ?: EnumManifest */,
-  ) /*: boolean*/ {
+    files: Array<string>,
+    fbtEnumManifest?: EnumManifest,
+  ): boolean {
     let hasFailure = false;
     files.forEach(file => {
       try {
@@ -138,15 +152,15 @@ class FbtCollector implements IFbtCollector {
     return !hasFailure;
   }
 
-  getPhrases() /*: Array<PackagerPhrase>*/ {
+  getPhrases(): Array<PackagerPhrase> {
     return this._phrases;
   }
 
-  getChildParentMappings() /*: ChildParentMappings*/ {
+  getChildParentMappings(): ChildParentMappings {
     return fbt.getChildToParentRelationships();
   }
 
-  getErrors() /*: Errors*/ {
+  getErrors(): Errors {
     return this._errors;
   }
 

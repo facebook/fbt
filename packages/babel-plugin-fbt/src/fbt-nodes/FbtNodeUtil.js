@@ -1,14 +1,15 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
+ * @format
  * @emails oncall+internationalization
  * @flow
  */
+
 /*eslint max-len: ["error", 100]*/
 
 'use strict';
 
-/*::
 import type {TokenAliases} from '../index';
 import type {AnyFbtNode, FbtChildNode, PlainFbtNode} from './FbtNode';
 import type {JSModuleNameType} from '../FbtConstants';
@@ -20,28 +21,23 @@ export type FromBabelNodeFunctionArgs = {|
   moduleName: JSModuleNameType,
   node: BabelNode,
 |};
-*/
 
 const FbtNodeChecker = require('../FbtNodeChecker');
-const {
-  errorAt,
-  normalizeSpaces,
-  varDump,
-} = require('../FbtUtil');
+const {errorAt, normalizeSpaces, varDump} = require('../FbtUtil');
 const invariant = require('invariant');
 
-function createInstanceFromFbtConstructCallsite/*:: <N: {}> */(
-  moduleName /*: JSModuleNameType */,
-  node /*: BabelNode */,
-  Constructor /*: Class<N> & {+type: string} */,
-) /*: ?N */ {
+function createInstanceFromFbtConstructCallsite<N: {}>(
+  moduleName: JSModuleNameType,
+  node: BabelNode,
+  Constructor: Class<N> & {+type: string},
+): ?N {
   const checker = FbtNodeChecker.forModule(moduleName);
   const constructName = checker.getFbtConstructNameFromFunctionCall(node);
   return constructName === Constructor.type
     ? new Constructor({
-      moduleName,
-      node,
-    })
+        moduleName,
+        node,
+      })
     : null;
 }
 
@@ -51,7 +47,8 @@ function createInstanceFromFbtConstructCallsite/*:: <N: {}> */(
 function getClosestElementOrImplicitParamNodeAncestor(
   startNode: AnyFbtNode,
 ): FbtElementNode | FbtImplicitParamNodeType {
-  const ret = startNode.getFirstAncestorOfType(require('./FbtImplicitParamNode')) ||
+  const ret =
+    startNode.getFirstAncestorOfType(require('./FbtImplicitParamNode')) ||
     startNode.getFirstAncestorOfType(require('./FbtElementNode'));
   invariant(
     ret != null,
@@ -86,11 +83,11 @@ function _toPlainFbtNodeTree(
 ): PlainFbtNode {
   const ret = {
     phraseIndex: phraseToIndexMap.get(fbtNode),
-    children: fbtNode.children.map(child =>
-      child != null
-        ? _toPlainFbtNodeTree(child, phraseToIndexMap)
-        : null
-    ).filter(Boolean),
+    children: fbtNode.children
+      .map(child =>
+        child != null ? _toPlainFbtNodeTree(child, phraseToIndexMap) : null,
+      )
+      .filter(Boolean),
     ...fbtNode.toPlainFbtNode(),
   };
   if (ret.phraseIndex == null) {
@@ -114,7 +111,7 @@ function _toPlainFbtNodeTree(
  * @example `convertToTokenName('Hello {name}') === '=Hello [name]'`
  */
 function convertToTokenName(text: string): string {
-  return `=${text.replace(/[{}]/g, m => m === '{' ? '[' : ']' )}`;
+  return `=${text.replace(/[{}]/g, m => (m === '{' ? '[' : ']'))}`;
 }
 
 function tokenNameToTextPattern(tokenName: string): string {
@@ -131,23 +128,26 @@ function getTextFromFbtNodeTree(
   argsMap: StringVariationArgsMap,
   subject: ?BabelNode,
   preserveWhitespace: boolean,
-  getChildNodeText: (argsMap: StringVariationArgsMap, child: FbtChildNode) => string,
+  getChildNodeText: (
+    argsMap: StringVariationArgsMap,
+    child: FbtChildNode,
+  ) => string,
 ): string {
   try {
     if (subject) {
       argsMap.mustHave(instance);
     }
     const texts = instance.children.map(getChildNodeText.bind(null, argsMap));
-    return normalizeSpaces(
-      texts.join(''),
-      {preserveWhitespace},
-    ).trim();
+    return normalizeSpaces(texts.join(''), {preserveWhitespace}).trim();
   } catch (error) {
     throw errorAt(instance.node, error);
   }
 }
 
-function getChildNodeText(argsMap: StringVariationArgsMap, child: FbtChildNode): string {
+function getChildNodeText(
+  argsMap: StringVariationArgsMap,
+  child: FbtChildNode,
+): string {
   const FbtImplicitParamNode = require('./FbtImplicitParamNode');
   return child instanceof FbtImplicitParamNode
     ? tokenNameToTextPattern(child.getTokenName(argsMap))
@@ -159,7 +159,7 @@ function getTokenAliasesFromFbtNodeTree(
   argsMap: StringVariationArgsMap,
 ): TokenAliases {
   const childrentokenAliases = instance.children.map((node, tokenIndex) =>
-    getChildNodeTokenAliases(argsMap, node, tokenIndex)
+    getChildNodeTokenAliases(argsMap, node, tokenIndex),
   );
   return Object.assign({}, ...childrentokenAliases);
 }

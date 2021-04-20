@@ -1,6 +1,7 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
+ * @format
  * @emails oncall+internationalization
  * @flow strict
  */
@@ -12,20 +13,20 @@ export type IntlVariationsEnum = $IntlVariationsEnum;
 // Must match with `IntlVariations.js`
 const IntlNumberVariations = {
   // Cast below values to IntlVariationsEnum
-  ZERO: ((16 /*: $FlowExpectedError */) /*: IntlVariationsEnum */), //  0b10000
-  ONE: ((4 /*: $FlowExpectedError */) /*: IntlVariationsEnum */), //    0b00100
-  TWO: ((8 /*: $FlowExpectedError */) /*: IntlVariationsEnum */), //    0b01000
-  FEW: ((20 /*: $FlowExpectedError */) /*: IntlVariationsEnum */), //   0b10100
-  MANY: ((12 /*: $FlowExpectedError */) /*: IntlVariationsEnum */), //  0b01100
-  OTHER: ((24 /*: $FlowExpectedError */) /*: IntlVariationsEnum */), // 0b11000
+  ZERO: ((16: $FlowExpectedError): IntlVariationsEnum), //  0b10000
+  ONE: ((4: $FlowExpectedError): IntlVariationsEnum), //    0b00100
+  TWO: ((8: $FlowExpectedError): IntlVariationsEnum), //    0b01000
+  FEW: ((20: $FlowExpectedError): IntlVariationsEnum), //   0b10100
+  MANY: ((12: $FlowExpectedError): IntlVariationsEnum), //  0b01100
+  OTHER: ((24: $FlowExpectedError): IntlVariationsEnum), // 0b11000
 };
 
 // Must match with `IntlVariations.js`
 const IntlGenderVariations = {
   // Cast below values to IntlVariationsEnum
-  MALE: ((1 /*: $FlowExpectedError */) /*: IntlVariationsEnum */),
-  FEMALE: ((2 /*: $FlowExpectedError */) /*: IntlVariationsEnum */),
-  UNKNOWN: ((3 /*: $FlowExpectedError */) /*: IntlVariationsEnum */),
+  MALE: ((1: $FlowExpectedError): IntlVariationsEnum),
+  FEMALE: ((2: $FlowExpectedError): IntlVariationsEnum),
+  UNKNOWN: ((3: $FlowExpectedError): IntlVariationsEnum),
 };
 
 // Two bitmasks for representing gender/number variations.  Give a bit
@@ -46,14 +47,14 @@ const IntlFbtVariationType: $ReadOnly<{|
 };
 
 // Gender variation key used in JSFBT to represent any gender
-const GENDER_ANY /*: '*' */ = '*';
+const GENDER_ANY: '*' = '*';
 // Number variation key used in JSFBT to represent "many" (i.e. non-exactly one)
-const NUMBER_ANY /*: '*' */ = '*';
+const NUMBER_ANY: '*' = '*';
 
 // This is not CLDR, but an fbt-specific marker that exists so that
 // singular phrases are not overwritten by multiplexed plural phrases
 // with a singular entry
-const EXACTLY_ONE /*: '_1' */ = '_1';
+const EXACTLY_ONE: '_1' = '_1';
 
 const SPECIALS = {
   // The default entry.  When no entry exists, we fallback to this in the fbt
@@ -63,8 +64,8 @@ const SPECIALS = {
 };
 
 function getType(
-  n /*: $Values<typeof IntlVariationMask> */,
-) /*: $Values<typeof IntlVariationMask> */ {
+  n: $Values<typeof IntlVariationMask>,
+): $Values<typeof IntlVariationMask> {
   if (!isValidValue(n)) {
     throw new Error('Invalid NumberType: ' + n);
   }
@@ -74,7 +75,7 @@ function getType(
     : IntlVariationMask.GENDER;
 }
 
-function isValidValue(value /*: string | number */) /*: boolean */ {
+function isValidValue(value: string | number): boolean {
   const num = Number(value);
   /*eslint no-bitwise: 0*/
   return (

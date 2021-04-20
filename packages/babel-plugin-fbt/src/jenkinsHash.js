@@ -40,7 +40,7 @@ function toUtf8(str) {
 }
 
 // Hash computation for each string that matches the dump script in i18n's php.
-function jenkinsHash(str /*: string */) /*: number */ {
+function jenkinsHash(str: string): number {
   if (!str) {
     return 0;
   }

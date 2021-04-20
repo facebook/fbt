@@ -1,15 +1,16 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
+ * @format
  * @emails oncall+internationalization
  * @flow
  */
+
 /*eslint max-len: ["error", 100]*/
 /* eslint-disable brace-style */ // Needed due to Flow types inlined in comments
 
 'use strict';
 
-/*::
 import type {StringVariationArgsMap} from './FbtArguments';
 import type {FbtOptionValue, JSModuleNameType} from '../FbtConstants';
 import type {AnyFbtNode} from './FbtNode';
@@ -24,7 +25,6 @@ type Options = {|
   // the number variation, and the fbt:param value will represent the UI text to render.
   number?: ?true | BabelNodeExpression,
 |};
-*/
 
 const {ValidParamOptions} = require('../FbtConstants');
 const {
@@ -35,7 +35,10 @@ const {
   varDump,
 } = require('../FbtUtil');
 const {GENDER_ANY, NUMBER_ANY} = require('../translate/IntlVariations');
-const {GenderStringVariationArg, NumberStringVariationArg} = require('./FbtArguments');
+const {
+  GenderStringVariationArg,
+  NumberStringVariationArg,
+} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
 const {
   createInstanceFromFbtConstructCallsite,
@@ -63,17 +66,14 @@ const Variation = {
  * Represents an <fbt:param> or fbt.param() construct.
  * @see docs/params.md
  */
-class FbtParamNode extends FbtNode/*:: <
+class FbtParamNode extends FbtNode<
   GenderStringVariationArg | NumberStringVariationArg,
-  BabelNodeCallExpression
-  > */ {
-
-  /*::
+  BabelNodeCallExpression,
+> {
   static +type: 'param';
   +options: Options;
-  */
 
-  getOptions() /*: Options */ {
+  getOptions(): Options {
     try {
       const rawOptions = collectOptionsFromFbtConstruct(
         this.moduleName,
@@ -81,18 +81,27 @@ class FbtParamNode extends FbtNode/*:: <
         ValidParamOptions,
       );
       const gender = enforceBabelNodeExpression.orNull(rawOptions.gender);
-      const number = typeof rawOptions.number === 'boolean'
-        ? rawOptions.number
-        : enforceBabelNodeExpression.orNull(rawOptions.number);
+      const number =
+        typeof rawOptions.number === 'boolean'
+          ? rawOptions.number
+          : enforceBabelNodeExpression.orNull(rawOptions.number);
 
-      invariant(number !== false, '`number` option must be an expression or `true`');
-      invariant(!gender || !number,
-        'Gender and number options must not be set at the same time');
+      invariant(
+        number !== false,
+        '`number` option must be an expression or `true`',
+      );
+      invariant(
+        !gender || !number,
+        'Gender and number options must not be set at the same time',
+      );
 
       let name = typeof rawOptions.name === 'string' ? rawOptions.name : null;
       if (!name) {
         const [arg0] = this.getCallNodeArguments() || [];
-        invariant(isStringLiteral(arg0), 'First function argument must be a string literal');
+        invariant(
+          isStringLiteral(arg0),
+          'First function argument must be a string literal',
+        );
         name = arg0.value;
       }
       invariant(name.length, 'Token name string must not be empty');
@@ -114,21 +123,27 @@ class FbtParamNode extends FbtNode/*:: <
   static fromBabelNode({
     moduleName,
     node,
-  } /*: FromBabelNodeFunctionArgs */) /*: ?FbtParamNode */ {
+  }: FromBabelNodeFunctionArgs): ?FbtParamNode {
     return createInstanceFromFbtConstructCallsite(moduleName, node, this);
   }
 
-  getArgsForStringVariationCalc() /*: $ReadOnlyArray<
-    | GenderStringVariationArg
-    | NumberStringVariationArg
-  > */ {
+  getArgsForStringVariationCalc(): $ReadOnlyArray<
+    GenderStringVariationArg | NumberStringVariationArg,
+  > {
     const {gender, number} = this.options;
     const ret = [];
-    invariant(!gender || !number, 'Gender and number options must not be set at the same time');
+    invariant(
+      !gender || !number,
+      'Gender and number options must not be set at the same time',
+    );
     if (gender) {
       ret.push(new GenderStringVariationArg(this, gender, [GENDER_ANY]));
     } else if (number) {
-      ret.push(new NumberStringVariationArg(this, number === true ? null : number, [NUMBER_ANY]));
+      ret.push(
+        new NumberStringVariationArg(this, number === true ? null : number, [
+          NUMBER_ANY,
+        ]),
+      );
     }
     return ret;
   }
@@ -137,7 +152,7 @@ class FbtParamNode extends FbtNode/*:: <
     return this.options.name;
   }
 
-  getText(argsMap /*: StringVariationArgsMap */) /*: string */ {
+  getText(argsMap: StringVariationArgsMap): string {
     try {
       this.getArgsForStringVariationCalc().forEach(expectedArg => {
         const svArg = argsMap.get(this);
@@ -163,17 +178,21 @@ class FbtParamNode extends FbtNode/*:: <
 
     if (number != null) {
       variationValues = [numericLiteral(Variation.number)];
-      if (number !== true) { // For number="true" we don't pass additional value.
+      if (number !== true) {
+        // For number="true" we don't pass additional value.
         variationValues.push(number);
       }
     } else if (gender != null) {
       variationValues = [numericLiteral(Variation.gender), gender];
     }
-    return createFbtRuntimeArgCallExpression(this, [
-      stringLiteral(options.name),
-      nullthrows(value),
-      variationValues ? arrayExpression(variationValues) : null,
-    ].filter(Boolean));
+    return createFbtRuntimeArgCallExpression(
+      this,
+      [
+        stringLiteral(options.name),
+        nullthrows(value),
+        variationValues ? arrayExpression(variationValues) : null,
+      ].filter(Boolean),
+    );
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes
