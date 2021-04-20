@@ -10,7 +10,7 @@
 'use strict';
 
 /*::
-import type {FbtChildNode} from './fbt-nodes/FbtNode';
+import type {AnyFbtNode} from './fbt-nodes/FbtNode';
 import type {
   FbtOptionConfig,
   FbtOptionValue,
@@ -34,10 +34,13 @@ const nullthrows = require('nullthrows');
 const {FBS, FBT} = JSModuleName;
 const {
   arrayExpression,
+  callExpression,
+  identifier,
   isArrowFunctionExpression,
   isBinaryExpression,
   isBooleanLiteral,
   isCallExpression,
+  isExpression,
   isIdentifier,
   isJSXAttribute,
   isJSXElement,
@@ -52,6 +55,7 @@ const {
   isObjectProperty,
   isStringLiteral,
   isTemplateLiteral,
+  memberExpression,
   stringLiteral,
 } = require('@babel/types');
 const {generateFormattedCodeFromAST} = require('fb-babel-plugin-utils/TestUtil');
@@ -512,31 +516,6 @@ function getOptionBooleanValue/*:: <K: string> */(
   }
 }
 
-function getVariationValue(
-  moduleName /*: string */,
-  variationName /*: 'number' | 'gender' */,
-  variationInfo /*: BabelNode */,
-) /*: ?BabelNode */ {
-  // Numbers allow only `true` or expression.
-  if (
-    variationName === 'number' &&
-    // $FlowFixMe Need to figure out what kind of BabelNode variationInfo is
-    isBooleanLiteral(variationInfo.value)
-  ) {
-    if (variationInfo.value.value !== true) {
-      throw errorAt(
-        variationInfo,
-        `${moduleName}.param's number option should be an expression or 'true'`,
-      );
-    }
-    // For number="true" we don't pass additional value.
-    return null;
-  }
-
-  // $FlowFixMe Need to figure out what kind of BabelNode variationInfo is
-  return variationInfo.value;
-}
-
 /**
  * Utility for getting the first attribute by name from a list of attributes.
  */
@@ -893,6 +872,16 @@ function enforceBabelNode(value /*: mixed */, valueDesc /*: ?string */) /*: Babe
   return value;
 }
 
+function enforceBabelNodeExpression(value: mixed, valueDesc: ?string): BabelNodeExpression {
+  invariant(isExpression(value),
+    '%sExpected BabelNodeExpression value instead of %s (%s)',
+    valueDesc ? valueDesc + ' - ' : '',
+    varDump(value),
+    typeof value,
+  );
+  return value;
+}
+
 function enforceStringEnum/*:: <K: string> */(
   value /*: mixed */,
   keys /*: {[K]: mixed} */,
@@ -923,6 +912,13 @@ enforceBabelNode.orNull = (nullableTypeCheckerFactory(enforceBabelNode) /*: $Cal
   typeof enforceBabelNode,
 > */);
 
+enforceBabelNodeExpression.orNull = (
+  nullableTypeCheckerFactory(enforceBabelNodeExpression): $Call<
+    typeof nullableTypeCheckerFactory,
+    typeof enforceBabelNodeExpression,
+  >
+);
+
 enforceBoolean.orNull = (nullableTypeCheckerFactory(enforceBoolean) /*: $Call<
   typeof nullableTypeCheckerFactory,
   typeof enforceBoolean,
@@ -937,6 +933,37 @@ enforceStringEnum.orNull = (nullableTypeCheckerFactory(
   enforceStringEnum,
 ) /*: $Call<typeof nullableTypeCheckerFactory, typeof enforceStringEnum> */);
 
+/**
+ * Creates an `fbt._<<methodName>>(args)` runtime function call.
+ * <<methodName>> is inferred from the given fbtNode
+ * @param fbtNode This fbt FbtNode that created this function call
+ * @param args Arguments of the function call
+ * @param overrideMethodName Use this method name instead of the one from the fbtNode
+ */
+function createFbtRuntimeArgCallExpression(
+  fbtNode: AnyFbtNode,
+  args: Array<
+    | BabelNodeExpression
+    | BabelNodeSpreadElement
+    | BabelNodeJSXNamespacedName
+    | BabelNodeArgumentPlaceholder
+  >,
+  overrideMethodName?: string,
+): BabelNodeCallExpression {
+  return callExpression(
+    memberExpression(
+      identifier(fbtNode.moduleName),
+      identifier('_' + (overrideMethodName ||
+        nullthrows(
+          // $FlowExpectedError[prop-missing] using nullthrows() to detect if it's undefined
+          fbtNode.constructor.type
+        )
+      ))
+    ),
+    args,
+  );
+}
+
 module.exports = {
   assertModuleName,
   checkOption,
@@ -945,7 +972,9 @@ module.exports = {
   compactBabelNodeProps,
   convertTemplateLiteralToArrayElements,
   convertToStringArrayNodeIfNeeded,
+  createFbtRuntimeArgCallExpression,
   enforceBabelNode,
+  enforceBabelNodeExpression,
   enforceBoolean,
   enforceString,
   enforceStringEnum,
@@ -962,7 +991,6 @@ module.exports = {
   getOptionsFromAttributes,
   getOptionsNodeFromCallExpression,
   getRawSource,
-  getVariationValue,
   hasKeys,
   normalizeSpaces,
   objMap,

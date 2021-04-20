@@ -67,6 +67,10 @@ class FbtSameParamNode
   getArgsForStringVariationCalc() /*: $ReadOnlyArray<empty> */ {
     return [];
   }
+
+  getFbtRuntimeArg(): null {
+    return null;
+  }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes
 FbtSameParamNode.type = 'sameParam';

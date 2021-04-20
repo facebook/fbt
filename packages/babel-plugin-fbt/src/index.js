@@ -285,10 +285,15 @@ function FbtTransform(babel /*: {
           metaPhrases,
         } = root.convertToFbtRuntimeCall();
 
-        // TODO(T40113359): maybe remove this once we've started replacing fbt() -> fbt._()
-        // This is currently needed to avoid processing fbt() twice
-        // (during the enter/exit traversal phases of the babel transform)
-        path.skip();
+        // TODO(T40113359): remove this null check once the fbt runtime callsites have been implemented
+        if (callNode != null) {
+          path.replaceWith(callNode);
+        } else {
+          // TODO(T40113359): maybe remove this once we've started replacing fbt() -> fbt._()
+          // This is currently needed to avoid processing fbt() twice
+          // (during the enter/exit traversal phases of the babel transform)
+          path.skip();
+        }
         // TODO(T40113359): remove this once we've started replacing fbt() -> fbt._()
         // This is currently needed to avoid processing fbt() twice.
         // I.e. when Babel converts JSX -> React.createElement(),
@@ -296,8 +301,6 @@ function FbtTransform(babel /*: {
         // $FlowFixMe
         node._fbtProcessed = true;
 
-        // TODO(T40113359): implement converted fbt._() callsite
-        // path.replaceWith(callNode);
 
         if (pluginOptions.collectFbt) {
           const initialPhraseCount = allMetaPhrases.length;

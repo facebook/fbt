@@ -2041,7 +2041,50 @@ declare module "@babel/types" {
   declare export function isTSTypeParameterInstantiation(node: ?Object, opts?: ?Object): boolean %checks (node instanceof BabelNodeTSTypeParameterInstantiation)
   declare export function isTSTypeParameterDeclaration(node: ?Object, opts?: ?Object): boolean %checks (node instanceof BabelNodeTSTypeParameterDeclaration)
   declare export function isTSTypeParameter(node: ?Object, opts?: ?Object): boolean %checks (node instanceof BabelNodeTSTypeParameter)
-  declare export function isExpression(node: ?Object, opts?: ?Object): boolean
+  declare export function isExpression(node: ?Object, opts?: ?Object): boolean %checks (
+    node instanceof BabelNodeArrayExpression ||
+    node instanceof BabelNodeAssignmentExpression ||
+    node instanceof BabelNodeBinaryExpression ||
+    node instanceof BabelNodeCallExpression ||
+    node instanceof BabelNodeConditionalExpression ||
+    node instanceof BabelNodeFunctionExpression ||
+    node instanceof BabelNodeIdentifier ||
+    node instanceof BabelNodeStringLiteral ||
+    node instanceof BabelNodeNumericLiteral ||
+    node instanceof BabelNodeNullLiteral ||
+    node instanceof BabelNodeBooleanLiteral ||
+    node instanceof BabelNodeRegExpLiteral ||
+    node instanceof BabelNodeLogicalExpression ||
+    node instanceof BabelNodeMemberExpression ||
+    node instanceof BabelNodeNewExpression ||
+    node instanceof BabelNodeObjectExpression ||
+    node instanceof BabelNodeSequenceExpression ||
+    node instanceof BabelNodeParenthesizedExpression ||
+    node instanceof BabelNodeThisExpression ||
+    node instanceof BabelNodeUnaryExpression ||
+    node instanceof BabelNodeUpdateExpression ||
+    node instanceof BabelNodeArrowFunctionExpression ||
+    node instanceof BabelNodeClassExpression ||
+    node instanceof BabelNodeMetaProperty ||
+    node instanceof BabelNodeSuper ||
+    node instanceof BabelNodeTaggedTemplateExpression ||
+    node instanceof BabelNodeTemplateLiteral ||
+    node instanceof BabelNodeYieldExpression ||
+    node instanceof BabelNodeTypeCastExpression ||
+    node instanceof BabelNodeJSXElement ||
+    node instanceof BabelNodeJSXFragment ||
+    node instanceof BabelNodeAwaitExpression ||
+    node instanceof BabelNodeBindExpression ||
+    node instanceof BabelNodeOptionalMemberExpression ||
+    node instanceof BabelNodePipelinePrimaryTopicReference ||
+    node instanceof BabelNodeOptionalCallExpression ||
+    node instanceof BabelNodeImport ||
+    node instanceof BabelNodeDoExpression ||
+    node instanceof BabelNodeBigIntLiteral ||
+    node instanceof BabelNodeTSAsExpression ||
+    node instanceof BabelNodeTSTypeAssertion ||
+    node instanceof BabelNodeTSNonNullExpression
+  )
   declare export function isBinary(node: ?Object, opts?: ?Object): boolean
   declare export function isScopable(node: ?Object, opts?: ?Object): boolean
   declare export function isBlockParent(node: ?Object, opts?: ?Object): boolean

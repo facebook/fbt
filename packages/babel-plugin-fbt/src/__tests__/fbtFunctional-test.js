@@ -31,13 +31,17 @@ const generalTestData = {
       );`,
     ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
-          type: 'text',
-          jsfbt: 'A simple string',
-          desc: "It's simple",
+          jsfbt: {
+            t: {
+              desc: "It's simple",
+              text: 'A simple string',
+              tokenAliases: {},
+            },
+            m: [],
+          },
         })},
       );`,
     ),
@@ -79,14 +83,18 @@ const generalTestData = {
       );`,
     ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
-          type: 'text',
-          jsfbt: 'A short string',
-          desc:
-            'With a ridiculously long description that requires concatenation',
+          jsfbt: {
+            t: {
+              desc:
+                'With a ridiculously long description that requires concatenation',
+              text: 'A short string',
+              tokenAliases: {},
+            },
+            m: [],
+          },
         })},
       );`,
     ),
@@ -102,13 +110,17 @@ const generalTestData = {
       baz();`,
     ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
-          type: 'text',
-          jsfbt: 'A simple string... with some other stuff.',
-          desc: 'blah',
+          jsfbt: {
+            t: {
+              desc: 'blah',
+              text: 'A simple string... with some other stuff.',
+              tokenAliases: {},
+            },
+            m: [],
+          },
         })},
       );
       baz();`,
@@ -146,13 +158,17 @@ const generalTestData = {
       );`,
     ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var z = fbt._(
         ${payload({
-          type: 'text',
-          jsfbt: 'a b {name1} c d {name2} e',
-          desc: 'a',
+          jsfbt: {
+            t: {
+              desc: 'a',
+              text: 'a b {name1} c d {name2} e',
+              tokenAliases: {},
+            },
+            m: [],
+          },
         })},
         [fbt._param('name1', val1), fbt._param('name2', val2)],
       );`,
@@ -223,13 +239,17 @@ const generalTestData = {
       );`,
     ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var z = fbt._(
         ${payload({
-          type: 'text',
-          jsfbt: '{name1} blah {name2}',
-          desc: 'a',
+          jsfbt: {
+            t: {
+              desc: 'a',
+              text: '{name1} blah {name2}',
+              tokenAliases: {},
+            },
+            m: [],
+          },
         })},
         [
           fbt._param(
@@ -259,7 +279,6 @@ const generalTestData = {
       var x = <div>{fbt(['A nested string'], 'nested!')}</div>;`,
     ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var React = require('react');
       var x = React.createElement(
@@ -267,9 +286,14 @@ const generalTestData = {
         null,
         fbt._(
           ${payload({
-            type: 'text',
-            jsfbt: 'A nested string',
-            desc: 'nested!',
+            jsfbt: {
+              t: {
+                desc: 'nested!',
+                text: 'A nested string',
+                tokenAliases: {},
+              },
+              m: [],
+            },
           })},
         ),
       );`,
@@ -522,13 +546,17 @@ const generalTestData = {
       );`,
     ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
-          type: 'text',
-          jsfbt: 'A parameterized message to {personName}',
-          desc: 'Moar params',
+          jsfbt: {
+            t: {
+              desc: 'Moar params',
+              text: 'A parameterized message to {personName}',
+              tokenAliases: {},
+            },
+            m: [],
+          },
         })},
         [fbt._param('personName', truthy ? ifTrue : ifFalse)],
       );`,
@@ -550,13 +578,17 @@ const generalTestData = {
       });`,
     ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `fbt._(
         ${payload({
-          type: 'text',
-          jsfbt: 'A string that moved files',
-          desc: 'options!',
+          jsfbt: {
+            t: {
+              desc: 'options!',
+              text: 'A string that moved files',
+              tokenAliases: {},
+            },
+            m: [],
+          },
           project: 'Super Secret',
         })},
       );`,
@@ -909,14 +941,16 @@ const generalTestData = {
       );`,
     ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
-          type: 'table',
           jsfbt: {
             t: {
-              '*': 'Click to see {count} links',
+              '*': {
+                desc: 'variations!',
+                text: 'Click to see {count} links',
+                tokenAliases: {},
+              },
             },
             m: [
               {
@@ -925,7 +959,6 @@ const generalTestData = {
               },
             ],
           },
-          desc: 'variations!',
         })},
         [fbt._param('count', c, [0])],
       );`,
@@ -950,13 +983,17 @@ const generalTestData = {
       );`,
     ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var z = fbt._(
         ${payload({
-          type: 'text',
-          jsfbt: '{name1} and {name1}',
-          desc: 'd',
+          jsfbt: {
+            t: {
+              desc: 'd',
+              text: '{name1} and {name1}',
+              tokenAliases: {},
+            },
+            m: [],
+          },
         })},
         [fbt._param('name1', val1)],
       );`,
@@ -989,16 +1026,18 @@ const generalTestData = {
       );`,
     ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var val = 42;
       fbt._(
         ${payload({
-          type: 'table',
           jsfbt: {
             t: {
-              '*':
-                'You have {count} likes. Comment on it to get more than {count} likes',
+              '*': {
+                desc: 'test variations + sameParam',
+                text:
+                  'You have {count} likes. Comment on it to get more than {count} likes',
+                tokenAliases: {},
+              },
             },
             m: [
               {
@@ -1007,7 +1046,6 @@ const generalTestData = {
               },
             ],
           },
-          desc: 'test variations + sameParam',
         })},
         [fbt._param('count', val, [0])],
       );`,
@@ -1025,14 +1063,18 @@ const generalTestData = {
         `var x = fbt(['Also simple string'], "It's simple");`,
       )}`,
 
-    filterOutputTest: 'skip',
     output: `/** @fbt {"project": "dev"}*/
       ${withFbtRequireStatement(
         `var x = fbt._(
           ${payload({
-            type: 'text',
-            jsfbt: 'Also simple string',
-            desc: "It's simple",
+            jsfbt: {
+              t: {
+                desc: "It's simple",
+                text: 'Also simple string',
+                tokenAliases: {},
+              },
+              m: [],
+            },
             project: 'dev',
           })},
         );`,
@@ -1073,27 +1115,41 @@ const generalTestData = {
       );`,
     ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
-          type: 'text',
-          jsfbt: 'foobarbazqux',
-          desc: 'desc',
+          jsfbt: {
+            t: {
+              desc: 'desc',
+              text: 'foobarbazqux',
+              tokenAliases: {},
+            },
+            m: [],
+          },
         })},
       );
       var y = fbt._(
         ${payload({
-          type: 'text',
-          jsfbt: 'foobarbazqux',
-          desc: 'desc',
+          jsfbt: {
+            t: {
+              desc: 'desc',
+              text: 'foobarbazqux',
+              tokenAliases: {},
+            },
+            m: [],
+          },
         })},
       );
       var q = fbt._(
         ${payload({
-          type: 'text',
-          jsfbt: 'foobarbazqux',
-          desc: 'desc',
+          jsfbt: {
+            t: {
+              desc: 'desc',
+              text: 'foobarbazqux',
+              tokenAliases: {},
+            },
+            m: [],
+          },
         })},
       );`,
     ),
@@ -1447,13 +1503,17 @@ with some other stuff.\`
       baz();`,
     ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
-          type: 'text',
-          jsfbt: 'A simple string... with some other stuff.',
-          desc: 'blah',
+          jsfbt: {
+            t: {
+              desc: 'blah',
+              text: 'A simple string... with some other stuff.',
+              tokenAliases: {},
+            },
+            m: [],
+          },
         })},
       );
       baz();`,
@@ -1600,6 +1660,14 @@ function describeTestScenarios(testData) {
   });
 
   describe('Meta-data collection', () => {
+    beforeEach(() => {
+      const FbtFunctionCallProcessor = require('../babel-processors/FbtFunctionCallProcessor');
+      // Prevent generating the fbt runtime call
+      jest
+        .spyOn(FbtFunctionCallProcessor.prototype, '_createRootFbtRuntimeCall')
+        .mockReturnValue(null);
+    });
+
     function forEachTestScenario(callback, options = {}) {
       for (const title in testData) {
         callback(title, testData[title], options);

@@ -82,6 +82,7 @@ export type SentinelPayload = {|
 |};
 
 export type MetaPhrase = {|
+  compactStringVariations: CompactStringVariations,
   // FbtNode abstraction whose phrase's data comes from
   fbtNode: FbtElementNode | FbtImplicitParamNode,
   // Phrase data
@@ -89,6 +90,14 @@ export type MetaPhrase = {|
   // Index of the outer-phrase (assuming that the current phrase is an inner-phrase)
   // If the current phrase is the top-level phrase, it won't be defined.
   parentIndex: ?number,
+|};
+
+type CompactStringVariations = {|
+  // Compacted string variation argument list
+  array: $ReadOnlyArray<AnyStringVariationArg>,
+  // Mapping of the original item indexes so that:
+  //   For the output array item at index `k`, the original SVArgument index is `indexMap[k]`
+  indexMap: $ReadOnlyArray<number>,
 |};
 */
 
@@ -119,13 +128,19 @@ const {
 const JSFbtBuilder = require('../JSFbtBuilder');
 const addLeafToTree = require('../utils/addLeafToTree');
 const {
+  arrayExpression,
+  callExpression,
+  identifier,
   isArrayExpression,
   isCallExpression,
   isObjectExpression,
   isObjectProperty,
   isStringLiteral,
   isTemplateLiteral,
+  memberExpression,
+  stringLiteral,
 } = require('@babel/types');
+const {Buffer} = require('buffer');
 const invariant = require('invariant');
 const nullthrows = require('nullthrows');
 
@@ -593,8 +608,12 @@ class FbtFunctionCallProcessor {
     ).trim();
   }
 
-  _createFbtRuntimeCall(phrase, runtimeArgs) {
-    const {pluginOptions, t} = this;
+  _createFbtRuntimeCall(metaPhrase: MetaPhrase): FbtBabelNodeCallExpression {
+    const {
+      fbtNode,
+      phrase,
+    } = metaPhrase;
+    const {pluginOptions} = this;
     // $FlowFixMe[speculation-ambiguous] we're deprecating the "type" property soon anyway
     const argsOutput = JSON.stringify(({
       jsfbt: phrase.jsfbt,
@@ -605,18 +624,40 @@ class FbtFunctionCallProcessor {
       : argsOutput;
     const fbtSentinel = pluginOptions.fbtSentinel || SENTINEL;
     const args = [
-      t.stringLiteral(fbtSentinel + encodedOutput + fbtSentinel),
+      stringLiteral(fbtSentinel + encodedOutput + fbtSentinel),
     ];
+    const fbtRuntimeArgs = [];
 
-    if (runtimeArgs.length > 0) {
-      // See https://github.com/babel/babel/issues/10932
-      // $FlowFixMe t.arrayExpression's argument type needs to use $ReadOnlyArray instead of Array
-      args.push(t.arrayExpression(runtimeArgs));
+    for (const childFbtNode of fbtNode.children) {
+      // try {
+      const fbtRuntimeArg = childFbtNode.getFbtRuntimeArg();
+      if (fbtRuntimeArg) {
+        fbtRuntimeArgs.push(fbtRuntimeArg);
+      }
+      // } catch (error) {
+      //   if (error.message.includes('This method must be implemented in a child class')) {
+      //     fbtRuntimeArgs.push(
+      //       // TODO(T40113359): remove when creating fbt runtime args for all FbtNodes is done
+      //       stringLiteral(`TODO: ${childFbtNode.constructor.type}: ${error.message}`)
+      //     );
+      //   } else {
+      //     throw errorAt(childFbtNode.node, error);
+      //   }
+      // }
     }
-    return t.callExpression(
-      t.memberExpression(t.identifier(this.moduleName), t.identifier('_')),
+
+    if (fbtRuntimeArgs.length > 0) {
+      args.push(arrayExpression(fbtRuntimeArgs));
+    }
+    return callExpression(
+      memberExpression(identifier(this.moduleName), identifier('_')),
       args,
     );
+  }
+
+  _createRootFbtRuntimeCall(metaPhrases: $ReadOnlyArray<MetaPhrase>): FbtBabelNodeCallExpression {
+    const [rootPhrase] = metaPhrases;
+    return this._createFbtRuntimeCall(rootPhrase);
   }
 
   /**
@@ -627,13 +668,9 @@ class FbtFunctionCallProcessor {
    *
    * Other types of variation arguments are accepted as-is.
    */
-  _compactStringVariationArgs(args: $ReadOnlyArray<AnyStringVariationArg>): {|
-    // Compacted string variation argument list
-    array: $ReadOnlyArray<AnyStringVariationArg>,
-    // Mapping of the original item indexes so that:
-    //   For the output array item at index `k`, the original SVArgument index is `indexMap[k]`
-    indexMap: $ReadOnlyArray<number>,
-  |} {
+  _compactStringVariationArgs(
+    args: $ReadOnlyArray<AnyStringVariationArg>,
+  ): CompactStringVariations {
     const indexMap = [];
     const array = args.filter((arg, i) => {
       if (arg.isCollapsible) {
@@ -663,7 +700,7 @@ class FbtFunctionCallProcessor {
   /**
    * Generates a list of meta-phrases from a given FbtElement node
    */
-  _metaPhrases(fbtElement /*: FbtElementNode */) /*: $ReadOnlyArray<MetaPhrase> */ {
+  _metaPhrases(fbtElement: FbtElementNode): $ReadOnlyArray<MetaPhrase> {
     const stringVariationArgs = fbtElement.getArgsForStringVariationCalc();
     const jsfbtBuilder = new JSFbtBuilder(
       this.fileSource,
@@ -680,9 +717,9 @@ class FbtFunctionCallProcessor {
         try {
           const phrase = {
             ...this.defaultFbtOptions,
-            jsfbt: {
-              m: jsfbtMetadata,
+            jsfbt: { // the order of JSFBT props matter for unit tests
               t: {},
+              m: jsfbtMetadata,
             },
           };
           if (doNotExtract != null) {
@@ -721,6 +758,7 @@ class FbtFunctionCallProcessor {
           });
 
           return {
+            compactStringVariations,
             fbtNode,
             parentIndex: this._getPhraseParentIndex(fbtNode, list),
             phrase,
@@ -744,9 +782,7 @@ class FbtFunctionCallProcessor {
   } */ {
     const fbtElement = this.convertToFbtNode();
     const metaPhrases = this._metaPhrases(fbtElement);
-
-    // TODO(T40113359): implement this
-    const callNode = global.TODO_IMPLEMENT_MEEEE;
+    const callNode = this._createRootFbtRuntimeCall(metaPhrases);
 
     return {
       callNode,
