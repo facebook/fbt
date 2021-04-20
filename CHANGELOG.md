@@ -352,6 +352,7 @@ List of changes for each released npm package version.
      Unreleased changes that have landed in master. Click to see more.
     </summary>
 
+  - [fix] Fixed display of error message for `assertSourceAstEqual()`
   - [refactor!] Remove SyntaxPlugins
   - [chore] Remove SyntaxPluginsConfig
 

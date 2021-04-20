@@ -212,7 +212,7 @@ Actual   : <<<${excerptDiffFromActual}>>>
 
 AST diff:
 ====
-${jsonDiff.diffString(actualTree, expectedTree)}
+${jsonDiff.diffString(expectedTree, actualTree)}
 ====
 `;
       console.error(errMessage);
