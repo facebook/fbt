@@ -110,6 +110,7 @@
   "workspaces": [
     "demo-app",
     "packages/babel-plugin-fbt-runtime",
+    "packages/babel-plugin-fbt-standalone",
     "packages/babel-plugin-fbt",
     "packages/default-collection-transform",
     "packages/fb-babel-plugin-utils",

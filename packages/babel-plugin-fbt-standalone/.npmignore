@@ -1,0 +1,8 @@
+# Since .gitignore is not considered when .npmignore is present
+node_modules
+
+**
+!dist/**
+**/__tests__
+**/__fixtures__
+**/__mocks__
