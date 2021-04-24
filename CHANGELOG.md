@@ -8,6 +8,7 @@ List of changes for each released npm package version.
 - [babel-plugin-fbt versions](#babel-plugin-fbt-versions)
 - [babel-plugin-fbt-runtime versions](#babel-plugin-fbt-runtime-versions)
 - [@fbtjs/default-collection-transform](#default-collection-transform)
+- [@fbtjs/babel-plugin-fbt-standalone](#fbtjsbabel-plugin-fbt-standalone-versions)
 - [fb-tiger-hash versions](#fb-tiger-hash-versions)
 - [fb-babel-plugin-utils versions](#fb-babel-plugin-utils-versions)
 - [gulp-rewrite-flowtyped-modules](#gulp-rewrite-flowtyped-modules)
@@ -345,6 +346,11 @@ List of changes for each released npm package version.
 
 - 0.0.1:
   - First commit.  A default Babel transform to use for fbt collection.
+
+### @fbtjs/babel-plugin-fbt-standalone versions
+
+- 0.0.1:
+  - First commit.  The standalone browser-friendly version of `babel-plugin-fbt`.
 
 ### fb-babel-plugin-utils versions
   <details>

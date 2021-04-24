@@ -22,7 +22,7 @@ import type {
   PackagerPhrase,
 } from './FbtCollector';
 import type {HashFunction} from './TextPackager';
-type CollectFbtOutput = {|
+export type CollectFbtOutput = {|
   phrases: Array<
     | PackagerPhrase
     | $Rest<
@@ -37,6 +37,7 @@ type CollectFbtOutput = {|
 |};
 
 const {packagerTypes} = require('./collectFbtConstants');
+const {buildCollectFbtOutput} = require('./collectFbtUtils');
 const FbtCollector = require('./FbtCollector');
 const PhrasePackager = require('./PhrasePackager');
 const TextPackager = require('./TextPackager');
@@ -254,27 +255,13 @@ function processJsonSource(source) {
 }
 
 function writeOutput() {
-  const output = {
-    phrases: getPackagers()
-      .reduce(
-        (phrases, packager) => packager.pack(phrases),
-        fbtCollector.getPhrases(),
-      )
-      .map(phrase => {
-        if (argv[args.TERSE]) {
-          const {jsfbt: _, ...phraseWithoutJSFBT} = phrase;
-          return phraseWithoutJSFBT;
-        }
-        return phrase;
-      }),
-    childParentMappings: fbtCollector.getChildParentMappings(),
-  };
-  const elementNodes = argv[args.GEN_FBT_NODES]
-    ? {fbtElementNodes: fbtCollector.getFbtElementNodes()}
-    : null;
+  const output = buildCollectFbtOutput(fbtCollector, getPackagers(), {
+    terse: argv[args.TERSE],
+    genFbtNodes: argv[args.GEN_FBT_NODES],
+  });
   process.stdout.write(
     JSON.stringify(
-      ({...output, ...elementNodes}: CollectFbtOutput),
+      (output: CollectFbtOutput),
       ...(argv[args.PRETTY] ? [null, ' '] : []),
     ),
   );
