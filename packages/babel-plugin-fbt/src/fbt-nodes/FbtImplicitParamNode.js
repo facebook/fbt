@@ -1,21 +1,24 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
+ * @format
  * @emails oncall+internationalization
  * @flow
  */
+
 /*eslint max-len: ["error", 100]*/
 
 'use strict';
 
-/*::
 import type {ParamSet} from '../FbtUtil';
 import type {TokenAliases} from '../index';
-import type {FbtChildNode, AnyFbtNode, PlainFbtNode} from './FbtNode';
+import type {
+  AnyStringVariationArg,
+  StringVariationArgsMap,
+} from './FbtArguments';
 import type {IFbtElementNode} from './FbtElementNode';
-import type {AnyStringVariationArg, StringVariationArgsMap} from './FbtArguments';
+import type {AnyFbtNode, FbtChildNode, PlainFbtNode} from './FbtNode';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
-*/
 
 const {
   convertToStringArrayNodeIfNeeded,
@@ -51,25 +54,22 @@ const nullthrows = require('nullthrows');
  * Represents non-fbt JSX element nested inside an fbt callsite.
  */
 class FbtImplicitParamNode
-  extends FbtNode /*:: <AnyStringVariationArg, BabelNodeJSXElement, FbtChildNode>
-  implements IFbtElementNode */ {
-
-  /*::
+  extends FbtNode<AnyStringVariationArg, BabelNodeJSXElement, FbtChildNode>
+  implements IFbtElementNode {
   static +type: FbtNodeType;
   +options: {||};
-  */
 
-  _tokenSet /*: ParamSet */ = {};
+  _tokenSet: ParamSet = {};
 
-  _getElementNode() /*: FbtElementNode */ {
+  _getElementNode(): FbtElementNode {
     return nullthrows(this.getFirstAncestorOfType(FbtElementNode));
   }
 
-  _getSubjectNode() /*: ?BabelNode */ {
+  _getSubjectNode(): ?BabelNode {
     return this._getElementNode().options.subject;
   }
 
-  getArgsForStringVariationCalc() /*: $ReadOnlyArray<AnyStringVariationArg> */ {
+  getArgsForStringVariationCalc(): $ReadOnlyArray<AnyStringVariationArg> {
     return FbtElementNode.getArgsForStringVariationCalcForFbtElement(
       this,
       // The implicit fbt string may depend on a subject, inferred from the top-level FbtElementNode
@@ -77,9 +77,7 @@ class FbtImplicitParamNode
     );
   }
 
-  getText(
-    argsMap: StringVariationArgsMap,
-  ): string {
+  getText(argsMap: StringVariationArgsMap): string {
     try {
       FbtElementNode.beforeGetTextSanityCheck(this, argsMap);
       return getTextFromFbtNodeTree(
@@ -114,13 +112,15 @@ class FbtImplicitParamNode
    * E.g. `=Hello [name]`
    */
   getTokenName(argsMap: StringVariationArgsMap): string {
-    return convertToTokenName(getTextFromFbtNodeTree(
-      this,
-      argsMap,
-      this._getSubjectNode(),
-      this._getElementNode().options.preserveWhitespace,
-      (_, child) => child.getText(argsMap),
-    ));
+    return convertToTokenName(
+      getTextFromFbtNodeTree(
+        this,
+        argsMap,
+        this._getSubjectNode(),
+        this._getElementNode().options.preserveWhitespace,
+        (_, child) => child.getText(argsMap),
+      ),
+    );
   }
 
   /**
@@ -128,7 +128,10 @@ class FbtImplicitParamNode
    * from the whole fbt callsite.
    */
   getDescription(argsMap: StringVariationArgsMap): string {
-    return `In the phrase: "${this._getElementNode().getTextForDescription(argsMap, this)}"`;
+    return `In the phrase: "${this._getElementNode().getTextForDescription(
+      argsMap,
+      this,
+    )}"`;
   }
 
   getTokenAliases(argsMap: StringVariationArgsMap): TokenAliases {
@@ -142,7 +145,7 @@ class FbtImplicitParamNode
   static fromBabelNode({
     moduleName,
     node,
-  } /*: FromBabelNodeFunctionArgs */) /*: ?FbtImplicitParamNode */ {
+  }: FromBabelNodeFunctionArgs): ?FbtImplicitParamNode {
     if (!isJSXElement(node)) {
       return null;
     }
@@ -151,21 +154,25 @@ class FbtImplicitParamNode
       node,
     });
 
-    const fbtChildren /*: Array<?FbtChildNode> */ = [];
+    const fbtChildren: Array<?FbtChildNode> = [];
     for (const child of node.children) {
       switch (child.type) {
         case 'JSXText':
           fbtChildren.push(
-            FbtTextNode.fromBabelNode({moduleName, node: child})
+            FbtTextNode.fromBabelNode({moduleName, node: child}),
           );
           break;
 
         case 'JSXExpressionContainer': {
           const {expression} = child;
-          if (isBinaryExpression(expression) || isStringLiteral(expression) ||
-            isTemplateLiteral(expression)) {
-            const elements = convertToStringArrayNodeIfNeeded(moduleName, expression).elements ||
-              ([] /*: Array<null> */);
+          if (
+            isBinaryExpression(expression) ||
+            isStringLiteral(expression) ||
+            isTemplateLiteral(expression)
+          ) {
+            const elements =
+              convertToStringArrayNodeIfNeeded(moduleName, expression)
+                .elements || ([]: Array<null>);
 
             elements.forEach(elem => {
               if (elem == null) {
@@ -175,13 +182,13 @@ class FbtImplicitParamNode
                 throw errorAt(
                   child,
                   `${moduleName}: only string literals ` +
-                  `(or concatenations of string literals) are supported inside JSX expressions, ` +
-                  `but we found the node type "${elem.type}" instead.`,
+                    `(or concatenations of string literals) are supported inside JSX expressions, ` +
+                    `but we found the node type "${elem.type}" instead.`,
                   {suggestOSSWebsite: true},
                 );
               }
               fbtChildren.push(
-                FbtElementNode.createChildNode({moduleName, node: elem})
+                FbtElementNode.createChildNode({moduleName, node: elem}),
               );
             });
             continue;
@@ -193,21 +200,24 @@ class FbtImplicitParamNode
           }
 
           fbtChildren.push(
-            FbtElementNode.createChildNode({moduleName, node: expression})
+            FbtElementNode.createChildNode({moduleName, node: expression}),
           );
           break;
         }
 
         case 'JSXElement': {
           fbtChildren.push(
-            FbtElementNode.createChildNode({moduleName, node: child})
+            FbtElementNode.createChildNode({moduleName, node: child}),
           );
           break;
         }
 
         default:
-          throw errorAt(child, `${moduleName}: unsupported babel node: ${child.type}`,
-            {suggestOSSWebsite: true});
+          throw errorAt(
+            child,
+            `${moduleName}: unsupported babel node: ${child.type}`,
+            {suggestOSSWebsite: true},
+          );
       }
     }
 
@@ -215,19 +225,24 @@ class FbtImplicitParamNode
     return implicitElement;
   }
 
-  registerToken(name /*: string */, source /*: AnyFbtNode */) /*: void */ {
+  registerToken(name: string, source: AnyFbtNode): void {
     setUniqueToken(source.node, this.moduleName, name, this._tokenSet);
   }
 
-  __toJSONForTestsOnly() /*: mixed */ {
+  __toJSONForTestsOnly(): mixed {
     return FbtElementNode.__toJSONForTestsOnlyHelper(this);
   }
 
   toPlainFbtNode(): PlainFbtNode {
-    const {node: {openingElement}} = this;
+    const {
+      node: {openingElement},
+    } = this;
     const wrapperType = openingElement.name;
-    invariant(isJSXIdentifier(wrapperType), 'Expected a JSXIdentifier instead of `%s`',
-      varDump(wrapperType));
+    invariant(
+      isJSXIdentifier(wrapperType),
+      'Expected a JSXIdentifier instead of `%s`',
+      varDump(wrapperType),
+    );
 
     const props = {};
     for (const attribute of openingElement.attributes) {
@@ -236,7 +251,10 @@ class FbtImplicitParamNode
         const {name, value} = attribute;
         if (isStringLiteral(value)) {
           props[name.name] = value.value;
-        } else if (isJSXExpressionContainer(value) && isNumericLiteral(value.expression)) {
+        } else if (
+          isJSXExpressionContainer(value) &&
+          isNumericLiteral(value.expression)
+        ) {
           props[name.name] = value.expression.value;
         }
       }

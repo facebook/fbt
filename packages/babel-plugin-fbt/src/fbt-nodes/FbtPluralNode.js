@@ -1,16 +1,17 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
+ * @format
  * @emails oncall+internationalization
  * @flow
  */
+
 /*eslint max-len: ["error", 100]*/
 /* eslint-disable brace-style */ // Needed due to Flow types inlined in comments
 /* eslint-disable fb-www/flow-exact-by-default-object-types */
 
 'use strict';
 
-/*::
 import type {StringVariationArgsMap} from './FbtArguments';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 
@@ -24,9 +25,12 @@ type Options = {|
   showCount: $Keys<typeof ShowCountKeys>,
   value?: ?BabelNode, // optional value to replace token (rather than count)
 |};
-*/
 
-const {PLURAL_PARAM_TOKEN, ShowCountKeys, ValidPluralOptions} = require('../FbtConstants');
+const {
+  PLURAL_PARAM_TOKEN,
+  ShowCountKeys,
+  ValidPluralOptions,
+} = require('../FbtConstants');
 const {
   collectOptionsFromFbtConstruct,
   enforceBabelNode,
@@ -39,10 +43,11 @@ const {EXACTLY_ONE, NUMBER_ANY} = require('../translate/IntlVariations');
 const {NumberStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
 const FbtNodeType = require('./FbtNodeType');
-const {createInstanceFromFbtConstructCallsite, tokenNameToTextPattern} = require('./FbtNodeUtil');
 const {
-  isStringLiteral,
-} = require('@babel/types');
+  createInstanceFromFbtConstructCallsite,
+  tokenNameToTextPattern,
+} = require('./FbtNodeUtil');
+const {isStringLiteral} = require('@babel/types');
 const invariant = require('invariant');
 const nullthrows = require('nullthrows');
 
@@ -50,16 +55,13 @@ const nullthrows = require('nullthrows');
  * Represents an <fbt:plural> or fbt.plural() construct.
  * @see docs/plurals.md
  */
-class FbtPluralNode extends FbtNode/*:: <
+class FbtPluralNode extends FbtNode<
   NumberStringVariationArg,
   BabelNodeCallExpression,
-  > */ {
-
-  /*::
+> {
   static +type: FbtNodeType;
 
   +options: Options;
-  */
 
   /**
    * Create a new class instance given a BabelNode root node.
@@ -68,11 +70,11 @@ class FbtPluralNode extends FbtNode/*:: <
   static fromBabelNode({
     moduleName,
     node,
-  } /*: FromBabelNodeFunctionArgs */) /*: ?FbtPluralNode */ {
+  }: FromBabelNodeFunctionArgs): ?FbtPluralNode {
     return createInstanceFromFbtConstructCallsite(moduleName, node, this);
   }
 
-  getOptions() /*: Options */ {
+  getOptions(): Options {
     const rawOptions = collectOptionsFromFbtConstruct(
       this.moduleName,
       this.node,
@@ -81,13 +83,18 @@ class FbtPluralNode extends FbtNode/*:: <
 
     try {
       const [_, countArg] = this.getCallNodeArguments() || [];
-      const count = enforceBabelNode(countArg, '`count`, the second function argument');
-      const showCount = enforceStringEnum.orNull(
-        rawOptions.showCount,
-        ValidPluralOptions.showCount,
-        '`showCount` option',
-      ) || ShowCountKeys.no;
-      const name = enforceString.orNull(rawOptions.name, '`name` option') ||
+      const count = enforceBabelNode(
+        countArg,
+        '`count`, the second function argument',
+      );
+      const showCount =
+        enforceStringEnum.orNull(
+          rawOptions.showCount,
+          ValidPluralOptions.showCount,
+          '`showCount` option',
+        ) || ShowCountKeys.no;
+      const name =
+        enforceString.orNull(rawOptions.name, '`name` option') ||
         (showCount !== ShowCountKeys.no ? PLURAL_PARAM_TOKEN : null);
       return {
         count,
@@ -106,7 +113,7 @@ class FbtPluralNode extends FbtNode/*:: <
     scenario: {|
       exactlyOne: () => T,
       anyNumber: () => T,
-    |}
+    |},
   ): T {
     const svArg = argsMap.get(this);
     const svArgValue = nullthrows(svArg.value);
@@ -119,7 +126,11 @@ class FbtPluralNode extends FbtNode/*:: <
         return scenario.anyNumber();
       }
       default:
-        invariant(false, 'Unsupported string variation value: %s', varDump(svArgValue));
+        invariant(
+          false,
+          'Unsupported string variation value: %s',
+          varDump(svArgValue),
+        );
     }
   }
 
@@ -134,7 +145,7 @@ class FbtPluralNode extends FbtNode/*:: <
         return this.options.showCount !== ShowCountKeys.no
           ? this._getStaticTokenName()
           : null;
-      }
+      },
     });
   }
 
@@ -143,13 +154,14 @@ class FbtPluralNode extends FbtNode/*:: <
       const {showCount} = this.options;
       return this._branchByNumberVariation(argsMap, {
         exactlyOne: () =>
-          (showCount === ShowCountKeys.yes ? '1 ' : '') + this._getSingularText(),
+          (showCount === ShowCountKeys.yes ? '1 ' : '') +
+          this._getSingularText(),
         anyNumber: () => {
           const many = this.options.many ?? this._getSingularText() + 's';
           return showCount !== ShowCountKeys.no
             ? tokenNameToTextPattern(this._getStaticTokenName()) + ' ' + many
             : many;
-        }
+        },
       });
     } catch (error) {
       throw errorAt(this.node, error);
@@ -158,23 +170,29 @@ class FbtPluralNode extends FbtNode/*:: <
 
   _getSingularText(): string {
     const callArg0 = nullthrows((this.getCallNodeArguments() || [])[0]);
-    invariant(isStringLiteral(callArg0),
+    invariant(
+      isStringLiteral(callArg0),
       'Expected a StringLiteral but got "%s" instead',
       callArg0.type,
     );
     return callArg0.value;
   }
 
-  _getValueNode() /*: BabelNode */ {
+  _getValueNode(): BabelNode {
     throw errorAt(this.node, 'not implemented yet');
   }
 
-  _getCountNode() /*: BabelNode */ {
+  _getCountNode(): BabelNode {
     throw errorAt(this.node, 'not implemented yet');
   }
 
-  getArgsForStringVariationCalc() /*: $ReadOnlyArray<NumberStringVariationArg> */ {
-    return [new NumberStringVariationArg(this, this.options.count, [NUMBER_ANY, EXACTLY_ONE])];
+  getArgsForStringVariationCalc(): $ReadOnlyArray<NumberStringVariationArg> {
+    return [
+      new NumberStringVariationArg(this, this.options.count, [
+        NUMBER_ANY,
+        EXACTLY_ONE,
+      ]),
+    ];
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes

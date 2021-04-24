@@ -73,11 +73,7 @@ function getLeafNodeString(node) {
  * recursively calls itself with children nodes so only explicit <fbt:param>
  * children are wrapped and not the base node.
  */
-function collectRawString(
-  moduleName,
-  node /*: BabelNode */,
-  child /*: boolean */,
-) {
+function collectRawString(moduleName, node: BabelNode, child: boolean) {
   if (!node.children) {
     return getLeafNodeString(node);
   } else if (

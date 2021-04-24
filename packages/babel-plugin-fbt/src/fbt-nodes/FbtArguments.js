@@ -1,14 +1,15 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
+ * @format
  * @emails oncall+internationalization
  * @flow
  */
+
 /*eslint max-len: ["error", 100]*/
 
 'use strict';
 
-/*::
 import type {EnumKey} from '../FbtEnumRegistrar';
 import type {GenderConstEnum} from '../Gender';
 import typeof {
@@ -22,16 +23,10 @@ import type FbtNode from './FbtNode';
 export type AnyStringVariationArg =
   | EnumStringVariationArg
   | GenderStringVariationArg
-  | NumberStringVariationArg
-  ;
+  | NumberStringVariationArg;
 export type AnyFbtArgument = GenericArg | AnyStringVariationArg;
-*/
 
-const {
-  compactBabelNodeProps,
-  getRawSource,
-  varDump,
-} = require('../FbtUtil');
+const {compactBabelNodeProps, getRawSource, varDump} = require('../FbtUtil');
 const invariant = require('invariant');
 
 /**
@@ -51,15 +46,13 @@ const invariant = require('invariant');
  *      challenger
  *    </fbt:plural>
  */
-class FbtArgumentBase /*:: <B: ?BabelNode> */ {
-  /*::
+class FbtArgumentBase<B: ?BabelNode> {
   // Reference of the FbtNode creator of this instance
   +fbtNode: AnyFbtNode;
   // BabelNode representing the value of this argument
   +node: B;
-  */
 
-  constructor(fbtNode /*: AnyFbtNode */, node /*: B */) {
+  constructor(fbtNode: AnyFbtNode, node: B) {
     this.fbtNode = fbtNode;
     this.node = node;
   }
@@ -76,17 +69,20 @@ class FbtArgumentBase /*:: <B: ?BabelNode> */ {
    *
    * See snapshot `fbtFunctional-test.js.snap` to find output examples.
    */
-  __toJSONForTestsOnly() /*: mixed */ {
+  __toJSONForTestsOnly(): mixed {
     const {fbtNode} = this;
     const ret = compactBabelNodeProps({
       ...this,
       fbtNode: fbtNode != null ? fbtNode.constructor.name : fbtNode,
     });
-    Object.defineProperty(ret, 'constructor', {value: this.constructor, enumerable: false});
+    Object.defineProperty(ret, 'constructor', {
+      value: this.constructor,
+      enumerable: false,
+    });
     return ret;
   }
 
-  toJSON() /*: mixed */ {
+  toJSON(): mixed {
     return this.__toJSONForTestsOnly();
   }
 
@@ -117,8 +113,7 @@ class FbtArgumentBase /*:: <B: ?BabelNode> */ {
  *      challenger
  *    </fbt:plural>
  */
-class GenericArg extends FbtArgumentBase /*:: <BabelNode> */ {
-}
+class GenericArg extends FbtArgumentBase<BabelNode> {}
 
 /**
  * Given an fbt callsite that may generate multiple string variations,
@@ -143,9 +138,10 @@ class GenericArg extends FbtArgumentBase /*:: <BabelNode> */ {
  *
  * The string variation argument would be based on the `personGender` variable.
  */
-class StringVariationArg /*:: <Value, B: ?BabelNode = BabelNode> */
-  extends FbtArgumentBase /*:: <B> */ {
-
+class StringVariationArg<
+  Value,
+  B: ?BabelNode = BabelNode,
+> extends FbtArgumentBase<B> {
   /**
    * List of candidate values that this SVArgument might have.
    */
@@ -165,10 +161,10 @@ class StringVariationArg /*:: <Value, B: ?BabelNode = BabelNode> */
   +isCollapsible: boolean;
 
   constructor(
-    fbtNode /*: AnyFbtNode */,
-    node /*: B */,
-    candidateValues /*: $ReadOnlyArray<Value> */,
-    value /*: ?Value */,
+    fbtNode: AnyFbtNode,
+    node: B,
+    candidateValues: $ReadOnlyArray<Value>,
+    value: ?Value,
     isCollapsible: boolean = false,
   ) {
     super(fbtNode, node);
@@ -177,7 +173,7 @@ class StringVariationArg /*:: <Value, B: ?BabelNode = BabelNode> */
     this.isCollapsible = isCollapsible;
   }
 
-  cloneWithValue(value: Value, isCollapsible: boolean) /*: this */ {
+  cloneWithValue(value: Value, isCollapsible: boolean): this {
     return new this.constructor(
       this.fbtNode,
       this.node,
@@ -191,8 +187,7 @@ class StringVariationArg /*:: <Value, B: ?BabelNode = BabelNode> */
 /**
  * String variation argument that produces variations based on a string enum
  */
-class EnumStringVariationArg extends StringVariationArg /*:: <EnumKey> */ {
-
+class EnumStringVariationArg extends StringVariationArg<EnumKey> {
   static assert(value: mixed): EnumStringVariationArg {
     return assertInstanceOf(value, EnumStringVariationArg);
   }
@@ -201,8 +196,9 @@ class EnumStringVariationArg extends StringVariationArg /*:: <EnumKey> */ {
 /**
  * String variation argument that produces variations based on genders
  */
-class GenderStringVariationArg extends StringVariationArg /*:: <GenderConstEnum | GENDER_ANY> */ {
-
+class GenderStringVariationArg extends StringVariationArg<
+  GenderConstEnum | GENDER_ANY,
+> {
   static assert(value: mixed): GenderStringVariationArg {
     return assertInstanceOf(value, GenderStringVariationArg);
   }
@@ -211,8 +207,10 @@ class GenderStringVariationArg extends StringVariationArg /*:: <GenderConstEnum 
 /**
  * String variation argument that produces variations based on numbers
  */
-class NumberStringVariationArg extends StringVariationArg<NUMBER_ANY | EXACTLY_ONE, ?BabelNode> {
-
+class NumberStringVariationArg extends StringVariationArg<
+  NUMBER_ANY | EXACTLY_ONE,
+  ?BabelNode,
+> {
   static assert(value: mixed): NumberStringVariationArg {
     return assertInstanceOf(value, NumberStringVariationArg);
   }
@@ -222,7 +220,8 @@ function assertInstanceOf<C: {}>(
   value: mixed,
   Constructor: Class<C> & {name: string},
 ): C {
-  invariant(value instanceof Constructor,
+  invariant(
+    value instanceof Constructor,
     'Expected instance of %s but got instead: (%s) %s',
     Constructor.name,
     typeof value,
@@ -238,10 +237,11 @@ class StringVariationArgsMap {
   +_map: Map<AnyFbtNode, AnyStringVariationArg>;
 
   constructor(svArgs: $ReadOnlyArray<AnyStringVariationArg>): void {
-    this._map = new Map(svArgs.map(arg => ([arg.fbtNode, arg])));
-    invariant(svArgs.length === this._map.size,
+    this._map = new Map(svArgs.map(arg => [arg.fbtNode, arg]));
+    invariant(
+      svArgs.length === this._map.size,
       'Expected only one StringVariationArg per FbtNode. ' +
-      'Input array length=%s but resulting map size=%s',
+        'Input array length=%s but resulting map size=%s',
       svArgs.length,
       this._map.size,
     );
@@ -250,11 +250,13 @@ class StringVariationArgsMap {
   /**
    * @return StringVariationArg corresponding to the given FbtNode
    */
-  get<SV: AnyStringVariationArg>(
-    fbtNode: FbtNode<SV, any, any>,
-  ): SV {
+  get<SV: AnyStringVariationArg>(fbtNode: FbtNode<SV, any, any>): SV {
     const ret = this._map.get(fbtNode);
-    invariant(ret != null, 'Unable to find entry for FbtNode: %s', varDump(fbtNode));
+    invariant(
+      ret != null,
+      'Unable to find entry for FbtNode: %s',
+      varDump(fbtNode),
+    );
     // $FlowFixMe[incompatible-return] the found SVArgument came from the same fbtNode
     return ret;
   }
@@ -262,9 +264,7 @@ class StringVariationArgsMap {
   /**
    * @throws if the given FbtNode cannot be found
    */
-  mustHave<SV: AnyStringVariationArg>(
-    fbtNode: FbtNode<SV, any, any>,
-  ): void {
+  mustHave<SV: AnyStringVariationArg>(fbtNode: FbtNode<SV, any, any>): void {
     this.get(fbtNode);
   }
 }

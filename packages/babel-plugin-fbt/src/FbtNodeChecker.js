@@ -1,20 +1,22 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
+ * @format
  * @emails oncall+internationalization
  * @flow
  */
+
 /*eslint max-len: ["error", 100]*/
 
 'use strict';
 
-/*::
 import type {NodePathOf} from '@babel/core';
 import type {JSModuleNameType} from './FbtConstants';
-*/
 
 const FbtNodeType = require('./fbt-nodes/FbtNodeType');
-const {JSModuleName: {FBS, FBT, REACT_FBT}} = require('./FbtConstants');
+const {
+  JSModuleName: {FBS, FBT, REACT_FBT},
+} = require('./FbtConstants');
 const {assertModuleName, errorAt} = require('./FbtUtil');
 const {
   isCallExpression,
@@ -26,19 +28,19 @@ const {
 } = require('@babel/types');
 
 class FbtNodeChecker {
-  /*:: moduleName: JSModuleNameType; */
+  moduleName: JSModuleNameType;
 
-  constructor(moduleName /*: JSModuleNameType */) {
+  constructor(moduleName: JSModuleNameType) {
     this.moduleName = assertModuleName(moduleName);
   }
 
-  isNameOfModule(name /*: string */) /*: boolean */ {
+  isNameOfModule(name: string): boolean {
     return this.moduleName === FBT
       ? FbtNodeChecker.isFbtName(name)
       : FbtNodeChecker.isFbsName(name);
   }
 
-  isJSXElement(node /*: BabelNode */) /*: boolean */ {
+  isJSXElement(node: BabelNode): boolean {
     if (!isJSXElement(node)) {
       return false;
     }
@@ -48,44 +50,54 @@ class FbtNodeChecker {
     );
   }
 
-  isJSXNamespacedElement(node /*: BabelNode */) /*: boolean */ {
+  isJSXNamespacedElement(node: BabelNode): boolean {
     if (!isJSXElement(node)) {
       return false;
     }
     const nameNode = node.openingElement.name;
-    return isJSXNamespacedName(nameNode) && this.isNameOfModule(nameNode.namespace.name);
-  }
-
-  // Detects this pattern: `fbt(...)`
-  isModuleCall(node /*: BabelNode */) /*: boolean */ {
     return (
-      isCallExpression(node) && isIdentifier(node.callee) && this.isNameOfModule(node.callee.name)
+      isJSXNamespacedName(nameNode) &&
+      this.isNameOfModule(nameNode.namespace.name)
     );
   }
 
-  getFbtConstructNameFromFunctionCall(node /*: BabelNode */) /*: ?FbtNodeType */ {
-    return isCallExpression(node) && isMemberExpression(node.callee) &&
-      isIdentifier(node.callee.object) &&
-      this.isNameOfModule(node.callee.object.name) &&
-      isIdentifier(node.callee.property) &&
-      typeof (node.callee.property.name) === 'string' &&
-      FbtNodeType.cast(node.callee.property.name) || null;
+  // Detects this pattern: `fbt(...)`
+  isModuleCall(node: BabelNode): boolean {
+    return (
+      isCallExpression(node) &&
+      isIdentifier(node.callee) &&
+      this.isNameOfModule(node.callee.name)
+    );
   }
 
-  isMemberExpression(node /*: BabelNode */) /*: boolean */ {
+  getFbtConstructNameFromFunctionCall(node: BabelNode): ?FbtNodeType {
     return (
-      isMemberExpression(node) && isIdentifier(node.object) &&
+      (isCallExpression(node) &&
+        isMemberExpression(node.callee) &&
+        isIdentifier(node.callee.object) &&
+        this.isNameOfModule(node.callee.object.name) &&
+        isIdentifier(node.callee.property) &&
+        typeof node.callee.property.name === 'string' &&
+        FbtNodeType.cast(node.callee.property.name)) ||
+      null
+    );
+  }
+
+  isMemberExpression(node: BabelNode): boolean {
+    return (
+      isMemberExpression(node) &&
+      isIdentifier(node.object) &&
       this.isNameOfModule(node.object.name)
     );
   }
 
-  isJSModuleBound/*:: <B: BabelNode>*/(path /*: NodePathOf<B> */) /*: boolean */ {
+  isJSModuleBound<B: BabelNode>(path: NodePathOf<B>): boolean {
     const binding = path.context.scope.getBinding(this.moduleName);
     return !!(binding && binding.path.node);
   }
 
   // Detects this pattern: `fbt.c(...)`
-  isCommonStringCall(node /*: BabelNode */) /*: boolean */ {
+  isCommonStringCall(node: BabelNode): boolean {
     return (
       isCallExpression(node) &&
       isMemberExpression(node.callee) &&
@@ -102,55 +114,57 @@ class FbtNodeChecker {
    * Inside <fbt>, don't allow <fbs:param>.
    * Inside <fbs>, don't allow <fbt:param>.
    */
-  assertNoNestedFbts(node /*: BabelNodeJSXElement */) /*: void */ {
+  assertNoNestedFbts(node: BabelNodeJSXElement): void {
     const moduleName = this.moduleName;
     node.children.forEach(child => {
-      if (isJSXElement(child) &&
-        (fbtChecker.isJSXElement(child) || fbsChecker.isJSXElement(child))) {
-
+      if (
+        isJSXElement(child) &&
+        (fbtChecker.isJSXElement(child) || fbsChecker.isJSXElement(child))
+      ) {
         // $FlowFixMe[incompatible-cast] this should be a JSXIdentifier's name
         // $FlowFixMe[prop-missing]
-        const nestedJSXElementName = (child.openingElement.name.name /*: string*/);
+        const nestedJSXElementName = (child.openingElement.name.name: string);
         // $FlowFixMe[incompatible-cast] this should be a JSXIdentifier's name
         // $FlowFixMe[prop-missing]
-        const rootJSXElementName = (node.openingElement.name.name /*: string*/);
+        const rootJSXElementName = (node.openingElement.name.name: string);
 
         throw errorAt(
           child,
           `Don't put <${nestedJSXElementName}> directly within <${rootJSXElementName}>. ` +
-          `This is redundant. The text is already translated so you don't need ` +
-          `to translate it again`,
+            `This is redundant. The text is already translated so you don't need ` +
+            `to translate it again`,
         );
       } else {
         const otherChecker = moduleName === FBT ? fbsChecker : fbtChecker;
         if (otherChecker.isJSXNamespacedElement(child)) {
           // $FlowFixMe[incompatible-cast] this should be a BabelNodeJSXNamespacedName
           // $FlowFixMe[prop-missing]
-          const jsxNamespacedName = (child.openingElement.name /*: BabelNodeJSXNamespacedName*/);
+          const jsxNamespacedName = (child.openingElement
+            .name: BabelNodeJSXNamespacedName);
           throw errorAt(
             child,
             `Don't mix <fbt> and <fbs> JSX namespaces. ` +
-            `Found a <${jsxNamespacedName.namespace.name}:${jsxNamespacedName.name.name}> ` +
-            `directly within a <${moduleName}>`,
+              `Found a <${jsxNamespacedName.namespace.name}:${jsxNamespacedName.name.name}> ` +
+              `directly within a <${moduleName}>`,
           );
         }
       }
     });
   }
 
-  static forModule(moduleName /*: string */) /*: FbtNodeChecker */ {
+  static forModule(moduleName: string): FbtNodeChecker {
     return assertModuleName(moduleName) === FBT ? fbtChecker : fbsChecker;
   }
 
-  static isFbtName(name /*: string */) /*: boolean */ {
+  static isFbtName(name: string): boolean {
     return name === FBT || name === REACT_FBT;
   }
 
-  static isFbsName(name /*: string */) /*: boolean */ {
+  static isFbsName(name: string): boolean {
     return name === FBS;
   }
 
-  static forFbtCommonFunctionCall(node /*: BabelNode */) /*: ?FbtNodeChecker */ {
+  static forFbtCommonFunctionCall(node: BabelNode): ?FbtNodeChecker {
     if (fbtChecker.isCommonStringCall(node)) {
       return fbtChecker;
     } else if (fbsChecker.isCommonStringCall(node)) {
@@ -159,7 +173,7 @@ class FbtNodeChecker {
     return null;
   }
 
-  static forFbtFunctionCall(node /*: BabelNode */) /*: ?FbtNodeChecker */ {
+  static forFbtFunctionCall(node: BabelNode): ?FbtNodeChecker {
     if (fbtChecker.isModuleCall(node)) {
       return fbtChecker;
     } else if (fbsChecker.isModuleCall(node)) {
@@ -168,7 +182,7 @@ class FbtNodeChecker {
     return null;
   }
 
-  static forJSXFbt(node /*: BabelNode */) /*: ?FbtNodeChecker */ {
+  static forJSXFbt(node: BabelNode): ?FbtNodeChecker {
     if (fbtChecker.isJSXElement(node)) {
       return fbtChecker;
     } else if (fbsChecker.isJSXElement(node)) {
@@ -178,7 +192,7 @@ class FbtNodeChecker {
   }
 
   // Not defining the static value here because of JS syntax compatibility issues in node.js v10.x
-  /*:: static COMMON_STRING_METHOD_NAME: 'c' */
+  static COMMON_STRING_METHOD_NAME: 'c';
 }
 
 FbtNodeChecker.COMMON_STRING_METHOD_NAME = 'c';

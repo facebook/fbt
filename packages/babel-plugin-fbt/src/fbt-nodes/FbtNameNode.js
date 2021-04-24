@@ -1,9 +1,11 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
+ * @format
  * @emails oncall+internationalization
  * @flow
  */
+
 /*eslint max-len: ["error", 100]*/
 /* eslint-disable brace-style */ // Needed due to Flow types inlined in comments
 
@@ -15,7 +17,6 @@
 /////////////////////////////////////////////////////////////////////
 // name : tokenName*, nameStr, genderValue
 
-/*::
 import type {StringVariationArgsMap} from './FbtArguments';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 
@@ -24,45 +25,37 @@ type Options = {|
   name: string, // Name of the string token
   value: BabelNode, // `BabelNode` representing the `value` of the fbt:name to render on the UI
 |};
-*/
 
-const {
-  enforceBabelNode,
-  errorAt,
-} = require('../FbtUtil');
+const {enforceBabelNode, errorAt} = require('../FbtUtil');
 const {GENDER_ANY} = require('../translate/IntlVariations');
 const {GenderStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
 const FbtNodeType = require('./FbtNodeType');
-const {createInstanceFromFbtConstructCallsite, tokenNameToTextPattern} = require('./FbtNodeUtil');
 const {
-  isStringLiteral,
-} = require('@babel/types');
+  createInstanceFromFbtConstructCallsite,
+  tokenNameToTextPattern,
+} = require('./FbtNodeUtil');
+const {isStringLiteral} = require('@babel/types');
 const invariant = require('invariant');
 
 /**
  * Represents an <fbt:name> or fbt.name() construct.
  * @see docs/params.md
  */
-class FbtNameNode extends FbtNode/*:: <
+class FbtNameNode extends FbtNode<
   GenderStringVariationArg,
   BabelNodeCallExpression,
-  > */ {
-  /*::
+> {
   static +type: FbtNodeType;
   +options: Options;
-  */
 
-  getOptions() /*: Options */ {
+  getOptions(): Options {
     try {
       const {moduleName} = this;
-      let [
-        name,
-        value,
-        gender,
-      ] = this.getCallNodeArguments() || [];
+      let [name, value, gender] = this.getCallNodeArguments() || [];
 
-      invariant(isStringLiteral(name),
+      invariant(
+        isStringLiteral(name),
         'Expected first argument of %s.name to be a string literal, but got %s',
         moduleName,
         name && name.type,
@@ -85,12 +78,14 @@ class FbtNameNode extends FbtNode/*:: <
   static fromBabelNode({
     moduleName,
     node,
-  } /*: FromBabelNodeFunctionArgs */) /*: ?FbtNameNode */ {
+  }: FromBabelNodeFunctionArgs): ?FbtNameNode {
     return createInstanceFromFbtConstructCallsite(moduleName, node, this);
   }
 
-  getArgsForStringVariationCalc() /*: $ReadOnlyArray<GenderStringVariationArg> */ {
-    return [new GenderStringVariationArg(this, this.options.gender, [GENDER_ANY])];
+  getArgsForStringVariationCalc(): $ReadOnlyArray<GenderStringVariationArg> {
+    return [
+      new GenderStringVariationArg(this, this.options.gender, [GENDER_ANY]),
+    ];
   }
 
   getTokenName(_argsMap: StringVariationArgsMap): string {

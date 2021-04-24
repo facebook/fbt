@@ -1,15 +1,16 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
+ * @format
  * @emails oncall+internationalization
  * @flow
  */
+
 /*eslint max-len: ["error", 100]*/
 /* eslint-disable fb-www/flow-exact-by-default-object-types */
 
 'use strict';
 
-/*::
 import type FbtImplicitParamNode from '../fbt-nodes/FbtImplicitParamNode';
 import type {AnyStringVariationArg} from '../fbt-nodes/FbtArguments';
 import type {AnyFbtNode} from '../fbt-nodes/FbtNode';
@@ -19,9 +20,7 @@ import type {
   JSModuleNameType,
   ValidPronounUsagesKey,
 } from '../FbtConstants';
-import type {
-  ParamSet,
-} from '../FbtUtil';
+import type {ParamSet} from '../FbtUtil';
 import type {TableJSFBTTreeLeaf, TableJSFBTTree} from '../index';
 import type {
   FbtBabelNodeCallExpression,
@@ -99,7 +98,6 @@ type CompactStringVariations = {|
   //   For the output array item at index `k`, the original SVArgument index is `indexMap[k]`
   indexMap: $ReadOnlyArray<number>,
 |};
-*/
 
 const {StringVariationArgsMap} = require('../fbt-nodes/FbtArguments');
 const FbtElementNode = require('../fbt-nodes/FbtElementNode');
@@ -147,18 +145,18 @@ const nullthrows = require('nullthrows');
 const emptyArgsCombinations: [[]] = [[]];
 
 /**
-* This class provides utility methods to process the babel node of the standard fbt function call
-* (i.e. `fbt(...)`)
-*/
+ * This class provides utility methods to process the babel node of the standard fbt function call
+ * (i.e. `fbt(...)`)
+ */
 class FbtFunctionCallProcessor {
-  /*:: defaultFbtOptions: FbtCallSiteOptions; */
-  /*:: fileSource: string; */
-  /*:: moduleName: JSModuleNameType; */
-  /*:: node: $PropertyType<NodePath, 'node'>; */
-  /*:: nodeChecker: FbtNodeChecker; */
-  /*:: path: NodePath; */
-  /*:: pluginOptions: PluginOptions; */
-  /*:: t: BabelTypes; */
+  defaultFbtOptions: FbtCallSiteOptions;
+  fileSource: string;
+  moduleName: JSModuleNameType;
+  node: $PropertyType<NodePath, 'node'>;
+  nodeChecker: FbtNodeChecker;
+  path: NodePath;
+  pluginOptions: PluginOptions;
+  t: BabelTypes;
 
   constructor({
     babelTypes,
@@ -167,14 +165,14 @@ class FbtFunctionCallProcessor {
     nodeChecker,
     path,
     pluginOptions,
-  } /*: {
+  }: {
     babelTypes: BabelTypes,
     defaultFbtOptions: FbtCallSiteOptions,
     fileSource: string,
     nodeChecker: FbtNodeChecker,
     path: NodePath,
     pluginOptions: PluginOptions,
-  }*/) /*: void */ {
+  }): void {
     this.defaultFbtOptions = defaultFbtOptions;
     this.fileSource = fileSource;
     this.moduleName = nodeChecker.moduleName;
@@ -191,27 +189,27 @@ class FbtFunctionCallProcessor {
     fileSource,
     path,
     pluginOptions,
-  } /*: {
+  }: {
     babelTypes: BabelTypes,
     defaultFbtOptions: FbtCallSiteOptions,
     fileSource: string,
     path: NodePath,
     pluginOptions: PluginOptions,
-  } */) /*: ?FbtFunctionCallProcessor */ {
+  }): ?FbtFunctionCallProcessor {
     const nodeChecker = FbtNodeChecker.forFbtFunctionCall(path.node);
     return nodeChecker != null
       ? new FbtFunctionCallProcessor({
-        babelTypes,
-        defaultFbtOptions,
-        fileSource,
-        nodeChecker,
-        path,
-        pluginOptions,
-      })
+          babelTypes,
+          defaultFbtOptions,
+          fileSource,
+          nodeChecker,
+          path,
+          pluginOptions,
+        })
       : null;
   }
 
-  _assertJSModuleWasAlreadyRequired() /*: this */ {
+  _assertJSModuleWasAlreadyRequired(): this {
     const {moduleName, path} = this;
     if (!this.nodeChecker.isJSModuleBound<typeof path.node>(path)) {
       throw errorAt(
@@ -222,7 +220,7 @@ class FbtFunctionCallProcessor {
     return this;
   }
 
-  _assertHasEnoughArguments() /*: this */ {
+  _assertHasEnoughArguments(): this {
     const {moduleName, node} = this;
     if (node.arguments.length < 2) {
       throw errorAt(
@@ -248,7 +246,7 @@ class FbtFunctionCallProcessor {
     return optionsNode;
   }
 
-  _getOptions() /*: FbtCallSiteOptions */ {
+  _getOptions(): FbtCallSiteOptions {
     const optionsNode = this._getOptionsNode();
     const options = collectOptions(
       this.moduleName,
@@ -266,29 +264,27 @@ class FbtFunctionCallProcessor {
   }
 
   // Returns params and enums info in the order in which they appear.
-  _collectFbtCalls(options /*: $Shape<FbtCallSiteOptions> */) /*: {|
+  _collectFbtCalls(
+    options: $Shape<FbtCallSiteOptions>,
+  ): {|
     hasTable: boolean,
     paramSet: ParamSet,
     runtimeArgs: $ReadOnlyArray<BabelNodeCallExpression>,
     fileSource: string,
     usedEnums: {[enumExpr: string]: ?boolean},
-    variations: {[paramName: string]:
-      {|
-          type: 'number',
-          token: string,
-        |}
-      | {|
-          type: 'gender',
-          token: string,
-        |}
+    variations: {
+      [paramName: string]:
+        | {|
+            type: 'number',
+            token: string,
+          |}
+        | {|
+            type: 'gender',
+            token: string,
+          |},
     },
-  |} */ {
-    const {
-      fileSource,
-      moduleName,
-      path,
-      t,
-    } = this;
+  |} {
+    const {fileSource, moduleName, path, t} = this;
     const runtimeArgs = [];
     const variations = {};
     const methodsState = {
@@ -314,7 +310,7 @@ class FbtFunctionCallProcessor {
           ),
           [
             // $FlowFixMe Output types of _getOptionAST() are incompatible with t.callExpression()
-            this._getOptionAST(this._getOptionsNode(), 'subject')
+            this._getOptionAST(this._getOptionsNode(), 'subject'),
           ],
         ),
       );
@@ -328,8 +324,11 @@ class FbtFunctionCallProcessor {
     for (var ii = 0; ii < props.length; ii++) {
       const option = props[ii];
       if (!isObjectProperty(option)) {
-        throw errorAt(option, `options object must contain plain object properties. ` +
-          `No method defintions or spread operators.`);
+        throw errorAt(
+          option,
+          `options object must contain plain object properties. ` +
+            `No method defintions or spread operators.`,
+        );
       }
       const curName = option.key.name || option.key.value;
       if (name === curName) {
@@ -339,32 +338,35 @@ class FbtFunctionCallProcessor {
     return null;
   }
 
-  _isTableNeeded(methodsState) /*: boolean */ {
-    return Object.keys(methodsState.variations).length > 0 || methodsState.hasTable;
+  _isTableNeeded(methodsState): boolean {
+    return (
+      Object.keys(methodsState.variations).length > 0 || methodsState.hasTable
+    );
   }
 
-  _getTexts(variations, options, isTable /*: boolean */) {
-    const {moduleName, node: {arguments: [arrayTextNode]}} = this;
+  _getTexts(variations, options, isTable: boolean) {
+    const {
+      moduleName,
+      node: {
+        arguments: [arrayTextNode],
+      },
+    } = this;
     if (!isArrayExpression(arrayTextNode)) {
-      throw errorAt(arrayTextNode, `expected first ${moduleName}() argument to be an array`);
+      throw errorAt(
+        arrayTextNode,
+        `expected first ${moduleName}() argument to be an array`,
+      );
     }
     let texts;
 
     if (isTable) {
       texts = this._normalizeTableTexts(
-        this._extractTableTextsFromStringArray(
-          arrayTextNode,
-          variations,
-        ),
+        this._extractTableTextsFromStringArray(arrayTextNode, variations),
       );
     } else {
-      const unnormalizedText = expandStringArray(moduleName, arrayTextNode).value;
-      texts = [
-        normalizeSpaces(
-          unnormalizedText,
-          options,
-        ).trim(),
-      ];
+      const unnormalizedText = expandStringArray(moduleName, arrayTextNode)
+        .value;
+      texts = [normalizeSpaces(unnormalizedText, options).trim()];
     }
     if (options.subject) {
       texts.unshift({
@@ -387,14 +389,16 @@ class FbtFunctionCallProcessor {
    *   ["Hello, ", {type: 'gender', token: 'user'}, "! Your score is {score}!"]
    */
   _extractTableTextsFromStringArray(
-    node /*: BabelNodeArrayExpression */,
+    node: BabelNodeArrayExpression,
     variations,
-  ) /*: ExtractTableTextItems */ {
+  ): ExtractTableTextItems {
     return nullthrows(node.elements).reduce((results, element) => {
-      results.push(...this._extractTableTextsFromStringArrayItem(
-        nullthrows(element),
-        variations,
-      ));
+      results.push(
+        ...this._extractTableTextsFromStringArrayItem(
+          nullthrows(element),
+          variations,
+        ),
+      );
       return results;
     }, []);
   }
@@ -410,8 +414,8 @@ class FbtFunctionCallProcessor {
   _extractTableTextsFromStringArrayItem(
     node,
     variations,
-    texts /*: ExtractTableTextItems */ = [], // For recursive calls only
-  ) /*: ExtractTableTextItems */ {
+    texts: ExtractTableTextItems = [], // For recursive calls only
+  ): ExtractTableTextItems {
     const {fileSource, moduleName, t} = this;
     if (isTemplateLiteral(node)) {
       let index = 0;
@@ -425,11 +429,7 @@ class FbtFunctionCallProcessor {
         }
         if (index < node.expressions.length) {
           const expr = node.expressions[index++];
-          this._extractTableTextsFromStringArrayItem(
-            expr,
-            variations,
-            texts,
-          );
+          this._extractTableTextsFromStringArrayItem(expr, variations, texts);
         }
       }
     } else if (isStringLiteral(node)) {
@@ -449,22 +449,25 @@ class FbtFunctionCallProcessor {
         );
       }
       const calledProperty = node.callee.property;
-      if (calledProperty.type !== 'Identifier' && calledProperty.type !== 'StringLiteral') {
+      if (
+        calledProperty.type !== 'Identifier' &&
+        calledProperty.type !== 'StringLiteral'
+      ) {
         throw errorAt(
           node.callee,
-          `Expected property to be an Identifier or a StringLiteral got "${
-            calledProperty.type
-          }" instead`,
+          `Expected property to be an Identifier or a StringLiteral got "${calledProperty.type}" instead`,
         );
       }
 
       const [arg0, arg1, arg2] = node.arguments;
       switch (calledProperty.name || calledProperty.value) {
         case 'param':
-          texts.push(variations[
-            // $FlowFixMe `value` property is not always present
-            arg0.value
-          ]);
+          texts.push(
+            variations[
+              // $FlowFixMe `value` property is not always present
+              arg0.value
+            ],
+          );
           break;
         case 'enum':
           if (arg1.type !== 'ObjectExpression') {
@@ -523,14 +526,14 @@ class FbtFunctionCallProcessor {
               throw errorAt(
                 arg2,
                 `Expected ${moduleName}.plural name property to be a string instead of ` +
-                `${typeof data.name}`,
+                  `${typeof data.name}`,
               );
             }
             if (typeof data.many !== 'string') {
               throw errorAt(
                 arg2,
                 `Expected ${moduleName}.plural many property to be a string instead of ` +
-                `${typeof data.many}`,
+                  `${typeof data.many}`,
               );
             }
             data.many = '{' + data.name + '} ' + data.many;
@@ -563,18 +566,20 @@ class FbtFunctionCallProcessor {
           break;
         }
         case 'name':
-          texts.push(variations[
-            // $FlowFixMe `value` property is not always present
-            arg0.value
-          ]);
+          texts.push(
+            variations[
+              // $FlowFixMe `value` property is not always present
+              arg0.value
+            ],
+          );
           break;
       }
     } else {
       throw errorAt(
         node,
         `Unexpected node type: ${node.type}. ` +
-        `${this.moduleName}() text arguments should be a string literal, ` +
-        `a construct like ${this.moduleName}.param() or an array of those.`,
+          `${this.moduleName}() text arguments should be a string literal, ` +
+          `a construct like ${this.moduleName}.param() or an array of those.`,
       );
     }
 
@@ -600,32 +605,26 @@ class FbtFunctionCallProcessor {
 
   _getDescription(options) {
     return normalizeSpaces(
-      expandStringConcat(
-        this.moduleName,
-        this.node.arguments[1]
-      ).value,
+      expandStringConcat(this.moduleName, this.node.arguments[1]).value,
       options,
     ).trim();
   }
 
   _createFbtRuntimeCall(metaPhrase: MetaPhrase): FbtBabelNodeCallExpression {
-    const {
-      fbtNode,
-      phrase,
-    } = metaPhrase;
+    const {fbtNode, phrase} = metaPhrase;
     const {pluginOptions} = this;
     // $FlowFixMe[speculation-ambiguous] we're deprecating the "type" property soon anyway
-    const argsOutput = JSON.stringify(({
-      jsfbt: phrase.jsfbt,
-      project: phrase.project,
-    }: SentinelPayload));
+    const argsOutput = JSON.stringify(
+      ({
+        jsfbt: phrase.jsfbt,
+        project: phrase.project,
+      }: SentinelPayload),
+    );
     const encodedOutput = pluginOptions.fbtBase64
       ? Buffer.from(argsOutput).toString('base64')
       : argsOutput;
     const fbtSentinel = pluginOptions.fbtSentinel || SENTINEL;
-    const args = [
-      stringLiteral(fbtSentinel + encodedOutput + fbtSentinel),
-    ];
+    const args = [stringLiteral(fbtSentinel + encodedOutput + fbtSentinel)];
     const fbtRuntimeArgs = [];
 
     for (const childFbtNode of fbtNode.children) {
@@ -655,7 +654,9 @@ class FbtFunctionCallProcessor {
     );
   }
 
-  _createRootFbtRuntimeCall(metaPhrases: $ReadOnlyArray<MetaPhrase>): FbtBabelNodeCallExpression {
+  _createRootFbtRuntimeCall(
+    metaPhrases: $ReadOnlyArray<MetaPhrase>,
+  ): FbtBabelNodeCallExpression {
     const [rootPhrase] = metaPhrases;
     return this._createFbtRuntimeCall(rootPhrase);
   }
@@ -686,12 +687,17 @@ class FbtFunctionCallProcessor {
     };
   }
 
-  _getPhraseParentIndex(fbtNode: AnyFbtNode, list: $ReadOnlyArray<AnyFbtNode>): ?number {
+  _getPhraseParentIndex(
+    fbtNode: AnyFbtNode,
+    list: $ReadOnlyArray<AnyFbtNode>,
+  ): ?number {
     if (fbtNode.parent == null) {
       return null;
     }
     const parentIndex = list.indexOf(fbtNode.parent);
-    invariant(parentIndex > -1, 'Unable to find parent fbt node: node=%s',
+    invariant(
+      parentIndex > -1,
+      'Unable to find parent fbt node: node=%s',
       varDump(fbtNode),
     );
     return parentIndex;
@@ -708,16 +714,22 @@ class FbtFunctionCallProcessor {
       this.pluginOptions.reactNativeMode,
     );
     const argsCombinations = jsfbtBuilder.getStringVariationCombinations();
-    const compactStringVariations = this._compactStringVariationArgs(argsCombinations[0] || []);
-    const jsfbtMetadata = jsfbtBuilder.buildMetadata(compactStringVariations.array);
+    const compactStringVariations = this._compactStringVariationArgs(
+      argsCombinations[0] || [],
+    );
+    const jsfbtMetadata = jsfbtBuilder.buildMetadata(
+      compactStringVariations.array,
+    );
     const {author, project} = fbtElement.options;
-    const doNotExtract = fbtElement.options.doNotExtract ?? this.defaultFbtOptions.doNotExtract;
-    return [fbtElement, ...fbtElement.getImplicitParamNodes()]
-      .map((fbtNode, _index, list) => {
+    const doNotExtract =
+      fbtElement.options.doNotExtract ?? this.defaultFbtOptions.doNotExtract;
+    return [fbtElement, ...fbtElement.getImplicitParamNodes()].map(
+      (fbtNode, _index, list) => {
         try {
           const phrase = {
             ...this.defaultFbtOptions,
-            jsfbt: { // the order of JSFBT props matter for unit tests
+            jsfbt: {
+              // the order of JSFBT props matter for unit tests
               t: {},
               m: jsfbtMetadata,
             },
@@ -735,10 +747,11 @@ class FbtFunctionCallProcessor {
           (argsCombinations.length
             ? argsCombinations
             : emptyArgsCombinations
-          ).forEach(argsCombination => { // collect text/description pairs
+          ).forEach(argsCombination => {
+            // collect text/description pairs
             const svArgsMap = new StringVariationArgsMap(argsCombination);
             const argValues = compactStringVariations.indexMap.map(
-              originIndex => nullthrows(argsCombination[originIndex]?.value)
+              originIndex => nullthrows(argsCombination[originIndex]?.value),
             );
             const leaf = ({
               desc: fbtNode.getDescription(svArgsMap),
@@ -746,13 +759,21 @@ class FbtFunctionCallProcessor {
               tokenAliases: fbtNode.getTokenAliases(svArgsMap),
             }: TableJSFBTTreeLeaf);
 
-            if (this.pluginOptions.generateOuterTokenName && !(fbtNode instanceof FbtElementNode)) {
+            if (
+              this.pluginOptions.generateOuterTokenName &&
+              !(fbtNode instanceof FbtElementNode)
+            ) {
               leaf.outerTokenName = fbtNode.getTokenName(svArgsMap);
             }
 
             if (argValues.length) {
-              addLeafToTree<TableJSFBTTreeLeaf, TableJSFBTTree>(phrase.jsfbt.t, argValues, leaf);
-            } else { // jsfbt only contains one leaf
+              addLeafToTree<TableJSFBTTreeLeaf, TableJSFBTTree>(
+                phrase.jsfbt.t,
+                argValues,
+                leaf,
+              );
+            } else {
+              // jsfbt only contains one leaf
               phrase.jsfbt.t = leaf;
             }
           });
@@ -766,7 +787,8 @@ class FbtFunctionCallProcessor {
         } catch (error) {
           throw errorAt(fbtNode.node, error);
         }
-      });
+      },
+    );
   }
 
   /**
@@ -774,12 +796,12 @@ class FbtFunctionCallProcessor {
    * - an `fbt._()` callsite
    * - a list of meta-phrases describing the collected text strings from this fbt() callsite
    */
-  convertToFbtRuntimeCall() /*: {
+  convertToFbtRuntimeCall(): {
     // Client-side fbt._() call usable in a web browser generated from the given fbt() callsite
     callNode: BabelNodeCallExpression,
     // List of phrases collected from the fbt() callsite
     metaPhrases: $ReadOnlyArray<MetaPhrase>,
-  } */ {
+  } {
     const fbtElement = this.convertToFbtNode();
     const metaPhrases = this._metaPhrases(fbtElement);
     const callNode = this._createRootFbtRuntimeCall(metaPhrases);
@@ -793,18 +815,24 @@ class FbtFunctionCallProcessor {
   /**
    * Converts current fbt() BabelNode to an FbtNode equivalent
    */
-  convertToFbtNode() /*: FbtElementNode */ {
+  convertToFbtNode(): FbtElementNode {
     this._assertJSModuleWasAlreadyRequired();
     this._assertHasEnoughArguments();
 
     const {moduleName, node} = this;
     const {arguments: fbtCallArgs} = node;
-    const fbtContentsNode = convertToStringArrayNodeIfNeeded(moduleName, fbtCallArgs[0]);
+    const fbtContentsNode = convertToStringArrayNodeIfNeeded(
+      moduleName,
+      fbtCallArgs[0],
+    );
     fbtCallArgs[0] = fbtContentsNode;
 
     const elementNode = FbtElementNode.fromBabelNode({moduleName, node});
     if (elementNode == null) {
-      throw errorAt(node, `${moduleName}: unable to create FbtElementNode from given Babel node`);
+      throw errorAt(
+        node,
+        `${moduleName}: unable to create FbtElementNode from given Babel node`,
+      );
     }
     return elementNode;
   }

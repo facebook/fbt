@@ -1,6 +1,7 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
+ * @format
  * @flow
  * @emails oncall+internationalization
  */
@@ -9,18 +10,16 @@
 
 // flowlint ambiguous-object-type:error
 
-/*::
 import type {JSModuleNameType} from './FbtConstants';
-export type FbtCommonMap = { [text: string]: string, ... };
-*/
+export type FbtCommonMap = {[text: string]: string, ...};
 
 const path = require('path');
-const textToDesc /*: FbtCommonMap */ = {};
+const textToDesc: FbtCommonMap = {};
 
 const FbtCommon = {
   init(
-    opts /*: {fbtCommon?: FbtCommonMap, fbtCommonPath?: ?string, ...} */ = {},
-  ) /*: void */ {
+    opts: {fbtCommon?: FbtCommonMap, fbtCommonPath?: ?string, ...} = {},
+  ): void {
     if (opts.fbtCommon) {
       Object.assign(textToDesc, opts.fbtCommon);
     }
@@ -38,16 +37,16 @@ const FbtCommon = {
     }
   },
 
-  getDesc(text /*: string */) /*: ?string */ {
+  getDesc(text: string): ?string {
     return textToDesc[text];
   },
 
   getUnknownCommonStringErrorMessage(
-    moduleName /*: JSModuleNameType */,
-    text /*: string */
-  ) /*: string */ {
+    moduleName: JSModuleNameType,
+    text: string,
+  ): string {
     return `Unknown string "${text}" for <${moduleName} common={true}>`;
-  }
+  },
 };
 
 module.exports = FbtCommon;

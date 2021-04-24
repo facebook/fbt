@@ -1,9 +1,11 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
+ * @format
  * @flow strict-local
  * @emails oncall+internationalization
  */
+
 /* eslint no-bitwise: 0 */
 
 'use strict';
@@ -30,9 +32,9 @@ function uintToBaseN(numberArg, base) {
 }
 
 function fbtHashKey(
-  jsfbt /*: $ReadOnly<TableJSFBTTree> */,
-  noStringify /*: boolean = false */,
-) /*: string */ {
+  jsfbt: $ReadOnly<TableJSFBTTree>,
+  noStringify: boolean = false,
+): string {
   return uintToBaseN(fbtJenkinsHash(jsfbt, noStringify), 62);
 }
 

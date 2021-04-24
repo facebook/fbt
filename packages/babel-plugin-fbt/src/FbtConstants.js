@@ -7,9 +7,11 @@
  * but fbt() already uses 'type' as the tag within the fbt table data for the
  * to-be-localized text.
  *
+ * @format
  * @emails oncall+internationalization
  * @flow strict-local
  */
+
 /*eslint max-len: ["error", 100]*/
 /* eslint-disable fb-www/flow-exact-by-default-object-types */
 
@@ -17,18 +19,18 @@ const keyMirror = require('fbjs/lib/keyMirror');
 
 export type FbtOptionValue = string | boolean | BabelNode;
 export type FbtOptionValues<K> = {|[K]: ?FbtOptionValue|};
-export type FbtOptionConfig<K> = {|[K]: {[optionValue: string]: true} | true |};
+export type FbtOptionConfig<K> = {|[K]: {[optionValue: string]: true} | true|};
 // export type FbtCallSiteOptions = {[$Keys<typeof ValidFbtOptions>]: ?FbtOptionValue};
 export type FbtCallSiteOptions = $Shape<{|
-   author?: ?FbtOptionValue;
-   // TODO(T56277500) Refine to expected type: string
-   common?: ?FbtOptionValue;
-   doNotExtract?: ?boolean;
-   // TODO(T56277500) Refine to expected type: boolean
-   preserveWhitespace?: ?FbtOptionValue;
-   project: string;
-   // TODO(T56277500) Refine to expected type: BabelNode
-   subject?: ?FbtOptionValue;
+  author?: ?FbtOptionValue,
+  // TODO(T56277500) Refine to expected type: string
+  common?: ?FbtOptionValue,
+  doNotExtract?: ?boolean,
+  // TODO(T56277500) Refine to expected type: boolean
+  preserveWhitespace?: ?FbtOptionValue,
+  project: string,
+  // TODO(T56277500) Refine to expected type: BabelNode
+  subject?: ?FbtOptionValue,
 |}>;
 
 // JS module names without the "React FBT" variant
@@ -47,7 +49,9 @@ const ShowCount = {
   ifMany: true,
 };
 
-const ShowCountKeys: $ObjMapi<typeof ShowCount, <K>(K) => K> = keyMirror(ShowCount);
+const ShowCountKeys: $ObjMapi<typeof ShowCount, <K>(K) => K> = keyMirror(
+  ShowCount,
+);
 
 const PluralOptions = {
   value: true, // optional value to replace token (rather than count)
@@ -68,8 +72,10 @@ const ValidPronounUsages = {
   subject: 3,
 };
 
-const ValidPronounUsagesKeys: $ObjMapi<typeof ValidPronounUsages, <K>(K) => K>
-  = keyMirror(ValidPronounUsages);
+const ValidPronounUsagesKeys: $ObjMapi<
+  typeof ValidPronounUsages,
+  <K>(K) => K,
+> = keyMirror(ValidPronounUsages);
 
 const ValidPronounOptions = {
   human: {true: true, false: true},
@@ -128,7 +134,7 @@ const JSModuleName = {
 };
 
 // Used to help detect the usage of the JS fbt/fbs API inside a JS file
-const ModuleNameRegExp /*: RegExp */ = new RegExp(
+const ModuleNameRegExp: RegExp = new RegExp(
   `\\b(?:${Object.values(JSModuleName).join('|')})\\b`,
 );
 

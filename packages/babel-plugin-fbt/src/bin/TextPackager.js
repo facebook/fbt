@@ -1,13 +1,17 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
+ * @format
  * @emails oncall+internationalization
  * @flow
  */
+
 /*eslint max-len: ["error", 100]*/
 
-/*::
-import type {PatternHash, PatternString} from '../../../../runtime/shared/FbtTable';
+import type {
+  PatternHash,
+  PatternString,
+} from '../../../../runtime/shared/FbtTable';
 import type {TableJSFBTTree, TableJSFBTTreeLeaflet} from '../index';
 import type {PackagerPhrase, HashToLeaf} from './FbtCollector';
 
@@ -15,7 +19,6 @@ export type HashFunction = (
   text: PatternString,
   description: string,
 ) => PatternHash;
-*/
 
 const {onEachLeaf} = require('../JSFbtUtil');
 
@@ -25,23 +28,20 @@ const {onEachLeaf} = require('../JSFbtUtil');
  * stripped down phrase
  */
 class TextPackager {
-  /*:: _hash: HashFunction; */
-  constructor(hash /*: HashFunction */) {
+  _hash: HashFunction;
+  constructor(hash: HashFunction) {
     this._hash = hash;
   }
 
-  pack(phrases /*: Array<PackagerPhrase> */) /*: Array<PackagerPhrase> */ {
+  pack(phrases: Array<PackagerPhrase>): Array<PackagerPhrase> {
     return phrases.map(phrase => {
       const hashToLeaf: HashToLeaf = {};
-      onEachLeaf(
-        phrase,
-        ({text, desc}) => {
-          hashToLeaf[this._hash(text, desc)] = {
-            text,
-            desc
-          };
-        }
-      );
+      onEachLeaf(phrase, ({text, desc}) => {
+        hashToLeaf[this._hash(text, desc)] = {
+          text,
+          desc,
+        };
+      });
 
       return {
         hashToLeaf,

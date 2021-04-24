@@ -1,18 +1,17 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
+ * @format
  * @emails oncall+internationalization
  * @flow
  */
+
 /*eslint max-len: ["error", 100]*/
 /* eslint-disable brace-style */ // Needed due to Flow types inlined in comments
 
 'use strict';
 
-/*::
-import type {
-  JSModuleNameType,
-} from '../FbtConstants';
+import type {JSModuleNameType} from '../FbtConstants';
 import type {
   FbtBabelNodeCallExpression,
   FbtBabelNodeJSXElement,
@@ -26,7 +25,6 @@ type FbtBabelNodeJSXElementChild = $ElementType<
   $PropertyType<FbtBabelNodeJSXElement, 'children'>,
   number,
 >;
-*/
 
 const FbtCommon = require('../FbtCommon');
 const {
@@ -63,22 +61,22 @@ const {
 const invariant = require('invariant');
 
 class JSXFbtProcessor {
-  /*:: moduleName: JSModuleNameType; */
-  /*:: node: $PropertyType<NodePath, 'node'>; */
-  /*:: nodeChecker: FbtNodeChecker; */
-  /*:: path: NodePath; */
-  /*:: t: BabelTypes; */
-  /*:: _openingElementAttributes: ?$ReadOnlyArray<BabelNodeJSXAttribute>; */
+  moduleName: JSModuleNameType;
+  node: $PropertyType<NodePath, 'node'>;
+  nodeChecker: FbtNodeChecker;
+  path: NodePath;
+  t: BabelTypes;
+  _openingElementAttributes: ?$ReadOnlyArray<BabelNodeJSXAttribute>;
 
   constructor({
     babelTypes,
     nodeChecker,
     path,
-  } /*: {
+  }: {
     babelTypes: BabelTypes,
     nodeChecker: FbtNodeChecker,
     path: NodePath,
-  }*/) /*: void */ {
+  }): void {
     this.moduleName = nodeChecker.moduleName;
     this.node = path.node;
     this.nodeChecker = nodeChecker;
@@ -89,26 +87,24 @@ class JSXFbtProcessor {
   static create({
     babelTypes,
     path,
-  } /*: {
+  }: {
     babelTypes: BabelTypes,
     path: NodePath,
-  } */) /*: ?JSXFbtProcessor */ {
+  }): ?JSXFbtProcessor {
     const nodeChecker = FbtNodeChecker.forJSXFbt(path.node);
     return nodeChecker != null
       ? new JSXFbtProcessor({
-        babelTypes,
-        nodeChecker,
-        path,
-      })
+          babelTypes,
+          nodeChecker,
+          path,
+        })
       : null;
   }
 
   _getText(
     childNodes: $ReadOnlyArray<
-      | BabelNodeCallExpression
-      | BabelNodeJSXElement
-      | BabelNodeStringLiteral
-    >
+      BabelNodeCallExpression | BabelNodeJSXElement | BabelNodeStringLiteral,
+    >,
   ): BabelNodeArrayExpression {
     return convertToStringArrayNodeIfNeeded(
       this.moduleName,
@@ -123,17 +119,20 @@ class JSXFbtProcessor {
 
     // TODO(T83043301) create an <fbt common={true}> test case in the JSX fbt test suite
     if (commonAttributeValue && commonAttributeValue.value) {
-      const rawTextValue = (texts.elements || []).map(stringNode => {
-        try {
-          invariant(isStringLiteral(stringNode),
-            'Expected a StringLiteral but found `%s` instead',
-            stringNode?.type || 'unknown',
-          );
-          return stringNode.value;
-        } catch (error) {
-          throw errorAt(stringNode, error.message);
-        }
-      }).join('');
+      const rawTextValue = (texts.elements || [])
+        .map(stringNode => {
+          try {
+            invariant(
+              isStringLiteral(stringNode),
+              'Expected a StringLiteral but found `%s` instead',
+              stringNode?.type || 'unknown',
+            );
+            return stringNode.value;
+          } catch (error) {
+            throw errorAt(stringNode, error.message);
+          }
+        })
+        .join('');
 
       const textValue = normalizeSpaces(rawTextValue).trim();
       const descValue = FbtCommon.getDesc(textValue);
@@ -162,46 +161,55 @@ class JSXFbtProcessor {
     this._assertHasMandatoryAttributes();
     return attrs.length > 1
       ? getOptionsFromAttributes(
-        this.t,
-        attrs,
-        ValidFbtOptions,
-        FbtRequiredAttributes,
-      )
+          this.t,
+          attrs,
+          ValidFbtOptions,
+          FbtRequiredAttributes,
+        )
       : null;
   }
 
-  _getOpeningElementAttributes() /*: $ReadOnlyArray<BabelNodeJSXAttribute> */ {
+  _getOpeningElementAttributes(): $ReadOnlyArray<BabelNodeJSXAttribute> {
     if (this._openingElementAttributes != null) {
       return this._openingElementAttributes;
     }
 
     const {node} = this;
-    this._openingElementAttributes = node.openingElement.attributes.map(attribute => {
-      if (attribute.type === 'JSXSpreadAttribute') {
-        throw errorAt(node, `<${this.moduleName}> does not support JSX spread attribute`);
-      }
-      return attribute;
-    });
+    this._openingElementAttributes = node.openingElement.attributes.map(
+      attribute => {
+        if (attribute.type === 'JSXSpreadAttribute') {
+          throw errorAt(
+            node,
+            `<${this.moduleName}> does not support JSX spread attribute`,
+          );
+        }
+        return attribute;
+      },
+    );
     return this._openingElementAttributes;
   }
 
   _assertHasMandatoryAttributes() {
-    if (this._getOpeningElementAttributes().find(
-      attribute => FbtCallMustHaveAtLeastOneOfTheseAttributes.includes(attribute.name.name)
-    ) == null) {
-      throw errorAt(this.node,
-        `<${this.moduleName}> must have at least one of these attributes: ${
-          FbtCallMustHaveAtLeastOneOfTheseAttributes.join(', ')
-        }`);
+    if (
+      this._getOpeningElementAttributes().find(attribute =>
+        FbtCallMustHaveAtLeastOneOfTheseAttributes.includes(
+          attribute.name.name,
+        ),
+      ) == null
+    ) {
+      throw errorAt(
+        this.node,
+        `<${
+          this.moduleName
+        }> must have at least one of these attributes: ${FbtCallMustHaveAtLeastOneOfTheseAttributes.join(
+          ', ',
+        )}`,
+      );
     }
   }
 
   _createFbtFunctionCallNode({text, desc, options}) {
-    const {
-      moduleName,
-      node,
-      path,
-    } = this;
+    const {moduleName, node, path} = this;
     invariant(text != null, 'text cannot be null');
     invariant(desc != null, 'desc cannot be null');
     const args = [text, desc];
@@ -215,7 +223,7 @@ class JSXFbtProcessor {
     const callNode = ((callExpression(
       identifier(moduleName),
       args,
-    ) /*: $FlowExpectedError */) /*: FbtBabelNodeCallExpression */);
+    ): $FlowExpectedError): FbtBabelNodeCallExpression);
 
     callNode.loc = node.loc;
     callNode.parentIndex = node.parentIndex;
@@ -225,7 +233,7 @@ class JSXFbtProcessor {
       // customize it as an FbtBabelNodeJSXElement
       const ret = ((jsxExpressionContainer(
         callNode,
-      ) /*: $FlowExpectedError */) /*: FbtBabelNodeJSXElement */);
+      ): $FlowExpectedError): FbtBabelNodeJSXElement);
 
       ret.loc = node.loc;
       ret.parentIndex = node.parentIndex;
@@ -238,15 +246,15 @@ class JSXFbtProcessor {
     this.nodeChecker.assertNoNestedFbts(this.node);
   }
 
-  _transformChildrenForFbtCallSyntax() /*: Array<
-    | BabelNodeCallExpression
-    | BabelNodeJSXElement
-    | BabelNodeStringLiteral
-  > */ {
-    this.path.traverse(jsxFbtConstructToFunctionalFormTransform, {moduleName: this.moduleName});
-    return (
-      filterEmptyNodes(this.node.children) /*: $ReadOnlyArray<FbtBabelNodeJSXElementChild> */
-    ).map(node => {
+  _transformChildrenForFbtCallSyntax(): Array<
+    BabelNodeCallExpression | BabelNodeJSXElement | BabelNodeStringLiteral,
+  > {
+    this.path.traverse(jsxFbtConstructToFunctionalFormTransform, {
+      moduleName: this.moduleName,
+    });
+    return (filterEmptyNodes(
+      this.node.children,
+    ): $ReadOnlyArray<FbtBabelNodeJSXElementChild>).map(node => {
       try {
         switch (node.type) {
           case 'JSXElement':
@@ -257,9 +265,14 @@ class JSXFbtProcessor {
           case 'JSXExpressionContainer': {
             const {expression} = node;
 
-            if (this.nodeChecker.getFbtConstructNameFromFunctionCall(expression) != null) {
+            if (
+              this.nodeChecker.getFbtConstructNameFromFunctionCall(
+                expression,
+              ) != null
+            ) {
               // preserve fbt construct's function calls intact
-              invariant(isCallExpression(expression),
+              invariant(
+                isCallExpression(expression),
                 'Expected BabelNodeCallExpression value but received `%s` (%s)',
                 varDump(expression),
                 typeof expression,
@@ -275,7 +288,10 @@ class JSXFbtProcessor {
             );
           }
           default:
-            throw errorAt(node, `Unsupported JSX element child type '${node.type}'`);
+            throw errorAt(
+              node,
+              `Unsupported JSX element child type '${node.type}'`,
+            );
         }
       } catch (error) {
         throw errorAt(node, error.message);
@@ -287,8 +303,8 @@ class JSXFbtProcessor {
    * Given an array of nodes, recursively construct a concatenation of all these nodes.
    */
   _createConcatFromExpressions(
-    nodes /*: $ReadOnlyArray<BabelNodeStringLiteral | BabelNodeCallExpression> */
-  ) /*: BabelNodeBinaryExpression */ {
+    nodes: $ReadOnlyArray<BabelNodeStringLiteral | BabelNodeCallExpression>,
+  ): BabelNodeBinaryExpression {
     invariant(nodes.length > 1, 'Cannot create an expression without nodes.');
 
     // Flow's native type for the array#reduceRight method is incorrect
@@ -298,8 +314,8 @@ class JSXFbtProcessor {
     // $FlowExpectedError
     return (nodes.reduceRight(
       // $FlowExpectedError Same reason as above
-      (rest, node) => binaryExpression('+', node, rest)
-    ) /*: BabelNodeBinaryExpression */);
+      (rest, node) => binaryExpression('+', node, rest),
+    ): BabelNodeBinaryExpression);
   }
 
   _getDescAttributeValue() {
@@ -315,13 +331,19 @@ class JSXFbtProcessor {
     switch (descAttr.value.type) {
       case 'JSXExpressionContainer':
         // @babel/parser should not allow this scenario normally
-        invariant(descAttr.value.expression.type !== 'JSXEmptyExpression', 'unexpected');
+        invariant(
+          descAttr.value.expression.type !== 'JSXEmptyExpression',
+          'unexpected',
+        );
         return descAttr.value.expression;
       case 'StringLiteral':
         return descAttr.value;
     }
-    throw errorAt(node, `<${moduleName}> "desc" attribute must be a string literal ` +
-      `or a non-empty JSX expression`);
+    throw errorAt(
+      node,
+      `<${moduleName}> "desc" attribute must be a string literal ` +
+        `or a non-empty JSX expression`,
+    );
   }
 
   _getCommonAttributeValue() {
@@ -348,19 +370,19 @@ class JSXFbtProcessor {
   /**
    * This method mutates the current Babel node
    */
-  convertToFbtFunctionCallNode(
-    _phraseIndex /*: number */,
-  ) /*: void */ {
+  convertToFbtFunctionCallNode(_phraseIndex: number): void {
     this._assertNoNestedFbts();
     const children = this._transformChildrenForFbtCallSyntax();
     const text = this._getText(children);
     const description = this._getDescription(text);
 
-    this.path.replaceWith(this._createFbtFunctionCallNode({
-      text,
-      desc: description,
-      options: this._getOptions(),
-    }));
+    this.path.replaceWith(
+      this._createFbtFunctionCallNode({
+        text,
+        desc: description,
+        options: this._getOptions(),
+      }),
+    );
   }
 }
 
@@ -369,9 +391,9 @@ class JSXFbtProcessor {
  * to their functional form equivalents (e.g. fbt.param()).
  */
 const jsxFbtConstructToFunctionalFormTransform = {
-  JSXElement(path /*: NodePathOf<BabelNodeJSXElement> */) {
+  JSXElement(path: NodePathOf<BabelNodeJSXElement>) {
     const {node} = path;
-    const moduleName = (this.moduleName /*: JSModuleNameType */);
+    const moduleName = (this.moduleName: JSModuleNameType);
     const name = validateNamespacedFbtElement(
       moduleName,
       node.openingElement.name,
@@ -387,7 +409,7 @@ const jsxFbtConstructToFunctionalFormTransform = {
       }
       path.replaceWith(fbtConstructCall);
     }
-  }
+  },
 };
 
 module.exports = JSXFbtProcessor;
