@@ -11,7 +11,7 @@
 /*::
 import type {ParamSet} from '../FbtUtil';
 import type {TokenAliases} from '../index';
-import type {FbtChildNode, AnyFbtNode} from './FbtNode';
+import type {FbtChildNode, AnyFbtNode, PlainFbtNode} from './FbtNode';
 import type {IFbtElementNode} from './FbtElementNode';
 import type {AnyStringVariationArg, StringVariationArgsMap} from './FbtArguments';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
@@ -21,6 +21,7 @@ const {
   convertToStringArrayNodeIfNeeded,
   errorAt,
   setUniqueToken,
+  varDump,
 } = require('../FbtUtil');
 const FbtElementNode = require('./FbtElementNode');
 const FbtNode = require('./FbtNode');
@@ -34,10 +35,15 @@ const {
 const FbtTextNode = require('./FbtTextNode');
 const {
   isBinaryExpression,
+  isJSXAttribute,
   isJSXElement,
+  isJSXExpressionContainer,
+  isJSXIdentifier,
+  isNumericLiteral,
   isStringLiteral,
   isTemplateLiteral,
 } = require('@babel/types');
+const invariant = require('invariant');
 const nullthrows = require('nullthrows');
 
 /**
@@ -214,6 +220,35 @@ class FbtImplicitParamNode
 
   __toJSONForTestsOnly() /*: mixed */ {
     return FbtElementNode.__toJSONForTestsOnlyHelper(this);
+  }
+
+  toPlainFbtNode(): PlainFbtNode {
+    const {node: {openingElement}} = this;
+    const wrapperType = openingElement.name;
+    invariant(isJSXIdentifier(wrapperType), 'Expected a JSXIdentifier instead of `%s`',
+      varDump(wrapperType));
+
+    const props = {};
+    for (const attribute of openingElement.attributes) {
+      // Only handling literal attributes. See PlainJSXNode.props flow definition.
+      if (isJSXAttribute(attribute) && isJSXIdentifier(attribute.name)) {
+        const {name, value} = attribute;
+        if (isStringLiteral(value)) {
+          props[name.name] = value.value;
+        } else if (isJSXExpressionContainer(value) && isNumericLiteral(value.expression)) {
+          props[name.name] = value.expression.value;
+        }
+      }
+    }
+
+    return {
+      type: FbtImplicitParamNode.type,
+      wrapperNode: {
+        type: wrapperType.name,
+        babelNode: openingElement,
+        props,
+      },
+    };
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes

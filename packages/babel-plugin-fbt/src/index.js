@@ -5,6 +5,7 @@
  * @flow
  */
 /*eslint max-len: ["error", 100]*/
+/* eslint-disable fb-www/flow-exact-by-default-object-types */
 
 'use strict';
 
@@ -13,6 +14,7 @@ import typeof BabelTypes from '@babel/types';
 import type {
   BabelTransformPlugin,
 } from '@babel/core';
+import type {PlainFbtNode, AnyFbtNode} from './fbt-nodes/FbtNode';
 import type {FbtCommonMap} from './FbtCommon';
 import type {
   FbtCallSiteOptions,
@@ -20,6 +22,7 @@ import type {
 import type {
   ExtractTableTextItems,
   FbtFunctionCallPhrase,
+  MetaPhrase,
 } from './babel-processors/FbtFunctionCallProcessor';
 import type {FbtRuntimeInput} from '../../../runtime/shared/FbtHooks';
 import type {EnumManifest, EnumModule} from './FbtEnumRegistrar';
@@ -124,7 +127,7 @@ export type Phrase = {|
   ...FbtCallSiteOptions,
   col_beg: number,
   col_end: number,
-  filepath: string,
+  filepath: ?string,
   line_beg: number,
   line_end: number,
   project: string,
@@ -142,6 +145,7 @@ export type BabelPluginFbt = {
 const FbtCommonFunctionCallProcessor = require('./babel-processors/FbtCommonFunctionCallProcessor');
 const FbtFunctionCallProcessor = require('./babel-processors/FbtFunctionCallProcessor');
 const JSXFbtProcessor = require('./babel-processors/JSXFbtProcessor');
+const {toPlainFbtNodeTree} = require('./fbt-nodes/FbtNodeUtil');
 const FbtCommon = require('./FbtCommon');
 const {
   JSModuleName: {FBT},
@@ -168,7 +172,7 @@ let defaultOptions /*: FbtCallSiteOptions */;
 /**
  * An array containing all collected phrases.
  */
-let phrases/*: Array<Phrase>*/;
+let allMetaPhrases: Array<{| ...MetaPhrase, phrase: Phrase |}>;
 
 /**
  * An array containing the child to parent relationships for implicit nodes.
@@ -189,7 +193,7 @@ function FbtTransform(babel /*: {
       FbtEnumRegistrar.setEnumManifest(getEnumManifest(pluginOptions));
       initExtraOptions(this);
       initDefaultOptions(this);
-      phrases = [];
+      allMetaPhrases = [];
       childToParent = {};
     },
 
@@ -207,7 +211,7 @@ function FbtTransform(babel /*: {
         if (!root) {
           return;
         }
-        root.convertToFbtFunctionCallNode(phrases.length);
+        root.convertToFbtFunctionCallNode(allMetaPhrases.length);
       },
 
       /**
@@ -235,7 +239,7 @@ function FbtTransform(babel /*: {
         const {node} = path;
         const visitor = this;
         const fileSource = visitor.file.code;
-        const pluginOptions = visitor.opts;
+        const pluginOptions: PluginOptions = visitor.opts;
 
         let root = FbtCommonFunctionCallProcessor.create({
           babelTypes: t,
@@ -296,15 +300,18 @@ function FbtTransform(babel /*: {
         // path.replaceWith(callNode);
 
         if (pluginOptions.collectFbt) {
-          const initialPhraseCount = phrases.length;
-          metaPhrases.forEach(({fbtNode, phrase, parentIndex}, index) => {
-            if (phrase.doNotExtract) {
+          const initialPhraseCount = allMetaPhrases.length;
+          metaPhrases.forEach((metaPhrase, index) => {
+            if (metaPhrase.phrase.doNotExtract) {
               return;
             }
-            addPhrase(fbtNode.node, phrase, visitor);
+            addMetaPhrase(metaPhrase, pluginOptions);
 
-            if (parentIndex != null) {
-              addEnclosingString(index + initialPhraseCount, parentIndex + initialPhraseCount);
+            if (metaPhrase.parentIndex != null) {
+              addEnclosingString(
+                index + initialPhraseCount,
+                metaPhrase.parentIndex + initialPhraseCount,
+              );
             }
           });
         }
@@ -313,10 +320,24 @@ function FbtTransform(babel /*: {
   }; // babel plugin return
 }
 
-FbtTransform.getExtractedStrings = () /*: Array<Phrase>*/ => phrases;
+FbtTransform.getExtractedStrings = (): Array<Phrase> =>
+  allMetaPhrases.map(metaPhrase => metaPhrase.phrase);
 
 FbtTransform.getChildToParentRelationships = () /*: ChildToParentMap*/ =>
   childToParent || {};
+
+FbtTransform.getFbtElementNodes = (): Array<PlainFbtNode> => {
+  const FbtElementNode = require('./fbt-nodes/FbtElementNode');
+  const phraseToIndexMap = new Map<AnyFbtNode, number>(
+    allMetaPhrases.map((metaPhrase, index) => [metaPhrase.fbtNode, index])
+  );
+
+  return allMetaPhrases.map(({fbtNode}) =>
+    fbtNode instanceof FbtElementNode
+      ? toPlainFbtNodeTree(fbtNode, phraseToIndexMap)
+      : null
+  ).filter(Boolean);
+};
 
 function initExtraOptions(state) {
   Object.assign(ValidFbtOptions, state.opts.extraOptions || {});
@@ -336,18 +357,22 @@ function initDefaultOptions(state) {
   }
 }
 
-function addPhrase(node, phrase, state) {
-  phrases.push({
-    filepath: state.opts.filename,
-    // $FlowFixMe `start` property might be null
-    line_beg: node.loc.start.line,
-    // $FlowFixMe `start` property might be null
-    col_beg: node.loc.start.column,
-    // $FlowFixMe `end` property might be null
-    line_end: node.loc.end.line,
-    // $FlowFixMe `end` property might be null
-    col_end: node.loc.end.column,
-    ...(phrase /*: FbtFunctionCallPhrase */),
+function addMetaPhrase(metaPhrase, pluginOptions) {
+  const {fbtNode} = metaPhrase;
+  allMetaPhrases.push({
+    ...metaPhrase,
+    phrase: {
+      filepath: pluginOptions.filename,
+      // $FlowFixMe `start` property might be null
+      line_beg: fbtNode.node.loc.start.line,
+      // $FlowFixMe `start` property might be null
+      col_beg: fbtNode.node.loc.start.column,
+      // $FlowFixMe `end` property might be null
+      line_end: fbtNode.node.loc.end.line,
+      // $FlowFixMe `end` property might be null
+      col_end: fbtNode.node.loc.end.column,
+      ...metaPhrase.phrase,
+    }
   });
 }
 

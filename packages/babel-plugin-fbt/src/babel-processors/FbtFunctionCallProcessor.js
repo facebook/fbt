@@ -81,7 +81,7 @@ export type SentinelPayload = {|
   project: string,
 |};
 
-type MetaPhrase = {|
+export type MetaPhrase = {|
   // FbtNode abstraction whose phrase's data comes from
   fbtNode: FbtElementNode | FbtImplicitParamNode,
   // Phrase data

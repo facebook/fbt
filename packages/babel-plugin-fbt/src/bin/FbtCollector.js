@@ -18,6 +18,7 @@ export type ExternalTransform = (src: string, opts: TransformOptions, filename: 
 
 /*::
 import type {BabelPluginList, BabelPresetList} from '@babel/core';
+import type {PlainFbtNode} from '../fbt-nodes/FbtNode';
 import type {EnumManifest} from '../FbtEnumRegistrar';
 import type {
   PatternHash,
@@ -61,9 +62,10 @@ export interface IFbtCollector {
     files : Array<string>,
     fbtEnumManifest?: EnumManifest,
   ): boolean;
-  getPhrases(): Array<PackagerPhrase>;
   getChildParentMappings(): ChildParentMappings;
   getErrors(): Errors;
+  getFbtElementNodes(): Array<PlainFbtNode>;
+  getPhrases(): Array<PackagerPhrase>;
 }
 
 class FbtCollector implements IFbtCollector {
@@ -146,6 +148,10 @@ class FbtCollector implements IFbtCollector {
 
   getErrors() /*: Errors*/ {
     return this._errors;
+  }
+
+  getFbtElementNodes(): Array<PlainFbtNode> {
+    return fbt.getFbtElementNodes();
   }
 }
 

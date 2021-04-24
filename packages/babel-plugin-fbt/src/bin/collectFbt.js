@@ -7,15 +7,36 @@
  */
 
 /*global process:false*/
+/* eslint-disable fb-www/flow-exact-by-default-object-types */
 
 /* eslint max-len: ["warn", 120] */
 
 'use strict';
 
-import type {ExtraOptions} from '../index';
-import type {CollectorConfig, IFbtCollector} from './FbtCollector';
+import type {PlainFbtNode} from '../fbt-nodes/FbtNode';
+import type {ExtraOptions, TableJSFBT} from '../index';
+import type {
+  ChildParentMappings,
+  CollectorConfig,
+  IFbtCollector,
+  PackagerPhrase,
+} from './FbtCollector';
 import type {HashFunction} from './TextPackager';
+type CollectFbtOutput = {|
+  phrases: Array<
+    | PackagerPhrase
+    | $Rest<
+        PackagerPhrase,
+        {|
+          jsfbt: TableJSFBT,
+        |},
+      >,
+  >,
+  childParentMappings: ChildParentMappings,
+  fbtElementNodes?: ?Array<PlainFbtNode>,
+|};
 
+const {packagerTypes} = require('./collectFbtConstants');
 const FbtCollector = require('./FbtCollector');
 const PhrasePackager = require('./PhrasePackager');
 const TextPackager = require('./TextPackager');
@@ -28,6 +49,7 @@ const yargs = require('yargs');
 const args = {
   COMMON_STRINGS: 'fbt-common-path',
   CUSTOM_COLLECTOR: 'custom-collector',
+  GEN_FBT_NODES: 'gen-fbt-nodes',
   GEN_OUTER_TOKEN_NAME: 'gen-outer-token-name',
   HASH: 'hash-module',
   HELP: 'h',
@@ -40,13 +62,6 @@ const args = {
   REACT_NATIVE_MODE: 'react-native-mode',
   TERSE: 'terse',
   TRANSFORM: 'transform',
-};
-
-const packagerTypes = {
-  TEXT: 'text',
-  PHRASE: 'phrase',
-  BOTH: 'both',
-  NONE: 'none',
 };
 
 const argv = yargs
@@ -113,6 +128,13 @@ const argv = yargs
       'E.g. For the fbt string `<fbt>Hello <i>World</i></fbt>`, ' +
       'the outer string is "Hello {=World}", and the inner string is: "World". ' +
       'So the outer token name of the inner string will be "=World"',
+  )
+  .string(args.TRANSFORM)
+  .boolean(args.GEN_FBT_NODES)
+  .default(args.GEN_FBT_NODES, false)
+  .describe(
+    args.GEN_FBT_NODES,
+    'Generate the abstract representation of the fbt callsites as FbtNode trees.',
   )
   .string(args.TRANSFORM)
   .default(args.TRANSFORM, null)
@@ -232,23 +254,27 @@ function processJsonSource(source) {
 }
 
 function writeOutput() {
+  const output = {
+    phrases: getPackagers()
+      .reduce(
+        (phrases, packager) => packager.pack(phrases),
+        fbtCollector.getPhrases(),
+      )
+      .map(phrase => {
+        if (argv[args.TERSE]) {
+          const {jsfbt: _, ...phraseWithoutJSFBT} = phrase;
+          return phraseWithoutJSFBT;
+        }
+        return phrase;
+      }),
+    childParentMappings: fbtCollector.getChildParentMappings(),
+  };
+  const elementNodes = argv[args.GEN_FBT_NODES]
+    ? {fbtElementNodes: fbtCollector.getFbtElementNodes()}
+    : null;
   process.stdout.write(
     JSON.stringify(
-      {
-        phrases: getPackagers()
-          .reduce(
-            (phrases, packager) => packager.pack(phrases),
-            fbtCollector.getPhrases(),
-          )
-          .map(phrase => {
-            if (argv[args.TERSE]) {
-              const {jsfbt: _, ...phraseWithoutJSFBT} = phrase;
-              return phraseWithoutJSFBT;
-            }
-            return phrase;
-          }),
-        childParentMappings: fbtCollector.getChildParentMappings(),
-      },
+      ({...output, ...elementNodes}: CollectFbtOutput),
       ...(argv[args.PRETTY] ? [null, ' '] : []),
     ),
   );
