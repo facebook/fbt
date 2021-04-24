@@ -31,6 +31,7 @@ const generalTestData = {
       );`,
     ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
@@ -57,6 +58,7 @@ const generalTestData = {
       );`,
     ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
@@ -77,6 +79,7 @@ const generalTestData = {
       );`,
     ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
@@ -99,6 +102,7 @@ const generalTestData = {
       baz();`,
     ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
@@ -142,6 +146,7 @@ const generalTestData = {
       );`,
     ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var z = fbt._(
         ${payload({
@@ -218,6 +223,7 @@ const generalTestData = {
       );`,
     ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var z = fbt._(
         ${payload({
@@ -253,6 +259,7 @@ const generalTestData = {
       var x = <div>{fbt(['A nested string'], 'nested!')}</div>;`,
     ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var React = require('react');
       var x = React.createElement(
@@ -297,6 +304,7 @@ const generalTestData = {
       );`,
     ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var React = require('react');
       var x = fbt._(
@@ -368,7 +376,8 @@ const generalTestData = {
       </span>;`,
     ),
 
-    output: 'TBD',
+    filterOutputTest: 'skip',
+    output: null,
   },
 
   // TODO(T38926768) Move this to the JSX test suite
@@ -394,7 +403,8 @@ const generalTestData = {
       </fbt>;`,
     ),
 
-    output: 'TBD',
+    filterOutputTest: 'skip',
+    output: null,
   },
 
   'should handle JSX fbt with multiple levels of nested strings': {
@@ -424,6 +434,9 @@ const generalTestData = {
         </fbt>
       </span>;`,
     ),
+
+    filterOutputTest: 'skip',
+    output: null,
   },
 
   'should throw when multiple tokens have the same names due to implicit params': {
@@ -509,6 +522,7 @@ const generalTestData = {
       );`,
     ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
@@ -536,6 +550,7 @@ const generalTestData = {
       });`,
     ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `fbt._(
         ${payload({
@@ -566,6 +581,7 @@ const generalTestData = {
       );`,
     ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
@@ -610,6 +626,7 @@ const generalTestData = {
       );`,
     ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
@@ -656,6 +673,7 @@ const generalTestData = {
       )`,
     ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
@@ -713,6 +731,7 @@ const generalTestData = {
       )`,
     ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
@@ -762,6 +781,7 @@ const generalTestData = {
       );`,
     ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
@@ -848,6 +868,7 @@ const generalTestData = {
       );`,
     ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
@@ -888,6 +909,7 @@ const generalTestData = {
       );`,
     ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
@@ -928,6 +950,7 @@ const generalTestData = {
       );`,
     ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var z = fbt._(
         ${payload({
@@ -966,6 +989,7 @@ const generalTestData = {
       );`,
     ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var val = 42;
       fbt._(
@@ -1001,6 +1025,7 @@ const generalTestData = {
         `var x = fbt(['Also simple string'], "It's simple");`,
       )}`,
 
+    filterOutputTest: 'skip',
     output: `/** @fbt {"project": "dev"}*/
       ${withFbtRequireStatement(
         `var x = fbt._(
@@ -1048,6 +1073,7 @@ const generalTestData = {
       );`,
     ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
@@ -1091,6 +1117,7 @@ const generalTestData = {
       );`,
     ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
@@ -1157,6 +1184,7 @@ const generalTestData = {
       );`,
     ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
@@ -1203,6 +1231,7 @@ const generalTestData = {
         );`,
     ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
@@ -1251,6 +1280,7 @@ const generalTestData = {
         );`,
       ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
@@ -1303,6 +1333,7 @@ const generalTestData = {
         );`,
       ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
@@ -1416,6 +1447,7 @@ with some other stuff.\`
       baz();`,
     ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
@@ -1444,6 +1476,7 @@ with some other stuff.\`
       );`,
     ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
@@ -1509,6 +1542,7 @@ with some other stuff.\`
       );`,
     ),
 
+    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
@@ -1551,9 +1585,19 @@ function prepareTestDataForInputKey(inputKeyName) {
 }
 
 function describeTestScenarios(testData) {
-  // TODO(T40113359): re-enable this when the clientside JS transform is implemented
-  xdescribe('Translation transform', () =>
-    TestUtil.testSection(testData, transform));
+  describe('Translation transform', () => {
+    // TODO(T40113359): remove this filtering when the clientside JS transform is implemented
+    const filteredTestData = {};
+    for (const title in testData) {
+      const scenario = {...testData[title]};
+      if (scenario.filterOutputTest) {
+        scenario.filter = scenario.filterOutputTest;
+      }
+      filteredTestData[title] = scenario;
+    }
+
+    TestUtil.testSection(filteredTestData, transform);
+  });
 
   describe('Meta-data collection', () => {
     function forEachTestScenario(callback, options = {}) {
