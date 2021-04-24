@@ -30,6 +30,7 @@ const {
 } = require('../FbtUtil');
 const {EnumStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
+const FbtNodeType = require('./FbtNodeType');
 const {createInstanceFromFbtConstructCallsite} = require('./FbtNodeUtil');
 const {
   isArrayExpression,
@@ -50,7 +51,7 @@ class FbtEnumNode
   extends FbtNode/*:: <EnumStringVariationArg, BabelNodeCallExpression> */ {
 
   /*::
-  static +type: 'enum';
+  static +type: FbtNodeType;
 
   +options: Options;
   */
@@ -140,6 +141,6 @@ class FbtEnumNode
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes
-FbtEnumNode.type = 'enum';
+FbtEnumNode.type = FbtNodeType.Enum;
 
 module.exports = FbtEnumNode;

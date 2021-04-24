@@ -19,6 +19,8 @@ import type {
   PackagerPhrase,
 } from '../FbtCollector';
 
+const FbtNodeType = require('../../fbt-nodes/FbtNodeType');
+
 /**
  * Dummy fbt collector for testing.
  */
@@ -92,16 +94,16 @@ class CustomFbtCollector implements IFbtCollector {
         phraseIndex: 0,
         children: [
           {
-            type: 'text',
+            type: FbtNodeType.Text,
           },
           {
             phraseIndex: 1,
             children: [
               {
-                type: 'text',
+                type: FbtNodeType.Text,
               },
             ],
-            type: 'implicitElement',
+            type: FbtNodeType.ImplicitElement,
             wrapperNode: {
               type: 'a',
               babelNode: pseudoJSXOpeningElement,
@@ -113,7 +115,7 @@ class CustomFbtCollector implements IFbtCollector {
             },
           },
         ],
-        type: 'element',
+        type: FbtNodeType.Element,
       },
     ];
   }

@@ -33,6 +33,7 @@ const {
 const {GENDER_ANY} = require('../translate/IntlVariations');
 const {GenderStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
+const FbtNodeType = require('./FbtNodeType');
 const {createInstanceFromFbtConstructCallsite, tokenNameToTextPattern} = require('./FbtNodeUtil');
 const {
   isStringLiteral,
@@ -48,7 +49,7 @@ class FbtNameNode extends FbtNode/*:: <
   BabelNodeCallExpression,
   > */ {
   /*::
-  static +type: 'name';
+  static +type: FbtNodeType;
   +options: Options;
   */
 
@@ -106,6 +107,6 @@ class FbtNameNode extends FbtNode/*:: <
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes
-FbtNameNode.type = 'name';
+FbtNameNode.type = FbtNodeType.Name;
 
 module.exports = FbtNameNode;

@@ -14,6 +14,7 @@ import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 */
 
 const FbtNode = require('./FbtNode');
+const FbtNodeType = require('./FbtNodeType');
 const {
   isJSXText,
   isStringLiteral,
@@ -32,7 +33,7 @@ const {
 class FbtTextNode
   extends FbtNode/*:: <empty, BabelNodeStringLiteral | BabelNodeJSXText> */ {
 
-  /*:: static +type: 'text'; */
+  /*:: static +type: FbtNodeType; */
 
   /**
    * Create a new class instance given a BabelNode root node.
@@ -59,6 +60,6 @@ class FbtTextNode
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes
-FbtTextNode.type = 'text';
+FbtTextNode.type = FbtNodeType.Text;
 
 module.exports = FbtTextNode;

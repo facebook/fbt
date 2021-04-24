@@ -56,7 +56,8 @@ const babelPluginFbt_buildDistJS = () =>
         plugins: [
           require('@babel/plugin-proposal-optional-catch-binding'),
           require('@babel/plugin-proposal-class-properties'),
-          require('@babel/plugin-syntax-flow'),
+          [require('@babel/plugin-syntax-flow'), {enums: true}],
+          require('babel-plugin-transform-flow-enums'),
           require('babel-preset-fbjs/plugins/dev-expression'),
           require('@babel/plugin-proposal-nullish-coalescing-operator'),
           require('@babel/plugin-proposal-optional-chaining'),

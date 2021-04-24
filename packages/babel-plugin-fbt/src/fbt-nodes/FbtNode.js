@@ -49,19 +49,8 @@ export type PlainJSXNode = {|
   type: string,
 |};
 
-type PlainFbtNodeType =
-  | $PropertyType<Class<FbtElementNode>, 'type'>
-  | $PropertyType<Class<FbtEnumNode>, 'type'>
-  | $PropertyType<Class<FbtNameNode>, 'type'>
-  | $PropertyType<Class<FbtParamNode>, 'type'>
-  | $PropertyType<Class<FbtPluralNode>, 'type'>
-  | $PropertyType<Class<FbtPronounNode>, 'type'>
-  | $PropertyType<Class<FbtSameParamNode>, 'type'>
-  | $PropertyType<Class<FbtTextNode>, 'type'>
-  | $PropertyType<Class<FbtImplicitParamNode>, 'type'>;
-
 export type PlainFbtNode = {|
-  type: PlainFbtNodeType,
+  type: FbtNodeType,
   +children?: $ReadOnlyArray<PlainFbtNode>,
   // Not read-only because it needs to be set at a later stage, when all phrases have been extracted
   phraseIndex?: ?number,
@@ -74,6 +63,7 @@ const {
   errorAt,
   varDump,
 } = require('../FbtUtil');
+const FbtNodeType = require('./FbtNodeType');
 const {
   isCallExpression,
 } = require('@babel/types');
@@ -251,14 +241,15 @@ class FbtNode/*:: <
    * NOTE: this only represents the current node but not its children!
    */
   toPlainFbtNode(): PlainFbtNode {
-    // $FlowExpectedError[prop-missing] FbtNode child classes have a `type` static property
-    const {type} = this.constructor;
+    const type = FbtNodeType.cast(
+      // $FlowExpectedError[prop-missing] FbtNode child classes have a `type` static property
+      this.constructor.type
+    );
     invariant(
-      typeof type === 'string',
+      type != null,
       'Expected instance constructor.type property to be a string instead of `%s`',
       varDump(type)
     );
-    // $FlowExpectedError[incompatible-return] FbtNode child classes have a `type` static property
     return {type};
   }
 

@@ -25,6 +25,7 @@ const {
 } = require('../FbtUtil');
 const FbtElementNode = require('./FbtElementNode');
 const FbtNode = require('./FbtNode');
+const FbtNodeType = require('./FbtNodeType');
 const {
   convertToTokenName,
   getChildNodeText,
@@ -54,7 +55,7 @@ class FbtImplicitParamNode
   implements IFbtElementNode */ {
 
   /*::
-  static +type: 'implicitElement';
+  static +type: FbtNodeType;
   +options: {||};
   */
 
@@ -252,6 +253,6 @@ class FbtImplicitParamNode
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes
-FbtImplicitParamNode.type = 'implicitElement';
+FbtImplicitParamNode.type = FbtNodeType.ImplicitElement;
 
 module.exports = FbtImplicitParamNode;

@@ -2314,6 +2314,12 @@ babel-plugin-syntax-trailing-function-commas@^7.0.0-beta.0:
   version "7.0.0-beta.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-trailing-function-commas/-/babel-plugin-syntax-trailing-function-commas-7.0.0-beta.0.tgz#aa213c1435e2bffeb6fca842287ef534ad05d5cf"
 
+babel-plugin-transform-flow-enums@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-flow-enums/-/babel-plugin-transform-flow-enums-0.0.1.tgz#ac9777bd1c5998364f83c0ec000ef878d169ec1a"
+  dependencies:
+    "@babel/plugin-syntax-flow" "^7.12.1"
+
 babel-preset-current-node-syntax@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/babel-preset-current-node-syntax/-/babel-preset-current-node-syntax-1.0.1.tgz#b4399239b89b2a011f9ddbe3e4f401fc40cff73b"
@@ -4273,6 +4279,10 @@ flow-bin@0.87.0:
 flow-bin@^0.143.1:
   version "0.143.1"
   resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.143.1.tgz#2ff825dfd85e84531b0ae780842cb1c2a9743cd2"
+
+flow-enums-runtime@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/flow-enums-runtime/-/flow-enums-runtime-0.0.3.tgz#5f290e4d64701ba3b38ed3d19d1ccaeadc49cc8f"
 
 flow-parser@>=0.115.0:
   version "0.137.0"

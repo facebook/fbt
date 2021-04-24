@@ -38,6 +38,7 @@ const {
 const {EXACTLY_ONE, NUMBER_ANY} = require('../translate/IntlVariations');
 const {NumberStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
+const FbtNodeType = require('./FbtNodeType');
 const {createInstanceFromFbtConstructCallsite, tokenNameToTextPattern} = require('./FbtNodeUtil');
 const {
   isStringLiteral,
@@ -55,7 +56,7 @@ class FbtPluralNode extends FbtNode/*:: <
   > */ {
 
   /*::
-  static +type: 'plural';
+  static +type: FbtNodeType;
 
   +options: Options;
   */
@@ -177,6 +178,6 @@ class FbtPluralNode extends FbtNode/*:: <
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes
-FbtPluralNode.type = 'plural';
+FbtPluralNode.type = FbtNodeType.Plural;
 
 module.exports = FbtPluralNode;

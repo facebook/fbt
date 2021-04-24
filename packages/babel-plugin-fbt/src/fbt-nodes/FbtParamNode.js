@@ -36,6 +36,7 @@ const {
 const {GENDER_ANY, NUMBER_ANY} = require('../translate/IntlVariations');
 const {GenderStringVariationArg, NumberStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
+const FbtNodeType = require('./FbtNodeType');
 const {
   createInstanceFromFbtConstructCallsite,
   getClosestElementOrImplicitParamNodeAncestor,
@@ -56,7 +57,7 @@ class FbtParamNode extends FbtNode/*:: <
   > */ {
 
   /*::
-  static +type: 'param';
+  static +type: FbtNodeType;
   +options: Options;
   */
 
@@ -143,6 +144,6 @@ class FbtParamNode extends FbtNode/*:: <
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes
-FbtParamNode.type = 'param';
+FbtParamNode.type = FbtNodeType.Param;
 
 module.exports = FbtParamNode;

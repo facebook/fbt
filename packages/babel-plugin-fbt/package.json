@@ -11,17 +11,19 @@
     "fbt-translate": "dist/bin/translate.bin.js"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "7.1.0",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.8.3",
+    "@babel/plugin-proposal-optional-catch-binding": "^7.2.0",
     "@babel/plugin-proposal-optional-chaining": "^7.12.7",
+    "@babel/plugin-syntax-flow": "^7.2.0",
+    "babel-plugin-transform-flow-enums": "^0.0.1",
+    "babel-preset-fbjs": "^3.1.2",
+    "flow-enums-runtime": "^0.0.3",
     "gulp": "^4.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-once": "^2.1.1",
     "gulp-rename": "^1.4.0",
-    "gulp-strip-docblock-pragmas": "^0.0.x",
-    "@babel/plugin-proposal-class-properties": "7.1.0",
-    "@babel/plugin-proposal-optional-catch-binding": "^7.2.0",
-    "@babel/plugin-syntax-flow": "^7.2.0",
-    "babel-preset-fbjs": "^3.1.2",
-    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.8.3"
+    "gulp-strip-docblock-pragmas": "^0.0.x"
   },
   "dependencies": {
     "@babel/core": "^7.0.0",

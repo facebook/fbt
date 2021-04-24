@@ -14,6 +14,7 @@ import type {AnyFbtNode, FbtChildNode, PlainFbtNode} from './FbtNode';
 import type {JSModuleNameType} from '../FbtConstants';
 import type FbtElementNode from './FbtElementNode';
 import type FbtImplicitParamNodeType from './FbtImplicitParamNode';
+import type FbtNodeType from './FbtNodeType';
 import type {StringVariationArgsMap} from './FbtArguments';
 
 export type FromBabelNodeFunctionArgs = {|
@@ -33,7 +34,7 @@ const invariant = require('invariant');
 function createInstanceFromFbtConstructCallsite/*:: <N: {}> */(
   moduleName /*: JSModuleNameType */,
   node /*: BabelNode */,
-  Constructor /*: Class<N> & {+type: string} */,
+  Constructor /*: Class<N> & {+type: FbtNodeType} */,
 ) /*: ?N */ {
   const checker = FbtNodeChecker.forModule(moduleName);
   const constructName = checker.getFbtConstructNameFromFunctionCall(node);

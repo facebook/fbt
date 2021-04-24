@@ -70,6 +70,7 @@ const {
 const {GENDER_ANY} = require('../translate/IntlVariations');
 const {GenderStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
+const FbtNodeType = require('./FbtNodeType');
 const {
   getChildNodeText,
   getChildNodeTextForDescription,
@@ -122,7 +123,7 @@ class FbtElementNode
   */ {
 
   /*::
-  static +type: 'element';
+  static +type: FbtNodeType;
   +options: Options;
   */
 
@@ -367,6 +368,6 @@ class FbtElementNode
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes
-FbtElementNode.type = 'element';
+FbtElementNode.type = FbtNodeType.Element;
 
 module.exports = FbtElementNode;

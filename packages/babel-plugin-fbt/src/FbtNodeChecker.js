@@ -13,6 +13,7 @@ import type {NodePathOf} from '@babel/core';
 import type {JSModuleNameType} from './FbtConstants';
 */
 
+const FbtNodeType = require('./fbt-nodes/FbtNodeType');
 const {JSModuleName: {FBS, FBT, REACT_FBT}} = require('./FbtConstants');
 const {assertModuleName, errorAt} = require('./FbtUtil');
 const {
@@ -62,13 +63,13 @@ class FbtNodeChecker {
     );
   }
 
-  getFbtConstructNameFromFunctionCall(node /*: BabelNode */) /*: ?string */ {
+  getFbtConstructNameFromFunctionCall(node /*: BabelNode */) /*: ?FbtNodeType */ {
     return isCallExpression(node) && isMemberExpression(node.callee) &&
       isIdentifier(node.callee.object) &&
       this.isNameOfModule(node.callee.object.name) &&
       isIdentifier(node.callee.property) &&
       typeof (node.callee.property.name) === 'string' &&
-      node.callee.property.name || null;
+      FbtNodeType.cast(node.callee.property.name) || null;
   }
 
   isMemberExpression(node /*: BabelNode */) /*: boolean */ {

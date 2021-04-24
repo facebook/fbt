@@ -52,6 +52,7 @@ const {
 const forEachObject = require('fbjs/lib/forEachObject');
 const invariant = require('invariant');
 const nullthrows = require('nullthrows');
+const FbtNodeType = require('./FbtNodeType');
 
 const candidatePronounGenders: $ReadOnlyArray<GenderConstEnum> =
   consolidatedPronounGenders();
@@ -66,7 +67,7 @@ class FbtPronounNode extends FbtNode/*:: <
   > */ {
 
   /*::
-  static +type: 'pronoun';
+  static +type: FbtNodeType;
   +options: Options;
   */
 
@@ -170,7 +171,7 @@ class FbtPronounNode extends FbtNode/*:: <
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes
-FbtPronounNode.type = 'pronoun';
+FbtPronounNode.type = FbtNodeType.Pronoun;
 
 /**
  * Must match implementation from fbt.js
