@@ -16,20 +16,21 @@ import type {AnyFbtNode} from './FbtNode';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 
 type Options = {|
-  gender?: ?BabelNode, // Represents the `gender`
+  gender?: ?BabelNodeExpression, // Represents the `gender`
   name: string, // Name of the string token
   // If `true`, the string that uses this fbt:param will have number variations.
   // The `number` value will be inferred from the value of fbt:param
   // If `number` is a `BabelNode`, then we'll use it internally as the value to determine
   // the number variation, and the fbt:param value will represent the UI text to render.
-  number?: ?true | BabelNode,
+  number?: ?true | BabelNodeExpression,
 |};
 */
 
 const {ValidParamOptions} = require('../FbtConstants');
 const {
   collectOptionsFromFbtConstruct,
-  enforceBabelNode,
+  createFbtRuntimeArgCallExpression,
+  enforceBabelNodeExpression,
   errorAt,
   varDump,
 } = require('../FbtUtil');
@@ -43,9 +44,21 @@ const {
   tokenNameToTextPattern,
 } = require('./FbtNodeUtil');
 const {
+  arrayExpression,
   isStringLiteral,
+  numericLiteral,
+  stringLiteral,
 } = require('@babel/types');
 const invariant = require('invariant');
+const nullthrows = require('nullthrows');
+
+/**
+ * Variations.
+ */
+const Variation = {
+  number: 0,
+  gender: 1,
+};
 
 /**
  * Represents an <fbt:param> or fbt.param() construct.
@@ -68,10 +81,10 @@ class FbtParamNode extends FbtNode/*:: <
         this.node,
         ValidParamOptions,
       );
-      const gender = enforceBabelNode.orNull(rawOptions.gender);
+      const gender = enforceBabelNodeExpression.orNull(rawOptions.gender);
       const number = typeof rawOptions.number === 'boolean'
         ? rawOptions.number
-        : enforceBabelNode.orNull(rawOptions.number);
+        : enforceBabelNodeExpression.orNull(rawOptions.number);
 
       invariant(number !== false, '`number` option must be an expression or `true`');
       invariant(!gender || !number,
@@ -141,6 +154,27 @@ class FbtParamNode extends FbtNode/*:: <
     } catch (error) {
       throw errorAt(this.node, error);
     }
+  }
+
+  getFbtRuntimeArg(): BabelNodeCallExpression {
+    const [, value] = this.getCallNodeArguments() || [];
+    const {options} = this;
+    const {gender, number} = options;
+    let variationValues;
+
+    if (number != null) {
+      variationValues = [numericLiteral(Variation.number)];
+      if (number !== true) { // For number="true" we don't pass additional value.
+        variationValues.push(number);
+      }
+    } else if (gender != null) {
+      variationValues = [numericLiteral(Variation.gender), gender];
+    }
+    return createFbtRuntimeArgCallExpression(this, [
+      stringLiteral(options.name),
+      nullthrows(value),
+      variationValues ? arrayExpression(variationValues) : null,
+    ].filter(Boolean));
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes

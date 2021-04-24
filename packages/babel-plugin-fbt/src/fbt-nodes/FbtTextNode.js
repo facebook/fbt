@@ -58,6 +58,10 @@ class FbtTextNode
   getText(_argsList /*: StringVariationArgsMap */) /*: string */ {
     return this.node.value;
   }
+
+  getFbtRuntimeArg(): null {
+    return null;
+  }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes
 FbtTextNode.type = FbtNodeType.Text;

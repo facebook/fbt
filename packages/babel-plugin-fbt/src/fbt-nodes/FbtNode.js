@@ -264,7 +264,7 @@ class FbtNode/*:: <
    * Returns the list of BabelNode arguments of this fbt node
    * (assuming that it's based on a JS function call), or null.
    */
-  getCallNodeArguments() /*: ?Array<?BabelNodeCallExpressionArgument> */ {
+  getCallNodeArguments() /*: ?Array<?BabelNodeCallExpression> */ {
     const callNode = this.getCallNode();
     return callNode
       // Force null/undefined to be part of the array so that the consumer of this function
@@ -284,6 +284,21 @@ class FbtNode/*:: <
       }
     }
     return null;
+  }
+
+  /**
+   * Returns the fbt runtime argument (as a BabelNode) that will be used to by an fbt runtime call.
+   * I.e.
+   * Given the fbt runtime call:
+   *
+   *   fbt._(jsfbtTable, [
+   *     <<runtimeFbtArg>>
+   *   ])
+   *
+   * This method is responsible to generate <<runtimeFbtArg>>
+   */
+  getFbtRuntimeArg(): ?BabelNodeCallExpression {
+    throw errorAt(this.node, 'This method must be implemented in a child class');
   }
 }
 

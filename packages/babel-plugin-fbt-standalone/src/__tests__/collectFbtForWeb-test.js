@@ -29,7 +29,8 @@ describe('collectFbtForWeb', () => {
       );
     }
 
-    it('can extract the same JS fbt payload', () => {
+    // TODO(T40113359): re-enable these tests once the fbt runtime callsites have been implemented
+    xit('can extract the same JS fbt payload', () => {
       const code = `
         const fbt = require('fbt');
         <fbt desc="description">

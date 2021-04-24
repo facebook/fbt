@@ -29,19 +29,11 @@ const {
   errorAt,
   getOptionBooleanValue,
   getRawSource,
-  getVariationValue,
+  // getVariationValue,
   setUniqueToken,
 } = require('./FbtUtil');
 const PLURAL_PARAM_TOKEN = 'number';
 const t = require('@babel/types');
-
-/**
- * Variations.
- */
-const Variation = {
-  number: 0,
-  gender: 1,
-};
 
 const call = function (moduleName) {
   function fbtCallExpression(name, args) {
@@ -77,53 +69,7 @@ const call = function (moduleName) {
         );
       }
 
-      if (constructName === 'param' || constructName === 'sameParam') {
-        if (arg0.type !== 'StringLiteral') {
-          throw errorAt(
-            arg0,
-            `Expected first argument to ${moduleName}.param to be a string, but got ` +
-              arg0.type,
-          );
-        }
-        // Collect params only if it's original one (not "sameParam").
-        if (constructName === 'param') {
-          runtimeArgs.push(fbtCallExpression('param', args));
-          setUniqueToken(node, moduleName, arg0.value, this.paramSet);
-        }
-
-        // Variation case. Replace:
-        // {number: true}     -> {type: "number", token: <param-name>}
-        // {gender: <gender>} -> {type: "gender", token: <param-name>}
-        if (args.length === 3) {
-          const paramName = arg0.value;
-          // TODO(T69419475): detect variation type by property name instead
-          // of expecting it to be the first object property
-          const variationInfo = arg2.properties[0];
-          const variationName =
-            variationInfo.key.name || variationInfo.key.value;
-          variations[paramName] = {
-            type: variationName,
-            token: paramName,
-          };
-          const variationValues = [t.numericLiteral(Variation[variationName])];
-          const variationValue = getVariationValue(
-            moduleName,
-            variationName,
-            variationInfo,
-          );
-          if (variationValue) {
-            variationValues.push(variationValue);
-          }
-          // The actual value of the variation, e.g. [0] for number,
-          // or [1, <gender>] for gender.
-          args[2] = t.arrayExpression(variationValues);
-          return;
-        }
-
-        // Else, simple param, encoded directly into
-        // the string as {<param-name>}.
-        path.replaceWith(t.stringLiteral('{' + arg0.value + '}'));
-      } else if (constructName === 'enum') {
+      if (constructName === 'enum') {
         this.hasTable = true;
         // `enum` is a reserved word so it should be quoted.
 

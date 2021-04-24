@@ -323,7 +323,11 @@ function catchKnownErrors__DEBUG_ONLY(callback) {
         message =>
           message.includes(
             'fbt only accepts plain strings with params wrapped',
-          ) || message.includes('Not implemented yet'),
+          ) ||
+          message.includes(
+            'This method must be implemented in a child class',
+          ) ||
+          message.includes('Not implemented yet'),
       ) > -1;
 
     if (hasKnownErrors) {
