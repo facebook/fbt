@@ -1,6 +1,6 @@
 <p>
-  <a href="https://www.npmjs.com/package/@fbtjs/babel-plugin-fbt-standalone">
-    <img src="https://badge.fury.io/js/@fbtjs%2fbabel-plugin-fbt-standalone.svg" alt="npm version" />
+  <a href="https://www.npmjs.com/package/@fbtjs/babel-plugin-standalone">
+    <img src="https://badge.fury.io/js/@fbtjs%2fbabel-plugin-standalone.svg" alt="npm version" />
   </a>
 
   <a href="https://twitter.com/fbt_js">

@@ -1,7 +1,7 @@
 {
   "license": "MIT",
   "main": "src/index.js",
-  "name": "@fbtjs/babel-plugin-fbt-standalone",
+  "name": "@fbtjs/babel-plugin-standalone",
   "description": "The standalone version of the FBT Babel localization transform, intended for browsers or non-Node.js environments",
   "//version": "Follow SemVer specs at https://semver.org/",
   "version": "0.0.1",
@@ -49,7 +49,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/facebook/fbt.git",
-    "directory": "packages/babel-plugin-fbt-standalone"
+    "directory": "packages/babel-plugin-standalone"
   },
   "scripts": {
     "prepack": "yarn build",

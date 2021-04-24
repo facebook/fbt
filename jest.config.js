@@ -45,11 +45,9 @@ module.exports = {
       ],
     },
     {
-      displayName: 'babel-plugin-fbt-standalone',
+      displayName: 'babel-plugin-standalone',
       roots: [
-        fs.realpathSync(
-          path.resolve('packages', 'babel-plugin-fbt-standalone'),
-        ),
+        fs.realpathSync(path.resolve('packages', 'babel-plugin-standalone')),
       ],
     },
     {
