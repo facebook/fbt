@@ -5,19 +5,22 @@
   "description": "The FBT Babel localization transform",
   "//version": "Follow SemVer specs at https://semver.org/",
   "version": "0.20.0",
+  "engines": {
+    "node": ">= 12.16.0"
+  },
   "bin": {
     "fbt-collect": "dist/bin/collectFbt.bin.js",
     "fbt-manifest": "dist/bin/manifest.bin.js",
     "fbt-translate": "dist/bin/translate.bin.js"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "7.1.0",
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.8.3",
     "@babel/plugin-proposal-optional-catch-binding": "^7.2.0",
     "@babel/plugin-proposal-optional-chaining": "^7.12.7",
+    "@babel/plugin-syntax-class-properties": "^7.2.0",
     "@babel/plugin-syntax-flow": "^7.2.0",
-    "babel-plugin-transform-flow-enums": "^0.0.1",
     "babel-preset-fbjs": "^3.1.2",
+    "babel-plugin-transform-flow-enums": "^0.0.1",
     "flow-enums-runtime": "^0.0.3",
     "gulp": "^4.0.0",
     "gulp-babel": "^8.0.0",

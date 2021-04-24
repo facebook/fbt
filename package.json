@@ -120,6 +120,6 @@
     "packages/gulp-strip-docblock-pragmas"
   ],
   "engines": {
-    "node": ">= 10.4.0"
+    "node": ">= 12.16.0"
   }
 }
