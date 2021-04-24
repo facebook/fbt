@@ -9,19 +9,15 @@
  * @emails oncall+internationalization
  */
 
-/* eslint-disable fb-www/flow-exact-by-default-object-types */
 /* eslint max-len: ["warn", 120] */
 
 import type {
   PatternHash,
   PatternString,
-} from '../../../../../../../../html/shared/intl/fbt/FbtTable';
+} from '../../../runtime/shared/FbtTable';
 import type {ExtraOptions} from 'babel-plugin-fbt';
 import type {CollectFbtOutput} from 'babel-plugin-fbt/dist/bin/collectFbt';
-import type {
-  CollectorConfig,
-  Errors,
-} from 'babel-plugin-fbt/dist/bin/FbtCollector';
+import type {CollectorConfig} from 'babel-plugin-fbt/dist/bin/FbtCollector';
 
 const SparkMD5 = require('./SparkMD5');
 const {
