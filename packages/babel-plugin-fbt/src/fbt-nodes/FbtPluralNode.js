@@ -12,18 +12,20 @@
 
 'use strict';
 
+import type {BabelNodeCallExpressionArg} from '../FbtUtil';
 import type {StringVariationArgsMap} from './FbtArguments';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 
 type Options = {|
-  count: BabelNode, // Represents the number used for determining the plural case at runtime
+  // Represents the number used for determining the plural case at runtime
+  count: BabelNodeCallExpressionArg,
   many?: ?string, // text to show when count>1
   name: ?string, // token name
   // If `yes`, show the `count` number as a prefix of the current plural text
   // If `ifMany`, behaves as `yes` when the count value is greater than 1
   // Else, `no` to hide the `count` number
   showCount: $Keys<typeof ShowCountKeys>,
-  value?: ?BabelNode, // optional value to replace token (rather than count)
+  value?: ?BabelNodeCallExpressionArg, // optional value to replace token (rather than count)
 |};
 
 const {
@@ -33,7 +35,10 @@ const {
 } = require('../FbtConstants');
 const {
   collectOptionsFromFbtConstruct,
+  createFbtRuntimeArgCallExpression,
   enforceBabelNode,
+  enforceBabelNodeCallExpressionArg,
+  enforceBabelNodeExpression,
   enforceString,
   enforceStringEnum,
   errorAt,
@@ -47,7 +52,7 @@ const {
   createInstanceFromFbtConstructCallsite,
   tokenNameToTextPattern,
 } = require('./FbtNodeUtil');
-const {isStringLiteral} = require('@babel/types');
+const {isStringLiteral, stringLiteral} = require('@babel/types');
 const invariant = require('invariant');
 const nullthrows = require('nullthrows');
 
@@ -83,7 +88,7 @@ class FbtPluralNode extends FbtNode<
 
     try {
       const [_, countArg] = this.getCallNodeArguments() || [];
-      const count = enforceBabelNode(
+      const count = enforceBabelNodeCallExpressionArg(
         countArg,
         '`count`, the second function argument',
       );
@@ -101,7 +106,10 @@ class FbtPluralNode extends FbtNode<
         many: enforceString.orNull(rawOptions.many, '`many` option'),
         name,
         showCount,
-        value: enforceBabelNode.orNull(rawOptions.value, '`value` option'),
+        value: enforceBabelNodeCallExpressionArg.orNull(
+          rawOptions.value,
+          '`value` option',
+        ),
       };
     } catch (error) {
       throw errorAt(this.node, error);
@@ -193,6 +201,24 @@ class FbtPluralNode extends FbtNode<
         EXACTLY_ONE,
       ]),
     ];
+  }
+
+  getFbtRuntimeArg(): BabelNodeCallExpression {
+    const {count, showCount, value, name} = this.options;
+
+    const pluralArgs = [count];
+    if (showCount !== ShowCountKeys.no) {
+      invariant(
+        name != null,
+        'name must be defined when showCount=%s',
+        showCount,
+      );
+      pluralArgs.push(stringLiteral(name));
+      if (value) {
+        pluralArgs.push(value);
+      }
+    }
+    return createFbtRuntimeArgCallExpression(this, pluralArgs);
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes

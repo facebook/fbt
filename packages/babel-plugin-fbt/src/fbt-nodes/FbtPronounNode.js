@@ -12,6 +12,7 @@
 'use strict';
 
 import type {ValidPronounUsagesKey} from '../FbtConstants';
+import type {BabelNodeCallExpressionArg} from '../FbtUtil';
 import type {GenderConstEnum} from '../Gender';
 import type {StringVariationArgsMap} from './FbtArguments';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
@@ -19,8 +20,8 @@ import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 type Options = {|
   // If true, capitalize the pronoun text
   capitalize?: ?boolean,
-  // BabelNode representing the value of the `gender`
-  gender: BabelNode,
+  // BabelNodeCallExpressionArg representing the value of the `gender`
+  gender: BabelNodeCallExpressionArg,
   // If true, exclude non-human-related pronouns from the generated string variations
   human?: ?boolean,
   // Type of pronoun
@@ -34,7 +35,8 @@ const {
 } = require('../FbtConstants');
 const {
   collectOptionsFromFbtConstruct,
-  enforceBabelNode,
+  createFbtRuntimeArgCallExpression,
+  enforceBabelNodeCallExpressionArg,
   enforceBoolean,
   enforceStringEnum,
   errorAt,
@@ -46,13 +48,21 @@ const {GENDER_ANY} = require('../translate/IntlVariations');
 const {GenderStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
 const {createInstanceFromFbtConstructCallsite} = require('./FbtNodeUtil');
-const {isStringLiteral} = require('@babel/types');
+const {
+  isStringLiteral,
+  numericLiteral,
+  identifier,
+  objectExpression,
+  objectProperty,
+} = require('@babel/types');
 const forEachObject = require('fbjs/lib/forEachObject');
 const invariant = require('invariant');
 const nullthrows = require('nullthrows');
 const FbtNodeType = require('./FbtNodeType');
 
 const candidatePronounGenders: $ReadOnlyArray<GenderConstEnum> = consolidatedPronounGenders();
+
+const HUMAN_OPTION = 'human';
 
 /**
  * Represents an <fbt:pronoun> or fbt.pronoun() construct.
@@ -98,7 +108,7 @@ class FbtPronounNode extends FbtNode<
         ValidPronounUsages,
         `\`usage\`, the first argument of ${moduleName}.pronoun()`,
       );
-      const gender = enforceBabelNode(
+      const gender = enforceBabelNodeCallExpressionArg(
         genderArg,
         '`gender`, the second argument',
       );
@@ -173,6 +183,22 @@ class FbtPronounNode extends FbtNode<
         Array.from(candidates),
       ),
     ];
+  }
+
+  getFbtRuntimeArg(): BabelNodeCallExpression {
+    const {gender, type, human} = this.options;
+    const numericUsageExpr = numericLiteral(ValidPronounUsages[type]);
+
+    const pronounArgs = [numericUsageExpr, gender];
+    if (human) {
+      pronounArgs.push(
+        objectExpression([
+          objectProperty(identifier(HUMAN_OPTION), numericLiteral(1)),
+        ]),
+      );
+    }
+
+    return createFbtRuntimeArgCallExpression(this, pronounArgs);
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes

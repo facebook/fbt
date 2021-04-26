@@ -12,16 +12,15 @@
 
 'use strict';
 
-import type {
-  AnyStringVariationArg,
-  AnyFbtArgument,
-  StringVariationArgsMap,
-} from './FbtArguments';
+import type {JSModuleNameType} from '../FbtConstants';
 import type {BabelNodeCallExpressionArgument} from '../FbtUtil';
 import type {GenderConstEnum} from '../Gender';
-import type {JSModuleNameType} from '../FbtConstants';
 import type {TokenAliases} from '../index.js';
-
+import type {
+  AnyFbtArgument,
+  AnyStringVariationArg,
+  StringVariationArgsMap,
+} from './FbtArguments';
 import type FbtElementNode from './FbtElementNode';
 import type FbtEnumNode from './FbtEnumNode';
 import type FbtImplicitParamNode from './FbtImplicitParamNode';
@@ -305,10 +304,10 @@ class FbtNode<
    * This method is responsible to generate <<runtimeFbtArg>>
    */
   getFbtRuntimeArg(): ?BabelNodeCallExpression {
-    throw errorAt(
-      this.node,
-      'This method must be implemented in a child class',
-    );
+    // eslint-disable-next-line fb-www/todo-task
+    // TODO: throw error if getFbtRuntimeArg() is unimplemented
+    return null;
+    // throw errorAt(this.node, 'This method must be implemented in a child class');
   }
 }
 

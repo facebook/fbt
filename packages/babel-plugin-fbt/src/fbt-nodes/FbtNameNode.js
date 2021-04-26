@@ -17,16 +17,23 @@
 /////////////////////////////////////////////////////////////////////
 // name : tokenName*, nameStr, genderValue
 
+import type {BabelNodeCallExpressionArg} from '../FbtUtil';
 import type {StringVariationArgsMap} from './FbtArguments';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 
 type Options = {|
-  gender: BabelNode, // `BabelNode` representing the `gender` of the fbt:name's value
+  // `BabelNode` representing the `gender` of the fbt:name's value
+  gender: BabelNodeCallExpressionArg,
   name: string, // Name of the string token
-  value: BabelNode, // `BabelNode` representing the `value` of the fbt:name to render on the UI
+  // `BabelNode` representing the `value` of the fbt:name to render on the UI
+  value: BabelNodeCallExpressionArg,
 |};
 
-const {enforceBabelNode, errorAt} = require('../FbtUtil');
+const {
+  createFbtRuntimeArgCallExpression,
+  enforceBabelNodeCallExpressionArg,
+  errorAt,
+} = require('../FbtUtil');
 const {GENDER_ANY} = require('../translate/IntlVariations');
 const {GenderStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
@@ -35,7 +42,7 @@ const {
   createInstanceFromFbtConstructCallsite,
   tokenNameToTextPattern,
 } = require('./FbtNodeUtil');
-const {isStringLiteral} = require('@babel/types');
+const {isStringLiteral, stringLiteral} = require('@babel/types');
 const invariant = require('invariant');
 
 /**
@@ -62,8 +69,14 @@ class FbtNameNode extends FbtNode<
       );
       name = name.value;
 
-      value = enforceBabelNode(value, `Second argument of ${moduleName}.name`);
-      gender = enforceBabelNode(gender, `Third argument of ${moduleName}.name`);
+      value = enforceBabelNodeCallExpressionArg(
+        value,
+        `Second argument of ${moduleName}.name`,
+      );
+      gender = enforceBabelNodeCallExpressionArg(
+        gender,
+        `Third argument of ${moduleName}.name`,
+      );
 
       return {name, value, gender};
     } catch (error) {
@@ -99,6 +112,14 @@ class FbtNameNode extends FbtNode<
     } catch (error) {
       throw errorAt(this.node, error);
     }
+  }
+
+  getFbtRuntimeArg(): BabelNodeCallExpression {
+    const {name, value, gender} = this.options;
+    return createFbtRuntimeArgCallExpression(
+      this,
+      [stringLiteral(name), value, gender].filter(Boolean),
+    );
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes

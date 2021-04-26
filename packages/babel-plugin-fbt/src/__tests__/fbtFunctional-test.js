@@ -62,13 +62,17 @@ const generalTestData = {
       );`,
     ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
-          type: 'text',
-          jsfbt: 'A doNotExtract string',
-          desc: 'should not be extracted',
+          jsfbt: {
+            t: {
+              desc: 'should not be extracted',
+              text: 'A doNotExtract string',
+              tokenAliases: {},
+            },
+            m: [],
+          },
         })},
       );`,
     ),
@@ -613,20 +617,29 @@ const generalTestData = {
       );`,
     ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
-          type: 'table',
           jsfbt: {
             t: {
-              groups: 'Click to see groups',
-              photos: 'Click to see photos',
-              videos: 'Click to see videos',
+              groups: {
+                desc: 'enum as an array',
+                text: 'Click to see groups',
+                tokenAliases: {},
+              },
+              photos: {
+                desc: 'enum as an array',
+                text: 'Click to see photos',
+                tokenAliases: {},
+              },
+              videos: {
+                desc: 'enum as an array',
+                text: 'Click to see videos',
+                tokenAliases: {},
+              },
             },
             m: [null],
           },
-          desc: 'enum as an array',
         })},
         [
           fbt._enum('groups', {
@@ -658,20 +671,29 @@ const generalTestData = {
       );`,
     ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
-          type: 'table',
           jsfbt: {
             t: {
-              id1: 'Click to see groups',
-              id2: 'Click to see photos',
-              id3: 'Click to see videos',
+              id1: {
+                desc: 'enum as an object',
+                text: 'Click to see groups',
+                tokenAliases: {},
+              },
+              id2: {
+                desc: 'enum as an object',
+                text: 'Click to see photos',
+                tokenAliases: {},
+              },
+              id3: {
+                desc: 'enum as an object',
+                text: 'Click to see videos',
+                tokenAliases: {},
+              },
             },
             m: [null],
           },
-          desc: 'enum as an object',
         })},
         [
           fbt._enum('id1', {
@@ -705,18 +727,35 @@ const generalTestData = {
       )`,
     ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
-          type: 'table',
           jsfbt: {
             t: {
               '*': {
-                '*': '{cat_token} cats and {dog_token} dogs',
-                _1: '{cat_token} cats and 1 dog',
+                '*': {
+                  desc: 'plurals',
+                  text: '{cat_token} cats and {dog_token} dogs',
+                  tokenAliases: {},
+                },
+                _1: {
+                  desc: 'plurals',
+                  text: '{cat_token} cats and 1 dog',
+                  tokenAliases: {},
+                },
               },
-              _1: {'*': '1 cat and {dog_token} dogs', _1: '1 cat and 1 dog'},
+              _1: {
+                '*': {
+                  desc: 'plurals',
+                  text: '1 cat and {dog_token} dogs',
+                  tokenAliases: {},
+                },
+                _1: {
+                  desc: 'plurals',
+                  text: '1 cat and 1 dog',
+                  tokenAliases: {},
+                },
+              },
             },
             m: [
               {
@@ -731,7 +770,6 @@ const generalTestData = {
               },
             ],
           },
-          desc: 'plurals',
           project: '',
         })},
         [
@@ -763,18 +801,24 @@ const generalTestData = {
       )`,
     ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
-          type: 'table',
           jsfbt: {
             t: {
               '*': {
-                '*': 'There were {number} likes',
+                '*': {
+                  desc: 'plurals',
+                  text: 'There were {number} likes',
+                  tokenAliases: {},
+                },
               },
               _1: {
-                _1: 'There was a like',
+                _1: {
+                  desc: 'plurals',
+                  text: 'There was a like',
+                  tokenAliases: {},
+                },
               },
             },
             m: [
@@ -786,7 +830,6 @@ const generalTestData = {
               },
             ],
           },
-          desc: 'plurals',
         })},
         [fbt._plural(count), fbt._plural(count, 'number')],
       );`,
@@ -813,18 +856,24 @@ const generalTestData = {
       );`,
     ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
-          type: 'table',
           jsfbt: {
             t: {
               '*': {
-                '*': 'There are {number} likes',
+                '*': {
+                  desc: 'plurals',
+                  text: 'There are {number} likes',
+                  tokenAliases: {},
+                },
               },
               _1: {
-                _1: 'There is a like',
+                _1: {
+                  desc: 'plurals',
+                  text: 'There is a like',
+                  tokenAliases: {},
+                },
               },
             },
             m: [
@@ -836,7 +885,6 @@ const generalTestData = {
               },
             ],
           },
-          desc: 'plurals',
         })},
         [fbt._plural(count), fbt._plural(count, 'number')],
       );`,
@@ -900,14 +948,16 @@ const generalTestData = {
       );`,
     ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
-          type: 'table',
           jsfbt: {
             t: {
-              '*': 'You just friended {name}',
+              '*': {
+                desc: 'names',
+                text: 'You just friended {name}',
+                tokenAliases: {},
+              },
             },
             m: [
               {
@@ -916,7 +966,6 @@ const generalTestData = {
               },
             ],
           },
-          desc: 'names',
         })},
         [fbt._name('name', personname, gender)],
       );`,
@@ -1173,20 +1222,29 @@ const generalTestData = {
       );`,
     ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
-          type: 'table',
           jsfbt: {
             t: {
-              groups: 'Hello, groups!',
-              photos: 'Hello, photos!',
-              videos: 'Hello, videos!',
+              groups: {
+                desc: 'enums!',
+                text: 'Hello, groups!',
+                tokenAliases: {},
+              },
+              photos: {
+                desc: 'enums!',
+                text: 'Hello, photos!',
+                tokenAliases: {},
+              },
+              videos: {
+                desc: 'enums!',
+                text: 'Hello, videos!',
+                tokenAliases: {},
+              },
             },
             m: [null],
           },
-          desc: 'enums!',
         })},
         [
           fbt._enum('groups', {
@@ -1287,21 +1345,34 @@ const generalTestData = {
         );`,
     ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
-          type: 'table',
           jsfbt: {
             t: {
-              '0': 'I know this.',
-              '1': 'I know her.',
-              '2': 'I know him.',
-              '*': 'I know them.',
+              '0': {
+                desc: 'object pronoun',
+                text: 'I know this.',
+                tokenAliases: {},
+              },
+              '1': {
+                desc: 'object pronoun',
+                text: 'I know her.',
+                tokenAliases: {},
+              },
+              '2': {
+                desc: 'object pronoun',
+                text: 'I know him.',
+                tokenAliases: {},
+              },
+              '*': {
+                desc: 'object pronoun',
+                text: 'I know them.',
+                tokenAliases: {},
+              },
             },
             m: [null],
           },
-          desc: 'object pronoun',
         })},
         [fbt._pronoun(0, gender)],
       );`,
@@ -1336,26 +1407,35 @@ const generalTestData = {
         );`,
       ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
-          type: 'table',
           jsfbt: {
             t: {
               '1': {
-                '1': 'She wished herself a happy birthday.',
+                '1': {
+                  desc: 'subject+reflexive pronouns',
+                  text: 'She wished herself a happy birthday.',
+                  tokenAliases: {},
+                },
               },
               '2': {
-                '2': 'He wished himself a happy birthday.',
+                '2': {
+                  desc: 'subject+reflexive pronouns',
+                  text: 'He wished himself a happy birthday.',
+                  tokenAliases: {},
+                },
               },
               '*': {
-                '*': 'They wished themselves a happy birthday.',
+                '*': {
+                  desc: 'subject+reflexive pronouns',
+                  text: 'They wished themselves a happy birthday.',
+                  tokenAliases: {},
+                },
               },
             },
             m: [null, null],
           },
-          desc: 'subject+reflexive pronouns',
         })},
         [
           fbt._pronoun(3, gender, {human: 1}),
@@ -1389,20 +1469,29 @@ const generalTestData = {
         );`,
       ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
-          type: 'table',
           jsfbt: {
             t: {
-              '1': 'It is her birthday.',
-              '2': 'It is his birthday.',
-              '*': 'It is their birthday.',
+              '1': {
+                desc: 'possessive pronoun',
+                text: 'It is her birthday.',
+                tokenAliases: {},
+              },
+              '2': {
+                desc: 'possessive pronoun',
+                text: 'It is his birthday.',
+                tokenAliases: {},
+              },
+              '*': {
+                desc: 'possessive pronoun',
+                text: 'It is their birthday.',
+                tokenAliases: {},
+              },
             },
             m: [null],
           },
-          desc: 'possessive pronoun',
         })},
         [fbt._pronoun(1, gender)],
       );`,

@@ -10,7 +10,8 @@
 
 'use strict';
 
-import type {EnumKey, EnumModule} from '../FbtEnumRegistrar';
+import type {EnumModule} from '../FbtEnumRegistrar';
+import type {BabelNodeCallExpressionArg} from '../FbtUtil';
 import type {StringVariationArgsMap} from './FbtArguments';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 
@@ -18,12 +19,18 @@ type Options = {|
   range: EnumModule, // key/value pairs to use for this fbt:enum
   // Represents the enum value that'll be used to select
   // the corresponding enum string variation at runtime
-  value: BabelNode,
+  value: BabelNodeCallExpressionArg,
 |};
 
 const {FBT_ENUM_MODULE_SUFFIX} = require('../FbtConstants');
 const FbtEnumRegistrar = require('../FbtEnumRegistrar');
-const {enforceBabelNode, errorAt, varDump} = require('../FbtUtil');
+const {
+  createFbtRuntimeArgCallExpression,
+  enforceBabelNode,
+  errorAt,
+  varDump,
+  enforceBabelNodeCallExpressionArg,
+} = require('../FbtUtil');
 const {EnumStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
 const FbtNodeType = require('./FbtNodeType');
@@ -35,6 +42,9 @@ const {
   isObjectExpression,
   isObjectProperty,
   isStringLiteral,
+  objectExpression,
+  objectProperty,
+  stringLiteral,
 } = require('@babel/types');
 const invariant = require('invariant');
 const nullthrows = require('nullthrows');
@@ -124,7 +134,7 @@ class FbtEnumNode extends FbtNode<
 
       return {
         range,
-        value: enforceBabelNode(value, '`value`'),
+        value: enforceBabelNodeCallExpressionArg(value, '`value`'),
       };
     } catch (error) {
       throw errorAt(this.node, error);
@@ -156,6 +166,17 @@ class FbtEnumNode extends FbtNode<
         Object.keys(this.options.range),
       ),
     ];
+  }
+
+  getFbtRuntimeArg(): BabelNodeCallExpression {
+    const {range, value} = this.options;
+    const runtimeRange = objectExpression(
+      Object.keys(range).map(key =>
+        objectProperty(stringLiteral(key), stringLiteral(range[key])),
+      ),
+    );
+
+    return createFbtRuntimeArgCallExpression(this, [value, runtimeRange]);
   }
 }
 // $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes

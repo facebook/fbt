@@ -22,6 +22,11 @@ import typeof BabelTypes from '@babel/types';
 type BabelNodeJSXAttributes = $ReadOnlyArray<
   $ElementType<$PropertyType<BabelNodeJSXOpeningElement, 'attributes'>, number>,
 >;
+export type BabelNodeCallExpressionArg =
+  | BabelNodeExpression
+  | BabelNodeSpreadElement
+  | BabelNodeJSXNamespacedName
+  | BabelNodeArgumentPlaceholder;
 export type BabelNodeCallExpressionArgument = $ElementType<
   $PropertyType<BabelNodeCallExpression, 'arguments'>,
   number,
@@ -36,6 +41,7 @@ const {
   arrayExpression,
   callExpression,
   identifier,
+  isArgumentPlaceholder,
   isArrowFunctionExpression,
   isBinaryExpression,
   isBooleanLiteral,
@@ -53,6 +59,7 @@ const {
   isNode,
   isObjectExpression,
   isObjectProperty,
+  isSpreadElement,
   isStringLiteral,
   isTemplateLiteral,
   memberExpression,
@@ -126,6 +133,15 @@ function validateNamespacedFbtElement(
 
   invariant(handlerName != null, 'handlerName must not be null');
   return handlerName;
+}
+
+function isBabelNodeCallExpressionArg(value: mixed): boolean %checks {
+  return (
+    isExpression(value) ||
+    isSpreadElement(value) ||
+    isJSXNamespacedName(value) ||
+    isArgumentPlaceholder(value)
+  );
 }
 
 function isTextualNode(node: mixed): boolean {
@@ -260,7 +276,7 @@ function getOptionsFromAttributes(
   return t.objectExpression(options);
 }
 
-type ErrorWithBabelNodeLocation = Error & {|_hasBabelNodeLocation?: boolean|};
+type ErrorWithBabelNodeLocation = Error & {_hasBabelNodeLocation?: boolean};
 
 /**
  * Prepend Babel node debug info (location, source code) to an Error message.
@@ -389,7 +405,7 @@ function collectOptionsFromFbtConstruct<ValidOptions: FbtOptionConfig<string>>(
   moduleName: JSModuleNameType,
   callsiteNode: ?BabelNodeCallExpression | BabelNodeJSXElement,
   validOptions: ValidOptions,
-  booleanOptions: ?{|[$Keys<ValidOptions>]: mixed|} = null,
+  booleanOptions: ?{[$Keys<ValidOptions>]: mixed} = null,
 ): FbtOptionValues<$Keys<ValidOptions>> {
   let optionsNode;
   let options = ({}: FbtOptionValues<$Keys<ValidOptions>>);
@@ -906,6 +922,20 @@ function enforceBabelNodeExpression(
   return value;
 }
 
+function enforceBabelNodeCallExpressionArg(
+  value: mixed,
+  valueDesc: ?string,
+): BabelNodeCallExpressionArg {
+  invariant(
+    isBabelNodeCallExpressionArg(value),
+    '%sExpected BabelNodeCallExpressionArg value instead of %s (%s)',
+    valueDesc ? valueDesc + ' - ' : '',
+    varDump(value),
+    typeof value,
+  );
+  return value;
+}
+
 function enforceStringEnum<K: string>(
   value: mixed,
   keys: {[K]: mixed},
@@ -944,6 +974,13 @@ enforceBabelNodeExpression.orNull = (nullableTypeCheckerFactory(
   enforceBabelNodeExpression,
 ): $Call<typeof nullableTypeCheckerFactory, typeof enforceBabelNodeExpression>);
 
+enforceBabelNodeCallExpressionArg.orNull = (nullableTypeCheckerFactory(
+  enforceBabelNodeCallExpressionArg,
+): $Call<
+  typeof nullableTypeCheckerFactory,
+  typeof enforceBabelNodeCallExpressionArg,
+>);
+
 enforceBoolean.orNull = (nullableTypeCheckerFactory(enforceBoolean): $Call<
   typeof nullableTypeCheckerFactory,
   typeof enforceBoolean,
@@ -967,12 +1004,7 @@ enforceStringEnum.orNull = (nullableTypeCheckerFactory(
  */
 function createFbtRuntimeArgCallExpression(
   fbtNode: AnyFbtNode,
-  args: Array<
-    | BabelNodeExpression
-    | BabelNodeSpreadElement
-    | BabelNodeJSXNamespacedName
-    | BabelNodeArgumentPlaceholder,
-  >,
+  args: Array<BabelNodeCallExpressionArg>,
   overrideMethodName?: string,
 ): BabelNodeCallExpression {
   return callExpression(
@@ -1001,6 +1033,7 @@ module.exports = {
   convertToStringArrayNodeIfNeeded,
   createFbtRuntimeArgCallExpression,
   enforceBabelNode,
+  enforceBabelNodeCallExpressionArg,
   enforceBabelNodeExpression,
   enforceBoolean,
   enforceString,

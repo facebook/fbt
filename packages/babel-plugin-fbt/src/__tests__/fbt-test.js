@@ -15,6 +15,7 @@ function runTest(data, extra) {
 }
 
 // TODO(T40113359) Re-enable once this test scenario is ready to be tested
+// eslint-disable-next-line jest/no-disabled-tests
 xdescribe('fbt() API: ', () => {
   describe('using extraOptions', () => {
     it('should accept "locale" extra option', () => {
@@ -90,6 +91,7 @@ xdescribe('fbt() API: ', () => {
 });
 
 // TODO(T40113359) Re-enable once this test scenario is ready to be tested
+// eslint-disable-next-line jest/no-disabled-tests
 xdescribe('Test double-lined params', () => {
   it('should remove the new line for param names that are two lines', () => {
     runTest({
@@ -135,6 +137,7 @@ xdescribe('Test double-lined params', () => {
 });
 
 // TODO(T40113359) Re-enable once this test scenario is ready to be tested
+// eslint-disable-next-line jest/no-disabled-tests
 xdescribe('fbt variable binding detection', () => {
   function describeFbtBindingTestCase(requireStatement) {
     return {
