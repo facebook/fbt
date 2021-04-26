@@ -113,6 +113,17 @@ function tokenNameToTextPattern(tokenName: string): string {
 }
 
 /**
+ * We define an FbtImplicitParamNode's outer token alias to be
+ * string concatenation of '=m' + the FbtImplicitParamNode's index in its siblings array.
+ *
+ * @example For string <fbt> hello <a>world</a></fbt>,
+ *          the outer token alias of <a>world</a> will be '=m1'.
+ */
+function convertIndexInSiblingsArrayToOuterTokenAlias(index: number): string {
+  return convertToTokenName(`m${index}`);
+}
+
+/**
  * Collect and normalize text output from a tree of fbt nodes.
  * @param subject Babel node of the subject's gender of the sentence
  * @param getChildNodeText Callback responsible for returning the text of an FbtChildNode
@@ -171,7 +182,9 @@ function getChildNodeTokenAliases(
       'The token of FbtImplicitParamNode %s is expected to be non-null',
       varDump(child),
     );
-    return {[childToken]: convertToTokenName(`m${tokenIndex}`)};
+    return {
+      [childToken]: convertIndexInSiblingsArrayToOuterTokenAlias(tokenIndex),
+    };
   }
   return {};
 }
@@ -193,6 +206,7 @@ function getChildNodeTextForDescription(
 
 module.exports = {
   convertToTokenName,
+  convertIndexInSiblingsArrayToOuterTokenAlias,
   createInstanceFromFbtConstructCallsite,
   getChildNodeText,
   getChildNodeTextForDescription,

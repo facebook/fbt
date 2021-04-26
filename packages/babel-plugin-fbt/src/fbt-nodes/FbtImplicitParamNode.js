@@ -30,6 +30,7 @@ const FbtElementNode = require('./FbtElementNode');
 const FbtNode = require('./FbtNode');
 const FbtNodeType = require('./FbtNodeType');
 const {
+  convertIndexInSiblingsArrayToOuterTokenAlias,
   convertToTokenName,
   getChildNodeText,
   getChildNodeTextForDescription,
@@ -67,6 +68,25 @@ class FbtImplicitParamNode
 
   _getSubjectNode(): ?BabelNode {
     return this._getElementNode().options.subject;
+  }
+
+  /**
+   * We define an FbtImplicitParamNode's outer token alias to be
+   * string concatenation of '=m' + the FbtImplicitParamNode's index in its siblings array.
+   *
+   * @example For string <fbt> hello <a>world</a></fbt>,
+   *          the outer token alias of <a>world</a> will be '=m1'.
+   */
+  getOuterTokenAlias(): string {
+    const index = nullthrows(
+      this.parent,
+      'Parent node must be defined',
+    ).children.indexOf(this);
+    invariant(
+      index != -1,
+      "Could not find current fbt node among the parent node's children",
+    );
+    return convertIndexInSiblingsArrayToOuterTokenAlias(index);
   }
 
   getArgsForStringVariationCalc(): $ReadOnlyArray<AnyStringVariationArg> {
