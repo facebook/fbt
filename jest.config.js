@@ -6,7 +6,6 @@
  * @emails oncall+internationalization
  */
 
-const fs = require('fs');
 const path = require('path');
 const runtimePaths = [
   '<rootDir>/runtime/shared',
@@ -28,52 +27,38 @@ const globalConfig = {
 };
 
 module.exports = {
-  rootDir: '',
+  rootDir: __dirname,
   projects: [
     {
       displayName: 'babel-plugin-fbt',
-      roots: [
-        fs.realpathSync(path.resolve('packages', 'babel-plugin-fbt', 'dist')),
-      ],
+      roots: ['<rootDir>/packages/babel-plugin-fbt/dist'],
       snapshotResolver:
         '<rootDir>/packages/babel-plugin-fbt/jest.snapshotResolver.js',
     },
     {
       displayName: 'babel-plugin-fbt-runtime',
-      roots: [
-        fs.realpathSync(path.resolve('packages', 'babel-plugin-fbt-runtime')),
-      ],
+      roots: ['<rootDir>/packages/babel-plugin-fbt-runtime'],
     },
     {
       displayName: 'babel-plugin-standalone',
-      roots: [
-        fs.realpathSync(path.resolve('packages', 'babel-plugin-standalone')),
-      ],
+      roots: ['<rootDir>/packages/babel-plugin-standalone'],
     },
     {
       displayName: 'fbt-runtime',
-      roots: [fs.realpathSync(path.resolve('packages', 'fbt', 'lib'))],
-      modulePaths: [fs.realpathSync(path.resolve('packages', 'fbt', 'lib'))],
+      roots: ['<rootDir>/packages/fbt/lib'],
+      modulePaths: ['<rootDir>/packages/fbt/lib'],
     },
     {
       displayName: 'gulp-rewrite-flowtyped-modules',
-      roots: [
-        fs.realpathSync(
-          path.resolve('packages', 'gulp-rewrite-flowtyped-modules'),
-        ),
-      ],
+      roots: ['<rootDir>/packages/gulp-rewrite-flowtyped-modules'],
     },
     {
       displayName: 'gulp-strip-docblock-pragmas',
-      roots: [
-        fs.realpathSync(
-          path.resolve('packages', 'gulp-strip-docblock-pragmas'),
-        ),
-      ],
+      roots: ['<rootDir>/packages/gulp-strip-docblock-pragmas'],
     },
     {
       displayName: 'fb-tiger-hash',
-      roots: [fs.realpathSync(path.resolve('packages', 'fb-tiger-hash'))],
+      roots: ['<rootDir>/packages/fb-tiger-hash'],
       transform: {
         '\\.js$': [
           '<rootDir>/jest-preprocessor.js',
