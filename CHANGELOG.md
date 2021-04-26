@@ -7,11 +7,11 @@ List of changes for each released npm package version.
 - [fbt versions](#fbt-versions)
 - [babel-plugin-fbt versions](#babel-plugin-fbt-versions)
 - [babel-plugin-fbt-runtime versions](#babel-plugin-fbt-runtime-versions)
-- [@fbtjs/default-collection-transform](#default-collection-transform)
-- [@fbtjs/babel-plugin-standalone](#fbtjsbabel-plugin-standalone-versions)
+- [@fbtjs/default-collection-transform versions](#fbtjsdefault-collection-transform-versions)
+- [@fbtjs/babel-plugin-standalone versions](#fbtjsbabel-plugin-standalone-versions)
 - [fb-tiger-hash versions](#fb-tiger-hash-versions)
 - [fb-babel-plugin-utils versions](#fb-babel-plugin-utils-versions)
-- [gulp-rewrite-flowtyped-modules](#gulp-rewrite-flowtyped-modules)
+- [gulp-rewrite-flowtyped-modules versions](#gulp-rewrite-flowtyped-modules-versions)
 - [react-native-fbt versions](#react-native-fbt-versions)
 - [fbt-rn-android-native versions [Deprecated]](#fbt-rn-android-native-versions-deprecated)
 
@@ -338,7 +338,8 @@ List of changes for each released npm package version.
 - 0.1.0:
   -  First commit. A native JavaScript implementation of the Tiger hash Algorithm.
 
-### default-collection-transform versions
+### @fbtjs/default-collection-transform versions
+
 - 0.0.3:
   - Update peer dependency on babel-plugin-fbt
   - Pass `{enum: true}` to '@babel/plugin-syntax-flow'
@@ -391,7 +392,7 @@ List of changes for each released npm package version.
 - 0.9.0:
   - Initial commit
 
-### gulp-rewrite-flowtyped-modules
+### gulp-rewrite-flowtyped-modules versions
 
 - 0.0.9:
   - Initial commit
