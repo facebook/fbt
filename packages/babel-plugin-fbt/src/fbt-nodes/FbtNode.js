@@ -304,10 +304,7 @@ class FbtNode<
    * This method is responsible to generate <<runtimeFbtArg>>
    */
   getFbtRuntimeArg(): ?BabelNodeCallExpression {
-    // eslint-disable-next-line fb-www/todo-task
-    // TODO: throw error if getFbtRuntimeArg() is unimplemented
-    return null;
-    // throw errorAt(this.node, 'This method must be implemented in a child class');
+    throw errorAt(this.node, 'This method must be implemented in a child class');
   }
 }
 

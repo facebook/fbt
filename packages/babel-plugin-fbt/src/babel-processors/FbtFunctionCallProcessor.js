@@ -11,21 +11,17 @@
 
 'use strict';
 
-import type FbtImplicitParamNode from '../fbt-nodes/FbtImplicitParamNode';
 import type {AnyStringVariationArg} from '../fbt-nodes/FbtArguments';
 import type {AnyFbtNode} from '../fbt-nodes/FbtNode';
 import type {
   FbtCallSiteOptions,
-  FbtOptionValue,
   JSModuleNameType,
   ValidPronounUsagesKey,
 } from '../FbtConstants';
 import type {ParamSet} from '../FbtUtil';
-import type {TableJSFBTTreeLeaf, TableJSFBTTree} from '../index';
+import type {TableJSFBTTree, TableJSFBTTreeLeaf} from '../index';
 import type {
   FbtBabelNodeCallExpression,
-  FbtBabelNodeJSXElement,
-  FbtBabelNodeShape,
   ObjectWithJSFBT,
   PluginOptions,
 } from '../index.js';
@@ -101,6 +97,7 @@ type CompactStringVariations = {|
 
 const {StringVariationArgsMap} = require('../fbt-nodes/FbtArguments');
 const FbtElementNode = require('../fbt-nodes/FbtElementNode');
+const FbtParamNode = require('../fbt-nodes/FbtParamNode');
 const {
   FbtBooleanOptions,
   PLURAL_PARAM_TOKEN,
@@ -111,9 +108,11 @@ const {
 } = require('../FbtConstants');
 const FbtMethodCallVisitors = require('../FbtMethodCallVisitors');
 const FbtNodeChecker = require('../FbtNodeChecker');
+const FbtImplicitParamNode = require('../fbt-nodes/FbtImplicitParamNode');
 const {
   collectOptions,
   convertToStringArrayNodeIfNeeded,
+  createFbtRuntimeArgCallExpression,
   errorAt,
   expandStringArray,
   expandStringConcat,
@@ -128,6 +127,7 @@ const addLeafToTree = require('../utils/addLeafToTree');
 const {
   arrayExpression,
   callExpression,
+  cloneDeep,
   identifier,
   isArrayExpression,
   isCallExpression,
@@ -135,6 +135,7 @@ const {
   isObjectProperty,
   isStringLiteral,
   isTemplateLiteral,
+  jsxExpressionContainer,
   memberExpression,
   stringLiteral,
 } = require('@babel/types');
@@ -455,7 +456,8 @@ class FbtFunctionCallProcessor {
       ) {
         throw errorAt(
           node.callee,
-          `Expected property to be an Identifier or a StringLiteral got "${calledProperty.type}" instead`,
+          `Expected property to be an Identifier or a StringLiteral
+          got "${calledProperty.type}" instead`,
         );
       }
 
@@ -610,8 +612,11 @@ class FbtFunctionCallProcessor {
     ).trim();
   }
 
-  _createFbtRuntimeCall(metaPhrase: MetaPhrase): FbtBabelNodeCallExpression {
-    const {fbtNode, phrase} = metaPhrase;
+  _createFbtRuntimeCallForMetaPhrase(
+    metaPhrases: $ReadOnlyArray<MetaPhrase>,
+    metaPhraseIndex: number,
+  ): FbtBabelNodeCallExpression {
+    const {phrase} = metaPhrases[metaPhraseIndex];
     const {pluginOptions} = this;
     // $FlowFixMe[speculation-ambiguous] we're deprecating the "type" property soon anyway
     const argsOutput = JSON.stringify(
@@ -625,26 +630,11 @@ class FbtFunctionCallProcessor {
       : argsOutput;
     const fbtSentinel = pluginOptions.fbtSentinel || SENTINEL;
     const args = [stringLiteral(fbtSentinel + encodedOutput + fbtSentinel)];
-    const fbtRuntimeArgs = [];
 
-    for (const childFbtNode of fbtNode.children) {
-      // try {
-      const fbtRuntimeArg = childFbtNode.getFbtRuntimeArg();
-      if (fbtRuntimeArg) {
-        fbtRuntimeArgs.push(fbtRuntimeArg);
-      }
-      // } catch (error) {
-      //   if (error.message.includes('This method must be implemented in a child class')) {
-      //     fbtRuntimeArgs.push(
-      //       // TODO(T40113359): remove when creating fbt runtime args for all FbtNodes is done
-      //       stringLiteral(`TODO: ${childFbtNode.constructor.type}: ${error.message}`)
-      //     );
-      //   } else {
-      //     throw errorAt(childFbtNode.node, error);
-      //   }
-      // }
-    }
-
+    const fbtRuntimeArgs = this._createFbtRuntimeArgumentsForMetaPhrase(
+      metaPhrases,
+      metaPhraseIndex,
+    );
     if (fbtRuntimeArgs.length > 0) {
       args.push(arrayExpression(fbtRuntimeArgs));
     }
@@ -657,8 +647,7 @@ class FbtFunctionCallProcessor {
   _createRootFbtRuntimeCall(
     metaPhrases: $ReadOnlyArray<MetaPhrase>,
   ): FbtBabelNodeCallExpression {
-    const [rootPhrase] = metaPhrases;
-    return this._createFbtRuntimeCall(rootPhrase);
+    return this._createFbtRuntimeCallForMetaPhrase(metaPhrases, 0);
   }
 
   /**
@@ -835,6 +824,94 @@ class FbtFunctionCallProcessor {
       );
     }
     return elementNode;
+  }
+
+  _createFbtRuntimeArgumentsForMetaPhrase(
+    metaPhrases: $ReadOnlyArray<MetaPhrase>,
+    metaPhraseIndex: number,
+  ): Array<BabelNodeCallExpression> {
+    const metaPhrase = metaPhrases[metaPhraseIndex];
+    // Runtime arguments of a string fall into 3 categories:
+    // 1. Each string variation argument must correspond to a runtime argument
+    // 2. Non string variation arguments(i.e. those fbt.param() calls that do not
+    // have gender or number option) should also be counted as runtime arguments.
+    // 3. Each inner string of current string should be associated with a
+    // runtime argument
+    return [
+      ...this._createRuntimeArgsFromStringVariantNodes(metaPhrase),
+      ...this._createRuntimeArgsFromNonStringVariantNodes(metaPhrase.fbtNode),
+      ...this._createRuntimeArgsFromImplicitParamNodes(
+        metaPhrases,
+        metaPhraseIndex,
+      ),
+    ];
+  }
+
+  _createRuntimeArgsFromStringVariantNodes(
+    metaPhrase: MetaPhrase,
+  ): Array<BabelNodeCallExpression> {
+    const fbtRuntimeArgs = [];
+    const {compactStringVariations} = metaPhrase;
+    for (const stringVariation of compactStringVariations.array) {
+      const fbtRuntimeArg = stringVariation.fbtNode.getFbtRuntimeArg();
+      if (fbtRuntimeArg) {
+        fbtRuntimeArgs.push(fbtRuntimeArg);
+      }
+    }
+    return fbtRuntimeArgs;
+  }
+
+  _createRuntimeArgsFromNonStringVariantNodes(
+    fbtNode: FbtImplicitParamNode | FbtElementNode,
+  ): Array<BabelNodeCallExpression> {
+    const fbtRuntimeArgs = [];
+    for (const child of fbtNode.children) {
+      if (
+        child instanceof FbtParamNode &&
+        child.options.gender == null &&
+        child.options.number == null
+      ) {
+        fbtRuntimeArgs.push(child.getFbtRuntimeArg());
+      }
+    }
+    return fbtRuntimeArgs;
+  }
+
+  _createRuntimeArgsFromImplicitParamNodes(
+    metaPhrases: $ReadOnlyArray<MetaPhrase>,
+    metaPhraseIndex: number,
+  ): Array<BabelNodeCallExpression> {
+    const fbtRuntimeArgs = [];
+    for (const [
+      innerMetaPhraseIndex,
+      innerMetaPhrase,
+    ] of metaPhrases.entries()) {
+      if (innerMetaPhrase.parentIndex != metaPhraseIndex) {
+        continue;
+      }
+      const innerMetaPhraseFbtNode = innerMetaPhrase.fbtNode;
+      invariant(
+        innerMetaPhraseFbtNode instanceof FbtImplicitParamNode,
+        'Expected the inner meta phrase to be associated with a FbtImplicitParamNode instead of %s',
+        varDump(innerMetaPhraseFbtNode),
+      );
+      const babelNode = cloneDeep(innerMetaPhraseFbtNode.node);
+      babelNode.children = [
+        jsxExpressionContainer(
+          this._createFbtRuntimeCallForMetaPhrase(
+            metaPhrases,
+            innerMetaPhraseIndex,
+          ),
+        ),
+      ];
+      const fbtParamRuntimeArg = createFbtRuntimeArgCallExpression(
+        innerMetaPhraseFbtNode,
+        [stringLiteral(innerMetaPhraseFbtNode.getOuterTokenAlias()), babelNode],
+        (FbtParamNode.type: string),
+      );
+      fbtRuntimeArgs.push(fbtParamRuntimeArg);
+    }
+    return fbtRuntimeArgs;
   }
 }
 

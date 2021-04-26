@@ -126,92 +126,11 @@ Array [
 ]
 `;
 
-exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle JSX fbt with a nested fbt:plural" 1`] = `
-Array [
-  Object {
-    "col_beg": 8,
-    "col_end": 14,
-    "filepath": undefined,
-    "jsfbt": Object {
-      "m": Array [
-        Object {
-          "token": "name",
-          "type": 1,
-        },
-        Object {
-          "singular": true,
-          "token": "number",
-          "type": 2,
-        },
-      ],
-      "t": Object {
-        "*": Object {
-          "*": Object {
-            "desc": "example 1",
-            "text": "{name} has shared {=[number] photos} with you",
-            "tokenAliases": Object {
-              "=[number] photos": "=m2",
-            },
-          },
-          "_1": Object {
-            "desc": "example 1",
-            "text": "{name} has shared {=a photo} with you",
-            "tokenAliases": Object {
-              "=a photo": "=m2",
-            },
-          },
-        },
-      },
-    },
-    "line_beg": 4,
-    "line_end": 18,
-    "project": "",
-  },
-  Object {
-    "col_beg": 10,
-    "col_end": 14,
-    "filepath": undefined,
-    "jsfbt": Object {
-      "m": Array [
-        Object {
-          "token": "name",
-          "type": 1,
-        },
-        Object {
-          "singular": true,
-          "token": "number",
-          "type": 2,
-        },
-      ],
-      "t": Object {
-        "*": Object {
-          "*": Object {
-            "desc": "In the phrase: \\"{name} has shared {=[number] photos} with you\\"",
-            "outerTokenName": "=[number] photos",
-            "text": "{number} photos",
-            "tokenAliases": Object {},
-          },
-          "_1": Object {
-            "desc": "In the phrase: \\"{name} has shared {=a photo} with you\\"",
-            "outerTokenName": "=a photo",
-            "text": "a photo",
-            "tokenAliases": Object {},
-          },
-        },
-      },
-    },
-    "line_beg": 9,
-    "line_end": 16,
-    "project": "",
-  },
-]
-`;
-
 exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle JSX fbt with multiple levels of nested strings" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 14,
+    "col_beg": 6,
+    "col_end": 12,
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -349,13 +268,13 @@ Array [
         },
       },
     },
-    "line_beg": 4,
-    "line_end": 24,
+    "line_beg": 3,
+    "line_end": 23,
     "project": "",
   },
   Object {
-    "col_beg": 10,
-    "col_end": 14,
+    "col_beg": 8,
+    "col_end": 12,
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -469,13 +388,13 @@ Array [
         },
       },
     },
-    "line_beg": 5,
-    "line_end": 7,
+    "line_beg": 4,
+    "line_end": 6,
     "project": "",
   },
   Object {
-    "col_beg": 10,
-    "col_end": 14,
+    "col_beg": 8,
+    "col_end": 12,
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -613,13 +532,13 @@ Array [
         },
       },
     },
-    "line_beg": 12,
-    "line_end": 23,
+    "line_beg": 11,
+    "line_end": 22,
     "project": "",
   },
   Object {
-    "col_beg": 12,
-    "col_end": 21,
+    "col_beg": 10,
+    "col_end": 19,
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -733,8 +652,8 @@ Array [
         },
       },
     },
-    "line_beg": 17,
-    "line_end": 22,
+    "line_beg": 16,
+    "line_end": 21,
     "project": "",
   },
 ]
@@ -1730,92 +1649,11 @@ Array [
 ]
 `;
 
-exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should handle JSX fbt with a nested fbt:plural" 1`] = `
-Array [
-  Object {
-    "col_beg": 8,
-    "col_end": 14,
-    "filepath": undefined,
-    "jsfbt": Object {
-      "m": Array [
-        Object {
-          "token": "name",
-          "type": 1,
-        },
-        Object {
-          "singular": true,
-          "token": "number",
-          "type": 2,
-        },
-      ],
-      "t": Object {
-        "*": Object {
-          "*": Object {
-            "desc": "example 1",
-            "text": "{name} has shared {=[number] photos} with you",
-            "tokenAliases": Object {
-              "=[number] photos": "=m2",
-            },
-          },
-          "_1": Object {
-            "desc": "example 1",
-            "text": "{name} has shared {=a photo} with you",
-            "tokenAliases": Object {
-              "=a photo": "=m2",
-            },
-          },
-        },
-      },
-    },
-    "line_beg": 4,
-    "line_end": 18,
-    "project": "",
-  },
-  Object {
-    "col_beg": 10,
-    "col_end": 14,
-    "filepath": undefined,
-    "jsfbt": Object {
-      "m": Array [
-        Object {
-          "token": "name",
-          "type": 1,
-        },
-        Object {
-          "singular": true,
-          "token": "number",
-          "type": 2,
-        },
-      ],
-      "t": Object {
-        "*": Object {
-          "*": Object {
-            "desc": "In the phrase: \\"{name} has shared {=[number] photos} with you\\"",
-            "outerTokenName": "=[number] photos",
-            "text": "{number} photos",
-            "tokenAliases": Object {},
-          },
-          "_1": Object {
-            "desc": "In the phrase: \\"{name} has shared {=a photo} with you\\"",
-            "outerTokenName": "=a photo",
-            "text": "a photo",
-            "tokenAliases": Object {},
-          },
-        },
-      },
-    },
-    "line_beg": 9,
-    "line_end": 16,
-    "project": "",
-  },
-]
-`;
-
 exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should handle JSX fbt with multiple levels of nested strings" 1`] = `
 Array [
   Object {
-    "col_beg": 8,
-    "col_end": 14,
+    "col_beg": 6,
+    "col_end": 12,
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -1946,13 +1784,13 @@ Array [
         },
       },
     },
-    "line_beg": 4,
-    "line_end": 24,
+    "line_beg": 3,
+    "line_end": 23,
     "project": "",
   },
   Object {
-    "col_beg": 10,
-    "col_end": 14,
+    "col_beg": 8,
+    "col_end": 12,
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -2059,13 +1897,13 @@ Array [
         },
       },
     },
-    "line_beg": 5,
-    "line_end": 7,
+    "line_beg": 4,
+    "line_end": 6,
     "project": "",
   },
   Object {
-    "col_beg": 10,
-    "col_end": 14,
+    "col_beg": 8,
+    "col_end": 12,
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -2196,13 +2034,13 @@ Array [
         },
       },
     },
-    "line_beg": 12,
-    "line_end": 23,
+    "line_beg": 11,
+    "line_end": 22,
     "project": "",
   },
   Object {
-    "col_beg": 12,
-    "col_end": 21,
+    "col_beg": 10,
+    "col_end": 19,
     "filepath": undefined,
     "jsfbt": Object {
       "m": Array [
@@ -2309,8 +2147,8 @@ Array [
         },
       },
     },
-    "line_beg": 17,
-    "line_end": 22,
+    "line_beg": 16,
+    "line_end": 21,
     "project": "",
   },
 ]
@@ -3471,233 +3309,24 @@ FbtElementNode {
 }
 `;
 
-exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle JSX fbt with a nested fbt:plural" 1`] = `
-FbtElementNode {
-  "__nodeCode": "fbt([fbt.param(\\"name\\", /*#__PURE__*/React.createElement(\\"b\\", {
-  className: \\"padRight\\"
-}, this.state.ex1Name), {
-  \\"gender\\": this.state.ex1Gender
-}), \\" has shared \\", /*#__PURE__*/React.createElement(\\"a\\", {
-  className: \\"neatoLink\\",
-  href: \\"#\\",
-  tabindex: 123,
-  id: \\"uniq\\"
-}, fbt.plural(\\" a photo\\", this.state.ex1Count, {
-  \\"many\\": \\"photos\\",
-  \\"showCount\\": \\"ifMany\\"
-})), \\" with you \\"], \\"example 1\\")",
-  "__stringVariationArgs": Array [
-    GenderStringVariationArg {
-      "__nodeCode": "this.state.ex1Gender",
-      "candidateValues": Array [
-        "*",
-      ],
-      "fbtNode": "FbtParamNode",
-      "isCollapsible": false,
-      "node": "BabelNode[type=MemberExpression]",
-      "value": undefined,
-    },
-    NumberStringVariationArg {
-      "__nodeCode": "this.state.ex1Count",
-      "candidateValues": Array [
-        "*",
-        "_1",
-      ],
-      "fbtNode": "FbtPluralNode",
-      "isCollapsible": false,
-      "node": "BabelNode[type=MemberExpression]",
-      "value": undefined,
-    },
-  ],
-  "_tokenSet": Object {
-    "=[number] photos": "BabelNode[type=JSXElement]",
-    "=a photo": "BabelNode[type=JSXElement]",
-    "name": "BabelNode[type=CallExpression]",
-  },
-  "_variationFactorValues": Array [],
-  "children": Array [
-    FbtParamNode {
-      "__nodeCode": "fbt.param(\\"name\\", /*#__PURE__*/React.createElement(\\"b\\", {
-  className: \\"padRight\\"
-}, this.state.ex1Name), {
-  \\"gender\\": this.state.ex1Gender
-})",
-      "__stringVariationArgs": Array [
-        GenderStringVariationArg {
-          "__nodeCode": "this.state.ex1Gender",
-          "candidateValues": Array [
-            "*",
-          ],
-          "fbtNode": "FbtParamNode",
-          "isCollapsible": false,
-          "node": "BabelNode[type=MemberExpression]",
-          "value": undefined,
-        },
-      ],
-      "_variationFactorValues": Array [],
-      "children": Array [],
-      "moduleName": "fbt",
-      "node": "BabelNode[type=CallExpression]",
-      "nodeChecker": FbtNodeChecker {
-        "moduleName": "fbt",
-      },
-      "options": Object {
-        "__genderCode": "this.state.ex1Gender",
-        "gender": "BabelNode[type=MemberExpression]",
-        "name": "name",
-        "number": null,
-      },
-      "parent": "FbtElementNode",
-    },
-    FbtTextNode {
-      "__nodeCode": "\\" has shared \\"",
-      "__stringVariationArgs": Array [],
-      "_variationFactorValues": Array [],
-      "children": Array [],
-      "moduleName": "fbt",
-      "node": "BabelNode[type=StringLiteral]",
-      "nodeChecker": FbtNodeChecker {
-        "moduleName": "fbt",
-      },
-      "parent": "FbtElementNode",
-    },
-    FbtImplicitParamNode {
-      "__nodeCode": "<a>fbt.plural(\\" a photo\\", this.state.ex1Count, {
-    \\"many\\": \\"photos\\",
-    \\"showCount\\": \\"ifMany\\"
-  })</a>",
-      "__stringVariationArgs": Array [
-        NumberStringVariationArg {
-          "__nodeCode": "this.state.ex1Count",
-          "candidateValues": Array [
-            "*",
-            "_1",
-          ],
-          "fbtNode": "FbtPluralNode",
-          "isCollapsible": false,
-          "node": "BabelNode[type=MemberExpression]",
-          "value": undefined,
-        },
-      ],
-      "_tokenSet": Object {
-        "number": "BabelNode[type=CallExpression]",
-      },
-      "_variationFactorValues": Array [],
-      "children": Array [
-        FbtTextNode {
-          "__nodeCode": "",
-          "__stringVariationArgs": Array [],
-          "_variationFactorValues": Array [],
-          "children": Array [],
-          "moduleName": "fbt",
-          "node": "BabelNode[type=JSXText]",
-          "nodeChecker": FbtNodeChecker {
-            "moduleName": "fbt",
-          },
-          "parent": "FbtImplicitParamNode",
-        },
-        FbtPluralNode {
-          "__nodeCode": "fbt.plural(\\" a photo\\", this.state.ex1Count, {
-  \\"many\\": \\"photos\\",
-  \\"showCount\\": \\"ifMany\\"
-})",
-          "__stringVariationArgs": Array [
-            NumberStringVariationArg {
-              "__nodeCode": "this.state.ex1Count",
-              "candidateValues": Array [
-                "*",
-                "_1",
-              ],
-              "fbtNode": "FbtPluralNode",
-              "isCollapsible": false,
-              "node": "BabelNode[type=MemberExpression]",
-              "value": undefined,
-            },
-          ],
-          "_variationFactorValues": Array [],
-          "children": Array [],
-          "moduleName": "fbt",
-          "node": "BabelNode[type=CallExpression]",
-          "nodeChecker": FbtNodeChecker {
-            "moduleName": "fbt",
-          },
-          "options": Object {
-            "__countCode": "this.state.ex1Count",
-            "count": "BabelNode[type=MemberExpression]",
-            "many": "photos",
-            "name": "number",
-            "showCount": "ifMany",
-            "value": null,
-          },
-          "parent": "FbtImplicitParamNode",
-        },
-        FbtTextNode {
-          "__nodeCode": "",
-          "__stringVariationArgs": Array [],
-          "_variationFactorValues": Array [],
-          "children": Array [],
-          "moduleName": "fbt",
-          "node": "BabelNode[type=JSXText]",
-          "nodeChecker": FbtNodeChecker {
-            "moduleName": "fbt",
-          },
-          "parent": "FbtImplicitParamNode",
-        },
-      ],
-      "moduleName": "fbt",
-      "node": "BabelNode[type=JSXElement]",
-      "nodeChecker": FbtNodeChecker {
-        "moduleName": "fbt",
-      },
-      "parent": "FbtElementNode",
-    },
-    FbtTextNode {
-      "__nodeCode": "\\" with you \\"",
-      "__stringVariationArgs": Array [],
-      "_variationFactorValues": Array [],
-      "children": Array [],
-      "moduleName": "fbt",
-      "node": "BabelNode[type=StringLiteral]",
-      "nodeChecker": FbtNodeChecker {
-        "moduleName": "fbt",
-      },
-      "parent": "FbtElementNode",
-    },
-  ],
-  "moduleName": "fbt",
-  "node": "BabelNode[type=CallExpression]",
-  "nodeChecker": FbtNodeChecker {
-    "moduleName": "fbt",
-  },
-  "options": Object {
-    "author": null,
-    "common": false,
-    "doNotExtract": null,
-    "preserveWhitespace": false,
-    "project": "",
-    "subject": null,
-  },
-  "parent": undefined,
-}
-`;
-
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle JSX fbt with multiple levels of nested strings" 1`] = `
 FbtElementNode {
-  "__nodeCode": "fbt([/*#__PURE__*/React.createElement(\\"b\\", {
-  className: \\"padRight\\"
-}, fbt.enum(enumVal, ['today', 'yesterday'])), \\", \\", fbt.param(\\"name\\", /*#__PURE__*/React.createElement(\\"b\\", {
-  className: \\"padRight\\"
-}, viewerName), {
+  "__nodeCode": "fbt([<b className=\\"padRight\\">
+          {fbt.enum(enumVal, ['today', 'yesterday'])}
+        </b>, \\", \\", fbt.param(\\"name\\", <b className=\\"padRight\\">{viewerName}</b>, {
   \\"gender\\": viewerGender
-}), \\" has shared \\", /*#__PURE__*/React.createElement(\\"a\\", {
-  className: \\"neatoLink\\",
-  href: \\"#\\"
-}, fbt.plural(\\" a photo\\", photoCount, {
-  \\"many\\": \\"photos\\",
-  \\"showCount\\": \\"ifMany\\"
-}), ' ', \\"with\\", /*#__PURE__*/React.createElement(\\"strong\\", null, fbt.pronoun(\\"object\\", otherGender, {
-  \\"human\\": true
-})))], \\"example 1\\")",
+}), \\" has shared \\", <a className=\\"neatoLink\\" href=\\"#\\">
+          {fbt.plural(\\" a photo\\", photoCount, {
+    \\"many\\": \\"photos\\",
+    \\"showCount\\": \\"ifMany\\"
+  })}{' '}
+          with
+          <strong>
+            {fbt.pronoun(\\"object\\", otherGender, {
+      \\"human\\": true
+    })}
+          </strong>
+        </a>], \\"example 1\\")",
   "__stringVariationArgs": Array [
     EnumStringVariationArg {
       "__nodeCode": "enumVal",
@@ -3758,7 +3387,9 @@ FbtElementNode {
   "_variationFactorValues": Array [],
   "children": Array [
     FbtImplicitParamNode {
-      "__nodeCode": "<b>fbt.enum(enumVal, ['today', 'yesterday'])</b>",
+      "__nodeCode": "<b className=\\"padRight\\">
+          {fbt.enum(enumVal, ['today', 'yesterday'])}
+        </b>",
       "__stringVariationArgs": Array [
         EnumStringVariationArg {
           "__nodeCode": "enumVal",
@@ -3852,9 +3483,7 @@ FbtElementNode {
       "parent": "FbtElementNode",
     },
     FbtParamNode {
-      "__nodeCode": "fbt.param(\\"name\\", /*#__PURE__*/React.createElement(\\"b\\", {
-  className: \\"padRight\\"
-}, viewerName), {
+      "__nodeCode": "fbt.param(\\"name\\", <b className=\\"padRight\\">{viewerName}</b>, {
   \\"gender\\": viewerGender
 })",
       "__stringVariationArgs": Array [
@@ -3897,12 +3526,18 @@ FbtElementNode {
       "parent": "FbtElementNode",
     },
     FbtImplicitParamNode {
-      "__nodeCode": "<a>fbt.plural(\\" a photo\\", photoCount, {
+      "__nodeCode": "<a className=\\"neatoLink\\" href=\\"#\\">
+          {fbt.plural(\\" a photo\\", photoCount, {
     \\"many\\": \\"photos\\",
     \\"showCount\\": \\"ifMany\\"
-  })' '\\"with\\" /*#__PURE__*/React.createElement(\\"strong\\", null, fbt.pronoun(\\"object\\", otherGender, {
-    \\"human\\": true
-  }))</a>",
+  })}{' '}
+          with
+          <strong>
+            {fbt.pronoun(\\"object\\", otherGender, {
+      \\"human\\": true
+    })}
+          </strong>
+        </a>",
       "__stringVariationArgs": Array [
         NumberStringVariationArg {
           "__nodeCode": "photoCount",
@@ -4008,9 +3643,11 @@ FbtElementNode {
           "parent": "FbtImplicitParamNode",
         },
         FbtImplicitParamNode {
-          "__nodeCode": "<strong>fbt.pronoun(\\"object\\", otherGender, {
+          "__nodeCode": "<strong>
+            {fbt.pronoun(\\"object\\", otherGender, {
     \\"human\\": true
-  })</strong>",
+  })}
+          </strong>",
           "__stringVariationArgs": Array [
             GenderStringVariationArg {
               "__nodeCode": "otherGender",
@@ -7077,233 +6714,24 @@ FbtElementNode {
 }
 `;
 
-exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle JSX fbt with a nested fbt:plural" 1`] = `
-FbtElementNode {
-  "__nodeCode": "fbt([fbt.param(\\"name\\", /*#__PURE__*/React.createElement(\\"b\\", {
-  className: \\"padRight\\"
-}, this.state.ex1Name), {
-  \\"gender\\": this.state.ex1Gender
-}), \\" has shared \\", /*#__PURE__*/React.createElement(\\"a\\", {
-  className: \\"neatoLink\\",
-  href: \\"#\\",
-  tabindex: 123,
-  id: \\"uniq\\"
-}, fbt.plural(\\" a photo\\", this.state.ex1Count, {
-  \\"many\\": \\"photos\\",
-  \\"showCount\\": \\"ifMany\\"
-})), \\" with you \\"], \\"example 1\\")",
-  "__stringVariationArgs": Array [
-    GenderStringVariationArg {
-      "__nodeCode": "this.state.ex1Gender",
-      "candidateValues": Array [
-        "*",
-      ],
-      "fbtNode": "FbtParamNode",
-      "isCollapsible": false,
-      "node": "BabelNode[type=MemberExpression]",
-      "value": undefined,
-    },
-    NumberStringVariationArg {
-      "__nodeCode": "this.state.ex1Count",
-      "candidateValues": Array [
-        "*",
-        "_1",
-      ],
-      "fbtNode": "FbtPluralNode",
-      "isCollapsible": false,
-      "node": "BabelNode[type=MemberExpression]",
-      "value": undefined,
-    },
-  ],
-  "_tokenSet": Object {
-    "=[number] photos": "BabelNode[type=JSXElement]",
-    "=a photo": "BabelNode[type=JSXElement]",
-    "name": "BabelNode[type=CallExpression]",
-  },
-  "_variationFactorValues": Array [],
-  "children": Array [
-    FbtParamNode {
-      "__nodeCode": "fbt.param(\\"name\\", /*#__PURE__*/React.createElement(\\"b\\", {
-  className: \\"padRight\\"
-}, this.state.ex1Name), {
-  \\"gender\\": this.state.ex1Gender
-})",
-      "__stringVariationArgs": Array [
-        GenderStringVariationArg {
-          "__nodeCode": "this.state.ex1Gender",
-          "candidateValues": Array [
-            "*",
-          ],
-          "fbtNode": "FbtParamNode",
-          "isCollapsible": false,
-          "node": "BabelNode[type=MemberExpression]",
-          "value": undefined,
-        },
-      ],
-      "_variationFactorValues": Array [],
-      "children": Array [],
-      "moduleName": "fbt",
-      "node": "BabelNode[type=CallExpression]",
-      "nodeChecker": FbtNodeChecker {
-        "moduleName": "fbt",
-      },
-      "options": Object {
-        "__genderCode": "this.state.ex1Gender",
-        "gender": "BabelNode[type=MemberExpression]",
-        "name": "name",
-        "number": null,
-      },
-      "parent": "FbtElementNode",
-    },
-    FbtTextNode {
-      "__nodeCode": "\\" has shared \\"",
-      "__stringVariationArgs": Array [],
-      "_variationFactorValues": Array [],
-      "children": Array [],
-      "moduleName": "fbt",
-      "node": "BabelNode[type=StringLiteral]",
-      "nodeChecker": FbtNodeChecker {
-        "moduleName": "fbt",
-      },
-      "parent": "FbtElementNode",
-    },
-    FbtImplicitParamNode {
-      "__nodeCode": "<a>fbt.plural(\\" a photo\\", this.state.ex1Count, {
-    \\"many\\": \\"photos\\",
-    \\"showCount\\": \\"ifMany\\"
-  })</a>",
-      "__stringVariationArgs": Array [
-        NumberStringVariationArg {
-          "__nodeCode": "this.state.ex1Count",
-          "candidateValues": Array [
-            "*",
-            "_1",
-          ],
-          "fbtNode": "FbtPluralNode",
-          "isCollapsible": false,
-          "node": "BabelNode[type=MemberExpression]",
-          "value": undefined,
-        },
-      ],
-      "_tokenSet": Object {
-        "number": "BabelNode[type=CallExpression]",
-      },
-      "_variationFactorValues": Array [],
-      "children": Array [
-        FbtTextNode {
-          "__nodeCode": "",
-          "__stringVariationArgs": Array [],
-          "_variationFactorValues": Array [],
-          "children": Array [],
-          "moduleName": "fbt",
-          "node": "BabelNode[type=JSXText]",
-          "nodeChecker": FbtNodeChecker {
-            "moduleName": "fbt",
-          },
-          "parent": "FbtImplicitParamNode",
-        },
-        FbtPluralNode {
-          "__nodeCode": "fbt.plural(\\" a photo\\", this.state.ex1Count, {
-  \\"many\\": \\"photos\\",
-  \\"showCount\\": \\"ifMany\\"
-})",
-          "__stringVariationArgs": Array [
-            NumberStringVariationArg {
-              "__nodeCode": "this.state.ex1Count",
-              "candidateValues": Array [
-                "*",
-                "_1",
-              ],
-              "fbtNode": "FbtPluralNode",
-              "isCollapsible": false,
-              "node": "BabelNode[type=MemberExpression]",
-              "value": undefined,
-            },
-          ],
-          "_variationFactorValues": Array [],
-          "children": Array [],
-          "moduleName": "fbt",
-          "node": "BabelNode[type=CallExpression]",
-          "nodeChecker": FbtNodeChecker {
-            "moduleName": "fbt",
-          },
-          "options": Object {
-            "__countCode": "this.state.ex1Count",
-            "count": "BabelNode[type=MemberExpression]",
-            "many": "photos",
-            "name": "number",
-            "showCount": "ifMany",
-            "value": null,
-          },
-          "parent": "FbtImplicitParamNode",
-        },
-        FbtTextNode {
-          "__nodeCode": "",
-          "__stringVariationArgs": Array [],
-          "_variationFactorValues": Array [],
-          "children": Array [],
-          "moduleName": "fbt",
-          "node": "BabelNode[type=JSXText]",
-          "nodeChecker": FbtNodeChecker {
-            "moduleName": "fbt",
-          },
-          "parent": "FbtImplicitParamNode",
-        },
-      ],
-      "moduleName": "fbt",
-      "node": "BabelNode[type=JSXElement]",
-      "nodeChecker": FbtNodeChecker {
-        "moduleName": "fbt",
-      },
-      "parent": "FbtElementNode",
-    },
-    FbtTextNode {
-      "__nodeCode": "\\" with you \\"",
-      "__stringVariationArgs": Array [],
-      "_variationFactorValues": Array [],
-      "children": Array [],
-      "moduleName": "fbt",
-      "node": "BabelNode[type=StringLiteral]",
-      "nodeChecker": FbtNodeChecker {
-        "moduleName": "fbt",
-      },
-      "parent": "FbtElementNode",
-    },
-  ],
-  "moduleName": "fbt",
-  "node": "BabelNode[type=CallExpression]",
-  "nodeChecker": FbtNodeChecker {
-    "moduleName": "fbt",
-  },
-  "options": Object {
-    "author": null,
-    "common": false,
-    "doNotExtract": null,
-    "preserveWhitespace": false,
-    "project": "",
-    "subject": null,
-  },
-  "parent": undefined,
-}
-`;
-
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle JSX fbt with multiple levels of nested strings" 1`] = `
 FbtElementNode {
-  "__nodeCode": "fbt([/*#__PURE__*/React.createElement(\\"b\\", {
-  className: \\"padRight\\"
-}, fbt.enum(enumVal, ['today', 'yesterday'])), \\", \\", fbt.param(\\"name\\", /*#__PURE__*/React.createElement(\\"b\\", {
-  className: \\"padRight\\"
-}, viewerName), {
+  "__nodeCode": "fbt([<b className=\\"padRight\\">
+          {fbt.enum(enumVal, ['today', 'yesterday'])}
+        </b>, \\", \\", fbt.param(\\"name\\", <b className=\\"padRight\\">{viewerName}</b>, {
   \\"gender\\": viewerGender
-}), \\" has shared \\", /*#__PURE__*/React.createElement(\\"a\\", {
-  className: \\"neatoLink\\",
-  href: \\"#\\"
-}, fbt.plural(\\" a photo\\", photoCount, {
-  \\"many\\": \\"photos\\",
-  \\"showCount\\": \\"ifMany\\"
-}), ' ', \\"with\\", /*#__PURE__*/React.createElement(\\"strong\\", null, fbt.pronoun(\\"object\\", otherGender, {
-  \\"human\\": true
-})))], \\"example 1\\")",
+}), \\" has shared \\", <a className=\\"neatoLink\\" href=\\"#\\">
+          {fbt.plural(\\" a photo\\", photoCount, {
+    \\"many\\": \\"photos\\",
+    \\"showCount\\": \\"ifMany\\"
+  })}{' '}
+          with
+          <strong>
+            {fbt.pronoun(\\"object\\", otherGender, {
+      \\"human\\": true
+    })}
+          </strong>
+        </a>], \\"example 1\\")",
   "__stringVariationArgs": Array [
     EnumStringVariationArg {
       "__nodeCode": "enumVal",
@@ -7364,7 +6792,9 @@ FbtElementNode {
   "_variationFactorValues": Array [],
   "children": Array [
     FbtImplicitParamNode {
-      "__nodeCode": "<b>fbt.enum(enumVal, ['today', 'yesterday'])</b>",
+      "__nodeCode": "<b className=\\"padRight\\">
+          {fbt.enum(enumVal, ['today', 'yesterday'])}
+        </b>",
       "__stringVariationArgs": Array [
         EnumStringVariationArg {
           "__nodeCode": "enumVal",
@@ -7458,9 +6888,7 @@ FbtElementNode {
       "parent": "FbtElementNode",
     },
     FbtParamNode {
-      "__nodeCode": "fbt.param(\\"name\\", /*#__PURE__*/React.createElement(\\"b\\", {
-  className: \\"padRight\\"
-}, viewerName), {
+      "__nodeCode": "fbt.param(\\"name\\", <b className=\\"padRight\\">{viewerName}</b>, {
   \\"gender\\": viewerGender
 })",
       "__stringVariationArgs": Array [
@@ -7503,12 +6931,18 @@ FbtElementNode {
       "parent": "FbtElementNode",
     },
     FbtImplicitParamNode {
-      "__nodeCode": "<a>fbt.plural(\\" a photo\\", photoCount, {
+      "__nodeCode": "<a className=\\"neatoLink\\" href=\\"#\\">
+          {fbt.plural(\\" a photo\\", photoCount, {
     \\"many\\": \\"photos\\",
     \\"showCount\\": \\"ifMany\\"
-  })' '\\"with\\" /*#__PURE__*/React.createElement(\\"strong\\", null, fbt.pronoun(\\"object\\", otherGender, {
-    \\"human\\": true
-  }))</a>",
+  })}{' '}
+          with
+          <strong>
+            {fbt.pronoun(\\"object\\", otherGender, {
+      \\"human\\": true
+    })}
+          </strong>
+        </a>",
       "__stringVariationArgs": Array [
         NumberStringVariationArg {
           "__nodeCode": "photoCount",
@@ -7614,9 +7048,11 @@ FbtElementNode {
           "parent": "FbtImplicitParamNode",
         },
         FbtImplicitParamNode {
-          "__nodeCode": "<strong>fbt.pronoun(\\"object\\", otherGender, {
+          "__nodeCode": "<strong>
+            {fbt.pronoun(\\"object\\", otherGender, {
     \\"human\\": true
-  })</strong>",
+  })}
+          </strong>",
           "__stringVariationArgs": Array [
             GenderStringVariationArg {
               "__nodeCode": "otherGender",

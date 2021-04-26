@@ -179,8 +179,7 @@ describe('collectFbt', () => {
     expect(res).toMatchSnapshot();
   });
 
-  // TODO(T40113359): re-enable these tests once the fbt runtime callsites have been implemented
-  xit('should dedupe fbt:plurals', () => {
+  it('should dedupe fbt:plurals', () => {
     var res = collect(
       [
         `const fbt = require('fbt');`,
@@ -247,8 +246,7 @@ describe('collectFbt', () => {
       expect(res).toMatchSnapshot();
     });
 
-    // TODO(T40113359): re-enable these tests once the fbt runtime callsites have been implemented
-    xit('should extract correctly supports tables ie fbt:enum', () => {
+    it('should extract correctly supports tables ie fbt:enum', () => {
       const res = collect(
         [
           "const fbt = require('fbt');",
@@ -260,8 +258,7 @@ describe('collectFbt', () => {
       expect(res).toMatchSnapshot();
     });
 
-    // TODO(T40113359): re-enable these tests once the fbt runtime callsites have been implemented
-    xit('should extract correctly name, pronoun, plural', () => {
+    it('should extract correctly name, pronoun, plural', () => {
       const res = collect(
         [
           "const fbt = require('fbt');",
@@ -273,8 +270,7 @@ describe('collectFbt', () => {
       expect(res).toMatchSnapshot();
     });
 
-    // TODO(T40113359): re-enable these tests once the fbt runtime callsites have been implemented
-    xit('should extract correctly name, pronoun, plural (react native)', () => {
+    it('should extract correctly name, pronoun, plural (react native)', () => {
       const res = collect(
         [
           "const fbt = require('fbt');",
@@ -310,8 +306,7 @@ describe('collectFbt', () => {
     ).toMatchSnapshot();
   });
 
-  // TODO(T40113359): re-enable these tests once the fbt runtime callsites have been implemented
-  xit('should expose the outer token names if needed', () => {
+  it('should expose the outer token names if needed', () => {
     expect(
       collect(
         `const fbt = require('fbt');
@@ -326,8 +321,7 @@ describe('collectFbt', () => {
     ).toMatchSnapshot();
   });
 
-  // TODO(T40113359): re-enable these tests once the fbt runtime callsites have been implemented
-  xit('should not expose the outer token names by default', () => {
+  it('should not expose the outer token names by default', () => {
     expect(
       collect(
         `const fbt = require('fbt');
@@ -341,8 +335,7 @@ describe('collectFbt', () => {
   });
 
   describe('fbt nodes:', () => {
-    // TODO(T40113359): re-enable these tests once the fbt runtime callsites have been implemented
-    xit('should expose the FbtElementNodes when needed', () => {
+    it('should expose the FbtElementNodes when needed', () => {
       const ret = collect(
         `const fbt = require('fbt');
           <fbt desc="some desc">
@@ -367,8 +360,7 @@ describe('collectFbt', () => {
       expect(ret.phrases.length).toBe(2);
     });
 
-    // TODO(T40113359): re-enable these tests once the fbt runtime callsites have been implemented
-    xit('should expose the FbtElementNodes where there are two nested React elements', () => {
+    it('should expose the FbtElementNodes where there are two nested React elements', () => {
       const ret = collect(
         `const fbt = require('fbt');
         <fbt desc="example 1">

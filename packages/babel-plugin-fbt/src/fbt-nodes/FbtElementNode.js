@@ -8,11 +8,12 @@
 
 /*eslint max-len: ["error", 100]*/
 /* eslint-disable brace-style */ // Needed due to Flow types inlined in comments
+/* eslint-disable fb-www/flow-exact-by-default-object-types */
 
 'use strict';
 
 import type {JSModuleNameType} from '../FbtConstants';
-import type {ParamSet} from '../FbtUtil';
+import type {BabelNodeCallExpressionArg, ParamSet} from '../FbtUtil';
 import type {TokenAliases} from '../index.js';
 import type {
   AnyStringVariationArg,
@@ -38,7 +39,7 @@ type Options = {|
   // fbt project name
   project: string,
   // If defined, the translated string may depend on the gender of the sentence's subject.
-  subject: ?BabelNode,
+  subject: ?BabelNodeCallExpressionArg,
 |};
 
 export interface IFbtElementNode {
@@ -55,11 +56,18 @@ export interface IFbtElementNode {
   __toJSONForTestsOnly(): mixed;
 }
 
-const {FbtBooleanOptions, ValidFbtOptions} = require('../FbtConstants');
-const {compactBabelNodeProps} = require('../FbtUtil');
+const {
+  FbtBooleanOptions,
+  ValidFbtOptions,
+  ValidPronounUsagesKeys,
+} = require('../FbtConstants');
+const {
+  createFbtRuntimeArgCallExpression,
+  compactBabelNodeProps,
+  enforceBabelNodeCallExpressionArg,
+} = require('../FbtUtil');
 const {
   collectOptionsFromFbtConstruct,
-  enforceBabelNode,
   enforceBoolean,
   enforceString,
   errorAt,
@@ -138,7 +146,7 @@ class FbtElementNode
         preserveWhitespace:
           enforceBoolean.orNull(rawOptions.preserveWhitespace) || false,
         project: enforceString(rawOptions.project || ''),
-        subject: enforceBabelNode.orNull(rawOptions.subject),
+        subject: enforceBabelNodeCallExpressionArg.orNull(rawOptions.subject),
       };
     } catch (error) {
       throw errorAt(node, error);
@@ -343,6 +351,17 @@ class FbtElementNode
       }
     });
     return ret;
+  }
+
+  getFbtRuntimeArg(): ?BabelNodeCallExpression {
+    const {subject} = this.options;
+    return subject == null
+      ? null
+      : createFbtRuntimeArgCallExpression(
+          this,
+          [subject],
+          ValidPronounUsagesKeys.subject,
+        );
   }
 
   /**

@@ -332,41 +332,65 @@ const generalTestData = {
       );`,
     ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var React = require('react');
       var x = fbt._(
         ${payload({
-          type: 'text',
-          jsfbt: 'A1 {=B1 C1 [paramName] C2 B2} A2',
-          desc: 'nested!',
+          jsfbt: {
+            t: {
+              '*': {
+                desc: 'string with nested JSX fragments',
+                text: 'A1 {=B1 C1 [paramName] C2 B2} A2',
+                tokenAliases: {'=B1 C1 [paramName] C2 B2': '=m1'},
+              },
+            },
+            m: [{token: '__subject__', type: 1}],
+          },
         })},
         [
+          fbt._subject(subjectValue),
           fbt._param(
-            '=B1 C1 [paramName] C2 B2',
-            React.createElement(
-              'a',
+            "=m1",
+            /*#__PURE__*/React.createElement(
+              "a",
               null,
               fbt._(
                 ${payload({
-                  type: 'text',
-                  jsfbt: 'B1 {=C1 [paramName] C2} B2',
-                  desc: 'In the phrase: "A1 {=B1 C1 [paramName] C2 B2} A2"',
+                  jsfbt: {
+                    t: {
+                      '*': {
+                        desc:
+                          'In the phrase: "A1 {=B1 C1 [paramName] C2 B2} A2"',
+                        text: 'B1 {=C1 [paramName] C2} B2',
+                        tokenAliases: {'=C1 [paramName] C2': '=m1'},
+                      },
+                    },
+                    m: [{token: '__subject__', type: 1}],
+                  },
                 })},
                 [
+                  fbt._subject(subjectValue),
                   fbt._param(
-                    '=C1 [paramName] C2',
-                    React.createElement(
-                      'b',
+                    "=m1",
+                    /*#__PURE__*/React.createElement(
+                      "b",
                       null,
                       fbt._(
                         ${payload({
-                          type: 'text',
-                          jsfbt: 'C1 {paramName} C2',
-                          desc:
-                            'In the phrase: "A1 B1 {=C1 [paramName] C2} B2 A2"',
+                          jsfbt: {
+                            t: {
+                              '*': {
+                                desc:
+                                  'In the phrase: "A1 B1 {=C1 [paramName] C2} B2 A2"',
+                                text: 'C1 {paramName} C2',
+                                tokenAliases: {},
+                              },
+                            },
+                            m: [{token: '__subject__', type: 1}],
+                          },
                         })},
                         [
+                          fbt._subject(subjectValue),
                           fbt._param('paramName', paramValue)
                         ],
                       ),
@@ -379,33 +403,6 @@ const generalTestData = {
         ],
       )`,
     ),
-  },
-
-  // TODO(T38926768) Move this to the JSX test suite
-  'should handle JSX fbt with a nested fbt:plural': {
-    inputWithArraySyntax: withFbtRequireStatement(
-      `var React = require('react');
-      <span className="sentence example_row">
-        <fbt desc="example 1">
-          <fbt:param name="name" gender={this.state.ex1Gender}>
-            <b className="padRight">{this.state.ex1Name}</b>
-          </fbt:param>
-          has shared
-          <a className="neatoLink" href="#" tabindex={123} id={"uniq"}>
-            <fbt:plural
-              many="photos"
-              showCount="ifMany"
-              count={this.state.ex1Count}>
-              a photo
-            </fbt:plural>
-          </a>
-          with you
-        </fbt>
-      </span>;`,
-    ),
-
-    filterOutputTest: 'skip',
-    output: null,
   },
 
   // TODO(T38926768) Move this to the JSX test suite
@@ -431,40 +428,697 @@ const generalTestData = {
       </fbt>;`,
     ),
 
-    filterOutputTest: 'skip',
-    output: null,
+    output: withFbtRequireStatement(
+      `var React = require('react');
+      fbt._(
+        ${payload({
+          jsfbt: {
+            t: {
+              '*': {
+                '*': {
+                  desc: 'example 1',
+                  text: '{name} has shared {=[number] photos} with you',
+                  tokenAliases: {'=[number] photos': '=m2'},
+                },
+                _1: {
+                  desc: 'example 1',
+                  text: '{name} has shared {=a photo} with you',
+                  tokenAliases: {'=a photo': '=m2'},
+                },
+              },
+            },
+            m: [
+              {
+                token: 'name',
+                type: 1,
+              },
+              {
+                token: 'number',
+                type: 2,
+                singular: true,
+              },
+            ],
+          },
+          project: '',
+        })},
+        [
+          fbt._param(
+            "name",
+            /*#__PURE__*/React.createElement(
+              "b",
+              {className: "padRight"},
+              this.state.ex1Name,
+            ),
+            [1, this.state.ex1Gender],
+          ),
+          fbt._plural(this.state.ex1Count, "number"),
+          fbt._param(
+            "=m2",
+            /*#__PURE__*/React.createElement(
+              "a",
+              {
+                className: "neatoLink",
+                href: "#",
+                tabindex: 123,
+                id: "uniq",
+              },
+              fbt._(
+                ${payload({
+                  jsfbt: {
+                    t: {
+                      '*': {
+                        '*': {
+                          desc:
+                            'In the phrase: "{name} has shared {=[number] photos} with you"',
+                          text: '{=[number] photos}',
+                          tokenAliases: {'=[number] photos': '=m1'},
+                        },
+                        _1: {
+                          desc:
+                            'In the phrase: "{name} has shared {=a photo} with you"',
+                          text: '{=a photo}',
+                          tokenAliases: {'=a photo': '=m1'},
+                        },
+                      },
+                    },
+                    m: [
+                      {
+                        token: 'name',
+                        type: 1,
+                      },
+                      {
+                        token: 'number',
+                        type: 2,
+                        singular: true,
+                      },
+                    ],
+                  },
+                  project: '',
+                })},
+                [
+                  fbt._param(
+                    "name",
+                    /*#__PURE__*/React.createElement(
+                      "b",
+                      null,
+                      this.state.ex1Name,
+                    ),
+                    [1, this.state.ex1Gender],
+                  ),
+                  fbt._plural(this.state.ex1Count, "number"),
+                  fbt._param(
+                    "=m1",
+                    /*#__PURE__*/React.createElement(
+                      "strong",
+                      null,
+                      fbt._(
+                        ${payload({
+                          jsfbt: {
+                            t: {
+                              '*': {
+                                '*': {
+                                  desc:
+                                    'In the phrase: "{name} has shared {=[number] photos} with you"',
+                                  text: '{number} photos',
+                                  tokenAliases: {},
+                                },
+                                _1: {
+                                  desc:
+                                    'In the phrase: "{name} has shared {=a photo} with you"',
+                                  text: 'a photo',
+                                  tokenAliases: {},
+                                },
+                              },
+                            },
+                            m: [
+                              {
+                                token: 'name',
+                                type: 1,
+                              },
+                              {
+                                token: 'number',
+                                type: 2,
+                                singular: true,
+                              },
+                            ],
+                          },
+                          project: '',
+                        })},
+                        [
+                          fbt._param(
+                            "name",
+                            /*#__PURE__*/React.createElement(
+                              "b",
+                              null,
+                              this.state.ex1Name,
+                            ),
+                            [1, this.state.ex1Gender],
+                          ),
+                          fbt._plural(this.state.ex1Count, "number"),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
+        ]
+      );`,
+    ),
   },
 
   'should handle JSX fbt with multiple levels of nested strings': {
     inputWithArraySyntax: withFbtRequireStatement(
       `var React = require('react');
-      <span className="sentence example_row">
-        <fbt desc="example 1">
-          <b className="padRight">
-            <fbt:enum enum-range={['today', 'yesterday']} value={enumVal} />
-          </b>,
-          <fbt:param name="name" gender={viewerGender}>
-            <b className="padRight">{viewerName}</b>
-          </fbt:param>
-          has shared
-          <a className="neatoLink" href="#">
-            <fbt:plural many="photos" showCount="ifMany" count={photoCount}>
-              a photo
-            </fbt:plural>{' '}
-            with
-            <strong>
-              <fbt:pronoun
-                type="object"
-                gender={otherGender}
-                human="true" />
-            </strong>
-          </a>
-        </fbt>
-      </span>;`,
+      <fbt desc="example 1">
+        <b className="padRight">
+          <fbt:enum enum-range={['today', 'yesterday']} value={enumVal} />
+        </b>,
+        <fbt:param name="name" gender={viewerGender}>
+          <b className="padRight">{viewerName}</b>
+        </fbt:param>
+        has shared
+        <a className="neatoLink" href="#">
+          <fbt:plural many="photos" showCount="ifMany" count={photoCount}>
+            a photo
+          </fbt:plural>{' '}
+          with
+          <strong>
+            <fbt:pronoun
+              type="object"
+              gender={otherGender}
+              human="true" />
+          </strong>
+        </a>
+      </fbt>;`,
     ),
 
-    filterOutputTest: 'skip',
-    output: null,
+    output: withFbtRequireStatement(
+      `var React = require('react');
+      fbt._(${payload({
+        jsfbt: {
+          t: {
+            today: {
+              '*': {
+                '*': {
+                  '1': {
+                    desc: 'example 1',
+                    text:
+                      '{=today}, {name} has shared {=[number] photos with her}',
+                    tokenAliases: {
+                      '=today': '=m0',
+                      '=[number] photos with her': '=m4',
+                    },
+                  },
+                  '2': {
+                    desc: 'example 1',
+                    text:
+                      '{=today}, {name} has shared {=[number] photos with him}',
+                    tokenAliases: {
+                      '=today': '=m0',
+                      '=[number] photos with him': '=m4',
+                    },
+                  },
+                  '*': {
+                    desc: 'example 1',
+                    text:
+                      '{=today}, {name} has shared {=[number] photos with them}',
+                    tokenAliases: {
+                      '=today': '=m0',
+                      '=[number] photos with them': '=m4',
+                    },
+                  },
+                },
+                _1: {
+                  '1': {
+                    desc: 'example 1',
+                    text: '{=today}, {name} has shared {=a photo with her}',
+                    tokenAliases: {'=today': '=m0', '=a photo with her': '=m4'},
+                  },
+                  '2': {
+                    desc: 'example 1',
+                    text: '{=today}, {name} has shared {=a photo with him}',
+                    tokenAliases: {'=today': '=m0', '=a photo with him': '=m4'},
+                  },
+                  '*': {
+                    desc: 'example 1',
+                    text: '{=today}, {name} has shared {=a photo with them}',
+                    tokenAliases: {
+                      '=today': '=m0',
+                      '=a photo with them': '=m4',
+                    },
+                  },
+                },
+              },
+            },
+            yesterday: {
+              '*': {
+                '*': {
+                  '1': {
+                    desc: 'example 1',
+                    text:
+                      '{=yesterday}, {name} has shared {=[number] photos with her}',
+                    tokenAliases: {
+                      '=yesterday': '=m0',
+                      '=[number] photos with her': '=m4',
+                    },
+                  },
+                  '2': {
+                    desc: 'example 1',
+                    text:
+                      '{=yesterday}, {name} has shared {=[number] photos with him}',
+                    tokenAliases: {
+                      '=yesterday': '=m0',
+                      '=[number] photos with him': '=m4',
+                    },
+                  },
+                  '*': {
+                    desc: 'example 1',
+                    text:
+                      '{=yesterday}, {name} has shared {=[number] photos with them}',
+                    tokenAliases: {
+                      '=yesterday': '=m0',
+                      '=[number] photos with them': '=m4',
+                    },
+                  },
+                },
+                _1: {
+                  '1': {
+                    desc: 'example 1',
+                    text: '{=yesterday}, {name} has shared {=a photo with her}',
+                    tokenAliases: {
+                      '=yesterday': '=m0',
+                      '=a photo with her': '=m4',
+                    },
+                  },
+                  '2': {
+                    desc: 'example 1',
+                    text: '{=yesterday}, {name} has shared {=a photo with him}',
+                    tokenAliases: {
+                      '=yesterday': '=m0',
+                      '=a photo with him': '=m4',
+                    },
+                  },
+                  '*': {
+                    desc: 'example 1',
+                    text:
+                      '{=yesterday}, {name} has shared {=a photo with them}',
+                    tokenAliases: {
+                      '=yesterday': '=m0',
+                      '=a photo with them': '=m4',
+                    },
+                  },
+                },
+              },
+            },
+          },
+          m: [
+            null,
+            {token: 'name', type: 1},
+            {token: 'number', type: 2, singular: true},
+            null,
+          ],
+        },
+        project: '',
+      })},
+      [
+        fbt._enum(enumVal, {"today": "today", "yesterday": "yesterday"}),
+        fbt._param(
+          "name",
+          /*#__PURE__*/React.createElement(
+            "b",
+            {className: "padRight"},
+            viewerName,
+          ),
+          [1, viewerGender],
+        ),
+        fbt._plural(photoCount, "number"),
+        fbt._pronoun(0, otherGender, {human: 1}),
+        fbt._param(
+          "=m0",
+          /*#__PURE__*/React.createElement(
+            "b",
+            {className: "padRight"},
+            fbt._(
+              ${payload({
+                jsfbt: {
+                  t: {
+                    today: {
+                      '*': {
+                        '*': {
+                          '1': {
+                            desc:
+                              'In the phrase: "{=today}, {name} has shared {number} photos with her"',
+                            text: 'today',
+                            tokenAliases: {},
+                          },
+                          '2': {
+                            desc:
+                              'In the phrase: "{=today}, {name} has shared {number} photos with him"',
+                            text: 'today',
+                            tokenAliases: {},
+                          },
+                          '*': {
+                            desc:
+                              'In the phrase: "{=today}, {name} has shared {number} photos with them"',
+                            text: 'today',
+                            tokenAliases: {},
+                          },
+                        },
+                        _1: {
+                          '1': {
+                            desc:
+                              'In the phrase: "{=today}, {name} has shared a photo with her"',
+                            text: 'today',
+                            tokenAliases: {},
+                          },
+                          '2': {
+                            desc:
+                              'In the phrase: "{=today}, {name} has shared a photo with him"',
+                            text: 'today',
+                            tokenAliases: {},
+                          },
+                          '*': {
+                            desc:
+                              'In the phrase: "{=today}, {name} has shared a photo with them"',
+                            text: 'today',
+                            tokenAliases: {},
+                          },
+                        },
+                      },
+                    },
+                    yesterday: {
+                      '*': {
+                        '*': {
+                          '1': {
+                            desc:
+                              'In the phrase: "{=yesterday}, {name} has shared {number} photos with her"',
+                            text: 'yesterday',
+                            tokenAliases: {},
+                          },
+                          '2': {
+                            desc:
+                              'In the phrase: "{=yesterday}, {name} has shared {number} photos with him"',
+                            text: 'yesterday',
+                            tokenAliases: {},
+                          },
+                          '*': {
+                            desc:
+                              'In the phrase: "{=yesterday}, {name} has shared {number} photos with them"',
+                            text: 'yesterday',
+                            tokenAliases: {},
+                          },
+                        },
+                        _1: {
+                          '1': {
+                            desc:
+                              'In the phrase: "{=yesterday}, {name} has shared a photo with her"',
+                            text: 'yesterday',
+                            tokenAliases: {},
+                          },
+                          '2': {
+                            desc:
+                              'In the phrase: "{=yesterday}, {name} has shared a photo with him"',
+                            text: 'yesterday',
+                            tokenAliases: {},
+                          },
+                          '*': {
+                            desc:
+                              'In the phrase: "{=yesterday}, {name} has shared a photo with them"',
+                            text: 'yesterday',
+                            tokenAliases: {},
+                          },
+                        },
+                      },
+                    },
+                  },
+                  m: [
+                    null,
+                    {token: 'name', type: 1},
+                    {token: 'number', type: 2, singular: true},
+                    null,
+                  ],
+                },
+                project: '',
+              })},
+              [
+                fbt._enum(enumVal, {"today": "today", "yesterday": "yesterday"}),
+                fbt._param(
+                  "name",
+                  /*#__PURE__*/React.createElement(
+                    "b",
+                    null,
+                    viewerName
+                  ),
+                  [1, viewerGender],
+                ),
+                fbt._plural(photoCount, "number"),
+                fbt._pronoun(0, otherGender, {human: 1})]))),
+                fbt._param(
+                  "=m4",
+                  /*#__PURE__*/React.createElement(
+                    "a",
+                    {className: "neatoLink", href: "#"},
+                    fbt._(
+                      ${payload({
+                        jsfbt: {
+                          t: {
+                            today: {
+                              '*': {
+                                '*': {
+                                  '1': {
+                                    desc:
+                                      'In the phrase: "today, {name} has shared {=[number] photos with her}"',
+                                    text: '{number} photos with {=her}',
+                                    tokenAliases: {'=her': '=m4'},
+                                  },
+                                  '2': {
+                                    desc:
+                                      'In the phrase: "today, {name} has shared {=[number] photos with him}"',
+                                    text: '{number} photos with {=him}',
+                                    tokenAliases: {'=him': '=m4'},
+                                  },
+                                  '*': {
+                                    desc:
+                                      'In the phrase: "today, {name} has shared {=[number] photos with them}"',
+                                    text: '{number} photos with {=them}',
+                                    tokenAliases: {'=them': '=m4'},
+                                  },
+                                },
+                                _1: {
+                                  '1': {
+                                    desc:
+                                      'In the phrase: "today, {name} has shared {=a photo with her}"',
+                                    text: 'a photo with {=her}',
+                                    tokenAliases: {'=her': '=m4'},
+                                  },
+                                  '2': {
+                                    desc:
+                                      'In the phrase: "today, {name} has shared {=a photo with him}"',
+                                    text: 'a photo with {=him}',
+                                    tokenAliases: {'=him': '=m4'},
+                                  },
+                                  '*': {
+                                    desc:
+                                      'In the phrase: "today, {name} has shared {=a photo with them}"',
+                                    text: 'a photo with {=them}',
+                                    tokenAliases: {'=them': '=m4'},
+                                  },
+                                },
+                              },
+                            },
+                            yesterday: {
+                              '*': {
+                                '*': {
+                                  '1': {
+                                    desc:
+                                      'In the phrase: "yesterday, {name} has shared {=[number] photos with her}"',
+                                    text: '{number} photos with {=her}',
+                                    tokenAliases: {'=her': '=m4'},
+                                  },
+                                  '2': {
+                                    desc:
+                                      'In the phrase: "yesterday, {name} has shared {=[number] photos with him}"',
+                                    text: '{number} photos with {=him}',
+                                    tokenAliases: {'=him': '=m4'},
+                                  },
+                                  '*': {
+                                    desc:
+                                      'In the phrase: "yesterday, {name} has shared {=[number] photos with them}"',
+                                    text: '{number} photos with {=them}',
+                                    tokenAliases: {'=them': '=m4'},
+                                  },
+                                },
+                                _1: {
+                                  '1': {
+                                    desc:
+                                      'In the phrase: "yesterday, {name} has shared {=a photo with her}"',
+                                    text: 'a photo with {=her}',
+                                    tokenAliases: {'=her': '=m4'},
+                                  },
+                                  '2': {
+                                    desc:
+                                      'In the phrase: "yesterday, {name} has shared {=a photo with him}"',
+                                    text: 'a photo with {=him}',
+                                    tokenAliases: {'=him': '=m4'},
+                                  },
+                                  '*': {
+                                    desc:
+                                      'In the phrase: "yesterday, {name} has shared {=a photo with them}"',
+                                    text: 'a photo with {=them}',
+                                    tokenAliases: {'=them': '=m4'},
+                                  },
+                                },
+                              },
+                            },
+                          },
+                          m: [
+                            null,
+                            {token: 'name', type: 1},
+                            {token: 'number', type: 2, singular: true},
+                            null,
+                          ],
+                        },
+                        project: '',
+                      })},
+                      [
+                        fbt._enum(enumVal, {"today": "today", "yesterday": "yesterday"}),
+                        fbt._param(
+                          "name",
+                          /*#__PURE__*/React.createElement("b", null, viewerName),
+                          [1, viewerGender],
+                        ),
+                        fbt._plural(photoCount, "number"),
+                        fbt._pronoun(0, otherGender, {human: 1}),
+                        fbt._param(
+                          "=m4",
+                          /*#__PURE__*/React.createElement(
+                            "strong",
+                            null,
+                            fbt._(
+                              ${payload({
+                                jsfbt: {
+                                  t: {
+                                    today: {
+                                      '*': {
+                                        '*': {
+                                          '1': {
+                                            desc:
+                                              'In the phrase: "today, {name} has shared {number} photos with {=her}"',
+                                            text: 'her',
+                                            tokenAliases: {},
+                                          },
+                                          '2': {
+                                            desc:
+                                              'In the phrase: "today, {name} has shared {number} photos with {=him}"',
+                                            text: 'him',
+                                            tokenAliases: {},
+                                          },
+                                          '*': {
+                                            desc:
+                                              'In the phrase: "today, {name} has shared {number} photos with {=them}"',
+                                            text: 'them',
+                                            tokenAliases: {},
+                                          },
+                                        },
+                                        _1: {
+                                          '1': {
+                                            desc:
+                                              'In the phrase: "today, {name} has shared a photo with {=her}"',
+                                            text: 'her',
+                                            tokenAliases: {},
+                                          },
+                                          '2': {
+                                            desc:
+                                              'In the phrase: "today, {name} has shared a photo with {=him}"',
+                                            text: 'him',
+                                            tokenAliases: {},
+                                          },
+                                          '*': {
+                                            desc:
+                                              'In the phrase: "today, {name} has shared a photo with {=them}"',
+                                            text: 'them',
+                                            tokenAliases: {},
+                                          },
+                                        },
+                                      },
+                                    },
+                                    yesterday: {
+                                      '*': {
+                                        '*': {
+                                          '1': {
+                                            desc:
+                                              'In the phrase: "yesterday, {name} has shared {number} photos with {=her}"',
+                                            text: 'her',
+                                            tokenAliases: {},
+                                          },
+                                          '2': {
+                                            desc:
+                                              'In the phrase: "yesterday, {name} has shared {number} photos with {=him}"',
+                                            text: 'him',
+                                            tokenAliases: {},
+                                          },
+                                          '*': {
+                                            desc:
+                                              'In the phrase: "yesterday, {name} has shared {number} photos with {=them}"',
+                                            text: 'them',
+                                            tokenAliases: {},
+                                          },
+                                        },
+                                        _1: {
+                                          '1': {
+                                            desc:
+                                              'In the phrase: "yesterday, {name} has shared a photo with {=her}"',
+                                            text: 'her',
+                                            tokenAliases: {},
+                                          },
+                                          '2': {
+                                            desc:
+                                              'In the phrase: "yesterday, {name} has shared a photo with {=him}"',
+                                            text: 'him',
+                                            tokenAliases: {},
+                                          },
+                                          '*': {
+                                            desc:
+                                              'In the phrase: "yesterday, {name} has shared a photo with {=them}"',
+                                            text: 'them',
+                                            tokenAliases: {},
+                                          },
+                                        },
+                                      },
+                                    },
+                                  },
+                                  m: [
+                                    null,
+                                    {token: 'name', type: 1},
+                                    {token: 'number', type: 2, singular: true},
+                                    null,
+                                  ],
+                                },
+                                project: '',
+                              })},
+                              [
+                                fbt._enum(enumVal, {"today": "today", "yesterday": "yesterday"}),
+                                fbt._param(
+                                  "name",
+                                  /*#__PURE__*/React.createElement("b", null, viewerName),
+                                  [1, viewerGender],
+                                ),
+                                fbt._plural(photoCount, "number"),
+                                fbt._pronoun(0, otherGender, {human: 1}),
+                              ]
+                            )
+                          )
+                        )
+                      ]
+                    )
+                  )
+                )
+              ]
+            );
+          `,
+    ),
   },
 
   'should throw when multiple tokens have the same names due to implicit params': {
@@ -1298,20 +1952,29 @@ const generalTestData = {
       );`,
     ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
-          type: 'table',
           jsfbt: {
             t: {
-              groups: 'Look! Groups and groups!',
-              photos: 'Look! Photos and photos!',
-              videos: 'Look! Videos and videos!',
+              groups: {
+                desc: 'enums!',
+                text: 'Look! Groups and groups!',
+                tokenAliases: {},
+              },
+              photos: {
+                desc: 'enums!',
+                text: 'Look! Photos and photos!',
+                tokenAliases: {},
+              },
+              videos: {
+                desc: 'enums!',
+                text: 'Look! Videos and videos!',
+                tokenAliases: {},
+              },
             },
             m: [null],
           },
-          desc: 'enums!',
         })},
         [
           fbt._enum('groups', {
@@ -1625,20 +2288,29 @@ with some other stuff.\`
       );`,
     ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
-          type: 'table',
           jsfbt: {
             t: {
-              groups: 'Look! Groups and groups!',
-              photos: 'Look! Photos and photos!',
-              videos: 'Look! Videos and videos!',
+              groups: {
+                desc: 'enums!',
+                text: 'Look! Groups and groups!',
+                tokenAliases: {},
+              },
+              photos: {
+                desc: 'enums!',
+                text: 'Look! Photos and photos!',
+                tokenAliases: {},
+              },
+              videos: {
+                desc: 'enums!',
+                text: 'Look! Videos and videos!',
+                tokenAliases: {},
+              },
             },
             m: [null],
           },
-          desc: 'enums!',
         })},
         [
           fbt._enum('groups', {
@@ -1691,20 +2363,29 @@ with some other stuff.\`
       );`,
     ),
 
-    filterOutputTest: 'skip',
     output: withFbtRequireStatement(
       `var x = fbt._(
         ${payload({
-          type: 'table',
           jsfbt: {
             t: {
-              groups: 'Look! Groups and groups!',
-              photos: 'Look! Photos and photos!',
-              videos: 'Look! Videos and videos!',
+              groups: {
+                desc: 'enums!',
+                text: 'Look! Groups and groups!',
+                tokenAliases: {},
+              },
+              photos: {
+                desc: 'enums!',
+                text: 'Look! Photos and photos!',
+                tokenAliases: {},
+              },
+              videos: {
+                desc: 'enums!',
+                text: 'Look! Videos and videos!',
+                tokenAliases: {},
+              },
             },
             m: [null],
           },
-          desc: 'enums!',
         })},
         [
           fbt._enum('groups', {
