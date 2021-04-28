@@ -28,7 +28,7 @@ const invariant = require('invariant');
  * @see docs/params.md
  */
 class FbtSameParamNode extends FbtNode<empty, BabelNodeCallExpression> {
-  static +type: FbtNodeType;
+  static +type: FbtNodeType = FbtNodeType.SameParam;
 
   /**
    * Create a new class instance given a BabelNode root node.
@@ -71,7 +71,5 @@ class FbtSameParamNode extends FbtNode<empty, BabelNodeCallExpression> {
     return null;
   }
 }
-// $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes
-FbtSameParamNode.type = FbtNodeType.SameParam;
 
 module.exports = FbtSameParamNode;

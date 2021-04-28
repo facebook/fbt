@@ -53,7 +53,7 @@ class FbtNameNode extends FbtNode<
   GenderStringVariationArg,
   BabelNodeCallExpression,
 > {
-  static +type: FbtNodeType;
+  static +type: FbtNodeType = FbtNodeType.Name;
   +options: Options;
 
   getOptions(): Options {
@@ -122,7 +122,5 @@ class FbtNameNode extends FbtNode<
     );
   }
 }
-// $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes
-FbtNameNode.type = FbtNodeType.Name;
 
 module.exports = FbtNameNode;

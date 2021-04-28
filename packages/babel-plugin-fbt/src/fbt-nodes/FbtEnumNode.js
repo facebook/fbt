@@ -57,7 +57,7 @@ class FbtEnumNode extends FbtNode<
   EnumStringVariationArg,
   BabelNodeCallExpression,
 > {
-  static +type: FbtNodeType;
+  static +type: FbtNodeType = FbtNodeType.Enum;
 
   +options: Options;
 
@@ -179,7 +179,5 @@ class FbtEnumNode extends FbtNode<
     return createFbtRuntimeArgCallExpression(this, [value, runtimeRange]);
   }
 }
-// $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes
-FbtEnumNode.type = FbtNodeType.Enum;
 
 module.exports = FbtEnumNode;

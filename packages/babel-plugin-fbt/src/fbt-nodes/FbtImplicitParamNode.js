@@ -57,7 +57,7 @@ const nullthrows = require('nullthrows');
 class FbtImplicitParamNode
   extends FbtNode<AnyStringVariationArg, BabelNodeJSXElement, FbtChildNode>
   implements IFbtElementNode {
-  static +type: FbtNodeType;
+  static +type: FbtNodeType = FbtNodeType.ImplicitElement;
   +options: {||};
 
   _tokenSet: ParamSet = {};
@@ -290,7 +290,5 @@ class FbtImplicitParamNode
     };
   }
 }
-// $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes
-FbtImplicitParamNode.type = FbtNodeType.ImplicitElement;
 
 module.exports = FbtImplicitParamNode;

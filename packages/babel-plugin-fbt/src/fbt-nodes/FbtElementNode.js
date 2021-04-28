@@ -124,7 +124,7 @@ const invariant = require('invariant');
 class FbtElementNode
   extends FbtNode<AnyStringVariationArg, BabelNodeCallExpression, FbtChildNode>
   implements IFbtElementNode {
-  static +type: FbtNodeType;
+  static +type: FbtNodeType = FbtNodeType.Element;
   +options: Options;
 
   _tokenSet: ParamSet = {};
@@ -386,7 +386,5 @@ class FbtElementNode
     return this.constructor.__toJSONForTestsOnlyHelper(this);
   }
 }
-// $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes
-FbtElementNode.type = FbtNodeType.Element;
 
 module.exports = FbtElementNode;

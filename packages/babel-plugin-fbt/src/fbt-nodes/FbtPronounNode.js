@@ -72,7 +72,7 @@ class FbtPronounNode extends FbtNode<
   GenderStringVariationArg,
   BabelNodeCallExpression,
 > {
-  static +type: FbtNodeType;
+  static +type: FbtNodeType = FbtNodeType.Pronoun;
   +options: Options;
 
   /**
@@ -201,8 +201,6 @@ class FbtPronounNode extends FbtNode<
     return createFbtRuntimeArgCallExpression(this, pronounArgs);
   }
 }
-// $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes
-FbtPronounNode.type = FbtNodeType.Pronoun;
 
 /**
  * Must match implementation from fbt.js

@@ -31,7 +31,7 @@ class FbtTextNode extends FbtNode<
   empty,
   BabelNodeStringLiteral | BabelNodeJSXText,
 > {
-  static +type: FbtNodeType;
+  static +type: FbtNodeType = FbtNodeType.Text;
 
   /**
    * Create a new class instance given a BabelNode root node.
@@ -61,7 +61,5 @@ class FbtTextNode extends FbtNode<
     return null;
   }
 }
-// $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes
-FbtTextNode.type = FbtNodeType.Text;
 
 module.exports = FbtTextNode;

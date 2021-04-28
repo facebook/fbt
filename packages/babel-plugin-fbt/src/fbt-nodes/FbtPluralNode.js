@@ -64,7 +64,7 @@ class FbtPluralNode extends FbtNode<
   NumberStringVariationArg,
   BabelNodeCallExpression,
 > {
-  static +type: FbtNodeType;
+  static +type: FbtNodeType = FbtNodeType.Plural;
 
   +options: Options;
 
@@ -221,7 +221,5 @@ class FbtPluralNode extends FbtNode<
     return createFbtRuntimeArgCallExpression(this, pluralArgs);
   }
 }
-// $FlowFixMe[cannot-write] Needed because node.js v10 does not support static constants on classes
-FbtPluralNode.type = FbtNodeType.Plural;
 
 module.exports = FbtPluralNode;
