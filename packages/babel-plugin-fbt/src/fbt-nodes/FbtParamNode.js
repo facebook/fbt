@@ -7,13 +7,10 @@
  */
 
 /*eslint max-len: ["error", 100]*/
-/* eslint-disable brace-style */ // Needed due to Flow types inlined in comments
 
 'use strict';
 
-import type {FbtOptionValue, JSModuleNameType} from '../FbtConstants';
 import type {StringVariationArgsMap} from './FbtArguments';
-import type {AnyFbtNode} from './FbtNode';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 
 type Options = {|
@@ -43,7 +40,6 @@ const FbtNode = require('./FbtNode');
 const FbtNodeType = require('./FbtNodeType');
 const {
   createInstanceFromFbtConstructCallsite,
-  getClosestElementOrImplicitParamNodeAncestor,
   tokenNameToTextPattern,
 } = require('./FbtNodeUtil');
 const {

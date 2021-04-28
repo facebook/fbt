@@ -12,8 +12,7 @@ import type {
   PatternHash,
   PatternString,
 } from '../../../../runtime/shared/FbtTable';
-import type {TableJSFBTTree, TableJSFBTTreeLeaflet} from '../index';
-import type {PackagerPhrase, HashToLeaf} from './FbtCollector';
+import type {HashToLeaf, PackagerPhrase} from './FbtCollector';
 
 export type HashFunction = (
   text: PatternString,

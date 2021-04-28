@@ -13,7 +13,6 @@
  */
 
 /*eslint max-len: ["error", 100]*/
-/* eslint-disable fb-www/flow-exact-by-default-object-types */
 
 const keyMirror = require('fbjs/lib/keyMirror');
 

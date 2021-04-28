@@ -30,7 +30,7 @@ const invariant = require('invariant');
 function createInstanceFromFbtConstructCallsite<N: {}>(
   moduleName: JSModuleNameType,
   node: BabelNode,
-  Constructor: Class<N> & {+type: FbtNodeType},
+  Constructor: Class<N> & $ReadOnly<{type: FbtNodeType}>,
 ): ?N {
   const checker = FbtNodeChecker.forModule(moduleName);
   const constructName = checker.getFbtConstructNameFromFunctionCall(node);

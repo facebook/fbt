@@ -7,7 +7,6 @@
  */
 
 /*eslint max-len: ["error", 100]*/
-/* eslint-disable brace-style */ // Needed due to Flow types inlined in comments
 
 'use strict';
 
@@ -15,7 +14,6 @@ import type {JSModuleNameType} from '../FbtConstants';
 import type {
   FbtBabelNodeCallExpression,
   FbtBabelNodeJSXElement,
-  FbtBabelNodeShape,
 } from '../index.js';
 import type {NodePathOf} from '@babel/core';
 import typeof BabelTypes from '@babel/types';

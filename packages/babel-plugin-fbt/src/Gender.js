@@ -6,9 +6,10 @@
  * @flow
  */
 
-'use strict';
 /* eslint max-len: ["warn", 120] */
-/* eslint-disable fb-www/comma-dangle */
+/* eslint-disable fb-www/gender-neutral-language */
+
+'use strict';
 
 type GenderConfig = {|
   is_male: boolean,

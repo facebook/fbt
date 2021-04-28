@@ -11,11 +11,7 @@
 'use strict';
 
 import type {JSModuleNameType} from '../FbtConstants';
-import type {
-  FbtBabelNodeCallExpression,
-  FbtBabelNodeJSXElement,
-  FbtBabelNodeShape,
-} from '../index.js';
+import type {FbtBabelNodeCallExpression} from '../index.js';
 import type {NodePathOf} from '@babel/core';
 import typeof BabelTypes from '@babel/types';
 

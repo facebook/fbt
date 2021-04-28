@@ -5,14 +5,11 @@
  * @format
  * @flow strict-local
  */
-/* eslint-disable fb-www/flow-exact-by-default-object-types */
 
 'use strict';
 
-import type {PatternString} from '../../../runtime/shared/FbtTable';
 import type {Phrase, TableJSFBT, TableJSFBTTree} from './index';
 
-const {FbtType} = require('./FbtConstants');
 const {coerceToTableJSFBTTreeLeaflet} = require('./JSFbtUtil');
 const invariant = require('invariant');
 

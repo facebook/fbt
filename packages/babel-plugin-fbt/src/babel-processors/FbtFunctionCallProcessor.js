@@ -7,7 +7,6 @@
  */
 
 /*eslint max-len: ["error", 100]*/
-/* eslint-disable fb-www/flow-exact-by-default-object-types */
 
 'use strict';
 

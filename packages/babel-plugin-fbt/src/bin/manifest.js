@@ -6,8 +6,6 @@
  * @emails oncall+internationalization
  */
 
-/*global process:false*/
-
 'use strict';
 
 const {

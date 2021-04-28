@@ -10,7 +10,6 @@
 
 import type {PackagerPhrase} from './FbtCollector';
 
-const {FbtType} = require('../FbtConstants');
 const fbtHashKey = require('../fbtHashKey');
 const jenkinsHash = require('../fbtJenkinsHash');
 

@@ -13,7 +13,6 @@
 /* eslint fb-www/comma-dangle: "off" */
 // See explanation in ./index.js
 
-const FbtAutoWrap = require('./FbtAutoWrap');
 const {
   PluralOptions,
   PluralRequiredAttributes,

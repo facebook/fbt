@@ -49,13 +49,13 @@ function jenkinsHash(str: string): number {
   var hash = 0;
   var len = utf8.length;
   for (var i = 0; i < len; i++) {
-    hash = hash + utf8[i];
+    hash += utf8[i];
     hash = (hash + (hash << 10)) >>> 0;
-    hash = hash ^ (hash >>> 6);
+    hash ^= hash >>> 6;
   }
 
   hash = (hash + (hash << 3)) >>> 0;
-  hash = hash ^ (hash >>> 11);
+  hash ^= hash >>> 11;
   hash = (hash + (hash << 15)) >>> 0;
 
   return hash;

@@ -201,8 +201,8 @@ class FbtImplicitParamNode
               if (elem.type !== 'StringLiteral') {
                 throw errorAt(
                   child,
-                  `${moduleName}: only string literals ` +
-                    `(or concatenations of string literals) are supported inside JSX expressions, ` +
+                  `${moduleName}: only string literals (or concatenations of string literals) ` +
+                    `are supported inside JSX expressions, ` +
                     `but we found the node type "${elem.type}" instead.`,
                   {suggestOSSWebsite: true},
                 );

@@ -7,21 +7,15 @@
  */
 
 /*eslint max-len: ["error", 100]*/
-/* eslint-disable brace-style */ // Needed due to Flow types inlined in comments
-/* eslint-disable fb-www/flow-exact-by-default-object-types */
 
 'use strict';
 
 import type {JSModuleNameType} from '../FbtConstants';
-import type {BabelNodeCallExpressionArgument} from '../FbtUtil';
-import type {GenderConstEnum} from '../Gender';
 import type {TokenAliases} from '../index.js';
 import type {
-  AnyFbtArgument,
   AnyStringVariationArg,
   StringVariationArgsMap,
 } from './FbtArguments';
-import type FbtElementNode from './FbtElementNode';
 import type FbtEnumNode from './FbtEnumNode';
 import type FbtImplicitParamNode from './FbtImplicitParamNode';
 import type FbtNameNode from './FbtNameNode';
@@ -304,7 +298,10 @@ class FbtNode<
    * This method is responsible to generate <<runtimeFbtArg>>
    */
   getFbtRuntimeArg(): ?BabelNodeCallExpression {
-    throw errorAt(this.node, 'This method must be implemented in a child class');
+    throw errorAt(
+      this.node,
+      'This method must be implemented in a child class',
+    );
   }
 }
 

@@ -77,9 +77,7 @@ class FbtSite {
   ) {
     return typeof entry === 'string'
       ? textToHash[entry]
-      : objMap(entry, (branch, key) =>
-          FbtSite._hashifyLeaves(branch, textToHash),
-        );
+      : objMap(entry, branch => FbtSite._hashifyLeaves(branch, textToHash));
   }
 
   /**

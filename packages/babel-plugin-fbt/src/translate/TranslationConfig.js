@@ -8,7 +8,7 @@
 
 const IntlNumberType = require('./CLDR/IntlNumberType');
 const IntlGenderType = require('./gender/IntlGenderType');
-const {EXACTLY_ONE, Gender, IntlVariationType} = require('./IntlVariations');
+const {EXACTLY_ONE, IntlVariationType} = require('./IntlVariations');
 
 /**
  * Represents a given locale's variation (number/gender) configuration.

@@ -7,28 +7,23 @@
  */
 
 /*eslint max-len: ["error", 100]*/
-/* eslint-disable fb-www/flow-exact-by-default-object-types */
 
 'use strict';
 
-import typeof BabelTypes from '@babel/types';
-import type {BabelTransformPlugin} from '@babel/core';
-import type {PlainFbtNode, AnyFbtNode} from './fbt-nodes/FbtNode';
-import type {FbtCommonMap} from './FbtCommon';
-import type {FbtCallSiteOptions} from './FbtConstants';
-import type {
-  ExtractTableTextItems,
-  FbtFunctionCallPhrase,
-  MetaPhrase,
-} from './babel-processors/FbtFunctionCallProcessor';
 import type {FbtRuntimeInput} from '../../../runtime/shared/FbtHooks';
-import type {EnumManifest, EnumModule} from './FbtEnumRegistrar';
 import type {
   FbtTableKey,
   PatternHash,
   PatternString,
 } from '../../../runtime/shared/FbtTable';
+import type {MetaPhrase} from './babel-processors/FbtFunctionCallProcessor';
+import type {AnyFbtNode, PlainFbtNode} from './fbt-nodes/FbtNode';
+import type {FbtCommonMap} from './FbtCommon';
+import type {FbtCallSiteOptions} from './FbtConstants';
+import type {EnumManifest, EnumModule} from './FbtEnumRegistrar';
 import typeof {FbtVariationType} from './translate/IntlVariations';
+import type {BabelTransformPlugin} from '@babel/core';
+import typeof BabelTypes from '@babel/types';
 
 export type ExtraBabelNodeProps = {
   implicitDesc?: string,
@@ -143,9 +138,9 @@ type ChildToParentMap = {[childIndex: number]: number};
 
 export type BabelPluginFbt = {
   ({types: BabelTypes, ...}): BabelTransformPlugin<ExtraBabelNodeProps>,
-  getExtractedStrings(): Array<Phrase>,
-  getChildToParentRelationships(): ChildToParentMap,
-  fbtHashKey(PatternString | FbtRuntimeInput, string, boolean): string,
+  getExtractedStrings: () => Array<Phrase>,
+  getChildToParentRelationships: () => ChildToParentMap,
+  fbtHashKey: (PatternString | FbtRuntimeInput, string, boolean) => string,
 };
 
 const FbtCommonFunctionCallProcessor = require('./babel-processors/FbtCommonFunctionCallProcessor');
@@ -285,7 +280,7 @@ function FbtTransform(babel: {
 
         const {callNode, metaPhrases} = root.convertToFbtRuntimeCall();
 
-        // TODO(T40113359): remove this null check once the fbt runtime callsites have been implemented
+        // TODO(T40113359): remove this null check once fbt runtime callsites have been implemented
         if (callNode != null) {
           path.replaceWith(callNode);
         } else {

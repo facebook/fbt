@@ -17,7 +17,7 @@ import typeof {
   GENDER_ANY,
   NUMBER_ANY,
 } from '../translate/IntlVariations';
-import type {AnyFbtNode, FbtChildNode} from './FbtNode';
+import type {AnyFbtNode} from './FbtNode';
 import type FbtNode from './FbtNode';
 
 export type AnyStringVariationArg =

@@ -7,8 +7,6 @@
  */
 
 /*eslint max-len: ["error", 100]*/
-/* eslint-disable brace-style */ // Needed due to Flow types inlined in comments
-/* eslint-disable fb-www/flow-exact-by-default-object-types */
 
 'use strict';
 
@@ -36,9 +34,7 @@ const {
 const {
   collectOptionsFromFbtConstruct,
   createFbtRuntimeArgCallExpression,
-  enforceBabelNode,
   enforceBabelNodeCallExpressionArg,
-  enforceBabelNodeExpression,
   enforceString,
   enforceStringEnum,
   errorAt,

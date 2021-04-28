@@ -6,9 +6,9 @@
  * @flow strict
  */
 
-/* eslint-disable fb-www/flow-exact-by-default-object-types */
-
 export type IntlVariationsEnum = $IntlVariationsEnum;
+
+const invariant = require('invariant');
 
 // Must match with `IntlVariations.js`
 const IntlNumberVariations = {
@@ -66,9 +66,8 @@ const SPECIALS = {
 function getType(
   n: $Values<typeof IntlVariationMask>,
 ): $Values<typeof IntlVariationMask> {
-  if (!isValidValue(n)) {
-    throw new Error('Invalid NumberType: ' + n);
-  }
+  invariant(isValidValue(n), 'Invalid NumberType: %s', n);
+
   /*eslint no-bitwise: 0*/
   return n & IntlVariationMask.NUMBER
     ? IntlVariationMask.NUMBER

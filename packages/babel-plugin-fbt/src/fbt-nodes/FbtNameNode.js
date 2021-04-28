@@ -7,7 +7,6 @@
  */
 
 /*eslint max-len: ["error", 100]*/
-/* eslint-disable brace-style */ // Needed due to Flow types inlined in comments
 
 'use strict';
 

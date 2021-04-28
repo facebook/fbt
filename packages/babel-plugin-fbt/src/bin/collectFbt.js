@@ -6,9 +6,6 @@
  * @emails oncall+internationalization
  */
 
-/*global process:false*/
-/* eslint-disable fb-www/flow-exact-by-default-object-types */
-
 /* eslint max-len: ["warn", 120] */
 
 'use strict';

@@ -10,8 +10,8 @@
 
 'use strict';
 
-import type {NodePathOf} from '@babel/core';
 import type {JSModuleNameType} from './FbtConstants';
+import type {NodePathOf} from '@babel/core';
 
 const FbtNodeType = require('./fbt-nodes/FbtNodeType');
 const {
@@ -22,7 +22,6 @@ const {
   isCallExpression,
   isIdentifier,
   isJSXElement,
-  isJSXIdentifier,
   isJSXNamespacedName,
   isMemberExpression,
 } = require('@babel/types');
@@ -192,10 +191,8 @@ class FbtNodeChecker {
   }
 
   // Not defining the static value here because of JS syntax compatibility issues in node.js v10.x
-  static COMMON_STRING_METHOD_NAME: 'c';
+  static COMMON_STRING_METHOD_NAME: 'c' = 'c';
 }
-
-FbtNodeChecker.COMMON_STRING_METHOD_NAME = 'c';
 
 const fbsChecker = new FbtNodeChecker(FBS);
 const fbtChecker = new FbtNodeChecker(FBT);
