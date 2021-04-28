@@ -103,7 +103,7 @@ class CustomFbtCollector implements IFbtCollector {
                 type: FbtNodeType.Text,
               },
             ],
-            type: FbtNodeType.ImplicitElement,
+            type: FbtNodeType.ImplicitParam,
             wrapperNode: {
               type: 'a',
               babelNode: pseudoJSXOpeningElement,

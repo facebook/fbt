@@ -276,7 +276,7 @@ Object {
             },
           ],
           "phraseIndex": 1,
-          "type": "implicitElement",
+          "type": "implicitParam",
           "wrapperNode": Object {
             "babelNode": Object {
               "attributes": Array [
@@ -641,7 +641,7 @@ Object {
                 },
               ],
               "phraseIndex": 2,
-              "type": "implicitElement",
+              "type": "implicitParam",
               "wrapperNode": Object {
                 "babelNode": Object {
                   "attributes": Array [],
@@ -685,7 +685,7 @@ Object {
             },
           ],
           "phraseIndex": 1,
-          "type": "implicitElement",
+          "type": "implicitParam",
           "wrapperNode": Object {
             "babelNode": Object {
               "attributes": Array [

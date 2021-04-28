@@ -12,7 +12,7 @@
 enum FbtNodeType /* of string */ {
   Element = 'element',
   Enum = 'enum',
-  ImplicitElement = 'implicitElement',
+  ImplicitParam = 'implicitParam',
   Name = 'name',
   Param = 'param',
   Plural = 'plural',

@@ -57,7 +57,7 @@ const nullthrows = require('nullthrows');
 class FbtImplicitParamNode
   extends FbtNode<AnyStringVariationArg, BabelNodeJSXElement, FbtChildNode>
   implements IFbtElementNode {
-  static +type: FbtNodeType = FbtNodeType.ImplicitElement;
+  static +type: FbtNodeType = FbtNodeType.ImplicitParam;
   +options: {||};
 
   _tokenSet: ParamSet = {};
@@ -169,7 +169,7 @@ class FbtImplicitParamNode
     if (!isJSXElement(node)) {
       return null;
     }
-    const implicitElement = new FbtImplicitParamNode({
+    const implicitParam = new FbtImplicitParamNode({
       moduleName,
       node,
     });
@@ -241,8 +241,8 @@ class FbtImplicitParamNode
       }
     }
 
-    fbtChildren.forEach(implicitElement.appendChild, implicitElement);
-    return implicitElement;
+    fbtChildren.forEach(implicitParam.appendChild, implicitParam);
+    return implicitParam;
   }
 
   registerToken(name: string, source: AnyFbtNode): void {
