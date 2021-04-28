@@ -95,6 +95,13 @@ type CompactStringVariations = {|
   indexMap: $ReadOnlyArray<number>,
 |};
 
+// In the final fbt runtime call, runtime arguments that create string variation
+// will become identifiers(references to local variables) if there exist string variations
+// AND inner strings.
+type StringVariationRuntimeArgumentBabelNodes =
+  | Array<BabelNodeIdentifier>
+  | Array<BabelNodeCallExpression>;
+
 const {StringVariationArgsMap} = require('../fbt-nodes/FbtArguments');
 const FbtElementNode = require('../fbt-nodes/FbtElementNode');
 const FbtParamNode = require('../fbt-nodes/FbtParamNode');
@@ -126,6 +133,7 @@ const JSFbtBuilder = require('../JSFbtBuilder');
 const addLeafToTree = require('../utils/addLeafToTree');
 const {
   arrayExpression,
+  assignmentExpression,
   callExpression,
   cloneDeep,
   identifier,
@@ -137,6 +145,7 @@ const {
   isTemplateLiteral,
   jsxExpressionContainer,
   memberExpression,
+  sequenceExpression,
   stringLiteral,
 } = require('@babel/types');
 const {Buffer} = require('buffer');
@@ -144,6 +153,7 @@ const invariant = require('invariant');
 const nullthrows = require('nullthrows');
 
 const emptyArgsCombinations: [[]] = [[]];
+const STRING_VARIATION_RUNTIME_ARGUMENT_IDENTIFIER_PREFIX = 'fbt_sv_arg';
 
 /**
  * This class provides utility methods to process the babel node of the standard fbt function call
@@ -615,6 +625,7 @@ class FbtFunctionCallProcessor {
   _createFbtRuntimeCallForMetaPhrase(
     metaPhrases: $ReadOnlyArray<MetaPhrase>,
     metaPhraseIndex: number,
+    stringVariationRuntimeArgs: StringVariationRuntimeArgumentBabelNodes,
   ): FbtBabelNodeCallExpression {
     const {phrase} = metaPhrases[metaPhraseIndex];
     const {pluginOptions} = this;
@@ -634,6 +645,7 @@ class FbtFunctionCallProcessor {
     const fbtRuntimeArgs = this._createFbtRuntimeArgumentsForMetaPhrase(
       metaPhrases,
       metaPhraseIndex,
+      stringVariationRuntimeArgs,
     );
     if (fbtRuntimeArgs.length > 0) {
       args.push(arrayExpression(fbtRuntimeArgs));
@@ -646,8 +658,102 @@ class FbtFunctionCallProcessor {
 
   _createRootFbtRuntimeCall(
     metaPhrases: $ReadOnlyArray<MetaPhrase>,
-  ): FbtBabelNodeCallExpression {
-    return this._createFbtRuntimeCallForMetaPhrase(metaPhrases, 0);
+  ): BabelNodeCallExpression | BabelNodeSequenceExpression {
+    const stringVariationRuntimeArgs = this._createRuntimeArgsFromStringVariantNodes(
+      metaPhrases[0],
+    );
+    if (!this._hasStringVariationAndContainsInnerString(metaPhrases)) {
+      return this._createFbtRuntimeCallForMetaPhrase(
+        metaPhrases,
+        0,
+        stringVariationRuntimeArgs,
+      );
+    }
+    // TODO: T89667902 Throw error if runtime sv args contains function/class calls
+
+    const stringVariationRuntimeArgIdentifiers = this._generateUniqueIdentifiersForRuntimeArgs(
+      stringVariationRuntimeArgs.length,
+    );
+    const fbtRuntimeCall = this._createFbtRuntimeCallForMetaPhrase(
+      metaPhrases,
+      0,
+      stringVariationRuntimeArgIdentifiers,
+    );
+    return this._wrapFbtRuntimeCallInSequenceExpression(
+      stringVariationRuntimeArgs,
+      fbtRuntimeCall,
+      stringVariationRuntimeArgIdentifiers,
+    );
+  }
+
+  /**
+   * Pre-assign those arguments that create string variations to local variables,
+   * and use references to these variables in fbt call. Note: Local variables
+   * will be auto-declared in sequenceExpression.
+   *
+   * E.g.
+   * Before:
+   *   fbt._()
+   *
+   * After:
+   *   (identifier_0 = runtimeArg1, identifier_1 = runtimeArg2, fbt._())
+   */
+  _wrapFbtRuntimeCallInSequenceExpression(
+    runtimeArgs: $ReadOnlyArray<BabelNodeCallExpression>,
+    fbtRuntimeCall: FbtBabelNodeCallExpression,
+    identifiersForStringVariationRuntimeArgs: $ReadOnlyArray<BabelNodeIdentifier>,
+  ): BabelNodeSequenceExpression {
+    invariant(
+      runtimeArgs.length == identifiersForStringVariationRuntimeArgs.length,
+      'Expect exactly one identifier for each string variation runtime argument. ' +
+        'Instead we get %s identifiers and %s arguments.',
+      identifiersForStringVariationRuntimeArgs.length,
+      runtimeArgs.length,
+    );
+    const expressions = runtimeArgs
+      .map((runtimeArg, i) =>
+        assignmentExpression(
+          '=',
+          identifiersForStringVariationRuntimeArgs[i],
+          runtimeArg,
+        ),
+      )
+      .concat(fbtRuntimeCall);
+    return sequenceExpression(expressions);
+  }
+
+  _hasStringVariationAndContainsInnerString(
+    metaPhrases: $ReadOnlyArray<MetaPhrase>,
+  ): boolean {
+    const fbtElement = metaPhrases[0].fbtNode;
+    invariant(
+      fbtElement instanceof FbtElementNode,
+      'Expected a FbtElementNode for top level string but received: %s',
+      varDump(fbtElement),
+    );
+    const doesNotContainInnerString = fbtElement.children.every(child => {
+      return !(child instanceof FbtImplicitParamNode);
+    });
+    if (doesNotContainInnerString) {
+      return false;
+    }
+
+    return metaPhrases[0].compactStringVariations.array.length > 0;
+  }
+
+  _generateUniqueIdentifiersForRuntimeArgs(
+    count: number,
+  ): Array<BabelNodeIdentifier> {
+    // TODO: T89667874 Re-generate identifier name if it collides with existing bindings
+    const identifiers = [];
+    for (let i = 0; i < count; i++) {
+      identifiers.push(
+        identifier(
+          `${STRING_VARIATION_RUNTIME_ARGUMENT_IDENTIFIER_PREFIX}_${i}`,
+        ),
+      );
+    }
+    return identifiers;
   }
 
   /**
@@ -782,12 +888,13 @@ class FbtFunctionCallProcessor {
 
   /**
    * Process current `fbt()` callsite (BabelNode) to generate:
-   * - an `fbt._()` callsite
+   * - an `fbt._()` callsite or a sequencExpression that eventually returns an `fbt._()` callsite
    * - a list of meta-phrases describing the collected text strings from this fbt() callsite
    */
   convertToFbtRuntimeCall(): {
-    // Client-side fbt._() call usable in a web browser generated from the given fbt() callsite
-    callNode: BabelNodeCallExpression,
+    // Client-side fbt._() call(or the sequencExpression that contains it)
+    // usable in a web browser generated from the given fbt() callsite
+    callNode: BabelNodeCallExpression | BabelNodeSequenceExpression,
     // List of phrases collected from the fbt() callsite
     metaPhrases: $ReadOnlyArray<MetaPhrase>,
   } {
@@ -829,7 +936,8 @@ class FbtFunctionCallProcessor {
   _createFbtRuntimeArgumentsForMetaPhrase(
     metaPhrases: $ReadOnlyArray<MetaPhrase>,
     metaPhraseIndex: number,
-  ): Array<BabelNodeCallExpression> {
+    stringVariationRuntimeArgs: StringVariationRuntimeArgumentBabelNodes,
+  ): Array<BabelNodeCallExpression | BabelNodeIdentifier> {
     const metaPhrase = metaPhrases[metaPhraseIndex];
     // Runtime arguments of a string fall into 3 categories:
     // 1. Each string variation argument must correspond to a runtime argument
@@ -838,11 +946,12 @@ class FbtFunctionCallProcessor {
     // 3. Each inner string of current string should be associated with a
     // runtime argument
     return [
-      ...this._createRuntimeArgsFromStringVariantNodes(metaPhrase),
+      ...stringVariationRuntimeArgs,
       ...this._createRuntimeArgsFromNonStringVariantNodes(metaPhrase.fbtNode),
       ...this._createRuntimeArgsFromImplicitParamNodes(
         metaPhrases,
         metaPhraseIndex,
+        stringVariationRuntimeArgs,
       ),
     ];
   }
@@ -880,6 +989,7 @@ class FbtFunctionCallProcessor {
   _createRuntimeArgsFromImplicitParamNodes(
     metaPhrases: $ReadOnlyArray<MetaPhrase>,
     metaPhraseIndex: number,
+    runtimeArgsFromStringVariationNodes: StringVariationRuntimeArgumentBabelNodes,
   ): Array<BabelNodeCallExpression> {
     const fbtRuntimeArgs = [];
     for (const [
@@ -901,6 +1011,7 @@ class FbtFunctionCallProcessor {
           this._createFbtRuntimeCallForMetaPhrase(
             metaPhrases,
             innerMetaPhraseIndex,
+            runtimeArgsFromStringVariationNodes,
           ),
         ),
       ];
