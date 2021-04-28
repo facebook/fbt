@@ -4295,9 +4295,9 @@ flow-bin@^0.143.1:
   version "0.143.1"
   resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.143.1.tgz#2ff825dfd85e84531b0ae780842cb1c2a9743cd2"
 
-flow-enums-runtime@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/flow-enums-runtime/-/flow-enums-runtime-0.0.3.tgz#5f290e4d64701ba3b38ed3d19d1ccaeadc49cc8f"
+flow-enums-runtime@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/flow-enums-runtime/-/flow-enums-runtime-0.0.4.tgz#038635c679030d08d4c197db29a2fad62722072f"
 
 flow-parser@>=0.115.0:
   version "0.137.0"

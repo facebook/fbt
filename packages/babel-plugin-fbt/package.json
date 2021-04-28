@@ -21,7 +21,7 @@
     "@babel/plugin-syntax-flow": "^7.2.0",
     "babel-preset-fbjs": "^3.1.2",
     "babel-plugin-transform-flow-enums": "^0.0.1",
-    "flow-enums-runtime": "^0.0.3",
+    "flow-enums-runtime": "^0.0.4",
     "gulp": "^4.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-once": "^2.1.1",
