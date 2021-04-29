@@ -10,6 +10,7 @@
 
 'use strict';
 
+import type {BabelNodeCallExpressionArgument} from '../FbtUtil';
 import type {StringVariationArgsMap} from './FbtArguments';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 
@@ -21,6 +22,7 @@ type Options = {|
   // If `number` is a `BabelNode`, then we'll use it internally as the value to determine
   // the number variation, and the fbt:param value will represent the UI text to render.
   number?: ?true | BabelNodeExpression,
+  value: BabelNodeCallExpressionArgument,
 |};
 
 const {ValidParamOptions} = require('../FbtConstants');
@@ -77,6 +79,7 @@ class FbtParamNode extends FbtNode<
         this.node,
         ValidParamOptions,
       );
+      const [arg0, arg1] = this.getCallNodeArguments() || [];
       const gender = enforceBabelNodeExpression.orNull(rawOptions.gender);
       const number =
         typeof rawOptions.number === 'boolean'
@@ -94,7 +97,6 @@ class FbtParamNode extends FbtNode<
 
       let name = typeof rawOptions.name === 'string' ? rawOptions.name : null;
       if (!name) {
-        const [arg0] = this.getCallNodeArguments() || [];
         invariant(
           isStringLiteral(arg0),
           'First function argument must be a string literal',
@@ -103,10 +105,16 @@ class FbtParamNode extends FbtNode<
       }
       invariant(name.length, 'Token name string must not be empty');
 
+      const value = nullthrows(
+        arg1,
+        'The second function argument must not be null',
+      );
+
       return {
         gender,
         name,
         number,
+        value,
       };
     } catch (error) {
       throw errorAt(this.node, error);
@@ -168,9 +176,7 @@ class FbtParamNode extends FbtNode<
   }
 
   getFbtRuntimeArg(): BabelNodeCallExpression {
-    const [, value] = this.getCallNodeArguments() || [];
-    const {options} = this;
-    const {gender, number} = options;
+    const {gender, name, number, value} = this.options;
     let variationValues;
 
     if (number != null) {
@@ -185,8 +191,8 @@ class FbtParamNode extends FbtNode<
     return createFbtRuntimeArgCallExpression(
       this,
       [
-        stringLiteral(options.name),
-        nullthrows(value),
+        stringLiteral(name),
+        value,
         variationValues ? arrayExpression(variationValues) : null,
       ].filter(Boolean),
     );

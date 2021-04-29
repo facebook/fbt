@@ -11,6 +11,7 @@
 'use strict';
 
 import type {JSModuleNameType} from '../FbtConstants';
+import type {BabelNodeCallExpressionArgument} from '../FbtUtil';
 import type {TokenAliases} from '../index.js';
 import type {
   AnyStringVariationArg,
@@ -264,7 +265,7 @@ class FbtNode<
    * Returns the list of BabelNode arguments of this fbt node
    * (assuming that it's based on a JS function call), or null.
    */
-  getCallNodeArguments(): ?Array<?BabelNodeCallExpression> {
+  getCallNodeArguments(): ?Array<?BabelNodeCallExpressionArgument> {
     const callNode = this.getCallNode();
     return callNode
       ? // Force null/undefined to be part of the array so that the consumer of this function
