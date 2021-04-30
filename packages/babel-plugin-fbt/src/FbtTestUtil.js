@@ -10,7 +10,9 @@
 
 'use strict';
 
+const {SENTINEL} = require('./FbtConstants');
 const {transformSync} = require('@babel/core');
+const prettier = require('prettier');
 
 function payload(obj: {project: string}): string {
   obj.project = obj.project || '';
@@ -34,8 +36,11 @@ function transform(source: string, pluginOptions: $FlowFixMe): string {
   }).code;
 }
 
+function snapshotTransform(source: string, pluginOptions: $FlowFixMe): string {
+  return transform(source, {fbtBase64: true, ...pluginOptions});
+}
+
 function transformKeepJsx(source: string, pluginOptions: $FlowFixMe): string {
-  const prettier = require('prettier');
   return prettier.format(
     transformSync(source, {
       ast: false,
@@ -49,6 +54,11 @@ function transformKeepJsx(source: string, pluginOptions: $FlowFixMe): string {
   );
 }
 
+const snapshotTransformKeepJsx = (
+  source: string,
+  pluginOptions: $FlowFixMe,
+): string => transformKeepJsx(source, {fbtBase64: true, ...pluginOptions});
+
 function withFbsRequireStatement(code: string): string {
   return `const fbs = require("fbs");
   ${code}`;
@@ -59,8 +69,36 @@ function withFbtRequireStatement(code: string): string {
   ${code}`;
 }
 
+const fbtSentinelRegex = /(["'])__FBT__(.*?)__FBT__\1/gm;
+
+/**
+ * Serialize JS source code that contains fbt client-side code.
+ * For readability, the JSFBT payload is deconstructed and the FBT sentinels are
+ * replaced by inline comments.
+ * Usage: see https://jestjs.io/docs/en/expect#expectaddsnapshotserializerserializer
+ */
+const jsCodeSerializer = {
+  serialize(rawValue, _config, _indentation, _depth, _refs, _printer) {
+    const decoded = rawValue.replace(
+      fbtSentinelRegex,
+      (_match, _quote, body) => {
+        const json = Buffer.from(body, 'base64').toString('utf8');
+        return `/* ${SENTINEL} start */ ${json} /* ${SENTINEL} end */`;
+      },
+    );
+    return prettier.format(decoded, {parser: 'babel'});
+  },
+
+  test(rawValue) {
+    return typeof rawValue === 'string';
+  },
+};
+
 module.exports = {
+  jsCodeSerializer,
   payload,
+  snapshotTransform,
+  snapshotTransformKeepJsx,
   transform,
   transformKeepJsx,
   withFbsRequireStatement,

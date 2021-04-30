@@ -139,6 +139,7 @@ List of changes for each released npm package version.
       Unreleased changes that have landed in master. Click to see more.
     </summary>
 
+    - [refactor] Improve readability of JS code output serialized with Jest snapshots
     - [chore]! Drop support for node.js `<12.16.x`
     - [feat]! Refactor the string extraction algorithm to properly generate meaningful text/description pairs for fbt callsites that contain JSX presentational elements.
     We're also adding support for a new way to call fbt() using an array of inputs instead of string concatenation.

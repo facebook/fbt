@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test jsx auto-wrapping of implicit parameters should auto wrap a simple test with a nested level 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    type: "text",
+    jsfbt: "{=Your friends liked} your video",
+    desc: "d",
+    project: "",
+  } /* __FBT__ end */,
+  [
+    fbt._param(
+      "=Your friends liked",
+      /*#__PURE__*/ React.createElement(
+        Link,
+        {
+          href: "#",
+        },
+        fbt._(
+          /* __FBT__ start */ {
+            type: "text",
+            jsfbt: "Your friends {=liked}",
+            desc: 'In the phrase: "{=Your friends liked} your video"',
+            project: "",
+          } /* __FBT__ end */,
+          [
+            fbt._param(
+              "=liked",
+              /*#__PURE__*/ React.createElement(
+                "b",
+                null,
+                fbt._(
+                  /* __FBT__ start */ {
+                    type: "text",
+                    jsfbt: "liked",
+                    desc: 'In the phrase: "Your friends {=liked} your video"',
+                    project: "",
+                  } /* __FBT__ end */
+                )
+              )
+            ),
+          ]
+        )
+      )
+    ),
+  ]
+);
+
+`;
+
+exports[`Test jsx auto-wrapping of implicit parameters should auto wrap a simple test with one level 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    type: "text",
+    jsfbt: "{=Your friends} liked your video",
+    desc: "d",
+    project: "",
+  } /* __FBT__ end */,
+  [
+    fbt._param(
+      "=Your friends",
+      /*#__PURE__*/ React.createElement(
+        "link",
+        {
+          href: "#",
+        },
+        fbt._(
+          /* __FBT__ start */ {
+            type: "text",
+            jsfbt: "Your friends",
+            desc: 'In the phrase: "{=Your friends} liked your video"',
+            project: "",
+          } /* __FBT__ end */
+        )
+      )
+    ),
+  ]
+);
+
+`;

@@ -1,37 +1,90 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test declarative (jsx) <fbs> syntax translation should convert a common string 1`] = `
-"const fbs = require(\\"fbs\\");
+const fbs = require("fbs");
 
-const fbsCommonElem = fbs._(\\"__FBT__{\\\\\\"type\\\\\\":\\\\\\"text\\\\\\",\\\\\\"jsfbt\\\\\\":\\\\\\"Post\\\\\\",\\\\\\"desc\\\\\\":\\\\\\"Button to post a comment\\\\\\",\\\\\\"project\\\\\\":\\\\\\"\\\\\\"}__FBT__\\");"
+const fbsCommonElem = fbs._(
+  /* __FBT__ start */ {
+    type: "text",
+    jsfbt: "Post",
+    desc: "Button to post a comment",
+    project: "",
+  } /* __FBT__ end */
+);
+
 `;
 
 exports[`Test declarative (jsx) <fbs> syntax translation should convert a simple string 1`] = `
-"const fbs = require(\\"fbs\\");
+const fbs = require("fbs");
 
-const fbsElem = fbs._(\\"__FBT__{\\\\\\"type\\\\\\":\\\\\\"text\\\\\\",\\\\\\"jsfbt\\\\\\":\\\\\\"a simple string\\\\\\",\\\\\\"desc\\\\\\":\\\\\\"str_description\\\\\\",\\\\\\"project\\\\\\":\\\\\\"\\\\\\"}__FBT__\\");"
+const fbsElem = fbs._(
+  /* __FBT__ start */ {
+    type: "text",
+    jsfbt: "a simple string",
+    desc: "str_description",
+    project: "",
+  } /* __FBT__ end */
+);
+
 `;
 
 exports[`Test declarative (jsx) <fbs> syntax translation should convert a string with a parameter 1`] = `
-"const fbs = require(\\"fbs\\");
+const fbs = require("fbs");
 
-const fbsElem = fbs._(\\"__FBT__{\\\\\\"type\\\\\\":\\\\\\"text\\\\\\",\\\\\\"jsfbt\\\\\\":\\\\\\"a string with a {param name}\\\\\\",\\\\\\"desc\\\\\\":\\\\\\"str_description\\\\\\",\\\\\\"project\\\\\\":\\\\\\"\\\\\\"}__FBT__\\", [fbs._param(\\"param name\\", parameter)]);"
+const fbsElem = fbs._(
+  /* __FBT__ start */ {
+    type: "text",
+    jsfbt: "a string with a {param name}",
+    desc: "str_description",
+    project: "",
+  } /* __FBT__ end */,
+  [fbs._param("param name", parameter)]
+);
+
 `;
 
 exports[`Test functional fbs() syntax translation should convert a common string 1`] = `
-"const fbs = require(\\"fbs\\");
+const fbs = require("fbs");
 
-const fbsCommonCall = fbs._(\\"__FBT__{\\\\\\"type\\\\\\":\\\\\\"text\\\\\\",\\\\\\"jsfbt\\\\\\":\\\\\\"Post\\\\\\",\\\\\\"desc\\\\\\":\\\\\\"Button to post a comment\\\\\\",\\\\\\"project\\\\\\":\\\\\\"\\\\\\"}__FBT__\\");"
+const fbsCommonCall = fbs._(
+  /* __FBT__ start */ {
+    type: "text",
+    jsfbt: "Post",
+    desc: "Button to post a comment",
+    project: "",
+  } /* __FBT__ end */
+);
+
 `;
 
 exports[`Test functional fbs() syntax translation should convert a simple string 1`] = `
-"const fbs = require(\\"fbs\\");
+const fbs = require("fbs");
 
-const fbsCall = fbs._(\\"__FBT__{\\\\\\"type\\\\\\":\\\\\\"text\\\\\\",\\\\\\"jsfbt\\\\\\":\\\\\\"a simple string\\\\\\",\\\\\\"desc\\\\\\":\\\\\\"str_description\\\\\\",\\\\\\"project\\\\\\":\\\\\\"\\\\\\"}__FBT__\\");"
+const fbsCall = fbs._(
+  /* __FBT__ start */ {
+    type: "text",
+    jsfbt: "a simple string",
+    desc: "str_description",
+    project: "",
+  } /* __FBT__ end */
+);
+
 `;
 
 exports[`Test functional fbs() syntax translation should convert a string with a gender parameter 1`] = `
-"const fbs = require(\\"fbs\\");
+const fbs = require("fbs");
 
-const fbsCall = fbs._(\\"__FBT__{\\\\\\"type\\\\\\":\\\\\\"table\\\\\\",\\\\\\"jsfbt\\\\\\":{\\\\\\"t\\\\\\":{\\\\\\"*\\\\\\":\\\\\\"a string with a {param name}\\\\\\"},\\\\\\"m\\\\\\":[{\\\\\\"token\\\\\\":\\\\\\"param name\\\\\\",\\\\\\"type\\\\\\":1}]},\\\\\\"desc\\\\\\":\\\\\\"str_description\\\\\\",\\\\\\"project\\\\\\":\\\\\\"\\\\\\"}__FBT__\\", [fbs._param('param name', parameter, [1, 'male'])]);"
+const fbsCall = fbs._(
+  /* __FBT__ start */ {
+    type: "table",
+    jsfbt: {
+      t: { "*": "a string with a {param name}" },
+      m: [{ token: "param name", type: 1 }],
+    },
+    desc: "str_description",
+    project: "",
+  } /* __FBT__ end */,
+  [fbs._param("param name", parameter, [1, "male"])]
+);
+
 `;

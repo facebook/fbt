@@ -7,11 +7,16 @@
 
 jest.autoMockOff();
 
-const {payload, transform, withFbtRequireStatement} = require('../FbtTestUtil');
-const {TestUtil} = require('fb-babel-plugin-utils');
+const {
+  jsCodeSerializer,
+  snapshotTransform,
+  withFbtRequireStatement,
+} = require('../FbtTestUtil');
+
+expect.addSnapshotSerializer(jsCodeSerializer);
 
 function runTest(data, extra) {
-  TestUtil.assertSourceAstEqual(transform(data.input, extra), data.output);
+  expect(snapshotTransform(data.input, extra)).toMatchSnapshot();
 }
 
 // TODO(T40113359) Re-enable once this test scenario is ready to be tested
@@ -23,15 +28,6 @@ xdescribe('fbt() API: ', () => {
         {
           input: withFbtRequireStatement(
             `fbt("Foo", "Bar", {locale: locale.data});`,
-          ),
-          output: withFbtRequireStatement(
-            `fbt._(
-              ${payload({
-                type: 'text',
-                jsfbt: 'Foo',
-                desc: 'Bar',
-              })}
-            )`,
           ),
         },
         {
@@ -45,22 +41,6 @@ xdescribe('fbt() API: ', () => {
     it('should accept "subject" as a parameter', () => {
       runTest({
         input: withFbtRequireStatement(`fbt("Foo", "Bar", {subject: foo});`),
-        output: withFbtRequireStatement(
-          `fbt._(
-            ${payload({
-              type: 'table',
-              jsfbt: {
-                t: {'*': 'Foo'},
-                m: [{token: '__subject__', type: 1}],
-              },
-              desc: 'Bar',
-              project: '',
-            })},
-            [
-              fbt._subject(foo)
-            ]
-          )`,
-        ),
       });
     });
   });
@@ -69,22 +49,6 @@ xdescribe('fbt() API: ', () => {
     it('should accept "subject" as a parameter', () => {
       runTest({
         input: withFbtRequireStatement('fbt(`Foo`, "Bar", {subject: foo});'),
-        output: withFbtRequireStatement(
-          `fbt._(
-            ${payload({
-              type: 'table',
-              jsfbt: {
-                t: {'*': 'Foo'},
-                m: [{token: '__subject__', type: 1}],
-              },
-              desc: 'Bar',
-              project: '',
-            })},
-            [
-              fbt._subject(foo)
-            ]
-          )`,
-        ),
       });
     });
   });
@@ -107,31 +71,6 @@ xdescribe('Test double-lined params', () => {
           test
         </fbt>`,
       ),
-      output: withFbtRequireStatement(
-        `fbt._(
-          ${payload({
-            type: 'text',
-            jsfbt: '{two lines} test',
-            desc: 'd',
-          })},
-          [
-            fbt._param(
-              "two lines",
-              React.createElement(
-                "b",
-                null,
-                fbt._(
-                  ${payload({
-                    type: 'text',
-                    jsfbt: 'simple',
-                    desc: 'test',
-                  })}
-                )
-              )
-            )
-          ]
-        );`,
-      ),
     });
   });
 });
@@ -143,14 +82,6 @@ xdescribe('fbt variable binding detection', () => {
     return {
       input: `${requireStatement};
         fbt("Foo", "Bar");`,
-      output: `${requireStatement};
-        fbt._(
-          ${payload({
-            type: 'text',
-            jsfbt: 'Foo',
-            desc: 'Bar',
-          })}
-        )`,
     };
   }
 

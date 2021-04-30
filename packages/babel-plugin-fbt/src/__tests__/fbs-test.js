@@ -8,13 +8,19 @@
 
 jest.autoMockOff();
 
-const {transform, withFbsRequireStatement} = require('../FbtTestUtil');
+const {
+  jsCodeSerializer,
+  snapshotTransform,
+  withFbsRequireStatement,
+} = require('../FbtTestUtil');
+
+expect.addSnapshotSerializer(jsCodeSerializer);
 
 // TODO(T40113359) Re-enable once this test scenario is ready to be tested
 xdescribe('Test declarative (jsx) <fbs> syntax translation', () => {
   it('should convert a simple string', () => {
     expect(
-      transform(
+      snapshotTransform(
         withFbsRequireStatement(
           `const fbsElem = <fbs desc='str_description'>a simple string</fbs>;`,
         ),
@@ -23,7 +29,7 @@ xdescribe('Test declarative (jsx) <fbs> syntax translation', () => {
   });
   it('should convert a string with a parameter', () => {
     expect(
-      transform(
+      snapshotTransform(
         withFbsRequireStatement(`
           const fbsElem = <fbs desc='str_description'>
             a string with a
@@ -35,7 +41,7 @@ xdescribe('Test declarative (jsx) <fbs> syntax translation', () => {
   });
   it('should convert a common string', () => {
     expect(
-      transform(
+      snapshotTransform(
         withFbsRequireStatement(`
           const fbsCommonElem = <fbs common={true}>Post</fbs>;
         `),
@@ -49,7 +55,7 @@ xdescribe('Test declarative (jsx) <fbs> syntax translation', () => {
   });
   it('should reject an <fbs> child element', () => {
     expect(() =>
-      transform(
+      snapshotTransform(
         withFbsRequireStatement(`
           const fbsElem = <fbs desc='str_description'>
             a simple string
@@ -61,7 +67,7 @@ xdescribe('Test declarative (jsx) <fbs> syntax translation', () => {
   });
   it('should reject an <fbt> child element', () => {
     expect(() =>
-      transform(
+      snapshotTransform(
         withFbsRequireStatement(`
           const fbsElem = <fbs desc='str_description'>
             a simple string
@@ -73,7 +79,7 @@ xdescribe('Test declarative (jsx) <fbs> syntax translation', () => {
   });
   it('should reject an <fbt:param> child element', () => {
     expect(() =>
-      transform(
+      snapshotTransform(
         withFbsRequireStatement(`
           const fbsElem = <fbs desc='str_description'>
             a simple string
@@ -89,7 +95,7 @@ xdescribe('Test declarative (jsx) <fbs> syntax translation', () => {
 xdescribe('Test functional fbs() syntax translation', () => {
   it('should convert a simple string', () => {
     expect(
-      transform(
+      snapshotTransform(
         withFbsRequireStatement(
           `const fbsCall = fbs('a simple string', 'str_description');`,
         ),
@@ -98,7 +104,7 @@ xdescribe('Test functional fbs() syntax translation', () => {
   });
   it('should convert a string with a gender parameter', () => {
     expect(
-      transform(
+      snapshotTransform(
         withFbsRequireStatement(`
           const fbsCall = fbs(
             'a string with a ' + fbs.param('param name', parameter, {gender: 'male'}),
@@ -110,14 +116,14 @@ xdescribe('Test functional fbs() syntax translation', () => {
   });
   it('should convert a common string', () => {
     expect(
-      transform(
+      snapshotTransform(
         withFbsRequireStatement(`const fbsCommonCall = fbs.c('Post');`),
       ),
     ).toMatchSnapshot();
   });
   it('should reject an fbt parameter', () => {
     expect(() =>
-      transform(
+      snapshotTransform(
         withFbsRequireStatement(`
           const fbsCall = fbs(
             'a string with a ' + fbt.param('param name', parameter, {gender: 'male'}),
@@ -132,7 +138,7 @@ xdescribe('Test functional fbs() syntax translation', () => {
 
   it('should throw when using fbs() and the fbs variable is not bound', () => {
     expect(() =>
-      transform(
+      snapshotTransform(
         `const fbsCall = fbs(
           'basic',
           'str_description'
@@ -143,7 +149,9 @@ xdescribe('Test functional fbs() syntax translation', () => {
 
   it('should throw when using <fbs> and the fbs variable is not bound', () => {
     expect(() =>
-      transform(`const fbsCall = <fbs desc="str_description">basic</fbs>;`),
+      snapshotTransform(
+        `const fbsCall = <fbs desc="str_description">basic</fbs>;`,
+      ),
     ).toThrow(`fbs is not bound. Did you forget to require('fbs')?`);
   });
 });

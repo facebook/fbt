@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test double-lined params should remove the new line for param names that are two lines 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    type: "text",
+    jsfbt: "{two lines} test",
+    desc: "d",
+    project: "",
+  } /* __FBT__ end */,
+  [
+    fbt._param(
+      "two lines",
+      /*#__PURE__*/ React.createElement(
+        "b",
+        null,
+        fbt._(
+          /* __FBT__ start */ {
+            type: "text",
+            jsfbt: "simple",
+            desc: "test",
+            project: "",
+          } /* __FBT__ end */
+        )
+      )
+    ),
+  ]
+);
+
+`;
+
+exports[`fbt variable binding detection should handle commonJS require() 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    type: "text",
+    jsfbt: "Foo",
+    desc: "Bar",
+    project: "",
+  } /* __FBT__ end */
+);
+
+`;
+
+exports[`fbt variable binding detection using ES6 should handle fbt default export 1`] = `
+import fbt from "fbt";
+
+fbt._(
+  /* __FBT__ start */ {
+    type: "text",
+    jsfbt: "Foo",
+    desc: "Bar",
+    project: "",
+  } /* __FBT__ end */
+);
+
+`;
+
+exports[`fbt variable binding detection using ES6 should handle the named fbt export 1`] = `
+import { fbt } from "fbt";
+
+fbt._(
+  /* __FBT__ start */ {
+    type: "text",
+    jsfbt: "Foo",
+    desc: "Bar",
+    project: "",
+  } /* __FBT__ end */
+);
+
+`;
+
+exports[`fbt() API:  using FBT subject should accept "subject" as a parameter 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    type: "table",
+    jsfbt: { t: { "*": "Foo" }, m: [{ token: "__subject__", type: 1 }] },
+    desc: "Bar",
+    project: "",
+  } /* __FBT__ end */,
+  [fbt._subject(foo)]
+);
+
+`;
+
+exports[`fbt() API:  using FBT subject with string templates should accept "subject" as a parameter 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    type: "table",
+    jsfbt: { t: { "*": "Foo" }, m: [{ token: "__subject__", type: 1 }] },
+    desc: "Bar",
+    project: "",
+  } /* __FBT__ end */,
+  [fbt._subject(foo)]
+);
+
+`;
+
+exports[`fbt() API:  using extraOptions should accept "locale" extra option 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    type: "text",
+    jsfbt: "Foo",
+    desc: "Bar",
+    project: "",
+  } /* __FBT__ end */
+);
+
+`;

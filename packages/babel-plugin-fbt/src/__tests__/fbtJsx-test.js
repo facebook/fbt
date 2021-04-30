@@ -5,31 +5,23 @@
  * @format
  */
 
+/* eslint-disable fb-www/gender-neutral-language */
+
 jest.autoMockOff();
 
 const {
-  payload,
-  transform,
-  transformKeepJsx,
+  jsCodeSerializer,
+  snapshotTransformKeepJsx,
   withFbtRequireStatement,
 } = require('../FbtTestUtil');
-const {FbtVariationType} = require('../translate/IntlVariations');
 const {TestUtil} = require('fb-babel-plugin-utils');
+
+expect.addSnapshotSerializer(jsCodeSerializer);
 
 const testData = {
   'should convert simple strings': {
     input: withFbtRequireStatement(
       `var x = <fbt desc="It's simple">A simple string</fbt>;`,
-    ),
-
-    output: withFbtRequireStatement(
-      `var x = fbt._(
-        ${payload({
-          type: 'text',
-          jsfbt: 'A simple string',
-          desc: "It's simple",
-        })}
-      );`,
     ),
   },
 
@@ -42,16 +34,6 @@ const testData = {
           me
           */}ple s{ }tri{}ng{/*ignore me*/}</fbt>;`,
     ),
-
-    output: withFbtRequireStatement(
-      `var x = fbt._(
-        ${payload({
-          type: 'text',
-          jsfbt: 'A simple string',
-          desc: "It's simple",
-        })}
-      );`,
-    ),
   },
 
   'should strip out newlines': {
@@ -61,19 +43,6 @@ const testData = {
           Preamble
           <fbt:param name="parm">{blah}</fbt:param>
         </fbt>;
-      baz();`,
-    ),
-
-    output: withFbtRequireStatement(
-      `var x = fbt._(
-        ${payload({
-          type: 'text',
-          jsfbt: 'Preamble {parm}',
-          desc: 'Test trailing space when not last child',
-        })}, [
-          fbt._param("parm",blah)
-        ]
-      );
       baz();`,
     ),
   },
@@ -86,18 +55,6 @@ const testData = {
         </Fbt>;
       baz();`,
     ),
-
-    output: withFbtRequireStatement(
-      `var x = fbt._(
-        ${payload({
-          type: 'text',
-          jsfbt: 'Preamble {parm}',
-          desc: 'Test trailing space when not last child',
-        })}, [
-          fbt._param("parm",blah)
-        ]);
-        baz();`,
-    ),
   },
 
   'should strip out more newlines': {
@@ -107,16 +64,6 @@ const testData = {
           A simple string...
           with some other stuff.
         </fbt>;
-        baz();`,
-    ),
-
-    output: withFbtRequireStatement(
-      `var x = fbt._(
-        ${payload({
-          type: 'text',
-          jsfbt: 'A simple string... with some other stuff.',
-          desc: 'moar lines',
-        })});
         baz();`,
     ),
   },
@@ -131,16 +78,6 @@ const testData = {
         </fbt>;
         baz();`,
     ),
-
-    output: withFbtRequireStatement(
-      `var x = fbt._(
-        ${payload({
-          type: 'text',
-          jsfbt: 'Squelched white space... with some other stuff.',
-          desc: 'squelched',
-        })});
-        baz();`,
-    ),
   },
 
   'Enable explicit whitespace': {
@@ -153,19 +90,6 @@ const testData = {
         <fbt:param name="three">{three}</fbt:param>
       </fbt>;`,
     ),
-
-    output: withFbtRequireStatement(
-      `var x = fbt._(
-        ${payload({
-          type: 'text',
-          jsfbt: '{one} {two} {three}',
-          desc: 'squelched',
-        })}, [
-          fbt._param("one",one),
-          fbt._param("two",two),
-          fbt._param("three",three)
-        ]);`,
-    ),
   },
 
   'should handle params': {
@@ -174,17 +98,6 @@ const testData = {
           A parameterized message to:
           <fbt:param name="personName">{theName}</fbt:param>
         </fbt>;`,
-    ),
-
-    output: withFbtRequireStatement(
-      `var x = fbt._(
-        ${payload({
-          type: 'text',
-          jsfbt: 'A parameterized message to: {personName}',
-          desc: 'a message!',
-        })}, [
-          fbt._param("personName",theName)
-        ]);`,
     ),
   },
 
@@ -195,17 +108,6 @@ const testData = {
         <fbt:param name="emptyString"> </fbt:param>
       </fbt>;`,
     ),
-
-    output: withFbtRequireStatement(
-      `var x = fbt._(
-        ${payload({
-          type: 'text',
-          jsfbt: 'A parameterized message to: {emptyString}',
-          desc: 'a message!',
-        })}, [
-          fbt._param("emptyString", ' ')
-        ]);`,
-    ),
   },
 
   'should handle concatenated descriptions': {
@@ -215,17 +117,6 @@ const testData = {
         project={"With" + "a" + "project"}>
         Here it is
       </fbt>;`,
-    ),
-
-    output: withFbtRequireStatement(
-      `fbt._(
-        ${payload({
-          type: 'text',
-          jsfbt: 'Here it is',
-          desc: 'A very long description that we will concatenate a few times',
-          project: 'Withaproject',
-        })}
-      );`,
     ),
   },
 
@@ -238,18 +129,6 @@ const testData = {
         Here it is
       </fbt>;`,
     ),
-
-    output: withFbtRequireStatement(
-      `fbt._(
-        ${payload({
-          type: 'text',
-          jsfbt: 'Here it is',
-          desc:
-            'A very long description that will be a template across multiple lines',
-          project: 'Withaproject',
-        })}
-      );`,
-    ),
   },
 
   'should be able to nest within React nodes': {
@@ -259,16 +138,6 @@ const testData = {
           A nested string
         </fbt>
       </div>;`,
-    ),
-
-    output: withFbtRequireStatement(
-      `var x = React.createElement("div", null, fbt._(
-        ${payload({
-          type: 'text',
-          jsfbt: 'A nested string',
-          desc: 'nested!',
-        })}
-      ));`,
     ),
   },
 
@@ -286,23 +155,6 @@ const testData = {
         </fbt>
       </div>;`,
     ),
-
-    output: withFbtRequireStatement(
-      `React.createElement("div", null,
-        fbt._(
-          ${payload({
-            type: 'text',
-            jsfbt: '{time} by {user name}',
-            desc: '...',
-          })}, [
-          fbt._param("time",formatDate(date, "F d, Y")),
-          fbt._param("user name",
-          React.createElement(Link, {href: {url:user.link}},
-            user.name
-          ))
-        ])
-      );`,
-    ),
   },
 
   'should handle enums (with array values)': {
@@ -316,25 +168,6 @@ const testData = {
           value={id}
         />
       </fbt>;`,
-    ),
-
-    output: withFbtRequireStatement(
-      `var x = fbt._(
-        ${payload({
-          type: 'table',
-          jsfbt: {
-            t: {
-              id1: 'Click to see groups',
-              id2: 'Click to see photos',
-              id3: 'Click to see videos',
-            },
-            m: [null],
-          },
-          desc: 'enums!',
-        })}, [
-          fbt._enum(id, {"id1":"groups","id2":"photos","id3":"videos"})
-        ]
-      );`,
     ),
   },
 
@@ -351,25 +184,6 @@ const testData = {
         Hey-hey!
       </fbt>;`,
     ),
-
-    output: withFbtRequireStatement(
-      `var x = fbt._(
-        ${payload({
-          type: 'table',
-          jsfbt: {
-            t: {
-              id1: 'Click to see groups Hey-hey!',
-              id2: 'Click to see photos Hey-hey!',
-              id3: 'Click to see videos Hey-hey!',
-            },
-            m: [null],
-          },
-          desc: 'enums!',
-        })}, [
-          fbt._enum(id, {"id1":"groups","id2":"photos","id3":"videos"})
-        ]
-      );`,
-    ),
   },
 
   'should handle variations': {
@@ -379,28 +193,6 @@ const testData = {
         <fbt:param name="count" number="true">{c}</fbt:param>
         links
       </fbt>;`,
-    ),
-
-    output: withFbtRequireStatement(
-      `var x = fbt._(
-        ${payload({
-          type: 'table',
-          jsfbt: {
-            t: {
-              '*': 'Click to see {count} links',
-            },
-            m: [
-              {
-                token: 'count',
-                type: FbtVariationType.NUMBER,
-              },
-            ],
-          },
-          desc: 'variations!',
-        })}, [
-          fbt._param("count", c, [0])
-        ]
-      );`,
     ),
   },
 
@@ -412,28 +204,6 @@ const testData = {
         links
       </fbt>;`,
     ),
-
-    output: withFbtRequireStatement(
-      `var x = fbt._(
-        ${payload({
-          type: 'table',
-          jsfbt: {
-            t: {
-              '*': 'Click to see {count} links',
-            },
-            m: [
-              {
-                token: 'count',
-                type: FbtVariationType.NUMBER,
-              },
-            ],
-          },
-          desc: 'variations!',
-        })},[
-          fbt._param("count", c, [0])
-        ]
-      );`,
-    ),
   },
 
   'should correctly destruct expression values in options': {
@@ -444,28 +214,6 @@ const testData = {
         </fbt:param>
       </fbt>`,
     ),
-
-    output: withFbtRequireStatement(
-      `fbt._(
-        ${payload({
-          type: 'table',
-          jsfbt: {
-            t: {
-              '*': 'str {count}',
-            },
-            m: [
-              {
-                token: 'count',
-                type: FbtVariationType.NUMBER,
-              },
-            ],
-          },
-          desc: 'd',
-        })}, [
-          fbt._param("count", getNum(), [0, someNum])
-        ]
-      )`,
-    ),
   },
 
   'should insert param value for same-param': {
@@ -474,18 +222,6 @@ const testData = {
         <fbt:param name="foo">{Bar}</fbt:param> and
         <fbt:same-param name="foo"/>
       </fbt>`,
-    ),
-
-    output: withFbtRequireStatement(
-      `fbt._(
-        ${payload({
-          type: 'text',
-          jsfbt: 'str {foo} and {foo}',
-          desc: 'd',
-        })}, [
-          fbt._param("foo",Bar)
-        ]
-      )`,
     ),
   },
 
@@ -497,18 +233,6 @@ const testData = {
         lol
       </fbt>`,
     ),
-
-    output: withFbtRequireStatement(
-      `fbt._(
-        ${payload({
-          type: 'text',
-          jsfbt: 'lol',
-          desc:
-            'hi how are you today im doing well i guess how is your ' +
-            'mother is she well yeah why not lets go home and never come back.',
-        })}
-      )`,
-    ),
   },
 
   'should not insert extra space': {
@@ -519,19 +243,6 @@ const testData = {
         </fbt:param>!
       </fbt>`,
     ),
-
-    output: withFbtRequireStatement(
-      `fbt._(
-        ${payload({
-          type: 'text',
-          jsfbt: 'Hello, {guest}!',
-          desc: 'Greating in i18n demo',
-          project: '',
-        })}, [
-          fbt._param("guest", guest)
-        ]
-      )`,
-    ),
   },
 
   'should handle single expression with concentated strings': {
@@ -539,16 +250,6 @@ const testData = {
       `<fbt desc="foo">
         {"foo" + "bar"}
       </fbt>`,
-    ),
-
-    output: withFbtRequireStatement(
-      `fbt._(
-        ${payload({
-          type: 'text',
-          jsfbt: 'foobar',
-          desc: 'foo',
-          project: '',
-        })})`,
     ),
   },
 
@@ -572,15 +273,6 @@ const testData = {
         </fbt:param>
       </fbt>`,
     ),
-
-    output: withFbtRequireStatement(
-      `fbt._(
-        ${payload({
-          type: 'text',
-          jsfbt: '{foo}',
-          desc: 'some-desc',
-        })}, [fbt._param("foo", foo)]);`,
-    ),
   },
 
   'should ignore non-expression children in fbt:param': {
@@ -590,15 +282,6 @@ const testData = {
           !{foo}!
         </fbt:param>
       </fbt>`,
-    ),
-
-    output: withFbtRequireStatement(
-      `fbt._(
-        ${payload({
-          type: 'text',
-          jsfbt: '{foo}',
-          desc: 'some-desc',
-        })}, [fbt._param("foo", foo)]);`,
     ),
   },
 
@@ -615,51 +298,22 @@ const testData = {
         </fbt:param>
       </fbt>`,
     ),
-
-    output: withFbtRequireStatement(
-      `fbt._(
-        ${payload({
-          type: 'table',
-          jsfbt: {
-            t: {
-              x: {
-                '*': 'Hello, {foo}x{bar}',
-              },
-              y: {
-                '*': 'Hello, {foo}y{bar}',
-              },
-            },
-            m: [
-              null,
-              {
-                token: 'bar',
-                type: FbtVariationType.NUMBER,
-              },
-            ],
-          },
-          desc: 'some-desc',
-        })}, [
-          fbt._param("foo", foo),
-          fbt._enum(x, {"x": "x", "y": "y"}),
-          fbt._param("bar", bar, [0, n])
-        ]
-      );`,
-    ),
   },
 
   'should support html escapes': {
     input: withFbtRequireStatement(
       `<fbt desc="foo &quot;bar&quot;">&times;</fbt>`,
     ),
+  },
 
-    output: withFbtRequireStatement(
-      `fbt._(
-        ${payload({
-          type: 'text',
-          jsfbt: '\xD7',
-          desc: 'foo "bar"',
-          project: '',
-        })})`,
+  'should support unicode characters': {
+    input: withFbtRequireStatement(
+      `// A backslash \\ in comments
+      <fbt desc="unicode characters">
+        A copyright sign {'\\u00A9'},
+        a multi byte character {'\\uD83D\\uDCA9'},
+        and a backslash {'\\\\'}.
+      </fbt>`,
     ),
   },
 
@@ -668,27 +322,6 @@ const testData = {
       `<fbt desc={"d"} project={"p"}>
           I know <fbt:pronoun type="object" gender={gender}/>.
         </fbt>;`,
-    ),
-
-    output: withFbtRequireStatement(
-      `fbt._(
-        ${payload({
-          type: 'table',
-          jsfbt: {
-            t: {
-              '0': 'I know this.',
-              '1': 'I know her.',
-              '2': 'I know him.',
-              '*': 'I know them.',
-            },
-            m: [null],
-          },
-          desc: 'd',
-          project: 'p',
-        })}, [
-          fbt._pronoun(0, gender)
-        ]
-      );`,
     ),
   },
 
@@ -702,36 +335,10 @@ const testData = {
     options: {
       reactNativeMode: true,
     },
-
-    output: withFbtRequireStatement(
-      `fbt._(
-        ${payload({
-          type: 'table',
-          jsfbt: {
-            t: {
-              '0': 'I know this.',
-              '1': 'I know her.',
-              '2': 'I know him.',
-              '*': 'I know them.',
-            },
-            m: [
-              {
-                type: FbtVariationType.PRONOUN,
-              },
-            ],
-          },
-          desc: 'd',
-          project: 'p',
-        })}, [
-          fbt._pronoun(0, gender)
-        ]
-      );`,
-    ),
   },
 
   'should handle subject+reflexive pronouns': {
     input:
-      // eslint-disable-next-line fb-www/gender-neutral-language
       // She wished herself a happy birthday.
       withFbtRequireStatement(
         `<fbt desc={"d"} project={"p"}>
@@ -739,39 +346,10 @@ const testData = {
           wished <fbt:pronoun type="reflexive" gender={gender} human={true}/> a happy birthday.
         </fbt>;`,
       ),
-
-    output: withFbtRequireStatement(
-      `fbt._(
-        ${payload({
-          type: 'table',
-          jsfbt: {
-            t: {
-              '1': {
-                '1': 'She wished herself a happy birthday.',
-              },
-              '2': {
-                '2': 'He wished himself a happy birthday.',
-              },
-              '*': {
-                '*': 'They wished themselves a happy birthday.',
-              },
-            },
-            m: [null, null],
-          },
-          desc: 'd',
-          project: 'p',
-        })},
-        [
-          fbt._pronoun(3, gender, {human: 1}),
-          fbt._pronoun(2, gender, {human: 1}),
-        ]
-      );`,
-    ),
   },
 
   'should handle subject+reflexive pronouns (react native)': {
     input:
-      // eslint-disable-next-line fb-www/gender-neutral-language
       // She wished herself a happy birthday.
       withFbtRequireStatement(
         `<fbt desc={"d"} project={"p"}>
@@ -785,40 +363,6 @@ const testData = {
     options: {
       reactNativeMode: true,
     },
-
-    output: withFbtRequireStatement(
-      `fbt._(
-        ${payload({
-          type: 'table',
-          jsfbt: {
-            t: {
-              '1': {
-                '1': 'She wished herself a happy birthday.',
-              },
-              '2': {
-                '2': 'He wished himself a happy birthday.',
-              },
-              '*': {
-                '*': 'They wished themselves a happy birthday.',
-              },
-            },
-            m: [
-              {
-                type: FbtVariationType.PRONOUN,
-              },
-              {
-                type: FbtVariationType.PRONOUN,
-              },
-            ],
-          },
-          desc: 'd',
-          project: 'p',
-        })}, [
-          fbt._pronoun(3, gender, {human: 1}),
-          fbt._pronoun(2, gender, {human: 1}),
-        ]
-      );`,
-    ),
   },
 
   'fbt:param with multiple children should error': {
@@ -845,30 +389,20 @@ const testData = {
         </fbt:param>
       </fbt>`,
     ),
-
-    output: withFbtRequireStatement(
-      `fbt._(
-        ${payload({
-          type: 'text',
-          jsfbt: '{foo}',
-          desc: 'some-desc',
-        })}, [
-          fbt._param("foo", foo)
-        ]
-      )`,
-    ),
   },
 };
 
 // TODO(T40113359) Re-enable once this test scenario is ready to be tested
 xdescribe('Test declarative (jsx) fbt syntax translation', () =>
-  TestUtil.testSection(testData, transform));
+  TestUtil.testSection(testData, snapshotTransformKeepJsx, {
+    matchSnapshot: true,
+  }));
 
 // TODO(T40113359) Re-enable once this test scenario is ready to be tested
 xdescribe('Test fbt transforms without the jsx transform', () => {
   it('not nested', () => {
     expect(
-      transformKeepJsx(`
+      snapshotTransformKeepJsx(`
         const fbt = require("fbt");
         let x =
           <fbt desc="nested!">
@@ -880,7 +414,7 @@ xdescribe('Test fbt transforms without the jsx transform', () => {
 
   it('nested in div', () => {
     expect(
-      transformKeepJsx(`
+      snapshotTransformKeepJsx(`
         const fbt = require("fbt");
         let x =
           <div>
@@ -894,7 +428,7 @@ xdescribe('Test fbt transforms without the jsx transform', () => {
 
   it('short bool syntax for doNotExtract attribute', () => {
     expect(
-      transformKeepJsx(`
+      snapshotTransformKeepJsx(`
         const fbt = require("fbt");
         let x = <fbt desc="" doNotExtract>Test</fbt>;
       `),
@@ -903,7 +437,7 @@ xdescribe('Test fbt transforms without the jsx transform', () => {
 
   it('short bool syntax for number attribute', () => {
     expect(
-      transformKeepJsx(`
+      snapshotTransformKeepJsx(`
         const fbt = require("fbt");
         let x =
           <fbt desc="">
@@ -916,7 +450,7 @@ xdescribe('Test fbt transforms without the jsx transform', () => {
   describe('when using within template literals', () => {
     it('should work with a basic <fbt>', () => {
       expect(
-        transformKeepJsx(`
+        snapshotTransformKeepJsx(`
           const fbt = require("fbt");
           html\`<div>
             \${
@@ -931,7 +465,7 @@ xdescribe('Test fbt transforms without the jsx transform', () => {
 
     it('should work with basic <fbt> auto-parameterization', () => {
       expect(
-        transformKeepJsx(`
+        snapshotTransformKeepJsx(`
           const fbt = require("fbt");
           html\`<div>
             \${
@@ -949,7 +483,7 @@ xdescribe('Test fbt transforms without the jsx transform', () => {
 
     it('should dedupe plurals', () => {
       expect(
-        transformKeepJsx(`
+        snapshotTransformKeepJsx(`
           const fbt = require("fbt");
           <fbt desc="desc...">
             There
@@ -964,7 +498,7 @@ xdescribe('Test fbt transforms without the jsx transform', () => {
 
     it('should work with a nested <fbt> within an <fbt:param>', () => {
       expect(
-        transformKeepJsx(`
+        snapshotTransformKeepJsx(`
           const fbt = require("fbt");
           html\`<div>
             \${
@@ -999,7 +533,7 @@ xdescribe('Test fbt transforms without the jsx transform', () => {
   // See also JS fbt fiddle: https://fburl.com/intl/ha5dryng
   it(`[legacy buggy behavior] <fbt:pronoun> should insert a space character between two fbt constructs that don't neighbor raw text`, () =>
     expect(
-      transformKeepJsx(`
+      snapshotTransformKeepJsx(`
         const fbt = require("fbt");
         <fbt desc="">
           You can add

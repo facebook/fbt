@@ -9,14 +9,18 @@ jest.autoMockOff();
 
 const TestFbtEnumManifest = require('TestFbtEnumManifest');
 
-const {payload, transform, withFbtRequireStatement} = require('../FbtTestUtil');
-const {TestUtil} = require('fb-babel-plugin-utils');
+const {
+  jsCodeSerializer,
+  snapshotTransform,
+  withFbtRequireStatement,
+} = require('../FbtTestUtil');
+
+expect.addSnapshotSerializer(jsCodeSerializer);
 
 function runTest(data) {
-  TestUtil.assertSourceAstEqual(
-    transform(data.input, {fbtEnumManifest: TestFbtEnumManifest}),
-    data.output,
-  );
+  expect(
+    snapshotTransform(data.input, {fbtEnumManifest: TestFbtEnumManifest}),
+  ).toMatchSnapshot();
 }
 
 // TODO(T40113359) Re-enable once this test scenario is ready to be tested
@@ -37,25 +41,6 @@ xdescribe('Test Fbt Enum', () => {
             </fbt>
           );`,
       ),
-
-      output: withFbtRequireStatement(
-        `let aEnum = require('Test$FbtEnum');
-          var x = fbt._(
-            ${payload({
-              type: 'table',
-              jsfbt: {
-                t: {
-                  id1: 'Click to see groups',
-                  id2: 'Click to see photos',
-                  id3: 'Click to see videos',
-                },
-                m: [null],
-              },
-              desc: 'enums!',
-            })},
-            [fbt._enum(id, aEnum)],
-          );`,
-      ),
     });
   });
 
@@ -70,25 +55,6 @@ xdescribe('Test Fbt Enum', () => {
             </fbt>
           );`,
       ),
-
-      output: withFbtRequireStatement(
-        `let aEnum = require('Test$FbtEnum');
-          var x = fbt._(
-            ${payload({
-              type: 'table',
-              jsfbt: {
-                t: {
-                  id1: 'Click to see groups',
-                  id2: 'Click to see photos',
-                  id3: 'Click to see videos',
-                },
-                m: [null],
-              },
-              desc: 'enums!',
-            })},
-            [fbt._enum("id1", aEnum)],
-          );`,
-      ),
     });
   });
 
@@ -97,25 +63,6 @@ xdescribe('Test Fbt Enum', () => {
       input: withFbtRequireStatement(
         `let aEnum = require('Test$FbtEnum');
           var x = fbt('Click to see ' + fbt.enum(id, aEnum), 'enums!');`,
-      ),
-
-      output: withFbtRequireStatement(
-        `let aEnum = require('Test$FbtEnum');
-          var x = fbt._(
-            ${payload({
-              type: 'table',
-              jsfbt: {
-                t: {
-                  id1: 'Click to see groups',
-                  id2: 'Click to see photos',
-                  id3: 'Click to see videos',
-                },
-                m: [null],
-              },
-              desc: 'enums!',
-            })},
-            [fbt._enum(id, aEnum)],
-          );`,
       ),
     });
   });
@@ -127,26 +74,6 @@ xdescribe('Test Fbt Enum', () => {
         import aEnum from 'Test$FbtEnum';
         var x = fbt('Click to see ' + fbt.enum(id, aEnum), 'enums!');
       `,
-
-      output: `
-        import fbt from 'fbt';
-        import aEnum from 'Test$FbtEnum';
-        var x = fbt._(
-          ${payload({
-            type: 'table',
-            jsfbt: {
-              t: {
-                id1: 'Click to see groups',
-                id2: 'Click to see photos',
-                id3: 'Click to see videos',
-              },
-              m: [null],
-            },
-            desc: 'enums!',
-          })},
-          [fbt._enum(id, aEnum)],
-        );
-    `,
     });
   });
 
@@ -157,26 +84,6 @@ xdescribe('Test Fbt Enum', () => {
         import * as aEnum from 'Test$FbtEnum';
         var x = fbt('Click to see ' + fbt.enum(id, aEnum), 'enums!');
       `,
-
-      output: `
-        import fbt from 'fbt';
-        import * as aEnum from 'Test$FbtEnum';
-        var x = fbt._(
-          ${payload({
-            type: 'table',
-            jsfbt: {
-              t: {
-                id1: 'Click to see groups',
-                id2: 'Click to see photos',
-                id3: 'Click to see videos',
-              },
-              m: [null],
-            },
-            desc: 'enums!',
-          })},
-          [fbt._enum(id, aEnum)],
-        );
-    `,
     });
   });
 
@@ -186,31 +93,12 @@ xdescribe('Test Fbt Enum', () => {
         `let aEnum = require('Test$FbtEnum');
           var x = fbt(\`Click to see \${fbt.enum(id, aEnum)}\`, 'enums!');`,
       ),
-
-      output: withFbtRequireStatement(
-        `let aEnum = require('Test$FbtEnum');
-          var x = fbt._(
-            ${payload({
-              type: 'table',
-              jsfbt: {
-                t: {
-                  id1: 'Click to see groups',
-                  id2: 'Click to see photos',
-                  id3: 'Click to see videos',
-                },
-                m: [null],
-              },
-              desc: 'enums!',
-            })},
-            [fbt._enum(id, aEnum)],
-          );`,
-      ),
     });
   });
 
   it('should throw when enum values are not strings', () => {
     expect(() =>
-      transform(
+      snapshotTransform(
         withFbtRequireStatement(
           `let aEnum = require('Test$FbtEnum');
           var x = fbt('This is ' + fbt.enum(id, {bad: \`egg\`}), 'enums!');`,
@@ -224,7 +112,7 @@ xdescribe('Test Fbt Enum', () => {
 
   it('should throw on multiple import types', () => {
     expect(() =>
-      transform(
+      snapshotTransform(
         withFbtRequireStatement(
           `import aEnum, * as bEnum from 'Test$FbtEnum';
           var x = fbt('Click to see ' + fbt.enum(id, aEnum), 'enums!');`,
@@ -235,7 +123,7 @@ xdescribe('Test Fbt Enum', () => {
 
   it('should throw on destructured imports', () => {
     expect(() =>
-      transform(
+      snapshotTransform(
         withFbtRequireStatement(
           `import {aEnum} from 'Test$FbtEnum';
           var x = fbt('Click to see ' + fbt.enum(id, aEnum), 'enums!');`,
