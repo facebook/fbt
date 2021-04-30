@@ -1,5 +1,8 @@
 # Global build-related files
-node_modules
+
+node_modules # @oss-only
+**/node_modules # @oss-only
+
 yarn-error.log
 .flow-results
 # file checksums used by gulp-once
