@@ -53,10 +53,11 @@ List of changes for each released npm package version.
     Unreleased changes that have landed in master. Click to see more.
   </summary>
 
-  - [chore]! Drop support for node.js `<12.16.x`
+</details>
+
+- 0.16.6:
   - [feat] Add a new `FbtTranslations.getRegisteredTranslations` function
   - [feat] Add a new `FbtTranslations.mergeTranslations` function
-</details>
 
 - 0.16.5:
   - [chore] Update babel-plugin-fbt dependency version to `^0.20.x`
