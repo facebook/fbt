@@ -8,64 +8,37 @@
 'use strict';
 
 const {packagerTypes} = require('../collectFbtConstants');
-const childProcess = require('child_process');
+const {
+  buildCollectFbtOutput,
+  getFbtCollector,
+  getPackagers,
+} = require('../collectFbtUtils.js');
 const path = require('path');
-
-const commonPath = path.resolve(__dirname, 'FbtCommonForTests.json');
+const fbtCommonPath = path.resolve(__dirname, 'FbtCommonForTests.json');
 
 describe('collectFbt', () => {
   function collect(source, options = {}) {
-    const scriptPath = path.join(
-      // Find the actual module root path
-      // It's dependent on the "main" path set in package.json
-      // See https://stackoverflow.com/a/49455609/104598
-      path.dirname(require.resolve('babel-plugin-fbt')),
-      'bin',
-      'collectFbt',
+    const opts = {
+      generateOuterTokenName: options.genOuterTokenName,
+      plugins: [],
+      presets: [],
+      reactNativeMode: options.react_native_mode,
+      transform: null,
+      fbtCommonPath,
+    };
+    const fbtCollector = getFbtCollector(opts, {}, options.customCollector);
+    const packager = options.packagerType ?? packagerTypes.NONE;
+    const packagers = getPackagers(
+      packager,
+      path.join(__dirname, '../md5Texts'),
     );
-    const collectOptions = [
-      scriptPath,
-      '--packager=' + (options.packagerType ?? packagerTypes.NONE),
-      '--fbt-common-path=' + commonPath,
-    ];
-    if (options.react_native_mode) {
-      collectOptions.push('--react-native-mode');
-    }
-    if (options.genOuterTokenName) {
-      collectOptions.push('--gen-outer-token-name');
-    }
-    if (options.genFbtNodes) {
-      collectOptions.push('--gen-fbt-nodes');
-    }
-    if (options.customCollector) {
-      collectOptions.push('--custom-collector', options.customCollector);
-    }
-
-    var child = childProcess.spawnSync(
-      process.env.NODE_BINARY || 'node',
-      collectOptions,
-      {input: source},
-    );
-
-    if (
-      (child.stderr && child.stderr.toString() !== '') ||
-      child.error ||
-      child.status !== 0
-    ) {
-      throw new Error(
-        (child.stderr && child.stderr.toString()) ||
-          child.error ||
-          'Child process exited with code ' + child.status,
-      );
-    }
-
-    const stdout = child.stdout.toString();
-    try {
-      return JSON.parse(stdout);
-    } catch (error) {
-      error.message += `\nstdout:\n----\n${stdout}\n----`;
-      throw error;
-    }
+    fbtCollector.collectFromOneFile(source);
+    const output = buildCollectFbtOutput(fbtCollector, packagers, {
+      terse: options.terse,
+      genFbtNodes: options.genFbtNodes,
+    });
+    // Mimic collectFbt output: strip undefined fields, and normalize objects
+    return JSON.parse(JSON.stringify(output));
   }
 
   it('should extract strings', () => {

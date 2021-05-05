@@ -34,13 +34,15 @@ export type CollectFbtOutput = {|
 |};
 
 const {packagerTypes} = require('./collectFbtConstants');
-const {buildCollectFbtOutput} = require('./collectFbtUtils');
+const {
+  buildCollectFbtOutput,
+  getFbtCollector,
+  getPackagers,
+} = require('./collectFbtUtils');
 const FbtCollector = require('./FbtCollector');
 const PhrasePackager = require('./PhrasePackager');
 const TextPackager = require('./TextPackager');
 const fs = require('fs');
-const invariant = require('invariant');
-const nullthrows = require('nullthrows');
 const path = require('path');
 const yargs = require('yargs');
 
@@ -174,30 +176,6 @@ const argv = yargs
 
 const packager = argv[args.PACKAGER];
 
-function getHasher(): HashFunction {
-  let hashFunction = null;
-  if (packager === packagerTypes.TEXT || packager === packagerTypes.BOTH) {
-    // $FlowExpectedError[unsupported-syntax] Requiring dynamic module
-    const hashingModule = (require(argv[args.HASH]):
-      | HashFunction
-      | {getFbtHash: HashFunction});
-
-    invariant(
-      typeof hashingModule === 'function' ||
-        (typeof hashingModule === 'object' &&
-          typeof hashingModule.getFbtHash === 'function'),
-      'Expected hashing module to expose a default value that is a function, ' +
-        'or an object with a getFbtHash() function property. Hashing module location: `%s`',
-      argv[args.HASH],
-    );
-    hashFunction =
-      typeof hashingModule === 'function'
-        ? hashingModule
-        : hashingModule.getFbtHash;
-  }
-  return nullthrows(hashFunction);
-}
-
 const extraOptions = {};
 const cliExtraOptions = argv[args.OPTIONS];
 if (cliExtraOptions) {
@@ -210,24 +188,6 @@ const transformPath = argv[args.TRANSFORM];
 // $FlowExpectedError[unsupported-syntax] Requiring dynamic module
 const transform = transformPath ? require(transformPath) : null;
 
-function getFbtCollector(
-  collectorConfig: CollectorConfig,
-  extraOptions: ExtraOptions,
-): IFbtCollector {
-  let customCollectorPath: string = argv[args.CUSTOM_COLLECTOR];
-  if (customCollectorPath) {
-    customCollectorPath = path.isAbsolute(customCollectorPath)
-      ? customCollectorPath
-      : path.resolve(process.cwd(), customCollectorPath);
-
-    // $FlowExpectedError[unsupported-syntax] Need to import custom module
-    const CustomCollector: Class<IFbtCollector> = require(customCollectorPath);
-    return new CustomCollector(collectorConfig, extraOptions);
-  } else {
-    return new FbtCollector(collectorConfig, extraOptions);
-  }
-}
-
 const fbtCollector = getFbtCollector(
   {
     generateOuterTokenName: argv[args.GEN_OUTER_TOKEN_NAME],
@@ -238,6 +198,7 @@ const fbtCollector = getFbtCollector(
     fbtCommonPath: argv[args.COMMON_STRINGS],
   },
   extraOptions,
+  argv[args.CUSTOM_COLLECTOR],
 );
 
 function processJsonSource(source) {
@@ -252,7 +213,8 @@ function processJsonSource(source) {
 }
 
 function writeOutput() {
-  const output = buildCollectFbtOutput(fbtCollector, getPackagers(), {
+  const packagers = getPackagers(argv[args.PACKAGER], argv[args.HASH]);
+  const output = buildCollectFbtOutput(fbtCollector, packagers, {
     terse: argv[args.TERSE],
     genFbtNodes: argv[args.GEN_FBT_NODES],
   });
@@ -290,21 +252,6 @@ function processSource(source) {
     processJsonSource(source);
   } else {
     fbtCollector.collectFromOneFile(source);
-  }
-}
-
-function getPackagers() {
-  switch (packager) {
-    case packagerTypes.TEXT:
-      return [new TextPackager(getHasher())];
-    case packagerTypes.PHRASE:
-      return [new PhrasePackager()];
-    case packagerTypes.BOTH:
-      return [new TextPackager(getHasher()), new PhrasePackager()];
-    case packagerTypes.NONE:
-      return [{pack: phrases => phrases}];
-    default:
-      throw new Error('Unrecognized packager option');
   }
 }
 
