@@ -308,38 +308,6 @@ function getPackagers() {
   }
 }
 
-// TODO(T40113359) Remove this once this script is ready to be tested
-function catchKnownErrors__DEBUG_ONLY(callback) {
-  try {
-    callback();
-  } catch (error) {
-    const childErrorMessages: ?Array<string> = error.childErrorMessages;
-    const hasKnownErrors =
-      Array.isArray(childErrorMessages) &&
-      childErrorMessages.findIndex(
-        message =>
-          message.includes(
-            'fbt only accepts plain strings with params wrapped',
-          ) ||
-          message.includes(
-            'This method must be implemented in a child class',
-          ) ||
-          message.includes('Not implemented yet'),
-      ) > -1;
-
-    if (hasKnownErrors) {
-      console.warn(
-        `WARN: %s: error(s) occurred but it's ok since ` +
-          `this script is not ready for testing yet.\n%s`,
-        require('path').basename(__filename),
-        error,
-      );
-    } else {
-      throw error;
-    }
-  }
-}
-
 if (argv[args.HELP]) {
   yargs.showHelp();
 } else if (!argv._.length) {
@@ -351,16 +319,12 @@ if (argv[args.HELP]) {
     source += chunk;
   });
   stream.on('end', () => {
-    catchKnownErrors__DEBUG_ONLY(() => {
-      processSource(source);
-      writeOutput();
-    });
-  });
-} else {
-  catchKnownErrors__DEBUG_ONLY(() => {
-    // Files given as arguments, read from those one-by-one, then write output as
-    // a whole.
-    fbtCollector.collectFromFiles(argv._);
+    processSource(source);
     writeOutput();
   });
+} else {
+  // Files given as arguments, read from those one-by-one, then write output as
+  // a whole.
+  fbtCollector.collectFromFiles(argv._);
+  writeOutput();
 }
