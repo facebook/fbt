@@ -2217,6 +2217,193 @@ const generalTestData = {
       'template literals without any expressions, or fbt constructs',
   },
 
+  'should throw for string with a nested JSX fragment and string variation arguments that are function calls': {
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var React = require('react');
+      var x = fbt(
+        [
+          'A1 ',
+          <a>
+            B1
+            <b>
+              C1
+            </b>
+            B2
+          </a>,
+          ' A2',
+        ],
+        'string with nested JSX fragments',
+        {
+          subject: subjectValue(),
+        }
+      );`,
+    ),
+
+    throws:
+      `Expect string variation runtime arguments to not be` +
+      ` function calls or class instantiations, but "subject" argument is a function call or class instantiation.`,
+  },
+
+  'should throw for string with a nested JSX fragment and string variation arguments that have nested class instantiation.': {
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var React = require('react');
+      var x = fbt(
+        [
+          'A1 ',
+          <a>
+            B1
+            <b>
+              C1
+              {fbt.plural('world', (new SomeRandomClass(), value))}
+            </b>
+            B2
+          </a>,
+          ' A2',
+        ],
+        'string with nested JSX fragments',
+      );`,
+    ),
+
+    throws:
+      `Expect string variation runtime arguments to not contain` +
+      ` function calls or class instantiations, but "count" argument contains a function call or class instantiation.`,
+  },
+
+  'should throw for string with a nested JSX fragment and string variation arguments that have nested function calls': {
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var React = require('react');
+      var x = fbt(
+        [
+          'A1 ',
+          <a>
+            B1
+            <b>
+              C1
+              {fbt.plural('world', 2 * a.getValue())}
+            </b>
+            B2
+          </a>,
+          ' A2',
+        ],
+        'string with nested JSX fragments',
+      );`,
+    ),
+
+    throws:
+      `Expect string variation runtime arguments to not contain` +
+      ` function calls or class instantiations, but "count" argument contains a function call or class instantiation.`,
+  },
+
+  'should not throw for string with a nested JSX fragment and string variation arguments': {
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var React = require('react');
+      var x = fbt(
+        [
+          'A1 ',
+          <a>
+            B1
+            <b>
+              C1
+              {fbt.param('count', someRandomFunction(), {number: true})}
+              C2
+              {fbt.plural('cat', catCount, {value: someValueFunction(), name: 'cat_token', showCount: 'ifMany', many: 'cats'})}
+            </b>
+            B2
+          </a>,
+          ' A2',
+        ],
+        'string with nested JSX fragments',
+      );`,
+    ),
+
+    output: withFbtRequireStatement(
+      `var React = require('react');
+      var x = (
+        fbt_sv_arg_0 = fbt._param("count", someRandomFunction(), [0]),
+        fbt_sv_arg_1 = fbt._plural(catCount, "cat_token", someValueFunction()),
+        fbt._(${payload({
+          jsfbt: {
+            t: {
+              '*': {
+                '*': {
+                  desc: 'string with nested JSX fragments',
+                  text: 'A1 {=B1 C1 [count] C2 [cat_token] cats B2} A2',
+                  tokenAliases: {
+                    '=B1 C1 [count] C2 [cat_token] cats B2': '=m1',
+                  },
+                },
+                _1: {
+                  desc: 'string with nested JSX fragments',
+                  text: 'A1 {=B1 C1 [count] C2 cat B2} A2',
+                  tokenAliases: {'=B1 C1 [count] C2 cat B2': '=m1'},
+                },
+              },
+            },
+            m: [
+              {token: 'count', type: 2},
+              {token: 'cat_token', type: 2, singular: true},
+            ],
+          },
+          project: '',
+        })},
+        [
+          fbt_sv_arg_0,
+          fbt_sv_arg_1,
+          fbt._param("=m1", /*#__PURE__*/React.createElement("a", null, fbt._(${payload(
+            {
+              jsfbt: {
+                t: {
+                  '*': {
+                    '*': {
+                      desc:
+                        'In the phrase: "A1 {=B1 C1 [count] C2 [cat_token] cats B2} A2"',
+                      text: 'B1 {=C1 [count] C2 [cat_token] cats} B2',
+                      tokenAliases: {'=C1 [count] C2 [cat_token] cats': '=m1'},
+                    },
+                    _1: {
+                      desc: 'In the phrase: "A1 {=B1 C1 [count] C2 cat B2} A2"',
+                      text: 'B1 {=C1 [count] C2 cat} B2',
+                      tokenAliases: {'=C1 [count] C2 cat': '=m1'},
+                    },
+                  },
+                },
+                m: [
+                  {token: 'count', type: 2},
+                  {token: 'cat_token', type: 2, singular: true},
+                ],
+              },
+              project: '',
+            },
+          )}, [fbt_sv_arg_0, fbt_sv_arg_1, fbt._param("=m1", /*#__PURE__*/React.createElement("b", null, fbt._(${payload(
+        {
+          jsfbt: {
+            t: {
+              '*': {
+                '*': {
+                  desc:
+                    'In the phrase: "A1 B1 {=C1 [count] C2 [cat_token] cats} B2 A2"',
+                  text: 'C1 {count} C2 {cat_token} cats',
+                  tokenAliases: {},
+                },
+                _1: {
+                  desc: 'In the phrase: "A1 B1 {=C1 [count] C2 cat} B2 A2"',
+                  text: 'C1 {count} C2 cat',
+                  tokenAliases: {},
+                },
+              },
+            },
+            m: [
+              {token: 'count', type: 2},
+              {token: 'cat_token', type: 2, singular: true},
+            ],
+          },
+          project: '',
+        },
+      )}, [fbt_sv_arg_0, fbt_sv_arg_1])))])))]));
+      `,
+    ),
+  },
+
   // Initially needed for JS source maps accuracy
   // This is useful only for testing column/line coordinates
   // Newlines are not preserved in the extracted fbt string

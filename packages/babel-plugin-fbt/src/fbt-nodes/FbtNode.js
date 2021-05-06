@@ -11,7 +11,10 @@
 'use strict';
 
 import type {JSModuleNameType} from '../FbtConstants';
-import type {BabelNodeCallExpressionArgument} from '../FbtUtil';
+import type {
+  BabelNodeCallExpressionArg,
+  BabelNodeCallExpressionArgument,
+} from '../FbtUtil';
 import type {TokenAliases} from '../index.js';
 import type {
   AnyStringVariationArg,
@@ -25,6 +28,7 @@ import type FbtPluralNode from './FbtPluralNode';
 import type FbtPronounNode from './FbtPronounNode';
 import type FbtSameParamNode from './FbtSameParamNode';
 import type FbtTextNode from './FbtTextNode';
+import type {Scope} from '@babel/core';
 
 export type FbtChildNode =
   | FbtEnumNode
@@ -58,8 +62,9 @@ export type PlainFbtNode = {|
 const FbtNodeChecker = require('../FbtNodeChecker');
 const FbtNodeType = require('./FbtNodeType');
 const {compactBabelNodeProps, errorAt, varDump} = require('../FbtUtil');
-const {isCallExpression} = require('@babel/types');
+const {isCallExpression, isNewExpression} = require('@babel/types');
 const invariant = require('invariant');
+const {default: traverse} = require('@babel/traverse');
 
 /**
  * Base class that represents an fbt construct like <fbt>, <fbt:param>, etc...
@@ -303,6 +308,55 @@ class FbtNode<
       this.node,
       'This method must be implemented in a child class',
     );
+  }
+
+  /**
+   * Throws error if a function call or class instantiation call exists in
+   * any of the fbt's arguments that have impact on string variation.
+   *
+   * Arguments that decide string variations:
+   *  fbt:element: the 'subject' value
+   *  fbt:plural: the 'count' value. 'value' is okay
+   *  fbt:param: the 'gender/number' value. 'value' is okay
+   *  fbt:pronoun: the 'gender' value
+   *  fbt:enum: the 'enum' value
+   */
+  throwIfAnyArgumentContainsFunctionCallOrClassInstantiation(
+    scope: Scope<BabelNodeCallExpression>,
+  ) {
+    const argsToCheck = this.getArgsThatShouldNotContainFunctionCallOrClassInstantiation();
+    for (const argumentName in argsToCheck) {
+      const argument = argsToCheck[argumentName];
+      if (isCallExpression(argument) || isNewExpression(argument)) {
+        throw errorAt(
+          this.node,
+          'Expect string variation runtime arguments to not be' +
+            ' function calls or class instantiations,' +
+            ` but "${argumentName}" argument is a function call or class instantiation.`,
+        );
+      }
+      // Look for function or class call nested in the argument
+      traverse(
+        argument,
+        {
+          'CallExpression|NewExpression'(path) {
+            throw errorAt(
+              path.node,
+              'Expect string variation runtime arguments to not contain' +
+                ' function calls or class instantiations,' +
+                ` but "${argumentName}" argument contains a function call or class instantiation.`,
+            );
+          },
+        },
+        scope,
+      );
+    }
+  }
+
+  getArgsThatShouldNotContainFunctionCallOrClassInstantiation(): $ReadOnly<{
+    [argName: string]: BabelNodeCallExpressionArg,
+  }> {
+    return {};
   }
 }
 

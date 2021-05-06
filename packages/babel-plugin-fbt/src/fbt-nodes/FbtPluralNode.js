@@ -216,6 +216,12 @@ class FbtPluralNode extends FbtNode<
     }
     return createFbtRuntimeArgCallExpression(this, pluralArgs);
   }
+
+  getArgsThatShouldNotContainFunctionCallOrClassInstantiation(): $ReadOnly<{
+    [argName: string]: BabelNodeCallExpressionArg,
+  }> {
+    return {count: this.options.count};
+  }
 }
 
 module.exports = FbtPluralNode;

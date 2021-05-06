@@ -10,7 +10,10 @@
 
 'use strict';
 
-import type {BabelNodeCallExpressionArgument} from '../FbtUtil';
+import type {
+  BabelNodeCallExpressionArg,
+  BabelNodeCallExpressionArgument,
+} from '../FbtUtil';
 import type {StringVariationArgsMap} from './FbtArguments';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 
@@ -47,6 +50,7 @@ const {
 const {
   arrayExpression,
   isStringLiteral,
+  isExpression,
   numericLiteral,
   stringLiteral,
 } = require('@babel/types');
@@ -196,6 +200,16 @@ class FbtParamNode extends FbtNode<
         variationValues ? arrayExpression(variationValues) : null,
       ].filter(Boolean),
     );
+  }
+
+  getArgsThatShouldNotContainFunctionCallOrClassInstantiation(): $ReadOnly<{
+    [argName: string]: BabelNodeCallExpressionArg,
+  }> {
+    const {gender, number} = this.options;
+    if (gender != null) {
+      return {gender};
+    }
+    return isExpression(number) ? {number} : {};
   }
 }
 

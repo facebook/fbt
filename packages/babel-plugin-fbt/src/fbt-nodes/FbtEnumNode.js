@@ -178,6 +178,12 @@ class FbtEnumNode extends FbtNode<
 
     return createFbtRuntimeArgCallExpression(this, [value, runtimeRange]);
   }
+
+  getArgsThatShouldNotContainFunctionCallOrClassInstantiation(): $ReadOnly<{
+    [argName: string]: BabelNodeCallExpressionArg,
+  }> {
+    return {value: this.options.value};
+  }
 }
 
 module.exports = FbtEnumNode;

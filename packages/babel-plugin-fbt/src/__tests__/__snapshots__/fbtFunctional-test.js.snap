@@ -1527,6 +1527,128 @@ Array [
 ]
 `;
 
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should not throw for string with a nested JSX fragment and string variation arguments" 1`] = `
+Array [
+  Object {
+    "col_beg": 14,
+    "col_end": 7,
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "count",
+          "type": 2,
+        },
+        Object {
+          "singular": true,
+          "token": "cat_token",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": Object {
+            "desc": "string with nested JSX fragments",
+            "text": "A1 {=B1 C1 [count] C2 [cat_token] cats B2} A2",
+            "tokenAliases": Object {
+              "=B1 C1 [count] C2 [cat_token] cats B2": "=m1",
+            },
+          },
+          "_1": Object {
+            "desc": "string with nested JSX fragments",
+            "text": "A1 {=B1 C1 [count] C2 cat B2} A2",
+            "tokenAliases": Object {
+              "=B1 C1 [count] C2 cat B2": "=m1",
+            },
+          },
+        },
+      },
+    },
+    "line_beg": 3,
+    "line_end": 19,
+    "project": "",
+  },
+  Object {
+    "col_beg": 10,
+    "col_end": 14,
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "count",
+          "type": 2,
+        },
+        Object {
+          "singular": true,
+          "token": "cat_token",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": Object {
+            "desc": "In the phrase: \\"A1 {=B1 C1 [count] C2 [cat_token] cats B2} A2\\"",
+            "outerTokenName": "=B1 C1 [count] C2 [cat_token] cats B2",
+            "text": "B1 {=C1 [count] C2 [cat_token] cats} B2",
+            "tokenAliases": Object {
+              "=C1 [count] C2 [cat_token] cats": "=m1",
+            },
+          },
+          "_1": Object {
+            "desc": "In the phrase: \\"A1 {=B1 C1 [count] C2 cat B2} A2\\"",
+            "outerTokenName": "=B1 C1 [count] C2 cat B2",
+            "text": "B1 {=C1 [count] C2 cat} B2",
+            "tokenAliases": Object {
+              "=C1 [count] C2 cat": "=m1",
+            },
+          },
+        },
+      },
+    },
+    "line_beg": 6,
+    "line_end": 15,
+    "project": "",
+  },
+  Object {
+    "col_beg": 12,
+    "col_end": 16,
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "count",
+          "type": 2,
+        },
+        Object {
+          "singular": true,
+          "token": "cat_token",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": Object {
+            "desc": "In the phrase: \\"A1 B1 {=C1 [count] C2 [cat_token] cats} B2 A2\\"",
+            "outerTokenName": "=C1 [count] C2 [cat_token] cats",
+            "text": "C1 {count} C2 {cat_token} cats",
+            "tokenAliases": Object {},
+          },
+          "_1": Object {
+            "desc": "In the phrase: \\"A1 B1 {=C1 [count] C2 cat} B2 A2\\"",
+            "outerTokenName": "=C1 [count] C2 cat",
+            "text": "C1 {count} C2 cat",
+            "tokenAliases": Object {},
+          },
+        },
+      },
+    },
+    "line_beg": 8,
+    "line_end": 13,
+    "project": "",
+  },
+]
+`;
+
 exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should respect the doNotExtract option" 1`] = `Array []`;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should accept well-formed options" 1`] = `
@@ -2980,6 +3102,128 @@ Array [
       },
     },
     "line_beg": 2,
+    "line_end": 13,
+    "project": "",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should not throw for string with a nested JSX fragment and string variation arguments" 1`] = `
+Array [
+  Object {
+    "col_beg": 14,
+    "col_end": 7,
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "count",
+          "type": 2,
+        },
+        Object {
+          "singular": true,
+          "token": "cat_token",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": Object {
+            "desc": "string with nested JSX fragments",
+            "text": "A1 {=B1 C1 [count] C2 [cat_token] cats B2} A2",
+            "tokenAliases": Object {
+              "=B1 C1 [count] C2 [cat_token] cats B2": "=m1",
+            },
+          },
+          "_1": Object {
+            "desc": "string with nested JSX fragments",
+            "text": "A1 {=B1 C1 [count] C2 cat B2} A2",
+            "tokenAliases": Object {
+              "=B1 C1 [count] C2 cat B2": "=m1",
+            },
+          },
+        },
+      },
+    },
+    "line_beg": 3,
+    "line_end": 19,
+    "project": "",
+  },
+  Object {
+    "col_beg": 10,
+    "col_end": 14,
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "count",
+          "type": 2,
+        },
+        Object {
+          "singular": true,
+          "token": "cat_token",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": Object {
+            "desc": "In the phrase: \\"A1 {=B1 C1 [count] C2 [cat_token] cats B2} A2\\"",
+            "outerTokenName": "=B1 C1 [count] C2 [cat_token] cats B2",
+            "text": "B1 {=C1 [count] C2 [cat_token] cats} B2",
+            "tokenAliases": Object {
+              "=C1 [count] C2 [cat_token] cats": "=m1",
+            },
+          },
+          "_1": Object {
+            "desc": "In the phrase: \\"A1 {=B1 C1 [count] C2 cat B2} A2\\"",
+            "outerTokenName": "=B1 C1 [count] C2 cat B2",
+            "text": "B1 {=C1 [count] C2 cat} B2",
+            "tokenAliases": Object {
+              "=C1 [count] C2 cat": "=m1",
+            },
+          },
+        },
+      },
+    },
+    "line_beg": 6,
+    "line_end": 15,
+    "project": "",
+  },
+  Object {
+    "col_beg": 12,
+    "col_end": 16,
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "count",
+          "type": 2,
+        },
+        Object {
+          "singular": true,
+          "token": "cat_token",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": Object {
+            "desc": "In the phrase: \\"A1 B1 {=C1 [count] C2 [cat_token] cats} B2 A2\\"",
+            "outerTokenName": "=C1 [count] C2 [cat_token] cats",
+            "text": "C1 {count} C2 {cat_token} cats",
+            "tokenAliases": Object {},
+          },
+          "_1": Object {
+            "desc": "In the phrase: \\"A1 B1 {=C1 [count] C2 cat} B2 A2\\"",
+            "outerTokenName": "=C1 [count] C2 cat",
+            "text": "C1 {count} C2 cat",
+            "tokenAliases": Object {},
+          },
+        },
+      },
+    },
+    "line_beg": 8,
     "line_end": 13,
     "project": "",
   },
@@ -6344,6 +6588,328 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' e '",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=StringLiteral]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "parent": "FbtElementNode",
+    },
+  ],
+  "moduleName": "fbt",
+  "node": "BabelNode[type=CallExpression]",
+  "nodeChecker": FbtNodeChecker {
+    "moduleName": "fbt",
+  },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": null,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
+  "parent": undefined,
+}
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should not throw for string with a nested JSX fragment and string variation arguments" 1`] = `
+FbtElementNode {
+  "__nodeCode": "fbt(['A1 ', <a>
+            B1
+            <b>
+              C1
+              {fbt.param('count', someRandomFunction(), {
+      number: true
+    })}
+              C2
+              {fbt.plural('cat', catCount, {
+      value: someValueFunction(),
+      name: 'cat_token',
+      showCount: 'ifMany',
+      many: 'cats'
+    })}
+            </b>
+            B2
+          </a>, ' A2'], 'string with nested JSX fragments')",
+  "__stringVariationArgs": Array [
+    NumberStringVariationArg {
+      "candidateValues": Array [
+        "*",
+      ],
+      "fbtNode": "FbtParamNode",
+      "isCollapsible": false,
+      "node": null,
+      "value": undefined,
+    },
+    NumberStringVariationArg {
+      "__nodeCode": "catCount",
+      "candidateValues": Array [
+        "*",
+        "_1",
+      ],
+      "fbtNode": "FbtPluralNode",
+      "isCollapsible": false,
+      "node": "BabelNode[type=Identifier]",
+      "value": undefined,
+    },
+  ],
+  "_tokenSet": Object {
+    "=B1 C1 [count] C2 [cat_token] cats B2": "BabelNode[type=JSXElement]",
+    "=B1 C1 [count] C2 cat B2": "BabelNode[type=JSXElement]",
+  },
+  "_variationFactorValues": Array [],
+  "children": Array [
+    FbtTextNode {
+      "__nodeCode": "'A1 '",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=StringLiteral]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "parent": "FbtElementNode",
+    },
+    FbtImplicitParamNode {
+      "__nodeCode": "<a>
+            B1
+            <b>
+              C1
+              {fbt.param('count', someRandomFunction(), {
+      number: true
+    })}
+              C2
+              {fbt.plural('cat', catCount, {
+      value: someValueFunction(),
+      name: 'cat_token',
+      showCount: 'ifMany',
+      many: 'cats'
+    })}
+            </b>
+            B2
+          </a>",
+      "__stringVariationArgs": Array [
+        NumberStringVariationArg {
+          "candidateValues": Array [
+            "*",
+          ],
+          "fbtNode": "FbtParamNode",
+          "isCollapsible": false,
+          "node": null,
+          "value": undefined,
+        },
+        NumberStringVariationArg {
+          "__nodeCode": "catCount",
+          "candidateValues": Array [
+            "*",
+            "_1",
+          ],
+          "fbtNode": "FbtPluralNode",
+          "isCollapsible": false,
+          "node": "BabelNode[type=Identifier]",
+          "value": undefined,
+        },
+      ],
+      "_tokenSet": Object {
+        "=C1 [count] C2 [cat_token] cats": "BabelNode[type=JSXElement]",
+        "=C1 [count] C2 cat": "BabelNode[type=JSXElement]",
+      },
+      "_variationFactorValues": Array [],
+      "children": Array [
+        FbtTextNode {
+          "__nodeCode": "B1",
+          "__stringVariationArgs": Array [],
+          "_variationFactorValues": Array [],
+          "children": Array [],
+          "moduleName": "fbt",
+          "node": "BabelNode[type=JSXText]",
+          "nodeChecker": FbtNodeChecker {
+            "moduleName": "fbt",
+          },
+          "parent": "FbtImplicitParamNode",
+        },
+        FbtImplicitParamNode {
+          "__nodeCode": "<b>
+              C1
+              {fbt.param('count', someRandomFunction(), {
+    number: true
+  })}
+              C2
+              {fbt.plural('cat', catCount, {
+    value: someValueFunction(),
+    name: 'cat_token',
+    showCount: 'ifMany',
+    many: 'cats'
+  })}
+            </b>",
+          "__stringVariationArgs": Array [
+            NumberStringVariationArg {
+              "candidateValues": Array [
+                "*",
+              ],
+              "fbtNode": "FbtParamNode",
+              "isCollapsible": false,
+              "node": null,
+              "value": undefined,
+            },
+            NumberStringVariationArg {
+              "__nodeCode": "catCount",
+              "candidateValues": Array [
+                "*",
+                "_1",
+              ],
+              "fbtNode": "FbtPluralNode",
+              "isCollapsible": false,
+              "node": "BabelNode[type=Identifier]",
+              "value": undefined,
+            },
+          ],
+          "_tokenSet": Object {
+            "cat_token": "BabelNode[type=CallExpression]",
+            "count": "BabelNode[type=CallExpression]",
+          },
+          "_variationFactorValues": Array [],
+          "children": Array [
+            FbtTextNode {
+              "__nodeCode": "C1",
+              "__stringVariationArgs": Array [],
+              "_variationFactorValues": Array [],
+              "children": Array [],
+              "moduleName": "fbt",
+              "node": "BabelNode[type=JSXText]",
+              "nodeChecker": FbtNodeChecker {
+                "moduleName": "fbt",
+              },
+              "parent": "FbtImplicitParamNode",
+            },
+            FbtParamNode {
+              "__nodeCode": "fbt.param('count', someRandomFunction(), {
+  number: true
+})",
+              "__stringVariationArgs": Array [
+                NumberStringVariationArg {
+                  "candidateValues": Array [
+                    "*",
+                  ],
+                  "fbtNode": "FbtParamNode",
+                  "isCollapsible": false,
+                  "node": null,
+                  "value": undefined,
+                },
+              ],
+              "_variationFactorValues": Array [],
+              "children": Array [],
+              "moduleName": "fbt",
+              "node": "BabelNode[type=CallExpression]",
+              "nodeChecker": FbtNodeChecker {
+                "moduleName": "fbt",
+              },
+              "options": Object {
+                "__valueCode": "someRandomFunction()",
+                "gender": null,
+                "name": "count",
+                "number": true,
+                "value": "BabelNode[type=CallExpression]",
+              },
+              "parent": "FbtImplicitParamNode",
+            },
+            FbtTextNode {
+              "__nodeCode": "C2",
+              "__stringVariationArgs": Array [],
+              "_variationFactorValues": Array [],
+              "children": Array [],
+              "moduleName": "fbt",
+              "node": "BabelNode[type=JSXText]",
+              "nodeChecker": FbtNodeChecker {
+                "moduleName": "fbt",
+              },
+              "parent": "FbtImplicitParamNode",
+            },
+            FbtPluralNode {
+              "__nodeCode": "fbt.plural('cat', catCount, {
+  value: someValueFunction(),
+  name: 'cat_token',
+  showCount: 'ifMany',
+  many: 'cats'
+})",
+              "__stringVariationArgs": Array [
+                NumberStringVariationArg {
+                  "__nodeCode": "catCount",
+                  "candidateValues": Array [
+                    "*",
+                    "_1",
+                  ],
+                  "fbtNode": "FbtPluralNode",
+                  "isCollapsible": false,
+                  "node": "BabelNode[type=Identifier]",
+                  "value": undefined,
+                },
+              ],
+              "_variationFactorValues": Array [],
+              "children": Array [],
+              "moduleName": "fbt",
+              "node": "BabelNode[type=CallExpression]",
+              "nodeChecker": FbtNodeChecker {
+                "moduleName": "fbt",
+              },
+              "options": Object {
+                "__countCode": "catCount",
+                "__valueCode": "someValueFunction()",
+                "count": "BabelNode[type=Identifier]",
+                "many": "cats",
+                "name": "cat_token",
+                "showCount": "ifMany",
+                "value": "BabelNode[type=CallExpression]",
+              },
+              "parent": "FbtImplicitParamNode",
+            },
+            FbtTextNode {
+              "__nodeCode": "",
+              "__stringVariationArgs": Array [],
+              "_variationFactorValues": Array [],
+              "children": Array [],
+              "moduleName": "fbt",
+              "node": "BabelNode[type=JSXText]",
+              "nodeChecker": FbtNodeChecker {
+                "moduleName": "fbt",
+              },
+              "parent": "FbtImplicitParamNode",
+            },
+          ],
+          "moduleName": "fbt",
+          "node": "BabelNode[type=JSXElement]",
+          "nodeChecker": FbtNodeChecker {
+            "moduleName": "fbt",
+          },
+          "parent": "FbtImplicitParamNode",
+        },
+        FbtTextNode {
+          "__nodeCode": "B2",
+          "__stringVariationArgs": Array [],
+          "_variationFactorValues": Array [],
+          "children": Array [],
+          "moduleName": "fbt",
+          "node": "BabelNode[type=JSXText]",
+          "nodeChecker": FbtNodeChecker {
+            "moduleName": "fbt",
+          },
+          "parent": "FbtImplicitParamNode",
+        },
+      ],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=JSXElement]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "parent": "FbtElementNode",
+    },
+    FbtTextNode {
+      "__nodeCode": "' A2'",
       "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
@@ -9767,6 +10333,328 @@ FbtElementNode {
     },
     FbtTextNode {
       "__nodeCode": "' e '",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=StringLiteral]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "parent": "FbtElementNode",
+    },
+  ],
+  "moduleName": "fbt",
+  "node": "BabelNode[type=CallExpression]",
+  "nodeChecker": FbtNodeChecker {
+    "moduleName": "fbt",
+  },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": null,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
+  "parent": undefined,
+}
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should not throw for string with a nested JSX fragment and string variation arguments" 1`] = `
+FbtElementNode {
+  "__nodeCode": "fbt(['A1 ', <a>
+            B1
+            <b>
+              C1
+              {fbt.param('count', someRandomFunction(), {
+      number: true
+    })}
+              C2
+              {fbt.plural('cat', catCount, {
+      value: someValueFunction(),
+      name: 'cat_token',
+      showCount: 'ifMany',
+      many: 'cats'
+    })}
+            </b>
+            B2
+          </a>, ' A2'], 'string with nested JSX fragments')",
+  "__stringVariationArgs": Array [
+    NumberStringVariationArg {
+      "candidateValues": Array [
+        "*",
+      ],
+      "fbtNode": "FbtParamNode",
+      "isCollapsible": false,
+      "node": null,
+      "value": undefined,
+    },
+    NumberStringVariationArg {
+      "__nodeCode": "catCount",
+      "candidateValues": Array [
+        "*",
+        "_1",
+      ],
+      "fbtNode": "FbtPluralNode",
+      "isCollapsible": false,
+      "node": "BabelNode[type=Identifier]",
+      "value": undefined,
+    },
+  ],
+  "_tokenSet": Object {
+    "=B1 C1 [count] C2 [cat_token] cats B2": "BabelNode[type=JSXElement]",
+    "=B1 C1 [count] C2 cat B2": "BabelNode[type=JSXElement]",
+  },
+  "_variationFactorValues": Array [],
+  "children": Array [
+    FbtTextNode {
+      "__nodeCode": "'A1 '",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=StringLiteral]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "parent": "FbtElementNode",
+    },
+    FbtImplicitParamNode {
+      "__nodeCode": "<a>
+            B1
+            <b>
+              C1
+              {fbt.param('count', someRandomFunction(), {
+      number: true
+    })}
+              C2
+              {fbt.plural('cat', catCount, {
+      value: someValueFunction(),
+      name: 'cat_token',
+      showCount: 'ifMany',
+      many: 'cats'
+    })}
+            </b>
+            B2
+          </a>",
+      "__stringVariationArgs": Array [
+        NumberStringVariationArg {
+          "candidateValues": Array [
+            "*",
+          ],
+          "fbtNode": "FbtParamNode",
+          "isCollapsible": false,
+          "node": null,
+          "value": undefined,
+        },
+        NumberStringVariationArg {
+          "__nodeCode": "catCount",
+          "candidateValues": Array [
+            "*",
+            "_1",
+          ],
+          "fbtNode": "FbtPluralNode",
+          "isCollapsible": false,
+          "node": "BabelNode[type=Identifier]",
+          "value": undefined,
+        },
+      ],
+      "_tokenSet": Object {
+        "=C1 [count] C2 [cat_token] cats": "BabelNode[type=JSXElement]",
+        "=C1 [count] C2 cat": "BabelNode[type=JSXElement]",
+      },
+      "_variationFactorValues": Array [],
+      "children": Array [
+        FbtTextNode {
+          "__nodeCode": "B1",
+          "__stringVariationArgs": Array [],
+          "_variationFactorValues": Array [],
+          "children": Array [],
+          "moduleName": "fbt",
+          "node": "BabelNode[type=JSXText]",
+          "nodeChecker": FbtNodeChecker {
+            "moduleName": "fbt",
+          },
+          "parent": "FbtImplicitParamNode",
+        },
+        FbtImplicitParamNode {
+          "__nodeCode": "<b>
+              C1
+              {fbt.param('count', someRandomFunction(), {
+    number: true
+  })}
+              C2
+              {fbt.plural('cat', catCount, {
+    value: someValueFunction(),
+    name: 'cat_token',
+    showCount: 'ifMany',
+    many: 'cats'
+  })}
+            </b>",
+          "__stringVariationArgs": Array [
+            NumberStringVariationArg {
+              "candidateValues": Array [
+                "*",
+              ],
+              "fbtNode": "FbtParamNode",
+              "isCollapsible": false,
+              "node": null,
+              "value": undefined,
+            },
+            NumberStringVariationArg {
+              "__nodeCode": "catCount",
+              "candidateValues": Array [
+                "*",
+                "_1",
+              ],
+              "fbtNode": "FbtPluralNode",
+              "isCollapsible": false,
+              "node": "BabelNode[type=Identifier]",
+              "value": undefined,
+            },
+          ],
+          "_tokenSet": Object {
+            "cat_token": "BabelNode[type=CallExpression]",
+            "count": "BabelNode[type=CallExpression]",
+          },
+          "_variationFactorValues": Array [],
+          "children": Array [
+            FbtTextNode {
+              "__nodeCode": "C1",
+              "__stringVariationArgs": Array [],
+              "_variationFactorValues": Array [],
+              "children": Array [],
+              "moduleName": "fbt",
+              "node": "BabelNode[type=JSXText]",
+              "nodeChecker": FbtNodeChecker {
+                "moduleName": "fbt",
+              },
+              "parent": "FbtImplicitParamNode",
+            },
+            FbtParamNode {
+              "__nodeCode": "fbt.param('count', someRandomFunction(), {
+  number: true
+})",
+              "__stringVariationArgs": Array [
+                NumberStringVariationArg {
+                  "candidateValues": Array [
+                    "*",
+                  ],
+                  "fbtNode": "FbtParamNode",
+                  "isCollapsible": false,
+                  "node": null,
+                  "value": undefined,
+                },
+              ],
+              "_variationFactorValues": Array [],
+              "children": Array [],
+              "moduleName": "fbt",
+              "node": "BabelNode[type=CallExpression]",
+              "nodeChecker": FbtNodeChecker {
+                "moduleName": "fbt",
+              },
+              "options": Object {
+                "__valueCode": "someRandomFunction()",
+                "gender": null,
+                "name": "count",
+                "number": true,
+                "value": "BabelNode[type=CallExpression]",
+              },
+              "parent": "FbtImplicitParamNode",
+            },
+            FbtTextNode {
+              "__nodeCode": "C2",
+              "__stringVariationArgs": Array [],
+              "_variationFactorValues": Array [],
+              "children": Array [],
+              "moduleName": "fbt",
+              "node": "BabelNode[type=JSXText]",
+              "nodeChecker": FbtNodeChecker {
+                "moduleName": "fbt",
+              },
+              "parent": "FbtImplicitParamNode",
+            },
+            FbtPluralNode {
+              "__nodeCode": "fbt.plural('cat', catCount, {
+  value: someValueFunction(),
+  name: 'cat_token',
+  showCount: 'ifMany',
+  many: 'cats'
+})",
+              "__stringVariationArgs": Array [
+                NumberStringVariationArg {
+                  "__nodeCode": "catCount",
+                  "candidateValues": Array [
+                    "*",
+                    "_1",
+                  ],
+                  "fbtNode": "FbtPluralNode",
+                  "isCollapsible": false,
+                  "node": "BabelNode[type=Identifier]",
+                  "value": undefined,
+                },
+              ],
+              "_variationFactorValues": Array [],
+              "children": Array [],
+              "moduleName": "fbt",
+              "node": "BabelNode[type=CallExpression]",
+              "nodeChecker": FbtNodeChecker {
+                "moduleName": "fbt",
+              },
+              "options": Object {
+                "__countCode": "catCount",
+                "__valueCode": "someValueFunction()",
+                "count": "BabelNode[type=Identifier]",
+                "many": "cats",
+                "name": "cat_token",
+                "showCount": "ifMany",
+                "value": "BabelNode[type=CallExpression]",
+              },
+              "parent": "FbtImplicitParamNode",
+            },
+            FbtTextNode {
+              "__nodeCode": "",
+              "__stringVariationArgs": Array [],
+              "_variationFactorValues": Array [],
+              "children": Array [],
+              "moduleName": "fbt",
+              "node": "BabelNode[type=JSXText]",
+              "nodeChecker": FbtNodeChecker {
+                "moduleName": "fbt",
+              },
+              "parent": "FbtImplicitParamNode",
+            },
+          ],
+          "moduleName": "fbt",
+          "node": "BabelNode[type=JSXElement]",
+          "nodeChecker": FbtNodeChecker {
+            "moduleName": "fbt",
+          },
+          "parent": "FbtImplicitParamNode",
+        },
+        FbtTextNode {
+          "__nodeCode": "B2",
+          "__stringVariationArgs": Array [],
+          "_variationFactorValues": Array [],
+          "children": Array [],
+          "moduleName": "fbt",
+          "node": "BabelNode[type=JSXText]",
+          "nodeChecker": FbtNodeChecker {
+            "moduleName": "fbt",
+          },
+          "parent": "FbtImplicitParamNode",
+        },
+      ],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=JSXElement]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "parent": "FbtElementNode",
+    },
+    FbtTextNode {
+      "__nodeCode": "' A2'",
       "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],

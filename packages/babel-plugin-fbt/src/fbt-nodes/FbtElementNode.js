@@ -362,6 +362,13 @@ class FbtElementNode
         );
   }
 
+  getArgsThatShouldNotContainFunctionCallOrClassInstantiation(): $ReadOnly<{
+    [argName: string]: BabelNodeCallExpressionArg,
+  }> {
+    const {subject} = this.options;
+    return subject != null ? {subject} : {};
+  }
+
   /**
    * @see IFbtElementNode#registerToken
    */

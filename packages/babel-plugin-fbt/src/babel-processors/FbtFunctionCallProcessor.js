@@ -24,7 +24,7 @@ import type {
   ObjectWithJSFBT,
   PluginOptions,
 } from '../index.js';
-import type {NodePathOf} from '@babel/core';
+import type {NodePathOf, Scope} from '@babel/core';
 import typeof BabelTypes from '@babel/types';
 
 type NodePath = NodePathOf<FbtBabelNodeCallExpression>;
@@ -668,7 +668,7 @@ class FbtFunctionCallProcessor {
         stringVariationRuntimeArgs,
       );
     }
-    // TODO: T89667902 Throw error if runtime sv args contains function/class calls
+    this._throwIfStringVariationArgsMayCauseSideEffects(metaPhrases);
 
     const stringVariationRuntimeArgIdentifiers = this._generateUniqueIdentifiersForRuntimeArgs(
       stringVariationRuntimeArgs.length,
@@ -682,6 +682,23 @@ class FbtFunctionCallProcessor {
       stringVariationRuntimeArgs,
       fbtRuntimeCall,
       stringVariationRuntimeArgIdentifiers,
+    );
+  }
+
+  /**
+   * String variation arguments are not allowed to contain anything that may
+   * cause side-effects. Side-effects are mostly introduced by but not limited to
+   * method calls and class instantiations. Please refer to the JSDoc of
+   * FbtNode#throwIfAnyArgumentContainsFunctionCallOrClassInstantiation for
+   * examples.
+   */
+  _throwIfStringVariationArgsMayCauseSideEffects(
+    metaPhrases: $ReadOnlyArray<MetaPhrase>,
+  ) {
+    metaPhrases[0].compactStringVariations.array.map(svArg =>
+      svArg.fbtNode.throwIfAnyArgumentContainsFunctionCallOrClassInstantiation(
+        this.path.context.scope,
+      ),
     );
   }
 

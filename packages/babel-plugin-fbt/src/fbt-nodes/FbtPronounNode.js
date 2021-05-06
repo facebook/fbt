@@ -199,6 +199,12 @@ class FbtPronounNode extends FbtNode<
 
     return createFbtRuntimeArgCallExpression(this, pronounArgs);
   }
+
+  getArgsThatShouldNotContainFunctionCallOrClassInstantiation(): $ReadOnly<{
+    [argName: string]: BabelNodeCallExpressionArg,
+  }> {
+    return {gender: this.options.gender};
+  }
 }
 
 /**
