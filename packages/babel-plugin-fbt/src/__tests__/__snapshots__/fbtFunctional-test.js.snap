@@ -22,6 +22,128 @@ Array [
 ]
 `;
 
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should avoid creating identifers with conflicted name when there exist inner strings and string variations" 1`] = `
+Array [
+  Object {
+    "col_beg": 8,
+    "col_end": 14,
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "name",
+          "type": 1,
+        },
+        Object {
+          "singular": true,
+          "token": "number",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": Object {
+            "desc": "example 1",
+            "text": "{name} has shared {=[number] photos} with you",
+            "tokenAliases": Object {
+              "=[number] photos": "=m2",
+            },
+          },
+          "_1": Object {
+            "desc": "example 1",
+            "text": "{name} has shared {=a photo} with you",
+            "tokenAliases": Object {
+              "=a photo": "=m2",
+            },
+          },
+        },
+      },
+    },
+    "line_beg": 6,
+    "line_end": 22,
+    "project": "",
+  },
+  Object {
+    "col_beg": 10,
+    "col_end": 14,
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "name",
+          "type": 1,
+        },
+        Object {
+          "singular": true,
+          "token": "number",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": Object {
+            "desc": "In the phrase: \\"{name} has shared {=[number] photos} with you\\"",
+            "outerTokenName": "=[number] photos",
+            "text": "{=[number] photos}",
+            "tokenAliases": Object {
+              "=[number] photos": "=m1",
+            },
+          },
+          "_1": Object {
+            "desc": "In the phrase: \\"{name} has shared {=a photo} with you\\"",
+            "outerTokenName": "=a photo",
+            "text": "{=a photo}",
+            "tokenAliases": Object {
+              "=a photo": "=m1",
+            },
+          },
+        },
+      },
+    },
+    "line_beg": 11,
+    "line_end": 20,
+    "project": "",
+  },
+  Object {
+    "col_beg": 12,
+    "col_end": 21,
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "name",
+          "type": 1,
+        },
+        Object {
+          "singular": true,
+          "token": "number",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": Object {
+            "desc": "In the phrase: \\"{name} has shared {=[number] photos} with you\\"",
+            "outerTokenName": "=[number] photos",
+            "text": "{number} photos",
+            "tokenAliases": Object {},
+          },
+          "_1": Object {
+            "desc": "In the phrase: \\"{name} has shared {=a photo} with you\\"",
+            "outerTokenName": "=a photo",
+            "text": "a photo",
+            "tokenAliases": Object {},
+          },
+        },
+      },
+    },
+    "line_beg": 12,
+    "line_end": 19,
+    "project": "",
+  },
+]
+`;
+
 exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should be able to nest within React nodes" 1`] = `
 Array [
   Object {
@@ -1673,6 +1795,128 @@ Array [
 ]
 `;
 
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should avoid creating identifers with conflicted name when there exist inner strings and string variations" 1`] = `
+Array [
+  Object {
+    "col_beg": 8,
+    "col_end": 14,
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "name",
+          "type": 1,
+        },
+        Object {
+          "singular": true,
+          "token": "number",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": Object {
+            "desc": "example 1",
+            "text": "{name} has shared {=[number] photos} with you",
+            "tokenAliases": Object {
+              "=[number] photos": "=m2",
+            },
+          },
+          "_1": Object {
+            "desc": "example 1",
+            "text": "{name} has shared {=a photo} with you",
+            "tokenAliases": Object {
+              "=a photo": "=m2",
+            },
+          },
+        },
+      },
+    },
+    "line_beg": 6,
+    "line_end": 22,
+    "project": "",
+  },
+  Object {
+    "col_beg": 10,
+    "col_end": 14,
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "name",
+          "type": 1,
+        },
+        Object {
+          "singular": true,
+          "token": "number",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": Object {
+            "desc": "In the phrase: \\"{name} has shared {=[number] photos} with you\\"",
+            "outerTokenName": "=[number] photos",
+            "text": "{=[number] photos}",
+            "tokenAliases": Object {
+              "=[number] photos": "=m1",
+            },
+          },
+          "_1": Object {
+            "desc": "In the phrase: \\"{name} has shared {=a photo} with you\\"",
+            "outerTokenName": "=a photo",
+            "text": "{=a photo}",
+            "tokenAliases": Object {
+              "=a photo": "=m1",
+            },
+          },
+        },
+      },
+    },
+    "line_beg": 11,
+    "line_end": 20,
+    "project": "",
+  },
+  Object {
+    "col_beg": 12,
+    "col_end": 21,
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "name",
+          "type": 1,
+        },
+        Object {
+          "singular": true,
+          "token": "number",
+          "type": 2,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "*": Object {
+            "desc": "In the phrase: \\"{name} has shared {=[number] photos} with you\\"",
+            "outerTokenName": "=[number] photos",
+            "text": "{number} photos",
+            "tokenAliases": Object {},
+          },
+          "_1": Object {
+            "desc": "In the phrase: \\"{name} has shared {=a photo} with you\\"",
+            "outerTokenName": "=a photo",
+            "text": "a photo",
+            "tokenAliases": Object {},
+          },
+        },
+      },
+    },
+    "line_beg": 12,
+    "line_end": 19,
+    "project": "",
+  },
+]
+`;
+
 exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should be able to nest within React nodes" 1`] = `
 Array [
   Object {
@@ -3266,6 +3510,275 @@ FbtElementNode {
     "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "Super Secret",
+    "subject": null,
+  },
+  "parent": undefined,
+}
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should avoid creating identifers with conflicted name when there exist inner strings and string variations" 1`] = `
+FbtElementNode {
+  "__nodeCode": "fbt([fbt.param(\\"name\\", <b>this.state.ex1Name</b>, {
+  \\"gender\\": this.state.ex1Gender
+}), \\" has shared \\", <a className=\\"neatoLink\\" href=\\"#\\" tabindex={123} id={\\"uniq\\"}>
+            <strong>
+              {fbt.plural(\\" a photo\\", this.state.ex1Count, {
+      \\"many\\": \\"photos\\",
+      \\"showCount\\": \\"ifMany\\"
+    })}
+            </strong>
+          </a>, \\" with you \\"], \\"example 1\\")",
+  "__stringVariationArgs": Array [
+    GenderStringVariationArg {
+      "__nodeCode": "this.state.ex1Gender",
+      "candidateValues": Array [
+        "*",
+      ],
+      "fbtNode": "FbtParamNode",
+      "isCollapsible": false,
+      "node": "BabelNode[type=MemberExpression]",
+      "value": undefined,
+    },
+    NumberStringVariationArg {
+      "__nodeCode": "this.state.ex1Count",
+      "candidateValues": Array [
+        "*",
+        "_1",
+      ],
+      "fbtNode": "FbtPluralNode",
+      "isCollapsible": false,
+      "node": "BabelNode[type=MemberExpression]",
+      "value": undefined,
+    },
+  ],
+  "_tokenSet": Object {
+    "=[number] photos": "BabelNode[type=JSXElement]",
+    "=a photo": "BabelNode[type=JSXElement]",
+    "name": "BabelNode[type=CallExpression]",
+  },
+  "_variationFactorValues": Array [],
+  "children": Array [
+    FbtParamNode {
+      "__nodeCode": "fbt.param(\\"name\\", <b>this.state.ex1Name</b>, {
+  \\"gender\\": this.state.ex1Gender
+})",
+      "__stringVariationArgs": Array [
+        GenderStringVariationArg {
+          "__nodeCode": "this.state.ex1Gender",
+          "candidateValues": Array [
+            "*",
+          ],
+          "fbtNode": "FbtParamNode",
+          "isCollapsible": false,
+          "node": "BabelNode[type=MemberExpression]",
+          "value": undefined,
+        },
+      ],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=CallExpression]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "options": Object {
+        "__genderCode": "this.state.ex1Gender",
+        "__valueCode": "<b>this.state.ex1Name</b>",
+        "gender": "BabelNode[type=MemberExpression]",
+        "name": "name",
+        "number": null,
+        "value": "BabelNode[type=JSXElement]",
+      },
+      "parent": "FbtElementNode",
+    },
+    FbtTextNode {
+      "__nodeCode": "\\" has shared \\"",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=StringLiteral]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "parent": "FbtElementNode",
+    },
+    FbtImplicitParamNode {
+      "__nodeCode": "<a className=\\"neatoLink\\" href=\\"#\\" tabindex={123} id={\\"uniq\\"}>
+            <strong>
+              {fbt.plural(\\" a photo\\", this.state.ex1Count, {
+      \\"many\\": \\"photos\\",
+      \\"showCount\\": \\"ifMany\\"
+    })}
+            </strong>
+          </a>",
+      "__stringVariationArgs": Array [
+        NumberStringVariationArg {
+          "__nodeCode": "this.state.ex1Count",
+          "candidateValues": Array [
+            "*",
+            "_1",
+          ],
+          "fbtNode": "FbtPluralNode",
+          "isCollapsible": false,
+          "node": "BabelNode[type=MemberExpression]",
+          "value": undefined,
+        },
+      ],
+      "_tokenSet": Object {
+        "=[number] photos": "BabelNode[type=JSXElement]",
+        "=a photo": "BabelNode[type=JSXElement]",
+      },
+      "_variationFactorValues": Array [],
+      "children": Array [
+        FbtTextNode {
+          "__nodeCode": "",
+          "__stringVariationArgs": Array [],
+          "_variationFactorValues": Array [],
+          "children": Array [],
+          "moduleName": "fbt",
+          "node": "BabelNode[type=JSXText]",
+          "nodeChecker": FbtNodeChecker {
+            "moduleName": "fbt",
+          },
+          "parent": "FbtImplicitParamNode",
+        },
+        FbtImplicitParamNode {
+          "__nodeCode": "<strong>
+              {fbt.plural(\\" a photo\\", this.state.ex1Count, {
+    \\"many\\": \\"photos\\",
+    \\"showCount\\": \\"ifMany\\"
+  })}
+            </strong>",
+          "__stringVariationArgs": Array [
+            NumberStringVariationArg {
+              "__nodeCode": "this.state.ex1Count",
+              "candidateValues": Array [
+                "*",
+                "_1",
+              ],
+              "fbtNode": "FbtPluralNode",
+              "isCollapsible": false,
+              "node": "BabelNode[type=MemberExpression]",
+              "value": undefined,
+            },
+          ],
+          "_tokenSet": Object {
+            "number": "BabelNode[type=CallExpression]",
+          },
+          "_variationFactorValues": Array [],
+          "children": Array [
+            FbtTextNode {
+              "__nodeCode": "",
+              "__stringVariationArgs": Array [],
+              "_variationFactorValues": Array [],
+              "children": Array [],
+              "moduleName": "fbt",
+              "node": "BabelNode[type=JSXText]",
+              "nodeChecker": FbtNodeChecker {
+                "moduleName": "fbt",
+              },
+              "parent": "FbtImplicitParamNode",
+            },
+            FbtPluralNode {
+              "__nodeCode": "fbt.plural(\\" a photo\\", this.state.ex1Count, {
+  \\"many\\": \\"photos\\",
+  \\"showCount\\": \\"ifMany\\"
+})",
+              "__stringVariationArgs": Array [
+                NumberStringVariationArg {
+                  "__nodeCode": "this.state.ex1Count",
+                  "candidateValues": Array [
+                    "*",
+                    "_1",
+                  ],
+                  "fbtNode": "FbtPluralNode",
+                  "isCollapsible": false,
+                  "node": "BabelNode[type=MemberExpression]",
+                  "value": undefined,
+                },
+              ],
+              "_variationFactorValues": Array [],
+              "children": Array [],
+              "moduleName": "fbt",
+              "node": "BabelNode[type=CallExpression]",
+              "nodeChecker": FbtNodeChecker {
+                "moduleName": "fbt",
+              },
+              "options": Object {
+                "__countCode": "this.state.ex1Count",
+                "count": "BabelNode[type=MemberExpression]",
+                "many": "photos",
+                "name": "number",
+                "showCount": "ifMany",
+                "value": null,
+              },
+              "parent": "FbtImplicitParamNode",
+            },
+            FbtTextNode {
+              "__nodeCode": "",
+              "__stringVariationArgs": Array [],
+              "_variationFactorValues": Array [],
+              "children": Array [],
+              "moduleName": "fbt",
+              "node": "BabelNode[type=JSXText]",
+              "nodeChecker": FbtNodeChecker {
+                "moduleName": "fbt",
+              },
+              "parent": "FbtImplicitParamNode",
+            },
+          ],
+          "moduleName": "fbt",
+          "node": "BabelNode[type=JSXElement]",
+          "nodeChecker": FbtNodeChecker {
+            "moduleName": "fbt",
+          },
+          "parent": "FbtImplicitParamNode",
+        },
+        FbtTextNode {
+          "__nodeCode": "",
+          "__stringVariationArgs": Array [],
+          "_variationFactorValues": Array [],
+          "children": Array [],
+          "moduleName": "fbt",
+          "node": "BabelNode[type=JSXText]",
+          "nodeChecker": FbtNodeChecker {
+            "moduleName": "fbt",
+          },
+          "parent": "FbtImplicitParamNode",
+        },
+      ],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=JSXElement]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "parent": "FbtElementNode",
+    },
+    FbtTextNode {
+      "__nodeCode": "\\" with you \\"",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=StringLiteral]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "parent": "FbtElementNode",
+    },
+  ],
+  "moduleName": "fbt",
+  "node": "BabelNode[type=CallExpression]",
+  "nodeChecker": FbtNodeChecker {
+    "moduleName": "fbt",
+  },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": null,
+    "preserveWhitespace": false,
+    "project": "",
     "subject": null,
   },
   "parent": undefined,
@@ -7011,6 +7524,275 @@ FbtElementNode {
     "doNotExtract": null,
     "preserveWhitespace": false,
     "project": "Super Secret",
+    "subject": null,
+  },
+  "parent": undefined,
+}
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should avoid creating identifers with conflicted name when there exist inner strings and string variations" 1`] = `
+FbtElementNode {
+  "__nodeCode": "fbt([fbt.param(\\"name\\", <b>this.state.ex1Name</b>, {
+  \\"gender\\": this.state.ex1Gender
+}), \\" has shared \\", <a className=\\"neatoLink\\" href=\\"#\\" tabindex={123} id={\\"uniq\\"}>
+            <strong>
+              {fbt.plural(\\" a photo\\", this.state.ex1Count, {
+      \\"many\\": \\"photos\\",
+      \\"showCount\\": \\"ifMany\\"
+    })}
+            </strong>
+          </a>, \\" with you \\"], \\"example 1\\")",
+  "__stringVariationArgs": Array [
+    GenderStringVariationArg {
+      "__nodeCode": "this.state.ex1Gender",
+      "candidateValues": Array [
+        "*",
+      ],
+      "fbtNode": "FbtParamNode",
+      "isCollapsible": false,
+      "node": "BabelNode[type=MemberExpression]",
+      "value": undefined,
+    },
+    NumberStringVariationArg {
+      "__nodeCode": "this.state.ex1Count",
+      "candidateValues": Array [
+        "*",
+        "_1",
+      ],
+      "fbtNode": "FbtPluralNode",
+      "isCollapsible": false,
+      "node": "BabelNode[type=MemberExpression]",
+      "value": undefined,
+    },
+  ],
+  "_tokenSet": Object {
+    "=[number] photos": "BabelNode[type=JSXElement]",
+    "=a photo": "BabelNode[type=JSXElement]",
+    "name": "BabelNode[type=CallExpression]",
+  },
+  "_variationFactorValues": Array [],
+  "children": Array [
+    FbtParamNode {
+      "__nodeCode": "fbt.param(\\"name\\", <b>this.state.ex1Name</b>, {
+  \\"gender\\": this.state.ex1Gender
+})",
+      "__stringVariationArgs": Array [
+        GenderStringVariationArg {
+          "__nodeCode": "this.state.ex1Gender",
+          "candidateValues": Array [
+            "*",
+          ],
+          "fbtNode": "FbtParamNode",
+          "isCollapsible": false,
+          "node": "BabelNode[type=MemberExpression]",
+          "value": undefined,
+        },
+      ],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=CallExpression]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "options": Object {
+        "__genderCode": "this.state.ex1Gender",
+        "__valueCode": "<b>this.state.ex1Name</b>",
+        "gender": "BabelNode[type=MemberExpression]",
+        "name": "name",
+        "number": null,
+        "value": "BabelNode[type=JSXElement]",
+      },
+      "parent": "FbtElementNode",
+    },
+    FbtTextNode {
+      "__nodeCode": "\\" has shared \\"",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=StringLiteral]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "parent": "FbtElementNode",
+    },
+    FbtImplicitParamNode {
+      "__nodeCode": "<a className=\\"neatoLink\\" href=\\"#\\" tabindex={123} id={\\"uniq\\"}>
+            <strong>
+              {fbt.plural(\\" a photo\\", this.state.ex1Count, {
+      \\"many\\": \\"photos\\",
+      \\"showCount\\": \\"ifMany\\"
+    })}
+            </strong>
+          </a>",
+      "__stringVariationArgs": Array [
+        NumberStringVariationArg {
+          "__nodeCode": "this.state.ex1Count",
+          "candidateValues": Array [
+            "*",
+            "_1",
+          ],
+          "fbtNode": "FbtPluralNode",
+          "isCollapsible": false,
+          "node": "BabelNode[type=MemberExpression]",
+          "value": undefined,
+        },
+      ],
+      "_tokenSet": Object {
+        "=[number] photos": "BabelNode[type=JSXElement]",
+        "=a photo": "BabelNode[type=JSXElement]",
+      },
+      "_variationFactorValues": Array [],
+      "children": Array [
+        FbtTextNode {
+          "__nodeCode": "",
+          "__stringVariationArgs": Array [],
+          "_variationFactorValues": Array [],
+          "children": Array [],
+          "moduleName": "fbt",
+          "node": "BabelNode[type=JSXText]",
+          "nodeChecker": FbtNodeChecker {
+            "moduleName": "fbt",
+          },
+          "parent": "FbtImplicitParamNode",
+        },
+        FbtImplicitParamNode {
+          "__nodeCode": "<strong>
+              {fbt.plural(\\" a photo\\", this.state.ex1Count, {
+    \\"many\\": \\"photos\\",
+    \\"showCount\\": \\"ifMany\\"
+  })}
+            </strong>",
+          "__stringVariationArgs": Array [
+            NumberStringVariationArg {
+              "__nodeCode": "this.state.ex1Count",
+              "candidateValues": Array [
+                "*",
+                "_1",
+              ],
+              "fbtNode": "FbtPluralNode",
+              "isCollapsible": false,
+              "node": "BabelNode[type=MemberExpression]",
+              "value": undefined,
+            },
+          ],
+          "_tokenSet": Object {
+            "number": "BabelNode[type=CallExpression]",
+          },
+          "_variationFactorValues": Array [],
+          "children": Array [
+            FbtTextNode {
+              "__nodeCode": "",
+              "__stringVariationArgs": Array [],
+              "_variationFactorValues": Array [],
+              "children": Array [],
+              "moduleName": "fbt",
+              "node": "BabelNode[type=JSXText]",
+              "nodeChecker": FbtNodeChecker {
+                "moduleName": "fbt",
+              },
+              "parent": "FbtImplicitParamNode",
+            },
+            FbtPluralNode {
+              "__nodeCode": "fbt.plural(\\" a photo\\", this.state.ex1Count, {
+  \\"many\\": \\"photos\\",
+  \\"showCount\\": \\"ifMany\\"
+})",
+              "__stringVariationArgs": Array [
+                NumberStringVariationArg {
+                  "__nodeCode": "this.state.ex1Count",
+                  "candidateValues": Array [
+                    "*",
+                    "_1",
+                  ],
+                  "fbtNode": "FbtPluralNode",
+                  "isCollapsible": false,
+                  "node": "BabelNode[type=MemberExpression]",
+                  "value": undefined,
+                },
+              ],
+              "_variationFactorValues": Array [],
+              "children": Array [],
+              "moduleName": "fbt",
+              "node": "BabelNode[type=CallExpression]",
+              "nodeChecker": FbtNodeChecker {
+                "moduleName": "fbt",
+              },
+              "options": Object {
+                "__countCode": "this.state.ex1Count",
+                "count": "BabelNode[type=MemberExpression]",
+                "many": "photos",
+                "name": "number",
+                "showCount": "ifMany",
+                "value": null,
+              },
+              "parent": "FbtImplicitParamNode",
+            },
+            FbtTextNode {
+              "__nodeCode": "",
+              "__stringVariationArgs": Array [],
+              "_variationFactorValues": Array [],
+              "children": Array [],
+              "moduleName": "fbt",
+              "node": "BabelNode[type=JSXText]",
+              "nodeChecker": FbtNodeChecker {
+                "moduleName": "fbt",
+              },
+              "parent": "FbtImplicitParamNode",
+            },
+          ],
+          "moduleName": "fbt",
+          "node": "BabelNode[type=JSXElement]",
+          "nodeChecker": FbtNodeChecker {
+            "moduleName": "fbt",
+          },
+          "parent": "FbtImplicitParamNode",
+        },
+        FbtTextNode {
+          "__nodeCode": "",
+          "__stringVariationArgs": Array [],
+          "_variationFactorValues": Array [],
+          "children": Array [],
+          "moduleName": "fbt",
+          "node": "BabelNode[type=JSXText]",
+          "nodeChecker": FbtNodeChecker {
+            "moduleName": "fbt",
+          },
+          "parent": "FbtImplicitParamNode",
+        },
+      ],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=JSXElement]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "parent": "FbtElementNode",
+    },
+    FbtTextNode {
+      "__nodeCode": "\\" with you \\"",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=StringLiteral]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "parent": "FbtElementNode",
+    },
+  ],
+  "moduleName": "fbt",
+  "node": "BabelNode[type=CallExpression]",
+  "nodeChecker": FbtNodeChecker {
+    "moduleName": "fbt",
+  },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": null,
+    "preserveWhitespace": false,
+    "project": "",
     "subject": null,
   },
   "parent": undefined,

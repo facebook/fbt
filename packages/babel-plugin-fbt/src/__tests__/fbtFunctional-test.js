@@ -405,6 +405,183 @@ const generalTestData = {
     ),
   },
 
+  'should avoid creating identifers with conflicted name when there exist inner strings and string variations': {
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var React = require('react');
+      var fbt_sv_arg_2 = 2;
+      function a(fbt_sv_arg_3) {
+        var fbt_sv_arg_0 = 1;
+        <fbt desc="example 1">
+          <fbt:param name="name" gender={this.state.ex1Gender}>
+            <b className="padRight">{this.state.ex1Name}</b>
+          </fbt:param>
+          has shared
+          <a className="neatoLink" href="#" tabindex={123} id={"uniq"}>
+            <strong>
+              <fbt:plural
+                many="photos"
+                showCount="ifMany"
+                count={this.state.ex1Count}>
+                a photo
+              </fbt:plural>
+            </strong>
+          </a>
+          with you
+        </fbt>;
+      }`,
+    ),
+
+    output: withFbtRequireStatement(
+      `var React = require('react');
+      var fbt_sv_arg_2 = 2;
+      function a(fbt_sv_arg_3) {
+        var fbt_sv_arg_0 = 1;
+        (
+          fbt_sv_arg_1 = fbt._param(
+            "name",
+            /*#__PURE__*/React.createElement(
+              "b",
+              {className: "padRight"},
+              this.state.ex1Name,
+            ),
+            [1, this.state.ex1Gender],
+          ),
+          fbt_sv_arg_4 = fbt._plural(this.state.ex1Count, "number"),
+          fbt._(
+          ${payload({
+            jsfbt: {
+              t: {
+                '*': {
+                  '*': {
+                    desc: 'example 1',
+                    text: '{name} has shared {=[number] photos} with you',
+                    tokenAliases: {'=[number] photos': '=m2'},
+                  },
+                  _1: {
+                    desc: 'example 1',
+                    text: '{name} has shared {=a photo} with you',
+                    tokenAliases: {'=a photo': '=m2'},
+                  },
+                },
+              },
+              m: [
+                {
+                  token: 'name',
+                  type: 1,
+                },
+                {
+                  token: 'number',
+                  type: 2,
+                  singular: true,
+                },
+              ],
+            },
+            project: '',
+          })},
+          [
+            fbt_sv_arg_1,
+            fbt_sv_arg_4,
+            fbt._param(
+              "=m2",
+              /*#__PURE__*/React.createElement(
+                "a",
+                {
+                  className: "neatoLink",
+                  href: "#",
+                  tabindex: 123,
+                  id: "uniq",
+                },
+                fbt._(
+                  ${payload({
+                    jsfbt: {
+                      t: {
+                        '*': {
+                          '*': {
+                            desc:
+                              'In the phrase: "{name} has shared {=[number] photos} with you"',
+                            text: '{=[number] photos}',
+                            tokenAliases: {'=[number] photos': '=m1'},
+                          },
+                          _1: {
+                            desc:
+                              'In the phrase: "{name} has shared {=a photo} with you"',
+                            text: '{=a photo}',
+                            tokenAliases: {'=a photo': '=m1'},
+                          },
+                        },
+                      },
+                      m: [
+                        {
+                          token: 'name',
+                          type: 1,
+                        },
+                        {
+                          token: 'number',
+                          type: 2,
+                          singular: true,
+                        },
+                      ],
+                    },
+                    project: '',
+                  })},
+                  [
+                    fbt_sv_arg_1,
+                    fbt_sv_arg_4,
+                    fbt._param(
+                      "=m1",
+                      /*#__PURE__*/React.createElement(
+                        "strong",
+                        null,
+                        fbt._(
+                          ${payload({
+                            jsfbt: {
+                              t: {
+                                '*': {
+                                  '*': {
+                                    desc:
+                                      'In the phrase: "{name} has shared {=[number] photos} with you"',
+                                    text: '{number} photos',
+                                    tokenAliases: {},
+                                  },
+                                  _1: {
+                                    desc:
+                                      'In the phrase: "{name} has shared {=a photo} with you"',
+                                    text: 'a photo',
+                                    tokenAliases: {},
+                                  },
+                                },
+                              },
+                              m: [
+                                {
+                                  token: 'name',
+                                  type: 1,
+                                },
+                                {
+                                  token: 'number',
+                                  type: 2,
+                                  singular: true,
+                                },
+                              ],
+                            },
+                            project: '',
+                          })},
+                          [
+                            fbt_sv_arg_1,
+                            fbt_sv_arg_4,
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ]
+        ));
+      }`,
+    ),
+  },
+
   // TODO(T38926768) Move this to the JSX test suite
   'should handle JSX fbt with two nested React elements': {
     inputWithArraySyntax: withFbtRequireStatement(

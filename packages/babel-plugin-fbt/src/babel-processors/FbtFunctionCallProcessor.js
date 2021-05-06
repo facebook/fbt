@@ -760,14 +760,17 @@ class FbtFunctionCallProcessor {
   _generateUniqueIdentifiersForRuntimeArgs(
     count: number,
   ): Array<BabelNodeIdentifier> {
-    // TODO: T89667874 Re-generate identifier name if it collides with existing bindings
     const identifiers = [];
-    for (let i = 0; i < count; i++) {
-      identifiers.push(
-        identifier(
-          `${STRING_VARIATION_RUNTIME_ARGUMENT_IDENTIFIER_PREFIX}_${i}`,
-        ),
-      );
+    for (
+      let identifierSuffix = 0, numIdentifierCreated = 0;
+      numIdentifierCreated < count;
+      identifierSuffix++
+    ) {
+      const name = `${STRING_VARIATION_RUNTIME_ARGUMENT_IDENTIFIER_PREFIX}_${identifierSuffix}`;
+      if (this.path.context.scope.getBinding(name) == null) {
+        identifiers.push(identifier(name));
+        numIdentifierCreated++;
+      }
     }
     return identifiers;
   }
