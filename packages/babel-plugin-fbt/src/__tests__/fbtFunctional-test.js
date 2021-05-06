@@ -2416,14 +2416,6 @@ function describeTestScenarios(testData) {
   });
 
   describe('Meta-data collection', () => {
-    beforeEach(() => {
-      const FbtFunctionCallProcessor = require('../babel-processors/FbtFunctionCallProcessor');
-      // Prevent generating the fbt runtime call
-      jest
-        .spyOn(FbtFunctionCallProcessor.prototype, '_createRootFbtRuntimeCall')
-        .mockReturnValue(null);
-    });
-
     function forEachTestScenario(callback, options = {}) {
       for (const title in testData) {
         callback(title, testData[title], options);

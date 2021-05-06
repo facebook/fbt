@@ -3313,7 +3313,7 @@ exports[`Functional FBT API using array arguments: Meta-data collection should c
 FbtElementNode {
   "__nodeCode": "fbt([<b className=\\"padRight\\">
           {fbt.enum(enumVal, ['today', 'yesterday'])}
-        </b>, \\", \\", fbt.param(\\"name\\", <b className=\\"padRight\\">{viewerName}</b>, {
+        </b>, \\", \\", fbt.param(\\"name\\", <b>viewerName</b>, {
   \\"gender\\": viewerGender
 }), \\" has shared \\", <a className=\\"neatoLink\\" href=\\"#\\">
           {fbt.plural(\\" a photo\\", photoCount, {
@@ -3483,7 +3483,7 @@ FbtElementNode {
       "parent": "FbtElementNode",
     },
     FbtParamNode {
-      "__nodeCode": "fbt.param(\\"name\\", <b className=\\"padRight\\">{viewerName}</b>, {
+      "__nodeCode": "fbt.param(\\"name\\", <b>viewerName</b>, {
   \\"gender\\": viewerGender
 })",
       "__stringVariationArgs": Array [
@@ -3507,7 +3507,7 @@ FbtElementNode {
       },
       "options": Object {
         "__genderCode": "viewerGender",
-        "__valueCode": "<b className=\\"padRight\\">{viewerName}</b>",
+        "__valueCode": "<b>viewerName</b>",
         "gender": "BabelNode[type=Identifier]",
         "name": "name",
         "number": null,
@@ -3773,7 +3773,7 @@ FbtElementNode {
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle JSX fbt with two nested React elements" 1`] = `
 FbtElementNode {
-  "__nodeCode": "fbt([fbt.param(\\"name\\", <b className=\\"padRight\\">{this.state.ex1Name}</b>, {
+  "__nodeCode": "fbt([fbt.param(\\"name\\", <b>this.state.ex1Name</b>, {
   \\"gender\\": this.state.ex1Gender
 }), \\" has shared \\", <a className=\\"neatoLink\\" href=\\"#\\" tabindex={123} id={\\"uniq\\"}>
           <strong>
@@ -3814,7 +3814,7 @@ FbtElementNode {
   "_variationFactorValues": Array [],
   "children": Array [
     FbtParamNode {
-      "__nodeCode": "fbt.param(\\"name\\", <b className=\\"padRight\\">{this.state.ex1Name}</b>, {
+      "__nodeCode": "fbt.param(\\"name\\", <b>this.state.ex1Name</b>, {
   \\"gender\\": this.state.ex1Gender
 })",
       "__stringVariationArgs": Array [
@@ -3838,7 +3838,7 @@ FbtElementNode {
       },
       "options": Object {
         "__genderCode": "this.state.ex1Gender",
-        "__valueCode": "<b className=\\"padRight\\">{this.state.ex1Name}</b>",
+        "__valueCode": "<b>this.state.ex1Name</b>",
         "gender": "BabelNode[type=MemberExpression]",
         "name": "name",
         "number": null,
@@ -6131,9 +6131,7 @@ FbtElementNode {
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should maintain intra-argument newlines" 1`] = `
 FbtElementNode {
-  "__nodeCode": "fbt([fbt.param('name1', foo ? <a>
-                bar
-              </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')",
+  "__nodeCode": "fbt([fbt.param('name1', foo ? /*#__PURE__*/React.createElement(\\"a\\", null, \\"bar\\") : qux), ' blah ', fbt.param('name2', qux)], 'a')",
   "__stringVariationArgs": Array [],
   "_tokenSet": Object {
     "name1": "BabelNode[type=CallExpression]",
@@ -6142,9 +6140,7 @@ FbtElementNode {
   "_variationFactorValues": Array [],
   "children": Array [
     FbtParamNode {
-      "__nodeCode": "fbt.param('name1', foo ? <a>
-                bar
-              </a> : qux)",
+      "__nodeCode": "fbt.param('name1', foo ? /*#__PURE__*/React.createElement(\\"a\\", null, \\"bar\\") : qux)",
       "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
@@ -6154,9 +6150,7 @@ FbtElementNode {
         "moduleName": "fbt",
       },
       "options": Object {
-        "__valueCode": "foo ? <a>
-                bar
-              </a> : qux",
+        "__valueCode": "foo ? /*#__PURE__*/React.createElement(\\"a\\", null, \\"bar\\") : qux",
         "gender": null,
         "name": "name1",
         "number": null,
@@ -6742,7 +6736,7 @@ exports[`Functional FBT API using array arguments: Meta-data collection should c
 FbtElementNode {
   "__nodeCode": "fbt([<b className=\\"padRight\\">
           {fbt.enum(enumVal, ['today', 'yesterday'])}
-        </b>, \\", \\", fbt.param(\\"name\\", <b className=\\"padRight\\">{viewerName}</b>, {
+        </b>, \\", \\", fbt.param(\\"name\\", <b>viewerName</b>, {
   \\"gender\\": viewerGender
 }), \\" has shared \\", <a className=\\"neatoLink\\" href=\\"#\\">
           {fbt.plural(\\" a photo\\", photoCount, {
@@ -6912,7 +6906,7 @@ FbtElementNode {
       "parent": "FbtElementNode",
     },
     FbtParamNode {
-      "__nodeCode": "fbt.param(\\"name\\", <b className=\\"padRight\\">{viewerName}</b>, {
+      "__nodeCode": "fbt.param(\\"name\\", <b>viewerName</b>, {
   \\"gender\\": viewerGender
 })",
       "__stringVariationArgs": Array [
@@ -6936,7 +6930,7 @@ FbtElementNode {
       },
       "options": Object {
         "__genderCode": "viewerGender",
-        "__valueCode": "<b className=\\"padRight\\">{viewerName}</b>",
+        "__valueCode": "<b>viewerName</b>",
         "gender": "BabelNode[type=Identifier]",
         "name": "name",
         "number": null,
@@ -7202,7 +7196,7 @@ FbtElementNode {
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle JSX fbt with two nested React elements" 1`] = `
 FbtElementNode {
-  "__nodeCode": "fbt([fbt.param(\\"name\\", <b className=\\"padRight\\">{this.state.ex1Name}</b>, {
+  "__nodeCode": "fbt([fbt.param(\\"name\\", <b>this.state.ex1Name</b>, {
   \\"gender\\": this.state.ex1Gender
 }), \\" has shared \\", <a className=\\"neatoLink\\" href=\\"#\\" tabindex={123} id={\\"uniq\\"}>
           <strong>
@@ -7243,7 +7237,7 @@ FbtElementNode {
   "_variationFactorValues": Array [],
   "children": Array [
     FbtParamNode {
-      "__nodeCode": "fbt.param(\\"name\\", <b className=\\"padRight\\">{this.state.ex1Name}</b>, {
+      "__nodeCode": "fbt.param(\\"name\\", <b>this.state.ex1Name</b>, {
   \\"gender\\": this.state.ex1Gender
 })",
       "__stringVariationArgs": Array [
@@ -7267,7 +7261,7 @@ FbtElementNode {
       },
       "options": Object {
         "__genderCode": "this.state.ex1Gender",
-        "__valueCode": "<b className=\\"padRight\\">{this.state.ex1Name}</b>",
+        "__valueCode": "<b>this.state.ex1Name</b>",
         "gender": "BabelNode[type=MemberExpression]",
         "name": "name",
         "number": null,
@@ -9560,9 +9554,7 @@ FbtElementNode {
 
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should maintain intra-argument newlines" 1`] = `
 FbtElementNode {
-  "__nodeCode": "fbt([fbt.param('name1', foo ? <a>
-                bar
-              </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')",
+  "__nodeCode": "fbt([fbt.param('name1', foo ? /*#__PURE__*/React.createElement(\\"a\\", null, \\"bar\\") : qux), ' blah ', fbt.param('name2', qux)], 'a')",
   "__stringVariationArgs": Array [],
   "_tokenSet": Object {
     "name1": "BabelNode[type=CallExpression]",
@@ -9571,9 +9563,7 @@ FbtElementNode {
   "_variationFactorValues": Array [],
   "children": Array [
     FbtParamNode {
-      "__nodeCode": "fbt.param('name1', foo ? <a>
-                bar
-              </a> : qux)",
+      "__nodeCode": "fbt.param('name1', foo ? /*#__PURE__*/React.createElement(\\"a\\", null, \\"bar\\") : qux)",
       "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
@@ -9583,9 +9573,7 @@ FbtElementNode {
         "moduleName": "fbt",
       },
       "options": Object {
-        "__valueCode": "foo ? <a>
-                bar
-              </a> : qux",
+        "__valueCode": "foo ? /*#__PURE__*/React.createElement(\\"a\\", null, \\"bar\\") : qux",
         "gender": null,
         "name": "name1",
         "number": null,
@@ -13914,9 +13902,7 @@ FbtElementNode {
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should maintain intra-argument newlines" 1`] = `
 FbtElementNode {
-  "__nodeCode": "fbt([fbt.param('name1', foo ? <a>
-              bar
-            </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')",
+  "__nodeCode": "fbt([fbt.param('name1', foo ? /*#__PURE__*/React.createElement(\\"a\\", null, \\"bar\\") : qux), ' blah ', fbt.param('name2', qux)], 'a')",
   "__stringVariationArgs": Array [],
   "_tokenSet": Object {
     "name1": "BabelNode[type=CallExpression]",
@@ -13925,9 +13911,7 @@ FbtElementNode {
   "_variationFactorValues": Array [],
   "children": Array [
     FbtParamNode {
-      "__nodeCode": "fbt.param('name1', foo ? <a>
-              bar
-            </a> : qux)",
+      "__nodeCode": "fbt.param('name1', foo ? /*#__PURE__*/React.createElement(\\"a\\", null, \\"bar\\") : qux)",
       "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
@@ -13937,9 +13921,7 @@ FbtElementNode {
         "moduleName": "fbt",
       },
       "options": Object {
-        "__valueCode": "foo ? <a>
-              bar
-            </a> : qux",
+        "__valueCode": "foo ? /*#__PURE__*/React.createElement(\\"a\\", null, \\"bar\\") : qux",
         "gender": null,
         "name": "name1",
         "number": null,
@@ -16611,9 +16593,7 @@ FbtElementNode {
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should maintain intra-argument newlines" 1`] = `
 FbtElementNode {
-  "__nodeCode": "fbt([fbt.param('name1', foo ? <a>
-              bar
-            </a> : qux), ' blah ', fbt.param('name2', qux)], 'a')",
+  "__nodeCode": "fbt([fbt.param('name1', foo ? /*#__PURE__*/React.createElement(\\"a\\", null, \\"bar\\") : qux), ' blah ', fbt.param('name2', qux)], 'a')",
   "__stringVariationArgs": Array [],
   "_tokenSet": Object {
     "name1": "BabelNode[type=CallExpression]",
@@ -16622,9 +16602,7 @@ FbtElementNode {
   "_variationFactorValues": Array [],
   "children": Array [
     FbtParamNode {
-      "__nodeCode": "fbt.param('name1', foo ? <a>
-              bar
-            </a> : qux)",
+      "__nodeCode": "fbt.param('name1', foo ? /*#__PURE__*/React.createElement(\\"a\\", null, \\"bar\\") : qux)",
       "__stringVariationArgs": Array [],
       "_variationFactorValues": Array [],
       "children": Array [],
@@ -16634,9 +16612,7 @@ FbtElementNode {
         "moduleName": "fbt",
       },
       "options": Object {
-        "__valueCode": "foo ? <a>
-              bar
-            </a> : qux",
+        "__valueCode": "foo ? /*#__PURE__*/React.createElement(\\"a\\", null, \\"bar\\") : qux",
         "gender": null,
         "name": "name1",
         "number": null,
