@@ -332,8 +332,10 @@ const generalTestData = {
       );`,
     ),
 
-    output: withFbtRequireStatement(
-      `var React = require('react');
+    output: `
+      var fbt_sv_arg_0;
+      const fbt = require("fbt");
+      var React = require('react');
       var x = (fbt_sv_arg_0 = fbt._subject(subjectValue), fbt._(
         ${payload({
           jsfbt: {
@@ -402,7 +404,6 @@ const generalTestData = {
           ),
         ],
       ))`,
-    ),
   },
 
   'should avoid creating identifers with conflicted name when there exist inner strings and string variations': {
@@ -435,6 +436,7 @@ const generalTestData = {
       `var React = require('react');
       var fbt_sv_arg_2 = 2;
       function a(fbt_sv_arg_3) {
+        var fbt_sv_arg_1, fbt_sv_arg_4;
         var fbt_sv_arg_0 = 1;
         (
           fbt_sv_arg_1 = fbt._param(
@@ -605,8 +607,10 @@ const generalTestData = {
       </fbt>;`,
     ),
 
-    output: withFbtRequireStatement(
-      `var React = require('react');
+    output: `
+      var fbt_sv_arg_0, fbt_sv_arg_1;
+      const fbt = require('fbt');
+      var React = require('react');
       (
         fbt_sv_arg_0 = fbt._param(
           "name",
@@ -749,7 +753,6 @@ const generalTestData = {
           )
         ]
       ));`,
-    ),
   },
 
   'should handle JSX fbt with multiple levels of nested strings': {
@@ -777,8 +780,10 @@ const generalTestData = {
         </a>
       </fbt>;`,
     ),
-    output: withFbtRequireStatement(
-      `var React = require('react');
+    output: `
+      var fbt_sv_arg_0, fbt_sv_arg_1, fbt_sv_arg_2, fbt_sv_arg_3;
+      const fbt = require('fbt');
+      var React = require('react');
       (
         fbt_sv_arg_0 = fbt._enum(enumVal, {"today": "today", "yesterday": "yesterday"}),
         fbt_sv_arg_1 = fbt._param(
@@ -1281,7 +1286,6 @@ const generalTestData = {
           )
         )
       ]));`,
-    ),
   },
 
   'should throw when multiple tokens have the same names due to implicit params': {
@@ -2493,8 +2497,9 @@ const generalTestData = {
       );`,
     ),
 
-    output: withFbtRequireStatement(
-      `var React = require('react');
+    output: `var fbt_sv_arg_0, fbt_sv_arg_1;
+      const fbt = require("fbt");
+      var React = require('react');
       var x = (
         fbt_sv_arg_0 = fbt._param("count", someRandomFunction(), [0]),
         fbt_sv_arg_1 = fbt._plural(catCount, "cat_token", someValueFunction()),
@@ -2552,33 +2557,31 @@ const generalTestData = {
               project: '',
             },
           )}, [fbt_sv_arg_0, fbt_sv_arg_1, fbt._param("=m1", /*#__PURE__*/React.createElement("b", null, fbt._(${payload(
-        {
-          jsfbt: {
-            t: {
+      {
+        jsfbt: {
+          t: {
+            '*': {
               '*': {
-                '*': {
-                  desc:
-                    'In the phrase: "A1 B1 {=C1 [count] C2 [cat_token] cats} B2 A2"',
-                  text: 'C1 {count} C2 {cat_token} cats',
-                  tokenAliases: {},
-                },
-                _1: {
-                  desc: 'In the phrase: "A1 B1 {=C1 [count] C2 cat} B2 A2"',
-                  text: 'C1 {count} C2 cat',
-                  tokenAliases: {},
-                },
+                desc:
+                  'In the phrase: "A1 B1 {=C1 [count] C2 [cat_token] cats} B2 A2"',
+                text: 'C1 {count} C2 {cat_token} cats',
+                tokenAliases: {},
+              },
+              _1: {
+                desc: 'In the phrase: "A1 B1 {=C1 [count] C2 cat} B2 A2"',
+                text: 'C1 {count} C2 cat',
+                tokenAliases: {},
               },
             },
-            m: [
-              {token: 'count', type: 2},
-              {token: 'cat_token', type: 2, singular: true},
-            ],
           },
-          project: '',
+          m: [
+            {token: 'count', type: 2},
+            {token: 'cat_token', type: 2, singular: true},
+          ],
         },
-      )}, [fbt_sv_arg_0, fbt_sv_arg_1])))])))]));
-      `,
-    ),
+        project: '',
+      },
+    )}, [fbt_sv_arg_0, fbt_sv_arg_1])))])))]));`,
   },
 
   // Initially needed for JS source maps accuracy

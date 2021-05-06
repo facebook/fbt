@@ -24,7 +24,7 @@ import type {
   ObjectWithJSFBT,
   PluginOptions,
 } from '../index.js';
-import type {NodePathOf, Scope} from '@babel/core';
+import type {NodePathOf} from '@babel/core';
 import typeof BabelTypes from '@babel/types';
 
 type NodePath = NodePathOf<FbtBabelNodeCallExpression>;
@@ -134,18 +134,23 @@ const {
   arrayExpression,
   assignmentExpression,
   callExpression,
+  clone,
   cloneDeep,
   identifier,
   isArrayExpression,
+  isBlockStatement,
   isCallExpression,
   isObjectExpression,
   isObjectProperty,
+  isProgram,
   isStringLiteral,
   isTemplateLiteral,
   jsxExpressionContainer,
   memberExpression,
   sequenceExpression,
   stringLiteral,
+  variableDeclaration,
+  variableDeclarator,
 } = require('@babel/types');
 const {Buffer} = require('buffer');
 const invariant = require('invariant');
@@ -678,6 +683,9 @@ class FbtFunctionCallProcessor {
       0,
       stringVariationRuntimeArgIdentifiers,
     );
+    this._injectVariableDeclarationsForStringVariationArguments(
+      stringVariationRuntimeArgIdentifiers,
+    );
     return this._wrapFbtRuntimeCallInSequenceExpression(
       stringVariationRuntimeArgs,
       fbtRuntimeCall,
@@ -700,6 +708,39 @@ class FbtFunctionCallProcessor {
         this.path.context.scope,
       ),
     );
+  }
+
+  _injectVariableDeclarationsForStringVariationArguments(
+    identifiersForStringVariationRuntimeArgs: $ReadOnlyArray<BabelNodeIdentifier>,
+  ): void {
+    // Find the first ancestor block statement node or the program root node
+    let curPath = this.path;
+    while (!isBlockStatement(curPath.node) && !isProgram(curPath.node)) {
+      curPath = nullthrows(
+        curPath.parentPath,
+        'curPath can not be null. Otherwise, it means we reached the root' +
+          ' of Babel AST in the previous iteration and therefore we would have exited the loop.',
+      );
+    }
+    const blockOrProgramPath = curPath;
+    const blockOrProgramNode = blockOrProgramPath.node;
+    invariant(
+      isBlockStatement(blockOrProgramNode) || isProgram(blockOrProgramNode),
+      "According to the above loop's condition, " +
+        'blockOrProgramNode must be either a block statement or a program node ',
+    );
+
+    // Replace the blockStatement/program node with
+    // a new blockStatement/program with injected declarations
+    const declarations = variableDeclaration(
+      'var',
+      identifiersForStringVariationRuntimeArgs.map(identifier =>
+        variableDeclarator(identifier),
+      ),
+    );
+    const cloned = clone(blockOrProgramNode);
+    cloned.body = [declarations, ...cloned.body];
+    blockOrProgramPath.replaceWith(cloned);
   }
 
   /**
