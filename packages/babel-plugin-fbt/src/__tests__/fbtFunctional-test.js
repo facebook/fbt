@@ -2835,7 +2835,7 @@ function describeTestScenarios(testData) {
           const FbtFunctionCallProcessor = require('../babel-processors/FbtFunctionCallProcessor');
           const spy = jest.spyOn(
             FbtFunctionCallProcessor.prototype,
-            'convertToFbtNode',
+            '_convertToFbtNode',
           );
 
           const pluginOptions = {

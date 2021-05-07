@@ -234,7 +234,6 @@ function FbtTransform(babel: {
        * );
        */
       CallExpression(path) {
-        const {node} = path;
         const visitor = this;
         const fileSource = visitor.file.code;
         const pluginOptions: PluginOptions = visitor.opts;
@@ -254,15 +253,6 @@ function FbtTransform(babel: {
           return;
         }
 
-        // TODO(T40113359): remove this once we've started replacing fbt() -> fbt._()
-        // This is currently needed to avoid processing fbt() twice.
-        // I.e. when Babel converts JSX -> React.createElement(),
-        // it ends up re-evaluating nested CallExpressions
-        // $FlowFixMe
-        if (node._fbtProcessed) {
-          return;
-        }
-
         root = FbtFunctionCallProcessor.create({
           babelTypes: t,
           defaultFbtOptions: defaultOptions,
@@ -279,22 +269,7 @@ function FbtTransform(babel: {
         // root.convertToFbtNode();
 
         const {callNode, metaPhrases} = root.convertToFbtRuntimeCall();
-
-        // TODO(T40113359): remove this null check once fbt runtime callsites have been implemented
-        if (callNode != null) {
-          path.replaceWith(callNode);
-        } else {
-          // TODO(T40113359): maybe remove this once we've started replacing fbt() -> fbt._()
-          // This is currently needed to avoid processing fbt() twice
-          // (during the enter/exit traversal phases of the babel transform)
-          path.skip();
-        }
-        // TODO(T40113359): remove this once we've started replacing fbt() -> fbt._()
-        // This is currently needed to avoid processing fbt() twice.
-        // I.e. when Babel converts JSX -> React.createElement(),
-        // it ends up re-evaluating nested CallExpressions
-        // $FlowFixMe
-        node._fbtProcessed = true;
+        path.replaceWith(callNode);
 
         if (pluginOptions.collectFbt) {
           const initialPhraseCount = allMetaPhrases.length;

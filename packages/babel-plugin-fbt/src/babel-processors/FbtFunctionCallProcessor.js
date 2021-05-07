@@ -958,10 +958,9 @@ class FbtFunctionCallProcessor {
     // List of phrases collected from the fbt() callsite
     metaPhrases: $ReadOnlyArray<MetaPhrase>,
   } {
-    const fbtElement = this.convertToFbtNode();
+    const fbtElement = this._convertToFbtNode();
     const metaPhrases = this._metaPhrases(fbtElement);
     const callNode = this._createRootFbtRuntimeCall(metaPhrases);
-
     return {
       callNode,
       metaPhrases,
@@ -971,7 +970,7 @@ class FbtFunctionCallProcessor {
   /**
    * Converts current fbt() BabelNode to an FbtNode equivalent
    */
-  convertToFbtNode(): FbtElementNode {
+  _convertToFbtNode(): FbtElementNode {
     this._assertJSModuleWasAlreadyRequired();
     this._assertHasEnoughArguments();
 
