@@ -1,10 +1,11 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
- * @generated SignedSource<<dcee4b941505bf4c0abda7f27858251f>>
+ * @generated SignedSource<<64c2fea8851b85fa15466d667a6487bc>>
  *
  * @codegen-command : phps FBLocToLangScript
  *
+ * @emails oncall+i18n_fbt_js
  * @flow strict
  */
 
