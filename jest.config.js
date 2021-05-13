@@ -24,6 +24,8 @@ const globalConfig = {
   moduleNameMapper: {
     '^FBLocaleToLang$': '<rootDir>/runtime/nonfb/FBLocaleToLang',
   },
+  skipNodeResolution: true,
+  testEnvironment: 'node',
 };
 
 module.exports = {
