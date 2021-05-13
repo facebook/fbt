@@ -28,11 +28,10 @@ live-demo-app/output
 live-demo-app/src/translatedFbts.json
 live-demo-app/yarn-error.log
 
-# "Built" Publisehd NPM modules
-packages/fbt/**
-!packages/fbt/.yarnrc
-!packages/fbt/package.json
-!packages/fbt/README.md
+# fbt runtime package
+packages/fbt/dist # @oss-only
+packages/fbt/lib # @oss-only
+packages/fbt/LICENSE
 
 # documentation build artifacts
 website/build/

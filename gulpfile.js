@@ -15,6 +15,7 @@ const {PLUGINS} = require('./babelPlugins');
 const moduleMap = require('./moduleMap');
 const babelPluginFbtGulp = require('./packages/babel-plugin-fbt/gulpfile');
 const {version} = require('./packages/fbt/package.json');
+const setGeneratedFilePragmas = require('./setGeneratedFilePragmas');
 const del = require('del');
 const gulp = require('gulp');
 const babel = require('gulp-babel');
@@ -47,6 +48,7 @@ const paths = {
 };
 
 const COPYRIGHT = 'Copyright (c) Facebook, Inc. and its affiliates.';
+const ONCALL_ID = 'oncall+internationalization';
 
 const COPYRIGHT_HEADER = `/**
  * fbt v<%= version %>
@@ -55,6 +57,11 @@ const COPYRIGHT_HEADER = `/**
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
+ *
+ * @${'generated'}
+ * @${'nolint'}
+ * @${'nogrep'}
+ * @emails ${ONCALL_ID}
  */
 `;
 
@@ -97,7 +104,10 @@ const copyLicense = () =>
 gulp.task('license', gulp.series(copyLicense));
 
 function flatLib(job) {
-  return job.pipe(flatten()).pipe(gulp.dest(paths.lib));
+  return job
+    .pipe(flatten())
+    .pipe(setGeneratedFilePragmas(ONCALL_ID))
+    .pipe(gulp.dest(paths.lib));
 }
 
 const buildModules = () =>
@@ -142,6 +152,7 @@ const transformTests = (src, dest) =>
     .pipe(once())
     .pipe(babel(babelTestPresets))
     .pipe(flatten())
+    .pipe(setGeneratedFilePragmas())
     .pipe(gulp.dest(dest));
 
 const buildRuntimeTests = () =>

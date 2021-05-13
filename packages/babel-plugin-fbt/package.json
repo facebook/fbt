@@ -25,8 +25,7 @@
     "gulp": "^4.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-once": "^2.1.1",
-    "gulp-rename": "^1.4.0",
-    "gulp-strip-docblock-pragmas": "^0.0.x"
+    "gulp-rename": "^1.4.0"
   },
   "dependencies": {
     "@babel/core": "^7.0.0",

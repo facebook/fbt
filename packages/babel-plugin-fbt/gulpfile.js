@@ -11,13 +11,15 @@
 
 'use strict';
 
+const setGeneratedFilePragmas = require('../../setGeneratedFilePragmas');
 const del = require('del');
 const gulp = require('gulp');
 const babel = require('gulp-babel');
 const gulpOnce = require('gulp-once');
 const rename = require('gulp-rename');
-const stripDocblockPragmas = require('gulp-strip-docblock-pragmas');
 const path = require('path');
+
+const ONCALL_ID = 'oncall+internationalization';
 
 const paths = {
   src: {
@@ -42,15 +44,12 @@ const dest = (glob, opts) =>
     ...opts,
   });
 
-// Strip the 'generated' pragma.
-// Files are transpiled and contents no longer match signature
-const stripGenerated = () => stripDocblockPragmas({pragmas: ['generated']});
 const babelPluginFbt_buildDistJS = () =>
   src(paths.src.js, {
     follow: true,
   })
     .pipe(once())
-    .pipe(stripGenerated())
+    .pipe(setGeneratedFilePragmas(ONCALL_ID))
     .pipe(
       babel({
         plugins: [
@@ -73,7 +72,7 @@ const babelPluginFbt_buildDistFlowJS = () =>
   })
     .pipe(rename({extname: '.js.flow'}))
     .pipe(once())
-    .pipe(stripGenerated())
+    .pipe(setGeneratedFilePragmas(ONCALL_ID))
     .pipe(dest(paths.dist));
 
 const babelPluginFbt_copyJsonToDist = () =>
