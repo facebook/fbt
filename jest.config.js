@@ -28,6 +28,10 @@ const globalConfig = {
   testEnvironment: 'node',
 };
 
+// We need to use absolute paths in order to use this jest config from other working directories.
+// See D28405950 for more info.
+const toAbsolutePath = (...args) => path.resolve(__dirname, ...args);
+
 module.exports = {
   rootDir: __dirname,
   projects: [
@@ -64,7 +68,11 @@ module.exports = {
       transform: {
         '\\.js$': [
           '<rootDir>/jest-preprocessor.js',
-          {plugins: ['@babel/plugin-syntax-bigint']},
+          {
+            plugins: [
+              toAbsolutePath('node_modules', '@babel/plugin-syntax-bigint'),
+            ],
+          },
         ],
       },
     },
@@ -98,16 +106,19 @@ module.exports = {
           {
             plugins: [
               [
-                'babel-plugin-fbt',
+                toAbsolutePath('node_modules', 'babel-plugin-fbt'),
                 {
-                  fbtCommonPath: path.resolve(
+                  fbtCommonPath: toAbsolutePath(
                     'demo-app',
                     'common_strings.json',
                   ),
-                  fbtEnumPath: path.resolve('demo-app', '.enum_manifest.json'),
+                  fbtEnumPath: toAbsolutePath(
+                    'demo-app',
+                    '.enum_manifest.json',
+                  ),
                 },
               ],
-              'babel-plugin-fbt-runtime',
+              toAbsolutePath('node_modules', 'babel-plugin-fbt-runtime'),
             ],
           },
         ],
