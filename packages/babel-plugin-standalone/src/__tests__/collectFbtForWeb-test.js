@@ -16,8 +16,12 @@ import typeof FbtStandalone from '../index';
 describe('collectFbtForWeb', () => {
   describe('when comparing normal and bundled JS code', () => {
     const fbtStandaloneSrc = require('../index');
-    // $FlowExpectedError[untyped-import]
-    const fbtStandaloneDist = (require('../../dist'): FbtStandalone);
+    // Dynamic import to avoid Flow from complaining that it can't find the JS module yet.
+    // It's expected since we only generate `dist/index.js` after running `yarn build`
+    // upon publishing this package to npm.
+    // $FlowExpectedError[unsupported-syntax]
+    const fbtStandaloneDist /*: FbtStandalone */ = require('../..' +
+      /* force dynamic import */ '/dist');
 
     function collect(fbtStandalone, source) {
       return fbtStandalone.collectFbtPayloadFromSource(

@@ -19,7 +19,8 @@ jobs:
           'demo-app:test',
           'fb-tiger-hash:test',
           'gulp-rewrite-flowtyped-modules:test',
-          'gulp-strip-docblock-pragmas:test'
+          'gulp-strip-docblock-pragmas:test',
+          'babel-plugin-standalone:test',
         ]
     name: "v${{ matrix.node }}: ${{ matrix.test }}"
     steps:

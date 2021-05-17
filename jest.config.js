@@ -7,6 +7,7 @@
  */
 
 const path = require('path');
+const process = require('process');
 const runtimePaths = [
   '<rootDir>/runtime/shared',
   '<rootDir>/runtime/shared/FbtNumber',
@@ -45,10 +46,12 @@ module.exports = {
       displayName: 'babel-plugin-fbt-runtime',
       roots: ['<rootDir>/packages/babel-plugin-fbt-runtime'],
     },
-    {
-      displayName: 'babel-plugin-standalone',
-      roots: ['<rootDir>/packages/babel-plugin-standalone'],
-    },
+    process.env.BABEL_PLUGIN_STANDALONE_TEST
+      ? {
+          displayName: 'babel-plugin-standalone',
+          roots: [`<rootDir>/packages/babel-plugin-standalone`],
+        }
+      : null,
     {
       displayName: 'fbt-runtime',
       roots: ['<rootDir>/packages/fbt/lib'],
@@ -124,5 +127,7 @@ module.exports = {
         ],
       },
     },
-  ].map(project => ({...globalConfig, ...project})),
+  ]
+    .filter(Boolean)
+    .map(project => ({...globalConfig, ...project})),
 };

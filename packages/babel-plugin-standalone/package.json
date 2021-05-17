@@ -52,8 +52,9 @@
     "directory": "packages/babel-plugin-standalone"
   },
   "scripts": {
-    "prepack": "yarn build",
     "build": "yarn webpack",
+    "prepack": "yarn build",
+    "test": "BABEL_PLUGIN_STANDALONE_TEST=1 yarn --cwd ../.. jest babel-plugin-standalone",
     "watch": "yarn webpack --watch"
   }
 }

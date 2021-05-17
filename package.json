@@ -94,6 +94,7 @@
     "fb-tiger-hash:test": "jest fb-tiger-hash && yarn workspace fb-tiger-hash test-types",
     "gulp-rewrite-flowtyped-modules:test": "yarn workspace gulp-rewrite-flowtyped-modules test",
     "gulp-strip-docblock-pragmas:test": "yarn workspace gulp-strip-docblock-pragmas test",
+    "babel-plugin-standalone:test": "yarn workspace @fbtjs/babel-plugin-standalone build && yarn workspace @fbtjs/babel-plugin-standalone test",
     "flow:check": "flow check --show-all-errors",
     "flow:watch": "yarn watch 'yarn flow stop && yarn flow check --show-all-errors 2>&1 | tee .flow-results' . --ignoreDotFiles",
     "postinstall": "gulp --series clean build-runtime",
