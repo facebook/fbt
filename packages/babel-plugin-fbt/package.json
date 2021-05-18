@@ -39,7 +39,6 @@
     "invariant": "^2.2.4",
     "jest-docblock": "^26.0.0",
     "nullthrows": "^1.1.1",
-    "shelljs": "^0.8.4",
     "yargs": "^15.3.1"
   },
   "repository": {

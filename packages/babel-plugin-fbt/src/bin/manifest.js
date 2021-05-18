@@ -2,20 +2,14 @@
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
  * @format
- * @noflow
+ * @flow strict-local
  * @emails oncall+internationalization
  */
 
 'use strict';
 
-const {
-  FBT_ENUM_MODULE_SUFFIX: ENUM_FILE,
-  ModuleNameRegExp,
-} = require('../FbtConstants');
+const {generateManifest} = require('./manifestUtils');
 const fs = require('fs');
-const glob = require('glob');
-const path = require('path');
-const shell = require('shelljs');
 const yargs = require('yargs');
 
 const argv = yargs
@@ -47,53 +41,13 @@ if (argv.help) {
   process.exit(0);
 }
 
-// Register babel-plugins with node to enable parsing flow types, etc.
-require('@babel/register')({
-  // Ensure babel resolves paths relative to our package directory so the
-  // plugins can always be resolved to this node_modules directory.
-  cwd: path.resolve(__dirname, '../'),
-  plugins: [
-    '@babel/plugin-syntax-object-rest-spread',
-    '@babel/plugin-transform-flow-strip-types',
-    '@babel/plugin-transform-modules-commonjs',
-  ],
-});
-
-const FILE_EXT = '.@(js|jsx|ts|tsx)';
-
-// Find enum files
-const enumManifest = {};
-for (const src of argv.src) {
-  const enumFiles = glob.sync(src + '/**/*' + ENUM_FILE + FILE_EXT, {
-    nodir: true,
-  });
-  for (const filepath of enumFiles) {
-    // Infer module name from filename.
-    const name = path.parse(filepath).name;
-    const obj = require(path.resolve(filepath));
-    const enumValue = obj.__esModule ? obj.default : obj;
-    if (enumValue == null) {
-      throw new Error(
-        `No valid enum found for '${name}', ensure you are exporting your enum ` +
-          `via \`module.exports = { ... };\` or \`export default { ... };\``,
-      );
-    }
-    enumManifest[name] = enumValue;
-  }
-}
+const enumManifestPath = argv['enum-manifest'];
+const {enumManifest, srcManifest} = generateManifest(
+  enumManifestPath,
+  argv.src,
+);
 
 // Write enum manfiest
-fs.writeFileSync(argv['enum-manifest'], JSON.stringify(enumManifest));
+fs.writeFileSync(enumManifestPath, JSON.stringify(enumManifest));
 
-// Find source files that are fbt-containing candidates
-const getFiles = src => glob.sync(src + '/**/*' + FILE_EXT, {nodir: true});
-const srcFiles = shell
-  .grep('-l', ModuleNameRegExp, [].concat(...argv.src.map(getFiles)))
-  .trim()
-  .split('\n')
-  .filter(filepath => filepath.trim());
-
-fs.writeFileSync(
-  argv['src-manifest'],
-  JSON.stringify({[argv['enum-manifest']]: srcFiles}),
-);
+fs.writeFileSync(argv['src-manifest'], JSON.stringify(srcManifest));
