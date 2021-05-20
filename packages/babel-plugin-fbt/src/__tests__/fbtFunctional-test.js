@@ -351,7 +351,7 @@ const generalTestData = {
         })},
         [
           fbt_sv_arg_0,
-          fbt._param(
+          fbt._implicitParam(
             "=m1",
             /*#__PURE__*/React.createElement(
               "a",
@@ -372,7 +372,7 @@ const generalTestData = {
                 })},
                 [
                   fbt_sv_arg_0,
-                  fbt._param(
+                  fbt._implicitParam(
                     "=m1",
                     /*#__PURE__*/React.createElement(
                       "b",
@@ -483,7 +483,7 @@ const generalTestData = {
           [
             fbt_sv_arg_1,
             fbt_sv_arg_4,
-            fbt._param(
+            fbt._implicitParam(
               "=m2",
               /*#__PURE__*/React.createElement(
                 "a",
@@ -529,7 +529,7 @@ const generalTestData = {
                   [
                     fbt_sv_arg_1,
                     fbt_sv_arg_4,
-                    fbt._param(
+                    fbt._implicitParam(
                       "=m1",
                       /*#__PURE__*/React.createElement(
                         "strong",
@@ -656,7 +656,7 @@ const generalTestData = {
         [
           fbt_sv_arg_0,
           fbt_sv_arg_1,
-          fbt._param(
+          fbt._implicitParam(
             "=m2",
             /*#__PURE__*/React.createElement(
               "a",
@@ -702,7 +702,7 @@ const generalTestData = {
                 [
                   fbt_sv_arg_0,
                   fbt_sv_arg_1,
-                  fbt._param(
+                  fbt._implicitParam(
                     "=m1",
                     /*#__PURE__*/React.createElement(
                       "strong",
@@ -936,7 +936,7 @@ const generalTestData = {
         fbt_sv_arg_1,
         fbt_sv_arg_2,
         fbt_sv_arg_3,
-        fbt._param(
+        fbt._implicitParam(
           "=m0",
           /*#__PURE__*/React.createElement(
             "b",
@@ -1053,7 +1053,7 @@ const generalTestData = {
           )
         ),
 
-        fbt._param(
+        fbt._implicitParam(
           "=m4",
           /*#__PURE__*/React.createElement(
             "a",
@@ -1165,7 +1165,7 @@ const generalTestData = {
                 fbt_sv_arg_1,
                 fbt_sv_arg_2,
                 fbt_sv_arg_3,
-                fbt._param(
+                fbt._implicitParam(
                   "=m4",
                   /*#__PURE__*/React.createElement(
                     "strong",
@@ -2531,7 +2531,7 @@ const generalTestData = {
         [
           fbt_sv_arg_0,
           fbt_sv_arg_1,
-          fbt._param("=m1", /*#__PURE__*/React.createElement("a", null, fbt._(${payload(
+          fbt._implicitParam("=m1", /*#__PURE__*/React.createElement("a", null, fbt._(${payload(
             {
               jsfbt: {
                 t: {
@@ -2556,32 +2556,37 @@ const generalTestData = {
               },
               project: '',
             },
-          )}, [fbt_sv_arg_0, fbt_sv_arg_1, fbt._param("=m1", /*#__PURE__*/React.createElement("b", null, fbt._(${payload(
-      {
-        jsfbt: {
-          t: {
-            '*': {
-              '*': {
-                desc:
-                  'In the phrase: "A1 B1 {=C1 [count] C2 [cat_token] cats} B2 A2"',
-                text: 'C1 {count} C2 {cat_token} cats',
-                tokenAliases: {},
+          )},
+          [
+            fbt_sv_arg_0,
+            fbt_sv_arg_1,
+            fbt._implicitParam("=m1", /*#__PURE__*/React.createElement("b", null, fbt._(${payload(
+              {
+                jsfbt: {
+                  t: {
+                    '*': {
+                      '*': {
+                        desc:
+                          'In the phrase: "A1 B1 {=C1 [count] C2 [cat_token] cats} B2 A2"',
+                        text: 'C1 {count} C2 {cat_token} cats',
+                        tokenAliases: {},
+                      },
+                      _1: {
+                        desc:
+                          'In the phrase: "A1 B1 {=C1 [count] C2 cat} B2 A2"',
+                        text: 'C1 {count} C2 cat',
+                        tokenAliases: {},
+                      },
+                    },
+                  },
+                  m: [
+                    {token: 'count', type: 2},
+                    {token: 'cat_token', type: 2, singular: true},
+                  ],
+                },
+                project: '',
               },
-              _1: {
-                desc: 'In the phrase: "A1 B1 {=C1 [count] C2 cat} B2 A2"',
-                text: 'C1 {count} C2 cat',
-                tokenAliases: {},
-              },
-            },
-          },
-          m: [
-            {token: 'count', type: 2},
-            {token: 'cat_token', type: 2, singular: true},
-          ],
-        },
-        project: '',
-      },
-    )}, [fbt_sv_arg_0, fbt_sv_arg_1])))])))]));`,
+            )}, [fbt_sv_arg_0, fbt_sv_arg_1])))])))]));`,
   },
 
   // Initially needed for JS source maps accuracy

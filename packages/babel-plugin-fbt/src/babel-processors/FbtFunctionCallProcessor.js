@@ -632,7 +632,6 @@ class FbtFunctionCallProcessor {
       const fbtParamRuntimeArg = createFbtRuntimeArgCallExpression(
         innerMetaPhraseFbtNode,
         [stringLiteral(innerMetaPhraseFbtNode.getOuterTokenAlias()), babelNode],
-        (FbtParamNode.type: string),
       );
       fbtRuntimeArgs.push(fbtParamRuntimeArg);
     }
