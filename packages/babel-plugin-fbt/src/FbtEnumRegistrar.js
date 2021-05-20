@@ -8,10 +8,9 @@
 
 'use strict';
 
-import type {FbtBabelNodeCallExpression} from './index.js';
 import type {NodePathOf} from '@babel/core';
 
-type NodeCallExpression = NodePathOf<FbtBabelNodeCallExpression>;
+type NodeCallExpression = NodePathOf<BabelNodeCallExpression>;
 type NodeImportDeclaration = NodePathOf<BabelNodeImportDeclaration>;
 export type EnumKey = string;
 type EnumValue = string;

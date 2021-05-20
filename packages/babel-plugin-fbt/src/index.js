@@ -25,16 +25,6 @@ import typeof {FbtVariationType} from './translate/IntlVariations';
 import type {BabelTransformPlugin} from '@babel/core';
 import typeof BabelTypes from '@babel/types';
 
-export type ExtraBabelNodeProps = {
-  implicitDesc?: string,
-  implicitFbt?: boolean,
-  parentIndex?: number,
-};
-export type FbtBabelNodeCallExpression = BabelNodeCallExpression &
-  ExtraBabelNodeProps;
-export type FbtBabelNodeJSXElement = BabelNodeJSXElement & ExtraBabelNodeProps;
-export type FbtBabelNodeShape = $Shape<ExtraBabelNodeProps>;
-
 export type ExtraOptions = {[optionName: string]: boolean};
 type FbtEnumLoader = (enumFilePath: string) => EnumModule;
 export type PluginOptions = {|
@@ -137,7 +127,7 @@ export type Phrase = {|
 type ChildToParentMap = {[childIndex: number]: number};
 
 export type BabelPluginFbt = {
-  ({types: BabelTypes, ...}): BabelTransformPlugin<ExtraBabelNodeProps>,
+  ({types: BabelTypes, ...}): BabelTransformPlugin,
   getExtractedStrings: () => Array<Phrase>,
   getChildToParentRelationships: () => ChildToParentMap,
   fbtHashKey: (PatternString | FbtRuntimeInput, string, boolean) => string,
@@ -177,9 +167,7 @@ let allMetaPhrases: Array<{|...MetaPhrase, phrase: Phrase|}>;
  */
 let childToParent: ChildToParentMap;
 
-function FbtTransform(babel: {
-  types: BabelTypes,
-}): BabelTransformPlugin<ExtraBabelNodeProps> {
+function FbtTransform(babel: {types: BabelTypes}): BabelTransformPlugin {
   const t = babel.types;
 
   return {

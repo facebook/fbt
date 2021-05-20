@@ -53,7 +53,7 @@ function getPluginOptions(plugin /*: $Shape<{opts: ?PluginOptions}> */) /*: Plug
 
 module.exports = function BabelPluginFbtRuntime(babel /*: {
   types: BabelTypes,
-} */) /*: BabelTransformPlugin<{}> */ {
+} */) /*: BabelTransformPlugin */ {
   const t = babel.types;
 
   // Need to extract this as a standalone function for Flow type check refinements

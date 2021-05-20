@@ -11,16 +11,12 @@
 'use strict';
 
 import type {JSModuleNameType} from '../FbtConstants';
-import type {
-  FbtBabelNodeCallExpression,
-  FbtBabelNodeJSXElement,
-} from '../index.js';
 import type {NodePathOf} from '@babel/core';
 import typeof BabelTypes from '@babel/types';
 
-type NodePath = NodePathOf<FbtBabelNodeJSXElement>;
-type FbtBabelNodeJSXElementChild = $ElementType<
-  $PropertyType<FbtBabelNodeJSXElement, 'children'>,
+type NodePath = NodePathOf<BabelNodeJSXElement>;
+type BabelNodeJSXElementChild = $ElementType<
+  $PropertyType<BabelNodeJSXElement, 'children'>,
   number,
 >;
 
@@ -46,7 +42,6 @@ const {
 const getNamespacedArgs = require('../getNamespacedArgs');
 const {
   arrayExpression,
-  binaryExpression,
   callExpression,
   identifier,
   isCallExpression,
@@ -197,11 +192,10 @@ class JSXFbtProcessor {
     ) {
       throw errorAt(
         this.node,
-        `<${
-          this.moduleName
-        }> must have at least one of these attributes: ${FbtCallMustHaveAtLeastOneOfTheseAttributes.join(
-          ', ',
-        )}`,
+        `<${this.moduleName}> must have at least ` +
+          `one of these attributes: ${FbtCallMustHaveAtLeastOneOfTheseAttributes.join(
+            ', ',
+          )}`,
       );
     }
   }
@@ -216,25 +210,12 @@ class JSXFbtProcessor {
       args.push(options);
     }
 
-    // callExpression() only returns a BabelNodeCallExpression but we need to
-    // customize it as an FbtBabelNodeCallExpression
-    const callNode = ((callExpression(
-      identifier(moduleName),
-      args,
-    ): $FlowExpectedError): FbtBabelNodeCallExpression);
-
+    const callNode = callExpression(identifier(moduleName), args);
     callNode.loc = node.loc;
-    callNode.parentIndex = node.parentIndex;
 
     if (isJSXElement(path.parent)) {
-      // jsxExpressionContainer() only returns a BabelNodeJSXElement but we need to
-      // customize it as an FbtBabelNodeJSXElement
-      const ret = ((jsxExpressionContainer(
-        callNode,
-      ): $FlowExpectedError): FbtBabelNodeJSXElement);
-
+      const ret = jsxExpressionContainer(callNode);
       ret.loc = node.loc;
-      ret.parentIndex = node.parentIndex;
       return ret;
     }
     return callNode;
@@ -252,7 +233,7 @@ class JSXFbtProcessor {
     });
     return (filterEmptyNodes(
       this.node.children,
-    ): $ReadOnlyArray<FbtBabelNodeJSXElementChild>).map(node => {
+    ): $ReadOnlyArray<BabelNodeJSXElementChild>).map(node => {
       try {
         switch (node.type) {
           case 'JSXElement':
@@ -295,25 +276,6 @@ class JSXFbtProcessor {
         throw errorAt(node, error.message);
       }
     });
-  }
-
-  /**
-   * Given an array of nodes, recursively construct a concatenation of all these nodes.
-   */
-  _createConcatFromExpressions(
-    nodes: $ReadOnlyArray<BabelNodeStringLiteral | BabelNodeCallExpression>,
-  ): BabelNodeBinaryExpression {
-    invariant(nodes.length > 1, 'Cannot create an expression without nodes.');
-
-    // Flow's native type for the array#reduceRight method is incorrect
-    // when the array has more than one item AND the callback function returns
-    // a different type from the array items' type.
-    // See https://fburl.com/07z4y180
-    // $FlowExpectedError
-    return (nodes.reduceRight(
-      // $FlowExpectedError Same reason as above
-      (rest, node) => binaryExpression('+', node, rest),
-    ): BabelNodeBinaryExpression);
   }
 
   _getDescAttributeValue() {

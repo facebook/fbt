@@ -11,11 +11,10 @@
 'use strict';
 
 import type {JSModuleNameType} from '../FbtConstants';
-import type {FbtBabelNodeCallExpression} from '../index.js';
 import type {NodePathOf} from '@babel/core';
 import typeof BabelTypes from '@babel/types';
 
-type NodePath = NodePathOf<FbtBabelNodeCallExpression>;
+type NodePath = NodePathOf<BabelNodeCallExpression>;
 
 const FbtCommon = require('../FbtCommon');
 const FbtNodeChecker = require('../FbtNodeChecker');
@@ -66,7 +65,7 @@ class FbtCommonFunctionCallProcessor {
   /**
    * Converts an Fbt common call of the form `fbt.c(text)` to the basic form `fbt(text, desc)`
    */
-  convertToNormalCall(): FbtBabelNodeCallExpression {
+  convertToNormalCall(): BabelNodeCallExpression {
     const {moduleName, node, t} = this;
     if (node.arguments.length !== 1) {
       throw errorAt(
