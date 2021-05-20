@@ -1,9 +1,10 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
- * @generated SignedSource<<35a1a3b5e9c1ce75a5a7ff0d2d813845>>
+ * @generated SignedSource<<d7dddb3e3387322956280f3bd252fd3a>>
  *
  * @flow strict
+ * @emails oncall+i18n_fbt_js
  * @codegen-command: JSModulesToClientScript
  */
 
