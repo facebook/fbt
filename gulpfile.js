@@ -48,7 +48,7 @@ const paths = {
 };
 
 const COPYRIGHT = 'Copyright (c) Facebook, Inc. and its affiliates.';
-const ONCALL_ID = 'oncall+internationalization';
+const ONCALL_ID = 'oncall+i18n_fbt_js';
 
 const COPYRIGHT_HEADER = `/**
  * fbt v<%= version %>
