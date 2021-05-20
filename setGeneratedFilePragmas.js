@@ -17,7 +17,7 @@ const {parseWithComments, print} = require('jest-docblock');
 
 // Inspired from https://stackoverflow.com/a/36328890/104598
 const DOCBLOCK_PATTERN = /(\/\*\*[^*]*\*+(?:[^/*][^*]*\*+)*\/)([\s\S]*)/;
-const STRIPPED_PRAGMAS = ['codegen-command:', 'codegen-command'];
+const STRIPPED_PRAGMAS = ['codegen-command:', 'codegen-command', 'format'];
 
 function setGeneratedFilePragmas(oncallID) {
   return each((content, file, callback) => {
@@ -27,9 +27,10 @@ function setGeneratedFilePragmas(oncallID) {
     const docblock = parseWithComments(docblockStr);
     STRIPPED_PRAGMAS.forEach(key => delete docblock.pragmas[key]);
     Object.assign(docblock.pragmas, {
-      generated: '', // remove any "SignedSource" value to avoid lint issues
-      nogrep: '',
       emails: docblock.pragmas.emails || oncallID,
+      generated: '', // remove any "SignedSource" value to avoid lint issues
+      noformat: '',
+      nogrep: '',
     });
     const prelude = content.substr(0, matches.index);
     callback(null, prelude + print(docblock) + code);
