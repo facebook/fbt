@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<35d3370d0756e8b7864f12d62f222dac>>
+ * @generated SignedSource<<bbecc90b078ba93c218f0cdb66a936bd>>
  * @codegen-command : phps FBSyncAll
  *
  * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -23,7 +23,7 @@
 
 'use strict';
 
-import NativeFbtModule from './NativeFbtModule';
+import NativeFbtModule from 'react-native-fbt';
 
 const _translationsDictionary: {[hashKey: string]: ?string} = {};
 

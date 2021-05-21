@@ -5,13 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-#import <Foundation/Foundation.h>
-#import <React/RCTBridgeModule.h>
-
-NS_ASSUME_NONNULL_BEGIN
-
-@interface FBTi18nAssetsModule : NSObject <RCTBridgeModule>
-
-@end
-
-NS_ASSUME_NONNULL_END
+ //
+//  Use this file to import your target's public headers that you would like to expose to Swift.
+//
