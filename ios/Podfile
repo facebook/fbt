@@ -1,29 +1,61 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-platform :ios, '10.0'
+source 'https://cdn.cocoapods.org/'
+platform :ios, '11.0'
 
-target 'rnDemoApp' do
+if ENV['USE_FRAMEWORKS'] == '1'
+  puts "Installing pods with use_frameworks!"
+  use_frameworks!
+end
+
+if ENV['USE_HERMES'] == '1'
+  puts "Using Hermes engine"
+end
+
+def pods()
   config = use_native_modules!
 
-  use_react_native!(
-    :path => config[:reactNativePath],
-    # to enable hermes on iOS, change `false` to `true` and then install pods
-    :hermes_enabled => false
-  )
-
-  target 'rnDemoAppTests' do
-    inherit! :complete
-    # Pods for testing
+  fabric_enabled = false
+  if ENV['USE_FABRIC'] == '1'
+    puts "Building rn-demo-app with Fabric enabled."
+    fabric_enabled = true
   end
+
+  use_react_native!(path: config[:reactNativePath], fabric_enabled: fabric_enabled, hermes_enabled: ENV['USE_HERMES'] == '1')
+end
+
+target 'rnDemoApp' do
+  pods()
 
   # Enables Flipper.
   #
   # Note that if you have use_frameworks! enabled, Flipper will not work and
   # you should disable the next line.
-  use_flipper!()
+  use_flipper!
 
   post_install do |installer|
-    react_native_post_install(installer)
+    flipper_post_install(installer)
+  end
+end
+
+target 'rnDemoAppTests' do
+  pods()
+  # Pods for testing
+end
+
+def frameworks_pre_install(installer)
+  static_frameworks = ['FlipperKit', 'Flipper', 'Flipper-Folly',
+      'CocoaAsyncSocket', 'ComponentKit', 'Flipper-DoubleConversion',
+      'Flipper-Glog', 'Flipper-PeerTalk', 'Flipper-RSocket',
+      'CocoaLibEvent', 'OpenSSL-Universal', 'boost-for-react-native']
+
+  Pod::Installer::Xcode::TargetValidator.send(:define_method, :verify_no_static_framework_transitive_dependencies) {}
+  installer.pod_targets.each do |pod|
+    if static_frameworks.include?(pod.name)
+      def pod.build_type
+        Pod::BuildType.static_library
+      end
+    end
   end
 end

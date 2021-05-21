@@ -18,7 +18,7 @@
 		2DCD954D1E0B4F2C00145EB5 /* rnDemoAppTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* rnDemoAppTests.mm */; };
 		38B3115A23F5CD2300DD35BA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38B3115C23F5CD2300DD35BA /* Localizable.strings */; };
 		C8136AB85B7268A494F09417 /* libPods-rnDemoApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D6E855A23093E8EF63B0F93 /* libPods-rnDemoApp.a */; };
-		F982250477E38BE003B4E466 /* libPods-rnDemoApp-rnDemoAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1825FE9A2AE4020621E0ADF7 /* libPods-rnDemoApp-rnDemoAppTests.a */; };
+		F32D36A33D02D2EA10D82BBA /* libPods-rnDemoAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 524105332FD91CFE0C9335D6 /* libPods-rnDemoAppTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +51,6 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = rnDemoApp/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = rnDemoApp/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = rnDemoApp/main.mm; sourceTree = "<group>"; };
-		1825FE9A2AE4020621E0ADF7 /* libPods-rnDemoApp-rnDemoAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rnDemoApp-rnDemoAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E47B1E0B4A5D006451C7 /* rnDemoApp-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "rnDemoApp-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* rnDemoApp-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "rnDemoApp-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		38B3115B23F5CD2300DD35BA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -59,6 +58,7 @@
 		38B3115E23F5CD4D00DD35BA /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		3CD925ACAEA3006774DABDFA /* Pods-rnDemoApp-rnDemoAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rnDemoApp-rnDemoAppTests.release.xcconfig"; path = "Target Support Files/Pods-rnDemoApp-rnDemoAppTests/Pods-rnDemoApp-rnDemoAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		4D6E855A23093E8EF63B0F93 /* libPods-rnDemoApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rnDemoApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		524105332FD91CFE0C9335D6 /* libPods-rnDemoAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rnDemoAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A0176767CC1B1E16570DE73 /* Pods-rnDemoAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rnDemoAppTests.debug.xcconfig"; path = "Target Support Files/Pods-rnDemoAppTests/Pods-rnDemoAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C39B11103005B63F9D1A7BFC /* Pods-rnDemoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rnDemoApp.debug.xcconfig"; path = "Target Support Files/Pods-rnDemoApp/Pods-rnDemoApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D06ECADE78C15592DD9476C2 /* Pods-rnDemoAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rnDemoAppTests.release.xcconfig"; path = "Target Support Files/Pods-rnDemoAppTests/Pods-rnDemoAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F982250477E38BE003B4E466 /* libPods-rnDemoApp-rnDemoAppTests.a in Frameworks */,
+				F32D36A33D02D2EA10D82BBA /* libPods-rnDemoAppTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,7 +141,7 @@
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				4D6E855A23093E8EF63B0F93 /* libPods-rnDemoApp.a */,
-				1825FE9A2AE4020621E0ADF7 /* libPods-rnDemoApp-rnDemoAppTests.a */,
+				524105332FD91CFE0C9335D6 /* libPods-rnDemoAppTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -203,7 +203,6 @@
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				6AFC60A3CA12976319AB55C6 /* [CP] Embed Pods Frameworks */,
 				71A0F762D8C7AC30B23EDF4B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -391,7 +390,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-rnDemoApp-rnDemoAppTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-rnDemoAppTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -448,31 +447,13 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		6AFC60A3CA12976319AB55C6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-rnDemoApp-rnDemoAppTests/Pods-rnDemoApp-rnDemoAppTests-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-rnDemoApp-rnDemoAppTests/Pods-rnDemoApp-rnDemoAppTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		71A0F762D8C7AC30B23EDF4B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-rnDemoApp-rnDemoAppTests/Pods-rnDemoApp-rnDemoAppTests-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-rnDemoAppTests/Pods-rnDemoAppTests-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -481,7 +462,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-rnDemoApp-rnDemoAppTests/Pods-rnDemoApp-rnDemoAppTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-rnDemoAppTests/Pods-rnDemoAppTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FCAA42AA7C35633BD6766920 /* [CP] Check Pods Manifest.lock */ = {
@@ -621,7 +602,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 05AB71F2AB122226482076FA /* Pods-rnDemoApp-rnDemoAppTests.debug.xcconfig */;
+			baseConfigurationReference = 6A0176767CC1B1E16570DE73 /* Pods-rnDemoAppTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -645,7 +626,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3CD925ACAEA3006774DABDFA /* Pods-rnDemoApp-rnDemoAppTests.release.xcconfig */;
+			baseConfigurationReference = D06ECADE78C15592DD9476C2 /* Pods-rnDemoAppTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
