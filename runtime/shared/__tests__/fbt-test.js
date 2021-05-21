@@ -7,11 +7,12 @@
  * @flow
  */
 
-/* eslint-disable fb-www/dot-notation, fb-www/fbt-no-project */
+/* eslint-disable fb-www/fbt-no-project */
 
 'use strict';
 
 jest.mock('FbtNumberType');
+jest.mock('translationOverrideListener'); // FB internal
 
 import type {FbtRuntimeCallInput, FbtTranslatedInput} from 'FbtHooks';
 
