@@ -1,6 +1,6 @@
 # react-native-fbt
 
-React native module to enable the usage of the [FBT translation framework](https://facebook.github.io/fbt/) in React Native apps (iOS/Android)
+React Native module to enable the use of the [FBT translation framework](https://facebook.github.io/fbt/) in React Native apps (iOS/Android).
 
 ## Getting started
 
@@ -26,14 +26,14 @@ React native module to enable the usage of the [FBT translation framework](https
   - Add `import com.facebook.react.modules.FbtPackage;` to the imports at the top of the file
   - Add `new FbtPackage()` to the list returned by the `getPackages()` method
 2. Append the following lines to `android/settings.gradle`:
-  	```
-  	include ':react-native-fbt'
-  	project(':react-native-fbt').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-fbt/android')
-  	```
+    ```
+    include ':react-native-fbt'
+    project(':react-native-fbt').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fbt/android')
+    ```
 3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
-  	```
+    ```
       compile project(':react-native-fbt')
-  	```
+    ```
 
 ## Usage
 [React Native Demo App](https://github.com/facebook/fbt/tree/rn-demo-app)
