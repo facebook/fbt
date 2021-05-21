@@ -14,6 +14,7 @@
 		13B07FC11A68108700A75B9A /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.mm */; };
 		38B3115A23F5CD2300DD35BA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38B3115C23F5CD2300DD35BA /* Localizable.strings */; };
 		C8136AB85B7268A494F09417 /* libPods-rnDemoApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D6E855A23093E8EF63B0F93 /* libPods-rnDemoApp.a */; };
+		E7E4183C264B4756000755BA /* RNDemoAppTurboModuleProvider.mm in Sources */ = {isa = PBXBuildFile; fileRef = E7E4183A264B4756000755BA /* RNDemoAppTurboModuleProvider.mm */; };
 		F32D36A33D02D2EA10D82BBA /* libPods-rnDemoAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 524105332FD91CFE0C9335D6 /* libPods-rnDemoAppTests.a */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,8 @@
 		C39B11103005B63F9D1A7BFC /* Pods-rnDemoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rnDemoApp.debug.xcconfig"; path = "Target Support Files/Pods-rnDemoApp/Pods-rnDemoApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D06ECADE78C15592DD9476C2 /* Pods-rnDemoAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rnDemoAppTests.release.xcconfig"; path = "Target Support Files/Pods-rnDemoAppTests/Pods-rnDemoAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		E72584EC263242D500757CAC /* rnDemoApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "rnDemoApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		E7E4183A264B4756000755BA /* RNDemoAppTurboModuleProvider.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RNDemoAppTurboModuleProvider.mm; sourceTree = "<group>"; };
+		E7E4183B264B4756000755BA /* RNDemoAppTurboModuleProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNDemoAppTurboModuleProvider.h; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FF92782BA96A3282935CA06D /* Pods-rnDemoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rnDemoApp.release.xcconfig"; path = "Target Support Files/Pods-rnDemoApp/Pods-rnDemoApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,6 +99,8 @@
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
+				E7E4183B264B4756000755BA /* RNDemoAppTurboModuleProvider.h */,
+				E7E4183A264B4756000755BA /* RNDemoAppTurboModuleProvider.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
@@ -407,6 +412,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7E4183C264B4756000755BA /* RNDemoAppTurboModuleProvider.mm in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.mm in Sources */,
 			);
