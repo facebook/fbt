@@ -3,7 +3,7 @@
   "title": "FBT React Native Module",
   "version": "0.0.3",
   "description": "Native module to enable the usage of the FBT translation framework in React Native apps.",
-  "main": "NativeFbtModule.js",
+  "main": "js/NativeFbtModule.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/facebook/fbt.git"
