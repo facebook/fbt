@@ -30,6 +30,8 @@ const {isJSXText, isStringLiteral} = require('@babel/types');
 class FbtTextNode extends FbtNode<
   empty,
   BabelNodeStringLiteral | BabelNodeJSXText,
+  null,
+  null,
 > {
   static +type: FbtNodeType = FbtNodeType.Text;
 
@@ -47,6 +49,10 @@ class FbtTextNode extends FbtNode<
           node,
         })
       : null;
+  }
+
+  getOptions(): null {
+    return null;
   }
 
   getArgsForStringVariationCalc(): $ReadOnlyArray<empty> {

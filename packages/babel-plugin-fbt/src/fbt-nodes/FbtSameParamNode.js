@@ -27,7 +27,12 @@ const invariant = require('invariant');
  * Represents an <fbt:sameParam> or fbt.sameParam() construct.
  * @see docs/params.md
  */
-class FbtSameParamNode extends FbtNode<empty, BabelNodeCallExpression> {
+class FbtSameParamNode extends FbtNode<
+  empty,
+  BabelNodeCallExpression,
+  null,
+  null,
+> {
   static +type: FbtNodeType = FbtNodeType.SameParam;
 
   /**
@@ -39,6 +44,10 @@ class FbtSameParamNode extends FbtNode<empty, BabelNodeCallExpression> {
     node,
   }: FromBabelNodeFunctionArgs): ?FbtSameParamNode {
     return createInstanceFromFbtConstructCallsite(moduleName, node, this);
+  }
+
+  getOptions(): null {
+    return null;
   }
 
   _getTokenName(): string {

@@ -250,7 +250,7 @@ class StringVariationArgsMap {
   /**
    * @return StringVariationArg corresponding to the given FbtNode
    */
-  get<SV: AnyStringVariationArg>(fbtNode: FbtNode<SV, any, any>): SV {
+  get<SV: AnyStringVariationArg>(fbtNode: FbtNode<SV, any, any, any>): SV {
     const ret = this._map.get(fbtNode);
     invariant(
       ret != null,
@@ -264,7 +264,9 @@ class StringVariationArgsMap {
   /**
    * @throws if the given FbtNode cannot be found
    */
-  mustHave<SV: AnyStringVariationArg>(fbtNode: FbtNode<SV, any, any>): void {
+  mustHave<SV: AnyStringVariationArg>(
+    fbtNode: FbtNode<SV, any, any, any>,
+  ): void {
     this.get(fbtNode);
   }
 }

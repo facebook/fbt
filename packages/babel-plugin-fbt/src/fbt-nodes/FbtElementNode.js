@@ -120,10 +120,14 @@ const invariant = require('invariant');
  *
  */
 class FbtElementNode
-  extends FbtNode<AnyStringVariationArg, BabelNodeCallExpression, FbtChildNode>
+  extends FbtNode<
+    AnyStringVariationArg,
+    BabelNodeCallExpression,
+    FbtChildNode,
+    Options,
+  >
   implements IFbtElementNode {
   static +type: FbtNodeType = FbtNodeType.Element;
-  +options: Options;
 
   _tokenSet: ParamSet = {};
 

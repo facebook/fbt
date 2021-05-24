@@ -3496,6 +3496,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -3601,6 +3602,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtImplicitParamNode {
@@ -3641,6 +3643,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
         FbtImplicitParamNode {
@@ -3678,6 +3681,7 @@ FbtElementNode {
               "nodeChecker": FbtNodeChecker {
                 "moduleName": "fbt",
               },
+              "options": null,
               "parent": "FbtImplicitParamNode",
             },
             FbtPluralNode {
@@ -3725,6 +3729,7 @@ FbtElementNode {
               "nodeChecker": FbtNodeChecker {
                 "moduleName": "fbt",
               },
+              "options": null,
               "parent": "FbtImplicitParamNode",
             },
           ],
@@ -3733,6 +3738,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
         FbtTextNode {
@@ -3745,6 +3751,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
       ],
@@ -3753,6 +3760,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -3765,6 +3773,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -3802,6 +3811,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -3839,6 +3849,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -3909,6 +3920,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -3959,6 +3971,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -4009,6 +4022,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -4046,6 +4060,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -4173,6 +4188,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
         FbtEnumNode {
@@ -4217,6 +4233,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
       ],
@@ -4225,6 +4242,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -4237,6 +4255,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtParamNode {
@@ -4282,6 +4301,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtImplicitParamNode {
@@ -4340,6 +4360,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
         FbtPluralNode {
@@ -4387,6 +4408,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
         FbtTextNode {
@@ -4399,6 +4421,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
         FbtImplicitParamNode {
@@ -4434,6 +4457,7 @@ FbtElementNode {
               "nodeChecker": FbtNodeChecker {
                 "moduleName": "fbt",
               },
+              "options": null,
               "parent": "FbtImplicitParamNode",
             },
             FbtPronounNode {
@@ -4480,6 +4504,7 @@ FbtElementNode {
               "nodeChecker": FbtNodeChecker {
                 "moduleName": "fbt",
               },
+              "options": null,
               "parent": "FbtImplicitParamNode",
             },
           ],
@@ -4488,6 +4513,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
         FbtTextNode {
@@ -4500,6 +4526,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
       ],
@@ -4508,6 +4535,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -4613,6 +4641,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtImplicitParamNode {
@@ -4653,6 +4682,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
         FbtImplicitParamNode {
@@ -4690,6 +4720,7 @@ FbtElementNode {
               "nodeChecker": FbtNodeChecker {
                 "moduleName": "fbt",
               },
+              "options": null,
               "parent": "FbtImplicitParamNode",
             },
             FbtPluralNode {
@@ -4737,6 +4768,7 @@ FbtElementNode {
               "nodeChecker": FbtNodeChecker {
                 "moduleName": "fbt",
               },
+              "options": null,
               "parent": "FbtImplicitParamNode",
             },
           ],
@@ -4745,6 +4777,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
         FbtTextNode {
@@ -4757,6 +4790,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
       ],
@@ -4765,6 +4799,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -4777,6 +4812,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -4860,6 +4896,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtImplicitParamNode {
@@ -4912,6 +4949,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
         FbtImplicitParamNode {
@@ -4950,6 +4988,7 @@ FbtElementNode {
               "nodeChecker": FbtNodeChecker {
                 "moduleName": "fbt",
               },
+              "options": null,
               "parent": "FbtImplicitParamNode",
             },
             FbtTextNode {
@@ -4962,6 +5001,7 @@ FbtElementNode {
               "nodeChecker": FbtNodeChecker {
                 "moduleName": "fbt",
               },
+              "options": null,
               "parent": "FbtImplicitParamNode",
             },
             FbtParamNode {
@@ -4993,6 +5033,7 @@ FbtElementNode {
               "nodeChecker": FbtNodeChecker {
                 "moduleName": "fbt",
               },
+              "options": null,
               "parent": "FbtImplicitParamNode",
             },
           ],
@@ -5001,6 +5042,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
         FbtTextNode {
@@ -5013,6 +5055,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
       ],
@@ -5021,6 +5064,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -5033,6 +5077,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -5104,6 +5149,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -5154,6 +5200,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -5204,6 +5251,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -5254,6 +5302,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -5342,6 +5391,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -5430,6 +5480,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -5476,6 +5527,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -5543,6 +5595,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtPluralNode {
@@ -5662,6 +5715,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtNameNode {
@@ -5743,6 +5797,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtPronounNode {
@@ -5788,6 +5843,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -5827,6 +5883,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtParamNode {
@@ -5950,6 +6007,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtPluralNode {
@@ -6053,6 +6111,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtPluralNode {
@@ -6173,6 +6232,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtPronounNode {
@@ -6217,6 +6277,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -6319,6 +6380,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtPronounNode {
@@ -6365,6 +6427,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -6416,6 +6479,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtParamNode {
@@ -6459,6 +6523,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtSameParamNode {
@@ -6471,6 +6536,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -6483,6 +6549,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -6534,6 +6601,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtParamNode {
@@ -6577,6 +6645,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -6614,6 +6683,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -6626,6 +6696,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -6638,6 +6709,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -6650,6 +6722,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -6687,6 +6760,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -6699,6 +6773,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -6711,6 +6786,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -6723,6 +6799,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -6760,6 +6837,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -6772,6 +6850,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -6784,6 +6863,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -6796,6 +6876,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -6854,6 +6935,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtSameParamNode {
@@ -6866,6 +6948,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -6925,6 +7008,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtParamNode {
@@ -6981,6 +7065,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -7022,6 +7107,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -7034,6 +7120,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtParamNode {
@@ -7065,6 +7152,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -7078,6 +7166,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtParamNode {
@@ -7109,6 +7198,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -7186,6 +7276,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtImplicitParamNode {
@@ -7244,6 +7335,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
         FbtImplicitParamNode {
@@ -7298,6 +7390,7 @@ FbtElementNode {
               "nodeChecker": FbtNodeChecker {
                 "moduleName": "fbt",
               },
+              "options": null,
               "parent": "FbtImplicitParamNode",
             },
             FbtParamNode {
@@ -7341,6 +7434,7 @@ FbtElementNode {
               "nodeChecker": FbtNodeChecker {
                 "moduleName": "fbt",
               },
+              "options": null,
               "parent": "FbtImplicitParamNode",
             },
             FbtPluralNode {
@@ -7391,6 +7485,7 @@ FbtElementNode {
               "nodeChecker": FbtNodeChecker {
                 "moduleName": "fbt",
               },
+              "options": null,
               "parent": "FbtImplicitParamNode",
             },
           ],
@@ -7399,6 +7494,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
         FbtTextNode {
@@ -7411,6 +7507,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
       ],
@@ -7419,6 +7516,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -7431,6 +7529,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -7470,6 +7569,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -7510,6 +7610,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -7615,6 +7716,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtImplicitParamNode {
@@ -7655,6 +7757,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
         FbtImplicitParamNode {
@@ -7692,6 +7795,7 @@ FbtElementNode {
               "nodeChecker": FbtNodeChecker {
                 "moduleName": "fbt",
               },
+              "options": null,
               "parent": "FbtImplicitParamNode",
             },
             FbtPluralNode {
@@ -7739,6 +7843,7 @@ FbtElementNode {
               "nodeChecker": FbtNodeChecker {
                 "moduleName": "fbt",
               },
+              "options": null,
               "parent": "FbtImplicitParamNode",
             },
           ],
@@ -7747,6 +7852,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
         FbtTextNode {
@@ -7759,6 +7865,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
       ],
@@ -7767,6 +7874,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -7779,6 +7887,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -7816,6 +7925,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -7853,6 +7963,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -7923,6 +8034,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -7973,6 +8085,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -8023,6 +8136,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -8060,6 +8174,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -8187,6 +8302,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
         FbtEnumNode {
@@ -8231,6 +8347,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
       ],
@@ -8239,6 +8356,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -8251,6 +8369,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtParamNode {
@@ -8296,6 +8415,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtImplicitParamNode {
@@ -8354,6 +8474,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
         FbtPluralNode {
@@ -8401,6 +8522,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
         FbtTextNode {
@@ -8413,6 +8535,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
         FbtImplicitParamNode {
@@ -8448,6 +8571,7 @@ FbtElementNode {
               "nodeChecker": FbtNodeChecker {
                 "moduleName": "fbt",
               },
+              "options": null,
               "parent": "FbtImplicitParamNode",
             },
             FbtPronounNode {
@@ -8494,6 +8618,7 @@ FbtElementNode {
               "nodeChecker": FbtNodeChecker {
                 "moduleName": "fbt",
               },
+              "options": null,
               "parent": "FbtImplicitParamNode",
             },
           ],
@@ -8502,6 +8627,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
         FbtTextNode {
@@ -8514,6 +8640,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
       ],
@@ -8522,6 +8649,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -8627,6 +8755,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtImplicitParamNode {
@@ -8667,6 +8796,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
         FbtImplicitParamNode {
@@ -8704,6 +8834,7 @@ FbtElementNode {
               "nodeChecker": FbtNodeChecker {
                 "moduleName": "fbt",
               },
+              "options": null,
               "parent": "FbtImplicitParamNode",
             },
             FbtPluralNode {
@@ -8751,6 +8882,7 @@ FbtElementNode {
               "nodeChecker": FbtNodeChecker {
                 "moduleName": "fbt",
               },
+              "options": null,
               "parent": "FbtImplicitParamNode",
             },
           ],
@@ -8759,6 +8891,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
         FbtTextNode {
@@ -8771,6 +8904,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
       ],
@@ -8779,6 +8913,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -8791,6 +8926,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -8874,6 +9010,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtImplicitParamNode {
@@ -8926,6 +9063,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
         FbtImplicitParamNode {
@@ -8964,6 +9102,7 @@ FbtElementNode {
               "nodeChecker": FbtNodeChecker {
                 "moduleName": "fbt",
               },
+              "options": null,
               "parent": "FbtImplicitParamNode",
             },
             FbtTextNode {
@@ -8976,6 +9115,7 @@ FbtElementNode {
               "nodeChecker": FbtNodeChecker {
                 "moduleName": "fbt",
               },
+              "options": null,
               "parent": "FbtImplicitParamNode",
             },
             FbtParamNode {
@@ -9007,6 +9147,7 @@ FbtElementNode {
               "nodeChecker": FbtNodeChecker {
                 "moduleName": "fbt",
               },
+              "options": null,
               "parent": "FbtImplicitParamNode",
             },
           ],
@@ -9015,6 +9156,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
         FbtTextNode {
@@ -9027,6 +9169,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
       ],
@@ -9035,6 +9178,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -9047,6 +9191,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -9118,6 +9263,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -9168,6 +9314,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -9218,6 +9365,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -9268,6 +9416,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -9356,6 +9505,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -9444,6 +9594,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -9490,6 +9641,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -9557,6 +9709,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtPluralNode {
@@ -9676,6 +9829,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtNameNode {
@@ -9757,6 +9911,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtPronounNode {
@@ -9802,6 +9957,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -9841,6 +9997,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtParamNode {
@@ -9964,6 +10121,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtPluralNode {
@@ -10067,6 +10225,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtPluralNode {
@@ -10187,6 +10346,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtPronounNode {
@@ -10231,6 +10391,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -10333,6 +10494,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtPronounNode {
@@ -10379,6 +10541,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -10430,6 +10593,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtParamNode {
@@ -10473,6 +10637,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtSameParamNode {
@@ -10485,6 +10650,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -10497,6 +10663,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -10548,6 +10715,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtParamNode {
@@ -10591,6 +10759,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -10628,6 +10797,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -10640,6 +10810,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -10652,6 +10823,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -10664,6 +10836,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -10701,6 +10874,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -10713,6 +10887,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -10725,6 +10900,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -10737,6 +10913,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -10774,6 +10951,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -10786,6 +10964,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -10798,6 +10977,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -10810,6 +10990,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -10868,6 +11049,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtSameParamNode {
@@ -10880,6 +11062,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -10939,6 +11122,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtParamNode {
@@ -10995,6 +11179,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -11036,6 +11221,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -11048,6 +11234,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtParamNode {
@@ -11079,6 +11266,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -11092,6 +11280,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtParamNode {
@@ -11123,6 +11312,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -11200,6 +11390,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtImplicitParamNode {
@@ -11258,6 +11449,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
         FbtImplicitParamNode {
@@ -11312,6 +11504,7 @@ FbtElementNode {
               "nodeChecker": FbtNodeChecker {
                 "moduleName": "fbt",
               },
+              "options": null,
               "parent": "FbtImplicitParamNode",
             },
             FbtParamNode {
@@ -11355,6 +11548,7 @@ FbtElementNode {
               "nodeChecker": FbtNodeChecker {
                 "moduleName": "fbt",
               },
+              "options": null,
               "parent": "FbtImplicitParamNode",
             },
             FbtPluralNode {
@@ -11405,6 +11599,7 @@ FbtElementNode {
               "nodeChecker": FbtNodeChecker {
                 "moduleName": "fbt",
               },
+              "options": null,
               "parent": "FbtImplicitParamNode",
             },
           ],
@@ -11413,6 +11608,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
         FbtTextNode {
@@ -11425,6 +11621,7 @@ FbtElementNode {
           "nodeChecker": FbtNodeChecker {
             "moduleName": "fbt",
           },
+          "options": null,
           "parent": "FbtImplicitParamNode",
         },
       ],
@@ -11433,6 +11630,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -11445,6 +11643,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -11484,6 +11683,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -13230,6 +13430,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -13267,6 +13468,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -13304,6 +13506,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -13341,6 +13544,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -13411,6 +13615,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -13461,6 +13666,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -13511,6 +13717,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -13581,6 +13788,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -13631,6 +13839,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -13681,6 +13890,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -13718,6 +13928,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -13788,6 +13999,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -13838,6 +14050,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -13888,6 +14101,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -13938,6 +14152,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -14026,6 +14241,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -14114,6 +14330,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -14160,6 +14377,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -14227,6 +14445,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtPluralNode {
@@ -14346,6 +14565,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtNameNode {
@@ -14427,6 +14647,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtPronounNode {
@@ -14472,6 +14693,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -14511,6 +14733,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtParamNode {
@@ -14634,6 +14857,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtPluralNode {
@@ -14737,6 +14961,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtPluralNode {
@@ -14857,6 +15082,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtPronounNode {
@@ -14901,6 +15127,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -15003,6 +15230,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtPronounNode {
@@ -15049,6 +15277,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -15100,6 +15329,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtParamNode {
@@ -15143,6 +15373,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtSameParamNode {
@@ -15155,6 +15386,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -15167,6 +15399,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -15218,6 +15451,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtParamNode {
@@ -15261,6 +15495,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -15298,6 +15533,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -15310,6 +15546,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -15322,6 +15559,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -15334,6 +15572,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -15371,6 +15610,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -15383,6 +15623,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -15395,6 +15636,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -15407,6 +15649,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -15444,6 +15687,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -15456,6 +15700,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -15468,6 +15713,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -15480,6 +15726,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -15538,6 +15785,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtSameParamNode {
@@ -15550,6 +15798,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -15609,6 +15858,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtParamNode {
@@ -15665,6 +15915,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -15706,6 +15957,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -15718,6 +15970,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtParamNode {
@@ -15749,6 +16002,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -15762,6 +16016,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtParamNode {
@@ -15793,6 +16048,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -15830,6 +16086,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -15842,6 +16099,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -15881,6 +16139,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -15921,6 +16180,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -15958,6 +16218,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -15995,6 +16256,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -16032,6 +16294,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -16102,6 +16365,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -16152,6 +16416,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -16202,6 +16467,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -16272,6 +16538,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -16322,6 +16589,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -16372,6 +16640,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -16409,6 +16678,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -16479,6 +16749,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -16529,6 +16800,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -16579,6 +16851,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -16629,6 +16902,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -16717,6 +16991,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -16805,6 +17080,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtEnumNode {
@@ -16851,6 +17127,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -16918,6 +17195,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtPluralNode {
@@ -17037,6 +17315,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtNameNode {
@@ -17118,6 +17397,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtPronounNode {
@@ -17163,6 +17443,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -17202,6 +17483,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtParamNode {
@@ -17325,6 +17607,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtPluralNode {
@@ -17428,6 +17711,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtPluralNode {
@@ -17548,6 +17832,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtPronounNode {
@@ -17592,6 +17877,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -17694,6 +17980,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtPronounNode {
@@ -17740,6 +18027,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -17791,6 +18079,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtParamNode {
@@ -17834,6 +18123,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtSameParamNode {
@@ -17846,6 +18136,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -17858,6 +18149,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -17909,6 +18201,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtParamNode {
@@ -17952,6 +18245,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -17989,6 +18283,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -18001,6 +18296,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -18013,6 +18309,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -18025,6 +18322,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -18062,6 +18360,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -18074,6 +18373,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -18086,6 +18386,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -18098,6 +18399,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -18135,6 +18437,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -18147,6 +18450,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -18159,6 +18463,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -18171,6 +18476,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -18229,6 +18535,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtSameParamNode {
@@ -18241,6 +18548,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -18300,6 +18608,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtParamNode {
@@ -18356,6 +18665,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -18397,6 +18707,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -18409,6 +18720,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtParamNode {
@@ -18440,6 +18752,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -18453,6 +18766,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtParamNode {
@@ -18484,6 +18798,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -18521,6 +18836,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -18533,6 +18849,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],
@@ -18572,6 +18889,7 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
+      "options": null,
       "parent": "FbtElementNode",
     },
   ],

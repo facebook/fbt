@@ -56,10 +56,10 @@ const nullthrows = require('nullthrows');
 class FbtEnumNode extends FbtNode<
   EnumStringVariationArg,
   BabelNodeCallExpression,
+  null,
+  Options,
 > {
   static +type: FbtNodeType = FbtNodeType.Enum;
-
-  +options: Options;
 
   /**
    * Create a new class instance given a BabelNode root node.

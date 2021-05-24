@@ -39,7 +39,7 @@ export type FbtChildNode =
   | FbtPronounNode
   | FbtSameParamNode
   | FbtTextNode;
-export type AnyFbtNode = FbtNode<any, any, any>;
+export type AnyFbtNode = FbtNode<any, any, any, any>;
 
 export type PlainJSXNode = {|
   babelNode: BabelNodeJSXOpeningElement,
@@ -80,6 +80,7 @@ class FbtNode<
   SVArgument: AnyStringVariationArg | empty = empty,
   CurBabelNode: BabelNode = BabelNode,
   MaybeChildNode: ?FbtChildNode = null,
+  Options: ?{} = null,
 > {
   +moduleName: JSModuleNameType;
   +children: Array<MaybeChildNode>;
@@ -88,7 +89,7 @@ class FbtNode<
   +nodeChecker: FbtNodeChecker;
   +parent: ?AnyFbtNode;
   // A general purpose "options" object that will be customized in child classes
-  +options: ?{};
+  +options: Options;
 
   _variationFactorValues: $ReadOnlyArray<SVArgument> = [];
 
@@ -110,10 +111,7 @@ class FbtNode<
     }
     this.children = children != null ? [...children] : [];
     this.nodeChecker = FbtNodeChecker.forModule(moduleName);
-    const options = this.getOptions();
-    if (options) {
-      this.options = options;
-    }
+    this.options = this.getOptions();
     this.initCheck();
   }
 
@@ -121,8 +119,11 @@ class FbtNode<
    * Return this fbt construct's options that'll be stored in `this.options`
    * just after constructing this class instance.
    */
-  getOptions(): ?{} {
-    return null;
+  getOptions(): Options {
+    throw errorAt(
+      this.node,
+      'This method must be implemented in a child class',
+    );
   }
 
   /**

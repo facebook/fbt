@@ -51,9 +51,10 @@ const invariant = require('invariant');
 class FbtNameNode extends FbtNode<
   GenderStringVariationArg,
   BabelNodeCallExpression,
+  null,
+  Options,
 > {
   static +type: FbtNodeType = FbtNodeType.Name;
-  +options: Options;
 
   getOptions(): Options {
     try {

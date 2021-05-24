@@ -70,9 +70,10 @@ const HUMAN_OPTION = 'human';
 class FbtPronounNode extends FbtNode<
   GenderStringVariationArg,
   BabelNodeCallExpression,
+  null,
+  Options,
 > {
   static +type: FbtNodeType = FbtNodeType.Pronoun;
-  +options: Options;
 
   /**
    * Create a new class instance given a BabelNode root node.

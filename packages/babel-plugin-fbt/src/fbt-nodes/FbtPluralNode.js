@@ -59,10 +59,10 @@ const nullthrows = require('nullthrows');
 class FbtPluralNode extends FbtNode<
   NumberStringVariationArg,
   BabelNodeCallExpression,
+  null,
+  Options,
 > {
   static +type: FbtNodeType = FbtNodeType.Plural;
-
-  +options: Options;
 
   /**
    * Create a new class instance given a BabelNode root node.

@@ -72,9 +72,10 @@ const Variation = {
 class FbtParamNode extends FbtNode<
   GenderStringVariationArg | NumberStringVariationArg,
   BabelNodeCallExpression,
+  null,
+  Options,
 > {
   static +type: FbtNodeType = FbtNodeType.Param;
-  +options: Options;
 
   getOptions(): Options {
     try {

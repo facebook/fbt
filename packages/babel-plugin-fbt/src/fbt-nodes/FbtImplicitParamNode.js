@@ -55,10 +55,14 @@ const nullthrows = require('nullthrows');
  * Represents non-fbt JSX element nested inside an fbt callsite.
  */
 class FbtImplicitParamNode
-  extends FbtNode<AnyStringVariationArg, BabelNodeJSXElement, FbtChildNode>
+  extends FbtNode<
+    AnyStringVariationArg,
+    BabelNodeJSXElement,
+    FbtChildNode,
+    null,
+  >
   implements IFbtElementNode {
   static +type: FbtNodeType = FbtNodeType.ImplicitParam;
-  +options: {||};
 
   _tokenSet: ParamSet = {};
 
@@ -68,6 +72,10 @@ class FbtImplicitParamNode
 
   _getSubjectNode(): ?BabelNode {
     return this._getElementNode().options.subject;
+  }
+
+  getOptions(): null {
+    return null;
   }
 
   /**
