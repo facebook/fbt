@@ -10,12 +10,12 @@ jest.autoMockOff();
 const TestFbtEnumManifest = require('TestFbtEnumManifest');
 
 const {
-  jsCodeSerializer,
+  jsCodeFbtCallSerializer,
   snapshotTransform,
   withFbtRequireStatement,
 } = require('../FbtTestUtil');
 
-expect.addSnapshotSerializer(jsCodeSerializer);
+expect.addSnapshotSerializer(jsCodeFbtCallSerializer);
 
 function runTest(data) {
   expect(

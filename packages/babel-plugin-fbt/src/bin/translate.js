@@ -77,11 +77,7 @@
 
 'use strict';
 
-const {objMap} = require('../FbtUtil');
-const {FbtSite} = require('../translate/FbtSite');
-const TranslationBuilder = require('../translate/TranslationBuilder');
-const TranslationConfig = require('../translate/TranslationConfig');
-const TranslationData = require('../translate/TranslationData');
+const {processFiles, processJSON} = require('./translateUtils');
 const fs = require('fs');
 const path = require('path');
 const yargs = require('yargs');
@@ -150,70 +146,6 @@ const argv = yargs
       'This is useful when you want to lazy load translations per locale.',
   ).argv;
 
-function parseJSONFile(filepath) {
-  try {
-    return JSON.parse(fs.readFileSync(filepath));
-  } catch (error) {
-    error.message += `\nFile path: "${filepath}"`;
-    throw error;
-  }
-}
-
-function processFiles(stringFile: string, translationFiles: Array<string>) {
-  const phrases = parseJSONFile(stringFile).phrases;
-  const fbtSites = phrases.map(FbtSite.fromScan);
-  const translatedGroups = translationFiles.map(file => {
-    const group = parseJSONFile(file);
-    return processTranslations(fbtSites, group);
-  });
-  return processGroups(phrases, translatedGroups);
-}
-
-function processJSON(json) {
-  const fbtSites = json.phrases.map(FbtSite.fromScan);
-  return processGroups(
-    json.phrases,
-    json.translationGroups.map(group => processTranslations(fbtSites, group)),
-  );
-}
-
-function processTranslations(fbtSites, group) {
-  const config = TranslationConfig.fromFBLocale(group['fb-locale']);
-  const translations = objMap(group.translations, TranslationData.fromJSON);
-  const translatedPhrases = fbtSites.map(fbtsite =>
-    new TranslationBuilder(translations, config, fbtsite, false).build(),
-  );
-  return {
-    'fb-locale': group['fb-locale'],
-    translatedPhrases,
-  };
-}
-
-function processGroups(phrases, translatedGroups) {
-  let fbtHash = null;
-  if (yargs.argv[args.JENKINS]) {
-    fbtHash = require('../fbtHashKey');
-  } else if (yargs.argv[args.HASH]) {
-    fbtHash = require(yargs.argv[args.HASH]);
-  }
-
-  if (!fbtHash) {
-    return translatedGroups;
-  }
-
-  const localeToHashToFbt = {};
-  for (const group of translatedGroups) {
-    const hashToFbt = (localeToHashToFbt[group['fb-locale']] = {});
-    phrases.forEach((phrase, idx) => {
-      const translatedFbt = group.translatedPhrases[idx];
-      const payload = phrase.type === 'text' ? phrase.jsfbt : phrase.jsfbt.t;
-      const hash = fbtHash(payload, phrase.type === 'text');
-      hashToFbt[hash] = translatedFbt;
-    });
-  }
-  return localeToHashToFbt;
-}
-
 function createJSON(obj) {
   return JSON.stringify(obj, ...(argv[args.PRETTY] ? [null, 2] : []));
 }
@@ -265,6 +197,11 @@ if (argv[args.HELP]) {
   process.exit(0);
 }
 
+const translationOptions = {
+  jenkins: yargs.argv[args.JENKINS],
+  hashModule: yargs.argv[args.HASH],
+};
+
 if (argv[args.STDIN]) {
   const stream = process.stdin;
   let source = '';
@@ -275,13 +212,13 @@ if (argv[args.STDIN]) {
     })
     .on('end', function () {
       catchKnownErrors__DEBUG_ONLY(() => {
-        const output = processJSON(JSON.parse(source));
-        writeOutput(output);
+        writeOutput(processJSON(JSON.parse(source), translationOptions));
       });
     });
 } else {
   catchKnownErrors__DEBUG_ONLY(() => {
-    const output = processFiles(argv[args.SRC], argv[args.TRANSLATIONS]);
-    writeOutput(output);
+    writeOutput(
+      processFiles(argv[args.SRC], argv[args.TRANSLATIONS], translationOptions),
+    );
   });
 }

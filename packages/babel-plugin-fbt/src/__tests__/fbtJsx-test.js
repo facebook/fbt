@@ -10,13 +10,13 @@
 jest.autoMockOff();
 
 const {
-  jsCodeSerializer,
+  jsCodeFbtCallSerializer,
   snapshotTransformKeepJsx,
   withFbtRequireStatement,
 } = require('../FbtTestUtil');
 const {TestUtil} = require('fb-babel-plugin-utils');
 
-expect.addSnapshotSerializer(jsCodeSerializer);
+expect.addSnapshotSerializer(jsCodeFbtCallSerializer);
 
 const testData = {
   'should convert simple strings': {

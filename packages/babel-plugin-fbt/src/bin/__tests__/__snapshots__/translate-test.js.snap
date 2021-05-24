@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should translate old jsfbt payload with option={"jenkins":false,"hashModule":false}: should translate string with enum 1`] = `
+Array [
+  Object {
+    "fb-locale": "he_IL",
+    "translatedPhrases": Array [
+      Object {
+        "DAILY": "{formatted_price} \\u05db\\u05dc \\u05d9\\u05d5\\u05dd",
+        "MONTHLY": "{formatted_price} \\u05db\\u05dc \\u05d7\\u05d5\\u05d3\\u05e9",
+        "WEEKLY": "{formatted_price} \\u05db\\u05dc \\u05e9\\u05d1\\u05d5\\u05e2",
+        "YEARLY": "{formatted_price} \\u05db\\u05dc \\u05e9\\u05e0\\u05d4",
+      },
+    ],
+  },
+]
+`;
+
+exports[`should translate old jsfbt payload with option={"jenkins":false,"hashModule":false}: should translate string with no variation 1`] = `
+Array [
+  Object {
+    "fb-locale": "he_IL",
+    "translatedPhrases": Array [
+      "\\u05e9\\u05dd",
+    ],
+  },
+]
+`;
+
+exports[`should translate old jsfbt payload with option={"jenkins":false,"hashModule":false}: should translate string with variation and metadata 1`] = `
+Array [
+  Object {
+    "fb-locale": "he_IL",
+    "translatedPhrases": Array [
+      Object {
+        "LINK": Object {
+          "*": "\\u05dc{name} \\u05d9\\u05e9 \\u05e7\\u05d9\\u05e9\\u05d5\\u05e8 \\u05db\\u05d3\\u05d9 \\u05dc\\u05e9\\u05ea\\u05e3! {=View} \\u05d1\\u05e1\\u05e8\\u05d8\\u05d5\\u05df \\u05e9\\u05dc\\u05d5/\\u05e9\\u05dc\\u05d4.",
+          "1": "\\u05dc{name} \\u05d9\\u05e9 \\u05e7\\u05d9\\u05e9\\u05d5\\u05e8 \\u05db\\u05d3\\u05d9 \\u05dc\\u05e9\\u05ea\\u05e3! {=View} \\u05d1\\u05e1\\u05e8\\u05d8\\u05d5\\u05df \\u05e9\\u05dc\\u05d4.",
+          "2": "\\u05dc{name} \\u05d9\\u05e9 \\u05e7\\u05d9\\u05e9\\u05d5\\u05e8 \\u05db\\u05d3\\u05d9 \\u05dc\\u05e9\\u05ea\\u05e3! {=View} \\u05d1\\u05e1\\u05e8\\u05d8\\u05d5\\u05df \\u05e9\\u05dc\\u05d5.",
+        },
+        "PAGE": Object {
+          "*": "\\u05dc{name} \\u05d9\\u05e9 \\u05d3\\u05e3 \\u05db\\u05d3\\u05d9 \\u05dc\\u05e9\\u05ea\\u05e3! {=View} \\u05d1\\u05e1\\u05e8\\u05d8\\u05d5\\u05df \\u05e9\\u05dc\\u05d5/\\u05e9\\u05dc\\u05d4.",
+          "1": "\\u05dc{name} \\u05d9\\u05e9 \\u05d3\\u05e3 \\u05db\\u05d3\\u05d9 \\u05dc\\u05e9\\u05ea\\u05e3! {=View} \\u05d1\\u05e1\\u05e8\\u05d8\\u05d5\\u05df \\u05e9\\u05dc\\u05d4.",
+          "2": "\\u05dc{name} \\u05d9\\u05e9 \\u05d3\\u05e3 \\u05db\\u05d3\\u05d9 \\u05dc\\u05e9\\u05ea\\u05e3! {=View} \\u05d1\\u05e1\\u05e8\\u05d8\\u05d5\\u05df \\u05e9\\u05dc\\u05d5.",
+        },
+        "PHOTO": Object {
+          "*": "\\u05dc{name} \\u05d9\\u05e9 \\u05ea\\u05de\\u05d5\\u05e0\\u05d4 \\u05db\\u05d3\\u05d9 \\u05dc\\u05e9\\u05ea\\u05e3! {=View} \\u05d1\\u05e1\\u05e8\\u05d8\\u05d5\\u05df \\u05e9\\u05dc\\u05d5/\\u05e9\\u05dc\\u05d4.",
+          "1": "\\u05dc{name} \\u05d9\\u05e9 \\u05ea\\u05de\\u05d5\\u05e0\\u05d4 \\u05db\\u05d3\\u05d9 \\u05dc\\u05e9\\u05ea\\u05e3! {=View} \\u05d1\\u05e1\\u05e8\\u05d8\\u05d5\\u05df \\u05e9\\u05dc\\u05d4.",
+          "2": "\\u05dc{name} \\u05d9\\u05e9 \\u05ea\\u05de\\u05d5\\u05e0\\u05d4 \\u05db\\u05d3\\u05d9 \\u05dc\\u05e9\\u05ea\\u05e3! {=View} \\u05d1\\u05e1\\u05e8\\u05d8\\u05d5\\u05df \\u05e9\\u05dc\\u05d5.",
+        },
+        "POST": Object {
+          "*": "\\u05dc{name} \\u05d9\\u05e9 \\u05e4\\u05d5\\u05e1\\u05d8 \\u05db\\u05d3\\u05d9 \\u05dc\\u05e9\\u05ea\\u05e3! {=View} \\u05d1\\u05e1\\u05e8\\u05d8\\u05d5\\u05df \\u05e9\\u05dc\\u05d5/\\u05e9\\u05dc\\u05d4.",
+          "1": "\\u05dc{name} \\u05d9\\u05e9 \\u05e4\\u05d5\\u05e1\\u05d8 \\u05db\\u05d3\\u05d9 \\u05dc\\u05e9\\u05ea\\u05e3! {=View} \\u05d1\\u05e1\\u05e8\\u05d8\\u05d5\\u05df \\u05e9\\u05dc\\u05d4.",
+          "2": "\\u05dc{name} \\u05d9\\u05e9 \\u05e4\\u05d5\\u05e1\\u05d8 \\u05db\\u05d3\\u05d9 \\u05dc\\u05e9\\u05ea\\u05e3! {=View} \\u05d1\\u05e1\\u05e8\\u05d8\\u05d5\\u05df \\u05e9\\u05dc\\u05d5.",
+        },
+        "VIDEO": Object {
+          "*": "\\u05dc{name} \\u05d9\\u05e9 \\u05e1\\u05e8\\u05d8\\u05d5\\u05df \\u05db\\u05d3\\u05d9 \\u05dc\\u05e9\\u05ea\\u05e3! {=View} \\u05d1\\u05e1\\u05e8\\u05d8\\u05d5\\u05df \\u05e9\\u05dc\\u05d5/\\u05e9\\u05dc\\u05d4.",
+          "1": "\\u05dc{name} \\u05d9\\u05e9 \\u05e1\\u05e8\\u05d8\\u05d5\\u05df \\u05db\\u05d3\\u05d9 \\u05dc\\u05e9\\u05ea\\u05e3! {=View} \\u05d1\\u05e1\\u05e8\\u05d8\\u05d5\\u05df \\u05e9\\u05dc\\u05d4.",
+          "2": "\\u05dc{name} \\u05d9\\u05e9 \\u05e1\\u05e8\\u05d8\\u05d5\\u05df \\u05db\\u05d3\\u05d9 \\u05dc\\u05e9\\u05ea\\u05e3! {=View} \\u05d1\\u05e1\\u05e8\\u05d8\\u05d5\\u05df \\u05e9\\u05dc\\u05d5.",
+        },
+      },
+      "{=View}",
+      Object {
+        "*": "\\u05e6\\u05e4\\u05d4/\\u05e6\\u05e4\\u05d9",
+        "1": "\\u05e6\\u05e4\\u05d4",
+        "2": "\\u05e6\\u05e4\\u05d9",
+        "__vcg": 1,
+      },
+    ],
+  },
+]
+`;

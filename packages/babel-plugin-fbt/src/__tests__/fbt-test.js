@@ -8,12 +8,12 @@
 jest.autoMockOff();
 
 const {
-  jsCodeSerializer,
+  jsCodeFbtCallSerializer,
   snapshotTransform,
   withFbtRequireStatement,
 } = require('../FbtTestUtil');
 
-expect.addSnapshotSerializer(jsCodeSerializer);
+expect.addSnapshotSerializer(jsCodeFbtCallSerializer);
 
 function runTest(data, extra) {
   expect(snapshotTransform(data.input, extra)).toMatchSnapshot();

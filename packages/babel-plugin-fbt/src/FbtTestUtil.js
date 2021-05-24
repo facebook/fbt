@@ -77,7 +77,7 @@ const fbtSentinelRegex = /(["'])__FBT__(.*?)__FBT__\1/gm;
  * replaced by inline comments.
  * Usage: see https://jestjs.io/docs/en/expect#expectaddsnapshotserializerserializer
  */
-const jsCodeSerializer = {
+const jsCodeFbtCallSerializer = {
   serialize(rawValue, _config, _indentation, _depth, _refs, _printer) {
     const decoded = rawValue.replace(
       fbtSentinelRegex,
@@ -94,8 +94,29 @@ const jsCodeSerializer = {
   },
 };
 
+const nonASCIICharRegex = /[^\0-~]/g;
+
+/**
+ * Serialize JS source code that contains non-ASCII characters in unicode.
+ * Non-ASCII characters in unicode string will be replaced with utf-8 representation.
+ * E.g.'み' -> '\u307f'
+ */
+const jsCodeNonASCIICharSerializer = {
+  serialize(rawValue) {
+    return JSON.stringify(rawValue).replace(
+      nonASCIICharRegex,
+      char => '\\u' + char.charCodeAt().toString(16).padStart(4, '0'),
+    );
+  },
+
+  test(rawValue) {
+    return typeof rawValue === 'string';
+  },
+};
+
 module.exports = {
-  jsCodeSerializer,
+  jsCodeFbtCallSerializer,
+  jsCodeNonASCIICharSerializer,
   payload,
   snapshotTransform,
   snapshotTransformKeepJsx,

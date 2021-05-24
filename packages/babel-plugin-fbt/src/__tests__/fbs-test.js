@@ -9,12 +9,12 @@
 jest.autoMockOff();
 
 const {
-  jsCodeSerializer,
+  jsCodeFbtCallSerializer,
   snapshotTransform,
   withFbsRequireStatement,
 } = require('../FbtTestUtil');
 
-expect.addSnapshotSerializer(jsCodeSerializer);
+expect.addSnapshotSerializer(jsCodeFbtCallSerializer);
 
 // TODO(T40113359) Re-enable once this test scenario is ready to be tested
 xdescribe('Test declarative (jsx) <fbs> syntax translation', () => {
