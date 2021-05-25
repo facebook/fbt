@@ -170,22 +170,24 @@ gulp.task(
 );
 
 // Copy raw source with rewritten modules to *.js.flow
-const flowCheck = () =>
+const buildRuntimeFlowJS = () =>
   flatLib(
     gulp
       .src(paths.runtime, {follow: true})
       .pipe(rename({extname: '.js.flow'}))
+      .pipe(once())
       .pipe(rewriteFlowtypedModules({map: moduleMap})),
   );
 
 const copyFlowTypedModules = () =>
   flatLib(gulp.src(paths.typedModules, {follow: true}));
 
-gulp.task('flow', gulp.parallel(flowCheck, copyFlowTypedModules));
+gulp.task('flow', gulp.parallel(buildRuntimeFlowJS, copyFlowTypedModules));
 
 const buildCSS = () =>
   gulp
     .src(paths.css, {follow: true})
+    .pipe(once())
     .pipe(concat('fbt.css'))
     .pipe(cleanCSS({advanced: false}))
     .pipe(header(COPYRIGHT_HEADER, {version}))
