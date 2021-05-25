@@ -37,7 +37,10 @@ const paths = {
   lib: 'packages/fbt/lib',
   license: 'LICENSE',
   runtime: [
-    'runtime/**/*.js',
+    // Individually listing subfolders of `runtime` to allow watching through these symlinks
+    'runtime/nonfb/**/*.js',
+    'runtime/shared/**/*.js',
+    'runtime/shared_deps/**/*.js',
     '!runtime/**/__tests__/*',
     '!runtime/**/__mocks__/*',
   ],
@@ -231,3 +234,22 @@ gulp.task(
     gulp.series('dist', 'dist:min'),
   ),
 );
+
+gulp.task('watch-runtime', () => {
+  gulp.watch(
+    [paths.license].concat(
+      paths.runtime,
+      paths.runtimeTests,
+      paths.runtimeMocks,
+      paths.typedModules,
+      paths.css,
+    ),
+    {
+      cwd: __dirname,
+      ignoreInitial: false,
+    },
+    function watchRuntimeFbt(done) {
+      gulp.task('build-runtime')(done);
+    },
+  );
+});

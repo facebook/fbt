@@ -84,6 +84,7 @@
     "babel-plugin-fbt:test": "jest packages/babel-plugin-fbt",
     "babel-plugin-fbt:watch": "yarn workspace babel-plugin-fbt watch",
     "fbt:test": "jest packages/fbt",
+    "fbt:watch": "gulp watch-runtime",
     "build-runtime": "gulp build-runtime",
     "clean-build": "yarn install && yarn workspace demo-app clean-build",
     "clean-build-offline": "yarn install --offline && yarn workspace demo-app clean-build",
