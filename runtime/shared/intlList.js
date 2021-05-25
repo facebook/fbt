@@ -7,7 +7,7 @@
  * kept in sync.
  *
  * Run the following command to sync the change from www to fbsource.
- *   js1 upgrade www-shared -p fbt --local ~/www
+ *   js1 upgrade www-shared -p intl
  *
  * Renders a list of items, similar to :fbt:large-list / :intl:large-list. This
  * is similar to doing .join(', ') but is culturally-aware (uses fbt calls) and
@@ -36,6 +36,7 @@ const CONJUNCTIONS = {
 };
 
 const DELIMITERS = {
+  BULLET: 'BULLET',
   COMMA: 'COMMA',
   SEMICOLON: 'SEMICOLON',
 };
@@ -77,6 +78,20 @@ const intlList = function <TItem: React.Node>(
             }>
             <fbt:param name="previous items">{output}</fbt:param>
             {'; '}
+            <fbt:param name="following items">{items[i]}</fbt:param>
+          </fbt>
+        );
+        break;
+      case DELIMITERS.BULLET:
+        output = (
+          <fbt
+            desc={
+              'A list of items of various types separated by bullets, for example: ' +
+              '"Menlo Park, CA \u2022 Seattle, WA \u2022 New York City, NY". ' +
+              '{previous items} and {following items} are themselves ' +
+              'lists that contain one or more items.'
+            }>
+            <fbt:param name="previous items">{output}</fbt:param> &bull;{' '}
             <fbt:param name="following items">{items[i]}</fbt:param>
           </fbt>
         );
@@ -150,6 +165,18 @@ function _getConjunction(
               }>
               <fbt:param name="previous items">{list}</fbt:param>
               {'; '}
+              <fbt:param name="last item">{lastItem}</fbt:param>
+            </fbt>
+          );
+        case DELIMITERS.BULLET:
+          return (
+            <fbt
+              desc={
+                'A list of items of various types separated by bullets, for example: ' +
+                '"Menlo Park, CA \u2022 Seattle, WA \u2022 New York City, NY". ' +
+                '{previous items} contains one or more items.'
+              }>
+              <fbt:param name="list of items">{list}</fbt:param> &bull;{' '}
               <fbt:param name="last item">{lastItem}</fbt:param>
             </fbt>
           );

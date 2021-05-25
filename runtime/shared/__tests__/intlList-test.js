@@ -7,7 +7,7 @@
  * kept in sync.
  *
  * Run the following command to sync the change from www to fbsource.
- *   js1 upgrade www-shared -p fbt --local ~/www
+ *   js1 upgrade www-shared -p intl
  *
  * @format
  * @typechecks
@@ -58,5 +58,14 @@ describe('intlList', () => {
         intlList.DELIMITERS.SEMICOLON,
       ),
     ).toBe('first; second; third');
+  });
+  it('should handle bullet delimiters', () => {
+    expect(
+      intlList(
+        ['first', 'second', 'third'],
+        intlList.CONJUNCTIONS.NONE,
+        intlList.DELIMITERS.BULLET,
+      ),
+    ).toBe('first \u2022 second \u2022 third');
   });
 });
