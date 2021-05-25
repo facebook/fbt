@@ -20,8 +20,6 @@ describe('IntlVariations', () => {
 
   describe('when compared with the client-side IntlVariations', () => {
     beforeEach(() => {
-      // one "../" parent folder higher since this file is supposed
-      // to run (transpiled) in the "dist" subfolder.
       ClientSideIntlVariations = require('../../../../../runtime/nonfb/IntlVariations');
     });
 
