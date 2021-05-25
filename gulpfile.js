@@ -27,7 +27,7 @@ const header = require('gulp-header');
 const gulpif = require('gulp-if');
 const once = require('gulp-once');
 const rename = require('gulp-rename');
-const rewriteModules = require('gulp-rewrite-flowtyped-modules');
+const rewriteFlowtypedModules = require('gulp-rewrite-flowtyped-modules');
 const gulpUtil = require('gulp-util');
 const webpackStream = require('webpack-stream');
 
@@ -175,7 +175,7 @@ const flowCheck = () =>
     gulp
       .src(paths.runtime, {follow: true})
       .pipe(rename({extname: '.js.flow'}))
-      .pipe(rewriteModules({map: moduleMap})),
+      .pipe(rewriteFlowtypedModules({map: moduleMap})),
   );
 
 const copyFlowTypedModules = () =>
