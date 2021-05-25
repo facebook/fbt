@@ -23,7 +23,7 @@ const nullthrows = require('nullthrows');
 
 let _errorListener;
 
-describe('FbtResult', function() {
+describe('FbtResult', function () {
   beforeEach(() => {
     jest.resetModules();
     _errorListener = FbtHooks.getErrorListener({
@@ -32,7 +32,7 @@ describe('FbtResult', function() {
     });
   });
 
-  it('can be flattened into array', function() {
+  it('can be flattened into array', function () {
     const errorListener = nullthrows(_errorListener);
     let obj1 = new FbtResult(['prefix'], errorListener);
 
@@ -64,7 +64,7 @@ describe('FbtResult', function() {
     ).toBe('prefix content stringable');
   });
 
-  it('does not invoke onStringSerializationError() when being serialized with valid-FBT contents', function() {
+  it('does not invoke onStringSerializationError() when being serialized with valid-FBT contents', function () {
     const errorListener = nullthrows(_errorListener);
     const result = new FbtResult(
       ['hello', new FbtResult(['world'], errorListener)],

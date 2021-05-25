@@ -12,12 +12,12 @@ const fbt = require('fbt');
 
 // Note that running the typechecker in jst turns on fbt preprocessing so we
 // have two almost identical test files: typechecked and not typechecked.
-describe('mock fbt (no typechecks)', function() {
-  it('should handle simple declarative strings', function() {
+describe('mock fbt (no typechecks)', function () {
+  it('should handle simple declarative strings', function () {
     expect(<fbt desc="description">some text</fbt>).toEqual('some text');
   });
 
-  it("should handle <fbt> with embedded <fbt:param>'s", function() {
+  it("should handle <fbt> with embedded <fbt:param>'s", function () {
     const sample = (
       <fbt desc="description">
         {'Hello '}
@@ -27,21 +27,21 @@ describe('mock fbt (no typechecks)', function() {
     expect(sample).toEqual('Hello bubba');
   });
 
-  it('should handle trivial strings', function() {
+  it('should handle trivial strings', function () {
     expect(fbt('some text', 'description')).toEqual('some text');
   });
 
-  it('should munge together fbt.param calls', function() {
+  it('should munge together fbt.param calls', function () {
     expect(fbt('Hello ' + fbt.param('name', 'bubba'), 'description')).toEqual(
       'Hello bubba',
     );
   });
 
-  it('should work with enums', function() {
+  it('should work with enums', function () {
     expect(fbt('bar ' + fbt.enum('a', ['a', 'b']), 'd')).toEqual('bar a');
   });
 
-  it('should work with enums/plurals/params mixed', function() {
+  it('should work with enums/plurals/params mixed', function () {
     fbt.replaceParams = true;
     expect(
       fbt(
