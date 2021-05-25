@@ -2,7 +2,7 @@
  * Copyright 2004-present Facebook. All Rights Reserved.
  * @noflow
  * @format
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  */
 
 module.exports = require('babel-jest').createTransformer({
