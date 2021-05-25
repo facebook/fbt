@@ -1,7 +1,7 @@
 /**
  * (c) Facebook, Inc. and its affiliates. Confidential and proprietary.
  *
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  * @flow
  * @noformat
  */

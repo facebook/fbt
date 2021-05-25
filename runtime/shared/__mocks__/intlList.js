@@ -3,7 +3,7 @@
  *
  * @format
  * @flow
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  */
 
 const intlList: JestMockFn<

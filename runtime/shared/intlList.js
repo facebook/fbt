@@ -18,7 +18,7 @@
  * @fbt {"project": "intl-core"}
  * @typechecks
  * @flow strict-local
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  */
 
 // flowlint ambiguous-object-type:error

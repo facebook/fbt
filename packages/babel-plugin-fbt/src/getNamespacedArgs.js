@@ -3,7 +3,7 @@
  *
  * Fbt JSX namespaced elements handler.
  *
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  * @format
  * Disabling typing since this file will be deprecated by the fbt-autoparam project
  * @noflow

@@ -4,7 +4,7 @@
  *
  * @format
  * @noflow
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  */
 
 'use strict';

@@ -3,7 +3,7 @@
  *
  * Wrapper module for fbt.js (the implementation)
  *
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  * @flow
  * @format
  */

@@ -6,7 +6,7 @@
  *
  * @format
  * @noflow
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  */
 
 'use strict';
@@ -19,7 +19,7 @@ const gulpOnce = require('gulp-once');
 const rename = require('gulp-rename');
 const path = require('path');
 
-const ONCALL_ID = 'oncall+internationalization';
+const ONCALL_ID = 'oncall+i18n_fbt_js';
 
 const paths = {
   src: {

@@ -6,7 +6,7 @@
  *
  * @flow strict-local
  * @format
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  */
 
 import type {FbtHookRegistrations} from 'FbtHooks';

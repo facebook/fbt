@@ -2,7 +2,7 @@
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
  * @format
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  * @noflow
  */
 

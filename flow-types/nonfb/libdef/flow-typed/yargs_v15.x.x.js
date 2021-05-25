@@ -2,7 +2,7 @@
  * From https://github.com/flow-typed/flow-typed/blob/master/cli/flow-typed/npm/yargs_v15.0.x.js
  *
  * @flow strict
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  */
 // flow-typed signature: 1f51ede354b708d1bf2ac3d98fd21d0b
 // flow-typed version: fe275d55fd/yargs_v15.x.x/flow_>=v0.118.x

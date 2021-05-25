@@ -6,7 +6,7 @@
  * @format
  * @noflow
  * @fbt {"project": "fbt-demo-project"}
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  */
 
 /* eslint-disable fb-www/flow-exact-by-default-object-types */

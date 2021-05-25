@@ -6,7 +6,7 @@
  *
  * @format
  * @noflow
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  */
 
 const path = require('path');
@@ -44,7 +44,7 @@ module.exports = {
  * @${'noflow'}
  * @${'nolint'}
  * @${'nogrep'}
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  */
 `,
       raw: true,

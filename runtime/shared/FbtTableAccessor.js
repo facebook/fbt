@@ -4,7 +4,7 @@
  * Provides return values for fbt constructs calls. Here lives the platform
  * specific implementation.
  *
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  * @flow strict-local
  * @format
  */

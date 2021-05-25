@@ -12,7 +12,7 @@
  * @flow strict-local
  * @typechecks
  * @format
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  */
 
 // flowlint ambiguous-object-type:error

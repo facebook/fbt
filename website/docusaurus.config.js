@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  *
  * @noflow
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  */
 
 module.exports = {

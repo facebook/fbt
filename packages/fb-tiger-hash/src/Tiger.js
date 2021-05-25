@@ -15,7 +15,7 @@
  * Implementation in C:
  *   https://www.cs.technion.ac.il/~biham/Reports/Tiger/tiger/node7.html
  *
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  * Flow does not support BigInt yet
  * @noflow
  */

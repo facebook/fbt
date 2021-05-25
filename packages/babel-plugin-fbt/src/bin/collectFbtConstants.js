@@ -3,7 +3,7 @@
  *
  * @flow
  * @format
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  */
 /* eslint max-len: ["warn", 120] */
 
