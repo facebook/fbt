@@ -3,36 +3,56 @@
  *
  * @emails oncall+i18n_fbt_js
  * @format
- * @noflow
+ * @flow
  */
+
+'strict';
+
+import type {
+  LangToNumberTypeValues,
+  LocaleToNumberTypeValues,
+} from './CLDR/IntlNumberType';
+import type {IntlGenderTypeImpl} from './gender/IntlGenderType';
+import type {
+  IntlVariationMaskValue,
+  IntlVariationsEnum,
+} from './IntlVariations';
 
 const IntlNumberType = require('./CLDR/IntlNumberType');
 const IntlGenderType = require('./gender/IntlGenderType');
-const {EXACTLY_ONE, IntlVariationType} = require('./IntlVariations');
+const {EXACTLY_ONE, FbtVariationType} = require('./IntlVariations');
 
 /**
  * Represents a given locale's variation (number/gender) configuration.
  * i.e. which variations we should default to when unknown
  */
 class TranslationConfig {
-  constructor(numberType, genderType) {
+  +numberType: LangToNumberTypeValues | LocaleToNumberTypeValues;
+  +genderType: IntlGenderTypeImpl;
+
+  constructor(
+    numberType: LangToNumberTypeValues | LocaleToNumberTypeValues,
+    genderType: IntlGenderTypeImpl,
+  ) {
     this.numberType = numberType;
     this.genderType = genderType;
   }
 
   getTypesFromMask(
-    mask, // IntlVariationType
-  ) {
-    if (mask === IntlVariationType.NUMBER) {
-      const types = this.numberType.getNumberVariations();
+    mask: IntlVariationMaskValue,
+  ): $ReadOnlyArray<IntlVariationsEnum | '_1'> {
+    if (mask === FbtVariationType.NUMBER) {
+      // Coerce number variation in number type to IntlVariationsEnum type
+      const types: $ReadOnlyArray<IntlVariationsEnum> = (this.numberType.getNumberVariations(): $FlowExpectedError);
       return [EXACTLY_ONE].concat(types);
     }
     return this.genderType.getGenderVariations();
   }
 
-  isDefaultVariation(
-    variation, // mixed
-  ) {
+  isDefaultVariation(variation: mixed): boolean {
+    // variation could be "*", or it could be number variation or
+    // gender variation value in either string or number type.
+    // $FlowFixMe[incompatible-call] Allow `varaition` to be any type so that existing translations still work
     const value = Number.parseInt(variation, 10);
     if (Number.isNaN(value)) {
       return false;
@@ -43,7 +63,7 @@ class TranslationConfig {
     );
   }
 
-  static fromFBLocale(locale) {
+  static fromFBLocale(locale: string): TranslationConfig {
     return new TranslationConfig(
       IntlNumberType.forLocale(locale),
       IntlGenderType.forLocale(locale),

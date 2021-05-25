@@ -36,6 +36,8 @@ const IntlVariationMask = {
   GENDER: 0x03, // 0b00011
 };
 
+export type IntlVariationMaskValue = $Values<typeof IntlVariationMask>;
+
 const IntlFbtVariationType: $ReadOnly<{|
   GENDER: 1,
   NUMBER: 2,
@@ -45,6 +47,8 @@ const IntlFbtVariationType: $ReadOnly<{|
   NUMBER: 2,
   PRONOUN: 3,
 };
+
+export type IntlFbtVariationTypeValue = $Values<typeof IntlFbtVariationType>;
 
 // Gender variation key used in JSFBT to represent any gender
 const GENDER_ANY: '*' = '*';
