@@ -1,11 +1,7 @@
 yarn.lock
 
-# Voluntarily not ignoring this folder because we have to store it internally at FB
-# You can still ignore the generated files stored in "dist" by customizing
-# the ignored files on your computer.
-# See: https://docs.github.com/en/github/getting-started-with-github/ignoring-files
-# !dist
-dist/**/__fixtures__/**
+dist/**/*.js.flow
+dist # @oss-only
 
 # file checksums used by gulp-once
 .checksums

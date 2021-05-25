@@ -29,6 +29,7 @@ live-demo-app/src/translatedFbts.json
 live-demo-app/yarn-error.log
 
 # fbt runtime package
+packages/fbt/lib/**/*.js.flow
 packages/fbt/dist # @oss-only
 packages/fbt/lib # @oss-only
 packages/fbt/LICENSE
