@@ -22,8 +22,8 @@
  */
 
 'use strict';
-
-import NativeFbtModule from 'react-native-fbt';
+// TODO: remove this absolute call once the package is ok
+import NativeFbtModule from 'react-native-fbt/NativeFbtModule';
 
 const _translationsDictionary: {[hashKey: string]: ?string} = {};
 
