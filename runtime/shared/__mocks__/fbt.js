@@ -5,6 +5,8 @@
  * @emails oncall+i18n_fbt_js
  */
 
+const invariant = require('invariant');
+
 jest
   .unmock('FbtEnv')
   .unmock('FbtTable')
@@ -18,12 +20,10 @@ jest
   .unmock('substituteTokens')
   .mock('FbtNumberType');
 
-const fbt = jest.fn();
+const WRAPPER = '__FBT__';
 const fbtRuntime = jest.requireActual('fbt');
 
-const WRAPPER = '__FBT__';
-
-fbt.mockImplementation(function () {
+const fbt = jest.fn().mockImplementation(function () {
   throw new Error('should never be called');
 });
 
@@ -35,41 +35,29 @@ function unwrap(json) {
   }
 }
 
-fbt._ = jest.fn();
-fbt._.mockImplementation(function (wrappedJSON, args) {
+fbt._ = jest.fn().mockImplementation((wrappedJSON, args) => {
   const unwrappedJson = unwrap(wrappedJSON);
   const jsfbt = unwrappedJson.jsfbt;
   return fbtRuntime._(unwrappedJson.type === 'text' ? jsfbt : jsfbt.t, args);
 });
 
-fbt._.getCallString = function (index) {
-  return unwrap(fbt._.mock.calls[index][0]);
-};
+fbt._.getCallString = index => unwrap(fbt._.mock.calls[index][0]);
 
-fbt._param = function (name, value, variations) {
-  return fbtRuntime._param(name, value, variations);
-};
-
-fbt._plural = function (count, label, value) {
-  return fbtRuntime._plural(count, label, value);
-};
-
-fbt._pronoun = function (usage, gender, options) {
-  return fbtRuntime._pronoun(usage, gender, options);
-};
-
-fbt._enum = function (value, range) {
-  return fbtRuntime._enum(value, range);
-};
-
-fbt._subject = function (value) {
-  return fbtRuntime._subject(value);
-};
-
-fbt._name = function (...whateveryo) {
-  return fbtRuntime._name(...whateveryo);
-};
-
-fbt.isFbtInstance = fbtRuntime.isFbtInstance;
+[
+  '_enum',
+  '_name',
+  '_param',
+  '_plural',
+  '_pronoun',
+  '_subject',
+  'isFbtInstance',
+].forEach(methodName => {
+  invariant(
+    typeof fbtRuntime[methodName] === 'function',
+    'Expected method fbt.%s() to be defined',
+    methodName,
+  );
+  fbt[methodName] = (...args) => fbtRuntime[methodName](...args);
+});
 
 module.exports = fbt;
