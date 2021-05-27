@@ -6624,10 +6624,10 @@ react-native-codegen@^0.0.6:
     jscodeshift "^0.11.0"
     nullthrows "^1.1.1"
 
-react-native-fbt@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/react-native-fbt/-/react-native-fbt-0.0.1.tgz#eb169ba453f6898ac038e3a62850f8c535b024a4"
-  integrity sha512-YLk6mP7eRm0DZcS9LdY35goP+AbQC78DzIIM9fPToF5L70GI1mbb7xsCGuzg26mkHHHavah9bahoUmgaVKUuwA==
+react-native-fbt@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-fbt/-/react-native-fbt-0.0.3.tgz#ea37c1f9da9a0d450eba9980c6bcaca01e98f634"
+  integrity sha512-ROckdg+5GG5nS8mfPGkRTnKwXwnJPG+230vAXBITVBa6RD9HHsAb77cOBlmn/SXn7mtuyVyyTlP3njZgCyqipA==
 
 react-native@0.64.0:
   version "0.64.0"
