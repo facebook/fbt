@@ -75,7 +75,7 @@ function processGroups(phrases, translatedGroups, options: Options) {
     phrases.forEach((phrase, idx) => {
       const translatedFbt = group.translatedPhrases[idx];
       const payload = phrase.type === 'text' ? phrase.jsfbt : phrase.jsfbt.t;
-      const hash = fbtHash(payload, phrase.type === 'text');
+      const hash = fbtHash(payload);
       hashToFbt[hash] = translatedFbt;
     });
   }

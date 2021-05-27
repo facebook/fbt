@@ -31,11 +31,8 @@ function uintToBaseN(numberArg, base) {
   return output;
 }
 
-function fbtHashKey(
-  jsfbt: $ReadOnly<TableJSFBTTree>,
-  noStringify: boolean = false,
-): string {
-  return uintToBaseN(fbtJenkinsHash(jsfbt, noStringify), 62);
+function fbtHashKey(jsfbt: $ReadOnly<TableJSFBTTree>): string {
+  return uintToBaseN(fbtJenkinsHash(jsfbt), 62);
 }
 
 module.exports = fbtHashKey;
