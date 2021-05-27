@@ -12,31 +12,31 @@
 import type {
   ObjectWithJSFBT,
   TableJSFBTTree,
-  TableJSFBTTreeLeaflet,
+  TableJSFBTTreeLeaf,
 } from './index';
 
 const nullthrows = require('nullthrows');
 
 /**
- * @returns an TableJSFBTTreeLeaflet object if the given object matches its shape, or null
+ * @returns an TableJSFBTTreeLeaf object if the given object matches its shape, or null
  */
-function coerceToTableJSFBTTreeLeaflet(
-  value: $Shape<TableJSFBTTreeLeaflet>,
-): ?TableJSFBTTreeLeaflet {
+function coerceToTableJSFBTTreeLeaf(
+  value: $Shape<TableJSFBTTreeLeaf>,
+): ?TableJSFBTTreeLeaf {
   return value &&
     typeof value === 'object' &&
     typeof value.desc === 'string' &&
     typeof value.text === 'string' &&
     (typeof value.tokenAliases === 'object' || value.tokenAliases == null)
-    ? (value: TableJSFBTTreeLeaflet)
+    ? (value: TableJSFBTTreeLeaf)
     : null;
 }
 
 function _runOnNormalizedJSFBTLeaves(
   value: $ReadOnly<TableJSFBTTree>,
-  callback: (leaf: TableJSFBTTreeLeaflet) => void,
+  callback: (leaf: TableJSFBTTreeLeaf) => void,
 ): void {
-  const leaflet = coerceToTableJSFBTTreeLeaflet(value);
+  const leaflet = coerceToTableJSFBTTreeLeaf(value);
   if (leaflet) {
     return callback(leaflet);
   }
@@ -52,12 +52,12 @@ function _runOnNormalizedJSFBTLeaves(
 
 function onEachLeaf(
   phrase: {...ObjectWithJSFBT},
-  callback: (leaf: TableJSFBTTreeLeaflet) => void,
+  callback: (leaf: TableJSFBTTreeLeaf) => void,
 ): void {
   _runOnNormalizedJSFBTLeaves(phrase.jsfbt.t, callback);
 }
 
 module.exports = {
-  coerceToTableJSFBTTreeLeaflet,
+  coerceToTableJSFBTTreeLeaf,
   onEachLeaf,
 };

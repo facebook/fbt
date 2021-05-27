@@ -10,7 +10,7 @@
 
 import type {Phrase, TableJSFBT, TableJSFBTTree} from './index';
 
-const {coerceToTableJSFBTTreeLeaflet} = require('./JSFbtUtil');
+const {coerceToTableJSFBTTreeLeaf} = require('./JSFbtUtil');
 const invariant = require('invariant');
 
 /**
@@ -24,7 +24,7 @@ function extractEnumsAndFlattenPhrases(
     const {jsfbt} = phrase;
     const {enums, metadata} = _extractEnumsFromMetadata(jsfbt.m);
     return _buildTablesWithoutEnums(jsfbt.t, enums, []).map(table => {
-      const leaf = coerceToTableJSFBTTreeLeaflet(table);
+      const leaf = coerceToTableJSFBTTreeLeaf(table);
       invariant(
         (metadata.length === 0) === (leaf != null),
         'If the JSFBT table depth is 1, then the metadata array should be empty; ' +
@@ -125,7 +125,7 @@ function _buildTableWithoutEnums(
   enums: $ReadOnlyArray<string>,
   index: number,
 ): TableJSFBTTree {
-  const jsfbtTree = coerceToTableJSFBTTreeLeaflet(curLevel);
+  const jsfbtTree = coerceToTableJSFBTTreeLeaf(curLevel);
   if (jsfbtTree) {
     return jsfbtTree;
   }

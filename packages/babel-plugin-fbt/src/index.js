@@ -10,7 +10,6 @@
 
 'use strict';
 
-import type {FbtRuntimeInput} from '../../../runtime/shared/FbtHooks';
 import type {
   FbtTableKey,
   PatternHash,
@@ -56,27 +55,27 @@ export type TokenAliases = {|
   [clearTokenName: string]: TokenAlias,
 |};
 
-// This is the main payload collected from the fbt callsite.
-//
-// - For simple fbt calls without interpolation (fbt.param) or multiplexing (fbt.plural,
-//   fbt.enum, viewer context variation, etc), this is a simple vanilla string.
-// - Otherwise this is a table whose keys correspond to the associated string variation
-//   parameters passed to the various fbt constructs (param, plural, pronoun) of this callsite.
-//
-//  See the docblock for fbt._ for an example of the nested table and its behavior
+/**
+ * This is the main payload collected from the fbt callsite.
+ *
+ * - For simple fbt calls without interpolation (fbt.param) or multiplexing (fbt.plural,
+ *   fbt.enum, viewer context variation, etc), this is a simple TableJSFBTTreeLeaf object.
+ * - Otherwise this is a tree structure whose keys correspond to the associated string variation
+ *   parameters passed to the various fbt constructs (param, plural, pronoun) of this callsite;
+ *   and tree leaves are TableJSFBTTreeLeaf objects.
+ */
 export type TableJSFBTTree =
   | TableJSFBTTreeLeaf
   | {|
       [key: FbtTableKey]: TableJSFBTTree,
     |};
 
-export type TableJSFBTTreeLeaf = TableJSFBTTreeLeaflet;
-
-export type TableJSFBTTreeLeaflet = {|
+export type TableJSFBTTreeLeaf = {|
   desc: string,
   hash?: PatternHash,
   text: PatternString,
-  tokenAliases: TokenAliases,
+  tokenAliases?: TokenAliases,
+
   // The token name (at the outer string level) referring to this inner string
   //
   // E.g. For the fbt string `<fbt>Hello <i>World</i></fbt>`,
@@ -130,7 +129,7 @@ export type BabelPluginFbt = {
   ({types: BabelTypes, ...}): BabelTransformPlugin,
   getExtractedStrings: () => Array<Phrase>,
   getChildToParentRelationships: () => ChildToParentMap,
-  fbtHashKey: (PatternString | FbtRuntimeInput, string, boolean) => string,
+  fbtHashKey: typeof fbtHashKey,
 };
 
 const FbtCommonFunctionCallProcessor = require('./babel-processors/FbtCommonFunctionCallProcessor');
