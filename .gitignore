@@ -33,6 +33,7 @@ packages/fbt/lib/**/*.js.flow
 packages/fbt/dist # @oss-only
 packages/fbt/lib # @oss-only
 packages/fbt/LICENSE
+packages/fbt/node_modules/.bin/fbt-*
 
 # documentation build artifacts
 website/build/
