@@ -137,8 +137,10 @@ class FbtResultBase implements IFbtResultBase {
     for (let ii = 0; ii < contents.length; ++ii) {
       const content = contents[ii];
       if (Array.isArray(content)) {
+        // $FlowFixMe[method-unbinding] added when improving typing for this parameters
         result.push.apply(result, FbtResultBase.flattenToArray(content));
       } else if (content instanceof FbtResultBase) {
+        // $FlowFixMe[method-unbinding] added when improving typing for this parameters
         result.push.apply(result, content.flattenToArray());
       } else {
         result.push(content);

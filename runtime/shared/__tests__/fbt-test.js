@@ -176,6 +176,7 @@ describe('fbt', () => {
     // flow thinks ReactDOM.findDOMNode can return a type of Text...
     invariant(node instanceof Element, 'Expected node to be an Element');
     const resultingElements = node.getElementsByTagName('div');
+    // $FlowFixMe[method-unbinding] added when improving typing for this parameters
     return Array.prototype.slice.call(resultingElements, 0);
   }
 
