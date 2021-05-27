@@ -40,11 +40,9 @@ class TranslationConfig {
 
   getTypesFromMask(
     mask: IntlVariationMaskValue,
-  ): $ReadOnlyArray<IntlVariationsEnum | '_1'> {
+  ): $ReadOnlyArray<IntlVariationsEnum | typeof EXACTLY_ONE> {
     if (mask === FbtVariationType.NUMBER) {
-      // Coerce number variation in number type to IntlVariationsEnum type
-      const types: $ReadOnlyArray<IntlVariationsEnum> = (this.numberType.getNumberVariations(): $FlowExpectedError);
-      return [EXACTLY_ONE].concat(types);
+      return [EXACTLY_ONE].concat(this.numberType.getNumberVariations());
     }
     return this.genderType.getGenderVariations();
   }
@@ -52,7 +50,7 @@ class TranslationConfig {
   isDefaultVariation(variation: mixed): boolean {
     // variation could be "*", or it could be number variation or
     // gender variation value in either string or number type.
-    // $FlowFixMe[incompatible-call] Allow `varaition` to be any type so that existing translations still work
+    // $FlowFixMe[incompatible-call] Allow `variation` to be any type so that existing translations still work
     const value = Number.parseInt(variation, 10);
     if (Number.isNaN(value)) {
       return false;
