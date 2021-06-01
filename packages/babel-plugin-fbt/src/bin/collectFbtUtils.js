@@ -16,6 +16,7 @@ import type {
   PackagerPhrase,
 } from './FbtCollector';
 import type {HashFunction} from './TextPackager';
+
 const {packagerTypes} = require('./collectFbtConstants');
 const FbtCollector = require('./FbtCollector');
 const PhrasePackager = require('./PhrasePackager');
