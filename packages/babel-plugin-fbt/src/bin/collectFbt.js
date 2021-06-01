@@ -11,27 +11,21 @@
 'use strict';
 
 import type {PlainFbtNode} from '../fbt-nodes/FbtNode';
-import type {ExtraOptions, TableJSFBT} from '../index';
-import type {
-  ChildParentMappings,
-  CollectorConfig,
-  IFbtCollector,
-  PackagerPhrase,
-} from './FbtCollector';
-import type {HashFunction} from './TextPackager';
+import type {TableJSFBT} from '../index';
+import type {ChildParentMappings, PackagerPhrase} from './FbtCollector';
 export type CollectFbtOutput = {|
-  phrases: Array<
-    | PackagerPhrase
-    | $Rest<
-        PackagerPhrase,
-        {|
-          jsfbt: TableJSFBT,
-        |},
-      >,
-  >,
+  phrases: Array<{|
+    ...PackagerPhrase,
+    jsfbt?: TableJSFBT,
+  |}>,
   childParentMappings: ChildParentMappings,
   fbtElementNodes?: ?Array<PlainFbtNode>,
 |};
+
+export type CollectFbtOutputPhrase = $ElementType<
+  $PropertyType<CollectFbtOutput, 'phrases'>,
+  number,
+>;
 
 const {packagerTypes} = require('./collectFbtConstants');
 const {
@@ -39,9 +33,6 @@ const {
   getFbtCollector,
   getPackagers,
 } = require('./collectFbtUtils');
-const FbtCollector = require('./FbtCollector');
-const PhrasePackager = require('./PhrasePackager');
-const TextPackager = require('./TextPackager');
 const fs = require('fs');
 const path = require('path');
 const yargs = require('yargs');
@@ -173,8 +164,6 @@ const argv = yargs
       `It must at least expose the same public methods to expose the extract fbt phrases.\n` +
       `i.e. --${args.CUSTOM_COLLECTOR} myFbtCollector.js`,
   ).argv;
-
-const packager = argv[args.PACKAGER];
 
 const extraOptions = {};
 const cliExtraOptions = argv[args.OPTIONS];

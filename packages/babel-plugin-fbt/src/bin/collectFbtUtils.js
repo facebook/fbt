@@ -36,25 +36,23 @@ function buildCollectFbtOutput(
     terse: boolean,
   |},
 ): CollectFbtOutput {
-  const output = {
+  return {
     phrases: packagers
       .reduce(
         (phrases, packager) => packager.pack(phrases),
         fbtCollector.getPhrases(),
       )
-      .map(phrase => {
-        if (options.terse) {
-          const {jsfbt: _, ...phraseWithoutJSFBT} = phrase;
-          return phraseWithoutJSFBT;
-        }
-        return phrase;
-      }),
+      .map(phrase => ({
+        ...phrase,
+        // using `undefined` so that the field is not outputted by JSON.stringify
+        jsfbt: options.terse ? undefined : phrase.jsfbt,
+      })),
     childParentMappings: fbtCollector.getChildParentMappings(),
+    fbtElementNodes: options.genFbtNodes
+      ? fbtCollector.getFbtElementNodes()
+      : // using `undefined` so that the field is not outputted by JSON.stringify
+        undefined,
   };
-  const elementNodes = options.genFbtNodes
-    ? {fbtElementNodes: fbtCollector.getFbtElementNodes()}
-    : null;
-  return {...output, ...elementNodes};
 }
 
 function getTextPackager(hashModulePath: string): TextPackager {
