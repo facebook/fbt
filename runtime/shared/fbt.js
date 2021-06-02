@@ -277,6 +277,17 @@ function fbtParam(
 }
 
 /**
+ * fbt._implicitParam() behaves like fbt._param()
+ */
+function fbtImplicitParam(
+  label: string,
+  value: mixed,
+  variations?: ?[$Values<typeof VARIATIONS>, number | GenderConstEnum],
+): FbtTableArg {
+  return this._param(label, value, variations);
+}
+
+/**
  * fbt._plural() takes a `count` and 2 optional params: `label` and `value`.
  * It returns a tuple in the format:
  * [?variation, {label: "replaces {label} in pattern string"}]
@@ -414,6 +425,7 @@ function isFbtInstance(value: mixed): boolean %checks {
 const fbt = function () {};
 fbt._ = fbtCallsite;
 fbt._enum = fbtEnum;
+fbt._implicitParam = fbtImplicitParam;
 fbt._name = fbtName;
 fbt._param = fbtParam;
 fbt._plural = fbtPlural;

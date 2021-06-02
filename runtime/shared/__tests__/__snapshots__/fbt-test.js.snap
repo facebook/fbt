@@ -1,0 +1,829 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Betty,
+              ownerGender=FEMALE_SINGULAR,
+              object=comment,
+              count=1
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Betty clicked on ",
+  <strong>
+    her
+    <a
+      href="#link"
+    >
+      comment
+    </a>
+  </strong>,
+  " ",
+  <em>
+    1 time
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Betty,
+              ownerGender=FEMALE_SINGULAR,
+              object=comment,
+              count=10
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Betty clicked on ",
+  <strong>
+    her
+    <a
+      href="#link"
+    >
+      comment
+    </a>
+  </strong>,
+  " ",
+  <em>
+    10 times
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Betty,
+              ownerGender=FEMALE_SINGULAR,
+              object=photo,
+              count=1
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Betty clicked on ",
+  <strong>
+    her
+    <a
+      href="#link"
+    >
+      photo
+    </a>
+  </strong>,
+  " ",
+  <em>
+    1 time
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Betty,
+              ownerGender=FEMALE_SINGULAR,
+              object=photo,
+              count=10
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Betty clicked on ",
+  <strong>
+    her
+    <a
+      href="#link"
+    >
+      photo
+    </a>
+  </strong>,
+  " ",
+  <em>
+    10 times
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Betty,
+              ownerGender=MALE_SINGULAR,
+              object=comment,
+              count=1
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Betty clicked on ",
+  <strong>
+    his
+    <a
+      href="#link"
+    >
+      comment
+    </a>
+  </strong>,
+  " ",
+  <em>
+    1 time
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Betty,
+              ownerGender=MALE_SINGULAR,
+              object=comment,
+              count=10
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Betty clicked on ",
+  <strong>
+    his
+    <a
+      href="#link"
+    >
+      comment
+    </a>
+  </strong>,
+  " ",
+  <em>
+    10 times
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Betty,
+              ownerGender=MALE_SINGULAR,
+              object=photo,
+              count=1
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Betty clicked on ",
+  <strong>
+    his
+    <a
+      href="#link"
+    >
+      photo
+    </a>
+  </strong>,
+  " ",
+  <em>
+    1 time
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Betty,
+              ownerGender=MALE_SINGULAR,
+              object=photo,
+              count=10
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Betty clicked on ",
+  <strong>
+    his
+    <a
+      href="#link"
+    >
+      photo
+    </a>
+  </strong>,
+  " ",
+  <em>
+    10 times
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Betty,
+              ownerGender=UNKNOWN_PLURAL,
+              object=comment,
+              count=1
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Betty clicked on ",
+  <strong>
+    their
+    <a
+      href="#link"
+    >
+      comment
+    </a>
+  </strong>,
+  " ",
+  <em>
+    1 time
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Betty,
+              ownerGender=UNKNOWN_PLURAL,
+              object=comment,
+              count=10
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Betty clicked on ",
+  <strong>
+    their
+    <a
+      href="#link"
+    >
+      comment
+    </a>
+  </strong>,
+  " ",
+  <em>
+    10 times
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Betty,
+              ownerGender=UNKNOWN_PLURAL,
+              object=photo,
+              count=1
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Betty clicked on ",
+  <strong>
+    their
+    <a
+      href="#link"
+    >
+      photo
+    </a>
+  </strong>,
+  " ",
+  <em>
+    1 time
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Betty,
+              ownerGender=UNKNOWN_PLURAL,
+              object=photo,
+              count=10
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Betty clicked on ",
+  <strong>
+    their
+    <a
+      href="#link"
+    >
+      photo
+    </a>
+  </strong>,
+  " ",
+  <em>
+    10 times
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Bob,
+              ownerGender=FEMALE_SINGULAR,
+              object=comment,
+              count=1
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Bob clicked on ",
+  <strong>
+    her
+    <a
+      href="#link"
+    >
+      comment
+    </a>
+  </strong>,
+  " ",
+  <em>
+    1 time
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Bob,
+              ownerGender=FEMALE_SINGULAR,
+              object=comment,
+              count=10
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Bob clicked on ",
+  <strong>
+    her
+    <a
+      href="#link"
+    >
+      comment
+    </a>
+  </strong>,
+  " ",
+  <em>
+    10 times
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Bob,
+              ownerGender=FEMALE_SINGULAR,
+              object=photo,
+              count=1
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Bob clicked on ",
+  <strong>
+    her
+    <a
+      href="#link"
+    >
+      photo
+    </a>
+  </strong>,
+  " ",
+  <em>
+    1 time
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Bob,
+              ownerGender=FEMALE_SINGULAR,
+              object=photo,
+              count=10
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Bob clicked on ",
+  <strong>
+    her
+    <a
+      href="#link"
+    >
+      photo
+    </a>
+  </strong>,
+  " ",
+  <em>
+    10 times
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Bob,
+              ownerGender=MALE_SINGULAR,
+              object=comment,
+              count=1
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Bob clicked on ",
+  <strong>
+    his
+    <a
+      href="#link"
+    >
+      comment
+    </a>
+  </strong>,
+  " ",
+  <em>
+    1 time
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Bob,
+              ownerGender=MALE_SINGULAR,
+              object=comment,
+              count=10
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Bob clicked on ",
+  <strong>
+    his
+    <a
+      href="#link"
+    >
+      comment
+    </a>
+  </strong>,
+  " ",
+  <em>
+    10 times
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Bob,
+              ownerGender=MALE_SINGULAR,
+              object=photo,
+              count=1
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Bob clicked on ",
+  <strong>
+    his
+    <a
+      href="#link"
+    >
+      photo
+    </a>
+  </strong>,
+  " ",
+  <em>
+    1 time
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Bob,
+              ownerGender=MALE_SINGULAR,
+              object=photo,
+              count=10
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Bob clicked on ",
+  <strong>
+    his
+    <a
+      href="#link"
+    >
+      photo
+    </a>
+  </strong>,
+  " ",
+  <em>
+    10 times
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Bob,
+              ownerGender=UNKNOWN_PLURAL,
+              object=comment,
+              count=1
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Bob clicked on ",
+  <strong>
+    their
+    <a
+      href="#link"
+    >
+      comment
+    </a>
+  </strong>,
+  " ",
+  <em>
+    1 time
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Bob,
+              ownerGender=UNKNOWN_PLURAL,
+              object=comment,
+              count=10
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Bob clicked on ",
+  <strong>
+    their
+    <a
+      href="#link"
+    >
+      comment
+    </a>
+  </strong>,
+  " ",
+  <em>
+    10 times
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Bob,
+              ownerGender=UNKNOWN_PLURAL,
+              object=photo,
+              count=1
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Bob clicked on ",
+  <strong>
+    their
+    <a
+      href="#link"
+    >
+      photo
+    </a>
+  </strong>,
+  " ",
+  <em>
+    1 time
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Bob,
+              ownerGender=UNKNOWN_PLURAL,
+              object=photo,
+              count=10
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Bob clicked on ",
+  <strong>
+    their
+    <a
+      href="#link"
+    >
+      photo
+    </a>
+  </strong>,
+  " ",
+  <em>
+    10 times
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Kim,
+              ownerGender=FEMALE_SINGULAR,
+              object=comment,
+              count=1
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Kim clicked on ",
+  <strong>
+    her
+    <a
+      href="#link"
+    >
+      comment
+    </a>
+  </strong>,
+  " ",
+  <em>
+    1 time
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Kim,
+              ownerGender=FEMALE_SINGULAR,
+              object=comment,
+              count=10
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Kim clicked on ",
+  <strong>
+    her
+    <a
+      href="#link"
+    >
+      comment
+    </a>
+  </strong>,
+  " ",
+  <em>
+    10 times
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Kim,
+              ownerGender=FEMALE_SINGULAR,
+              object=photo,
+              count=1
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Kim clicked on ",
+  <strong>
+    her
+    <a
+      href="#link"
+    >
+      photo
+    </a>
+  </strong>,
+  " ",
+  <em>
+    1 time
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Kim,
+              ownerGender=FEMALE_SINGULAR,
+              object=photo,
+              count=10
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Kim clicked on ",
+  <strong>
+    her
+    <a
+      href="#link"
+    >
+      photo
+    </a>
+  </strong>,
+  " ",
+  <em>
+    10 times
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Kim,
+              ownerGender=MALE_SINGULAR,
+              object=comment,
+              count=1
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Kim clicked on ",
+  <strong>
+    his
+    <a
+      href="#link"
+    >
+      comment
+    </a>
+  </strong>,
+  " ",
+  <em>
+    1 time
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Kim,
+              ownerGender=MALE_SINGULAR,
+              object=comment,
+              count=10
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Kim clicked on ",
+  <strong>
+    his
+    <a
+      href="#link"
+    >
+      comment
+    </a>
+  </strong>,
+  " ",
+  <em>
+    10 times
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Kim,
+              ownerGender=MALE_SINGULAR,
+              object=photo,
+              count=1
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Kim clicked on ",
+  <strong>
+    his
+    <a
+      href="#link"
+    >
+      photo
+    </a>
+  </strong>,
+  " ",
+  <em>
+    1 time
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Kim,
+              ownerGender=MALE_SINGULAR,
+              object=photo,
+              count=10
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Kim clicked on ",
+  <strong>
+    his
+    <a
+      href="#link"
+    >
+      photo
+    </a>
+  </strong>,
+  " ",
+  <em>
+    10 times
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Kim,
+              ownerGender=UNKNOWN_PLURAL,
+              object=comment,
+              count=1
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Kim clicked on ",
+  <strong>
+    their
+    <a
+      href="#link"
+    >
+      comment
+    </a>
+  </strong>,
+  " ",
+  <em>
+    1 time
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Kim,
+              ownerGender=UNKNOWN_PLURAL,
+              object=comment,
+              count=10
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Kim clicked on ",
+  <strong>
+    their
+    <a
+      href="#link"
+    >
+      comment
+    </a>
+  </strong>,
+  " ",
+  <em>
+    10 times
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Kim,
+              ownerGender=UNKNOWN_PLURAL,
+              object=photo,
+              count=1
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Kim clicked on ",
+  <strong>
+    their
+    <a
+      href="#link"
+    >
+      photo
+    </a>
+  </strong>,
+  " ",
+  <em>
+    1 time
+  </em>,
+]
+`;
+
+exports[`fbt : given a string with implicit parameters where
+              viewer=Kim,
+              ownerGender=UNKNOWN_PLURAL,
+              object=photo,
+              count=10
+ should produce proper nested fbt results 1`] = `
+Array [
+  "Kim clicked on ",
+  <strong>
+    their
+    <a
+      href="#link"
+    >
+      photo
+    </a>
+  </strong>,
+  " ",
+  <em>
+    10 times
+  </em>,
+]
+`;

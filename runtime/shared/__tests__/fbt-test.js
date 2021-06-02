@@ -11,11 +11,14 @@
 
 'use strict';
 
+import type {IntlVariationsEnum} from 'IntlVariations';
+
 jest.mock('FbtNumberType');
 jest.mock('translationOverrideListener'); // FB internal
 
 import type {FbtRuntimeCallInput, FbtTranslatedInput} from 'FbtHooks';
 
+const GenderConst = require('GenderConst');
 // Warning: importing JS modules outside of beforeEach blocks is generally bad practice
 // in jest tests. We might need to move these modules inside beforeEach().
 // These ones can stay here for now since they have a consistent behavior across this test suite.
@@ -331,5 +334,89 @@ describe('fbt', () => {
         ),
       ).toEqual(fbtParams);
     });
+  });
+
+  describe(': given a string with implicit parameters', () => {
+    function getFbt({viewer, ownerGender, object, count}) {
+      return (
+        <fbt desc="description">
+          <fbt:name gender={viewer.gender} name="name">
+            {viewer.name}
+          </fbt:name>
+          clicked on
+          <strong>
+            <fbt:pronoun gender={GenderConst[ownerGender]} type="possessive" />
+            <a href="#link">
+              <fbt:enum
+                enum-range={{
+                  photo: 'photo',
+                  comment: 'comment',
+                }}
+                value={object}
+              />
+            </a>
+          </strong>{' '}
+          <em>
+            <fbt:plural count={count} showCount="yes">
+              time
+            </fbt:plural>
+          </em>
+        </fbt>
+      );
+    }
+
+    // DEBUG: show the babel-plugin-fbt transform output
+    // console.warn('getFbt = \n----\n%s\n----\n', getFbt + '');
+
+    const combinations = {
+      viewers: ([
+        {
+          gender: IntlVariations.GENDER_MALE,
+          name: 'Bob',
+        },
+        {
+          gender: IntlVariations.GENDER_FEMALE,
+          name: 'Betty',
+        },
+        {
+          gender: IntlVariations.GENDER_UNKNOWN,
+          name: 'Kim',
+        },
+      ]: Array<{
+        gender: IntlVariationsEnum,
+        name: string,
+      }>),
+      ownerGenders: ([
+        'FEMALE_SINGULAR',
+        'MALE_SINGULAR',
+        'UNKNOWN_PLURAL',
+      ]: Array<$Keys<typeof GenderConst>>),
+      objects: ['photo', 'comment'],
+      counts: [1, 10],
+    };
+
+    combinations.viewers.forEach(viewer =>
+      combinations.ownerGenders.forEach(ownerGender =>
+        combinations.objects.forEach(object =>
+          combinations.counts.forEach(count =>
+            describe(`where
+              viewer=${viewer.name},
+              ownerGender=${ownerGender},
+              object=${object},
+              count=${count}\n`, () =>
+              it(`should produce proper nested fbt results`, () => {
+                expect(
+                  getFbt({
+                    viewer,
+                    ownerGender,
+                    object,
+                    count,
+                  }),
+                ).toMatchSnapshot();
+              })),
+          ),
+        ),
+      ),
+    );
   });
 });

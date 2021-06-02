@@ -35,10 +35,9 @@ export type FbtRuntimeInput =
   | [PatternString, PatternHash]
   | FbtInputTable;
 
-export type FbtInputTable = {
+export type FbtInputTable = {|
   [key: FbtTableKey]: FbtRuntimeInput,
-  ...
-};
+|};
 
 export type FbtTableArgs = Array<FbtTableArg>;
 
