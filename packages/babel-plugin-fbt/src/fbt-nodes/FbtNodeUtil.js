@@ -162,11 +162,12 @@ function getChildNodeText(
 function getTokenAliasesFromFbtNodeTree(
   instance: FbtElementNode | FbtImplicitParamNodeType,
   argsMap: StringVariationArgsMap,
-): TokenAliases {
+): ?TokenAliases {
   const childrentokenAliases = instance.children.map((node, tokenIndex) =>
     getChildNodeTokenAliases(argsMap, node, tokenIndex),
   );
-  return Object.assign({}, ...childrentokenAliases);
+  const tokenAliases = Object.assign({}, ...childrentokenAliases);
+  return Object.keys(tokenAliases).length ? tokenAliases : null;
 }
 
 function getChildNodeTokenAliases(

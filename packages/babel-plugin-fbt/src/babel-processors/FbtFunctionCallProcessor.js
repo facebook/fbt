@@ -466,8 +466,12 @@ class FbtFunctionCallProcessor {
             const leaf = ({
               desc: fbtNode.getDescription(svArgsMap),
               text: fbtNode.getText(svArgsMap),
-              tokenAliases: fbtNode.getTokenAliases(svArgsMap),
             }: TableJSFBTTreeLeaf);
+
+            const tokenAliases = fbtNode.getTokenAliases(svArgsMap);
+            if (tokenAliases != null) {
+              leaf.tokenAliases = tokenAliases;
+            }
 
             if (
               this.pluginOptions.generateOuterTokenName &&

@@ -38,7 +38,6 @@ const generalTestData = {
             t: {
               desc: "It's simple",
               text: 'A simple string',
-              tokenAliases: {},
             },
             m: [],
           },
@@ -69,7 +68,6 @@ const generalTestData = {
             t: {
               desc: 'should not be extracted',
               text: 'A doNotExtract string',
-              tokenAliases: {},
             },
             m: [],
           },
@@ -95,7 +93,6 @@ const generalTestData = {
               desc:
                 'With a ridiculously long description that requires concatenation',
               text: 'A short string',
-              tokenAliases: {},
             },
             m: [],
           },
@@ -121,7 +118,6 @@ const generalTestData = {
             t: {
               desc: 'blah',
               text: 'A simple string... with some other stuff.',
-              tokenAliases: {},
             },
             m: [],
           },
@@ -169,7 +165,6 @@ const generalTestData = {
             t: {
               desc: 'a',
               text: 'a b {name1} c d {name2} e',
-              tokenAliases: {},
             },
             m: [],
           },
@@ -250,7 +245,6 @@ const generalTestData = {
             t: {
               desc: 'a',
               text: '{name1} blah {name2}',
-              tokenAliases: {},
             },
             m: [],
           },
@@ -294,7 +288,6 @@ const generalTestData = {
               t: {
                 desc: 'nested!',
                 text: 'A nested string',
-                tokenAliases: {},
               },
               m: [],
             },
@@ -385,7 +378,6 @@ const generalTestData = {
                                 desc:
                                   'In the phrase: "A1 B1 {=C1 [paramName] C2} B2 A2"',
                                 text: 'C1 {paramName} C2',
-                                tokenAliases: {},
                               },
                             },
                             m: [{token: '__subject__', type: 1}],
@@ -543,13 +535,11 @@ const generalTestData = {
                                     desc:
                                       'In the phrase: "{name} has shared {=[number] photos} with you"',
                                     text: '{number} photos',
-                                    tokenAliases: {},
                                   },
                                   _1: {
                                     desc:
                                       'In the phrase: "{name} has shared {=a photo} with you"',
                                     text: 'a photo',
-                                    tokenAliases: {},
                                   },
                                 },
                               },
@@ -716,13 +706,11 @@ const generalTestData = {
                                   desc:
                                     'In the phrase: "{name} has shared {=[number] photos} with you"',
                                   text: '{number} photos',
-                                  tokenAliases: {},
                                 },
                                 _1: {
                                   desc:
                                     'In the phrase: "{name} has shared {=a photo} with you"',
                                   text: 'a photo',
-                                  tokenAliases: {},
                                 },
                               },
                             },
@@ -952,19 +940,16 @@ const generalTestData = {
                             desc:
                               'In the phrase: "{=today}, {name} has shared {number} photos with her"',
                             text: 'today',
-                            tokenAliases: {},
                           },
                           '2': {
                             desc:
                               'In the phrase: "{=today}, {name} has shared {number} photos with him"',
                             text: 'today',
-                            tokenAliases: {},
                           },
                           '*': {
                             desc:
                               'In the phrase: "{=today}, {name} has shared {number} photos with them"',
                             text: 'today',
-                            tokenAliases: {},
                           },
                         },
                         _1: {
@@ -972,19 +957,16 @@ const generalTestData = {
                             desc:
                               'In the phrase: "{=today}, {name} has shared a photo with her"',
                             text: 'today',
-                            tokenAliases: {},
                           },
                           '2': {
                             desc:
                               'In the phrase: "{=today}, {name} has shared a photo with him"',
                             text: 'today',
-                            tokenAliases: {},
                           },
                           '*': {
                             desc:
                               'In the phrase: "{=today}, {name} has shared a photo with them"',
                             text: 'today',
-                            tokenAliases: {},
                           },
                         },
                       },
@@ -996,19 +978,16 @@ const generalTestData = {
                             desc:
                               'In the phrase: "{=yesterday}, {name} has shared {number} photos with her"',
                             text: 'yesterday',
-                            tokenAliases: {},
                           },
                           '2': {
                             desc:
                               'In the phrase: "{=yesterday}, {name} has shared {number} photos with him"',
                             text: 'yesterday',
-                            tokenAliases: {},
                           },
                           '*': {
                             desc:
                               'In the phrase: "{=yesterday}, {name} has shared {number} photos with them"',
                             text: 'yesterday',
-                            tokenAliases: {},
                           },
                         },
                         _1: {
@@ -1016,19 +995,16 @@ const generalTestData = {
                             desc:
                               'In the phrase: "{=yesterday}, {name} has shared a photo with her"',
                             text: 'yesterday',
-                            tokenAliases: {},
                           },
                           '2': {
                             desc:
                               'In the phrase: "{=yesterday}, {name} has shared a photo with him"',
                             text: 'yesterday',
-                            tokenAliases: {},
                           },
                           '*': {
                             desc:
                               'In the phrase: "{=yesterday}, {name} has shared a photo with them"',
                             text: 'yesterday',
-                            tokenAliases: {},
                           },
                         },
                       },
@@ -1181,19 +1157,16 @@ const generalTestData = {
                                     desc:
                                       'In the phrase: "today, {name} has shared {number} photos with {=her}"',
                                     text: 'her',
-                                    tokenAliases: {},
                                   },
                                   '2': {
                                     desc:
                                       'In the phrase: "today, {name} has shared {number} photos with {=him}"',
                                     text: 'him',
-                                    tokenAliases: {},
                                   },
                                   '*': {
                                     desc:
                                       'In the phrase: "today, {name} has shared {number} photos with {=them}"',
                                     text: 'them',
-                                    tokenAliases: {},
                                   },
                                 },
                                 _1: {
@@ -1201,19 +1174,16 @@ const generalTestData = {
                                     desc:
                                       'In the phrase: "today, {name} has shared a photo with {=her}"',
                                     text: 'her',
-                                    tokenAliases: {},
                                   },
                                   '2': {
                                     desc:
                                       'In the phrase: "today, {name} has shared a photo with {=him}"',
                                     text: 'him',
-                                    tokenAliases: {},
                                   },
                                   '*': {
                                     desc:
                                       'In the phrase: "today, {name} has shared a photo with {=them}"',
                                     text: 'them',
-                                    tokenAliases: {},
                                   },
                                 },
                               },
@@ -1225,19 +1195,16 @@ const generalTestData = {
                                     desc:
                                       'In the phrase: "yesterday, {name} has shared {number} photos with {=her}"',
                                     text: 'her',
-                                    tokenAliases: {},
                                   },
                                   '2': {
                                     desc:
                                       'In the phrase: "yesterday, {name} has shared {number} photos with {=him}"',
                                     text: 'him',
-                                    tokenAliases: {},
                                   },
                                   '*': {
                                     desc:
                                       'In the phrase: "yesterday, {name} has shared {number} photos with {=them}"',
                                     text: 'them',
-                                    tokenAliases: {},
                                   },
                                 },
                                 _1: {
@@ -1245,19 +1212,16 @@ const generalTestData = {
                                     desc:
                                       'In the phrase: "yesterday, {name} has shared a photo with {=her}"',
                                     text: 'her',
-                                    tokenAliases: {},
                                   },
                                   '2': {
                                     desc:
                                       'In the phrase: "yesterday, {name} has shared a photo with {=him}"',
                                     text: 'him',
-                                    tokenAliases: {},
                                   },
                                   '*': {
                                     desc:
                                       'In the phrase: "yesterday, {name} has shared a photo with {=them}"',
                                     text: 'them',
-                                    tokenAliases: {},
                                   },
                                 },
                               },
@@ -1378,7 +1342,6 @@ const generalTestData = {
             t: {
               desc: 'Moar params',
               text: 'A parameterized message to {personName}',
-              tokenAliases: {},
             },
             m: [],
           },
@@ -1410,7 +1373,6 @@ const generalTestData = {
             t: {
               desc: 'options!',
               text: 'A string that moved files',
-              tokenAliases: {},
             },
             m: [],
           },
@@ -1446,17 +1408,14 @@ const generalTestData = {
               groups: {
                 desc: 'enum as an array',
                 text: 'Click to see groups',
-                tokenAliases: {},
               },
               photos: {
                 desc: 'enum as an array',
                 text: 'Click to see photos',
-                tokenAliases: {},
               },
               videos: {
                 desc: 'enum as an array',
                 text: 'Click to see videos',
-                tokenAliases: {},
               },
             },
             m: [null],
@@ -1500,17 +1459,14 @@ const generalTestData = {
               id1: {
                 desc: 'enum as an object',
                 text: 'Click to see groups',
-                tokenAliases: {},
               },
               id2: {
                 desc: 'enum as an object',
                 text: 'Click to see photos',
-                tokenAliases: {},
               },
               id3: {
                 desc: 'enum as an object',
                 text: 'Click to see videos',
-                tokenAliases: {},
               },
             },
             m: [null],
@@ -1557,24 +1513,20 @@ const generalTestData = {
                 '*': {
                   desc: 'plurals',
                   text: '{cat_token} cats and {dog_token} dogs',
-                  tokenAliases: {},
                 },
                 _1: {
                   desc: 'plurals',
                   text: '{cat_token} cats and 1 dog',
-                  tokenAliases: {},
                 },
               },
               _1: {
                 '*': {
                   desc: 'plurals',
                   text: '1 cat and {dog_token} dogs',
-                  tokenAliases: {},
                 },
                 _1: {
                   desc: 'plurals',
                   text: '1 cat and 1 dog',
-                  tokenAliases: {},
                 },
               },
             },
@@ -1631,14 +1583,12 @@ const generalTestData = {
                 '*': {
                   desc: 'plurals',
                   text: 'There were {number} likes',
-                  tokenAliases: {},
                 },
               },
               _1: {
                 _1: {
                   desc: 'plurals',
                   text: 'There was a like',
-                  tokenAliases: {},
                 },
               },
             },
@@ -1686,14 +1636,12 @@ const generalTestData = {
                 '*': {
                   desc: 'plurals',
                   text: 'There are {number} likes',
-                  tokenAliases: {},
                 },
               },
               _1: {
                 _1: {
                   desc: 'plurals',
                   text: 'There is a like',
-                  tokenAliases: {},
                 },
               },
             },
@@ -1777,7 +1725,6 @@ const generalTestData = {
               '*': {
                 desc: 'names',
                 text: 'You just friended {name}',
-                tokenAliases: {},
               },
             },
             m: [
@@ -1819,7 +1766,6 @@ const generalTestData = {
               '*': {
                 desc: 'variations!',
                 text: 'Click to see {count} links',
-                tokenAliases: {},
               },
             },
             m: [
@@ -1860,7 +1806,6 @@ const generalTestData = {
             t: {
               desc: 'd',
               text: '{name1} and {name1}',
-              tokenAliases: {},
             },
             m: [],
           },
@@ -1906,7 +1851,6 @@ const generalTestData = {
                 desc: 'test variations + sameParam',
                 text:
                   'You have {count} likes. Comment on it to get more than {count} likes',
-                tokenAliases: {},
               },
             },
             m: [
@@ -1941,7 +1885,6 @@ const generalTestData = {
               t: {
                 desc: "It's simple",
                 text: 'Also simple string',
-                tokenAliases: {},
               },
               m: [],
             },
@@ -1992,7 +1935,6 @@ const generalTestData = {
             t: {
               desc: 'desc',
               text: 'foobarbazqux',
-              tokenAliases: {},
             },
             m: [],
           },
@@ -2004,7 +1946,6 @@ const generalTestData = {
             t: {
               desc: 'desc',
               text: 'foobarbazqux',
-              tokenAliases: {},
             },
             m: [],
           },
@@ -2016,7 +1957,6 @@ const generalTestData = {
             t: {
               desc: 'desc',
               text: 'foobarbazqux',
-              tokenAliases: {},
             },
             m: [],
           },
@@ -2051,17 +1991,14 @@ const generalTestData = {
               groups: {
                 desc: 'enums!',
                 text: 'Hello, groups!',
-                tokenAliases: {},
               },
               photos: {
                 desc: 'enums!',
                 text: 'Hello, photos!',
-                tokenAliases: {},
               },
               videos: {
                 desc: 'enums!',
                 text: 'Hello, videos!',
-                tokenAliases: {},
               },
             },
             m: [null],
@@ -2127,17 +2064,14 @@ const generalTestData = {
               groups: {
                 desc: 'enums!',
                 text: 'Look! Groups and groups!',
-                tokenAliases: {},
               },
               photos: {
                 desc: 'enums!',
                 text: 'Look! Photos and photos!',
-                tokenAliases: {},
               },
               videos: {
                 desc: 'enums!',
                 text: 'Look! Videos and videos!',
-                tokenAliases: {},
               },
             },
             m: [null],
@@ -2183,22 +2117,18 @@ const generalTestData = {
               '0': {
                 desc: 'object pronoun',
                 text: 'I know this.',
-                tokenAliases: {},
               },
               '1': {
                 desc: 'object pronoun',
                 text: 'I know her.',
-                tokenAliases: {},
               },
               '2': {
                 desc: 'object pronoun',
                 text: 'I know him.',
-                tokenAliases: {},
               },
               '*': {
                 desc: 'object pronoun',
                 text: 'I know them.',
-                tokenAliases: {},
               },
             },
             m: [null],
@@ -2246,21 +2176,18 @@ const generalTestData = {
                 '1': {
                   desc: 'subject+reflexive pronouns',
                   text: 'She wished herself a happy birthday.',
-                  tokenAliases: {},
                 },
               },
               '2': {
                 '2': {
                   desc: 'subject+reflexive pronouns',
                   text: 'He wished himself a happy birthday.',
-                  tokenAliases: {},
                 },
               },
               '*': {
                 '*': {
                   desc: 'subject+reflexive pronouns',
                   text: 'They wished themselves a happy birthday.',
-                  tokenAliases: {},
                 },
               },
             },
@@ -2307,17 +2234,14 @@ const generalTestData = {
               '1': {
                 desc: 'possessive pronoun',
                 text: 'It is her birthday.',
-                tokenAliases: {},
               },
               '2': {
                 desc: 'possessive pronoun',
                 text: 'It is his birthday.',
-                tokenAliases: {},
               },
               '*': {
                 desc: 'possessive pronoun',
                 text: 'It is their birthday.',
-                tokenAliases: {},
               },
             },
             m: [null],
@@ -2569,13 +2493,11 @@ const generalTestData = {
                         desc:
                           'In the phrase: "A1 B1 {=C1 [count] C2 [cat_token] cats} B2 A2"',
                         text: 'C1 {count} C2 {cat_token} cats',
-                        tokenAliases: {},
                       },
                       _1: {
                         desc:
                           'In the phrase: "A1 B1 {=C1 [count] C2 cat} B2 A2"',
                         text: 'C1 {count} C2 cat',
-                        tokenAliases: {},
                       },
                     },
                   },
@@ -2620,7 +2542,6 @@ with some other stuff.\`
             t: {
               desc: 'blah',
               text: 'A simple string... with some other stuff.',
-              tokenAliases: {},
             },
             m: [],
           },
@@ -2654,17 +2575,14 @@ with some other stuff.\`
               groups: {
                 desc: 'enums!',
                 text: 'Look! Groups and groups!',
-                tokenAliases: {},
               },
               photos: {
                 desc: 'enums!',
                 text: 'Look! Photos and photos!',
-                tokenAliases: {},
               },
               videos: {
                 desc: 'enums!',
                 text: 'Look! Videos and videos!',
-                tokenAliases: {},
               },
             },
             m: [null],
@@ -2729,17 +2647,14 @@ with some other stuff.\`
               groups: {
                 desc: 'enums!',
                 text: 'Look! Groups and groups!',
-                tokenAliases: {},
               },
               photos: {
                 desc: 'enums!',
                 text: 'Look! Photos and photos!',
-                tokenAliases: {},
               },
               videos: {
                 desc: 'enums!',
                 text: 'Look! Videos and videos!',
-                tokenAliases: {},
               },
             },
             m: [null],

@@ -240,7 +240,7 @@ class FbtElementNode
     ).trim();
   }
 
-  getTokenAliases(argsMap: StringVariationArgsMap): TokenAliases {
+  getTokenAliases(argsMap: StringVariationArgsMap): ?TokenAliases {
     return getTokenAliasesFromFbtNodeTree(this, argsMap);
   }
 
