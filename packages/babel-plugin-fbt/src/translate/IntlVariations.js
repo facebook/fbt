@@ -31,7 +31,10 @@ const IntlGenderVariations = {
 
 // Two bitmasks for representing gender/number variations.  Give a bit
 // between number/gender in case CLDR ever exceeds 7 options
-const IntlVariationMask = {
+const IntlVariationMask: {|
+  NUMBER: 0x1c,
+  GENDER: 0x03,
+|} = {
   NUMBER: 0x1c, // 0b11100
   GENDER: 0x03, // 0b00011
 };
