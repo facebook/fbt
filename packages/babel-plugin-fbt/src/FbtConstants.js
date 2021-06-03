@@ -14,7 +14,7 @@
 
 /*eslint max-len: ["error", 100]*/
 
-import type {ValidPronounUsagesType} from '../../../../runtime/shared/FbtRuntimeTypes';
+import type {ValidPronounUsagesType} from '../../../runtime/shared/FbtRuntimeTypes';
 
 export type FbtOptionValue = string | boolean | BabelNode;
 export type FbtOptionValues<K> = {|[K]: ?FbtOptionValue|};
