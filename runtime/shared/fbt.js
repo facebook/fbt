@@ -23,6 +23,7 @@
 require('FbtEnv').setupOnce();
 
 import type {FbtInputOpts, FbtRuntimeInput, FbtTableArgs} from 'FbtHooks';
+import type {ParamVariationType, ValidPronounUsagesType} from 'FbtRuntimeTypes';
 import type {FbtTableKey, PatternString} from 'FbtTable';
 import type {FbtTableArg} from 'FbtTableAccessor';
 import type {GenderConstEnum} from 'GenderConst';
@@ -46,17 +47,16 @@ let jsonExportMode = false; // Used only in React Native
 
 const {ARG} = FbtTable;
 
-const VARIATIONS = {
-  NUMBER: 0,
-  GENDER: 1,
+const ParamVariation: ParamVariationType = {
+  number: 0,
+  gender: 1,
 };
 
-// Must match ValidPronounUsages in FbtConstants.js
-const PRONOUN_USAGE = {
-  OBJECT: 0,
-  POSSESSIVE: 1,
-  REFLEXIVE: 2,
-  SUBJECT: 3,
+const ValidPronounUsages: ValidPronounUsagesType = {
+  object: 0,
+  possessive: 1,
+  reflexive: 2,
+  subject: 3,
 };
 
 const cachedFbtResults: {[patternStr: PatternString]: Fbt} = {};
@@ -248,26 +248,31 @@ function fbtSubject(value: GenderConstEnum): FbtTableArg {
 function fbtParam(
   label: string,
   value: mixed,
-  variations?: ?[$Values<typeof VARIATIONS>, number | GenderConstEnum],
+  variations?:
+    | [$PropertyType<ParamVariationType, 'number'>, ?number]
+    | [$PropertyType<ParamVariationType, 'gender'>, GenderConstEnum],
 ): FbtTableArg {
   const substitution = {[label]: value};
   if (variations) {
-    if (variations[0] === VARIATIONS.NUMBER) {
+    if (variations[0] === ParamVariation.number) {
       const number = variations.length > 1 ? variations[1] : value;
       invariant(typeof number === 'number', 'fbt.param expected number');
 
-      const variation = getNumberVariations(number);
+      const variation = getNumberVariations(number); // this will throw if `number` is invalid
       if (typeof value === 'number') {
         substitution[label] = intlNumUtils.formatNumberWithThousandDelimiters(
           value,
         );
       }
       return FbtTableAccessor.getNumberResult(variation, substitution, number);
-    } else if (variations[0] === VARIATIONS.GENDER) {
-      invariant(variations.length > 1, 'expected gender value');
+    } else if (variations[0] === ParamVariation.gender) {
       const gender = variations[1];
-      const variation = getGenderVariations(gender);
-      return FbtTableAccessor.getGenderResult(variation, substitution, gender);
+      invariant(gender != null, 'expected gender value');
+      return FbtTableAccessor.getGenderResult(
+        getGenderVariations(gender),
+        substitution,
+        gender,
+      );
     } else {
       invariant(false, 'Unknown invariant mask');
     }
@@ -282,7 +287,9 @@ function fbtParam(
 function fbtImplicitParam(
   label: string,
   value: mixed,
-  variations?: ?[$Values<typeof VARIATIONS>, number | GenderConstEnum],
+  variations?:
+    | [$PropertyType<ParamVariationType, 'number'>, ?number]
+    | [$PropertyType<ParamVariationType, 'gender'>, GenderConstEnum],
 ): FbtTableArg {
   return this._param(label, value, variations);
 }
@@ -318,12 +325,12 @@ function fbtPlural(count: number, label: ?string, value?: mixed): FbtTableArg {
 /**
  * fbt._pronoun() takes a 'usage' string and a GenderConst value and returns a tuple in the format:
  * [variations, null]
- * @param usage - Example: PRONOUN_USAGE.object.
+ * @param usage - Example: PronounUsage.object.
  * @param gender - Example: GenderConst.MALE_SINGULAR
  * @param options - Example: { human: 1 }
  */
 function fbtPronoun(
-  usage: $Values<typeof PRONOUN_USAGE>,
+  usage: $Values<typeof ValidPronounUsages>,
   gender: GenderConstEnum,
   options: ?{human?: 1},
 ): FbtTableArg {
@@ -342,7 +349,8 @@ function fbtPronoun(
 function getPronounGenderKey(usage, gender) {
   switch (gender) {
     case GenderConst.NOT_A_PERSON:
-      return usage === PRONOUN_USAGE.OBJECT || usage === PRONOUN_USAGE.REFLEXIVE
+      return usage === ValidPronounUsages.object ||
+        usage === ValidPronounUsages.reflexive
         ? GenderConst.NOT_A_PERSON
         : GenderConst.UNKNOWN_PLURAL;
 
@@ -363,7 +371,7 @@ function getPronounGenderKey(usage, gender) {
 
     case GenderConst.NEUTER_SINGULAR:
     case GenderConst.UNKNOWN_SINGULAR:
-      return usage === PRONOUN_USAGE.REFLEXIVE
+      return usage === ValidPronounUsages.reflexive
         ? GenderConst.NOT_A_PERSON
         : GenderConst.UNKNOWN_PLURAL;
   }

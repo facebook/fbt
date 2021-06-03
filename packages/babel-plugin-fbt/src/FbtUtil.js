@@ -938,7 +938,7 @@ function enforceBabelNodeCallExpressionArg(
 
 function enforceStringEnum<K: string>(
   value: mixed,
-  keys: {[K]: mixed},
+  keys: {[K]: any},
   valueDesc: ?string,
 ): K {
   invariant(

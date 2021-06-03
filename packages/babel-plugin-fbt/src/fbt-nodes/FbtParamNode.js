@@ -10,6 +10,7 @@
 
 'use strict';
 
+import type {ParamVariationType} from '../../../../runtime/shared/FbtRuntimeTypes';
 import type {
   BabelNodeCallExpressionArg,
   BabelNodeCallExpressionArgument,
@@ -60,7 +61,7 @@ const nullthrows = require('nullthrows');
 /**
  * Variations.
  */
-const Variation = {
+const ParamVariation: ParamVariationType = {
   number: 0,
   gender: 1,
 };
@@ -185,13 +186,13 @@ class FbtParamNode extends FbtNode<
     let variationValues;
 
     if (number != null) {
-      variationValues = [numericLiteral(Variation.number)];
+      variationValues = [numericLiteral(ParamVariation.number)];
       if (number !== true) {
         // For number="true" we don't pass additional value.
         variationValues.push(number);
       }
     } else if (gender != null) {
-      variationValues = [numericLiteral(Variation.gender), gender];
+      variationValues = [numericLiteral(ParamVariation.gender), gender];
     }
     return createFbtRuntimeArgCallExpression(
       this,

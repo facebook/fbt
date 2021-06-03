@@ -14,7 +14,7 @@
 
 /*eslint max-len: ["error", 100]*/
 
-const keyMirror = require('fbjs/lib/keyMirror');
+import type {ValidPronounUsagesType} from '../../../../runtime/shared/FbtRuntimeTypes';
 
 export type FbtOptionValue = string | boolean | BabelNode;
 export type FbtOptionValues<K> = {|[K]: ?FbtOptionValue|};
@@ -34,7 +34,9 @@ export type FbtCallSiteOptions = $Shape<{|
 
 // JS module names without the "React FBT" variant
 export type JSModuleNameType = 'fbt' | 'fbs';
-export type ValidPronounUsagesKey = $Keys<typeof ValidPronounUsages>;
+export type ValidPronounUsagesKey = $Keys<ValidPronounUsagesType>;
+
+const keyMirror = require('fbjs/lib/keyMirror');
 
 const SENTINEL = '__FBT__';
 
@@ -64,7 +66,7 @@ const ValidPluralOptions = {
   ...PluralRequiredAttributes,
 };
 
-const ValidPronounUsages = {
+const ValidPronounUsages: ValidPronounUsagesType = {
   object: 0,
   possessive: 1,
   reflexive: 2,
