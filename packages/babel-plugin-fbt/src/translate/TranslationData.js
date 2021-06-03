@@ -11,13 +11,16 @@
 import type {IntlFbtVariationTypeValue} from './IntlVariations';
 import type TranslationConfig from './TranslationConfig';
 
-type Translation = {
+/**
+ * Corresponds to IntlJSTranslatationDataEntry in Hack
+ */
+type Translation = {|
   translation: string,
   id?: number | string,
   // Allow variation enum values to be stored in string or number type,
   // and we will parse it into IntlVariationEnumValue in config.isDefaultVariation()
   variations: {[index: string]: number | string},
-};
+|};
 
 class TranslationData {
   +tokens: Array<string>;
