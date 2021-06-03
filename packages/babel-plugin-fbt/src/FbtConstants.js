@@ -35,6 +35,7 @@ export type FbtCallSiteOptions = $Shape<{|
 // JS module names without the "React FBT" variant
 export type JSModuleNameType = 'fbt' | 'fbs';
 export type ValidPronounUsagesKey = $Keys<ValidPronounUsagesType>;
+export type FbtTypeValue = $Values<typeof FbtType>;
 
 const keyMirror = require('fbjs/lib/keyMirror');
 

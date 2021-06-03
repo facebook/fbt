@@ -611,7 +611,7 @@ function extractEnumRange(
  * functions or keys).
  */
 function objMap<
-  TKey: string,
+  TKey: string | number,
   TValueIn,
   TValueOut,
   TObj: {+[key: TKey]: TValueIn},

@@ -6,6 +6,8 @@
  * @emails oncall+i18n_fbt_js
  */
 
+import type {FbtSiteBase} from '../translate/FbtSiteBase';
+
 const {objMap} = require('../FbtUtil');
 const {FbtSite} = require('../translate/FbtSite');
 const TranslationBuilder = require('../translate/TranslationBuilder');
@@ -40,7 +42,7 @@ function processFiles(
   options: Options,
 ) {
   const phrases = parseJSONFile(stringFile).phrases;
-  const fbtSites = phrases.map(FbtSite.fromScan);
+  const fbtSites = phrases.map(createFbtSiteBaseFromJSON);
   const translatedGroups = translationFiles.map(file => {
     const group = parseJSONFile(file);
     return processTranslations(fbtSites, group);
@@ -49,7 +51,7 @@ function processFiles(
 }
 
 function processJSON(json, options: Options) {
-  const fbtSites = json.phrases.map(FbtSite.fromScan);
+  const fbtSites = json.phrases.map(createFbtSiteBaseFromJSON);
   return processGroups(
     json.phrases,
     json.translationGroups.map(group => processTranslations(fbtSites, group)),
@@ -92,6 +94,12 @@ function processTranslations(fbtSites, group) {
     'fb-locale': group['fb-locale'],
     translatedPhrases,
   };
+}
+
+function createFbtSiteBaseFromJSON(json: any): FbtSiteBase<any, any> {
+  // eslint-disable-next-line fb-www/todo-task
+  // TODO: Return the correct type of FbtSiteBase based on json format
+  return FbtSite.fromScan(json);
 }
 
 module.exports = {processFiles, processJSON};

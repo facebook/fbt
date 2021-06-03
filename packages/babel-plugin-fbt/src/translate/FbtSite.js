@@ -3,99 +3,140 @@
  *
  * @emails oncall+i18n_fbt_js
  * @format
- * @noflow
+ * @flow
  */
+
+'strict';
+
+import type {
+  FbtTableKey,
+  PatternHash,
+  PatternString,
+} from '../../../../runtime/shared/FbtTable';
+import type {FbtTypeValue} from '../FbtConstants';
+import type {
+  FbtSiteHashifiedTableJSFBTTree,
+  FbtSiteHashToText,
+} from './FbtSiteBase';
+import type {
+  IntlFbtVariationTypeValue,
+  IntlVariationMaskValue,
+} from './IntlVariations';
 
 const {FbtType} = require('../FbtConstants');
 const {objMap} = require('../FbtUtil');
-const {FbtVariationType, Mask} = require('./IntlVariations');
+const {
+  FbtSiteBase,
+  FbtSiteMetaEntryBase,
+  getVariationMaskFromType,
+} = require('./FbtSiteBase');
+const {FbtVariationType} = require('./IntlVariations');
 const invariant = require('invariant');
+const nullthrows = require('nullthrows');
 
 /**
- * Represents a fbt() or <fbt /> source data from a callsite and all
- * the information necessary to produce the translated payload.  It is
- * used primarily by TranslationBuilder for this process.
+ * The old format of fbt() or <fbt /> source data.
+ * `jsfbt` payload can be either a string or a tree depending on the `type` field.
  */
-class FbtSite {
+type SourceDataJSON =
+  | {
+      hashToText: FbtSiteHashToText,
+      type: 'table',
+      jsfbt: {|
+        t: TableJSFBTTree,
+        m: $ReadOnlyArray<?JSFBTMetaEntry>,
+      |},
+      project: string,
+    }
+  | {
+      hashToText: FbtSiteHashToText,
+      type: 'text',
+      jsfbt: PatternString,
+      project: string,
+    };
+
+type SerializedFbtSite = {|
+  _t: FbtTypeValue,
+  h2t: FbtSiteHashToText,
+  p: string,
+  _d?: {|
+    t: FbtSiteHashifiedTableJSFBTTree,
+    m: $ReadOnlyArray<?JSFBTMetaEntry>,
+  |},
+|};
+
+// TODO: yq9 Flowify metadata entry and add flow strict-local
+type JSFBTMetaEntry = any;
+
+type TableJSFBTTree =
+  | PatternString
+  | $ReadOnly<{|[key: FbtTableKey]: TableJSFBTTree|}>;
+
+/**
+ * This is the OLD way to represent a fbt() or <fbt /> source data from a callsite.
+ * An FbtSite is built from data in the json format of `SourceDataJSON`.
+ */
+class FbtSite extends FbtSiteBase<FbtSiteMetaEntry, FbtSiteHashToText> {
+  +_type: FbtTypeValue;
+
   constructor(
-    type,
-    hashToText,
-    tableData, // source table & metadata
-    project,
+    type: FbtTypeValue,
+    hashToText: FbtSiteHashToText,
+    tableData?: {|
+      m: $ReadOnlyArray<?JSFBTMetaEntry>,
+      t: FbtSiteHashifiedTableJSFBTTree,
+    |},
+    project: string,
   ) {
-    const hasTableData = typeof tableData === 'object';
+    const hasTableData = tableData !== undefined;
     invariant(
-      type === FbtType.TEXT || hasTableData,
+      (type === FbtType.TEXT || hasTableData) &&
+        !(type === FbtType.TEXT && hasTableData),
       'TEXT types sould have no table data and TABLE require it',
     );
+    let tableOrHash;
     if (type === FbtType.TEXT) {
       invariant(
         Object.keys(hashToText).length === 1,
         'TEXT types should be a singleton entry',
       );
-      this._tableOrHash = Object.keys(hashToText)[0];
+      tableOrHash = Object.keys(hashToText)[0];
+    } else {
+      tableOrHash = nullthrows(tableData).t;
     }
+    super(
+      hashToText,
+      tableOrHash,
+      hasTableData ? FbtSiteMetadata.wrap(nullthrows(tableData).m) : [],
+      project,
+    );
     this._type = type;
-    this._hashToText = hashToText;
-    if (hasTableData) {
-      this._tableOrHash = tableData.t;
-      this._metadata = FbtSiteMetadata.wrap(tableData.m);
-    }
-    this.project = project;
   }
 
-  getHashToText() {
-    return this._hashToText;
-  }
-
-  getMetadata() {
-    return this._metadata || [];
-  }
-
-  getProject() {
-    return this._project;
-  }
-
-  getType() {
+  getType(): FbtTypeValue {
     return this._type;
   }
 
-  // In a type of TABLE, this looks something like:
-  //
-  // {"*":
-  //   {... { "*": <HASH>} } }
-  //
-  // In a type of TEXT, this is simply the HASH
-  getTableOrHash() {
-    return this._tableOrHash;
-  }
-
-  // Replaces leaves in our table with corresponding hashes
+  /**
+   * Replaces leaves in our table with corresponding hashes
+   * @param entry Represents a recursive descent into the table
+   * @param textToHash Reverse mapping of hashToText for leaf lookups
+   */
   static _hashifyLeaves(
-    entry, // Represents a recursive descent into the table
-    textToHash, // Reverse mapping of hashToText for leaf lookups
-  ) {
+    entry: TableJSFBTTree,
+    textToHash: {[text: PatternString]: PatternHash},
+  ): FbtSiteHashifiedTableJSFBTTree {
     return typeof entry === 'string'
       ? textToHash[entry]
       : objMap(entry, branch => FbtSite._hashifyLeaves(branch, textToHash));
   }
 
   /**
-   * From a run of collectFbt using TextPackager.  NOTE: this is NOT
-   * the output of serialize
-   *
-   * Relevant keys processed:
-   * {
-   *  hashToText: {hash: text},
-   *  type: TABLE|TEXT
-   *  jsfbt: {
-   *    m: [levelMetadata,...]
-   *    t: {...}
-   *  } | text
-   * }
+   * From a run of collectFbt using TextPackager.
+   * NOTE: this is NOT the output of serialize
    */
-  static fromScan(json) {
-    let tableData = json.jsfbt;
+  static fromScan(json: SourceDataJSON): FbtSite {
+    let tableData;
     if (json.type === FbtType.TABLE) {
       const textToHash = {};
       for (const k in json.hashToText) {
@@ -120,38 +161,45 @@ class FbtSite {
     return fbtSite;
   }
 
-  serialize() {
+  serialize(): SerializedFbtSite {
     const json = {
       _t: this.getType(),
-      h2t: this.getHashToText(),
+      h2t: this.getHashToLeaf(),
       p: this.getProject(),
     };
     if (this._type === FbtType.TABLE) {
-      json._d = {
-        t: this._tableOrHash,
-        m: FbtSiteMetadata.unwrap(this._metadata),
+      return {
+        ...json,
+        _d: {
+          t: this.table,
+          m: FbtSiteMetadata.unwrap(this.metadata),
+        },
       };
     }
     return json;
   }
 
-  static deserialize(json) {
+  static deserialize(json: SerializedFbtSite): FbtSite {
     return new FbtSite(json._t, json.h2t, json._d, json.p);
   }
 }
 
 const FbtSiteMetadata = {
-  wrap(rawEntries) {
+  wrap(rawEntries: $ReadOnlyArray<?JSFBTMetaEntry>): Array<?FbtSiteMetaEntry> {
     return rawEntries.map(entry => entry && FbtSiteMetaEntry.wrap(entry));
   },
 
-  unwrap(metaEntries) {
-    return metaEntries.map(entry => (entry === null ? null : entry.unwrap()));
+  unwrap(
+    metaEntries: $ReadOnlyArray<?FbtSiteMetaEntry>,
+  ): Array<?JSFBTMetaEntry> {
+    return metaEntries.map(entry => (entry == null ? null : entry.unwrap()));
   },
 };
 
-class FbtSiteMetaEntry {
-  static wrap(entry) {
+class FbtSiteMetaEntry extends FbtSiteMetaEntryBase {
+  +mask: ?IntlVariationMaskValue;
+
+  static wrap(entry: JSFBTMetaEntry): FbtSiteMetaEntry {
     FbtSiteMetaEntry._validate(entry);
     return new this(
       entry.type || null,
@@ -160,50 +208,49 @@ class FbtSiteMetaEntry {
     );
   }
 
-  getToken() {
-    return this._token;
-  }
-
-  hasVariationMask() {
-    if (this._token === null) {
+  hasVariationMask(): boolean {
+    if (this.token === null) {
       return false;
     }
-    if (this._type === null) {
-      return this._mask !== null;
+    if (this.type === null) {
+      return this.mask !== null;
     }
-    return _getVariationMaskFromType(this._type) !== undefined;
+    return getVariationMaskFromType(this.type) !== undefined;
   }
 
-  getVariationMask() {
+  getVariationMask(): ?IntlVariationMaskValue {
     invariant(
       this.hasVariationMask() === true,
       'check hasVariationMask to avoid this invariant',
     );
-    if (this._type === null) {
-      return this._mask;
+    if (this.type === null) {
+      return this.mask;
     } else {
-      return _getVariationMaskFromType(this._type);
+      return getVariationMaskFromType(this.type);
     }
   }
 
-  unwrap() {
+  unwrap(): JSFBTMetaEntry {
     const entry = {};
-    if (this._token !== null) {
-      entry.token = this._token;
+    if (this.token !== null) {
+      entry.token = this.token;
     }
-    if (this._mask !== null) {
-      entry.mask = this._mask;
+    if (this.mask !== null) {
+      entry.mask = this.mask;
     }
-    if (this._type !== null) {
-      entry.type = this._type;
+    if (this.type !== null) {
+      entry.type = this.type;
     }
     return entry;
   }
 
-  constructor(type, token, mask) {
-    this._type = type;
-    this._token = token;
-    this._mask = mask;
+  constructor(
+    type: ?IntlFbtVariationTypeValue,
+    token: ?string,
+    mask: ?IntlVariationMaskValue,
+  ) {
+    super(type, token);
+    this.mask = mask;
   }
 
   static _validate(entry) {
@@ -234,14 +281,6 @@ class FbtSiteMetaEntry {
     }
   }
 }
-
-const _getVariationMaskFromType = function (type) {
-  return _variationTypeToMask[type];
-};
-
-const _variationTypeToMask = {};
-_variationTypeToMask[FbtVariationType.GENDER] = Mask.GENDER;
-_variationTypeToMask[FbtVariationType.NUMBER] = Mask.NUMBER;
 
 module.exports = {
   FbtSite,
