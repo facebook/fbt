@@ -178,6 +178,10 @@ function catchKnownErrors__DEBUG_ONLY(callback) {
         'Unexpected end of JSON input',
         "Cannot read property 'hasVariationMask' of undefined",
         "Cannot read property 'title' of undefined",
+        // TODO:(T92301984) Remove this once we clean up stale translation data in fb_HX
+        'transData.tokens is not iterable',
+        // TODO: Remove this after we land D28687750 to support new jsfbt format.
+        'TEXT types sould have no table data and TABLE require it',
       ].find(text => error.message.includes(text))
     ) {
       console.warn(
