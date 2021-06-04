@@ -1,7 +1,7 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
- * @generated SignedSource<<9cb576d418f2958a101fb9c76b7dfa0f>>
+ * @generated SignedSource<<82164e5c689dd9874f55ccb2f7c4979f>>
  *
  * @codegen-command : phps FBLocToLangScript
  *
@@ -52,11 +52,16 @@ const locToLang = {
 };
 
 const FBLocaleToLang = {
+  /**
+   * If given an fb-locale ("xx_XX"), try to map it to a language. Otherwise return "xx".
+   * If no '_' is found, return locale as-is.
+   */
   get(locale: string): string {
-    // If given an fb-locale ("xx_XX"), try to map it to a language.  Otherwise
-    // return "xx".  If no '_' is found, return locale as-is.
+    if (locToLang[locale]) {
+      return locToLang[locale];
+    }
     const idx = locale.indexOf('_');
-    return locToLang[locale] || (idx >= 0 ? locale.substr(0, idx) : locale);
+    return idx >= 0 ? locale.substr(0, idx) : locale;
   },
 };
 
