@@ -3,7 +3,7 @@
  *
  * @emails oncall+i18n_fbt_js
  * @format
- * @flow
+ * @flow strict-local
  */
 
 'strict';
@@ -22,23 +22,29 @@ type Translation = {|
   variations: {[index: string]: number | string},
 |};
 
+export type SerializedTranslationData = {|
+  tokens: $ReadOnlyArray<string>,
+  types: $ReadOnlyArray<IntlFbtVariationTypeValue>,
+  translations: $ReadOnlyArray<Translation>,
+|};
+
 class TranslationData {
-  +tokens: Array<string>;
-  +types: Array<IntlFbtVariationTypeValue>;
-  +translations: Array<Translation>;
+  +tokens: $ReadOnlyArray<string>;
+  +types: $ReadOnlyArray<IntlFbtVariationTypeValue>;
+  +translations: $ReadOnlyArray<Translation>;
   _defaultTranslation: ?string;
 
   constructor(
-    tokens: Array<string>,
-    types: Array<IntlFbtVariationTypeValue>,
-    translations: Array<Translation>,
+    tokens: $ReadOnlyArray<string>,
+    types: $ReadOnlyArray<IntlFbtVariationTypeValue>,
+    translations: $ReadOnlyArray<Translation>,
   ) {
     this.tokens = tokens;
     this.types = types;
     this.translations = translations;
   }
 
-  static fromJSON(json: Object): TranslationData {
+  static fromJSON(json: SerializedTranslationData): TranslationData {
     return new TranslationData(json.tokens, json.types, json.translations);
   }
 
