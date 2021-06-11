@@ -12,12 +12,7 @@ import type {
   FbtTableKey,
   PatternHash,
 } from '../../../../runtime/shared/FbtTable';
-import type {
-  FbtSiteBase,
-  FbtSiteHashifiedTableJSFBTTree,
-  FbtSiteHashToLeaf,
-  FbtSiteMetaEntryBase,
-} from './FbtSiteBase';
+import type {FbtSiteHashifiedTableJSFBTTree} from './FbtSiteBase';
 import type {
   IntlVariationMaskValue,
   IntlVariationsEnum,
@@ -32,7 +27,7 @@ const {buildConstraintKey} = require('./VariationConstraintUtils');
 const invariant = require('invariant');
 const nullthrows = require('nullthrows');
 const {EXACTLY_ONE, isValidValue, Mask} = IntlVariations;
-const {FbtSiteMetaEntry} = require('./FbtSite');
+const {FbtSiteMetaEntry, FbtSiteNew} = require('./FbtSiteNew');
 
 /**
  * Map from a string's hash to its translation payload.
@@ -83,7 +78,7 @@ type ConstraintKeyToTranslation = {[constraint: ConstraintKey]: string};
  */
 class TranslationBuilder {
   +_config: TranslationConfig;
-  +_fbtSite: FbtSiteBase<FbtSiteMetaEntryBase, FbtSiteHashToLeaf>;
+  +_fbtSite: FbtSiteNew;
   /** Memoized function that returns the constraint to translation map for a hash */
   +_getConstraintMapWithMemoization: (
     hash: PatternHash,
@@ -91,7 +86,7 @@ class TranslationBuilder {
   +_hasTranslations: boolean;
   +_hasVCGenderVariation: boolean;
   +_inclHash: boolean;
-  +_metadata: Array<?FbtSiteMetaEntryBase>;
+  +_metadata: Array<?FbtSiteMetaEntry>;
   +_tableOrHash: FbtSiteHashifiedTableJSFBTTree;
   +_tokenToMask: TokenToMask;
   +_translations: HashToTranslation;
@@ -105,7 +100,7 @@ class TranslationBuilder {
   constructor(
     translations: HashToTranslation,
     config: TranslationConfig,
-    fbtSite: FbtSiteBase<FbtSiteMetaEntryBase, FbtSiteHashToLeaf>,
+    fbtSite: FbtSiteNew,
     inclHash: boolean,
   ) {
     this._translations = translations;
@@ -127,7 +122,7 @@ class TranslationBuilder {
       this._metadata.unshift(
         FbtSiteMetaEntry.wrap({
           token: IntlVariations.VIEWING_USER,
-          mask: Mask.GENDER,
+          type: IntlVariations.FbtVariationType.GENDER,
         }),
       );
     }
