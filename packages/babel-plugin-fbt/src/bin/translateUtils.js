@@ -6,10 +6,8 @@
  * @emails oncall+i18n_fbt_js
  */
 
-import type {FbtSiteBase} from '../translate/FbtSiteBase';
-
 const {objMap} = require('../FbtUtil');
-const {FbtSite} = require('../translate/FbtSite');
+const {FbtSiteNew} = require('../translate/FbtSiteNew');
 const TranslationBuilder = require('../translate/TranslationBuilder');
 const TranslationConfig = require('../translate/TranslationConfig');
 const TranslationData = require('../translate/TranslationData');
@@ -96,10 +94,8 @@ function processTranslations(fbtSites, group) {
   };
 }
 
-function createFbtSiteBaseFromJSON(json: any): FbtSiteBase<any, any> {
-  // eslint-disable-next-line fb-www/todo-task
-  // TODO: Return the correct type of FbtSiteBase based on json format
-  return FbtSite.fromScan(json);
+function createFbtSiteBaseFromJSON(json: Object): FbtSiteNew {
+  return FbtSiteNew.fromScan(json);
 }
 
 module.exports = {processFiles, processJSON};

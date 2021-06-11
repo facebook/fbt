@@ -1,439 +1,1073 @@
 {
   "phrases": [
     {
-      "hashToText": {
-        "40bd5bc10bd59fe020569068cfd7d814": "Your FBT Demo"
-      },
-      "filepath": "src/example/Example.react.js",
-      "line_beg": 110,
-      "col_beg": 12,
-      "line_end": 110,
-      "col_end": 49,
-      "type": "text",
-      "desc": "title",
-      "project": "fbt-demo-project",
-      "jsfbt": "Your FBT Demo"
-    },
-    {
-      "hashToText": {
-        "f75b97a97fa3772468477f17e0c0a160": "Construct sentences"
-      },
-      "filepath": "src/example/Example.react.js",
-      "line_beg": 112,
-      "col_beg": 14,
-      "line_end": 112,
-      "col_end": 58,
-      "type": "text",
-      "desc": "header",
-      "project": "fbt-demo-project",
-      "jsfbt": "Construct sentences"
-    },
-    {
-      "hashToText": {
-        "26d8c764cc951266855af9e375d97105": "Use the form below to see FBT in action."
-      },
-      "filepath": "src/example/Example.react.js",
-      "line_beg": 113,
-      "col_beg": 14,
-      "line_end": 113,
-      "col_end": 91,
-      "type": "text",
-      "desc": "yet another header",
-      "project": "fbt-demo-project",
-      "jsfbt": "Use the form below to see FBT in action."
-    },
-    {
-      "hashToText": {
-        "1893f1dc2ad543b243fec0c5c22cb782": "Your Gender:"
-      },
-      "filepath": "src/example/Example.react.js",
-      "line_beg": 125,
-      "col_beg": 20,
-      "line_end": 125,
-      "col_end": 70,
-      "type": "text",
-      "desc": "Gender Select label",
-      "project": "fbt-demo-project",
-      "jsfbt": "Your Gender:"
-    },
-    {
-      "hashToText": {
-        "bf9bf2f7d22fa776eaf7838a6dc2da9f": "Unknown"
-      },
-      "filepath": "src/example/Example.react.js",
-      "line_beg": 128,
-      "col_beg": 20,
-      "line_end": 128,
-      "col_end": 60,
-      "type": "text",
-      "desc": "Unknown gender",
-      "project": "fbt-demo-project",
-      "jsfbt": "Unknown"
-    },
-    {
-      "hashToText": {
-        "ab362a612bbbb45450265125792a837f": "Male"
-      },
-      "filepath": "src/example/Example.react.js",
-      "line_beg": 131,
-      "col_beg": 20,
-      "line_end": 131,
-      "col_end": 54,
-      "type": "text",
-      "desc": "Male gender",
-      "project": "fbt-demo-project",
-      "jsfbt": "Male"
-    },
-    {
-      "hashToText": {
-        "643b77298eef5a450d56374ae678e8d1": "Female"
-      },
-      "filepath": "src/example/Example.react.js",
-      "line_beg": 134,
-      "col_beg": 20,
-      "line_end": 134,
-      "col_end": 58,
-      "type": "text",
-      "desc": "Female gender",
-      "project": "fbt-demo-project",
-      "jsfbt": "Female"
-    },
-    {
-      "hashToText": {
-        "025316323d5bb7597ad78e39d37772aa": "name"
-      },
-      "filepath": "src/example/Example.react.js",
-      "line_beg": 151,
-      "col_beg": 33,
-      "line_end": 151,
-      "col_end": 58,
-      "type": "text",
-      "desc": "name field",
-      "project": "fbt-demo-project",
-      "jsfbt": "name"
-    },
-    {
-      "hashToText": {
-        "37d0e6c1db7414fee2ef94bc7b5f1575": "count"
-      },
-      "filepath": "src/example/Example.react.js",
-      "line_beg": 167,
-      "col_beg": 33,
-      "line_end": 167,
-      "col_end": 60,
-      "type": "text",
-      "desc": "count field",
-      "project": "fbt-demo-project",
-      "jsfbt": "count"
-    },
-    {
-      "hashToText": {
-        "ce5f268d53706acc64dd5e59430be1c8": "Gender:"
-      },
-      "filepath": "src/example/Example.react.js",
-      "line_beg": 181,
-      "col_beg": 22,
-      "line_end": 181,
-      "col_end": 67,
-      "type": "text",
-      "desc": "Gender Select label",
-      "project": "fbt-demo-project",
-      "jsfbt": "Gender:"
-    },
-    {
-      "hashToText": {
-        "bf9bf2f7d22fa776eaf7838a6dc2da9f": "Unknown"
-      },
-      "filepath": "src/example/Example.react.js",
-      "line_beg": 184,
-      "col_beg": 22,
-      "line_end": 184,
-      "col_end": 62,
-      "type": "text",
-      "desc": "Unknown gender",
-      "project": "fbt-demo-project",
-      "jsfbt": "Unknown"
-    },
-    {
-      "hashToText": {
-        "ab362a612bbbb45450265125792a837f": "Male"
-      },
-      "filepath": "src/example/Example.react.js",
-      "line_beg": 187,
-      "col_beg": 22,
-      "line_end": 187,
-      "col_end": 56,
-      "type": "text",
-      "desc": "Male gender",
-      "project": "fbt-demo-project",
-      "jsfbt": "Male"
-    },
-    {
-      "hashToText": {
-        "643b77298eef5a450d56374ae678e8d1": "Female"
-      },
-      "filepath": "src/example/Example.react.js",
-      "line_beg": 190,
-      "col_beg": 22,
-      "line_end": 190,
-      "col_end": 60,
-      "type": "text",
-      "desc": "Female gender",
-      "project": "fbt-demo-project",
-      "jsfbt": "Female"
-    },
-    {
-      "hashToText": {
-        "e2a294efdf88fa51379667ac368953f7": "{name} has shared {=a photo} with you"
-      },
-      "filepath": "src/example/Example.react.js",
-      "line_beg": 199,
-      "col_beg": 16,
-      "line_end": 210,
-      "col_end": 22,
-      "type": "table",
-      "desc": "example 1",
-      "project": "fbt-demo-project",
-      "jsfbt": {
-        "t": {
-          "*": "{name} has shared {=a photo} with you"
-        },
-        "m": [
-          {
-            "token": "name",
-            "type": 1
-          }
-        ]
+     "hashToLeaf": {
+      "f9df2DVor1ccX0uzZbuDVQ==": {
+       "text": "Your FBT Demo",
+       "desc": "title"
       }
+     },
+     "filepath": "src/example/Example.react.js",
+     "line_beg": 130,
+     "col_beg": 12,
+     "line_end": 130,
+     "col_end": 49,
+     "project": "fbt-demo-project",
+     "jsfbt": {
+      "t": {
+       "desc": "title",
+       "text": "Your FBT Demo"
+      },
+      "m": []
+     }
     },
     {
-      "hashToText": {
-        "d47b9415c39a6e5e042244d77c23bb13": "{number} photos",
-        "4a7e4b119044b338d8b41fab78778d05": " a photo"
-      },
-      "filepath": "src/example/Example.react.js",
-      "line_beg": 204,
-      "col_beg": 18,
-      "line_end": 208,
-      "col_end": 22,
-      "type": "table",
-      "desc": "In the phrase: \"{=} has shared {=a photo} with you\"",
-      "project": "fbt-demo-project",
-      "jsfbt": {
-        "t": {
-          "*": "{number} photos",
-          "_1": " a photo"
-        },
-        "m": [
-          {
-            "token": "number",
-            "type": 2,
-            "singular": true
-          }
-        ]
+     "hashToLeaf": {
+      "PvA+AsZdpZXw81g/J3Ow0Q==": {
+       "text": "Construct sentences",
+       "desc": "header"
       }
+     },
+     "filepath": "src/example/Example.react.js",
+     "line_beg": 133,
+     "col_beg": 12,
+     "line_end": 133,
+     "col_end": 56,
+     "project": "fbt-demo-project",
+     "jsfbt": {
+      "t": {
+       "desc": "header",
+       "text": "Construct sentences"
+      },
+      "m": []
+     }
     },
     {
-      "hashToText": {
-        "025316323d5bb7597ad78e39d37772aa": "name"
-      },
-      "filepath": "src/example/Example.react.js",
-      "line_beg": 224,
-      "col_beg": 33,
-      "line_end": 224,
-      "col_end": 58,
-      "type": "text",
-      "desc": "name field",
-      "project": "fbt-demo-project",
-      "jsfbt": "name"
-    },
-    {
-      "hashToText": {
-        "ce5f268d53706acc64dd5e59430be1c8": "Gender:"
-      },
-      "filepath": "src/example/Example.react.js",
-      "line_beg": 252,
-      "col_beg": 22,
-      "line_end": 252,
-      "col_end": 67,
-      "type": "text",
-      "desc": "Gender Select label",
-      "project": "fbt-demo-project",
-      "jsfbt": "Gender:"
-    },
-    {
-      "hashToText": {
-        "1b2ec97fa79c3d163cac76346422f8b1": "Not a person"
-      },
-      "filepath": "src/example/Example.react.js",
-      "line_beg": 255,
-      "col_beg": 22,
-      "line_end": 255,
-      "col_end": 72,
-      "type": "text",
-      "desc": "Gender Select label",
-      "project": "fbt-demo-project",
-      "jsfbt": "Not a person"
-    },
-    {
-      "hashToText": {
-        "c63ed212602077b1dd58db087991b5af": "Unknown (Plural)"
-      },
-      "filepath": "src/example/Example.react.js",
-      "line_beg": 258,
-      "col_beg": 22,
-      "line_end": 258,
-      "col_end": 76,
-      "type": "text",
-      "desc": "Gender Select label",
-      "project": "fbt-demo-project",
-      "jsfbt": "Unknown (Plural)"
-    },
-    {
-      "hashToText": {
-        "6a24311c8064b857c0fd320be01f7fb6": "Unknown (singular)"
-      },
-      "filepath": "src/example/Example.react.js",
-      "line_beg": 261,
-      "col_beg": 22,
-      "line_end": 261,
-      "col_end": 78,
-      "type": "text",
-      "desc": "Gender Select label",
-      "project": "fbt-demo-project",
-      "jsfbt": "Unknown (singular)"
-    },
-    {
-      "hashToText": {
-        "370370d4d03578bda451f99b8c6a3287": "Male (singular)"
-      },
-      "filepath": "src/example/Example.react.js",
-      "line_beg": 264,
-      "col_beg": 22,
-      "line_end": 264,
-      "col_end": 75,
-      "type": "text",
-      "desc": "Gender Select label",
-      "project": "fbt-demo-project",
-      "jsfbt": "Male (singular)"
-    },
-    {
-      "hashToText": {
-        "88a1bc74298abc6f3824ac4dd56135a0": "Female (singular)"
-      },
-      "filepath": "src/example/Example.react.js",
-      "line_beg": 267,
-      "col_beg": 22,
-      "line_end": 267,
-      "col_end": 77,
-      "type": "text",
-      "desc": "Gender Select label",
-      "project": "fbt-demo-project",
-      "jsfbt": "Female (singular)"
-    },
-    {
-      "hashToText": {
-        "ea428b598a1c30f60c9d213822b75ba3": "{name} has a link to share! {=View} her link.",
-        "209fd17e3aef1719fadda2f0208fb688": "{name} has a link to share! {=View} his link.",
-        "3ff45e45732c2df5e1febc2c643d369d": "{name} has a link to share! {=View} their link.",
-        "1315810748fa63a66b18bf9d64032e2e": "{name} has a page to share! {=View} her page.",
-        "aba87fbe4df14211e8943f721fa3f563": "{name} has a page to share! {=View} his page.",
-        "a9ea27109d11f0318948298570055b3f": "{name} has a page to share! {=View} their page.",
-        "e776d21e0dd182ddd172f444407eb40c": "{name} has a photo to share! {=View} her photo.",
-        "fb144ab202738a4ba0ad63f4c116a982": "{name} has a photo to share! {=View} his photo.",
-        "575a12521c252c5571a66d1995504c83": "{name} has a photo to share! {=View} their photo.",
-        "23cbcf81d14c2294ba230b45d95ccf56": "{name} has a post to share! {=View} her post.",
-        "863fc7cde353c97be1f72eb3f3f06bc2": "{name} has a post to share! {=View} his post.",
-        "a3567d2b112704bff1048a49b93064a2": "{name} has a post to share! {=View} their post.",
-        "0f4ef5ee61e8dbeacc42549ac24f676f": "{name} has a video to share! {=View} her video.",
-        "a95747637ba6cbeeaeef48a2879b1f32": "{name} has a video to share! {=View} his video.",
-        "9837339cf62c9262f4d20c0d7999ff93": "{name} has a video to share! {=View} their video."
-      },
-      "filepath": "src/example/Example.react.js",
-      "line_beg": 275,
-      "col_beg": 16,
-      "line_end": 286,
-      "col_end": 22,
-      "type": "table",
-      "desc": "Example enum & pronoun",
-      "project": "fbt-demo-project",
-      "jsfbt": {
-        "t": {
-          "LINK": {
-            "1": "{name} has a link to share! {=View} her link.",
-            "2": "{name} has a link to share! {=View} his link.",
-            "*": "{name} has a link to share! {=View} their link."
-          },
-          "PAGE": {
-            "1": "{name} has a page to share! {=View} her page.",
-            "2": "{name} has a page to share! {=View} his page.",
-            "*": "{name} has a page to share! {=View} their page."
-          },
-          "PHOTO": {
-            "1": "{name} has a photo to share! {=View} her photo.",
-            "2": "{name} has a photo to share! {=View} his photo.",
-            "*": "{name} has a photo to share! {=View} their photo."
-          },
-          "POST": {
-            "1": "{name} has a post to share! {=View} her post.",
-            "2": "{name} has a post to share! {=View} his post.",
-            "*": "{name} has a post to share! {=View} their post."
-          },
-          "VIDEO": {
-            "1": "{name} has a video to share! {=View} her video.",
-            "2": "{name} has a video to share! {=View} his video.",
-            "*": "{name} has a video to share! {=View} their video."
-          }
-        },
-        "m": [
-          null,
-          null
-        ]
+     "hashToLeaf": {
+      "2TyGkzVNJtXrFsOOeLJHmg==": {
+       "text": "Use the form below to see FBT in action.",
+       "desc": "Header title"
       }
+     },
+     "filepath": "src/example/Example.react.js",
+     "line_beg": 138,
+     "col_beg": 12,
+     "line_end": 138,
+     "col_end": 77,
+     "project": "fbt-demo-project",
+     "jsfbt": {
+      "t": {
+       "desc": "Header title",
+       "text": "Use the form below to see FBT in action."
+      },
+      "m": []
+     }
     },
     {
-      "hashToText": {
-        "5739394f06e7e659ebe5ad02ef4d427c": "{=View}"
+     "hashToLeaf": {
+      "HusiL84DARy+8jiK7kc7qg==": {
+       "text": "Your Gender:",
+       "desc": "Gender Select label"
+      }
+     },
+     "filepath": "src/example/Example.react.js",
+     "line_beg": 152,
+     "col_beg": 22,
+     "line_end": 152,
+     "col_end": 72,
+     "project": "fbt-demo-project",
+     "jsfbt": {
+      "t": {
+       "desc": "Gender Select label",
+       "text": "Your Gender:"
       },
-      "filepath": "src/example/Example.react.js",
-      "line_beg": 282,
-      "col_beg": 18,
-      "line_end": 282,
-      "col_end": 46,
-      "type": "text",
-      "desc": "In the phrase: \"{=} has a to share!{=View}.\"",
-      "project": "fbt-demo-project",
-      "jsfbt": "{=View}"
+      "m": []
+     }
     },
     {
-      "hashToText": {
-        "d1021dd603ef7ed4073bee3d498ccb83": "View"
+     "hashToLeaf": {
+      "aRgFYYwtEkSHmVCxJMiHQQ==": {
+       "text": "Unknown",
+       "desc": "Unknown gender"
+      }
+     },
+     "filepath": "src/example/Example.react.js",
+     "line_beg": 155,
+     "col_beg": 22,
+     "line_end": 155,
+     "col_end": 62,
+     "project": "fbt-demo-project",
+     "jsfbt": {
+      "t": {
+       "desc": "Unknown gender",
+       "text": "Unknown"
       },
-      "filepath": "src/example/Example.react.js",
-      "line_beg": 282,
-      "col_beg": 21,
-      "line_end": 282,
-      "col_end": 42,
-      "type": "text",
-      "desc": "In the phrase: \"{=} has a to share!{=View}.\"",
-      "project": "fbt-demo-project",
-      "jsfbt": "View"
+      "m": []
+     }
     },
     {
-      "hashToText": {
-        "604b966f4a1948aa1efbd6e5c183b3d8": "Try it out!"
+     "hashToLeaf": {
+      "ljoRgg3SRs0vzbkgFv1tSA==": {
+       "text": "Male",
+       "desc": "Male gender"
+      }
+     },
+     "filepath": "src/example/Example.react.js",
+     "line_beg": 158,
+     "col_beg": 22,
+     "line_end": 158,
+     "col_end": 56,
+     "project": "fbt-demo-project",
+     "jsfbt": {
+      "t": {
+       "desc": "Male gender",
+       "text": "Male"
       },
-      "filepath": "src/example/Example.react.js",
-      "line_beg": 290,
-      "col_beg": 50,
-      "line_end": 290,
-      "col_end": 82,
-      "type": "text",
-      "desc": "Sign up button",
-      "project": "fbt-demo-project",
-      "jsfbt": "Try it out!"
+      "m": []
+     }
+    },
+    {
+     "hashToLeaf": {
+      "gAWLgPJCoT4RWZyEUmFM+A==": {
+       "text": "Female",
+       "desc": "Female gender"
+      }
+     },
+     "filepath": "src/example/Example.react.js",
+     "line_beg": 161,
+     "col_beg": 22,
+     "line_end": 161,
+     "col_end": 60,
+     "project": "fbt-demo-project",
+     "jsfbt": {
+      "t": {
+       "desc": "Female gender",
+       "text": "Female"
+      },
+      "m": []
+     }
+    },
+    {
+     "hashToLeaf": {
+      "JBhJwfCe2TutVvTr9c9HLw==": {
+       "text": "name",
+       "desc": "name field"
+      }
+     },
+     "filepath": "src/example/Example.react.js",
+     "line_beg": 177,
+     "col_beg": 33,
+     "line_end": 177,
+     "col_end": 58,
+     "project": "fbt-demo-project",
+     "jsfbt": {
+      "t": {
+       "desc": "name field",
+       "text": "name"
+      },
+      "m": []
+     }
+    },
+    {
+     "hashToLeaf": {
+      "K4iveOd+Z8ZNF2cfxBO+kw==": {
+       "text": "count",
+       "desc": "count field"
+      }
+     },
+     "filepath": "src/example/Example.react.js",
+     "line_beg": 189,
+     "col_beg": 33,
+     "line_end": 189,
+     "col_end": 60,
+     "project": "fbt-demo-project",
+     "jsfbt": {
+      "t": {
+       "desc": "count field",
+       "text": "count"
+      },
+      "m": []
+     }
+    },
+    {
+     "hashToLeaf": {
+      "DFDZjshVSmmTwi62nfXNfQ==": {
+       "text": "Gender:",
+       "desc": "Gender Select label"
+      }
+     },
+     "filepath": "src/example/Example.react.js",
+     "line_beg": 202,
+     "col_beg": 22,
+     "line_end": 202,
+     "col_end": 67,
+     "project": "fbt-demo-project",
+     "jsfbt": {
+      "t": {
+       "desc": "Gender Select label",
+       "text": "Gender:"
+      },
+      "m": []
+     }
+    },
+    {
+     "hashToLeaf": {
+      "aRgFYYwtEkSHmVCxJMiHQQ==": {
+       "text": "Unknown",
+       "desc": "Unknown gender"
+      }
+     },
+     "filepath": "src/example/Example.react.js",
+     "line_beg": 205,
+     "col_beg": 22,
+     "line_end": 205,
+     "col_end": 62,
+     "project": "fbt-demo-project",
+     "jsfbt": {
+      "t": {
+       "desc": "Unknown gender",
+       "text": "Unknown"
+      },
+      "m": []
+     }
+    },
+    {
+     "hashToLeaf": {
+      "ljoRgg3SRs0vzbkgFv1tSA==": {
+       "text": "Male",
+       "desc": "Male gender"
+      }
+     },
+     "filepath": "src/example/Example.react.js",
+     "line_beg": 208,
+     "col_beg": 22,
+     "line_end": 208,
+     "col_end": 56,
+     "project": "fbt-demo-project",
+     "jsfbt": {
+      "t": {
+       "desc": "Male gender",
+       "text": "Male"
+      },
+      "m": []
+     }
+    },
+    {
+     "hashToLeaf": {
+      "gAWLgPJCoT4RWZyEUmFM+A==": {
+       "text": "Female",
+       "desc": "Female gender"
+      }
+     },
+     "filepath": "src/example/Example.react.js",
+     "line_beg": 211,
+     "col_beg": 22,
+     "line_end": 211,
+     "col_end": 60,
+     "project": "fbt-demo-project",
+     "jsfbt": {
+      "t": {
+       "desc": "Female gender",
+       "text": "Female"
+      },
+      "m": []
+     }
+    },
+    {
+     "hashToLeaf": {
+      "gVKMc/8jq5vnYR5v2bb32g==": {
+       "text": "{name} has shared {=[number] photos} with you",
+       "desc": "example 1"
+      },
+      "PqPPir8Kg9xSlqdednPFOg==": {
+       "text": "{name} has shared {=a photo} with you",
+       "desc": "example 1"
+      }
+     },
+     "filepath": "src/example/Example.react.js",
+     "line_beg": 220,
+     "col_beg": 16,
+     "line_end": 234,
+     "col_end": 22,
+     "project": "fbt-demo-project",
+     "jsfbt": {
+      "t": {
+       "*": {
+        "*": {
+         "desc": "example 1",
+         "text": "{name} has shared {=[number] photos} with you",
+         "tokenAliases": {
+          "=[number] photos": "=m2"
+         }
+        },
+        "_1": {
+         "desc": "example 1",
+         "text": "{name} has shared {=a photo} with you",
+         "tokenAliases": {
+          "=a photo": "=m2"
+         }
+        }
+       }
+      },
+      "m": [
+       {
+        "token": "name",
+        "type": 1
+       },
+       {
+        "token": "number",
+        "type": 2,
+        "singular": true
+       }
+      ]
+     }
+    },
+    {
+     "hashToLeaf": {
+      "tYYOLLMbffdJQQlSVEVv/A==": {
+       "text": "{number} photos",
+       "desc": "In the phrase: \"{name} has shared {=[number] photos} with you\""
+      },
+      "Q9mOAQ+ogHG20z2QkEkNmQ==": {
+       "text": "a photo",
+       "desc": "In the phrase: \"{name} has shared {=a photo} with you\""
+      }
+     },
+     "filepath": "src/example/Example.react.js",
+     "line_beg": 225,
+     "col_beg": 18,
+     "line_end": 232,
+     "col_end": 22,
+     "project": "fbt-demo-project",
+     "jsfbt": {
+      "t": {
+       "*": {
+        "*": {
+         "desc": "In the phrase: \"{name} has shared {=[number] photos} with you\"",
+         "text": "{number} photos"
+        },
+        "_1": {
+         "desc": "In the phrase: \"{name} has shared {=a photo} with you\"",
+         "text": "a photo"
+        }
+       }
+      },
+      "m": [
+       {
+        "token": "name",
+        "type": 1
+       },
+       {
+        "token": "number",
+        "type": 2,
+        "singular": true
+       }
+      ]
+     }
+    },
+    {
+     "hashToLeaf": {
+      "JBhJwfCe2TutVvTr9c9HLw==": {
+       "text": "name",
+       "desc": "name field"
+      }
+     },
+     "filepath": "src/example/Example.react.js",
+     "line_beg": 247,
+     "col_beg": 33,
+     "line_end": 247,
+     "col_end": 58,
+     "project": "fbt-demo-project",
+     "jsfbt": {
+      "t": {
+       "desc": "name field",
+       "text": "name"
+      },
+      "m": []
+     }
+    },
+    {
+     "hashToLeaf": {
+      "DFDZjshVSmmTwi62nfXNfQ==": {
+       "text": "Gender:",
+       "desc": "Gender Select label"
+      }
+     },
+     "filepath": "src/example/Example.react.js",
+     "line_beg": 275,
+     "col_beg": 22,
+     "line_end": 275,
+     "col_end": 67,
+     "project": "fbt-demo-project",
+     "jsfbt": {
+      "t": {
+       "desc": "Gender Select label",
+       "text": "Gender:"
+      },
+      "m": []
+     }
+    },
+    {
+     "hashToLeaf": {
+      "CcRrycO18VroWvGAcg0u7w==": {
+       "text": "Not a person",
+       "desc": "Gender Select label"
+      }
+     },
+     "filepath": "src/example/Example.react.js",
+     "line_beg": 278,
+     "col_beg": 22,
+     "line_end": 278,
+     "col_end": 72,
+     "project": "fbt-demo-project",
+     "jsfbt": {
+      "t": {
+       "desc": "Gender Select label",
+       "text": "Not a person"
+      },
+      "m": []
+     }
+    },
+    {
+     "hashToLeaf": {
+      "+JZjqgCHObNg6jWov91o+w==": {
+       "text": "Unknown (Plural)",
+       "desc": "Gender Select label"
+      }
+     },
+     "filepath": "src/example/Example.react.js",
+     "line_beg": 281,
+     "col_beg": 22,
+     "line_end": 281,
+     "col_end": 76,
+     "project": "fbt-demo-project",
+     "jsfbt": {
+      "t": {
+       "desc": "Gender Select label",
+       "text": "Unknown (Plural)"
+      },
+      "m": []
+     }
+    },
+    {
+     "hashToLeaf": {
+      "Pcdu2jt+bnKzFRSeBLICcQ==": {
+       "text": "Unknown (singular)",
+       "desc": "Gender Select label"
+      }
+     },
+     "filepath": "src/example/Example.react.js",
+     "line_beg": 284,
+     "col_beg": 22,
+     "line_end": 284,
+     "col_end": 78,
+     "project": "fbt-demo-project",
+     "jsfbt": {
+      "t": {
+       "desc": "Gender Select label",
+       "text": "Unknown (singular)"
+      },
+      "m": []
+     }
+    },
+    {
+     "hashToLeaf": {
+      "+DJQa/brVSQ5ial+3ta3gg==": {
+       "text": "Male (singular)",
+       "desc": "Gender Select label"
+      }
+     },
+     "filepath": "src/example/Example.react.js",
+     "line_beg": 287,
+     "col_beg": 22,
+     "line_end": 287,
+     "col_end": 75,
+     "project": "fbt-demo-project",
+     "jsfbt": {
+      "t": {
+       "desc": "Gender Select label",
+       "text": "Male (singular)"
+      },
+      "m": []
+     }
+    },
+    {
+     "hashToLeaf": {
+      "+jPpJbvCzEnvvfpvTTRVdg==": {
+       "text": "Female (singular)",
+       "desc": "Gender Select label"
+      }
+     },
+     "filepath": "src/example/Example.react.js",
+     "line_beg": 290,
+     "col_beg": 22,
+     "line_end": 290,
+     "col_end": 77,
+     "project": "fbt-demo-project",
+     "jsfbt": {
+      "t": {
+       "desc": "Gender Select label",
+       "text": "Female (singular)"
+      },
+      "m": []
+     }
+    },
+    {
+     "hashToLeaf": {
+      "Yjqpv79V3JSE255LFP0AAA==": {
+       "text": "{name} has a link to share! {=View} her link.",
+       "desc": "Example enum & pronoun"
+      },
+      "pmznwyWXEqrG9HZwb5aGsQ==": {
+       "text": "{name} has a link to share! {=View} his link.",
+       "desc": "Example enum & pronoun"
+      },
+      "/JQB0l8rEd+B7ae/lcLlVg==": {
+       "text": "{name} has a link to share! {=View} their link.",
+       "desc": "Example enum & pronoun"
+      },
+      "fS9yqVLDDYOA627Xuxrxvw==": {
+       "text": "{name} has a page to share! {=View} her page.",
+       "desc": "Example enum & pronoun"
+      },
+      "1gXZoVTrxY6d3TSX5/KrXg==": {
+       "text": "{name} has a page to share! {=View} his page.",
+       "desc": "Example enum & pronoun"
+      },
+      "ocUjztl+ZCTxysGLukn+kw==": {
+       "text": "{name} has a page to share! {=View} their page.",
+       "desc": "Example enum & pronoun"
+      },
+      "z67lDQSKUy/LXrqrRHj3aw==": {
+       "text": "{name} has a photo to share! {=View} her photo.",
+       "desc": "Example enum & pronoun"
+      },
+      "1PKQnkF/lWmk79Tv/ys24A==": {
+       "text": "{name} has a photo to share! {=View} his photo.",
+       "desc": "Example enum & pronoun"
+      },
+      "95jC7mDsBpqzCbCA3504zw==": {
+       "text": "{name} has a photo to share! {=View} their photo.",
+       "desc": "Example enum & pronoun"
+      },
+      "7y2mltlG5nn8ihCz2AK1AQ==": {
+       "text": "{name} has a post to share! {=View} her post.",
+       "desc": "Example enum & pronoun"
+      },
+      "FT9sU8nTJmNxzV6HXQDOdA==": {
+       "text": "{name} has a post to share! {=View} his post.",
+       "desc": "Example enum & pronoun"
+      },
+      "Izavl3nyjFZGvIPhvrJYMA==": {
+       "text": "{name} has a post to share! {=View} their post.",
+       "desc": "Example enum & pronoun"
+      },
+      "9fe4WrzDx/G3g9xlON2txA==": {
+       "text": "{name} has a video to share! {=View} her video.",
+       "desc": "Example enum & pronoun"
+      },
+      "I3OyaQ+VNY1GA++1dByInA==": {
+       "text": "{name} has a video to share! {=View} his video.",
+       "desc": "Example enum & pronoun"
+      },
+      "N4hL52x52Phrk/Bzp1RkTg==": {
+       "text": "{name} has a video to share! {=View} their video.",
+       "desc": "Example enum & pronoun"
+      }
+     },
+     "filepath": "src/example/Example.react.js",
+     "line_beg": 298,
+     "col_beg": 16,
+     "line_end": 322,
+     "col_end": 22,
+     "project": "fbt-demo-project",
+     "jsfbt": {
+      "t": {
+       "LINK": {
+        "1": {
+         "desc": "Example enum & pronoun",
+         "text": "{name} has a link to share! {=View} her link.",
+         "tokenAliases": {
+          "=View": "=m5"
+         }
+        },
+        "2": {
+         "desc": "Example enum & pronoun",
+         "text": "{name} has a link to share! {=View} his link.",
+         "tokenAliases": {
+          "=View": "=m5"
+         }
+        },
+        "*": {
+         "desc": "Example enum & pronoun",
+         "text": "{name} has a link to share! {=View} their link.",
+         "tokenAliases": {
+          "=View": "=m5"
+         }
+        }
+       },
+       "PAGE": {
+        "1": {
+         "desc": "Example enum & pronoun",
+         "text": "{name} has a page to share! {=View} her page.",
+         "tokenAliases": {
+          "=View": "=m5"
+         }
+        },
+        "2": {
+         "desc": "Example enum & pronoun",
+         "text": "{name} has a page to share! {=View} his page.",
+         "tokenAliases": {
+          "=View": "=m5"
+         }
+        },
+        "*": {
+         "desc": "Example enum & pronoun",
+         "text": "{name} has a page to share! {=View} their page.",
+         "tokenAliases": {
+          "=View": "=m5"
+         }
+        }
+       },
+       "PHOTO": {
+        "1": {
+         "desc": "Example enum & pronoun",
+         "text": "{name} has a photo to share! {=View} her photo.",
+         "tokenAliases": {
+          "=View": "=m5"
+         }
+        },
+        "2": {
+         "desc": "Example enum & pronoun",
+         "text": "{name} has a photo to share! {=View} his photo.",
+         "tokenAliases": {
+          "=View": "=m5"
+         }
+        },
+        "*": {
+         "desc": "Example enum & pronoun",
+         "text": "{name} has a photo to share! {=View} their photo.",
+         "tokenAliases": {
+          "=View": "=m5"
+         }
+        }
+       },
+       "POST": {
+        "1": {
+         "desc": "Example enum & pronoun",
+         "text": "{name} has a post to share! {=View} her post.",
+         "tokenAliases": {
+          "=View": "=m5"
+         }
+        },
+        "2": {
+         "desc": "Example enum & pronoun",
+         "text": "{name} has a post to share! {=View} his post.",
+         "tokenAliases": {
+          "=View": "=m5"
+         }
+        },
+        "*": {
+         "desc": "Example enum & pronoun",
+         "text": "{name} has a post to share! {=View} their post.",
+         "tokenAliases": {
+          "=View": "=m5"
+         }
+        }
+       },
+       "VIDEO": {
+        "1": {
+         "desc": "Example enum & pronoun",
+         "text": "{name} has a video to share! {=View} her video.",
+         "tokenAliases": {
+          "=View": "=m5"
+         }
+        },
+        "2": {
+         "desc": "Example enum & pronoun",
+         "text": "{name} has a video to share! {=View} his video.",
+         "tokenAliases": {
+          "=View": "=m5"
+         }
+        },
+        "*": {
+         "desc": "Example enum & pronoun",
+         "text": "{name} has a video to share! {=View} their video.",
+         "tokenAliases": {
+          "=View": "=m5"
+         }
+        }
+       }
+      },
+      "m": [
+       null,
+       null
+      ]
+     }
+    },
+    {
+     "hashToLeaf": {
+      "+Owe0R1Wgj++SFlrgb3vIg==": {
+       "text": "{=View}",
+       "desc": "In the phrase: \"{name} has a link to share! {=View} her link.\""
+      },
+      "q1N+TrH4hB6rKcUCIvn0LA==": {
+       "text": "{=View}",
+       "desc": "In the phrase: \"{name} has a link to share! {=View} his link.\""
+      },
+      "SstLBRSU3v7yXGZsOxZjfA==": {
+       "text": "{=View}",
+       "desc": "In the phrase: \"{name} has a link to share! {=View} their link.\""
+      },
+      "Fh9O2R9Ecm7yAu9A3DkE9Q==": {
+       "text": "{=View}",
+       "desc": "In the phrase: \"{name} has a page to share! {=View} her page.\""
+      },
+      "FAiBPkgSJICLgZnkc2PE1g==": {
+       "text": "{=View}",
+       "desc": "In the phrase: \"{name} has a page to share! {=View} his page.\""
+      },
+      "+GIAo9dvEfv5V1574993kQ==": {
+       "text": "{=View}",
+       "desc": "In the phrase: \"{name} has a page to share! {=View} their page.\""
+      },
+      "zNiUtG0pPyYDiWhQhd8m5g==": {
+       "text": "{=View}",
+       "desc": "In the phrase: \"{name} has a photo to share! {=View} her photo.\""
+      },
+      "QmD55w5xaIZyL7KH6IiL/g==": {
+       "text": "{=View}",
+       "desc": "In the phrase: \"{name} has a photo to share! {=View} his photo.\""
+      },
+      "kFRDiDKN3KACFyC0YzbdDg==": {
+       "text": "{=View}",
+       "desc": "In the phrase: \"{name} has a photo to share! {=View} their photo.\""
+      },
+      "U/ajWfEsN4CQrHpGY/vrjg==": {
+       "text": "{=View}",
+       "desc": "In the phrase: \"{name} has a post to share! {=View} her post.\""
+      },
+      "dM0FrjIfxfJN9ssJ+3KuiA==": {
+       "text": "{=View}",
+       "desc": "In the phrase: \"{name} has a post to share! {=View} his post.\""
+      },
+      "MV5PidWM4Z+cPo0rqGfplA==": {
+       "text": "{=View}",
+       "desc": "In the phrase: \"{name} has a post to share! {=View} their post.\""
+      },
+      "GZrheYAXDr0g8K9k2uDWKA==": {
+       "text": "{=View}",
+       "desc": "In the phrase: \"{name} has a video to share! {=View} her video.\""
+      },
+      "UdOsPgT8LuNeE+cmSqU8hw==": {
+       "text": "{=View}",
+       "desc": "In the phrase: \"{name} has a video to share! {=View} his video.\""
+      },
+      "D87XJZSHjYQzRdfgvXwPMg==": {
+       "text": "{=View}",
+       "desc": "In the phrase: \"{name} has a video to share! {=View} their video.\""
+      }
+     },
+     "filepath": "src/example/Example.react.js",
+     "line_beg": 310,
+     "col_beg": 18,
+     "line_end": 312,
+     "col_end": 22,
+     "project": "fbt-demo-project",
+     "jsfbt": {
+      "t": {
+       "LINK": {
+        "1": {
+         "desc": "In the phrase: \"{name} has a link to share! {=View} her link.\"",
+         "text": "{=View}",
+         "tokenAliases": {
+          "=View": "=m1"
+         }
+        },
+        "2": {
+         "desc": "In the phrase: \"{name} has a link to share! {=View} his link.\"",
+         "text": "{=View}",
+         "tokenAliases": {
+          "=View": "=m1"
+         }
+        },
+        "*": {
+         "desc": "In the phrase: \"{name} has a link to share! {=View} their link.\"",
+         "text": "{=View}",
+         "tokenAliases": {
+          "=View": "=m1"
+         }
+        }
+       },
+       "PAGE": {
+        "1": {
+         "desc": "In the phrase: \"{name} has a page to share! {=View} her page.\"",
+         "text": "{=View}",
+         "tokenAliases": {
+          "=View": "=m1"
+         }
+        },
+        "2": {
+         "desc": "In the phrase: \"{name} has a page to share! {=View} his page.\"",
+         "text": "{=View}",
+         "tokenAliases": {
+          "=View": "=m1"
+         }
+        },
+        "*": {
+         "desc": "In the phrase: \"{name} has a page to share! {=View} their page.\"",
+         "text": "{=View}",
+         "tokenAliases": {
+          "=View": "=m1"
+         }
+        }
+       },
+       "PHOTO": {
+        "1": {
+         "desc": "In the phrase: \"{name} has a photo to share! {=View} her photo.\"",
+         "text": "{=View}",
+         "tokenAliases": {
+          "=View": "=m1"
+         }
+        },
+        "2": {
+         "desc": "In the phrase: \"{name} has a photo to share! {=View} his photo.\"",
+         "text": "{=View}",
+         "tokenAliases": {
+          "=View": "=m1"
+         }
+        },
+        "*": {
+         "desc": "In the phrase: \"{name} has a photo to share! {=View} their photo.\"",
+         "text": "{=View}",
+         "tokenAliases": {
+          "=View": "=m1"
+         }
+        }
+       },
+       "POST": {
+        "1": {
+         "desc": "In the phrase: \"{name} has a post to share! {=View} her post.\"",
+         "text": "{=View}",
+         "tokenAliases": {
+          "=View": "=m1"
+         }
+        },
+        "2": {
+         "desc": "In the phrase: \"{name} has a post to share! {=View} his post.\"",
+         "text": "{=View}",
+         "tokenAliases": {
+          "=View": "=m1"
+         }
+        },
+        "*": {
+         "desc": "In the phrase: \"{name} has a post to share! {=View} their post.\"",
+         "text": "{=View}",
+         "tokenAliases": {
+          "=View": "=m1"
+         }
+        }
+       },
+       "VIDEO": {
+        "1": {
+         "desc": "In the phrase: \"{name} has a video to share! {=View} her video.\"",
+         "text": "{=View}",
+         "tokenAliases": {
+          "=View": "=m1"
+         }
+        },
+        "2": {
+         "desc": "In the phrase: \"{name} has a video to share! {=View} his video.\"",
+         "text": "{=View}",
+         "tokenAliases": {
+          "=View": "=m1"
+         }
+        },
+        "*": {
+         "desc": "In the phrase: \"{name} has a video to share! {=View} their video.\"",
+         "text": "{=View}",
+         "tokenAliases": {
+          "=View": "=m1"
+         }
+        }
+       }
+      },
+      "m": [
+       null,
+       null
+      ]
+     }
+    },
+    {
+     "hashToLeaf": {
+      "kWoh+a8Q6EYN5VFiM40S7g==": {
+       "text": "View",
+       "desc": "In the phrase: \"{name} has a link to share! {=View} her link.\""
+      },
+      "HYOiaHtMv4SZkQ1G4kJzXg==": {
+       "text": "View",
+       "desc": "In the phrase: \"{name} has a link to share! {=View} his link.\""
+      },
+      "vC7YhdaCftXBXQ/fitVzXw==": {
+       "text": "View",
+       "desc": "In the phrase: \"{name} has a link to share! {=View} their link.\""
+      },
+      "2g/nu1wXuAprwkG0x4g2Sg==": {
+       "text": "View",
+       "desc": "In the phrase: \"{name} has a page to share! {=View} her page.\""
+      },
+      "WTvjwq3MRRlwqCfYcX7mPw==": {
+       "text": "View",
+       "desc": "In the phrase: \"{name} has a page to share! {=View} his page.\""
+      },
+      "PY1wTdwttmhzWyQcxs2pjw==": {
+       "text": "View",
+       "desc": "In the phrase: \"{name} has a page to share! {=View} their page.\""
+      },
+      "kyOdXxi5Nw1ONx5Mv5NR0Q==": {
+       "text": "View",
+       "desc": "In the phrase: \"{name} has a photo to share! {=View} her photo.\""
+      },
+      "0V7ZnHNmh24KOTMXet6egA==": {
+       "text": "View",
+       "desc": "In the phrase: \"{name} has a photo to share! {=View} his photo.\""
+      },
+      "sN74Xit9wwCnSYYz1TrF0w==": {
+       "text": "View",
+       "desc": "In the phrase: \"{name} has a photo to share! {=View} their photo.\""
+      },
+      "62QihzloOzTvYfmN4kGi1g==": {
+       "text": "View",
+       "desc": "In the phrase: \"{name} has a post to share! {=View} her post.\""
+      },
+      "pb4CFZWkRPo5gG05ZpMq+A==": {
+       "text": "View",
+       "desc": "In the phrase: \"{name} has a post to share! {=View} his post.\""
+      },
+      "xV4+VPr3bTc8rxKqq1nvqw==": {
+       "text": "View",
+       "desc": "In the phrase: \"{name} has a post to share! {=View} their post.\""
+      },
+      "8K2CwVTkZPiVRBcu2gFh4A==": {
+       "text": "View",
+       "desc": "In the phrase: \"{name} has a video to share! {=View} her video.\""
+      },
+      "HtVslFb7gTHOErVosGI4JQ==": {
+       "text": "View",
+       "desc": "In the phrase: \"{name} has a video to share! {=View} his video.\""
+      },
+      "NZayMjBYVOrnk/YJIHEeMw==": {
+       "text": "View",
+       "desc": "In the phrase: \"{name} has a video to share! {=View} their video.\""
+      }
+     },
+     "filepath": "src/example/Example.react.js",
+     "line_beg": 311,
+     "col_beg": 20,
+     "line_end": 311,
+     "col_end": 40,
+     "project": "fbt-demo-project",
+     "jsfbt": {
+      "t": {
+       "LINK": {
+        "1": {
+         "desc": "In the phrase: \"{name} has a link to share! {=View} her link.\"",
+         "text": "View"
+        },
+        "2": {
+         "desc": "In the phrase: \"{name} has a link to share! {=View} his link.\"",
+         "text": "View"
+        },
+        "*": {
+         "desc": "In the phrase: \"{name} has a link to share! {=View} their link.\"",
+         "text": "View"
+        }
+       },
+       "PAGE": {
+        "1": {
+         "desc": "In the phrase: \"{name} has a page to share! {=View} her page.\"",
+         "text": "View"
+        },
+        "2": {
+         "desc": "In the phrase: \"{name} has a page to share! {=View} his page.\"",
+         "text": "View"
+        },
+        "*": {
+         "desc": "In the phrase: \"{name} has a page to share! {=View} their page.\"",
+         "text": "View"
+        }
+       },
+       "PHOTO": {
+        "1": {
+         "desc": "In the phrase: \"{name} has a photo to share! {=View} her photo.\"",
+         "text": "View"
+        },
+        "2": {
+         "desc": "In the phrase: \"{name} has a photo to share! {=View} his photo.\"",
+         "text": "View"
+        },
+        "*": {
+         "desc": "In the phrase: \"{name} has a photo to share! {=View} their photo.\"",
+         "text": "View"
+        }
+       },
+       "POST": {
+        "1": {
+         "desc": "In the phrase: \"{name} has a post to share! {=View} her post.\"",
+         "text": "View"
+        },
+        "2": {
+         "desc": "In the phrase: \"{name} has a post to share! {=View} his post.\"",
+         "text": "View"
+        },
+        "*": {
+         "desc": "In the phrase: \"{name} has a post to share! {=View} their post.\"",
+         "text": "View"
+        }
+       },
+       "VIDEO": {
+        "1": {
+         "desc": "In the phrase: \"{name} has a video to share! {=View} her video.\"",
+         "text": "View"
+        },
+        "2": {
+         "desc": "In the phrase: \"{name} has a video to share! {=View} his video.\"",
+         "text": "View"
+        },
+        "*": {
+         "desc": "In the phrase: \"{name} has a video to share! {=View} their video.\"",
+         "text": "View"
+        }
+       }
+      },
+      "m": [
+       null,
+       null
+      ]
+     }
+    },
+    {
+     "hashToLeaf": {
+      "AqPBSvlIt0d3coakQBEMpg==": {
+       "text": "Try it out!",
+       "desc": "Sign up button"
+      }
+     },
+     "filepath": "src/example/Example.react.js",
+     "line_beg": 333,
+     "col_beg": 19,
+     "line_end": 333,
+     "col_end": 55,
+     "project": "fbt-demo-project",
+     "jsfbt": {
+      "t": {
+       "desc": "Sign up button",
+       "text": "Try it out!"
+      },
+      "m": []
+     }
     }
-  ],
+   ],
   "translationGroups": [
     {
       "fb-locale": "fb_HX",

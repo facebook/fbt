@@ -13,470 +13,469 @@ const {processJSON} = require('../translateUtils');
 
 expect.addSnapshotSerializer(jsCodeNonASCIICharSerializer);
 
-describe('should translate old jsfbt payload', () => {
+// TODO: T92487215 Wrap all the tests in translate-test.js in a main describe('translate.js', ...) block
+describe('should translate new jsfbt payload', () => {
   for (const options of [{jenkins: false, hashModule: false}]) {
     describe(`with option=${JSON.stringify(options)}:`, () => {
-      testTranslate(options);
+      testTranslateNewPhrases(options);
+    });
+  }
+
+  function testTranslateNewPhrases(options) {
+    it('should translate string with no variation', () => {
+      const result = processJSON(
+        {
+          phrases: [
+            {
+              hashToLeaf: {
+                '2dcba29d4a842c6be5d76fe996fcd9f4': {
+                  text: 'Your FBT Demo',
+                  desc: 'title',
+                },
+              },
+              filepath: 'src/example/Example.react.js',
+              line_beg: 130,
+              col_beg: 12,
+              line_end: 130,
+              col_end: 49,
+              project: 'fbt-demo-project',
+              jsfbt: {
+                t: {
+                  desc: 'title',
+                  text: 'Your FBT Demo',
+                  tokenAliases: {},
+                },
+                m: [],
+              },
+            },
+          ],
+          translationGroups: [
+            {
+              'fb-locale': 'fb_HX',
+              translations: {
+                '2dcba29d4a842c6be5d76fe996fcd9f4': {
+                  tokens: [],
+                  types: [],
+                  translations: [
+                    {
+                      translation: '\u05e9\u05dd',
+                      variations: {},
+                    },
+                  ],
+                },
+              },
+            },
+          ],
+        },
+        options,
+      );
+      expect(result).toMatchSnapshot();
+    });
+
+    it('should translate string with variations and inner strings', () => {
+      const result = processJSON(
+        {
+          phrases: [
+            {
+              hashToLeaf: {
+                'gVKMc/8jq5vnYR5v2bb32g==': {
+                  text: '{name} has shared {=[number] photos} with you',
+                  desc: 'example 1',
+                },
+                'PqPPir8Kg9xSlqdednPFOg==': {
+                  text: '{name} has shared {=a photo} with you',
+                  desc: 'example 1',
+                },
+              },
+              filepath: 'src/example/Example.react.js',
+              line_beg: 127,
+              col_beg: 8,
+              line_end: 142,
+              col_end: 14,
+              project: 'fbt-demo-project',
+              jsfbt: {
+                t: {
+                  '*': {
+                    '*': {
+                      desc: 'example 1',
+                      text: '{name} has shared {=[number] photos} with you',
+                      tokenAliases: {
+                        '=[number] photos': '=m2',
+                      },
+                    },
+                    _1: {
+                      desc: 'example 1',
+                      text: '{name} has shared {=a photo} with you',
+                      tokenAliases: {
+                        '=a photo': '=m2',
+                      },
+                    },
+                  },
+                },
+                m: [
+                  {
+                    token: 'name',
+                    type: 1,
+                  },
+                  {
+                    token: 'number',
+                    type: 2,
+                    singular: true,
+                  },
+                ],
+              },
+            },
+            {
+              hashToLeaf: {
+                '/gj3gwqx1z8Xw233oZgOpQ==': {
+                  text: '{number} photos',
+                  desc:
+                    'In the phrase: "{name} has shared {=[number] photos} with you"',
+                },
+                '8UZCD6gFUKN+U5UUo1I3/w==': {
+                  text: 'a photo',
+                  desc:
+                    'In the phrase: "{name} has shared {=a photo} with you"',
+                },
+              },
+              filepath: 'src/example/Example.react.js',
+              line_beg: 133,
+              col_beg: 10,
+              line_end: 140,
+              col_end: 14,
+              project: 'fbt-demo-project',
+              jsfbt: {
+                t: {
+                  '*': {
+                    '*': {
+                      desc:
+                        'In the phrase: "{name} has shared {=[number] photos} with you"',
+                      text: '{number} photos',
+                      tokenAliases: {},
+                    },
+                    _1: {
+                      desc:
+                        'In the phrase: "{name} has shared {=a photo} with you"',
+                      text: 'a photo',
+                      tokenAliases: {},
+                    },
+                  },
+                },
+                m: [
+                  {
+                    token: 'name',
+                    type: 1,
+                  },
+                  {
+                    token: 'number',
+                    type: 2,
+                    singular: true,
+                  },
+                ],
+              },
+            },
+          ],
+          translationGroups: [
+            {
+              'fb-locale': 'fb_HX',
+              translations: {
+                'gVKMc/8jq5vnYR5v2bb32g==': {
+                  tokens: ['name'],
+                  types: [3],
+                  translations: [
+                    {
+                      translation:
+                        '{name} \u05e9\u05d9\u05ea\u05e4\u05d4 \u05d0\u05d9\u05ea\u05da {=[number] photos}',
+                      id: 108537963,
+                      variations: {'0': 2},
+                    },
+                    {
+                      translation:
+                        '{name} \u05e9\u05d9\u05ea\u05e3 \u05d0\u05d9\u05ea\u05da {=[number] photos}',
+                      id: 108537953,
+                      variations: {'0': 1},
+                    },
+                    {
+                      translation:
+                        '{name} \u05e9\u05d9\u05ea\u05e3/\u05e9\u05d9\u05ea\u05e4\u05d4 \u05d0\u05d9\u05ea\u05da {=[number] photos}',
+                      id: 108537972,
+                      variations: {'0': 3},
+                    },
+                  ],
+                },
+                'PqPPir8Kg9xSlqdednPFOg==': {
+                  tokens: ['name'],
+                  types: [3],
+                  translations: [
+                    {
+                      translation:
+                        '{name} \u05e9\u05d9\u05ea\u05e4\u05d4 \u05d0\u05d9\u05ea\u05da {=a photo}',
+                      id: 108537963,
+                      variations: {'0': 2},
+                    },
+                    {
+                      translation:
+                        '{name} \u05e9\u05d9\u05ea\u05e3 \u05d0\u05d9\u05ea\u05da {=a photo}',
+                      id: 108537953,
+                      variations: {'0': 1},
+                    },
+                    {
+                      translation:
+                        '{name} \u05e9\u05d9\u05ea\u05e3/\u05e9\u05d9\u05ea\u05e4\u05d4 \u05d0\u05d9\u05ea\u05da {=a photo}',
+                      id: 108537972,
+                      variations: {'0': 3},
+                    },
+                  ],
+                },
+                '/gj3gwqx1z8Xw233oZgOpQ==': {
+                  tokens: [],
+                  types: [],
+                  translations: [
+                    {
+                      translation:
+                        '{number} \u05ea\u05de\u05d5\u05e0\u05d5\u05ea',
+                      id: 107911344,
+                      variations: {},
+                    },
+                  ],
+                },
+                '8UZCD6gFUKN+U5UUo1I3/w==': {
+                  tokens: [],
+                  types: [],
+                  translations: [
+                    {
+                      translation: '\u05ea\u05de\u05d5\u05e0\u05d4',
+                      id: 107911340,
+                      variations: {},
+                    },
+                  ],
+                },
+              },
+            },
+          ],
+        },
+        options,
+      );
+      expect(result).toMatchSnapshot();
+    });
+
+    it(
+      'should translate string with metadata entries that create no ' +
+        'hidden variation. Note: this string was collected in RN mode.',
+      () => {
+        const result = processJSON(
+          {
+            phrases: [
+              {
+                hashToLeaf: {
+                  'vHtEb4ph7GJGeRkjtEHcPA==': {
+                    text: 'she shared a photo.',
+                    desc: 'Example enum',
+                  },
+                  'j9fTl1uOEIuslim41sMkdQ==': {
+                    text: 'he shared a photo.',
+                    desc: 'Example enum',
+                  },
+                  'sNncqVnQfCGCeJNXsLObVw==': {
+                    text: 'they shared a photo.',
+                    desc: 'Example enum',
+                  },
+                },
+                filepath: 'src/example/Example.react.js',
+                line_beg: 127,
+                col_beg: 6,
+                line_end: 130,
+                col_end: 12,
+                project: 'fbt-demo-project',
+                jsfbt: {
+                  t: {
+                    '1': {
+                      desc: 'Example enum',
+                      text: 'she shared a photo.',
+                    },
+                    '2': {
+                      desc: 'Example enum',
+                      text: 'he shared a photo.',
+                    },
+                    '*': {
+                      desc: 'Example enum',
+                      text: 'they shared a photo.',
+                    },
+                  },
+                  m: [
+                    {
+                      type: 3,
+                    },
+                  ],
+                },
+              },
+            ],
+            translationGroups: [
+              {
+                'fb-locale': 'fb_HX',
+                translations: {
+                  'vHtEb4ph7GJGeRkjtEHcPA==': {
+                    tokens: [],
+                    types: [],
+                    translations: [
+                      {
+                        translation: '\u05e9\u05dd\u05e9\u05dd',
+                        variations: {},
+                      },
+                    ],
+                  },
+                  'j9fTl1uOEIuslim41sMkdQ==': {
+                    tokens: [],
+                    types: [],
+                    translations: [
+                      {
+                        translation: '\u05e9\u05dd\u05dd',
+                        variations: {},
+                      },
+                    ],
+                  },
+                  'sNncqVnQfCGCeJNXsLObVw==': {
+                    tokens: [],
+                    types: [],
+                    translations: [
+                      {
+                        translation: '\u05e9\u05dd\u05e9',
+                        variations: {},
+                      },
+                    ],
+                  },
+                },
+              },
+            ],
+          },
+          options,
+        );
+        expect(result).toMatchSnapshot();
+      },
+    );
+
+    it('should translate string with enum', () => {
+      const result = processJSON(
+        {
+          phrases: [
+            {
+              hashToLeaf: {
+                '2PhpGvvUtmT5RTpv8Kqf0w==': {
+                  text: '{name} has a link to share! View link.',
+                  desc: 'Example enum',
+                },
+                'nwcWZzo5dAQX38+P1IaY6A==': {
+                  text: '{name} has a page to share! View page.',
+                  desc: 'Example enum',
+                },
+                '/3R5GnCZ5eU3EgRAiLf1vA==': {
+                  text: '{name} has a photo to share! View photo.',
+                  desc: 'Example enum',
+                },
+                'wGYWno21D5FWihP/v0boFw==': {
+                  text: '{name} has a post to share! View post.',
+                  desc: 'Example enum',
+                },
+                '/giEGYE5cqdJVvtszgdPLg==': {
+                  text: '{name} has a video to share! View video.',
+                  desc: 'Example enum',
+                },
+              },
+              filepath: 'src/example/Example.react.js',
+              line_beg: 127,
+              col_beg: 6,
+              line_end: 133,
+              col_end: 12,
+              project: 'fbt-demo-project',
+              jsfbt: {
+                t: {
+                  LINK: {
+                    desc: 'Example enum',
+                    text: '{name} has a link to share! View link.',
+                  },
+                  PAGE: {
+                    desc: 'Example enum',
+                    text: '{name} has a page to share! View page.',
+                  },
+                  PHOTO: {
+                    desc: 'Example enum',
+                    text: '{name} has a photo to share! View photo.',
+                  },
+                  POST: {
+                    desc: 'Example enum',
+                    text: '{name} has a post to share! View post.',
+                  },
+                  VIDEO: {
+                    desc: 'Example enum',
+                    text: '{name} has a video to share! View video.',
+                  },
+                },
+                m: [null],
+              },
+            },
+          ],
+          translationGroups: [
+            {
+              'fb-locale': 'fb_HX',
+              translations: {
+                '2PhpGvvUtmT5RTpv8Kqf0w==': {
+                  tokens: [],
+                  types: [],
+                  translations: [
+                    {
+                      translation: '{name} \u05e9\u05dd',
+                      variations: {},
+                    },
+                  ],
+                },
+                'nwcWZzo5dAQX38+P1IaY6A==': {
+                  tokens: [],
+                  types: [],
+                  translations: [
+                    {
+                      translation: '{name} \u05e9\u05dd\u05dd',
+                      variations: {},
+                    },
+                  ],
+                },
+                '/3R5GnCZ5eU3EgRAiLf1vA==': {
+                  tokens: [],
+                  types: [],
+                  translations: [
+                    {
+                      translation: '{name} \u05e9\u05dd\u05dd\u05dd',
+                      variations: {},
+                    },
+                  ],
+                },
+                'wGYWno21D5FWihP/v0boFw==': {
+                  tokens: [],
+                  types: [],
+                  translations: [
+                    {
+                      translation: '{name} \u05e9\u05dd\u05dd\u05dd\u05dd',
+                      variations: {},
+                    },
+                  ],
+                },
+                '/giEGYE5cqdJVvtszgdPLg==': {
+                  tokens: [],
+                  types: [],
+                  translations: [
+                    {
+                      translation:
+                        '{name} \u05e9\u05dd\u05dd\u05dd\u05dd\u05dd',
+                      variations: {},
+                    },
+                  ],
+                },
+              },
+            },
+          ],
+        },
+        options,
+      );
+      expect(result).toMatchSnapshot();
     });
   }
 });
-
-function testTranslate(options) {
-  it('should translate string with no variation', () => {
-    const result = processJSON(
-      {
-        phrases: [
-          {
-            hashToText: {'2dcba29d4a842c6be5d76fe996fcd9f4': 'Step One'},
-            filepath: 'src/App.js',
-            line_beg: 36,
-            col_beg: 16,
-            line_end: 36,
-            col_end: 56,
-            desc: 'Section title',
-            project: 'fbt-rn-demo-project',
-            type: 'text',
-            jsfbt: 'Step One',
-          },
-        ],
-        translationGroups: [
-          {
-            'fb-locale': 'he_IL',
-            translations: {
-              '2dcba29d4a842c6be5d76fe996fcd9f4': {
-                tokens: [],
-                types: [],
-                translations: [
-                  {
-                    translation: '\u05e9\u05dd',
-                    variations: {},
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      options,
-    );
-    expect(result).toMatchSnapshot();
-  });
-
-  it('should translate string with variation and metadata', () => {
-    const result = processJSON(
-      {
-        phrases: [
-          {
-            hashToText: {
-              'Yjqpv79V3JSE255LFP0AAA==':
-                '{name} has a link to share! {=View} her link.',
-              'pmznwyWXEqrG9HZwb5aGsQ==':
-                '{name} has a link to share! {=View} his link.',
-              '/JQB0l8rEd+B7ae/lcLlVg==':
-                '{name} has a link to share! {=View} their link.',
-              'fS9yqVLDDYOA627Xuxrxvw==':
-                '{name} has a page to share! {=View} her page.',
-              '1gXZoVTrxY6d3TSX5/KrXg==':
-                '{name} has a page to share! {=View} his page.',
-              'ocUjztl+ZCTxysGLukn+kw==':
-                '{name} has a page to share! {=View} their page.',
-              'z67lDQSKUy/LXrqrRHj3aw==':
-                '{name} has a photo to share! {=View} her photo.',
-              '1PKQnkF/lWmk79Tv/ys24A==':
-                '{name} has a photo to share! {=View} his photo.',
-              '95jC7mDsBpqzCbCA3504zw==':
-                '{name} has a photo to share! {=View} their photo.',
-              '7y2mltlG5nn8ihCz2AK1AQ==':
-                '{name} has a post to share! {=View} her post.',
-              'FT9sU8nTJmNxzV6HXQDOdA==':
-                '{name} has a post to share! {=View} his post.',
-              'Izavl3nyjFZGvIPhvrJYMA==':
-                '{name} has a post to share! {=View} their post.',
-              '9fe4WrzDx/G3g9xlON2txA==':
-                '{name} has a video to share! {=View} her video.',
-              'I3OyaQ+VNY1GA++1dByInA==':
-                '{name} has a video to share! {=View} his video.',
-              'N4hL52x52Phrk/Bzp1RkTg==':
-                '{name} has a video to share! {=View} their video.',
-            },
-            filepath: 'src/example/Example.react.js',
-            line_beg: 126,
-            col_beg: 11,
-            line_end: 150,
-            col_end: 22,
-            desc: 'Example enum & pronoun',
-            project: 'fbt-demo-project',
-            type: 'table',
-            jsfbt: {
-              t: {
-                LINK: {
-                  '1': '{name} has a link to share! {=View} her link.',
-                  '2': '{name} has a link to share! {=View} his link.',
-                  '*': '{name} has a link to share! {=View} their link.',
-                },
-                PAGE: {
-                  '1': '{name} has a page to share! {=View} her page.',
-                  '2': '{name} has a page to share! {=View} his page.',
-                  '*': '{name} has a page to share! {=View} their page.',
-                },
-                PHOTO: {
-                  '1': '{name} has a photo to share! {=View} her photo.',
-                  '2': '{name} has a photo to share! {=View} his photo.',
-                  '*': '{name} has a photo to share! {=View} their photo.',
-                },
-                POST: {
-                  '1': '{name} has a post to share! {=View} her post.',
-                  '2': '{name} has a post to share! {=View} his post.',
-                  '*': '{name} has a post to share! {=View} their post.',
-                },
-                VIDEO: {
-                  '1': '{name} has a video to share! {=View} her video.',
-                  '2': '{name} has a video to share! {=View} his video.',
-                  '*': '{name} has a video to share! {=View} their video.',
-                },
-              },
-              m: [null, null],
-            },
-          },
-          {
-            hashToText: {
-              'mmqgrx7cIVUnJZnhEIjItw==': '{=View}',
-            },
-            filepath: 'src/example/Example.react.js',
-            line_beg: 138,
-            col_beg: 18,
-            line_end: 140,
-            col_end: 22,
-            desc: 'In the phrase: "{=} has a to share!{=View}."',
-            project: 'fbt-demo-project',
-            type: 'text',
-            jsfbt: '{=View}',
-          },
-          {
-            hashToText: {
-              'Kb0bgdPFst+Bq13gtG2Obg==': 'View',
-            },
-            filepath: 'src/example/Example.react.js',
-            line_beg: 139,
-            col_beg: 20,
-            line_end: 139,
-            col_end: 40,
-            desc: 'In the phrase: "{=} has a to share!{=View}."',
-            project: 'fbt-demo-project',
-            type: 'text',
-            jsfbt: 'View',
-          },
-        ],
-        translationGroups: [
-          {
-            'fb-locale': 'he_IL',
-            translations: {
-              'Yjqpv79V3JSE255LFP0AAA==': {
-                tokens: [],
-                types: [],
-                translations: [
-                  {
-                    translation:
-                      '\u05dc{name} \u05d9\u05e9 \u05e7\u05d9\u05e9\u05d5\u05e8 \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d4.',
-                    id: 108537882,
-                    variations: {},
-                  },
-                ],
-              },
-              'pmznwyWXEqrG9HZwb5aGsQ==': {
-                tokens: [],
-                types: [],
-                translations: [
-                  {
-                    translation:
-                      '\u05dc{name} \u05d9\u05e9 \u05e7\u05d9\u05e9\u05d5\u05e8 \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d5.',
-                    id: 108537888,
-                    variations: {},
-                  },
-                ],
-              },
-              '/JQB0l8rEd+B7ae/lcLlVg==': {
-                tokens: [],
-                types: [],
-                translations: [
-                  {
-                    translation:
-                      '\u05dc{name} \u05d9\u05e9 \u05e7\u05d9\u05e9\u05d5\u05e8 \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d5/\u05e9\u05dc\u05d4.',
-                    id: 108537895,
-                    variations: {},
-                  },
-                ],
-              },
-              'fS9yqVLDDYOA627Xuxrxvw==': {
-                tokens: [],
-                types: [],
-                translations: [
-                  {
-                    translation:
-                      '\u05dc{name} \u05d9\u05e9 \u05d3\u05e3 \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d4.',
-                    id: 108537847,
-                    variations: {},
-                  },
-                ],
-              },
-              '1gXZoVTrxY6d3TSX5/KrXg==': {
-                tokens: [],
-                types: [],
-                translations: [
-                  {
-                    translation:
-                      '\u05dc{name} \u05d9\u05e9 \u05d3\u05e3 \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d5.',
-                    id: 108537856,
-                    variations: {},
-                  },
-                ],
-              },
-              'ocUjztl+ZCTxysGLukn+kw==': {
-                tokens: [],
-                types: [],
-                translations: [
-                  {
-                    translation:
-                      '\u05dc{name} \u05d9\u05e9 \u05d3\u05e3 \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d5/\u05e9\u05dc\u05d4.',
-                    id: 108537859,
-                    variations: {},
-                  },
-                ],
-              },
-              'z67lDQSKUy/LXrqrRHj3aw==': {
-                tokens: [],
-                types: [],
-                translations: [
-                  {
-                    translation:
-                      '\u05dc{name} \u05d9\u05e9 \u05ea\u05de\u05d5\u05e0\u05d4 \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d4.',
-                    id: 108537907,
-                    variations: {},
-                  },
-                ],
-              },
-              '1PKQnkF/lWmk79Tv/ys24A==': {
-                tokens: [],
-                types: [],
-                translations: [
-                  {
-                    translation:
-                      '\u05dc{name} \u05d9\u05e9 \u05ea\u05de\u05d5\u05e0\u05d4 \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d5.',
-                    id: 108537918,
-                    variations: {},
-                  },
-                ],
-              },
-              '95jC7mDsBpqzCbCA3504zw==': {
-                tokens: [],
-                types: [],
-                translations: [
-                  {
-                    translation:
-                      '\u05dc{name} \u05d9\u05e9 \u05ea\u05de\u05d5\u05e0\u05d4 \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d5/\u05e9\u05dc\u05d4.',
-                    id: 108537926,
-                    variations: {},
-                  },
-                ],
-              },
-              '7y2mltlG5nn8ihCz2AK1AQ==': {
-                tokens: [],
-                types: [],
-                translations: [
-                  {
-                    translation:
-                      '\u05dc{name} \u05d9\u05e9 \u05e4\u05d5\u05e1\u05d8 \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d4.',
-                    id: 108538054,
-                    variations: {},
-                  },
-                ],
-              },
-              'FT9sU8nTJmNxzV6HXQDOdA==': {
-                tokens: [],
-                types: [],
-                translations: [
-                  {
-                    translation:
-                      '\u05dc{name} \u05d9\u05e9 \u05e4\u05d5\u05e1\u05d8 \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d5.',
-                    id: 108538064,
-                    variations: {},
-                  },
-                ],
-              },
-              'Izavl3nyjFZGvIPhvrJYMA==': {
-                tokens: [],
-                types: [],
-                translations: [
-                  {
-                    translation:
-                      '\u05dc{name} \u05d9\u05e9 \u05e4\u05d5\u05e1\u05d8 \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d5/\u05e9\u05dc\u05d4.',
-                    id: 108538079,
-                    variations: {},
-                  },
-                ],
-              },
-              '9fe4WrzDx/G3g9xlON2txA==': {
-                tokens: [],
-                types: [],
-                translations: [
-                  {
-                    translation:
-                      '\u05dc{name} \u05d9\u05e9 \u05e1\u05e8\u05d8\u05d5\u05df \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d4.',
-                    id: 108537774,
-                    variations: {},
-                  },
-                ],
-              },
-              'I3OyaQ+VNY1GA++1dByInA==': {
-                tokens: [],
-                types: [],
-                translations: [
-                  {
-                    translation:
-                      '\u05dc{name} \u05d9\u05e9 \u05e1\u05e8\u05d8\u05d5\u05df \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d5.',
-                    id: 108537806,
-                    variations: {},
-                  },
-                ],
-              },
-              'N4hL52x52Phrk/Bzp1RkTg==': {
-                tokens: [],
-                types: [],
-                translations: [
-                  {
-                    translation:
-                      '\u05dc{name} \u05d9\u05e9 \u05e1\u05e8\u05d8\u05d5\u05df \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d5/\u05e9\u05dc\u05d4.',
-                    id: 108537784,
-                    variations: {},
-                  },
-                ],
-              },
-              'mmqgrx7cIVUnJZnhEIjItw==': {
-                tokens: [],
-                types: [],
-                translations: [
-                  {translation: '{=View}', id: 107914743, variations: {}},
-                ],
-              },
-              'Kb0bgdPFst+Bq13gtG2Obg==': {
-                tokens: ['__viewing_user__'],
-                types: [3],
-                translations: [
-                  {
-                    translation: '\u05e6\u05e4\u05d9',
-                    id: 108537997,
-                    variations: {'0': 2},
-                  },
-                  {
-                    translation: '\u05e6\u05e4\u05d4',
-                    id: 108537992,
-                    variations: {'0': 1},
-                  },
-                  {
-                    translation: '\u05e6\u05e4\u05d4/\u05e6\u05e4\u05d9',
-                    id: 108538003,
-                    variations: {'0': 3},
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      options,
-    );
-    expect(result).toMatchSnapshot();
-  });
-
-  it('should translate string with enum', () => {
-    const result = processJSON(
-      {
-        phrases: [
-          {
-            hashToText: {
-              'cH6DBXSH/zGfbY5tJphPOw==': '{formatted_price} every day',
-              '7TiJOt0WYi//uZuRCiDUjg==': '{formatted_price} every month',
-              'hHWH1jAiPit3jRJvm3kJCQ==': '{formatted_price} every week',
-              '1klL6TH6yfVzscTLardoVA==': '{formatted_price} every year',
-            },
-            filepath: 'src/example/Example.react.js',
-            line_beg: 316,
-            col_beg: 20,
-            line_end: 328,
-            col_end: 24,
-            desc:
-              "Text on a shop's product detail page that tells people the frequency of a subscription order",
-            project: 'fbt-demo-project',
-            type: 'table',
-            jsfbt: {
-              t: {
-                DAILY: '{formatted_price} every day',
-                MONTHLY: '{formatted_price} every month',
-                WEEKLY: '{formatted_price} every week',
-                YEARLY: '{formatted_price} every year',
-              },
-              m: [null],
-            },
-          },
-        ],
-        translationGroups: [
-          {
-            'fb-locale': 'he_IL',
-            translations: {
-              'cH6DBXSH/zGfbY5tJphPOw==': {
-                tokens: [],
-                types: [],
-                translations: [
-                  {
-                    translation:
-                      '{formatted_price} \u05db\u05dc \u05d9\u05d5\u05dd',
-                    id: 160566338,
-                    variations: {},
-                  },
-                ],
-              },
-              '7TiJOt0WYi//uZuRCiDUjg==': {
-                tokens: [],
-                types: [],
-                translations: [
-                  {
-                    translation:
-                      '{formatted_price} \u05db\u05dc \u05d7\u05d5\u05d3\u05e9',
-                    id: 160566335,
-                    variations: {},
-                  },
-                ],
-              },
-              'hHWH1jAiPit3jRJvm3kJCQ==': {
-                tokens: [],
-                types: [],
-                translations: [
-                  {
-                    translation:
-                      '{formatted_price} \u05db\u05dc \u05e9\u05d1\u05d5\u05e2',
-                    id: 160566334,
-                    variations: {},
-                  },
-                ],
-              },
-              '1klL6TH6yfVzscTLardoVA==': {
-                tokens: [],
-                types: [],
-                translations: [
-                  {
-                    translation:
-                      '{formatted_price} \u05db\u05dc \u05e9\u05e0\u05d4',
-                    id: 160566337,
-                    variations: {},
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      options,
-    );
-    expect(result).toMatchSnapshot();
-  });
-}
