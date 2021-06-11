@@ -49,7 +49,7 @@ type TranslationTree =
  * Need to add a `__vcg` field to TranslationTree when the string has a hidden
  * viewer gender token
  */
-type TranslationResult =
+export type TranslationResult =
   | TranslationTree
   | {|[key: FbtTableKey]: TranslationTree, __vcg: number|};
 

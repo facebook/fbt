@@ -1,10 +1,24 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
- * @noflow
+ * @flow strict-local
  * @format
  * @emails oncall+i18n_fbt_js
  */
+
+'strict';
+
+import type {
+  PatternHash,
+  PatternString,
+} from '../../../../runtime/shared/FbtTable';
+import type {
+  CollectFbtOutput,
+  CollectFbtOutputPhrase,
+} from '../bin/collectFbt.js';
+import typeof FbtHashKey from '../fbtHashKey';
+import type {TranslationResult} from '../translate/TranslationBuilder';
+import type {SerializedTranslationData} from '../translate/TranslationData';
 
 const {objMap} = require('../FbtUtil');
 const {FbtSiteNew} = require('../translate/FbtSiteNew');
@@ -12,8 +26,9 @@ const TranslationBuilder = require('../translate/TranslationBuilder');
 const TranslationConfig = require('../translate/TranslationConfig');
 const TranslationData = require('../translate/TranslationData');
 const fs = require('fs');
+const nullthrows = require('nullthrows');
 
-type Options = {|
+type Options = $ReadOnly<{|
   // By default, we output the translations as an associative array whose
   // indices match the phrases provided.  If instead, you'd like a mapping
   // from the associated "jenkins" hash to translation payload (for use in
@@ -23,11 +38,35 @@ type Options = {|
   // The module should export a function with the same signature and operation
   // of fbt-hash-module.
   hashModule: false | string,
-|};
+|}>;
 
-function parseJSONFile(filepath) {
+type LocaleToHashToTranslationResult = $ReadOnly<{|
+  [fbLocale: string]: {[hash: PatternHash]: TranslationResult},
+|}>;
+
+/** Phrases translated for a specific locale */
+type TranslatedGroup = $ReadOnly<{|
+  'fb-locale': string,
+  translatedPhrases: $ReadOnlyArray<TranslationResult>,
+|}>;
+
+type TranslatedGroups = $ReadOnlyArray<TranslatedGroup>;
+
+/** Translations in a specific locale */
+type TranslationGroup = $ReadOnly<{|
+  'fb-locale': string,
+  translations: {[hash: PatternString]: SerializedTranslationData},
+|}>;
+
+/** Phrases and translation data in one JSON object */
+type InputJSONType = $ReadOnly<{|
+  phrases: $ReadOnlyArray<CollectFbtOutputPhrase>,
+  translationGroups: $ReadOnlyArray<TranslationGroup>,
+|}>;
+
+function parseJSONFile<T>(filepath: string): T {
   try {
-    return JSON.parse(fs.readFileSync(filepath));
+    return JSON.parse(fs.readFileSync(filepath).toString());
   } catch (error) {
     error.message += `\nFile path: "${filepath}"`;
     throw error;
@@ -36,20 +75,23 @@ function parseJSONFile(filepath) {
 
 function processFiles(
   stringFile: string,
-  translationFiles: Array<string>,
+  translationFiles: $ReadOnlyArray<string>,
   options: Options,
-) {
-  const phrases = parseJSONFile(stringFile).phrases;
-  const fbtSites = phrases.map(createFbtSiteBaseFromJSON);
+): LocaleToHashToTranslationResult | TranslatedGroups {
+  const {phrases} = parseJSONFile<CollectFbtOutput>(stringFile);
+  const fbtSites = phrases.map(createFbtSiteFromJSON);
   const translatedGroups = translationFiles.map(file => {
-    const group = parseJSONFile(file);
+    const group = parseJSONFile<TranslationGroup>(file);
     return processTranslations(fbtSites, group);
   });
   return processGroups(phrases, translatedGroups, options);
 }
 
-function processJSON(json, options: Options) {
-  const fbtSites = json.phrases.map(createFbtSiteBaseFromJSON);
+function processJSON(
+  json: InputJSONType,
+  options: Options,
+): LocaleToHashToTranslationResult | TranslatedGroups {
+  const fbtSites = json.phrases.map(createFbtSiteFromJSON);
   return processGroups(
     json.phrases,
     json.translationGroups.map(group => processTranslations(fbtSites, group)),
@@ -57,11 +99,16 @@ function processJSON(json, options: Options) {
   );
 }
 
-function processGroups(phrases, translatedGroups, options: Options) {
-  let fbtHash = null;
+function processGroups(
+  phrases: $ReadOnlyArray<CollectFbtOutputPhrase>,
+  translatedGroups: TranslatedGroups,
+  options: Options,
+): LocaleToHashToTranslationResult | TranslatedGroups {
+  let fbtHash: ?FbtHashKey = null;
   if (options.jenkins) {
     fbtHash = require('../fbtHashKey');
-  } else if (options.hashModule) {
+  } else if (options.hashModule !== false) {
+    // $FlowExpectedError[unsupported-syntax] Requiring dynamic module
     fbtHash = require(options.hashModule);
   }
 
@@ -74,15 +121,21 @@ function processGroups(phrases, translatedGroups, options: Options) {
     const hashToFbt = (localeToHashToFbt[group['fb-locale']] = {});
     phrases.forEach((phrase, idx) => {
       const translatedFbt = group.translatedPhrases[idx];
-      const payload = phrase.type === 'text' ? phrase.jsfbt : phrase.jsfbt.t;
-      const hash = fbtHash(payload);
+      const jsfbt = nullthrows(
+        phrase.jsfbt,
+        `Expect every phrase to have 'jsfbt' field. However, 'jsfbt' is missing in the phrase at index ${idx}.`,
+      );
+      const hash = nullthrows(fbtHash)(jsfbt.t);
       hashToFbt[hash] = translatedFbt;
     });
   }
   return localeToHashToFbt;
 }
 
-function processTranslations(fbtSites, group) {
+function processTranslations(
+  fbtSites: $ReadOnlyArray<FbtSiteNew>,
+  group: TranslationGroup,
+): TranslatedGroup {
   const config = TranslationConfig.fromFBLocale(group['fb-locale']);
   const translations = objMap(group.translations, TranslationData.fromJSON);
   const translatedPhrases = fbtSites.map(fbtsite =>
@@ -94,7 +147,7 @@ function processTranslations(fbtSites, group) {
   };
 }
 
-function createFbtSiteBaseFromJSON(json: Object): FbtSiteNew {
+function createFbtSiteFromJSON(json: CollectFbtOutputPhrase): FbtSiteNew {
   return FbtSiteNew.fromScan(json);
 }
 
