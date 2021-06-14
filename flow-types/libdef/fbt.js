@@ -146,12 +146,7 @@ declare interface IFbtResultBase {
   _store?: {validated: boolean, ...};
 }
 
-// String result wrapper intended for ComponentScript.
-// Similar to FbtResultBase except that:
-// - it can only be assembled from strings, not React elements
-// - it doesn't behave like a stringish object
-declare class FbtPureStringResult implements IFbtResultBase {
-  // implements IFbtResultBase
+declare class $FbtResultBase implements IFbtResultBase {
   constructor(
     contents: $ReadOnlyArray<any>,
     errorListener: ?IFbtErrorListener,
@@ -165,9 +160,9 @@ declare class FbtPureStringResult implements IFbtResultBase {
   // unwrap(): string;
 }
 
-declare class $FbtResultBase extends FbtPureStringResult {
-  toString: typeof String.prototype.toString;
-}
+// String result wrapper intended for ComponentScript.
+// Similar to FbtResultBase except that it can only be assembled from strings, not React elements.
+declare class FbtPureStringResult extends $FbtResultBase {}
 
 // Represents the input of an fbt.param
 type $FbtParamInput = React$Node;
@@ -251,6 +246,13 @@ type $StringBasedFbtFunctionAPI<
   ParamOutput,
 > = $GenericFbtFunctionAPI<string, Output, ParamInput, ParamOutput>;
 
+/**
+ * NOTE how the fbs() functional API relies on using an array of content items
+ * instead of the legacy string concatenation pattern.
+ *
+ * This is needed because we have to define the accepted types of the array items in Flow
+ * (which isn't possible if we used the string concatenation code pattern)
+ */
 type $ArrayBasedFbtFunctionAPI<Output, ParamInput> = $GenericFbtFunctionAPI<
   $ReadOnlyArray<string | $FbtParamOutput>,
   Output,
