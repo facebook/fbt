@@ -7,6 +7,11 @@
  * @flow
  * @format
  */
+
+import type {ParamVariationType} from 'FbtRuntimeTypes';
+import type {FbtTableArg} from 'FbtTableAccessor';
+import type {GenderConstEnum} from 'GenderConst';
+
 const FbtHooks = require('FbtHooks');
 const FbtPureStringResult = require('FbtPureStringResult');
 
@@ -19,8 +24,13 @@ const FbsImpl = {
   /**
    * @see fbt._param()
    */
-  _param(label: string, value: $FbsParamInput, variations: [number, number]) {
-    // TODO(T36305131) Returning implicit Flow type until fbt.js is typed properly
+  _param(
+    label: string,
+    value: $FbsParamInput,
+    variations?:
+      | [$PropertyType<ParamVariationType, 'number'>, ?number]
+      | [$PropertyType<ParamVariationType, 'gender'>, GenderConstEnum],
+  ): FbtTableArg {
     invariant(
       typeof value === 'string' || value instanceof FbtPureStringResult,
       'Expected fbs parameter value to be the result of fbs(), <fbs/>, or a string; ' +
@@ -29,7 +39,7 @@ const FbsImpl = {
       typeof value,
     );
     // $FlowFixMe[incompatible-call] TODO(T36305131) Add accurate flow types to fbt.js
-    return fbt._param(...arguments);
+    return fbt._param(label, value, variations);
   },
 
   _wrapContent(fbtContent, translation, hash) {
