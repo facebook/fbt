@@ -166,34 +166,6 @@ function writeOutput(output) {
   }
 }
 
-// TODO(T40113359) Remove this once this script is ready to be tested
-function catchKnownErrors__DEBUG_ONLY(callback) {
-  try {
-    callback();
-  } catch (error) {
-    if (
-      [
-        'Cannot convert undefined or null to object',
-        'JSFBT is not a string type',
-        'Unexpected end of JSON input',
-        "Cannot read property 'hasVariationMask' of undefined",
-        "Cannot read property 'title' of undefined",
-        // TODO: Remove this after we land D28687750 to support new jsfbt format.
-        'TEXT types sould have no table data and TABLE require it',
-      ].find(text => error.message.includes(text))
-    ) {
-      console.warn(
-        `WARN: %s: error(s) occurred but it's ok since ` +
-          `this script is not ready for testing yet.\n%s`,
-        require('path').basename(__filename),
-        error,
-      );
-    } else {
-      throw error;
-    }
-  }
-}
-
 if (argv[args.HELP]) {
   yargs.showHelp();
   process.exit(0);
@@ -213,14 +185,10 @@ if (argv[args.STDIN]) {
       source += chunk;
     })
     .on('end', function () {
-      catchKnownErrors__DEBUG_ONLY(() => {
-        writeOutput(processJSON(JSON.parse(source), translationOptions));
-      });
+      writeOutput(processJSON(JSON.parse(source), translationOptions));
     });
 } else {
-  catchKnownErrors__DEBUG_ONLY(() => {
-    writeOutput(
-      processFiles(argv[args.SRC], argv[args.TRANSLATIONS], translationOptions),
-    );
-  });
+  writeOutput(
+    processFiles(argv[args.SRC], argv[args.TRANSLATIONS], translationOptions),
+  );
 }
