@@ -40,7 +40,7 @@ type TextAndDescToHash = {|
   [textAndDesc: TextAndDescConcatenation]: PatternHash,
 |};
 
-type SerializedFbtSiteNew = {|
+type SerializedFbtSite = {|
   h2t: FbtSiteHashToTextAndDesc,
   p: string,
   _d: {|t: FbtSiteHashifiedTableJSFBTTree, m: $ReadOnlyArray<?JSFBTMetaEntry>|},
@@ -68,10 +68,7 @@ type SerializedFbtSiteNew = {|
  *  }
  * }
  */
-class FbtSiteNew extends FbtSiteBase<
-  FbtSiteMetaEntry,
-  FbtSiteHashToTextAndDesc,
-> {
+class FbtSite extends FbtSiteBase<FbtSiteMetaEntry, FbtSiteHashToTextAndDesc> {
   constructor(
     hashToTextAndDesc: FbtSiteHashToTextAndDesc,
     tableData: {|
@@ -88,7 +85,7 @@ class FbtSiteNew extends FbtSiteBase<
     );
   }
 
-  static fromScan(json: CollectFbtOutputPhrase): FbtSiteNew {
+  static fromScan(json: CollectFbtOutputPhrase): FbtSite {
     const textAndDescToHash: TextAndDescToHash = {};
     const {hashToLeaf, jsfbt} = json;
     invariant(hashToLeaf != null, 'Expected hashToLeaf to be defined');
@@ -105,10 +102,10 @@ class FbtSiteNew extends FbtSiteBase<
       textAndDescToHash[textAndDesc] = hash;
     }
     const tableData = {
-      t: FbtSiteNew._hashifyLeaves(jsfbt.t, textAndDescToHash),
+      t: FbtSite._hashifyLeaves(jsfbt.t, textAndDescToHash),
       m: jsfbt.m,
     };
-    return new FbtSiteNew(hashToLeaf, tableData, json.project);
+    return new FbtSite(hashToLeaf, tableData, json.project);
   }
 
   /**
@@ -125,7 +122,7 @@ class FbtSiteNew extends FbtSiteBase<
       ? textAndDescToHash[this._serializeTextAndDesc(leaf.text, leaf.desc)]
       : objMap(entry, (
           branch, // $FlowFixMe[incompatible-call] `branch` must be TableJSFBTTree type
-        ) => FbtSiteNew._hashifyLeaves(branch, textAndDescToHash));
+        ) => FbtSite._hashifyLeaves(branch, textAndDescToHash));
   }
 
   /**
@@ -148,7 +145,7 @@ class FbtSiteNew extends FbtSiteBase<
     return JSON.stringify({text, desc});
   }
 
-  serialize(): SerializedFbtSiteNew {
+  serialize(): SerializedFbtSite {
     return {
       h2t: this.getHashToLeaf(),
       p: this.getProject(),
@@ -159,8 +156,8 @@ class FbtSiteNew extends FbtSiteBase<
     };
   }
 
-  static deserialize(json: $ReadOnly<SerializedFbtSiteNew>): FbtSiteNew {
-    return new FbtSiteNew(json.h2t, json._d, json.p);
+  static deserialize(json: $ReadOnly<SerializedFbtSite>): FbtSite {
+    return new FbtSite(json.h2t, json._d, json.p);
   }
 }
 
@@ -265,6 +262,6 @@ const FbtSiteMetadata = {
 };
 
 module.exports = {
-  FbtSiteNew,
+  FbtSite,
   FbtSiteMetaEntry,
 };

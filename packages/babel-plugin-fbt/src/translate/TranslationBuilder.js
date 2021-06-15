@@ -27,7 +27,7 @@ const {buildConstraintKey} = require('./VariationConstraintUtils');
 const invariant = require('invariant');
 const nullthrows = require('nullthrows');
 const {EXACTLY_ONE, isValidValue, Mask} = IntlVariations;
-const {FbtSiteMetaEntry, FbtSiteNew} = require('./FbtSiteNew');
+const {FbtSiteMetaEntry, FbtSite} = require('./FbtSite');
 
 /**
  * Map from a string's hash to its translation payload.
@@ -78,7 +78,7 @@ type ConstraintKeyToTranslation = {[constraint: ConstraintKey]: string};
  */
 class TranslationBuilder {
   +_config: TranslationConfig;
-  +_fbtSite: FbtSiteNew;
+  +_fbtSite: FbtSite;
   /** Memoized function that returns the constraint to translation map for a hash */
   +_getConstraintMapWithMemoization: (
     hash: PatternHash,
@@ -100,7 +100,7 @@ class TranslationBuilder {
   constructor(
     translations: HashToTranslation,
     config: TranslationConfig,
-    fbtSite: FbtSiteNew,
+    fbtSite: FbtSite,
     inclHash: boolean,
   ) {
     this._translations = translations;

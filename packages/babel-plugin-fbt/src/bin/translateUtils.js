@@ -21,7 +21,7 @@ import type {TranslationResult} from '../translate/TranslationBuilder';
 import type {SerializedTranslationData} from '../translate/TranslationData';
 
 const {objMap} = require('../FbtUtil');
-const {FbtSiteNew} = require('../translate/FbtSiteNew');
+const {FbtSite} = require('../translate/FbtSite');
 const TranslationBuilder = require('../translate/TranslationBuilder');
 const TranslationConfig = require('../translate/TranslationConfig');
 const TranslationData = require('../translate/TranslationData');
@@ -133,7 +133,7 @@ function processGroups(
 }
 
 function processTranslations(
-  fbtSites: $ReadOnlyArray<FbtSiteNew>,
+  fbtSites: $ReadOnlyArray<FbtSite>,
   group: TranslationGroup,
 ): TranslatedGroup {
   const config = TranslationConfig.fromFBLocale(group['fb-locale']);
@@ -147,8 +147,8 @@ function processTranslations(
   };
 }
 
-function createFbtSiteFromJSON(json: CollectFbtOutputPhrase): FbtSiteNew {
-  return FbtSiteNew.fromScan(json);
+function createFbtSiteFromJSON(json: CollectFbtOutputPhrase): FbtSite {
+  return FbtSite.fromScan(json);
 }
 
 module.exports = {processFiles, processJSON};

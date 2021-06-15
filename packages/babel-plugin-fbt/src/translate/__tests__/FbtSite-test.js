@@ -8,11 +8,11 @@
 
 jest.autoMockOff();
 
-const {FbtSiteNew} = require('../FbtSiteNew');
+const {FbtSite} = require('../FbtSite');
 
 describe('Test serialization', () => {
   it('should serialize/deserialize as expected', () => {
-    const f = new FbtSiteNew(
+    const f = new FbtSite(
       {
         'gVKMc/8jq5vnYR5v2bb32g==': {
           text: '{name} has shared {=[number] photos} with you',
@@ -57,7 +57,7 @@ describe('Test serialization', () => {
       'fbt-demo-project',
     );
     const original = f.serialize();
-    const hydrated = FbtSiteNew.deserialize(original).serialize();
+    const hydrated = FbtSite.deserialize(original).serialize();
     expect(original).toEqual(hydrated);
   });
 });
