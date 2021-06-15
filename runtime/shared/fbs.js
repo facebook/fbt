@@ -42,6 +42,23 @@ const FbsImpl = {
     return fbt._param(label, value, variations);
   },
 
+  /**
+   * @see fbt._plural()
+   */
+  _plural(count: number, label: ?string, value?: mixed): FbtTableArg {
+    invariant(
+      value == null ||
+        typeof value === 'string' ||
+        value instanceof FbtPureStringResult,
+      'Expected fbs plural UI value to be nullish or the result of fbs(), <fbs/>, or a string; ' +
+        'instead we got `%s` (type: %s)',
+      value,
+      typeof value,
+    );
+    // $FlowFixMe[incompatible-call] TODO(T36305131) Add accurate flow types to fbt.js
+    return fbt._plural(count, label, value);
+  },
+
   _wrapContent(fbtContent, translation, hash) {
     const contents = typeof fbtContent === 'string' ? [fbtContent] : fbtContent;
     const errorListener = FbtHooks.getErrorListener({hash, translation});

@@ -165,5 +165,48 @@ describe('fbs', () => {
         );
       });
     });
+
+    describe('with fbs:plural', () => {
+      const count = 3;
+      it('fbs() should throw an error', () => {
+        expect(() =>
+          // NOTE how the fbs() functional API relies on using an array of content items
+          // instead of the legacy string concatenation pattern.
+          // See https://fburl.com/code/8qvet9j7
+          fbs(
+            [
+              'I have ',
+              fbs.plural('a dream', count, {
+                many: 'dreams',
+                showCount: 'yes',
+                value: <strong>three</strong>,
+              }),
+              '.',
+            ],
+            'desc',
+          ),
+        ).toThrowErrorMatchingInlineSnapshot(
+          `"Expected fbs plural UI value to be nullish or the result of fbs(), <fbs/>, or a string; instead we got \`[object Object]\` (type: object)"`,
+        );
+      });
+
+      it('<fbs> should throw an error', () => {
+        expect(() => (
+          <fbs desc="desc">
+            I have{' '}
+            <fbs:plural
+              count={count}
+              many="dreams"
+              showCount="yes"
+              value={<strong>three</strong>}>
+              a dream
+            </fbs:plural>
+            {'.'}
+          </fbs>
+        )).toThrowErrorMatchingInlineSnapshot(
+          `"Expected fbs plural UI value to be nullish or the result of fbs(), <fbs/>, or a string; instead we got \`[object Object]\` (type: object)"`,
+        );
+      });
+    });
   });
 });
