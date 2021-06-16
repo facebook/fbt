@@ -24,7 +24,7 @@ require('FbtEnv').setupOnce();
 
 import type {FbtInputOpts, FbtRuntimeInput, FbtTableArgs} from 'FbtHooks';
 import type {ParamVariationType, ValidPronounUsagesType} from 'FbtRuntimeTypes';
-import type {FbtTableKey, PatternString} from 'FbtTable';
+import type {FbtTableKey, PatternHash, PatternString} from 'FbtTable';
 import type {FbtTableArg} from 'FbtTableAccessor';
 import type {GenderConstEnum} from 'GenderConst';
 
@@ -181,11 +181,17 @@ function fbtCallsite(
 
   const cachedFbt = cachedFbtResults[patternString];
   const hasSubstitutions = _hasKeys(allSubstitutions);
+
   if (cachedFbt && !hasSubstitutions) {
     return cachedFbt;
   } else {
     const fbtContent = substituteTokens(patternString, allSubstitutions);
-    const result = _wrapContent(fbtContent, patternString, patternHash);
+    // Use this._wrapContent voluntarily so that it can be overwritten in fbs.js
+    const result = (this._wrapContent: typeof wrapContent)(
+      fbtContent,
+      patternString,
+      patternHash,
+    );
     if (!hasSubstitutions) {
       cachedFbtResults[patternString] = result;
     }
@@ -400,17 +406,21 @@ function fbtName(
   return FbtTableAccessor.getGenderResult(variation, substitution, gender);
 }
 
-function _wrapContent(fbtContent, patternString, patternHash): Fbt {
+function wrapContent(
+  fbtContent: $NestedFbtContentItems | string,
+  translation: PatternString,
+  hash: ?PatternHash,
+): Fbt {
   const contents = typeof fbtContent === 'string' ? [fbtContent] : fbtContent;
   const errorListener = FbtHooks.getErrorListener({
-    translation: patternString,
-    hash: patternHash,
+    translation,
+    hash,
   });
   const result = FbtHooks.getFbtResult({
     contents,
     errorListener,
-    patternString,
-    patternHash,
+    patternHash: hash,
+    patternString: translation,
   });
   // $FlowFixMe[incompatible-return] FbtHooks.getFbtResult returns mixed.
   return result;
@@ -439,6 +449,7 @@ fbt._param = fbtParam;
 fbt._plural = fbtPlural;
 fbt._pronoun = fbtPronoun;
 fbt._subject = fbtSubject;
+fbt._wrapContent = wrapContent;
 fbt.disableJsonExportMode = disableJsonExportMode;
 fbt.enableJsonExportMode = enableJsonExportMode;
 fbt.isFbtInstance = isFbtInstance;

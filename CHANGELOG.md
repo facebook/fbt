@@ -53,6 +53,7 @@ List of changes for each released npm package version.
     Unreleased changes that have landed in master. Click to see more.
   </summary>
 
+  - [fix] Ensure that `fbs()` really returns `FbtPureStringResult` objects
   - [fix] Force fbs:plural to only show plain text custom UI values.
 
 </details>

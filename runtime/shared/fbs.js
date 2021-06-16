@@ -9,6 +9,7 @@
  */
 
 import type {ParamVariationType} from 'FbtRuntimeTypes';
+import type {PatternHash, PatternString} from 'FbtTable';
 import type {FbtTableArg} from 'FbtTableAccessor';
 import type {GenderConstEnum} from 'GenderConst';
 
@@ -59,9 +60,14 @@ const FbsImpl = {
     return fbt._plural(count, label, value);
   },
 
-  _wrapContent(fbtContent, translation, hash) {
+  _wrapContent(
+    fbtContent: $NestedFbtContentItems | string,
+    translation: PatternString,
+    hash: ?PatternHash,
+  ): Fbs {
     const contents = typeof fbtContent === 'string' ? [fbtContent] : fbtContent;
     const errorListener = FbtHooks.getErrorListener({hash, translation});
+    // $FlowFixMe[incompatible-return] T61015960 FbtHooks.getFbsResult returns mixed for now
     return FbtHooks.getFbsResult({
       contents,
       errorListener,

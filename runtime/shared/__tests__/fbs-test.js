@@ -34,15 +34,15 @@ describe('fbs', () => {
   describe('when using plain text contents', () => {
     describe('with a basic text', () => {
       it('fbs() should work', () => {
-        expect(fbs('Hello world', 'some desc')).toMatchInlineSnapshot(
-          `"Hello world"`,
-        );
+        expect(
+          fbs('Hello world', 'some desc').toString(),
+        ).toMatchInlineSnapshot(`"Hello world"`);
       });
 
       it('<fbs> should work', () => {
-        expect(<fbs desc="some desc">Hello world</fbs>).toMatchInlineSnapshot(
-          `"Hello world"`,
-        );
+        expect(
+          (<fbs desc="some desc">Hello world</fbs>).toString(),
+        ).toMatchInlineSnapshot(`"Hello world"`);
       });
     });
 
@@ -55,18 +55,20 @@ describe('fbs', () => {
           fbs(
             ['Hello ', fbs.param('name', fbs('world', 'param text'))],
             'some desc',
-          ),
+          ).toString(),
         ).toMatchInlineSnapshot(`"Hello world"`);
       });
 
       it('<fbs> should work', () => {
         expect(
-          <fbs desc="some desc">
-            Hello{' '}
-            <fbs:param name="name">
-              {<fbs desc="param text">world</fbs>}
-            </fbs:param>
-          </fbs>,
+          (
+            <fbs desc="some desc">
+              Hello{' '}
+              <fbs:param name="name">
+                {<fbs desc="param text">world</fbs>}
+              </fbs:param>
+            </fbs>
+          ).toString(),
         ).toMatchInlineSnapshot(`"Hello world"`);
       });
     });
@@ -89,23 +91,25 @@ describe('fbs', () => {
               '.',
             ],
             'desc',
-          ),
+          ).toString(),
         ).toMatchInlineSnapshot(`"I have three dreams."`);
       });
 
       it('<fbs> should work', () => {
         expect(
-          <fbs desc="desc">
-            I have{' '}
-            <fbs:plural
-              count={count}
-              many="dreams"
-              showCount="yes"
-              value={fbs('three', 'custom UI value')}>
-              a dream
-            </fbs:plural>
-            {'.'}
-          </fbs>,
+          (
+            <fbs desc="desc">
+              I have{' '}
+              <fbs:plural
+                count={count}
+                many="dreams"
+                showCount="yes"
+                value={fbs('three', 'custom UI value')}>
+                a dream
+              </fbs:plural>
+              {'.'}
+            </fbs>
+          ).toString(),
         ).toMatchInlineSnapshot(`"I have three dreams."`);
       });
     });
