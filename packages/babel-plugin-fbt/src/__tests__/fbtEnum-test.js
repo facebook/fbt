@@ -23,8 +23,7 @@ function runTest(data) {
   ).toMatchSnapshot();
 }
 
-// TODO(T40113359) Re-enable once this test scenario is ready to be tested
-xdescribe('Test Fbt Enum', () => {
+describe('Test Fbt Enum', () => {
   beforeEach(() => {
     // Ensure the Enum registrar config is reset.
     jest.resetModules();
@@ -105,9 +104,7 @@ xdescribe('Test Fbt Enum', () => {
         ),
         {fbtEnumManifest: TestFbtEnumManifest},
       ),
-    ).toThrowError(
-      'fbt enum range values must be StringLiteral, got TemplateLiteral',
-    );
+    ).toThrowError('Enum values must be string literals');
   });
 
   it('should throw on multiple import types', () => {
