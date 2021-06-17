@@ -5,9 +5,7 @@ const fbt = require("fbt");
 
 var x = fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "{one} {two} {three}",
-    desc: "squelched",
+    jsfbt: { t: { desc: "squelched", text: "{one} {two} {three}" }, m: [] },
     project: "",
   } /* __FBT__ end */,
   [fbt._param("one", one), fbt._param("two", two), fbt._param("three", three)]
@@ -20,9 +18,13 @@ const fbt = require("fbt");
 
 var x = fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "Squelched white space... with some other stuff.",
-    desc: "squelched",
+    jsfbt: {
+      t: {
+        desc: "squelched",
+        text: "Squelched white space... with some other stuff.",
+      },
+      m: [],
+    },
     project: "",
   } /* __FBT__ end */
 );
@@ -36,9 +38,7 @@ const fbt = require("fbt");
 
 fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "{foo}",
-    desc: "some-desc",
+    jsfbt: { t: { desc: "some-desc", text: "{foo}" }, m: [] },
     project: "",
   } /* __FBT__ end */,
   [fbt._param("foo", foo)]
@@ -52,9 +52,7 @@ const fbt = require("fbt");
 <div>
   {fbt._(
     /* __FBT__ start */ {
-      type: "text",
-      jsfbt: "{time} by {user name}",
-      desc: "...",
+      jsfbt: { t: { desc: "...", text: "{time} by {user name}" }, m: [] },
       project: "",
     } /* __FBT__ end */,
     [
@@ -82,9 +80,7 @@ var x = (
   <div>
     {fbt._(
       /* __FBT__ start */ {
-        type: "text",
-        jsfbt: "A nested string",
-        desc: "nested!",
+        jsfbt: { t: { desc: "nested!", text: "A nested string" }, m: [] },
         project: "",
       } /* __FBT__ end */
     )}
@@ -98,9 +94,7 @@ const fbt = require("fbt");
 
 var x = fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "A simple string",
-    desc: "It's simple",
+    jsfbt: { t: { desc: "It's simple", text: "A simple string" }, m: [] },
     project: "",
   } /* __FBT__ end */
 );
@@ -112,9 +106,10 @@ const fbt = require("fbt");
 
 fbt._(
   /* __FBT__ start */ {
-    type: "table",
-    jsfbt: { t: { "*": "str {count}" }, m: [{ token: "count", type: 2 }] },
-    desc: "d",
+    jsfbt: {
+      t: { "*": { desc: "d", text: "str {count}" } },
+      m: [{ token: "count", type: 2 }],
+    },
     project: "",
   } /* __FBT__ end */,
   [fbt._param("count", getNum(), [0, someNum])]
@@ -127,9 +122,7 @@ const fbt = require("fbt");
 
 var x = fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "A simple string",
-    desc: "It's simple",
+    jsfbt: { t: { desc: "It's simple", text: "A simple string" }, m: [] },
     project: "",
   } /* __FBT__ end */
 );
@@ -141,9 +134,13 @@ const fbt = require("fbt");
 
 fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "Here it is",
-    desc: "A very long description that we will concatenate a few times",
+    jsfbt: {
+      t: {
+        desc: "A very long description that we will concatenate a few times",
+        text: "Here it is",
+      },
+      m: [],
+    },
     project: "Withaproject",
   } /* __FBT__ end */
 );
@@ -155,9 +152,13 @@ const fbt = require("fbt");
 
 var x = fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "A parameterized message to: {emptyString}",
-    desc: "a message!",
+    jsfbt: {
+      t: {
+        desc: "a message!",
+        text: "A parameterized message to: {emptyString}",
+      },
+      m: [],
+    },
     project: "",
   } /* __FBT__ end */,
   [fbt._param("emptyString", " ")]
@@ -170,16 +171,14 @@ const fbt = require("fbt");
 
 var x = fbt._(
   /* __FBT__ start */ {
-    type: "table",
     jsfbt: {
       t: {
-        id1: "Click to see groups",
-        id2: "Click to see photos",
-        id3: "Click to see videos",
+        id1: { desc: "enums!", text: "Click to see groups" },
+        id2: { desc: "enums!", text: "Click to see photos" },
+        id3: { desc: "enums!", text: "Click to see videos" },
       },
       m: [null],
     },
-    desc: "enums!",
     project: "",
   } /* __FBT__ end */,
   [
@@ -198,16 +197,14 @@ const fbt = require("fbt");
 
 var x = fbt._(
   /* __FBT__ start */ {
-    type: "table",
     jsfbt: {
       t: {
-        id1: "Click to see groups Hey-hey!",
-        id2: "Click to see photos Hey-hey!",
-        id3: "Click to see videos Hey-hey!",
+        id1: { desc: "enums!", text: "Click to see groups Hey-hey!" },
+        id2: { desc: "enums!", text: "Click to see photos Hey-hey!" },
+        id3: { desc: "enums!", text: "Click to see videos Hey-hey!" },
       },
       m: [null],
     },
-    desc: "enums!",
     project: "",
   } /* __FBT__ end */,
   [
@@ -226,12 +223,10 @@ const fbt = require("fbt");
 
 var x = fbt._(
   /* __FBT__ start */ {
-    type: "table",
     jsfbt: {
-      t: { "*": "Click to see {count} links" },
+      t: { "*": { desc: "variations!", text: "Click to see {count} links" } },
       m: [{ token: "count", type: 2 }],
     },
-    desc: "variations!",
     project: "",
   } /* __FBT__ end */,
   [fbt._param("count", c, [0])]
@@ -244,17 +239,15 @@ const fbt = require("fbt");
 
 fbt._(
   /* __FBT__ start */ {
-    type: "table",
     jsfbt: {
       t: {
-        0: "I know this.",
-        1: "I know her.",
-        2: "I know him.",
-        "*": "I know them.",
+        0: { desc: "d", text: "I know this." },
+        1: { desc: "d", text: "I know her." },
+        2: { desc: "d", text: "I know him." },
+        "*": { desc: "d", text: "I know them." },
       },
       m: [{ type: 3 }],
     },
-    desc: "d",
     project: "p",
   } /* __FBT__ end */,
   [fbt._pronoun(0, gender)]
@@ -267,17 +260,15 @@ const fbt = require("fbt");
 
 fbt._(
   /* __FBT__ start */ {
-    type: "table",
     jsfbt: {
       t: {
-        0: "I know this.",
-        1: "I know her.",
-        2: "I know him.",
-        "*": "I know them.",
+        0: { desc: "d", text: "I know this." },
+        1: { desc: "d", text: "I know her." },
+        2: { desc: "d", text: "I know him." },
+        "*": { desc: "d", text: "I know them." },
       },
       m: [null],
     },
-    desc: "d",
     project: "p",
   } /* __FBT__ end */,
   [fbt._pronoun(0, gender)]
@@ -290,9 +281,13 @@ const fbt = require("fbt");
 
 var x = fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "A parameterized message to: {personName}",
-    desc: "a message!",
+    jsfbt: {
+      t: {
+        desc: "a message!",
+        text: "A parameterized message to: {personName}",
+      },
+      m: [],
+    },
     project: "",
   } /* __FBT__ end */,
   [fbt._param("personName", theName)]
@@ -305,9 +300,7 @@ const fbt = require("fbt");
 
 fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "foobar",
-    desc: "foo",
+    jsfbt: { t: { desc: "foo", text: "foobar" }, m: [] },
     project: "",
   } /* __FBT__ end */
 );
@@ -319,16 +312,16 @@ const fbt = require("fbt");
 
 fbt._(
   /* __FBT__ start */ {
-    type: "table",
     jsfbt: {
       t: {
-        1: { 1: "She wished herself a happy birthday." },
-        2: { 2: "He wished himself a happy birthday." },
-        "*": { "*": "They wished themselves a happy birthday." },
+        1: { 1: { desc: "d", text: "She wished herself a happy birthday." } },
+        2: { 2: { desc: "d", text: "He wished himself a happy birthday." } },
+        "*": {
+          "*": { desc: "d", text: "They wished themselves a happy birthday." },
+        },
       },
       m: [{ type: 3 }, { type: 3 }],
     },
-    desc: "d",
     project: "p",
   } /* __FBT__ end */,
   [
@@ -348,16 +341,16 @@ const fbt = require("fbt");
 
 fbt._(
   /* __FBT__ start */ {
-    type: "table",
     jsfbt: {
       t: {
-        1: { 1: "She wished herself a happy birthday." },
-        2: { 2: "He wished himself a happy birthday." },
-        "*": { "*": "They wished themselves a happy birthday." },
+        1: { 1: { desc: "d", text: "She wished herself a happy birthday." } },
+        2: { 2: { desc: "d", text: "He wished himself a happy birthday." } },
+        "*": {
+          "*": { desc: "d", text: "They wished themselves a happy birthday." },
+        },
       },
       m: [null, null],
     },
-    desc: "d",
     project: "p",
   } /* __FBT__ end */,
   [
@@ -377,10 +370,14 @@ const fbt = require("fbt");
 
 fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "Here it is",
-    desc:
-      "A very long description that will be a template across multiple lines",
+    jsfbt: {
+      t: {
+        desc:
+          "A very long description that will be a template across multiple lines",
+        text: "Here it is",
+      },
+      m: [],
+    },
     project: "Withaproject",
   } /* __FBT__ end */
 );
@@ -392,12 +389,10 @@ const fbt = require("fbt");
 
 var x = fbt._(
   /* __FBT__ start */ {
-    type: "table",
     jsfbt: {
-      t: { "*": "Click to see {count} links" },
+      t: { "*": { desc: "variations!", text: "Click to see {count} links" } },
       m: [{ token: "count", type: 2 }],
     },
-    desc: "variations!",
     project: "",
   } /* __FBT__ end */,
   [fbt._param("count", c, [0])]
@@ -410,9 +405,7 @@ const fbt = require("fbt");
 
 fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "{foo}",
-    desc: "some-desc",
+    jsfbt: { t: { desc: "some-desc", text: "{foo}" }, m: [] },
     project: "",
   } /* __FBT__ end */,
   [fbt._param("foo", foo)]
@@ -425,9 +418,7 @@ const fbt = require("fbt");
 
 fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "{foo}",
-    desc: "some-desc",
+    jsfbt: { t: { desc: "some-desc", text: "{foo}" }, m: [] },
     project: "",
   } /* __FBT__ end */,
   [fbt._param("foo", foo)]
@@ -440,9 +431,7 @@ const fbt = require("fbt");
 
 fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "str {foo} and {foo}",
-    desc: "d",
+    jsfbt: { t: { desc: "d", text: "str {foo} and {foo}" }, m: [] },
     project: "",
   } /* __FBT__ end */,
   [fbt._param("foo", Bar)]
@@ -455,21 +444,22 @@ const fbt = require("fbt");
 
 fbt._(
   /* __FBT__ start */ {
-    type: "table",
     jsfbt: {
-      t: { x: { "*": "Hello, {foo}x{bar}" }, y: { "*": "Hello, {foo}y{bar}" } },
+      t: {
+        x: { "*": { desc: "some-desc", text: "Hello, {foo}x{bar}" } },
+        y: { "*": { desc: "some-desc", text: "Hello, {foo}y{bar}" } },
+      },
       m: [null, { token: "bar", type: 2 }],
     },
-    desc: "some-desc",
     project: "",
   } /* __FBT__ end */,
   [
-    fbt._param("foo", foo),
     fbt._enum(x, {
       x: "x",
       y: "y",
     }),
     fbt._param("bar", bar, [0, n]),
+    fbt._param("foo", foo),
   ]
 );
 
@@ -480,9 +470,10 @@ const fbt = require("fbt");
 
 fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "Hello, {guest}!",
-    desc: "Greating in i18n demo",
+    jsfbt: {
+      t: { desc: "Greating in i18n demo", text: "Hello, {guest}!" },
+      m: [],
+    },
     project: "",
   } /* __FBT__ end */,
   [fbt._param("guest", guest)]
@@ -495,9 +486,13 @@ const fbt = require("fbt");
 
 var x = fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "A simple string... with some other stuff.",
-    desc: "moar lines",
+    jsfbt: {
+      t: {
+        desc: "moar lines",
+        text: "A simple string... with some other stuff.",
+      },
+      m: [],
+    },
     project: "",
   } /* __FBT__ end */
 );
@@ -511,9 +506,13 @@ const fbt = require("fbt");
 
 var x = fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "Preamble {parm}",
-    desc: "Test trailing space when not last child",
+    jsfbt: {
+      t: {
+        desc: "Test trailing space when not last child",
+        text: "Preamble {parm}",
+      },
+      m: [],
+    },
     project: "",
   } /* __FBT__ end */,
   [fbt._param("parm", blah)]
@@ -528,9 +527,13 @@ const fbt = require("fbt");
 
 var x = fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "Preamble {parm}",
-    desc: "Test trailing space when not last child",
+    jsfbt: {
+      t: {
+        desc: "Test trailing space when not last child",
+        text: "Preamble {parm}",
+      },
+      m: [],
+    },
     project: "",
   } /* __FBT__ end */,
   [fbt._param("parm", blah)]
@@ -545,9 +548,7 @@ const fbt = require("fbt");
 
 fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "×",
-    desc: 'foo "bar"',
+    jsfbt: { t: { desc: 'foo "bar"', text: "×" }, m: [] },
     project: "",
   } /* __FBT__ end */
 );
@@ -559,9 +560,14 @@ const fbt = require("fbt"); // A backslash \\ in comments
 
 fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "A copyright sign ©, a multi byte character 💩, and a backslash \\\\.",
-    desc: "unicode characters",
+    jsfbt: {
+      t: {
+        desc: "unicode characters",
+        text:
+          "A copyright sign ©, a multi byte character 💩, and a backslash \\\\.",
+      },
+      m: [],
+    },
     project: "",
   } /* __FBT__ end */
 );
@@ -573,10 +579,14 @@ const fbt = require("fbt");
 
 fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "lol",
-    desc:
-      "hi how are you today im doing well i guess how is your mother is she well yeah why not lets go home and never come back.",
+    jsfbt: {
+      t: {
+        desc:
+          "hi how are you today im doing well i guess how is your mother is she well yeah why not lets go home and never come back.",
+        text: "lol",
+      },
+      m: [],
+    },
     project: "",
   } /* __FBT__ end */
 );
@@ -588,15 +598,13 @@ const fbt = require("fbt");
 
 fbt._(
   /* __FBT__ start */ {
-    type: "table",
     jsfbt: {
       t: {
-        "*": { "*": "You can add thesetags to anything." },
-        _1: { _1: "You can add this tag to anything." },
+        "*": { "*": { desc: "", text: "You can add thesetags to anything." } },
+        _1: { _1: { desc: "", text: "You can add this tag to anything." } },
       },
       m: [null, null],
     },
-    desc: "",
     project: "",
   } /* __FBT__ end */,
   [fbt._plural(count), fbt._plural(count)]
@@ -611,9 +619,7 @@ let x = (
   <div>
     {fbt._(
       /* __FBT__ start */ {
-        type: "text",
-        jsfbt: "A nested string",
-        desc: "nested!",
+        jsfbt: { t: { desc: "nested!", text: "A nested string" }, m: [] },
         project: "",
       } /* __FBT__ end */
     )}
@@ -627,9 +633,7 @@ const fbt = require("fbt");
 
 let x = fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "A nested string",
-    desc: "nested!",
+    jsfbt: { t: { desc: "nested!", text: "A nested string" }, m: [] },
     project: "",
   } /* __FBT__ end */
 );
@@ -641,9 +645,7 @@ const fbt = require("fbt");
 
 let x = fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "Test",
-    desc: "",
+    jsfbt: { t: { desc: "", text: "Test" }, m: [] },
     project: "",
   } /* __FBT__ end */
 );
@@ -655,9 +657,10 @@ const fbt = require("fbt");
 
 let x = fbt._(
   /* __FBT__ start */ {
-    type: "table",
-    jsfbt: { t: { "*": "{name}" }, m: [{ token: "name", type: 2 }] },
-    desc: "",
+    jsfbt: {
+      t: { "*": { desc: "", text: "{name}" } },
+      m: [{ token: "name", type: 2 }],
+    },
     project: "",
   } /* __FBT__ end */,
   [fbt._param("name", "name", [0])]
@@ -670,15 +673,13 @@ const fbt = require("fbt");
 
 fbt._(
   /* __FBT__ start */ {
-    type: "table",
     jsfbt: {
       t: {
-        "*": { "*": "There are {number} photos." },
-        _1: { _1: "There is 1 photo." },
+        "*": { "*": { desc: "desc...", text: "There are {number} photos." } },
+        _1: { _1: { desc: "desc...", text: "There is 1 photo." } },
       },
       m: [null, { token: "number", type: 2, singular: true }],
     },
-    desc: "desc...",
     project: "",
   } /* __FBT__ end */,
   [fbt._plural(num), fbt._plural(num, "number", hi())]
@@ -692,9 +693,7 @@ const fbt = require("fbt");
 html\`<div>
   \${fbt._(
     /* __FBT__ start */ {
-      type: "text",
-      jsfbt: "basic text",
-      desc: "some desc",
+      jsfbt: { t: { desc: "some desc", text: "basic text" }, m: [] },
       project: "some project",
     } /* __FBT__ end */
   )}
@@ -708,9 +707,10 @@ const fbt = require("fbt");
 html\`<div>
   \${fbt._(
     /* __FBT__ start */ {
-      type: "text",
-      jsfbt: "outer text {param text}",
-      desc: "some desc",
+      jsfbt: {
+        t: { desc: "some desc", text: "outer text {param text}" },
+        m: [],
+      },
       project: "some project",
     } /* __FBT__ end */,
     [
@@ -719,9 +719,10 @@ html\`<div>
         html\`<strong>
           \${fbt._(
             /* __FBT__ start */ {
-              type: "text",
-              jsfbt: "inner text {inner param}",
-              desc: "inner string",
+              jsfbt: {
+                t: { desc: "inner string", text: "inner text {inner param}" },
+                m: [],
+              },
               project: "",
             } /* __FBT__ end */,
             [fbt._param("inner param", "bold")]
@@ -740,21 +741,30 @@ const fbt = require("fbt");
 html\`<div>
   \${fbt._(
     /* __FBT__ start */ {
-      type: "text",
-      jsfbt: "outer text {=bold text}",
-      desc: "some desc",
+      jsfbt: {
+        t: {
+          desc: "some desc",
+          text: "outer text {=bold text}",
+          tokenAliases: { "=bold text": "=m1" },
+        },
+        m: [],
+      },
       project: "some project",
     } /* __FBT__ end */,
     [
-      fbt._param(
-        "=bold text",
+      fbt._implicitParam(
+        "=m1",
         <strong>
           {fbt._(
             /* __FBT__ start */ {
-              type: "text",
-              jsfbt: "bold text",
-              desc: 'In the phrase: "outer text {=bold text}"',
-              project: "",
+              jsfbt: {
+                t: {
+                  desc: 'In the phrase: "outer text {=bold text}"',
+                  text: "bold text",
+                },
+                m: [],
+              },
+              project: "some project",
             } /* __FBT__ end */
           )}
         </strong>

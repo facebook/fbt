@@ -392,14 +392,12 @@ const testData = {
   },
 };
 
-// TODO(T40113359) Re-enable once this test scenario is ready to be tested
-xdescribe('Test declarative (jsx) fbt syntax translation', () =>
+describe('Test declarative (jsx) fbt syntax translation', () =>
   TestUtil.testSection(testData, snapshotTransformKeepJsx, {
     matchSnapshot: true,
   }));
 
-// TODO(T40113359) Re-enable once this test scenario is ready to be tested
-xdescribe('Test fbt transforms without the jsx transform', () => {
+describe('Test fbt transforms without the jsx transform', () => {
   it('not nested', () => {
     expect(
       snapshotTransformKeepJsx(`

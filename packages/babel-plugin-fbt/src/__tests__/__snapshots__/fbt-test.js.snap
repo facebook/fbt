@@ -5,9 +5,7 @@ const fbt = require("fbt");
 
 fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "{two lines} test",
-    desc: "d",
+    jsfbt: { t: { desc: "d", text: "{two lines} test" }, m: [] },
     project: "",
   } /* __FBT__ end */,
   [
@@ -18,9 +16,7 @@ fbt._(
         null,
         fbt._(
           /* __FBT__ start */ {
-            type: "text",
-            jsfbt: "simple",
-            desc: "test",
+            jsfbt: { t: { desc: "test", text: "simple" }, m: [] },
             project: "",
           } /* __FBT__ end */
         )
@@ -36,9 +32,7 @@ const fbt = require("fbt");
 
 fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "Foo",
-    desc: "Bar",
+    jsfbt: { t: { desc: "Bar", text: "Foo" }, m: [] },
     project: "",
   } /* __FBT__ end */
 );
@@ -50,9 +44,7 @@ import fbt from "fbt";
 
 fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "Foo",
-    desc: "Bar",
+    jsfbt: { t: { desc: "Bar", text: "Foo" }, m: [] },
     project: "",
   } /* __FBT__ end */
 );
@@ -64,9 +56,7 @@ import { fbt } from "fbt";
 
 fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "Foo",
-    desc: "Bar",
+    jsfbt: { t: { desc: "Bar", text: "Foo" }, m: [] },
     project: "",
   } /* __FBT__ end */
 );
@@ -78,9 +68,10 @@ const fbt = require("fbt");
 
 fbt._(
   /* __FBT__ start */ {
-    type: "table",
-    jsfbt: { t: { "*": "Foo" }, m: [{ token: "__subject__", type: 1 }] },
-    desc: "Bar",
+    jsfbt: {
+      t: { "*": { desc: "Bar", text: "Foo" } },
+      m: [{ token: "__subject__", type: 1 }],
+    },
     project: "",
   } /* __FBT__ end */,
   [fbt._subject(foo)]
@@ -93,9 +84,10 @@ const fbt = require("fbt");
 
 fbt._(
   /* __FBT__ start */ {
-    type: "table",
-    jsfbt: { t: { "*": "Foo" }, m: [{ token: "__subject__", type: 1 }] },
-    desc: "Bar",
+    jsfbt: {
+      t: { "*": { desc: "Bar", text: "Foo" } },
+      m: [{ token: "__subject__", type: 1 }],
+    },
     project: "",
   } /* __FBT__ end */,
   [fbt._subject(foo)]
@@ -108,9 +100,7 @@ const fbt = require("fbt");
 
 fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "Foo",
-    desc: "Bar",
+    jsfbt: { t: { desc: "Bar", text: "Foo" }, m: [] },
     project: "",
   } /* __FBT__ end */
 );

@@ -12,7 +12,7 @@ const {
   buildCollectFbtOutput,
   getFbtCollector,
   getPackagers,
-} = require('../collectFbtUtils.js');
+} = require('../collectFbtUtils');
 const path = require('path');
 const fbtCommonPath = path.resolve(__dirname, 'FbtCommonForTests.json');
 
