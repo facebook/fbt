@@ -24,7 +24,14 @@ import typeof {FbtVariationType} from './translate/IntlVariations';
 import type {BabelTransformPlugin} from '@babel/core';
 import typeof BabelTypes from '@babel/types';
 
+/**
+ * Map of extra fbt options (or JSX attributes) to accept on fbt callsites.
+ *
+ * We will only accept them at the parsing phase and output them when rendering fbt._() callsites,
+ * without doing any further processing on them.
+ */
 export type ExtraOptions = {[optionName: string]: boolean};
+
 type FbtEnumLoader = (enumFilePath: string) => EnumModule;
 export type PluginOptions = {|
   collectFbt?: boolean,

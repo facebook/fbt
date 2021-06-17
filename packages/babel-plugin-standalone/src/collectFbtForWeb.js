@@ -17,7 +17,6 @@ import type {
 } from '../../../runtime/shared/FbtTable';
 import type {ExtraOptions} from 'babel-plugin-fbt';
 import type {CollectFbtOutput} from 'babel-plugin-fbt/dist/bin/collectFbt';
-import type {CollectorConfig} from 'babel-plugin-fbt/dist/bin/FbtCollector';
 
 const SparkMD5 = require('./SparkMD5');
 const {
@@ -37,7 +36,8 @@ function getMD5Hash(text: PatternString, description: string): PatternHash {
 function collectFbtPayloadFromSource(
   source: string,
   config: {|
-    ...CollectorConfig,
+    // Subset of CollectorConfig to simplify the exported types
+    generateOuterTokenName?: boolean,
     genFbtNodes: boolean,
     terse?: boolean,
   |},

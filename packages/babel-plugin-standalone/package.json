@@ -52,7 +52,8 @@
     "directory": "packages/babel-plugin-standalone"
   },
   "scripts": {
-    "build": "yarn webpack",
+    "build": "yarn webpack && yarn copy-flow-definitions",
+    "copy-flow-definitions": "cp src/index.js.flow dist/index.js.flow && sed -i 's/ \\* \u0040format/ \\* \u0040format\\n \\* \u0040generated/' dist/index.js.flow",
     "prepack": "yarn build",
     "test": "BABEL_PLUGIN_STANDALONE_TEST=1 yarn --cwd ../.. jest babel-plugin-standalone",
     "watch": "yarn webpack --watch"
