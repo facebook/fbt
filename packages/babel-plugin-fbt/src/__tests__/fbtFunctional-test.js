@@ -7,6 +7,8 @@
 
 jest.autoMockOff();
 
+const TestFbtEnumManifest = require('TestFbtEnumManifest');
+
 const {payload, transform, withFbtRequireStatement} = require('../FbtTestUtil');
 const {FbtVariationType} = require('../translate/IntlVariations');
 const {TestUtil} = require('fb-babel-plugin-utils');
@@ -1483,6 +1485,55 @@ const generalTestData = {
     ),
   },
 
+  'should handle enums (with enum range as variable)': {
+    runWithTestFbtEnumManifest: TestFbtEnumManifest,
+
+    input: withFbtRequireStatement(
+      `var aEnum = require('Test$FbtEnum');
+      var x = fbt(
+        'Click to see ' + fbt.enum('id1', aEnum),
+        'enum as an array',
+      );`,
+    ),
+
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var aEnum = require('Test$FbtEnum');
+      var x = fbt(
+        [
+          'Click to see ',
+          fbt.enum('id1', aEnum),
+        ],
+        'enum as an array',
+      );`,
+    ),
+
+    output: withFbtRequireStatement(
+      `var aEnum = require('Test$FbtEnum');
+      var x = fbt._(
+        ${payload({
+          jsfbt: {
+            t: {
+              id1: {
+                desc: 'enum as an array',
+                text: 'Click to see groups',
+              },
+              id2: {
+                desc: 'enum as an array',
+                text: 'Click to see photos',
+              },
+              id3: {
+                desc: 'enum as an array',
+                text: 'Click to see videos',
+              },
+            },
+            m: [null],
+          },
+        })},
+        [fbt._enum('id1', aEnum)],
+      );`,
+    ),
+  },
+
   'should handle plurals that have different count variables': {
     input: withFbtRequireStatement(
       `var x = fbt(
@@ -2693,8 +2744,10 @@ function describeTestScenarios(testData) {
     const filteredTestData = {};
     for (const title in testData) {
       const scenario = {...testData[title]};
-      if (scenario.filterOutputTest) {
-        scenario.filter = scenario.filterOutputTest;
+      if (scenario.runWithTestFbtEnumManifest) {
+        scenario.options = {
+          fbtEnumManifest: scenario.runWithTestFbtEnumManifest,
+        };
       }
       filteredTestData[title] = scenario;
     }
@@ -2733,6 +2786,7 @@ function describeTestScenarios(testData) {
             collectFbt: true,
             generateOuterTokenName: true,
             reactNativeMode: options.reactNativeMode || false,
+            fbtEnumManifest: singleTestData.runWithTestFbtEnumManifest,
           };
           transform(singleTestData.input, pluginOptions);
           expect(fbtTransform.getExtractedStrings()).toMatchSnapshot();
@@ -2762,6 +2816,7 @@ function describeTestScenarios(testData) {
             collectFbt: true,
             generateOuterTokenName: true,
             reactNativeMode: options.reactNativeMode || false,
+            fbtEnumManifest: singleTestData.runWithTestFbtEnumManifest,
           };
           transform(singleTestData.input, pluginOptions);
 

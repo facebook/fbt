@@ -1023,6 +1023,44 @@ Array [
 ]
 `;
 
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle enums (with enum range as variable)" 1`] = `
+Array [
+  Object {
+    "col_beg": 14,
+    "col_end": 7,
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "range": Array [
+            "id1",
+            "id2",
+            "id3",
+          ],
+        },
+      ],
+      "t": Object {
+        "id1": Object {
+          "desc": "enum as an array",
+          "text": "Click to see groups",
+        },
+        "id2": Object {
+          "desc": "enum as an array",
+          "text": "Click to see photos",
+        },
+        "id3": Object {
+          "desc": "enum as an array",
+          "text": "Click to see videos",
+        },
+      },
+    },
+    "line_beg": 3,
+    "line_end": 9,
+    "project": "",
+  },
+]
+`;
+
 exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle enums (with value map)" 1`] = `
 Array [
   Object {
@@ -2666,6 +2704,38 @@ Array [
     },
     "line_beg": 2,
     "line_end": 8,
+    "project": "",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should handle enums (with enum range as variable)" 1`] = `
+Array [
+  Object {
+    "col_beg": 14,
+    "col_end": 7,
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        null,
+      ],
+      "t": Object {
+        "id1": Object {
+          "desc": "enum as an array",
+          "text": "Click to see groups",
+        },
+        "id2": Object {
+          "desc": "enum as an array",
+          "text": "Click to see photos",
+        },
+        "id3": Object {
+          "desc": "enum as an array",
+          "text": "Click to see videos",
+        },
+      },
+    },
+    "line_beg": 3,
+    "line_end": 9,
     "project": "",
   },
 ]
@@ -5176,6 +5246,91 @@ FbtElementNode {
           "groups": "groups",
           "photos": "photos",
           "videos": "videos",
+        },
+        "value": "BabelNode[type=StringLiteral]",
+      },
+      "parent": "FbtElementNode",
+    },
+  ],
+  "moduleName": "fbt",
+  "node": "BabelNode[type=CallExpression]",
+  "nodeChecker": FbtNodeChecker {
+    "moduleName": "fbt",
+  },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": null,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
+  "parent": undefined,
+}
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle enums (with enum range as variable)" 1`] = `
+FbtElementNode {
+  "__nodeCode": "fbt(['Click to see ', fbt.enum('id1', aEnum)], 'enum as an array')",
+  "__stringVariationArgs": Array [
+    EnumStringVariationArg {
+      "__nodeCode": "'id1'",
+      "candidateValues": Array [
+        "id1",
+        "id2",
+        "id3",
+      ],
+      "fbtNode": "FbtEnumNode",
+      "isCollapsible": false,
+      "node": "BabelNode[type=StringLiteral]",
+      "value": undefined,
+    },
+  ],
+  "_tokenSet": Object {},
+  "_variationFactorValues": Array [],
+  "children": Array [
+    FbtTextNode {
+      "__nodeCode": "'Click to see '",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=StringLiteral]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "options": null,
+      "parent": "FbtElementNode",
+    },
+    FbtEnumNode {
+      "__nodeCode": "fbt.enum('id1', aEnum)",
+      "__stringVariationArgs": Array [
+        EnumStringVariationArg {
+          "__nodeCode": "'id1'",
+          "candidateValues": Array [
+            "id1",
+            "id2",
+            "id3",
+          ],
+          "fbtNode": "FbtEnumNode",
+          "isCollapsible": false,
+          "node": "BabelNode[type=StringLiteral]",
+          "value": undefined,
+        },
+      ],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=CallExpression]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "options": Object {
+        "__valueCode": "'id1'",
+        "range": Object {
+          "id1": "groups",
+          "id2": "photos",
+          "id3": "videos",
         },
         "value": "BabelNode[type=StringLiteral]",
       },
@@ -9313,6 +9468,91 @@ FbtElementNode {
 }
 `;
 
+exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle enums (with enum range as variable)" 1`] = `
+FbtElementNode {
+  "__nodeCode": "fbt(['Click to see ', fbt.enum('id1', aEnum)], 'enum as an array')",
+  "__stringVariationArgs": Array [
+    EnumStringVariationArg {
+      "__nodeCode": "'id1'",
+      "candidateValues": Array [
+        "id1",
+        "id2",
+        "id3",
+      ],
+      "fbtNode": "FbtEnumNode",
+      "isCollapsible": false,
+      "node": "BabelNode[type=StringLiteral]",
+      "value": undefined,
+    },
+  ],
+  "_tokenSet": Object {},
+  "_variationFactorValues": Array [],
+  "children": Array [
+    FbtTextNode {
+      "__nodeCode": "'Click to see '",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=StringLiteral]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "options": null,
+      "parent": "FbtElementNode",
+    },
+    FbtEnumNode {
+      "__nodeCode": "fbt.enum('id1', aEnum)",
+      "__stringVariationArgs": Array [
+        EnumStringVariationArg {
+          "__nodeCode": "'id1'",
+          "candidateValues": Array [
+            "id1",
+            "id2",
+            "id3",
+          ],
+          "fbtNode": "FbtEnumNode",
+          "isCollapsible": false,
+          "node": "BabelNode[type=StringLiteral]",
+          "value": undefined,
+        },
+      ],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=CallExpression]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "options": Object {
+        "__valueCode": "'id1'",
+        "range": Object {
+          "id1": "groups",
+          "id2": "photos",
+          "id3": "videos",
+        },
+        "value": "BabelNode[type=StringLiteral]",
+      },
+      "parent": "FbtElementNode",
+    },
+  ],
+  "moduleName": "fbt",
+  "node": "BabelNode[type=CallExpression]",
+  "nodeChecker": FbtNodeChecker {
+    "moduleName": "fbt",
+  },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": null,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
+  "parent": undefined,
+}
+`;
+
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle enums (with value map)" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['Click to see ', fbt.enum('id1', {
@@ -11799,6 +12039,44 @@ Array [
 ]
 `;
 
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle enums (with enum range as variable)" 1`] = `
+Array [
+  Object {
+    "col_beg": 14,
+    "col_end": 7,
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "range": Array [
+            "id1",
+            "id2",
+            "id3",
+          ],
+        },
+      ],
+      "t": Object {
+        "id1": Object {
+          "desc": "enum as an array",
+          "text": "Click to see groups",
+        },
+        "id2": Object {
+          "desc": "enum as an array",
+          "text": "Click to see photos",
+        },
+        "id3": Object {
+          "desc": "enum as an array",
+          "text": "Click to see videos",
+        },
+      },
+    },
+    "line_beg": 3,
+    "line_end": 6,
+    "project": "",
+  },
+]
+`;
+
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should handle enums (with value map)" 1`] = `
 Array [
   Object {
@@ -12594,6 +12872,38 @@ Array [
     },
     "line_beg": 2,
     "line_end": 5,
+    "project": "",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should handle enums (with enum range as variable)" 1`] = `
+Array [
+  Object {
+    "col_beg": 14,
+    "col_end": 7,
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        null,
+      ],
+      "t": Object {
+        "id1": Object {
+          "desc": "enum as an array",
+          "text": "Click to see groups",
+        },
+        "id2": Object {
+          "desc": "enum as an array",
+          "text": "Click to see photos",
+        },
+        "id3": Object {
+          "desc": "enum as an array",
+          "text": "Click to see videos",
+        },
+      },
+    },
+    "line_beg": 3,
+    "line_end": 6,
     "project": "",
   },
 ]
@@ -13920,6 +14230,91 @@ FbtElementNode {
           "groups": "groups",
           "photos": "photos",
           "videos": "videos",
+        },
+        "value": "BabelNode[type=StringLiteral]",
+      },
+      "parent": "FbtElementNode",
+    },
+  ],
+  "moduleName": "fbt",
+  "node": "BabelNode[type=CallExpression]",
+  "nodeChecker": FbtNodeChecker {
+    "moduleName": "fbt",
+  },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": null,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
+  "parent": undefined,
+}
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should handle enums (with enum range as variable)" 1`] = `
+FbtElementNode {
+  "__nodeCode": "fbt(['Click to see ', fbt.enum('id1', aEnum)], 'enum as an array')",
+  "__stringVariationArgs": Array [
+    EnumStringVariationArg {
+      "__nodeCode": "'id1'",
+      "candidateValues": Array [
+        "id1",
+        "id2",
+        "id3",
+      ],
+      "fbtNode": "FbtEnumNode",
+      "isCollapsible": false,
+      "node": "BabelNode[type=StringLiteral]",
+      "value": undefined,
+    },
+  ],
+  "_tokenSet": Object {},
+  "_variationFactorValues": Array [],
+  "children": Array [
+    FbtTextNode {
+      "__nodeCode": "'Click to see '",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=StringLiteral]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "options": null,
+      "parent": "FbtElementNode",
+    },
+    FbtEnumNode {
+      "__nodeCode": "fbt.enum('id1', aEnum)",
+      "__stringVariationArgs": Array [
+        EnumStringVariationArg {
+          "__nodeCode": "'id1'",
+          "candidateValues": Array [
+            "id1",
+            "id2",
+            "id3",
+          ],
+          "fbtNode": "FbtEnumNode",
+          "isCollapsible": false,
+          "node": "BabelNode[type=StringLiteral]",
+          "value": undefined,
+        },
+      ],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=CallExpression]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "options": Object {
+        "__valueCode": "'id1'",
+        "range": Object {
+          "id1": "groups",
+          "id2": "photos",
+          "id3": "videos",
         },
         "value": "BabelNode[type=StringLiteral]",
       },
@@ -16670,6 +17065,91 @@ FbtElementNode {
           "groups": "groups",
           "photos": "photos",
           "videos": "videos",
+        },
+        "value": "BabelNode[type=StringLiteral]",
+      },
+      "parent": "FbtElementNode",
+    },
+  ],
+  "moduleName": "fbt",
+  "node": "BabelNode[type=CallExpression]",
+  "nodeChecker": FbtNodeChecker {
+    "moduleName": "fbt",
+  },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": null,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
+  "parent": undefined,
+}
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should handle enums (with enum range as variable)" 1`] = `
+FbtElementNode {
+  "__nodeCode": "fbt(['Click to see ', fbt.enum('id1', aEnum)], 'enum as an array')",
+  "__stringVariationArgs": Array [
+    EnumStringVariationArg {
+      "__nodeCode": "'id1'",
+      "candidateValues": Array [
+        "id1",
+        "id2",
+        "id3",
+      ],
+      "fbtNode": "FbtEnumNode",
+      "isCollapsible": false,
+      "node": "BabelNode[type=StringLiteral]",
+      "value": undefined,
+    },
+  ],
+  "_tokenSet": Object {},
+  "_variationFactorValues": Array [],
+  "children": Array [
+    FbtTextNode {
+      "__nodeCode": "'Click to see '",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=StringLiteral]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "options": null,
+      "parent": "FbtElementNode",
+    },
+    FbtEnumNode {
+      "__nodeCode": "fbt.enum('id1', aEnum)",
+      "__stringVariationArgs": Array [
+        EnumStringVariationArg {
+          "__nodeCode": "'id1'",
+          "candidateValues": Array [
+            "id1",
+            "id2",
+            "id3",
+          ],
+          "fbtNode": "FbtEnumNode",
+          "isCollapsible": false,
+          "node": "BabelNode[type=StringLiteral]",
+          "value": undefined,
+        },
+      ],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=CallExpression]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "options": Object {
+        "__valueCode": "'id1'",
+        "range": Object {
+          "id1": "groups",
+          "id2": "photos",
+          "id3": "videos",
         },
         "value": "BabelNode[type=StringLiteral]",
       },
