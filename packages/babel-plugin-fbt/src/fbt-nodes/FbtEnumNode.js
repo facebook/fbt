@@ -169,14 +169,24 @@ class FbtEnumNode extends FbtNode<
   }
 
   getFbtRuntimeArg(): BabelNodeCallExpression {
-    const {range, value} = this.options;
-    const runtimeRange = objectExpression(
-      Object.keys(range).map(key =>
-        objectProperty(stringLiteral(key), stringLiteral(range[key])),
-      ),
-    );
+    const [_, rangeArg] = this.getCallNodeArguments() || [];
 
-    return createFbtRuntimeArgCallExpression(this, [value, runtimeRange]);
+    let runtimeRange = null;
+    if (isIdentifier(rangeArg)) {
+      runtimeRange = rangeArg;
+    } else {
+      const {range} = this.options;
+      runtimeRange = objectExpression(
+        Object.keys(range).map(key =>
+          objectProperty(stringLiteral(key), stringLiteral(range[key])),
+        ),
+      );
+    }
+
+    return createFbtRuntimeArgCallExpression(this, [
+      this.options.value,
+      runtimeRange,
+    ]);
   }
 
   getArgsThatShouldNotContainFunctionCallOrClassInstantiation(): $ReadOnly<{
