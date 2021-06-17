@@ -80,15 +80,22 @@ class FbtNode<
   SVArgument: AnyStringVariationArg | empty = empty,
   CurBabelNode: BabelNode = BabelNode,
   MaybeChildNode: ?FbtChildNode = null,
-  Options: ?{} = null,
+  Options: ?{} = null, // See related docs of this.options
 > {
   +moduleName: JSModuleNameType;
   +children: Array<MaybeChildNode>;
-  // Reference to the BabelNode that this fbt node represents
+  /**
+   * Reference to the BabelNode that this fbt node represents
+   */
   +node: CurBabelNode;
   +nodeChecker: FbtNodeChecker;
   +parent: ?AnyFbtNode;
-  // A general purpose "options" object that will be customized in child classes
+  /**
+   * Standardized "options" of the current fbt construct.
+   *
+   * I.e. the JSX attributes on `<fbt:construct {...options}>` or
+   * the `options` argument from `fbt.construct(..., options)`
+   */
   +options: Options;
 
   _variationFactorValues: $ReadOnlyArray<SVArgument> = [];
@@ -116,7 +123,10 @@ class FbtNode<
   }
 
   /**
-   * Return this fbt construct's options that'll be stored in `this.options`
+   * Gather and standardize the valid "options" of the fbt construct.
+   * @see {@link FbtNode#options}
+   *
+   * Note that the fbt construct's options will be stored in `this.options`
    * just after constructing this class instance.
    */
   getOptions(): Options {
