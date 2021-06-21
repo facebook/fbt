@@ -16,8 +16,7 @@ function runTest(data, extra) {
   TestUtil.assertSourceAstEqual(expected, actual);
 }
 
-// TODO(T40113359) Re-enable once this test scenario is ready to be tested
-xdescribe('fbt preserveWhitespace argument', () => {
+describe('fbt preserveWhitespace argument', () => {
   // TODO: t17559607 Fix space normalization
   // it('should preserve whitespace in text when requested', () => {
   //   runTest({
@@ -54,9 +53,13 @@ xdescribe('fbt preserveWhitespace argument', () => {
       output: withFbtRequireStatement(
         `var x = fbt._(
             ${payload({
-              type: 'text',
-              jsfbt: 'one line',
-              desc: 'two\nlines',
+              jsfbt: {
+                t: {
+                  desc: 'two\nlines',
+                  text: 'one line',
+                },
+                m: [],
+              },
             })},
           );`,
       ),
@@ -69,9 +72,13 @@ xdescribe('fbt preserveWhitespace argument', () => {
       output: withFbtRequireStatement(
         `var x = fbt._(
             ${payload({
-              type: 'text',
-              jsfbt: 'one space',
-              desc: 'two  spaces',
+              jsfbt: {
+                t: {
+                  desc: 'two  spaces',
+                  text: 'one space',
+                },
+                m: [],
+              },
             })},
           );`,
       ),
@@ -86,9 +93,13 @@ xdescribe('fbt preserveWhitespace argument', () => {
       output: withFbtRequireStatement(
         `var x = fbt._(
             ${payload({
-              type: 'text',
-              jsfbt: 'two spaces',
-              desc: 'one space',
+              jsfbt: {
+                t: {
+                  desc: 'one space',
+                  text: 'two spaces',
+                },
+                m: [],
+              },
             })},
           );`,
       ),
@@ -101,9 +112,13 @@ xdescribe('fbt preserveWhitespace argument', () => {
       output: withFbtRequireStatement(
         `var x = fbt._(
             ${payload({
-              type: 'text',
-              jsfbt: 'two lines',
-              desc: 'one line',
+              jsfbt: {
+                t: {
+                  desc: 'one line',
+                  text: 'two lines',
+                },
+                m: [],
+              },
             })},
           );`,
       ),
@@ -118,9 +133,13 @@ xdescribe('fbt preserveWhitespace argument', () => {
       output: withFbtRequireStatement(
         `var x = fbt._(
             ${payload({
-              type: 'text',
-              jsfbt: 'one line',
-              desc: 'two lines',
+              jsfbt: {
+                t: {
+                  desc: 'two lines',
+                  text: 'one line',
+                },
+                m: [],
+              },
             })},
           );`,
       ),
@@ -133,9 +152,13 @@ xdescribe('fbt preserveWhitespace argument', () => {
       output: withFbtRequireStatement(
         `var x = fbt._(
             ${payload({
-              type: 'text',
-              jsfbt: 'one space',
-              desc: 'two spaces',
+              jsfbt: {
+                t: {
+                  desc: 'two spaces',
+                  text: 'one space',
+                },
+                m: [],
+              },
             })},
           );`,
       ),
