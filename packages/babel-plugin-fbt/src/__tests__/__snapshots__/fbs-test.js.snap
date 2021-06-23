@@ -5,9 +5,7 @@ const fbs = require("fbs");
 
 const fbsCommonElem = fbs._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "Post",
-    desc: "Button to post a comment",
+    jsfbt: { t: { desc: "Button to post a comment", text: "Post" }, m: [] },
     project: "",
   } /* __FBT__ end */
 );
@@ -19,9 +17,7 @@ const fbs = require("fbs");
 
 const fbsElem = fbs._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "a simple string",
-    desc: "str_description",
+    jsfbt: { t: { desc: "str_description", text: "a simple string" }, m: [] },
     project: "",
   } /* __FBT__ end */
 );
@@ -33,9 +29,10 @@ const fbs = require("fbs");
 
 const fbsElem = fbs._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "a string with a {param name}",
-    desc: "str_description",
+    jsfbt: {
+      t: { desc: "str_description", text: "a string with a {param name}" },
+      m: [],
+    },
     project: "",
   } /* __FBT__ end */,
   [fbs._param("param name", parameter)]
@@ -48,9 +45,7 @@ const fbs = require("fbs");
 
 const fbsCommonCall = fbs._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "Post",
-    desc: "Button to post a comment",
+    jsfbt: { t: { desc: "Button to post a comment", text: "Post" }, m: [] },
     project: "",
   } /* __FBT__ end */
 );
@@ -62,9 +57,7 @@ const fbs = require("fbs");
 
 const fbsCall = fbs._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "a simple string",
-    desc: "str_description",
+    jsfbt: { t: { desc: "str_description", text: "a simple string" }, m: [] },
     project: "",
   } /* __FBT__ end */
 );
@@ -74,17 +67,19 @@ const fbsCall = fbs._(
 exports[`Test functional fbs() syntax translation should convert a string with a gender parameter 1`] = `
 const fbs = require("fbs");
 
+const IntlVariations = require("IntlVariations");
+
 const fbsCall = fbs._(
   /* __FBT__ start */ {
-    type: "table",
     jsfbt: {
-      t: { "*": "a string with a {param name}" },
+      t: {
+        "*": { desc: "str_description", text: "a string with a {param name}" },
+      },
       m: [{ token: "param name", type: 1 }],
     },
-    desc: "str_description",
     project: "",
   } /* __FBT__ end */,
-  [fbs._param("param name", parameter, [1, "male"])]
+  [fbs._param("param name", parameter, [1, IntlVariations.GENDER_MALE])]
 );
 
 `;

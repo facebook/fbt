@@ -16,8 +16,7 @@ const {
 
 expect.addSnapshotSerializer(jsCodeFbtCallSerializer);
 
-// TODO(T40113359) Re-enable once this test scenario is ready to be tested
-xdescribe('Test declarative (jsx) <fbs> syntax translation', () => {
+describe('Test declarative (jsx) <fbs> syntax translation', () => {
   it('should convert a simple string', () => {
     expect(
       snapshotTransform(
@@ -91,8 +90,7 @@ xdescribe('Test declarative (jsx) <fbs> syntax translation', () => {
   });
 });
 
-// TODO(T40113359) Re-enable once this test scenario is ready to be tested
-xdescribe('Test functional fbs() syntax translation', () => {
+describe('Test functional fbs() syntax translation', () => {
   it('should convert a simple string', () => {
     expect(
       snapshotTransform(
@@ -106,8 +104,9 @@ xdescribe('Test functional fbs() syntax translation', () => {
     expect(
       snapshotTransform(
         withFbsRequireStatement(`
+          const IntlVariations = require('IntlVariations');
           const fbsCall = fbs(
-            'a string with a ' + fbs.param('param name', parameter, {gender: 'male'}),
+            'a string with a ' + fbs.param('param name', parameter, {gender: IntlVariations.GENDER_MALE}),
             'str_description'
           );
         `),
@@ -121,6 +120,8 @@ xdescribe('Test functional fbs() syntax translation', () => {
       ),
     ).toMatchSnapshot();
   });
+
+  // TODO: T93968371 Refine error messages in FbtElementNode#createChildNode
   it('should reject an fbt parameter', () => {
     expect(() =>
       snapshotTransform(
@@ -131,9 +132,7 @@ xdescribe('Test functional fbs() syntax translation', () => {
           );
         `),
       ),
-    ).toThrow(
-      `fbs only accepts plain strings with params wrapped in fbs.param(...).`,
-    );
+    ).toThrow(`fbs: unsupported babel node: CallExpression`);
   });
 
   it('should throw when using fbs() and the fbs variable is not bound', () => {

@@ -340,6 +340,8 @@ class FbtElementNode
     if (fbtChildNode != null) {
       return fbtChildNode;
     }
+
+    // TODO: T93968371 Refine error messages in FbtElementNode#createChildNode
     throw errorAt(node, `${moduleName}: unsupported babel node: ${node.type}`);
   }
 
