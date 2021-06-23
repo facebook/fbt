@@ -5,14 +5,19 @@ const fbt = require("fbt");
 
 fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "{=Your friends liked} your video",
-    desc: "d",
+    jsfbt: {
+      t: {
+        desc: "d",
+        text: "{=Your friends liked} your video",
+        tokenAliases: { "=Your friends liked": "=m0" },
+      },
+      m: [],
+    },
     project: "",
   } /* __FBT__ end */,
   [
-    fbt._param(
-      "=Your friends liked",
+    fbt._implicitParam(
+      "=m0",
       /*#__PURE__*/ React.createElement(
         Link,
         {
@@ -20,22 +25,32 @@ fbt._(
         },
         fbt._(
           /* __FBT__ start */ {
-            type: "text",
-            jsfbt: "Your friends {=liked}",
-            desc: 'In the phrase: "{=Your friends liked} your video"',
+            jsfbt: {
+              t: {
+                desc: 'In the phrase: "{=Your friends liked} your video"',
+                text: "Your friends {=liked}",
+                tokenAliases: { "=liked": "=m1" },
+              },
+              m: [],
+            },
             project: "",
           } /* __FBT__ end */,
           [
-            fbt._param(
-              "=liked",
+            fbt._implicitParam(
+              "=m1",
               /*#__PURE__*/ React.createElement(
                 "b",
                 null,
                 fbt._(
                   /* __FBT__ start */ {
-                    type: "text",
-                    jsfbt: "liked",
-                    desc: 'In the phrase: "Your friends {=liked} your video"',
+                    jsfbt: {
+                      t: {
+                        desc:
+                          'In the phrase: "Your friends {=liked} your video"',
+                        text: "liked",
+                      },
+                      m: [],
+                    },
                     project: "",
                   } /* __FBT__ end */
                 )
@@ -55,14 +70,19 @@ const fbt = require("fbt");
 
 fbt._(
   /* __FBT__ start */ {
-    type: "text",
-    jsfbt: "{=Your friends} liked your video",
-    desc: "d",
+    jsfbt: {
+      t: {
+        desc: "d",
+        text: "{=Your friends} liked your video",
+        tokenAliases: { "=Your friends": "=m0" },
+      },
+      m: [],
+    },
     project: "",
   } /* __FBT__ end */,
   [
-    fbt._param(
-      "=Your friends",
+    fbt._implicitParam(
+      "=m0",
       /*#__PURE__*/ React.createElement(
         "link",
         {
@@ -70,9 +90,1097 @@ fbt._(
         },
         fbt._(
           /* __FBT__ start */ {
-            type: "text",
-            jsfbt: "Your friends",
-            desc: 'In the phrase: "{=Your friends} liked your video"',
+            jsfbt: {
+              t: {
+                desc: 'In the phrase: "{=Your friends} liked your video"',
+                text: "Your friends",
+              },
+              m: [],
+            },
+            project: "",
+          } /* __FBT__ end */
+        )
+      )
+    ),
+  ]
+);
+
+`;
+
+exports[`Test jsx auto-wrapping of implicit parameters should work with multiple <fbt> calls in one file 1`] = `
+const fbt = require("fbt");
+
+/*#__PURE__*/
+React.createElement(
+  "div",
+  null,
+  fbt._(
+    /* __FBT__ start */ {
+      jsfbt: {
+        t: {
+          desc: "one",
+          text: "{=first} fbt call",
+          tokenAliases: { "=first": "=m0" },
+        },
+        m: [],
+      },
+      project: "",
+    } /* __FBT__ end */,
+    [
+      fbt._implicitParam(
+        "=m0",
+        /*#__PURE__*/ React.createElement(
+          "div",
+          {
+            href: "#",
+          },
+          fbt._(
+            /* __FBT__ start */ {
+              jsfbt: {
+                t: {
+                  desc: 'In the phrase: "{=first} fbt call"',
+                  text: "first",
+                },
+                m: [],
+              },
+              project: "",
+            } /* __FBT__ end */
+          )
+        )
+      ),
+    ]
+  ),
+  fbt._(
+    /* __FBT__ start */ {
+      jsfbt: {
+        t: {
+          desc: "two",
+          text: "{=second} test",
+          tokenAliases: { "=second": "=m0" },
+        },
+        m: [],
+      },
+      project: "",
+    } /* __FBT__ end */,
+    [
+      fbt._implicitParam(
+        "=m0",
+        /*#__PURE__*/ React.createElement(
+          "div",
+          {
+            href: "#",
+          },
+          fbt._(
+            /* __FBT__ start */ {
+              jsfbt: {
+                t: { desc: 'In the phrase: "{=second} test"', text: "second" },
+                m: [],
+              },
+              project: "",
+            } /* __FBT__ end */
+          )
+        )
+      ),
+    ]
+  )
+);
+
+`;
+
+exports[`Test jsx auto-wrapping of implicit parameters should wrap a <fbt> child nested in an explicit <fbt:param> 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: { t: { desc: "d", text: "{explicit fbt param}" }, m: [] },
+    project: "",
+  } /* __FBT__ end */,
+  [
+    fbt._param(
+      "explicit fbt param",
+      /*#__PURE__*/ React.createElement(
+        "div",
+        null,
+        fbt._(
+          /* __FBT__ start */ {
+            jsfbt: {
+              t: {
+                desc: "d2",
+                text: "explicit fbt param {=with a nested implicit param}",
+                tokenAliases: { "=with a nested implicit param": "=m1" },
+              },
+              m: [],
+            },
+            project: "",
+          } /* __FBT__ end */,
+          [
+            fbt._implicitParam(
+              "=m1",
+              /*#__PURE__*/ React.createElement(
+                "div",
+                null,
+                fbt._(
+                  /* __FBT__ start */ {
+                    jsfbt: {
+                      t: {
+                        desc:
+                          'In the phrase: "explicit fbt param {=with a nested implicit param}"',
+                        text: "with a nested implicit param",
+                      },
+                      m: [],
+                    },
+                    project: "",
+                  } /* __FBT__ end */
+                )
+              )
+            ),
+          ]
+        )
+      )
+    ),
+  ]
+);
+
+`;
+
+exports[`Test jsx auto-wrapping of implicit parameters should wrap a <fbt> child next to an explicit <fbt:param> 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        desc: "d",
+        text: "{explicit param next to}{=an implicit param}",
+        tokenAliases: { "=an implicit param": "=m1" },
+      },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [
+    fbt._param(
+      "explicit param next to",
+      /*#__PURE__*/ React.createElement(
+        "div",
+        null,
+        fbt._(
+          /* __FBT__ start */ {
+            jsfbt: { t: { desc: "d2", text: "explicit param next to" }, m: [] },
+            project: "",
+          } /* __FBT__ end */
+        )
+      )
+    ),
+    fbt._implicitParam(
+      "=m1",
+      /*#__PURE__*/ React.createElement(
+        "div",
+        null,
+        fbt._(
+          /* __FBT__ start */ {
+            jsfbt: {
+              t: {
+                desc:
+                  'In the phrase: "{explicit param next to}{=an implicit param}"',
+                text: "an implicit param",
+              },
+              m: [],
+            },
+            project: "",
+          } /* __FBT__ end */
+        )
+      )
+    ),
+  ]
+);
+
+`;
+
+exports[`Test jsx auto-wrapping of implicit parameters should wrap a single unwrapped <fbt> child and a string above 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        desc: "d",
+        text: "{=This is a nested} test",
+        tokenAliases: { "=This is a nested": "=m0" },
+      },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [
+    fbt._implicitParam(
+      "=m0",
+      /*#__PURE__*/ React.createElement(
+        "b",
+        null,
+        fbt._(
+          /* __FBT__ start */ {
+            jsfbt: {
+              t: {
+                desc: 'In the phrase: "{=This is a nested} test"',
+                text: "This is {=a nested}",
+                tokenAliases: { "=a nested": "=m1" },
+              },
+              m: [],
+            },
+            project: "",
+          } /* __FBT__ end */,
+          [
+            fbt._implicitParam(
+              "=m1",
+              /*#__PURE__*/ React.createElement(
+                "link",
+                {
+                  href: "#",
+                },
+                fbt._(
+                  /* __FBT__ start */ {
+                    jsfbt: {
+                      t: {
+                        desc: 'In the phrase: "This is {=a nested} test"',
+                        text: "a nested",
+                      },
+                      m: [],
+                    },
+                    project: "",
+                  } /* __FBT__ end */
+                )
+              )
+            ),
+          ]
+        )
+      )
+    ),
+  ]
+);
+
+`;
+
+exports[`Test jsx auto-wrapping of implicit parameters should wrap a single unwrapped <fbt> child and a string below 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        desc: "d",
+        text: "{=this is} a singly nested test",
+        tokenAliases: { "=this is": "=m0" },
+      },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [
+    fbt._implicitParam(
+      "=m0",
+      /*#__PURE__*/ React.createElement(
+        "div",
+        {
+          href: "#",
+        },
+        fbt._(
+          /* __FBT__ start */ {
+            jsfbt: {
+              t: {
+                desc: 'In the phrase: "{=this is} a singly nested test"',
+                text: "this is",
+              },
+              m: [],
+            },
+            project: "",
+          } /* __FBT__ end */
+        )
+      )
+    ),
+  ]
+);
+
+`;
+
+exports[`Test jsx auto-wrapping of implicit parameters should wrap a string next to an explicit <fbt:param> that has a implicit <fbt:param> within it 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        desc: "d",
+        text:
+          "outer string that should not appear in inner desc {explicit fbt param}",
+      },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [
+    fbt._param(
+      "explicit fbt param",
+      /*#__PURE__*/ React.createElement(
+        "div",
+        null,
+        fbt._(
+          /* __FBT__ start */ {
+            jsfbt: {
+              t: {
+                desc: "d2",
+                text: "explicit fbt param {=with a nested implicit param}",
+                tokenAliases: { "=with a nested implicit param": "=m1" },
+              },
+              m: [],
+            },
+            project: "",
+          } /* __FBT__ end */,
+          [
+            fbt._implicitParam(
+              "=m1",
+              /*#__PURE__*/ React.createElement(
+                "div",
+                null,
+                fbt._(
+                  /* __FBT__ start */ {
+                    jsfbt: {
+                      t: {
+                        desc:
+                          'In the phrase: "explicit fbt param {=with a nested implicit param}"',
+                        text: "with a nested implicit param",
+                      },
+                      m: [],
+                    },
+                    project: "",
+                  } /* __FBT__ end */
+                )
+              )
+            ),
+          ]
+        )
+      )
+    ),
+  ]
+);
+
+`;
+
+exports[`Test jsx auto-wrapping of implicit parameters should wrap an outer and inner child 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        desc: "d",
+        text: "{=this is a doubly} nested test",
+        tokenAliases: { "=this is a doubly": "=m0" },
+      },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [
+    fbt._implicitParam(
+      "=m0",
+      /*#__PURE__*/ React.createElement(
+        "div",
+        {
+          href: "#",
+        },
+        fbt._(
+          /* __FBT__ start */ {
+            jsfbt: {
+              t: {
+                desc: 'In the phrase: "{=this is a doubly} nested test"',
+                text: "{=this is} a doubly",
+                tokenAliases: { "=this is": "=m1" },
+              },
+              m: [],
+            },
+            project: "",
+          } /* __FBT__ end */,
+          [
+            fbt._implicitParam(
+              "=m1",
+              /*#__PURE__*/ React.createElement(
+                "div",
+                {
+                  href: "#",
+                },
+                fbt._(
+                  /* __FBT__ start */ {
+                    jsfbt: {
+                      t: {
+                        desc:
+                          'In the phrase: "{=this is} a doubly nested test"',
+                        text: "this is",
+                      },
+                      m: [],
+                    },
+                    project: "",
+                  } /* __FBT__ end */
+                )
+              )
+            ),
+          ]
+        )
+      )
+    ),
+  ]
+);
+
+`;
+
+exports[`Test jsx auto-wrapping of implicit parameters should wrap explicit params nested in implicit params with [] 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        desc: "d",
+        text:
+          "{=this is a test [to make sure that explicit params under an implicit node] [and ones that are next to each other] under an implicit tag are wrapped with [ ]}{but free standing ones are not}",
+        tokenAliases: {
+          "=this is a test [to make sure that explicit params under an implicit node] [and ones that are next to each other] under an implicit tag are wrapped with [ ]":
+            "=m0",
+        },
+      },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [
+    fbt._param(
+      "but free standing ones are not",
+      /*#__PURE__*/ React.createElement(
+        "link",
+        null,
+        fbt._(
+          /* __FBT__ start */ {
+            jsfbt: {
+              t: {
+                desc: "d3",
+                text: "but free standing ones {=are not}",
+                tokenAliases: { "=are not": "=m1" },
+              },
+              m: [],
+            },
+            project: "",
+          } /* __FBT__ end */,
+          [
+            fbt._implicitParam(
+              "=m1",
+              /*#__PURE__*/ React.createElement(
+                "b",
+                null,
+                fbt._(
+                  /* __FBT__ start */ {
+                    jsfbt: {
+                      t: {
+                        desc:
+                          'In the phrase: "but free standing ones {=are not}"',
+                        text: "are not",
+                      },
+                      m: [],
+                    },
+                    project: "",
+                  } /* __FBT__ end */
+                )
+              )
+            ),
+          ]
+        )
+      )
+    ),
+    fbt._implicitParam(
+      "=m0",
+      /*#__PURE__*/ React.createElement(
+        "div",
+        null,
+        fbt._(
+          /* __FBT__ start */ {
+            jsfbt: {
+              t: {
+                desc:
+                  'In the phrase: "{=this is a test [to make sure that explicit params under an implicit node] [and ones that are next to each other] under an implicit tag are wrapped with [ ]}{but free standing ones are not}"',
+                text:
+                  "this is a test {to make sure that explicit params under an implicit node} {and ones that are next to each other} under an implicit tag are wrapped with [ ]",
+              },
+              m: [],
+            },
+            project: "",
+          } /* __FBT__ end */,
+          [
+            fbt._param(
+              "to make sure that explicit params under an implicit node",
+              /*#__PURE__*/ React.createElement(
+                "link",
+                null,
+                fbt._(
+                  /* __FBT__ start */ {
+                    jsfbt: {
+                      t: {
+                        desc: "d2",
+                        text:
+                          "to make sure that explicit tags {=under an implicit node}",
+                        tokenAliases: { "=under an implicit node": "=m1" },
+                      },
+                      m: [],
+                    },
+                    project: "",
+                  } /* __FBT__ end */,
+                  [
+                    fbt._implicitParam(
+                      "=m1",
+                      /*#__PURE__*/ React.createElement(
+                        "b",
+                        null,
+                        fbt._(
+                          /* __FBT__ start */ {
+                            jsfbt: {
+                              t: {
+                                desc:
+                                  'In the phrase: "to make sure that explicit tags {=under an implicit node}"',
+                                text: "under an implicit node",
+                              },
+                              m: [],
+                            },
+                            project: "",
+                          } /* __FBT__ end */
+                        )
+                      )
+                    ),
+                  ]
+                )
+              )
+            ),
+            fbt._param(
+              "and ones that are next to each other",
+              /*#__PURE__*/ React.createElement(
+                "link",
+                null,
+                fbt._(
+                  /* __FBT__ start */ {
+                    jsfbt: {
+                      t: {
+                        desc: "d3",
+                        text: "and ones that are next {=to each other}",
+                        tokenAliases: { "=to each other": "=m1" },
+                      },
+                      m: [],
+                    },
+                    project: "",
+                  } /* __FBT__ end */,
+                  [
+                    fbt._implicitParam(
+                      "=m1",
+                      /*#__PURE__*/ React.createElement(
+                        "b",
+                        null,
+                        fbt._(
+                          /* __FBT__ start */ {
+                            jsfbt: {
+                              t: {
+                                desc:
+                                  'In the phrase: "and ones that are next {=to each other}"',
+                                text: "to each other",
+                              },
+                              m: [],
+                            },
+                            project: "",
+                          } /* __FBT__ end */
+                        )
+                      )
+                    ),
+                  ]
+                )
+              )
+            ),
+          ]
+        )
+      )
+    ),
+  ]
+);
+
+`;
+
+exports[`Test jsx auto-wrapping of implicit parameters should wrap two children with one nested level 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        desc: "d",
+        text: "{=this is a doubly} nested test {=with an additional level}",
+        tokenAliases: {
+          "=this is a doubly": "=m0",
+          "=with an additional level": "=m2",
+        },
+      },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [
+    fbt._implicitParam(
+      "=m0",
+      /*#__PURE__*/ React.createElement(
+        "div",
+        {
+          href: "#",
+        },
+        fbt._(
+          /* __FBT__ start */ {
+            jsfbt: {
+              t: {
+                desc:
+                  'In the phrase: "{=this is a doubly} nested test with an additional level"',
+                text: "{=this is} a doubly",
+                tokenAliases: { "=this is": "=m1" },
+              },
+              m: [],
+            },
+            project: "",
+          } /* __FBT__ end */,
+          [
+            fbt._implicitParam(
+              "=m1",
+              /*#__PURE__*/ React.createElement(
+                "div",
+                {
+                  href: "#",
+                },
+                fbt._(
+                  /* __FBT__ start */ {
+                    jsfbt: {
+                      t: {
+                        desc:
+                          'In the phrase: "{=this is} a doubly nested test with an additional level"',
+                        text: "this is",
+                      },
+                      m: [],
+                    },
+                    project: "",
+                  } /* __FBT__ end */
+                )
+              )
+            ),
+          ]
+        )
+      )
+    ),
+    fbt._implicitParam(
+      "=m2",
+      /*#__PURE__*/ React.createElement(
+        "div",
+        {
+          href: "#",
+        },
+        fbt._(
+          /* __FBT__ start */ {
+            jsfbt: {
+              t: {
+                desc:
+                  'In the phrase: "this is a doubly nested test {=with an additional level}"',
+                text: "with an additional level",
+              },
+              m: [],
+            },
+            project: "",
+          } /* __FBT__ end */
+        )
+      )
+    ),
+  ]
+);
+
+`;
+
+exports[`Test jsx auto-wrapping of implicit parameters should wrap two nested next to each other 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        desc: "d",
+        text: "{=one two}{=three four}",
+        tokenAliases: { "=one two": "=m0", "=three four": "=m1" },
+      },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [
+    fbt._implicitParam(
+      "=m0",
+      /*#__PURE__*/ React.createElement(
+        "div",
+        {
+          href: "#",
+        },
+        fbt._(
+          /* __FBT__ start */ {
+            jsfbt: {
+              t: {
+                desc: 'In the phrase: "{=one two}three four"',
+                text: "one {=two}",
+                tokenAliases: { "=two": "=m1" },
+              },
+              m: [],
+            },
+            project: "",
+          } /* __FBT__ end */,
+          [
+            fbt._implicitParam(
+              "=m1",
+              /*#__PURE__*/ React.createElement(
+                "div",
+                {
+                  href: "#",
+                },
+                fbt._(
+                  /* __FBT__ start */ {
+                    jsfbt: {
+                      t: {
+                        desc: 'In the phrase: "one {=two}three four"',
+                        text: "two",
+                      },
+                      m: [],
+                    },
+                    project: "",
+                  } /* __FBT__ end */
+                )
+              )
+            ),
+          ]
+        )
+      )
+    ),
+    fbt._implicitParam(
+      "=m1",
+      /*#__PURE__*/ React.createElement(
+        "div",
+        {
+          href: "#",
+        },
+        fbt._(
+          /* __FBT__ start */ {
+            jsfbt: {
+              t: {
+                desc: 'In the phrase: "one two{=three four}"',
+                text: "three {=four}",
+                tokenAliases: { "=four": "=m1" },
+              },
+              m: [],
+            },
+            project: "",
+          } /* __FBT__ end */,
+          [
+            fbt._implicitParam(
+              "=m1",
+              /*#__PURE__*/ React.createElement(
+                "div",
+                {
+                  href: "#",
+                },
+                fbt._(
+                  /* __FBT__ start */ {
+                    jsfbt: {
+                      t: {
+                        desc: 'In the phrase: "one twothree {=four}"',
+                        text: "four",
+                      },
+                      m: [],
+                    },
+                    project: "",
+                  } /* __FBT__ end */
+                )
+              )
+            ),
+          ]
+        )
+      )
+    ),
+  ]
+);
+
+`;
+
+exports[`Test jsx auto-wrapping of implicit parameters should wrap two nested next to each other with an extra level 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        desc: "d",
+        text: "{=one two [=test]}{=three four}",
+        tokenAliases: { "=one two [=test]": "=m0", "=three four": "=m1" },
+      },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [
+    fbt._implicitParam(
+      "=m0",
+      /*#__PURE__*/ React.createElement(
+        "div",
+        {
+          href: "#",
+        },
+        fbt._(
+          /* __FBT__ start */ {
+            jsfbt: {
+              t: {
+                desc: 'In the phrase: "{=one two [=test]}three four"',
+                text: "one {=two test}",
+                tokenAliases: { "=two test": "=m1" },
+              },
+              m: [],
+            },
+            project: "",
+          } /* __FBT__ end */,
+          [
+            fbt._implicitParam(
+              "=m1",
+              /*#__PURE__*/ React.createElement(
+                "div",
+                {
+                  href: "#",
+                },
+                fbt._(
+                  /* __FBT__ start */ {
+                    jsfbt: {
+                      t: {
+                        desc: 'In the phrase: "one {=two test}three four"',
+                        text: "two {=test}",
+                        tokenAliases: { "=test": "=m1" },
+                      },
+                      m: [],
+                    },
+                    project: "",
+                  } /* __FBT__ end */,
+                  [
+                    fbt._implicitParam(
+                      "=m1",
+                      /*#__PURE__*/ React.createElement(
+                        "div",
+                        {
+                          href: "#",
+                        },
+                        fbt._(
+                          /* __FBT__ start */ {
+                            jsfbt: {
+                              t: {
+                                desc:
+                                  'In the phrase: "one two {=test}three four"',
+                                text: "test",
+                              },
+                              m: [],
+                            },
+                            project: "",
+                          } /* __FBT__ end */
+                        )
+                      )
+                    ),
+                  ]
+                )
+              )
+            ),
+          ]
+        )
+      )
+    ),
+    fbt._implicitParam(
+      "=m1",
+      /*#__PURE__*/ React.createElement(
+        "div",
+        {
+          href: "#",
+        },
+        fbt._(
+          /* __FBT__ start */ {
+            jsfbt: {
+              t: {
+                desc: 'In the phrase: "one two test{=three four}"',
+                text: "three {=four}",
+                tokenAliases: { "=four": "=m1" },
+              },
+              m: [],
+            },
+            project: "",
+          } /* __FBT__ end */,
+          [
+            fbt._implicitParam(
+              "=m1",
+              /*#__PURE__*/ React.createElement(
+                "div",
+                {
+                  href: "#",
+                },
+                fbt._(
+                  /* __FBT__ start */ {
+                    jsfbt: {
+                      t: {
+                        desc: 'In the phrase: "one two testthree {=four}"',
+                        text: "four",
+                      },
+                      m: [],
+                    },
+                    project: "",
+                  } /* __FBT__ end */
+                )
+              )
+            ),
+          ]
+        )
+      )
+    ),
+  ]
+);
+
+`;
+
+exports[`Test jsx auto-wrapping of implicit parameters should wrap two unwrapped <fbt> children 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        desc: "d",
+        text: "{=wrap once}{=wrap twice}",
+        tokenAliases: { "=wrap once": "=m0", "=wrap twice": "=m1" },
+      },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [
+    fbt._implicitParam(
+      "=m0",
+      /*#__PURE__*/ React.createElement(
+        "div",
+        null,
+        fbt._(
+          /* __FBT__ start */ {
+            jsfbt: {
+              t: {
+                desc: 'In the phrase: "{=wrap once}wrap twice"',
+                text: "wrap once",
+              },
+              m: [],
+            },
+            project: "",
+          } /* __FBT__ end */
+        )
+      )
+    ),
+    fbt._implicitParam(
+      "=m1",
+      /*#__PURE__*/ React.createElement(
+        "div",
+        null,
+        fbt._(
+          /* __FBT__ start */ {
+            jsfbt: {
+              t: {
+                desc: 'In the phrase: "wrap once{=wrap twice}"',
+                text: "wrap twice",
+              },
+              m: [],
+            },
+            project: "",
+          } /* __FBT__ end */
+        )
+      )
+    ),
+  ]
+);
+
+`;
+
+exports[`Test jsx auto-wrapping of implicit parameters should wrap two unwrapped <fbt> children and 1 nested 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        desc: "d",
+        text: "{=wrap once and also}{=wrap twice} complicated",
+        tokenAliases: { "=wrap once and also": "=m0", "=wrap twice": "=m1" },
+      },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [
+    fbt._implicitParam(
+      "=m0",
+      /*#__PURE__*/ React.createElement(
+        "div",
+        null,
+        fbt._(
+          /* __FBT__ start */ {
+            jsfbt: {
+              t: {
+                desc:
+                  'In the phrase: "{=wrap once and also}wrap twice complicated"',
+                text: "wrap once {=and also}",
+                tokenAliases: { "=and also": "=m1" },
+              },
+              m: [],
+            },
+            project: "",
+          } /* __FBT__ end */,
+          [
+            fbt._implicitParam(
+              "=m1",
+              /*#__PURE__*/ React.createElement(
+                "div",
+                null,
+                fbt._(
+                  /* __FBT__ start */ {
+                    jsfbt: {
+                      t: {
+                        desc:
+                          'In the phrase: "wrap once {=and also}wrap twice complicated"',
+                        text: "and also",
+                      },
+                      m: [],
+                    },
+                    project: "",
+                  } /* __FBT__ end */
+                )
+              )
+            ),
+          ]
+        )
+      )
+    ),
+    fbt._implicitParam(
+      "=m1",
+      /*#__PURE__*/ React.createElement(
+        "div",
+        null,
+        fbt._(
+          /* __FBT__ start */ {
+            jsfbt: {
+              t: {
+                desc:
+                  'In the phrase: "wrap once and also{=wrap twice} complicated"',
+                text: "wrap twice",
+              },
+              m: [],
+            },
             project: "",
           } /* __FBT__ end */
         )
