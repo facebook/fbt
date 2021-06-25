@@ -23,7 +23,7 @@ const GenderConst = require('GenderConst');
 // in jest tests. We might need to move these modules inside beforeEach().
 // These ones can stay here for now since they have a consistent behavior across this test suite.
 const IntlVariations = require('IntlVariations');
-const ReactDOM = require('ReactDOM');
+const ReactDOM = require('ReactDOMLegacy_DEPRECATED');
 
 const invariant = require('invariant');
 const React = require('react');

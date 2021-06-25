@@ -31,7 +31,7 @@ module.name_mapper='^\(babel-plugin-fbt\)/dist/\(.*\)$' -> '<PROJECT_ROOT>/packa
 
 # Import 3rd party node modules used by Babel transforms and runtime tests
 module.name_mapper='^\(\(invariant\|graceful-fs\|nullthrows\|optimist\|fb-babel-plugin-utils\|@babel\|fbjs\|jest-docblock\)\(/.*\)?\)$' -> '<PROJECT_ROOT>/node_modules/\1'
-module.name_mapper='^\(ReactDOM\)$' -> '<PROJECT_ROOT>/node_modules/react-dom'
+module.name_mapper='^\(ReactDOMLegacy_DEPRECATED\)$' -> '<PROJECT_ROOT>/node_modules/react-dom'
 
 # Redirect non-FB JS modules to a dedicated folder
 module.name_mapper='^\(FBLocaleToLang\|fbtInit\|FbtEnv\|FbtPublic\|FbtTranslations\|GenderConst\|intlInlineMode\|IntlNumberType\|IntlPhonologicalRewrites\|IntlRedundantStops\|IntlVariationResolver\|IntlVariations\|NumberFormatConsts\)$' -> '<PROJECT_ROOT>/runtime/nonfb/\1'

@@ -15,7 +15,7 @@ const moduleMap = Object.assign(
   {
     invariant: 'invariant',
     React: 'react',
-    ReactDOM: 'react-dom',
+    ReactDOMLegacy_DEPRECATED: 'react-dom',
   },
 );
 
