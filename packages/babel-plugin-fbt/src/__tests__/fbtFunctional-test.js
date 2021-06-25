@@ -940,34 +940,34 @@ const generalTestData = {
                         '*': {
                           '1': {
                             desc:
-                              'In the phrase: "{=today}, {name} has shared {number} photos with her"',
+                              'In the phrase: "{=today}, {name} has shared {=[number] photos with her}"',
                             text: 'today',
                           },
                           '2': {
                             desc:
-                              'In the phrase: "{=today}, {name} has shared {number} photos with him"',
+                              'In the phrase: "{=today}, {name} has shared {=[number] photos with him}"',
                             text: 'today',
                           },
                           '*': {
                             desc:
-                              'In the phrase: "{=today}, {name} has shared {number} photos with them"',
+                              'In the phrase: "{=today}, {name} has shared {=[number] photos with them}"',
                             text: 'today',
                           },
                         },
                         _1: {
                           '1': {
                             desc:
-                              'In the phrase: "{=today}, {name} has shared a photo with her"',
+                              'In the phrase: "{=today}, {name} has shared {=a photo with her}"',
                             text: 'today',
                           },
                           '2': {
                             desc:
-                              'In the phrase: "{=today}, {name} has shared a photo with him"',
+                              'In the phrase: "{=today}, {name} has shared {=a photo with him}"',
                             text: 'today',
                           },
                           '*': {
                             desc:
-                              'In the phrase: "{=today}, {name} has shared a photo with them"',
+                              'In the phrase: "{=today}, {name} has shared {=a photo with them}"',
                             text: 'today',
                           },
                         },
@@ -978,34 +978,34 @@ const generalTestData = {
                         '*': {
                           '1': {
                             desc:
-                              'In the phrase: "{=yesterday}, {name} has shared {number} photos with her"',
+                              'In the phrase: "{=yesterday}, {name} has shared {=[number] photos with her}"',
                             text: 'yesterday',
                           },
                           '2': {
                             desc:
-                              'In the phrase: "{=yesterday}, {name} has shared {number} photos with him"',
+                              'In the phrase: "{=yesterday}, {name} has shared {=[number] photos with him}"',
                             text: 'yesterday',
                           },
                           '*': {
                             desc:
-                              'In the phrase: "{=yesterday}, {name} has shared {number} photos with them"',
+                              'In the phrase: "{=yesterday}, {name} has shared {=[number] photos with them}"',
                             text: 'yesterday',
                           },
                         },
                         _1: {
                           '1': {
                             desc:
-                              'In the phrase: "{=yesterday}, {name} has shared a photo with her"',
+                              'In the phrase: "{=yesterday}, {name} has shared {=a photo with her}"',
                             text: 'yesterday',
                           },
                           '2': {
                             desc:
-                              'In the phrase: "{=yesterday}, {name} has shared a photo with him"',
+                              'In the phrase: "{=yesterday}, {name} has shared {=a photo with him}"',
                             text: 'yesterday',
                           },
                           '*': {
                             desc:
-                              'In the phrase: "{=yesterday}, {name} has shared a photo with them"',
+                              'In the phrase: "{=yesterday}, {name} has shared {=a photo with them}"',
                             text: 'yesterday',
                           },
                         },
@@ -1045,19 +1045,19 @@ const generalTestData = {
                         '*': {
                           '1': {
                             desc:
-                              'In the phrase: "today, {name} has shared {=[number] photos with her}"',
+                              'In the phrase: "{=today}, {name} has shared {=[number] photos with her}"',
                             text: '{number} photos with {=her}',
                             tokenAliases: {'=her': '=m4'},
                           },
                           '2': {
                             desc:
-                              'In the phrase: "today, {name} has shared {=[number] photos with him}"',
+                              'In the phrase: "{=today}, {name} has shared {=[number] photos with him}"',
                             text: '{number} photos with {=him}',
                             tokenAliases: {'=him': '=m4'},
                           },
                           '*': {
                             desc:
-                              'In the phrase: "today, {name} has shared {=[number] photos with them}"',
+                              'In the phrase: "{=today}, {name} has shared {=[number] photos with them}"',
                             text: '{number} photos with {=them}',
                             tokenAliases: {'=them': '=m4'},
                           },
@@ -1065,19 +1065,19 @@ const generalTestData = {
                         _1: {
                           '1': {
                             desc:
-                              'In the phrase: "today, {name} has shared {=a photo with her}"',
+                              'In the phrase: "{=today}, {name} has shared {=a photo with her}"',
                             text: 'a photo with {=her}',
                             tokenAliases: {'=her': '=m4'},
                           },
                           '2': {
                             desc:
-                              'In the phrase: "today, {name} has shared {=a photo with him}"',
+                              'In the phrase: "{=today}, {name} has shared {=a photo with him}"',
                             text: 'a photo with {=him}',
                             tokenAliases: {'=him': '=m4'},
                           },
                           '*': {
                             desc:
-                              'In the phrase: "today, {name} has shared {=a photo with them}"',
+                              'In the phrase: "{=today}, {name} has shared {=a photo with them}"',
                             text: 'a photo with {=them}',
                             tokenAliases: {'=them': '=m4'},
                           },
@@ -1089,19 +1089,19 @@ const generalTestData = {
                         '*': {
                           '1': {
                             desc:
-                              'In the phrase: "yesterday, {name} has shared {=[number] photos with her}"',
+                              'In the phrase: "{=yesterday}, {name} has shared {=[number] photos with her}"',
                             text: '{number} photos with {=her}',
                             tokenAliases: {'=her': '=m4'},
                           },
                           '2': {
                             desc:
-                              'In the phrase: "yesterday, {name} has shared {=[number] photos with him}"',
+                              'In the phrase: "{=yesterday}, {name} has shared {=[number] photos with him}"',
                             text: '{number} photos with {=him}',
                             tokenAliases: {'=him': '=m4'},
                           },
                           '*': {
                             desc:
-                              'In the phrase: "yesterday, {name} has shared {=[number] photos with them}"',
+                              'In the phrase: "{=yesterday}, {name} has shared {=[number] photos with them}"',
                             text: '{number} photos with {=them}',
                             tokenAliases: {'=them': '=m4'},
                           },
@@ -1109,19 +1109,19 @@ const generalTestData = {
                         _1: {
                           '1': {
                             desc:
-                              'In the phrase: "yesterday, {name} has shared {=a photo with her}"',
+                              'In the phrase: "{=yesterday}, {name} has shared {=a photo with her}"',
                             text: 'a photo with {=her}',
                             tokenAliases: {'=her': '=m4'},
                           },
                           '2': {
                             desc:
-                              'In the phrase: "yesterday, {name} has shared {=a photo with him}"',
+                              'In the phrase: "{=yesterday}, {name} has shared {=a photo with him}"',
                             text: 'a photo with {=him}',
                             tokenAliases: {'=him': '=m4'},
                           },
                           '*': {
                             desc:
-                              'In the phrase: "yesterday, {name} has shared {=a photo with them}"',
+                              'In the phrase: "{=yesterday}, {name} has shared {=a photo with them}"',
                             text: 'a photo with {=them}',
                             tokenAliases: {'=them': '=m4'},
                           },
@@ -1157,34 +1157,34 @@ const generalTestData = {
                                 '*': {
                                   '1': {
                                     desc:
-                                      'In the phrase: "today, {name} has shared {number} photos with {=her}"',
+                                      'In the phrase: "{=today}, {name} has shared {number} photos with {=her}"',
                                     text: 'her',
                                   },
                                   '2': {
                                     desc:
-                                      'In the phrase: "today, {name} has shared {number} photos with {=him}"',
+                                      'In the phrase: "{=today}, {name} has shared {number} photos with {=him}"',
                                     text: 'him',
                                   },
                                   '*': {
                                     desc:
-                                      'In the phrase: "today, {name} has shared {number} photos with {=them}"',
+                                      'In the phrase: "{=today}, {name} has shared {number} photos with {=them}"',
                                     text: 'them',
                                   },
                                 },
                                 _1: {
                                   '1': {
                                     desc:
-                                      'In the phrase: "today, {name} has shared a photo with {=her}"',
+                                      'In the phrase: "{=today}, {name} has shared a photo with {=her}"',
                                     text: 'her',
                                   },
                                   '2': {
                                     desc:
-                                      'In the phrase: "today, {name} has shared a photo with {=him}"',
+                                      'In the phrase: "{=today}, {name} has shared a photo with {=him}"',
                                     text: 'him',
                                   },
                                   '*': {
                                     desc:
-                                      'In the phrase: "today, {name} has shared a photo with {=them}"',
+                                      'In the phrase: "{=today}, {name} has shared a photo with {=them}"',
                                     text: 'them',
                                   },
                                 },
@@ -1195,34 +1195,34 @@ const generalTestData = {
                                 '*': {
                                   '1': {
                                     desc:
-                                      'In the phrase: "yesterday, {name} has shared {number} photos with {=her}"',
+                                      'In the phrase: "{=yesterday}, {name} has shared {number} photos with {=her}"',
                                     text: 'her',
                                   },
                                   '2': {
                                     desc:
-                                      'In the phrase: "yesterday, {name} has shared {number} photos with {=him}"',
+                                      'In the phrase: "{=yesterday}, {name} has shared {number} photos with {=him}"',
                                     text: 'him',
                                   },
                                   '*': {
                                     desc:
-                                      'In the phrase: "yesterday, {name} has shared {number} photos with {=them}"',
+                                      'In the phrase: "{=yesterday}, {name} has shared {number} photos with {=them}"',
                                     text: 'them',
                                   },
                                 },
                                 _1: {
                                   '1': {
                                     desc:
-                                      'In the phrase: "yesterday, {name} has shared a photo with {=her}"',
+                                      'In the phrase: "{=yesterday}, {name} has shared a photo with {=her}"',
                                     text: 'her',
                                   },
                                   '2': {
                                     desc:
-                                      'In the phrase: "yesterday, {name} has shared a photo with {=him}"',
+                                      'In the phrase: "{=yesterday}, {name} has shared a photo with {=him}"',
                                     text: 'him',
                                   },
                                   '*': {
                                     desc:
-                                      'In the phrase: "yesterday, {name} has shared a photo with {=them}"',
+                                      'In the phrase: "{=yesterday}, {name} has shared a photo with {=them}"',
                                     text: 'them',
                                   },
                                 },

@@ -197,7 +197,7 @@ function getChildNodeTextForDescription(
 ): string {
   const FbtImplicitParamNode = require('./FbtImplicitParamNode');
   if (child instanceof FbtImplicitParamNode) {
-    return child === targetFbtNode
+    return child === targetFbtNode || !child.isAncestorOf(targetFbtNode)
       ? tokenNameToTextPattern(child.getTokenName(argsMap))
       : child.getTextForDescription(argsMap, targetFbtNode);
   } else {

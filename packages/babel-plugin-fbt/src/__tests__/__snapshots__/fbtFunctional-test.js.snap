@@ -415,34 +415,34 @@ Array [
           "*": Object {
             "*": Object {
               "*": Object {
-                "desc": "In the phrase: \\"{=today}, {name} has shared {number} photos with them\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {=[number] photos with them}\\"",
                 "outerTokenName": "=today",
                 "text": "today",
               },
               "1": Object {
-                "desc": "In the phrase: \\"{=today}, {name} has shared {number} photos with her\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {=[number] photos with her}\\"",
                 "outerTokenName": "=today",
                 "text": "today",
               },
               "2": Object {
-                "desc": "In the phrase: \\"{=today}, {name} has shared {number} photos with him\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {=[number] photos with him}\\"",
                 "outerTokenName": "=today",
                 "text": "today",
               },
             },
             "_1": Object {
               "*": Object {
-                "desc": "In the phrase: \\"{=today}, {name} has shared a photo with them\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {=a photo with them}\\"",
                 "outerTokenName": "=today",
                 "text": "today",
               },
               "1": Object {
-                "desc": "In the phrase: \\"{=today}, {name} has shared a photo with her\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {=a photo with her}\\"",
                 "outerTokenName": "=today",
                 "text": "today",
               },
               "2": Object {
-                "desc": "In the phrase: \\"{=today}, {name} has shared a photo with him\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {=a photo with him}\\"",
                 "outerTokenName": "=today",
                 "text": "today",
               },
@@ -453,34 +453,34 @@ Array [
           "*": Object {
             "*": Object {
               "*": Object {
-                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {number} photos with them\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {=[number] photos with them}\\"",
                 "outerTokenName": "=yesterday",
                 "text": "yesterday",
               },
               "1": Object {
-                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {number} photos with her\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {=[number] photos with her}\\"",
                 "outerTokenName": "=yesterday",
                 "text": "yesterday",
               },
               "2": Object {
-                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {number} photos with him\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {=[number] photos with him}\\"",
                 "outerTokenName": "=yesterday",
                 "text": "yesterday",
               },
             },
             "_1": Object {
               "*": Object {
-                "desc": "In the phrase: \\"{=yesterday}, {name} has shared a photo with them\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {=a photo with them}\\"",
                 "outerTokenName": "=yesterday",
                 "text": "yesterday",
               },
               "1": Object {
-                "desc": "In the phrase: \\"{=yesterday}, {name} has shared a photo with her\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {=a photo with her}\\"",
                 "outerTokenName": "=yesterday",
                 "text": "yesterday",
               },
               "2": Object {
-                "desc": "In the phrase: \\"{=yesterday}, {name} has shared a photo with him\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {=a photo with him}\\"",
                 "outerTokenName": "=yesterday",
                 "text": "yesterday",
               },
@@ -523,7 +523,7 @@ Array [
           "*": Object {
             "*": Object {
               "*": Object {
-                "desc": "In the phrase: \\"today, {name} has shared {=[number] photos with them}\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {=[number] photos with them}\\"",
                 "outerTokenName": "=[number] photos with them",
                 "text": "{number} photos with {=them}",
                 "tokenAliases": Object {
@@ -531,7 +531,7 @@ Array [
                 },
               },
               "1": Object {
-                "desc": "In the phrase: \\"today, {name} has shared {=[number] photos with her}\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {=[number] photos with her}\\"",
                 "outerTokenName": "=[number] photos with her",
                 "text": "{number} photos with {=her}",
                 "tokenAliases": Object {
@@ -539,7 +539,7 @@ Array [
                 },
               },
               "2": Object {
-                "desc": "In the phrase: \\"today, {name} has shared {=[number] photos with him}\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {=[number] photos with him}\\"",
                 "outerTokenName": "=[number] photos with him",
                 "text": "{number} photos with {=him}",
                 "tokenAliases": Object {
@@ -549,7 +549,7 @@ Array [
             },
             "_1": Object {
               "*": Object {
-                "desc": "In the phrase: \\"today, {name} has shared {=a photo with them}\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {=a photo with them}\\"",
                 "outerTokenName": "=a photo with them",
                 "text": "a photo with {=them}",
                 "tokenAliases": Object {
@@ -557,7 +557,7 @@ Array [
                 },
               },
               "1": Object {
-                "desc": "In the phrase: \\"today, {name} has shared {=a photo with her}\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {=a photo with her}\\"",
                 "outerTokenName": "=a photo with her",
                 "text": "a photo with {=her}",
                 "tokenAliases": Object {
@@ -565,7 +565,7 @@ Array [
                 },
               },
               "2": Object {
-                "desc": "In the phrase: \\"today, {name} has shared {=a photo with him}\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {=a photo with him}\\"",
                 "outerTokenName": "=a photo with him",
                 "text": "a photo with {=him}",
                 "tokenAliases": Object {
@@ -579,7 +579,7 @@ Array [
           "*": Object {
             "*": Object {
               "*": Object {
-                "desc": "In the phrase: \\"yesterday, {name} has shared {=[number] photos with them}\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {=[number] photos with them}\\"",
                 "outerTokenName": "=[number] photos with them",
                 "text": "{number} photos with {=them}",
                 "tokenAliases": Object {
@@ -587,7 +587,7 @@ Array [
                 },
               },
               "1": Object {
-                "desc": "In the phrase: \\"yesterday, {name} has shared {=[number] photos with her}\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {=[number] photos with her}\\"",
                 "outerTokenName": "=[number] photos with her",
                 "text": "{number} photos with {=her}",
                 "tokenAliases": Object {
@@ -595,7 +595,7 @@ Array [
                 },
               },
               "2": Object {
-                "desc": "In the phrase: \\"yesterday, {name} has shared {=[number] photos with him}\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {=[number] photos with him}\\"",
                 "outerTokenName": "=[number] photos with him",
                 "text": "{number} photos with {=him}",
                 "tokenAliases": Object {
@@ -605,7 +605,7 @@ Array [
             },
             "_1": Object {
               "*": Object {
-                "desc": "In the phrase: \\"yesterday, {name} has shared {=a photo with them}\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {=a photo with them}\\"",
                 "outerTokenName": "=a photo with them",
                 "text": "a photo with {=them}",
                 "tokenAliases": Object {
@@ -613,7 +613,7 @@ Array [
                 },
               },
               "1": Object {
-                "desc": "In the phrase: \\"yesterday, {name} has shared {=a photo with her}\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {=a photo with her}\\"",
                 "outerTokenName": "=a photo with her",
                 "text": "a photo with {=her}",
                 "tokenAliases": Object {
@@ -621,7 +621,7 @@ Array [
                 },
               },
               "2": Object {
-                "desc": "In the phrase: \\"yesterday, {name} has shared {=a photo with him}\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {=a photo with him}\\"",
                 "outerTokenName": "=a photo with him",
                 "text": "a photo with {=him}",
                 "tokenAliases": Object {
@@ -667,34 +667,34 @@ Array [
           "*": Object {
             "*": Object {
               "*": Object {
-                "desc": "In the phrase: \\"today, {name} has shared {number} photos with {=them}\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {number} photos with {=them}\\"",
                 "outerTokenName": "=them",
                 "text": "them",
               },
               "1": Object {
-                "desc": "In the phrase: \\"today, {name} has shared {number} photos with {=her}\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {number} photos with {=her}\\"",
                 "outerTokenName": "=her",
                 "text": "her",
               },
               "2": Object {
-                "desc": "In the phrase: \\"today, {name} has shared {number} photos with {=him}\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {number} photos with {=him}\\"",
                 "outerTokenName": "=him",
                 "text": "him",
               },
             },
             "_1": Object {
               "*": Object {
-                "desc": "In the phrase: \\"today, {name} has shared a photo with {=them}\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared a photo with {=them}\\"",
                 "outerTokenName": "=them",
                 "text": "them",
               },
               "1": Object {
-                "desc": "In the phrase: \\"today, {name} has shared a photo with {=her}\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared a photo with {=her}\\"",
                 "outerTokenName": "=her",
                 "text": "her",
               },
               "2": Object {
-                "desc": "In the phrase: \\"today, {name} has shared a photo with {=him}\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared a photo with {=him}\\"",
                 "outerTokenName": "=him",
                 "text": "him",
               },
@@ -705,34 +705,34 @@ Array [
           "*": Object {
             "*": Object {
               "*": Object {
-                "desc": "In the phrase: \\"yesterday, {name} has shared {number} photos with {=them}\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {number} photos with {=them}\\"",
                 "outerTokenName": "=them",
                 "text": "them",
               },
               "1": Object {
-                "desc": "In the phrase: \\"yesterday, {name} has shared {number} photos with {=her}\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {number} photos with {=her}\\"",
                 "outerTokenName": "=her",
                 "text": "her",
               },
               "2": Object {
-                "desc": "In the phrase: \\"yesterday, {name} has shared {number} photos with {=him}\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {number} photos with {=him}\\"",
                 "outerTokenName": "=him",
                 "text": "him",
               },
             },
             "_1": Object {
               "*": Object {
-                "desc": "In the phrase: \\"yesterday, {name} has shared a photo with {=them}\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared a photo with {=them}\\"",
                 "outerTokenName": "=them",
                 "text": "them",
               },
               "1": Object {
-                "desc": "In the phrase: \\"yesterday, {name} has shared a photo with {=her}\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared a photo with {=her}\\"",
                 "outerTokenName": "=her",
                 "text": "her",
               },
               "2": Object {
-                "desc": "In the phrase: \\"yesterday, {name} has shared a photo with {=him}\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared a photo with {=him}\\"",
                 "outerTokenName": "=him",
                 "text": "him",
               },
@@ -2127,34 +2127,34 @@ Array [
           "*": Object {
             "*": Object {
               "*": Object {
-                "desc": "In the phrase: \\"{=today}, {name} has shared {number} photos with them\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {=[number] photos with them}\\"",
                 "outerTokenName": "=today",
                 "text": "today",
               },
               "1": Object {
-                "desc": "In the phrase: \\"{=today}, {name} has shared {number} photos with her\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {=[number] photos with her}\\"",
                 "outerTokenName": "=today",
                 "text": "today",
               },
               "2": Object {
-                "desc": "In the phrase: \\"{=today}, {name} has shared {number} photos with him\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {=[number] photos with him}\\"",
                 "outerTokenName": "=today",
                 "text": "today",
               },
             },
             "_1": Object {
               "*": Object {
-                "desc": "In the phrase: \\"{=today}, {name} has shared a photo with them\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {=a photo with them}\\"",
                 "outerTokenName": "=today",
                 "text": "today",
               },
               "1": Object {
-                "desc": "In the phrase: \\"{=today}, {name} has shared a photo with her\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {=a photo with her}\\"",
                 "outerTokenName": "=today",
                 "text": "today",
               },
               "2": Object {
-                "desc": "In the phrase: \\"{=today}, {name} has shared a photo with him\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {=a photo with him}\\"",
                 "outerTokenName": "=today",
                 "text": "today",
               },
@@ -2165,34 +2165,34 @@ Array [
           "*": Object {
             "*": Object {
               "*": Object {
-                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {number} photos with them\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {=[number] photos with them}\\"",
                 "outerTokenName": "=yesterday",
                 "text": "yesterday",
               },
               "1": Object {
-                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {number} photos with her\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {=[number] photos with her}\\"",
                 "outerTokenName": "=yesterday",
                 "text": "yesterday",
               },
               "2": Object {
-                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {number} photos with him\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {=[number] photos with him}\\"",
                 "outerTokenName": "=yesterday",
                 "text": "yesterday",
               },
             },
             "_1": Object {
               "*": Object {
-                "desc": "In the phrase: \\"{=yesterday}, {name} has shared a photo with them\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {=a photo with them}\\"",
                 "outerTokenName": "=yesterday",
                 "text": "yesterday",
               },
               "1": Object {
-                "desc": "In the phrase: \\"{=yesterday}, {name} has shared a photo with her\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {=a photo with her}\\"",
                 "outerTokenName": "=yesterday",
                 "text": "yesterday",
               },
               "2": Object {
-                "desc": "In the phrase: \\"{=yesterday}, {name} has shared a photo with him\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {=a photo with him}\\"",
                 "outerTokenName": "=yesterday",
                 "text": "yesterday",
               },
@@ -2228,7 +2228,7 @@ Array [
           "*": Object {
             "*": Object {
               "*": Object {
-                "desc": "In the phrase: \\"today, {name} has shared {=[number] photos with them}\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {=[number] photos with them}\\"",
                 "outerTokenName": "=[number] photos with them",
                 "text": "{number} photos with {=them}",
                 "tokenAliases": Object {
@@ -2236,7 +2236,7 @@ Array [
                 },
               },
               "1": Object {
-                "desc": "In the phrase: \\"today, {name} has shared {=[number] photos with her}\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {=[number] photos with her}\\"",
                 "outerTokenName": "=[number] photos with her",
                 "text": "{number} photos with {=her}",
                 "tokenAliases": Object {
@@ -2244,7 +2244,7 @@ Array [
                 },
               },
               "2": Object {
-                "desc": "In the phrase: \\"today, {name} has shared {=[number] photos with him}\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {=[number] photos with him}\\"",
                 "outerTokenName": "=[number] photos with him",
                 "text": "{number} photos with {=him}",
                 "tokenAliases": Object {
@@ -2254,7 +2254,7 @@ Array [
             },
             "_1": Object {
               "*": Object {
-                "desc": "In the phrase: \\"today, {name} has shared {=a photo with them}\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {=a photo with them}\\"",
                 "outerTokenName": "=a photo with them",
                 "text": "a photo with {=them}",
                 "tokenAliases": Object {
@@ -2262,7 +2262,7 @@ Array [
                 },
               },
               "1": Object {
-                "desc": "In the phrase: \\"today, {name} has shared {=a photo with her}\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {=a photo with her}\\"",
                 "outerTokenName": "=a photo with her",
                 "text": "a photo with {=her}",
                 "tokenAliases": Object {
@@ -2270,7 +2270,7 @@ Array [
                 },
               },
               "2": Object {
-                "desc": "In the phrase: \\"today, {name} has shared {=a photo with him}\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {=a photo with him}\\"",
                 "outerTokenName": "=a photo with him",
                 "text": "a photo with {=him}",
                 "tokenAliases": Object {
@@ -2284,7 +2284,7 @@ Array [
           "*": Object {
             "*": Object {
               "*": Object {
-                "desc": "In the phrase: \\"yesterday, {name} has shared {=[number] photos with them}\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {=[number] photos with them}\\"",
                 "outerTokenName": "=[number] photos with them",
                 "text": "{number} photos with {=them}",
                 "tokenAliases": Object {
@@ -2292,7 +2292,7 @@ Array [
                 },
               },
               "1": Object {
-                "desc": "In the phrase: \\"yesterday, {name} has shared {=[number] photos with her}\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {=[number] photos with her}\\"",
                 "outerTokenName": "=[number] photos with her",
                 "text": "{number} photos with {=her}",
                 "tokenAliases": Object {
@@ -2300,7 +2300,7 @@ Array [
                 },
               },
               "2": Object {
-                "desc": "In the phrase: \\"yesterday, {name} has shared {=[number] photos with him}\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {=[number] photos with him}\\"",
                 "outerTokenName": "=[number] photos with him",
                 "text": "{number} photos with {=him}",
                 "tokenAliases": Object {
@@ -2310,7 +2310,7 @@ Array [
             },
             "_1": Object {
               "*": Object {
-                "desc": "In the phrase: \\"yesterday, {name} has shared {=a photo with them}\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {=a photo with them}\\"",
                 "outerTokenName": "=a photo with them",
                 "text": "a photo with {=them}",
                 "tokenAliases": Object {
@@ -2318,7 +2318,7 @@ Array [
                 },
               },
               "1": Object {
-                "desc": "In the phrase: \\"yesterday, {name} has shared {=a photo with her}\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {=a photo with her}\\"",
                 "outerTokenName": "=a photo with her",
                 "text": "a photo with {=her}",
                 "tokenAliases": Object {
@@ -2326,7 +2326,7 @@ Array [
                 },
               },
               "2": Object {
-                "desc": "In the phrase: \\"yesterday, {name} has shared {=a photo with him}\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {=a photo with him}\\"",
                 "outerTokenName": "=a photo with him",
                 "text": "a photo with {=him}",
                 "tokenAliases": Object {
@@ -2365,34 +2365,34 @@ Array [
           "*": Object {
             "*": Object {
               "*": Object {
-                "desc": "In the phrase: \\"today, {name} has shared {number} photos with {=them}\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {number} photos with {=them}\\"",
                 "outerTokenName": "=them",
                 "text": "them",
               },
               "1": Object {
-                "desc": "In the phrase: \\"today, {name} has shared {number} photos with {=her}\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {number} photos with {=her}\\"",
                 "outerTokenName": "=her",
                 "text": "her",
               },
               "2": Object {
-                "desc": "In the phrase: \\"today, {name} has shared {number} photos with {=him}\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared {number} photos with {=him}\\"",
                 "outerTokenName": "=him",
                 "text": "him",
               },
             },
             "_1": Object {
               "*": Object {
-                "desc": "In the phrase: \\"today, {name} has shared a photo with {=them}\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared a photo with {=them}\\"",
                 "outerTokenName": "=them",
                 "text": "them",
               },
               "1": Object {
-                "desc": "In the phrase: \\"today, {name} has shared a photo with {=her}\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared a photo with {=her}\\"",
                 "outerTokenName": "=her",
                 "text": "her",
               },
               "2": Object {
-                "desc": "In the phrase: \\"today, {name} has shared a photo with {=him}\\"",
+                "desc": "In the phrase: \\"{=today}, {name} has shared a photo with {=him}\\"",
                 "outerTokenName": "=him",
                 "text": "him",
               },
@@ -2403,34 +2403,34 @@ Array [
           "*": Object {
             "*": Object {
               "*": Object {
-                "desc": "In the phrase: \\"yesterday, {name} has shared {number} photos with {=them}\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {number} photos with {=them}\\"",
                 "outerTokenName": "=them",
                 "text": "them",
               },
               "1": Object {
-                "desc": "In the phrase: \\"yesterday, {name} has shared {number} photos with {=her}\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {number} photos with {=her}\\"",
                 "outerTokenName": "=her",
                 "text": "her",
               },
               "2": Object {
-                "desc": "In the phrase: \\"yesterday, {name} has shared {number} photos with {=him}\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared {number} photos with {=him}\\"",
                 "outerTokenName": "=him",
                 "text": "him",
               },
             },
             "_1": Object {
               "*": Object {
-                "desc": "In the phrase: \\"yesterday, {name} has shared a photo with {=them}\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared a photo with {=them}\\"",
                 "outerTokenName": "=them",
                 "text": "them",
               },
               "1": Object {
-                "desc": "In the phrase: \\"yesterday, {name} has shared a photo with {=her}\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared a photo with {=her}\\"",
                 "outerTokenName": "=her",
                 "text": "her",
               },
               "2": Object {
-                "desc": "In the phrase: \\"yesterday, {name} has shared a photo with {=him}\\"",
+                "desc": "In the phrase: \\"{=yesterday}, {name} has shared a photo with {=him}\\"",
                 "outerTokenName": "=him",
                 "text": "him",
               },

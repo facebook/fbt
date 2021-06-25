@@ -739,7 +739,7 @@ fbt._(
             jsfbt: {
               t: {
                 desc:
-                  'In the phrase: "{=this is a doubly} nested test with an additional level"',
+                  'In the phrase: "{=this is a doubly} nested test {=with an additional level}"',
                 text: "{=this is} a doubly",
                 tokenAliases: { "=this is": "=m1" },
               },
@@ -760,7 +760,7 @@ fbt._(
                     jsfbt: {
                       t: {
                         desc:
-                          'In the phrase: "{=this is} a doubly nested test with an additional level"',
+                          'In the phrase: "{=this is} a doubly nested test {=with an additional level}"',
                         text: "this is",
                       },
                       m: [],
@@ -786,7 +786,7 @@ fbt._(
             jsfbt: {
               t: {
                 desc:
-                  'In the phrase: "this is a doubly nested test {=with an additional level}"',
+                  'In the phrase: "{=this is a doubly} nested test {=with an additional level}"',
                 text: "with an additional level",
               },
               m: [],
@@ -828,7 +828,7 @@ fbt._(
           /* __FBT__ start */ {
             jsfbt: {
               t: {
-                desc: 'In the phrase: "{=one two}three four"',
+                desc: 'In the phrase: "{=one two}{=three four}"',
                 text: "one {=two}",
                 tokenAliases: { "=two": "=m1" },
               },
@@ -848,7 +848,7 @@ fbt._(
                   /* __FBT__ start */ {
                     jsfbt: {
                       t: {
-                        desc: 'In the phrase: "one {=two}three four"',
+                        desc: 'In the phrase: "one {=two}{=three four}"',
                         text: "two",
                       },
                       m: [],
@@ -873,7 +873,7 @@ fbt._(
           /* __FBT__ start */ {
             jsfbt: {
               t: {
-                desc: 'In the phrase: "one two{=three four}"',
+                desc: 'In the phrase: "{=one two}{=three four}"',
                 text: "three {=four}",
                 tokenAliases: { "=four": "=m1" },
               },
@@ -893,7 +893,7 @@ fbt._(
                   /* __FBT__ start */ {
                     jsfbt: {
                       t: {
-                        desc: 'In the phrase: "one twothree {=four}"',
+                        desc: 'In the phrase: "{=one two}three {=four}"',
                         text: "four",
                       },
                       m: [],
@@ -939,7 +939,7 @@ fbt._(
           /* __FBT__ start */ {
             jsfbt: {
               t: {
-                desc: 'In the phrase: "{=one two [=test]}three four"',
+                desc: 'In the phrase: "{=one two [=test]}{=three four}"',
                 text: "one {=two test}",
                 tokenAliases: { "=two test": "=m1" },
               },
@@ -959,7 +959,7 @@ fbt._(
                   /* __FBT__ start */ {
                     jsfbt: {
                       t: {
-                        desc: 'In the phrase: "one {=two test}three four"',
+                        desc: 'In the phrase: "one {=two test}{=three four}"',
                         text: "two {=test}",
                         tokenAliases: { "=test": "=m1" },
                       },
@@ -980,7 +980,7 @@ fbt._(
                             jsfbt: {
                               t: {
                                 desc:
-                                  'In the phrase: "one two {=test}three four"',
+                                  'In the phrase: "one two {=test}{=three four}"',
                                 text: "test",
                               },
                               m: [],
@@ -1009,7 +1009,7 @@ fbt._(
           /* __FBT__ start */ {
             jsfbt: {
               t: {
-                desc: 'In the phrase: "one two test{=three four}"',
+                desc: 'In the phrase: "{=one two [=test]}{=three four}"',
                 text: "three {=four}",
                 tokenAliases: { "=four": "=m1" },
               },
@@ -1029,7 +1029,8 @@ fbt._(
                   /* __FBT__ start */ {
                     jsfbt: {
                       t: {
-                        desc: 'In the phrase: "one two testthree {=four}"',
+                        desc:
+                          'In the phrase: "{=one two [=test]}three {=four}"',
                         text: "four",
                       },
                       m: [],
@@ -1073,7 +1074,7 @@ fbt._(
           /* __FBT__ start */ {
             jsfbt: {
               t: {
-                desc: 'In the phrase: "{=wrap once}wrap twice"',
+                desc: 'In the phrase: "{=wrap once}{=wrap twice}"',
                 text: "wrap once",
               },
               m: [],
@@ -1092,7 +1093,7 @@ fbt._(
           /* __FBT__ start */ {
             jsfbt: {
               t: {
-                desc: 'In the phrase: "wrap once{=wrap twice}"',
+                desc: 'In the phrase: "{=wrap once}{=wrap twice}"',
                 text: "wrap twice",
               },
               m: [],
@@ -1133,7 +1134,7 @@ fbt._(
             jsfbt: {
               t: {
                 desc:
-                  'In the phrase: "{=wrap once and also}wrap twice complicated"',
+                  'In the phrase: "{=wrap once and also}{=wrap twice} complicated"',
                 text: "wrap once {=and also}",
                 tokenAliases: { "=and also": "=m1" },
               },
@@ -1152,7 +1153,7 @@ fbt._(
                     jsfbt: {
                       t: {
                         desc:
-                          'In the phrase: "wrap once {=and also}wrap twice complicated"',
+                          'In the phrase: "wrap once {=and also}{=wrap twice} complicated"',
                         text: "and also",
                       },
                       m: [],
@@ -1176,7 +1177,7 @@ fbt._(
             jsfbt: {
               t: {
                 desc:
-                  'In the phrase: "wrap once and also{=wrap twice} complicated"',
+                  'In the phrase: "{=wrap once and also}{=wrap twice} complicated"',
                 text: "wrap twice",
               },
               m: [],

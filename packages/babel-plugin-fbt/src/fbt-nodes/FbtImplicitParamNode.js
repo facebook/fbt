@@ -167,6 +167,18 @@ class FbtImplicitParamNode
   }
 
   /**
+   * Returns whether this implicit param node is an ancestor of a given `node`
+   */
+  isAncestorOf(node: AnyFbtNode): boolean {
+    for (let {parent} = node; parent != null; parent = parent.parent) {
+      if (parent === this) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
    * Create a new class instance given a BabelNode root node.
    * If that node is incompatible, we'll just return `null`.
    */
