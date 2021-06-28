@@ -120,7 +120,6 @@ const argv = yargs
       'the outer string is "Hello {=World}", and the inner string is: "World". ' +
       'So the outer token name of the inner string will be "=World"',
   )
-  .string(args.TRANSFORM)
   .boolean(args.GEN_FBT_NODES)
   .default(args.GEN_FBT_NODES, false)
   .describe(
