@@ -29,8 +29,8 @@ const FbsImpl = {
     label: string,
     value: $FbsParamInput,
     variations?:
-      | [ParamVariationType['number'], ?number]
-      | [ParamVariationType['gender'], GenderConstEnum],
+      | [$PropertyType<ParamVariationType, 'number'>, ?number]
+      | [$PropertyType<ParamVariationType, 'gender'>, GenderConstEnum],
   ): FbtTableArg {
     invariant(
       typeof value === 'string' || value instanceof FbtPureStringResult,
