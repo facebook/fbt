@@ -457,5 +457,5 @@ fbt.isFbtInstance = isFbtInstance;
 if (__DEV__) {
   fbt._getCachedFbt = (s: string): Fbt => cachedFbtResults[s];
 }
-
-module.exports = ((fbt: $FlowExpectedError): $FbtFunctionAPI);
+// Use $-FlowFixMe instead of $-FlowExpectedError since fbsource doesn't use the latter
+module.exports = ((fbt: $FlowFixMe): $FbtFunctionAPI);
