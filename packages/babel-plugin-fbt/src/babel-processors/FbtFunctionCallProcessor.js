@@ -11,6 +11,7 @@
 'use strict';
 
 import type {AnyStringVariationArg} from '../fbt-nodes/FbtArguments';
+import type {Options as FbtElementNodeOptions} from '../fbt-nodes/FbtElementNode';
 import type {AnyFbtNode} from '../fbt-nodes/FbtNode';
 import type {FbtCallSiteOptions, JSModuleNameType} from '../FbtConstants';
 import type {TableJSFBTTree, TableJSFBTTreeLeaf} from '../index';
@@ -67,6 +68,8 @@ const {
   createFbtRuntimeArgCallExpression,
   errorAt,
   varDump,
+  enforceString,
+  enforceBoolean,
 } = require('../FbtUtil');
 const JSFbtBuilder = require('../JSFbtBuilder');
 const addLeafToTree = require('../utils/addLeafToTree');
@@ -430,29 +433,18 @@ class FbtFunctionCallProcessor {
     const jsfbtMetadata = jsfbtBuilder.buildMetadata(
       compactStringVariations.array,
     );
-    const {author, project} = fbtElement.options;
-    const doNotExtract =
-      fbtElement.options.doNotExtract ?? this.defaultFbtOptions.doNotExtract;
+    const sharedPhraseOptions = this._getSharedPhraseOptions(fbtElement);
     return [fbtElement, ...fbtElement.getImplicitParamNodes()].map(
       (fbtNode, _index, list) => {
         try {
           const phrase = {
-            ...this.defaultFbtOptions,
+            ...sharedPhraseOptions,
             jsfbt: {
               // the order of JSFBT props matter for unit tests
               t: {},
               m: jsfbtMetadata,
             },
           };
-          if (doNotExtract != null) {
-            phrase.doNotExtract = doNotExtract;
-          }
-          if (author) {
-            phrase.author = author;
-          }
-          if (project) {
-            phrase.project = project;
-          }
 
           (argsCombinations.length
             ? argsCombinations
@@ -640,6 +632,48 @@ class FbtFunctionCallProcessor {
       fbtRuntimeArgs.push(fbtParamRuntimeArg);
     }
     return fbtRuntimeArgs;
+  }
+
+  /**
+   * Combine options of the fbt element level with default options
+   * @returns only options that are considered "defined".
+   * I.e. Options whose value is `false` or nullish will be skipped.
+   */
+  _getSharedPhraseOptions({
+    options: fbtElementOptions,
+  }: FbtElementNode): {|
+    ...$ObjMap<FbtElementNodeOptions, <T>(T) => ?T>,
+    project: string,
+  |} {
+    const {defaultFbtOptions} = this;
+    const ret = {
+      author:
+        (fbtElementOptions.author ??
+          enforceString.orNull(defaultFbtOptions.author)) ||
+        null,
+      common:
+        (fbtElementOptions.common ??
+          enforceBoolean.orNull(defaultFbtOptions.common)) ||
+        null,
+      doNotExtract:
+        (fbtElementOptions.doNotExtract ??
+          enforceBoolean.orNull(defaultFbtOptions.doNotExtract)) ||
+        null,
+      preserveWhitespace:
+        (fbtElementOptions.preserveWhitespace ??
+          enforceBoolean.orNull(defaultFbtOptions.preserveWhitespace)) ||
+        null,
+      subject: fbtElementOptions.subject,
+      project:
+        fbtElementOptions.project || enforceString(defaultFbtOptions.project),
+    };
+    // delete nullish options
+    for (const k in ret) {
+      if (ret[k] == null) {
+        delete ret[k];
+      }
+    }
+    return ret;
   }
 }
 

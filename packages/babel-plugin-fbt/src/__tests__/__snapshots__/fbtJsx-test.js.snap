@@ -668,6 +668,24 @@ let x = fbt._(
 
 `;
 
+exports[`Test fbt transforms without the jsx transform should fail to preserve whitespace in text when preserveWhitespace=true (known bug) 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        desc: "desc with 3   spaces",
+        text: "Some text with 3 spaces in between.",
+      },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */
+);
+
+`;
+
 exports[`Test fbt transforms without the jsx transform when using within template literals should dedupe plurals 1`] = `
 const fbt = require("fbt");
 

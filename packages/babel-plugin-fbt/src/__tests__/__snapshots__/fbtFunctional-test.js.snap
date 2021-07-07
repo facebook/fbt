@@ -894,6 +894,29 @@ Array [
     "line_beg": 3,
     "line_end": 25,
     "project": "",
+    "subject": Node {
+      "end": 594,
+      "extra": undefined,
+      "innerComments": undefined,
+      "leadingComments": undefined,
+      "loc": SourceLocation {
+        "end": Position {
+          "column": 31,
+          "line": 23,
+        },
+        "filename": undefined,
+        "identifierName": "subjectValue",
+        "start": Position {
+          "column": 19,
+          "line": 23,
+        },
+      },
+      "name": "subjectValue",
+      "range": undefined,
+      "start": 582,
+      "trailingComments": undefined,
+      "type": "Identifier",
+    },
   },
   Object {
     "col_beg": 10,
@@ -920,6 +943,29 @@ Array [
     "line_beg": 6,
     "line_end": 18,
     "project": "",
+    "subject": Node {
+      "end": 594,
+      "extra": undefined,
+      "innerComments": undefined,
+      "leadingComments": undefined,
+      "loc": SourceLocation {
+        "end": Position {
+          "column": 31,
+          "line": 23,
+        },
+        "filename": undefined,
+        "identifierName": "subjectValue",
+        "start": Position {
+          "column": 19,
+          "line": 23,
+        },
+      },
+      "name": "subjectValue",
+      "range": undefined,
+      "start": 582,
+      "trailingComments": undefined,
+      "type": "Identifier",
+    },
   },
   Object {
     "col_beg": 12,
@@ -943,6 +989,29 @@ Array [
     "line_beg": 8,
     "line_end": 16,
     "project": "",
+    "subject": Node {
+      "end": 594,
+      "extra": undefined,
+      "innerComments": undefined,
+      "leadingComments": undefined,
+      "loc": SourceLocation {
+        "end": Position {
+          "column": 31,
+          "line": 23,
+        },
+        "filename": undefined,
+        "identifierName": "subjectValue",
+        "start": Position {
+          "column": 19,
+          "line": 23,
+        },
+      },
+      "name": "subjectValue",
+      "range": undefined,
+      "start": 582,
+      "trailingComments": undefined,
+      "type": "Identifier",
+    },
   },
 ]
 `;
@@ -2592,6 +2661,29 @@ Array [
     "line_beg": 3,
     "line_end": 25,
     "project": "",
+    "subject": Node {
+      "end": 594,
+      "extra": undefined,
+      "innerComments": undefined,
+      "leadingComments": undefined,
+      "loc": SourceLocation {
+        "end": Position {
+          "column": 31,
+          "line": 23,
+        },
+        "filename": undefined,
+        "identifierName": "subjectValue",
+        "start": Position {
+          "column": 19,
+          "line": 23,
+        },
+      },
+      "name": "subjectValue",
+      "range": undefined,
+      "start": 582,
+      "trailingComments": undefined,
+      "type": "Identifier",
+    },
   },
   Object {
     "col_beg": 10,
@@ -2618,6 +2710,29 @@ Array [
     "line_beg": 6,
     "line_end": 18,
     "project": "",
+    "subject": Node {
+      "end": 594,
+      "extra": undefined,
+      "innerComments": undefined,
+      "leadingComments": undefined,
+      "loc": SourceLocation {
+        "end": Position {
+          "column": 31,
+          "line": 23,
+        },
+        "filename": undefined,
+        "identifierName": "subjectValue",
+        "start": Position {
+          "column": 19,
+          "line": 23,
+        },
+      },
+      "name": "subjectValue",
+      "range": undefined,
+      "start": 582,
+      "trailingComments": undefined,
+      "type": "Identifier",
+    },
   },
   Object {
     "col_beg": 12,
@@ -2641,6 +2756,29 @@ Array [
     "line_beg": 8,
     "line_end": 16,
     "project": "",
+    "subject": Node {
+      "end": 594,
+      "extra": undefined,
+      "innerComments": undefined,
+      "leadingComments": undefined,
+      "loc": SourceLocation {
+        "end": Position {
+          "column": 31,
+          "line": 23,
+        },
+        "filename": undefined,
+        "identifierName": "subjectValue",
+        "start": Position {
+          "column": 19,
+          "line": 23,
+        },
+      },
+      "name": "subjectValue",
+      "range": undefined,
+      "start": 582,
+      "trailingComments": undefined,
+      "type": "Identifier",
+    },
   },
 ]
 `;

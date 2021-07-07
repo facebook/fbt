@@ -106,7 +106,8 @@ const FbtBooleanOptions = {
   doNotExtract: true,
 };
 
-const FbtCallMustHaveAtLeastOneOfTheseAttributes = ['desc', 'common'];
+const CommonOption = 'common';
+const FbtCallMustHaveAtLeastOneOfTheseAttributes = ['desc', CommonOption];
 
 const FbtRequiredAttributes = {
   desc: true,
@@ -143,6 +144,7 @@ const ModuleNameRegExp: RegExp = new RegExp(
 const FBT_ENUM_MODULE_SUFFIX = '$FbtEnum';
 
 module.exports = {
+  CommonOption,
   FBT_ENUM_MODULE_SUFFIX,
   FbtBooleanOptions,
   FbtCallMustHaveAtLeastOneOfTheseAttributes,

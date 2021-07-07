@@ -17,6 +17,7 @@ import typeof BabelTypes from '@babel/types';
 type NodePath = NodePathOf<BabelNodeCallExpression>;
 
 const FbtCommon = require('../FbtCommon');
+const {CommonOption} = require('../FbtConstants');
 const FbtNodeChecker = require('../FbtNodeChecker');
 const {errorAt, expandStringConcat, normalizeSpaces} = require('../FbtUtil');
 
@@ -89,6 +90,9 @@ class FbtCommonFunctionCallProcessor {
     const callNode = t.callExpression(t.identifier(moduleName), [
       t.stringLiteral(text),
       t.stringLiteral(desc),
+      t.objectExpression([
+        t.objectProperty(t.identifier(CommonOption), t.booleanLiteral(true)),
+      ]),
     ]);
 
     callNode.loc = node.loc;

@@ -46,6 +46,17 @@ describe('collectFbt', () => {
     expect(res).toMatchSnapshot();
   });
 
+  it('should extract the author from Docblock', () => {
+    var res = collect(
+      [
+        '// @fbt {"project": "someproject", "author": "Sponge Bob"}',
+        "const fbt = require('fbt');",
+        '<fbt desc="foo">bar</fbt>',
+      ].join('\n'),
+    );
+    expect(res).toMatchSnapshot();
+  });
+
   it('should still extract strings if file-level doNotExtract is set to false', () => {
     var res = collect(
       [
@@ -138,16 +149,20 @@ describe('collectFbt', () => {
     expect(res).toMatchSnapshot();
   });
 
-  it('should extract common strings', () => {
-    var res = collect(
-      "const fbt = require('fbt');<fbt common={true}>Required</fbt>;",
-    );
+  it('should extract common strings from <fbt common={true}>', () => {
+    var res = collect(`
+      const fbt = require('fbt');
+      <fbt common={true}>Required</fbt>;
+    `);
 
     expect(res).toMatchSnapshot();
   });
 
   it('should extract fbt.c strings', () => {
-    var res = collect("const fbt = require('fbt');fbt.c('Required');");
+    var res = collect(`
+      const fbt = require('fbt');
+      fbt.c('Required');
+    `);
 
     expect(res).toMatchSnapshot();
   });
@@ -301,6 +316,19 @@ describe('collectFbt', () => {
         <fbt desc="Do not expose outer token name by default">
           Hello
           <i>World</i>
+        </fbt>`,
+        {},
+      ),
+    ).toMatchSnapshot();
+  });
+
+  it('should expose the subject option on top level and inner phrases', () => {
+    expect(
+      collect(
+        `const fbt = require('fbt');
+        <fbt desc="expose subject" subject={aSubject}>
+          You
+          <i>see the world</i>
         </fbt>`,
         {},
       ),

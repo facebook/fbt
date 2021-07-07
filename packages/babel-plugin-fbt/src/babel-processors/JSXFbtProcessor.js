@@ -25,6 +25,7 @@ const {
   FbtCallMustHaveAtLeastOneOfTheseAttributes,
   FbtRequiredAttributes,
   ValidFbtOptions,
+  CommonOption,
 } = require('../FbtConstants');
 const FbtNodeChecker = require('../FbtNodeChecker');
 const {
@@ -105,6 +106,9 @@ class JSXFbtProcessor {
     );
   }
 
+  /**
+   * @returns the description of the <fbt> as a BabelNode, or null if it's a common string.
+   */
   _getDescription(texts: BabelNodeArrayExpression) {
     const {moduleName, node} = this;
     const commonAttributeValue = this._getCommonAttributeValue();
@@ -152,14 +156,16 @@ class JSXFbtProcessor {
     // Optional attributes to be passed as options.
     const attrs = this._getOpeningElementAttributes();
     this._assertHasMandatoryAttributes();
-    return attrs.length > 1
-      ? getOptionsFromAttributes(
-          this.t,
-          attrs,
-          ValidFbtOptions,
-          FbtRequiredAttributes,
-        )
-      : null;
+    const options =
+      attrs.length > 0
+        ? getOptionsFromAttributes(
+            this.t,
+            attrs,
+            ValidFbtOptions,
+            FbtRequiredAttributes,
+          )
+        : null;
+    return (options?.properties.length ?? 0) > 0 ? options : null;
   }
 
   _getOpeningElementAttributes(): $ReadOnlyArray<BabelNodeJSXAttribute> {
@@ -309,7 +315,7 @@ class JSXFbtProcessor {
   _getCommonAttributeValue() {
     const commonAttr = getAttributeByName(
       this._getOpeningElementAttributes(),
-      'common',
+      CommonOption,
     );
     const commonAttrValue = commonAttr && commonAttr.value;
     if (!commonAttrValue) {
@@ -323,7 +329,7 @@ class JSXFbtProcessor {
     }
 
     throw new Error(
-      `\`common\` attribute for <${this.moduleName}> requires boolean literal`,
+      `\`${CommonOption}\` attribute for <${this.moduleName}> requires boolean literal`,
     );
   }
 

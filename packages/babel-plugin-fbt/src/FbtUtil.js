@@ -235,7 +235,7 @@ function getOptionsFromAttributes(
   attributesNode: $FlowFixMe,
   validOptions: $FlowFixMe,
   ignoredAttrs: $FlowFixMe,
-): $FlowFixMe {
+): BabelNodeObjectExpression {
   const options = [];
 
   attributesNode.forEach(function (node) {
