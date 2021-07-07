@@ -524,6 +524,18 @@ describe('Test fbt transforms without the jsx transform', () => {
     });
   });
 
+  // TODO(T94644387) fix preserving whitespace for JSX text
+  it('should fail to preserve whitespace in text when preserveWhitespace=true (known bug)', () => {
+    expect(
+      snapshotTransformKeepJsx(`
+        const fbt = require('fbt');
+        <fbt desc="desc with 3   spaces" preserveWhitespace={true}>
+          Some text with 3   spaces in between.
+        </fbt>;
+      `),
+    ).toMatchSnapshot();
+  });
+
   // TODO(T78914132): actually, we should NOT insert a space between two <fbt:plural>
   // that don't neighbor raw text to match Hack fbt parity.
   // But there's not much point fixing this before the fbt autoparam work.
