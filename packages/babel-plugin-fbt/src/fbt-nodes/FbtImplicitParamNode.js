@@ -195,12 +195,43 @@ class FbtImplicitParamNode
     });
 
     const fbtChildren: Array<?FbtChildNode> = [];
+    // The last BabelNode child converted to FbtChildNode and added to `fbtChildren`
+    let lastAddedChild = null;
+    // Keep track of the last whitespace that succeeds a non JSXText child,
+    // and we will convert it to a FbtTextNode and add it to `fbtChildren`
+    // ONLY IF the succeeding child is a JSXText.
+    let unusedWhitespaceChild: ?BabelNodeJSXText = null;
+    const firstChild = node.children[0];
+    const lastChild = node.children[node.children.length - 1];
     for (const child of node.children) {
       switch (child.type) {
         case 'JSXText':
+          // TODO: T38897324 (#32) Fix space normalization.
+          // Here we voluntarily ignore white spaces that don't neighbor raw text
+          // for the sake of being consistent with the logic in PHP
+          if (child.value.trim() === '') {
+            if (
+              // Do not skip leading and trailing whitespaces
+              firstChild !== child &&
+              lastChild !== child &&
+              lastAddedChild?.type !== 'JSXText'
+            ) {
+              unusedWhitespaceChild = child;
+              break;
+            }
+          } else if (unusedWhitespaceChild != null) {
+            fbtChildren.push(
+              FbtTextNode.fromBabelNode({
+                moduleName,
+                node: unusedWhitespaceChild,
+              }),
+            );
+            unusedWhitespaceChild = null;
+          }
           fbtChildren.push(
             FbtTextNode.fromBabelNode({moduleName, node: child}),
           );
+          lastAddedChild = child;
           break;
 
         case 'JSXExpressionContainer': {
@@ -231,6 +262,8 @@ class FbtImplicitParamNode
                 FbtElementNode.createChildNode({moduleName, node: elem}),
               );
             });
+            unusedWhitespaceChild = null;
+            lastAddedChild = child;
             continue;
           }
 
@@ -242,6 +275,8 @@ class FbtImplicitParamNode
           fbtChildren.push(
             FbtElementNode.createChildNode({moduleName, node: expression}),
           );
+          unusedWhitespaceChild = null;
+          lastAddedChild = child;
           break;
         }
 
@@ -249,6 +284,8 @@ class FbtImplicitParamNode
           fbtChildren.push(
             FbtElementNode.createChildNode({moduleName, node: child}),
           );
+          unusedWhitespaceChild = null;
+          lastAddedChild = child;
           break;
         }
 

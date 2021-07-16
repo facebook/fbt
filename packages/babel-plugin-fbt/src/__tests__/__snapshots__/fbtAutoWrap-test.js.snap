@@ -542,9 +542,9 @@ fbt._(
       t: {
         desc: "d",
         text:
-          "{=this is a test [to make sure that explicit params under an implicit node] [and ones that are next to each other] under an implicit tag are wrapped with [ ]}{but free standing ones are not}",
+          "{=this is a test [to make sure that explicit params under an implicit node][and ones that are next to each other] under an implicit tag are wrapped with [ ]}{but free standing ones are not}",
         tokenAliases: {
-          "=this is a test [to make sure that explicit params under an implicit node] [and ones that are next to each other] under an implicit tag are wrapped with [ ]":
+          "=this is a test [to make sure that explicit params under an implicit node][and ones that are next to each other] under an implicit tag are wrapped with [ ]":
             "=m0",
         },
       },
@@ -605,9 +605,9 @@ fbt._(
             jsfbt: {
               t: {
                 desc:
-                  'In the phrase: "{=this is a test [to make sure that explicit params under an implicit node] [and ones that are next to each other] under an implicit tag are wrapped with [ ]}{but free standing ones are not}"',
+                  'In the phrase: "{=this is a test [to make sure that explicit params under an implicit node][and ones that are next to each other] under an implicit tag are wrapped with [ ]}{but free standing ones are not}"',
                 text:
-                  "this is a test {to make sure that explicit params under an implicit node} {and ones that are next to each other} under an implicit tag are wrapped with [ ]",
+                  "this is a test {to make sure that explicit params under an implicit node}{and ones that are next to each other} under an implicit tag are wrapped with [ ]",
               },
               m: [],
             },

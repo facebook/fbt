@@ -64,6 +64,102 @@ describe('fbt preserveWhitespace argument', () => {
             </fbt>;
         `),
       },
+      'jsx elements and string variation arguments nested inside jsx element': {
+        input: withFbtRequireStatement(`
+          var x =
+            <fbt desc="d">
+              <a>OuterJsx1</a>
+              RawText
+              <b>OuterJsx2</b>
+              <b>
+                <i>InnerJsx1</i>
+                <fbt:plural count={this.state.ex1Count}>(plural)</fbt:plural>
+                <i>InnerJsx2</i>
+              </b>
+            </fbt>;
+        `),
+      },
+      'should preserve voluntarily added spaces between NON-raw text': {
+        input: withFbtRequireStatement(`
+          var x =
+            <fbt desc="d">
+              <a>OuterJsx1</a>
+              {' '}
+              <b>OuterJsx2</b>
+              <b>
+                {' '}
+                <i>InnerJsx1</i>
+                {' '}
+                <fbt:plural count={this.state.ex1Count}>(plural)</fbt:plural>
+                {' '}
+                <i>InnerJsx2</i>
+                {' '}
+                <i>InnerJsx3</i>
+                {' '}
+              </b>
+            </fbt>;
+        `),
+      },
+      'should not preserve whitespace around text in JSXExpression': {
+        input: withFbtRequireStatement(`
+          var x =
+            <fbt desc="d">
+              <a>OuterJsx1</a>
+              {'textInJSXExpression'}
+              <b>OuterJsx2</b>
+              <b>
+                rawText
+                {'textInJSXExpression'}
+                <i>InnerJsx1</i>
+                {'textInJSXExpression'}
+                <fbt:plural count={this.state.ex1Count}>(plural)</fbt:plural>
+                {'text' + 'InJSXExpression'}
+                <i>InnerJsx2</i>
+                {\`text${'InJSXExpression'}\`}
+              </b>
+            </fbt>;
+        `),
+      },
+      'should treat comments in JSXExpression like they are not here': {
+        input: withFbtRequireStatement(`
+          var x =
+            <fbt desc="d">
+              <a>OuterJsx1</a>
+              {/* someComment */}
+              <b>OuterJsx2</b>
+              <b>
+                {/* someComment */}
+                <i>InnerJsx1</i>
+                {/* someComment */}
+                <fbt:plural count={this.state.ex1Count}>(plural)</fbt:plural>
+                {/* someComment */}
+                rawText
+              </b>
+            </fbt>;
+        `),
+      },
+    };
+    TestUtil.testSection(snapshotTestData, snapshotTransform, {
+      matchSnapshot: true,
+    });
+  });
+
+  describe('should preserve whitespace around text', () => {
+    const snapshotTestData = {
+      'with inner text and string variation': {
+        input: withFbtRequireStatement(`
+          var x =
+            <fbt desc="d">
+              outerText
+              <a>outerJsx</a>
+              <b>
+                <i>innerJsx</i>
+                innerText
+                <fbt:plural count={this.state.ex1Count}>(plural)</fbt:plural>
+              </b>
+            </fbt>;
+        `),
+      },
     };
     TestUtil.testSection(snapshotTestData, snapshotTransform, {
       matchSnapshot: true,
