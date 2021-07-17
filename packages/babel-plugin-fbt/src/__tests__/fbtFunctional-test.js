@@ -4,6 +4,7 @@
  * @emails oncall+i18n_fbt_js
  * @format
  */
+/* eslint-disable fb-www/gender-neutral-language */
 
 jest.autoMockOff();
 
@@ -2192,7 +2193,6 @@ const generalTestData = {
 
   'should handle subject and reflexive pronouns': {
     input:
-      // eslint-disable-next-line fb-www/gender-neutral-language
       // I.e. He wished himself a happy birthday.
       withFbtRequireStatement(
         `var x = fbt(
@@ -2205,7 +2205,6 @@ const generalTestData = {
       ),
 
     inputWithArraySyntax:
-      // eslint-disable-next-line fb-www/gender-neutral-language
       // I.e. He wished himself a happy birthday.
       withFbtRequireStatement(
         `var x = fbt(
@@ -2255,7 +2254,6 @@ const generalTestData = {
 
   'should handle possessive pronoun': {
     input:
-      // eslint-disable-next-line fb-www/gender-neutral-language
       // I.e. It is her birthday.
       withFbtRequireStatement(
         `var x = fbt(
@@ -2265,7 +2263,6 @@ const generalTestData = {
       ),
 
     inputWithArraySyntax:
-      // eslint-disable-next-line fb-www/gender-neutral-language
       // I.e. It is her birthday.
       withFbtRequireStatement(
         `var x = fbt(
