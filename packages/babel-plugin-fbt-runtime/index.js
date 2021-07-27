@@ -19,8 +19,9 @@
 import typeof BabelTypes from '@babel/types';
 import type {BabelTransformPlugin} from '@babel/core';
 import type {SentinelPayload} from 'babel-plugin-fbt/dist/babel-processors/FbtFunctionCallProcessor';
-import type {PatternString} from '../../runtime/shared/FbtTable';
+import type {FbtTableKey, PatternString} from '../../runtime/shared/FbtTable';
 import type {TableJSFBTTree} from 'babel-plugin-fbt';
+import type {FbtRuntimeInput} from 'FbtHooks';
 
 export type PluginOptions = {|
   fbtHashKeyModule?: string,
@@ -31,6 +32,7 @@ export type PluginOptions = {|
 
 const {fbtHashKey: jenkinsHashKey} = require('babel-plugin-fbt');
 const {shiftEnumsToTop} = require('babel-plugin-fbt').FbtShiftEnums;
+const {coerceToTableJSFBTTreeLeaf} = require('babel-plugin-fbt').JSFbtUtil;
 const {SENTINEL} = require('babel-plugin-fbt/dist/FbtConstants');
 const invariant = require('invariant');
 
@@ -49,6 +51,26 @@ function getPluginOptions(plugin /*: $Shape<{opts: ?PluginOptions}> */) /*: Plug
   // $FlowExpectedError[prop-missing]
   // $FlowExpectedError[incompatible-exact]
   return opts;
+}
+
+/**
+ * Helper method to convert jsfbt tree to runtime input by:
+ *  1. Stripping away leaf keys (e.g desc and tokenAliases) that are unneccessary
+ *    for runtime and only keep the `text` key.
+ *  2. Replacing clear token names in leaf.text with mangled tokens.
+ */
+function convertJSFBTTreeToRuntimeInput(tree /*: $ReadOnly<TableJSFBTTree> */) /* : FbtRuntimeInput */ {
+  const leaf = coerceToTableJSFBTTreeLeaf(tree);
+  if (leaf != null) {
+    // TODO: Replace clear token names in leaf.text with mangled tokens.
+    return leaf.text;
+  }
+
+  const runtimeFbtTree /*: {[key: FbtTableKey]: FbtRuntimeInput} */ = {};
+  for (const tableKey in tree) {
+    runtimeFbtTree[tableKey] = convertJSFBTTreeToRuntimeInput(tree[tableKey]);
+  }
+  return runtimeFbtTree;
 }
 
 module.exports = function BabelPluginFbtRuntime(babel /*: {
@@ -137,8 +159,9 @@ module.exports = function BabelPluginFbtRuntime(babel /*: {
         ) /*: SentinelPayload */);
 
         const payload = phrase.jsfbt.t;
+        const runtimeInput = convertJSFBTTreeToRuntimeInput(payload);
         // $FlowFixMe[prop-missing] replaceWithSourceString's type is not defined yet
-        path.replaceWithSourceString(JSON.stringify(phrase.jsfbt.t));
+        path.replaceWithSourceString(JSON.stringify(runtimeInput));
 
         const parentNode = path.parentPath && path.parentPath.node;
         invariant(isCallExpression(parentNode),

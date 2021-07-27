@@ -152,6 +152,7 @@ const FbtEnumRegistrar = require('./FbtEnumRegistrar');
 const fbtHashKey = require('./fbtHashKey');
 const FbtShiftEnums = require('./FbtShiftEnums');
 const FbtUtil = require('./FbtUtil');
+const JSFbtUtil = require('./JSFbtUtil');
 const {checkOption, objMap} = FbtUtil;
 const {
   RequireCheck: {isRequireAlias},
@@ -367,6 +368,7 @@ function getEnumManifest(opts): ?EnumManifest {
 
 FbtTransform.fbtHashKey = fbtHashKey;
 FbtTransform.FbtShiftEnums = FbtShiftEnums;
+FbtTransform.JSFbtUtil = JSFbtUtil;
 FbtTransform.FbtUtil = FbtUtil;
 
 module.exports = FbtTransform;

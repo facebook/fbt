@@ -2,7 +2,6 @@
  *
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
- * @nolint
  * @emails oncall+i18n_fbt_js
  * @format
  */
@@ -33,15 +32,14 @@ function runTest(data, isRN) {
   );
 }
 
-// TODO(T40113359) Re-enable once this test scenario is ready to be tested
-xdescribe('Test hash key generation', () => {
+describe('Test hash key generation', () => {
   it('should generate hash key for simply string', () => {
     const data = {
       input: withFbtRequireStatement(`
         fbt('Foo', 'Bar');
       `),
       output: withFbtRequireStatement(`
-        fbt._('Foo', null, {hk: '3ktBJ2'});
+        fbt._('Foo', null, {hk: '227BGA'});
       `),
     };
     runTest(data, true);
@@ -71,11 +69,11 @@ lines">
               React.createElement(
                 'b',
                 null,
-                fbt._('simple', null, {hk: '2pjKFw'}),
+                fbt._('simple', null, {hk: '4qbcU8'}),
               ),
             ),
           ],
-          {hk: '2xRGl8'},
+          {hk: '1xZ4be'},
         );`,
       ),
     };
@@ -84,8 +82,7 @@ lines">
   });
 });
 
-// TODO(T40113359) Re-enable once this test scenario is ready to be tested
-xdescribe('Test enum hash keys generation', () => {
+describe('Test enum hash keys generation', () => {
   it('should generate single hash key for fbt with enum under regular mode', () => {
     runTest(
       {
@@ -106,7 +103,7 @@ xdescribe('Test enum hash keys generation', () => {
                 "c": 'C'
               })
             ],
-            {hk: "NT3sR"},
+            {hk: "4fsyit"},
           );`,
         ),
       },
@@ -136,9 +133,9 @@ xdescribe('Test enum hash keys generation', () => {
             ],
             {
               ehk: {
-                a: "2gRMkN",
-                b: "3NsO2f",
-                c: "3eytjU"
+                a: "4uSStb",
+                b: "WGbrk",
+                c: "4cijxf"
               }
             },
           );`,
@@ -193,19 +190,19 @@ xdescribe('Test enum hash keys generation', () => {
             {
               ehk: {
                 a: {
-                  x: "5Lquv",
-                  y: "3RQlhz",
-                  z: "3ZpRpY"
+                  x: "2iLukh",
+                  y: "HiUYK",
+                  z: "4y43qC"
                 },
                 b: {
-                  x: "djeja",
-                  y: "1Cl3e7",
-                  z: "31zfrM"
+                  x: "3iS7k",
+                  y: "4v1slU",
+                  z: "wSyUv"
                 },
                 c: {
-                  x: "2z0mci",
-                  y: "2xJRMx",
-                  z: "HAwfA"
+                  x: "3UuIpO",
+                  y: "4ieJt4",
+                  z: "8SVh3"
                 },
               },
             },
