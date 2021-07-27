@@ -270,7 +270,7 @@ describe('Test replacing clear token names with mangled tokens', () => {
             ),
           ),
         ],
-        {hk: "2RV1gx"},
+        {hk: "1dNTwY"},
       );`,
   };
   runTest(data, true);

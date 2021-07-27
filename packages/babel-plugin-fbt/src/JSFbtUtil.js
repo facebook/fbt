@@ -2,13 +2,14 @@
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
  * @emails oncall+i18n_fbt_js
- * @flow
+ * @flow strict-local
  * @format
  */
 /*eslint max-len: ["error", 100]*/
 
 'use strict';
 
+import type {FbtTableKey} from '../../../runtime/shared/FbtTable';
 import type {
   ObjectWithJSFBT,
   TableJSFBTTree,
@@ -57,7 +58,32 @@ function onEachLeaf(
   _runOnNormalizedJSFBTLeaves(phrase.jsfbt.t, callback);
 }
 
+/**
+ * Clone `tree` and replace each leaf in the cloned tree with the result of
+ * calling `convertLeaf`.
+ */
+function mapLeaves<NewLeaf>(
+  tree: $ReadOnly<TableJSFBTTree>,
+  convertLeaf: (leaf: $ReadOnly<TableJSFBTTreeLeaf>) => NewLeaf,
+):
+  | NewLeaf
+  | {|
+      [key: FbtTableKey]: NewLeaf,
+    |} {
+  const leaflet = coerceToTableJSFBTTreeLeaf(tree);
+  if (leaflet != null) {
+    return convertLeaf(leaflet);
+  }
+
+  const newFbtTree = {};
+  for (const tableKey in tree) {
+    newFbtTree[tableKey] = mapLeaves(tree[tableKey], convertLeaf);
+  }
+  return newFbtTree;
+}
+
 module.exports = {
   coerceToTableJSFBTTreeLeaf,
   onEachLeaf,
+  mapLeaves,
 };
