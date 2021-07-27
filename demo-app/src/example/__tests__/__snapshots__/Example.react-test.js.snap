@@ -67,7 +67,7 @@ exports[`Example.react renders the example 1`] = `
               name="name"
               onChange={[Function]}
               placeholder={
-                <FbtComponent
+                <FbtResultComponent
                   content={
                     Array [
                       "name",
@@ -85,7 +85,7 @@ exports[`Example.react renders the example 1`] = `
               name="count"
               onChange={[Function]}
               placeholder={
-                <FbtComponent
+                <FbtResultComponent
                   content={
                     Array [
                       "count",
@@ -141,7 +141,7 @@ exports[`Example.react renders the example 1`] = `
             className="neatoLink"
             href="#"
           >
-             a photo
+            a photo
           </a>
            with you
         </span>
@@ -157,7 +157,7 @@ exports[`Example.react renders the example 1`] = `
               name="ex2Name"
               onChange={[Function]}
               placeholder={
-                <FbtComponent
+                <FbtResultComponent
                   content={
                     Array [
                       "name",
