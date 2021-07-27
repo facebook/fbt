@@ -213,3 +213,66 @@ describe('Test enum hash keys generation', () => {
     );
   });
 });
+
+describe('Test replacing clear token names with mangled tokens', () => {
+  const data = {
+    input: withFbtRequireStatement(
+      `<fbt desc="d">
+          <b>Your</b>
+          friends
+          <b>shared</b>
+          <fbt:plural
+            many="photos"
+            showCount="ifMany"
+            count={ex1.count}>
+            a photo
+          </fbt:plural>
+        </fbt>;`,
+    ),
+    output: `var fbt_sv_arg_0;
+      const fbt = require("fbt");
+      fbt_sv_arg_0 = fbt._plural(ex1.count, "number"),
+      fbt._(
+        {
+          "*": "{=m0} friends {=m2}{number} photos",
+          "_1": "{=m0} friends {=m2} a photo",
+        },
+        [
+          fbt_sv_arg_0,
+          fbt._implicitParam(
+            "=m0",
+            /*#__PURE__*/React.createElement(
+              "b",
+              null,
+              fbt._(
+                {
+                  "*": "Your",
+                  "_1": "Your"
+                },
+                [fbt_sv_arg_0],
+                {hk: "3AIVHA"},
+              ),
+            ),
+          ),
+          fbt._implicitParam(
+            "=m2",
+            /*#__PURE__*/React.createElement(
+              "b",
+              null,
+              fbt._(
+                {
+                  "*": "shared",
+                  "_1": "shared"
+                },
+                [fbt_sv_arg_0],
+                {hk: "3CHy8o"},
+              ),
+            ),
+          ),
+        ],
+        {hk: "2RV1gx"},
+      );`,
+  };
+  runTest(data, true);
+  runTest(data, false);
+});

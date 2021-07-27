@@ -30,9 +30,12 @@ export type PluginOptions = {|
 |};
 */
 
-const {fbtHashKey: jenkinsHashKey} = require('babel-plugin-fbt');
+const {
+  FbtNodeUtil: {tokenNameToTextPattern},
+  JSFbtUtil: {coerceToTableJSFBTTreeLeaf},
+  fbtHashKey: jenkinsHashKey,
+} = require('babel-plugin-fbt');
 const {shiftEnumsToTop} = require('babel-plugin-fbt').FbtShiftEnums;
-const {coerceToTableJSFBTTreeLeaf} = require('babel-plugin-fbt').JSFbtUtil;
 const {SENTINEL} = require('babel-plugin-fbt/dist/FbtConstants');
 const invariant = require('invariant');
 
@@ -62,8 +65,21 @@ function getPluginOptions(plugin /*: $Shape<{opts: ?PluginOptions}> */) /*: Plug
 function convertJSFBTTreeToRuntimeInput(tree /*: $ReadOnly<TableJSFBTTree> */) /* : FbtRuntimeInput */ {
   const leaf = coerceToTableJSFBTTreeLeaf(tree);
   if (leaf != null) {
-    // TODO: Replace clear token names in leaf.text with mangled tokens.
-    return leaf.text;
+    const {tokenAliases} = leaf;
+    if (tokenAliases == null) {
+      return leaf.text;
+    }
+    return Object.keys(tokenAliases).reduce(
+      (mangledText /*: string */, clearToken /*: string */) => {
+        const clearTokenName = tokenNameToTextPattern(clearToken);
+        const mangledTokenName = tokenNameToTextPattern(tokenAliases[clearToken]);
+        // Since a string is not allowed to have implicit params with duplicatd
+        // token names, replacing the first and therefore the only occurance of
+        // `clearTokenName` is sufficient.
+        return mangledText.replace(clearTokenName, mangledTokenName);
+      },
+      leaf.text,
+    );
   }
 
   const runtimeFbtTree /*: {[key: FbtTableKey]: FbtRuntimeInput} */ = {};

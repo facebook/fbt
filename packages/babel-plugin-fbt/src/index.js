@@ -142,7 +142,6 @@ export type BabelPluginFbt = {
 const FbtCommonFunctionCallProcessor = require('./babel-processors/FbtCommonFunctionCallProcessor');
 const FbtFunctionCallProcessor = require('./babel-processors/FbtFunctionCallProcessor');
 const JSXFbtProcessor = require('./babel-processors/JSXFbtProcessor');
-const {toPlainFbtNodeTree} = require('./fbt-nodes/FbtNodeUtil');
 const FbtCommon = require('./FbtCommon');
 const {
   JSModuleName: {FBT},
@@ -150,6 +149,7 @@ const {
 } = require('./FbtConstants');
 const FbtEnumRegistrar = require('./FbtEnumRegistrar');
 const fbtHashKey = require('./fbtHashKey');
+const FbtNodeUtil = require('./fbt-nodes/FbtNodeUtil');
 const FbtShiftEnums = require('./FbtShiftEnums');
 const FbtUtil = require('./FbtUtil');
 const JSFbtUtil = require('./JSFbtUtil');
@@ -302,7 +302,7 @@ FbtTransform.getFbtElementNodes = (): Array<PlainFbtNode> => {
   return allMetaPhrases
     .map(({fbtNode}) =>
       fbtNode instanceof FbtElementNode
-        ? toPlainFbtNodeTree(fbtNode, phraseToIndexMap)
+        ? FbtNodeUtil.toPlainFbtNodeTree(fbtNode, phraseToIndexMap)
         : null,
     )
     .filter(Boolean);
@@ -370,5 +370,6 @@ FbtTransform.fbtHashKey = fbtHashKey;
 FbtTransform.FbtShiftEnums = FbtShiftEnums;
 FbtTransform.JSFbtUtil = JSFbtUtil;
 FbtTransform.FbtUtil = FbtUtil;
+FbtTransform.FbtNodeUtil = FbtNodeUtil;
 
 module.exports = FbtTransform;
