@@ -20,7 +20,7 @@ import typeof BabelTypes from '@babel/types';
 import type {BabelTransformPlugin} from '@babel/core';
 import type {SentinelPayload} from 'babel-plugin-fbt/dist/babel-processors/FbtFunctionCallProcessor';
 import type {FbtTableKey, PatternString} from '../../runtime/shared/FbtTable';
-import type {TableJSFBTTree} from 'babel-plugin-fbt';
+import type {TableJSFBTTree, TableJSFBTTreeLeaf} from 'babel-plugin-fbt';
 import type {FbtRuntimeInput} from 'FbtHooks';
 
 export type PluginOptions = {|
@@ -32,7 +32,7 @@ export type PluginOptions = {|
 
 const {
   FbtNodeUtil: {tokenNameToTextPattern},
-  JSFbtUtil: {coerceToTableJSFBTTreeLeaf},
+  JSFbtUtil: {mapLeaves},
   fbtHashKey: jenkinsHashKey,
 } = require('babel-plugin-fbt');
 const {shiftEnumsToTop} = require('babel-plugin-fbt').FbtShiftEnums;
@@ -57,36 +57,27 @@ function getPluginOptions(plugin /*: $Shape<{opts: ?PluginOptions}> */) /*: Plug
 }
 
 /**
- * Helper method to convert jsfbt tree to runtime input by:
- *  1. Stripping away leaf keys (e.g desc and tokenAliases) that are unneccessary
+ * Helper method to convert jsfbt tree leaf to runtime input leaf by:
+ *  1. Stripping away keys (e.g desc and tokenAliases) that are unneccessary
  *    for runtime and only keep the `text` key.
- *  2. Replacing clear token names in leaf.text with mangled tokens.
+ *  2. Replacing clear token names in the text with mangled tokens.
  */
-function convertJSFBTTreeToRuntimeInput(tree /*: $ReadOnly<TableJSFBTTree> */) /* : FbtRuntimeInput */ {
-  const leaf = coerceToTableJSFBTTreeLeaf(tree);
-  if (leaf != null) {
-    const {tokenAliases} = leaf;
-    if (tokenAliases == null) {
-      return leaf.text;
-    }
-    return Object.keys(tokenAliases).reduce(
-      (mangledText /*: string */, clearToken /*: string */) => {
-        const clearTokenName = tokenNameToTextPattern(clearToken);
-        const mangledTokenName = tokenNameToTextPattern(tokenAliases[clearToken]);
-        // Since a string is not allowed to have implicit params with duplicatd
-        // token names, replacing the first and therefore the only occurance of
-        // `clearTokenName` is sufficient.
-        return mangledText.replace(clearTokenName, mangledTokenName);
-      },
-      leaf.text,
-    );
+function convertJSFBTLeafToRuntimeInputText(leaf /*: $ReadOnly<TableJSFBTTreeLeaf> */) /* : PatternString */ {
+  const {tokenAliases} = leaf;
+  if (tokenAliases == null) {
+    return leaf.text;
   }
-
-  const runtimeFbtTree /*: {[key: FbtTableKey]: FbtRuntimeInput} */ = {};
-  for (const tableKey in tree) {
-    runtimeFbtTree[tableKey] = convertJSFBTTreeToRuntimeInput(tree[tableKey]);
-  }
-  return runtimeFbtTree;
+  return Object.keys(tokenAliases).reduce(
+    (mangledText /*: string */, clearToken /*: string */) => {
+      const clearTokenName = tokenNameToTextPattern(clearToken);
+      const mangledTokenName = tokenNameToTextPattern(tokenAliases[clearToken]);
+      // Since a string is not allowed to have implicit params with duplicatd
+      // token names, replacing the first and therefore the only occurance of
+      // `clearTokenName` is sufficient.
+      return mangledText.replace(clearTokenName, mangledTokenName);
+    },
+    leaf.text,
+  );
 }
 
 module.exports = function BabelPluginFbtRuntime(babel /*: {
@@ -175,7 +166,10 @@ module.exports = function BabelPluginFbtRuntime(babel /*: {
         ) /*: SentinelPayload */);
 
         const payload = phrase.jsfbt.t;
-        const runtimeInput = convertJSFBTTreeToRuntimeInput(payload);
+        const runtimeInput = mapLeaves(
+          payload,
+          convertJSFBTLeafToRuntimeInputText,
+        );
         // $FlowFixMe[prop-missing] replaceWithSourceString's type is not defined yet
         path.replaceWithSourceString(JSON.stringify(runtimeInput));
 
