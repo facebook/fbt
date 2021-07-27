@@ -273,26 +273,25 @@ class TranslationBuilder {
     tokenConstraints: TokenToConstraint = {},
   ): TranslationLeaf {
     let translation;
-    const transData = this._translations[hash];
+    const transData: ?TranslationData | string = this._translations[hash];
     if (typeof transData === 'string') {
       // Fake translations are just simple strings.  There's no such thing as
       // variation support for these locales.  So if token constraints were
       // specified, return null and rely on runtime fallback to wildcard.
       translation = tokenConstraints ? null : transData;
     } else {
-      // Real translations are TranslationData objects, so we call the
-      // getDefaultTranslation() method to get the translation (we hope), or use
-      // original text if no translation exist.
-      const leaf = this._fbtSite.getHashToLeaf()[hash];
-      const source = typeof leaf === 'string' ? leaf : leaf.text;
-      const defTranslation =
-        transData && transData.getDefaultTranslation(this._config);
-      translation = hasKeys(tokenConstraints)
-        ? this.getConstrainedTranslation(hash, tokenConstraints)
-        : // If no translation available, use the English source text
-        defTranslation != null
-        ? defTranslation
-        : source;
+      if (hasKeys(tokenConstraints)) {
+        translation = this.getConstrainedTranslation(hash, tokenConstraints);
+      } else {
+        // Real translations are TranslationData objects, so we call the
+        // getDefaultTranslation() method to get the translation (we hope)
+        const defaultTranslation =
+          transData && transData.getDefaultTranslation(this._config);
+
+        // If no translation available, use the English source text
+        translation =
+          defaultTranslation ?? this._fbtSite.getHashToLeaf()[hash].text;
+      }
     }
 
     // Couple the string with a hash if it was marked as such.  We do this
