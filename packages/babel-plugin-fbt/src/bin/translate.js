@@ -91,6 +91,7 @@ const args = {
   STDIN: 'stdin',
   TRANSLATIONS: 'translations',
   OUTPUT_DIR: 'output-dir',
+  STRICT: 'strict',
 };
 
 const argv = yargs
@@ -144,6 +145,13 @@ const argv = yargs
     'By default, we write the output to stdout. If you instead would like to split ' +
       'the output by locale you can use this arg to specify an output directory. ' +
       'This is useful when you want to lazy load translations per locale.',
+  )
+  .boolean(args.STRICT)
+  .default(args.STRICT, false)
+  .describe(
+    args.STRICT,
+    'By default, we log missing values in the translation file to stderr. ' +
+      'If you instead would like to stop execution on missing values you can use this.',
   ).argv;
 
 function createJSON(obj) {
@@ -174,6 +182,7 @@ if (argv[args.HELP]) {
 const translationOptions = {
   jenkins: yargs.argv[args.JENKINS],
   hashModule: yargs.argv[args.HASH],
+  strict: yargs.argv[args.STRICT],
 };
 
 if (argv[args.STDIN]) {

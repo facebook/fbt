@@ -44,7 +44,11 @@ class TranslationData {
     this.translations = translations;
   }
 
-  static fromJSON(json: SerializedTranslationData): TranslationData {
+  static fromJSON(json: ?SerializedTranslationData): ?TranslationData {
+    if (json == null) {
+      // Hash key is logged to stderr in `processTranslations`
+      return null;
+    }
     return new TranslationData(json.tokens, json.types, json.translations);
   }
 

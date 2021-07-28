@@ -38,6 +38,9 @@ type Options = $ReadOnly<{|
   // The module should export a function with the same signature and operation
   // of fbt-hash-module.
   hashModule: false | string,
+  // By default, we log missing values in the translation file to stderr. If you
+  // instead would like to stop execution on missing values you can use this.
+  strict: boolean,
 |}>;
 
 type LocaleToHashToTranslationResult = $ReadOnly<{|
@@ -55,8 +58,10 @@ type TranslatedGroups = $ReadOnlyArray<TranslatedGroup>;
 /** Translations in a specific locale */
 type TranslationGroup = $ReadOnly<{|
   'fb-locale': string,
-  translations: {[hash: PatternString]: SerializedTranslationData},
+  translations: Translations,
 |}>;
+
+type Translations = {[hash: PatternString]: ?SerializedTranslationData};
 
 /** Phrases and translation data in one JSON object */
 type InputJSONType = $ReadOnly<{|
@@ -82,7 +87,7 @@ function processFiles(
   const fbtSites = phrases.map(createFbtSiteFromJSON);
   const translatedGroups = translationFiles.map(file => {
     const group = parseJSONFile<TranslationGroup>(file);
-    return processTranslations(fbtSites, group);
+    return processTranslations(fbtSites, group, options);
   });
   return processGroups(phrases, translatedGroups, options);
 }
@@ -94,7 +99,9 @@ function processJSON(
   const fbtSites = json.phrases.map(createFbtSiteFromJSON);
   return processGroups(
     json.phrases,
-    json.translationGroups.map(group => processTranslations(fbtSites, group)),
+    json.translationGroups.map(group =>
+      processTranslations(fbtSites, group, options),
+    ),
     options,
   );
 }
@@ -132,12 +139,41 @@ function processGroups(
   return localeToHashToFbt;
 }
 
+function checkAndFilterTranslations(
+  locale: string,
+  translations: Translations,
+  options: Options,
+): Translations {
+  const filteredTranslations: Translations = {};
+  for (const hash in translations) {
+    if (translations[hash] == null) {
+      const message = `Missing ${locale} translation for string (${hash})`;
+      if (options.strict) {
+        const err = new Error(message);
+        err.stack;
+        throw err;
+      } else {
+        process.stderr.write(`${message}\n`);
+      }
+    } else {
+      filteredTranslations[hash] = translations[hash];
+    }
+  }
+  return filteredTranslations;
+}
+
 function processTranslations(
   fbtSites: $ReadOnlyArray<FbtSite>,
   group: TranslationGroup,
+  options: Options,
 ): TranslatedGroup {
   const config = TranslationConfig.fromFBLocale(group['fb-locale']);
-  const translations = objMap(group.translations, TranslationData.fromJSON);
+  const filteredTranslations = checkAndFilterTranslations(
+    group['fb-locale'],
+    group.translations,
+    options,
+  );
+  const translations = objMap(filteredTranslations, TranslationData.fromJSON);
   const translatedPhrases = fbtSites.map(fbtsite =>
     new TranslationBuilder(translations, config, fbtsite, false).build(),
   );

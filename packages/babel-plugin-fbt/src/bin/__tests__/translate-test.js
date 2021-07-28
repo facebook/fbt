@@ -15,13 +15,57 @@ expect.addSnapshotSerializer(jsCodeNonASCIICharSerializer);
 
 describe('translate-test.js', () => {
   describe('should translate new jsfbt payload', () => {
-    for (const options of [{jenkins: false, hashModule: false}]) {
+    for (const options of [
+      {jenkins: false, hashModule: false, strict: false},
+    ]) {
       describe(`with option=${JSON.stringify(options)}:`, () => {
         testTranslateNewPhrases(options);
       });
     }
 
     function testTranslateNewPhrases(options) {
+      it('should not throw on missing translations', () => {
+        const result = processJSON(
+          {
+            phrases: [
+              {
+                hashToLeaf: {
+                  '2dcba29d4a842c6be5d76fe996fcd9f4': {
+                    text: 'Your FBT Demo',
+                    desc: 'title',
+                  },
+                },
+                filepath: 'src/example/Example.react.js',
+                line_beg: 130,
+                col_beg: 12,
+                line_end: 130,
+                col_end: 49,
+                project: 'fbt-demo-project',
+                jsfbt: {
+                  t: {
+                    desc: 'title',
+                    text: 'Your FBT Demo',
+                    tokenAliases: {},
+                  },
+                  m: [],
+                },
+              },
+            ],
+            translationGroups: [
+              {
+                'fb-locale': 'fb_HX',
+                translations: {
+                  // $FlowExpectedError[incompatible-call]
+                  '2dcba29d4a842c6be5d76fe996fcd9f4': null,
+                },
+              },
+            ],
+          },
+          options,
+        );
+        expect(result).toMatchSnapshot();
+      });
+
       it('should translate string with no variation', () => {
         const result = processJSON(
           {
@@ -269,10 +313,12 @@ describe('translate-test.js', () => {
                 {
                   hashToLeaf: {
                     'vHtEb4ph7GJGeRkjtEHcPA==': {
+                      // eslint-disable-next-line fb-www/gender-neutral-language
                       text: 'she shared a photo.',
                       desc: 'Example enum',
                     },
                     'j9fTl1uOEIuslim41sMkdQ==': {
+                      // eslint-disable-next-line fb-www/gender-neutral-language
                       text: 'he shared a photo.',
                       desc: 'Example enum',
                     },
@@ -291,10 +337,12 @@ describe('translate-test.js', () => {
                     t: {
                       '1': {
                         desc: 'Example enum',
+                        // eslint-disable-next-line fb-www/gender-neutral-language
                         text: 'she shared a photo.',
                       },
                       '2': {
                         desc: 'Example enum',
+                        // eslint-disable-next-line fb-www/gender-neutral-language
                         text: 'he shared a photo.',
                       },
                       '*': {

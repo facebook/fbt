@@ -33,7 +33,7 @@ const {FbtSiteMetaEntry, FbtSite} = require('./FbtSite');
  * Map from a string's hash to its translation payload.
  * If the translation is string type, it implies it was machine generatd.
  */
-type HashToTranslation = {|[hash: PatternHash]: TranslationData | string|};
+type HashToTranslation = {|[hash: PatternHash]: ?(TranslationData | string)|};
 
 /**
  * Leaf can be either a string translation or
@@ -164,8 +164,8 @@ class TranslationBuilder {
     for (const hash in this._fbtSite.getHashToLeaf()) {
       const transData = this._translations[hash];
       if (
-        !(transData instanceof TranslationData) ||
-        transData.hasTranslation()
+        typeof transData === 'string' ||
+        (transData instanceof TranslationData && transData.hasTranslation())
       ) {
         // There is a translation or simple string for generated translation
         return true;
@@ -349,7 +349,7 @@ class TranslationBuilder {
   ) {
     const aggregateKey = buildConstraintKey(constraintKeys);
     if (constraintMap[aggregateKey]) {
-      throw new Error(
+      const err = new Error(
         'Unexpected duplicate key: ' +
           aggregateKey +
           '\nOriginal: ' +
@@ -357,6 +357,8 @@ class TranslationBuilder {
           '\nNew ' +
           translation,
       );
+      err.stack;
+      throw err;
     }
     constraintMap[aggregateKey] = translation;
 
@@ -446,7 +448,7 @@ function _createMemoizedConstraintMapGetter(
 
     const constraintMap = {};
     const transData = this._translations[hash];
-    if (!transData || typeof transData === 'string') {
+    if (transData == null || typeof transData === 'string') {
       // No translation? No constraints.
       return (_mem[hash] = constraintMap);
     }
