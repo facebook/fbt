@@ -6,7 +6,7 @@
   "version": "0.9.18",
   "license": "MIT",
   "devDependencies": {
-    "fb-babel-plugin-utils": "^0.12.x"
+    "fb-babel-plugin-utils": "^0.13.x"
   },
   "dependencies": {
     "@babel/core": "^7.0.0",

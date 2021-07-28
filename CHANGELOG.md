@@ -148,6 +148,7 @@ List of changes for each released npm package version.
     - [feat]! Refactor the string extraction algorithm to properly generate meaningful text/description pairs for fbt callsites that contain JSX presentational elements.
     We're also adding support for a new way to call fbt() using an array of inputs instead of string concatenation.
     See [#35](https://github.com/facebook/fbt/issues/35)
+    - [chore] Update fb-babel-plugin-utils dependency version
 
   </details>
 
@@ -271,6 +272,8 @@ List of changes for each released npm package version.
     </summary>
 
   - [chore] Use `invariant()` from the `invariant` npm package instead of `fbjs/lib/invariant`
+  - [chore] Updated devDependency on fb-babel-plugin-utils
+
   </details>
 
 - 0.9.18:
@@ -365,12 +368,11 @@ List of changes for each released npm package version.
     <summary>
      Unreleased changes that have landed in master. Click to see more.
     </summary>
-
-  - [fix] Fixed display of error message for `assertSourceAstEqual()`
-  - [refactor!] Remove SyntaxPlugins
-  - [chore] Remove SyntaxPluginsConfig
-
   </details>
+
+- 0.13.0:
+  - [feat] Allow test data to specify `filter` status which decides whether a test will be run
+  - [fix] Fixed display of error message for `assertSourceAstEqual()`
 
 - 0.12.0:
   - [refactor!] Remove SyntaxPlugins

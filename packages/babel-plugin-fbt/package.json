@@ -34,7 +34,7 @@
     "@babel/plugin-transform-flow-strip-types": "^7.2.0",
     "@babel/plugin-transform-modules-commonjs": "^7.8.3",
     "@babel/types": "^7.2.2",
-    "fb-babel-plugin-utils": "^0.12.0",
+    "fb-babel-plugin-utils": "^0.13.0",
     "glob": "^7.1.6",
     "invariant": "^2.2.4",
     "jest-docblock": "^26.0.0",
