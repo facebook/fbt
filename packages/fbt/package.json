@@ -34,7 +34,7 @@
   },
   "peerDependencies": {
     "babel-plugin-fbt": "^0.21.x",
-    "babel-plugin-fbt-runtime": "^0.9.x",
+    "babel-plugin-fbt-runtime": "^0.10.x",
     "react": "0.12.0 - 17.x.x"
   },
   "devDependencies": {},

@@ -53,6 +53,7 @@ List of changes for each released npm package version.
     Unreleased changes that have landed in master. Click to see more.
   </summary>
 
+  - [chore] Update babel-plugin-fbt-runtime dependency version to `^0.10.x`
   - [chore] Update babel-plugin-fbt dependency version to `^0.21.x`
   - [fix] Ensure that `fbs()` really returns `FbtPureStringResult` objects
   - [fix] Force fbs:plural to only show plain text custom UI values.
@@ -273,12 +274,14 @@ List of changes for each released npm package version.
     <summary>
       Unreleased changes that have landed in master. Click to see more.
     </summary>
+  </details>
 
+- 0.10.0:
   - [chore] Updated peer dependency on babel-plugin-fbt
   - [chore] Updated devDependency on fb-babel-plugin-utils
+  - [feat]! Strip jsfbt leaves of keys that are unneccessary for runtime and only keep the `text` key.
+  - [refactor] Flowify index.js
   - [chore] Use `invariant()` from the `invariant` npm package instead of `fbjs/lib/invariant`
-
-  </details>
 
 - 0.9.18:
   - [chore] Updated peer dependency on babel-plugin-fbt
