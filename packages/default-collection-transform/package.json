@@ -18,7 +18,7 @@
     "@babel/plugin-syntax-optional-chaining": "^7.0.0"
   },
   "peerDependencies": {
-    "babel-plugin-fbt": "^0.20.x"
+    "babel-plugin-fbt": "^0.21.x"
   },
   "scripts": {},
   "repository": {

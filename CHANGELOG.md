@@ -53,6 +53,7 @@ List of changes for each released npm package version.
     Unreleased changes that have landed in master. Click to see more.
   </summary>
 
+  - [chore] Update babel-plugin-fbt dependency version to `^0.21.x`
   - [fix] Ensure that `fbs()` really returns `FbtPureStringResult` objects
   - [fix] Force fbs:plural to only show plain text custom UI values.
 
@@ -142,16 +143,17 @@ List of changes for each released npm package version.
     <summary>
       Unreleased changes that have landed in master. Click to see more.
     </summary>
+  </details>
 
-    - [feat] Print error message for each missing entry in input JSON
-    - [refactor] Improve readability of JS code output serialized with Jest snapshots
-    - [chore]! Drop support for node.js `<12.16.x`
-    - [feat]! Refactor the string extraction algorithm to properly generate meaningful text/description pairs for fbt callsites that contain JSX presentational elements.
+- 0.21.0:
+  - [feat] Print error message for each missing entry in input JSON
+  - [chore] Update fb-babel-plugin-utils dependency version
+  - [refactor] Improve readability of JS code output serialized with Jest snapshots
+  - [chore]! Drop support for node.js `<12.16.x`
+  - [feat]! Refactor the string extraction algorithm to properly generate meaningful text/description pairs for fbt callsites
+    that contain JSX presentational elements.
     We're also adding support for a new way to call fbt() using an array of inputs instead of string concatenation.
     See [#35](https://github.com/facebook/fbt/issues/35)
-    - [chore] Update fb-babel-plugin-utils dependency version
-
-  </details>
 
 - 0.20.0:
   - [refactor] Hang FbtUtil modules off of babel-plugin-fbt
@@ -272,8 +274,9 @@ List of changes for each released npm package version.
       Unreleased changes that have landed in master. Click to see more.
     </summary>
 
-  - [chore] Use `invariant()` from the `invariant` npm package instead of `fbjs/lib/invariant`
+  - [chore] Updated peer dependency on babel-plugin-fbt
   - [chore] Updated devDependency on fb-babel-plugin-utils
+  - [chore] Use `invariant()` from the `invariant` npm package instead of `fbjs/lib/invariant`
 
   </details>
 
@@ -348,6 +351,14 @@ List of changes for each released npm package version.
   -  First commit. A native JavaScript implementation of the Tiger hash Algorithm.
 
 ### @fbtjs/default-collection-transform versions
+  <details>
+    <summary>
+      Unreleased changes that have landed in master. Click to see more.
+    </summary>
+
+  - [chore] Update peer dependency on babel-plugin-fbt
+
+  </details>
 
 - 0.0.3:
   - Update peer dependency on babel-plugin-fbt
