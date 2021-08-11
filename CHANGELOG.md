@@ -335,8 +335,11 @@ List of changes for each released npm package version.
       Unreleased changes that have landed in master. Click to see more.
     </summary>
 
-  - [refactor] Add flow types
   </details>
+
+- 0.2.0:
+  - [refactor] Add flow types
+  - [refactor]! Replace `hashPhrases()` function by `getFbtHash()`
 
 - 0.1.6:
   - Strip yarn files in .npmignore
