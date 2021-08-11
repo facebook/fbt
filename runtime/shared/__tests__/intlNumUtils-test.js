@@ -78,14 +78,12 @@ describe('intlNumUtils:', () => {
   }
 
   function prepareForHindiDevanagariFormat() {
-    override(
-      Object.assign({}, _hindiFormat, {
-        numberingSystemData: {
-          digits:
-            '\u0966\u0967\u0968\u0969\u096A\u096B\u096C\u096D\u096E\u096F',
-        },
-      }),
-    );
+    override({
+      ..._hindiFormat,
+      numberingSystemData: {
+        digits: '\u0966\u0967\u0968\u0969\u096A\u096B\u096C\u096D\u096E\u096F',
+      },
+    });
   }
 
   function prepareForArabicFormat() {

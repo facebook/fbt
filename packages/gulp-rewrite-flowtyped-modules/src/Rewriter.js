@@ -20,7 +20,7 @@ var flowParser = require('flow-parser');
  */
 class Rewriter {
   constructor(src, options) {
-    this._opts = Object.assign({flow: {}, map: {}, prefix: './'}, options);
+    this._opts = {flow: {}, map: {}, prefix: './', ...options};
     this._src = src;
     this._idx = 0; // Tracks our current substring index in src
     this._dst = ''; // destination for new rewritten source
