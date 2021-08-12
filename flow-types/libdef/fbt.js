@@ -64,6 +64,7 @@ declare type Fbt = string | FbtWithoutString;
  * All translated strings wrapped in `fbs()` or `<fbs>` type.
  * If this is composed of "string parameters" (fbs.param),
  * then it'll only accept plain string values, or other `Fbs` objects.
+ * @see {@link https://fburl.com/wiki/ix5srv2p} for more info
  */
 declare type Fbs = FbtPureStringResult;
 
