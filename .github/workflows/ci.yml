@@ -13,14 +13,15 @@ jobs:
       matrix:
         node: [ '12.16', '16.0' ]
         test: [
-          'flow:check',
-          'babel-plugin-fbt:test',
           'babel-plugin-fbt-runtime:test',
+          'babel-plugin-fbt:test',
+          'babel-plugin-standalone:test',
           'demo-app:test',
           'fb-tiger-hash:test',
+          'flow:check',
           'gulp-rewrite-flowtyped-modules:test',
           'gulp-strip-docblock-pragmas:test',
-          'babel-plugin-standalone:test',
+          'top-level:test',
         ]
     name: "v${{ matrix.node }}: ${{ matrix.test }}"
     steps:

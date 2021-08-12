@@ -104,6 +104,7 @@
     "preinstall": "yarn create_dummy_bin_scripts_for_yarn_install",
     "test:watch": "jest --watch",
     "test": "yarn workspace demo-app test-build-scripts && jest && yarn flow:check",
+    "top-level:test": "yarn jest __tests__/*",
     "watch": "yarn workspace demo-app watch:fbts & yarn babel-plugin-fbt:watch"
   },
   "resolutions": {
