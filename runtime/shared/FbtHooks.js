@@ -6,8 +6,6 @@
  * @format
  */
 
-/* eslint-disable fb-www/flow-exact-by-default-object-types */
-
 import type {FbtTableKey, PatternHash, PatternString} from 'FbtTable';
 import type {FbtTableArg} from 'FbtTableAccessor';
 import typeof IntlViewerContext from 'IntlViewerContext';
