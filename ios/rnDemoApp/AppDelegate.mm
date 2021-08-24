@@ -16,9 +16,10 @@
 #import <React/RCTJSIExecutorRuntimeInstaller.h>
 #import <React/RCTRootView.h>
 
-#import <ReactCommon/RCTTurboModuleManager.h>
+#import <React/CoreModulesPlugins.h>
+#import <react-native-fbt/FBReactNativeFbtModuleSpec.h>
 
-#import "RNDemoAppTurboModuleProvider.h"
+#import <ReactCommon/RCTTurboModuleManager.h>
 
 @interface AppDelegate () <RCTCxxBridgeDelegate, RCTTurboModuleManagerDelegate> {
   RCTTurboModuleManager *_turboModuleManager;
@@ -29,9 +30,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  // TODO: Enable TurboModule
-  RCTEnableTurboModule(NO);
-  
+  RCTEnableTurboModule(YES);
+
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"rn-demo-app"
@@ -47,6 +47,9 @@
   return YES;
 }
 
+
+#pragma mark - RCTCxxBridgeDelegate
+
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
 {
 #if DEBUG
@@ -56,29 +59,25 @@
 #endif
 }
 
-#pragma mark - RCTCxxBridgeDelegate
-
 - (std::unique_ptr<facebook::react::JSExecutorFactory>)jsExecutorFactoryForBridge:(RCTBridge *)bridge
 {
-  if (RCTTurboModuleEnabled()) {
-    _turboModuleManager = [[RCTTurboModuleManager alloc] initWithBridge:bridge
-                                                               delegate:self
-                                                              jsInvoker:bridge.jsCallInvoker];
-    // Necessary to allow NativeModules to lookup TurboModules
-    [bridge setRCTTurboModuleRegistry:_turboModuleManager];
+  _turboModuleManager = [[RCTTurboModuleManager alloc] initWithBridge:bridge
+                                                             delegate:self
+                                                            jsInvoker:bridge.jsCallInvoker];
+  // Necessary to allow NativeModules to lookup TurboModules
+  [bridge setRCTTurboModuleRegistry:_turboModuleManager];
 
   #if RCT_DEV
-    if (!RCTTurboModuleEagerInitEnabled()) {
-      /**
-       * Instantiating DevMenu has the side-effect of registering
-       * shortcuts for CMD + d, CMD + i,  and CMD + n via RCTDevMenu.
-       * Therefore, when TurboModules are enabled, we must manually create this
-       * NativeModule.
-       */
-      [_turboModuleManager moduleForName:"RCTDevMenu"];
-    }
-  #endif
+  if (!RCTTurboModuleEagerInitEnabled()) {
+    /**
+     * Instantiating DevMenu has the side-effect of registering
+     * shortcuts for CMD + d, CMD + i,  and CMD + n via RCTDevMenu.
+     * Therefore, when TurboModules are enabled, we must manually create this
+     * NativeModule.
+     */
+    [_turboModuleManager moduleForName:"RCTDevMenu"];
   }
+  #endif
 
   __weak __typeof(self) weakSelf = self;
   // TODO: Use HermesExecutorFactory if using Hermes
@@ -100,21 +99,23 @@
 
 - (Class)getModuleClassFromName:(const char *)name
 {
-  return facebook::react::RNDemoAppTurboModuleClassProvider(name);
+  return RCTCoreModulesClassProvider(name);
 }
 
 - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:(const std::string &)name
                                                       jsInvoker:(std::shared_ptr<facebook::react::CallInvoker>)jsInvoker
 {
-  return facebook::react::RNDemoAppTurboModuleProvider(name, jsInvoker);
+  return nullptr;
 }
 
-- (id<RCTTurboModule>)getModuleInstanceFromClass:(Class)moduleClass
+- (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:(const std::string &)name
+                                                     initParams:(const facebook::react::ObjCTurboModule::InitParams &)params
 {
-  return [moduleClass new];
-}
+  // TODO: Use FbtModule's getTurboModule:
+  if (name == "FbtModule") {
+    return std::make_shared<facebook::react::NativeFbtModuleSpecJSI>(params);
+  }
 
-- (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:(const std::string &)name initParams:(const facebook::react::ObjCTurboModule::InitParams &)params {
   return nullptr;
 }
 
