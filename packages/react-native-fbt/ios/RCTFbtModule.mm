@@ -6,7 +6,12 @@
  */
 
 #import "RCTFbtModule.h"
+#import "FBReactNativeFbtModuleSpec.h"
 
+using namespace facebook::react;
+
+@interface RCTFbtModule () <NativeFbtModuleSpec>
+@end
 
 @implementation RCTFbtModule
 
@@ -25,3 +30,8 @@ RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(getString:(NSString *)hashKey)
 }
 
 @end
+
+Class FbtModuleCls(void)
+{
+  return RCTFbtModule.class;
+}

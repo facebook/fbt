@@ -1,0 +1,26 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * @flow strict
+ * @format
+ */
+
+declare class Tiger {
+  constructor(
+    digestBitLen: number,
+    extraPasses?: number,
+    invertByte?: boolean,
+    encoding?: string,
+  ): void;
+
+  hash(input: string): string;
+
+  static L128: 128;
+  static L160: 160;
+  static L192: 192;
+
+  static UTF8: 'utf8';
+  static UTF16: 'utf16le';
+}
+
+declare module.exports: Class<Tiger>;

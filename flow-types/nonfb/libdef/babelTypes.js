@@ -1563,7 +1563,7 @@ type BabelNodeTSType = BabelNodeTSAnyKeyword | BabelNodeTSBooleanKeyword | Babel
 type BabelNodeTSBaseType = BabelNodeTSAnyKeyword | BabelNodeTSBooleanKeyword | BabelNodeTSBigIntKeyword | BabelNodeTSNeverKeyword | BabelNodeTSNullKeyword | BabelNodeTSNumberKeyword | BabelNodeTSObjectKeyword | BabelNodeTSStringKeyword | BabelNodeTSSymbolKeyword | BabelNodeTSUndefinedKeyword | BabelNodeTSUnknownKeyword | BabelNodeTSVoidKeyword | BabelNodeTSThisType | BabelNodeTSLiteralType;
 
 declare module "@babel/types" {
-  declare export function arrayExpression(elements?: Array<null | BabelNodeExpression | BabelNodeSpreadElement>): BabelNodeArrayExpression;
+  declare export function arrayExpression(elements?: $ReadOnlyArray<null | BabelNodeExpression | BabelNodeSpreadElement>): BabelNodeArrayExpression;
   declare export function assignmentExpression(operator: string, left: BabelNodeLVal, right: BabelNodeExpression): BabelNodeAssignmentExpression;
   declare export function binaryExpression(operator: "+" | "-" | "/" | "%" | "*" | "**" | "&" | "|" | ">>" | ">>>" | "<<" | "^" | "==" | "===" | "!=" | "!==" | "in" | "instanceof" | ">" | "<" | ">=" | "<=", left: any, right: BabelNodeExpression): BabelNodeBinaryExpression;
   declare export function interpreterDirective(value: string): BabelNodeInterpreterDirective;
@@ -2041,7 +2041,50 @@ declare module "@babel/types" {
   declare export function isTSTypeParameterInstantiation(node: ?Object, opts?: ?Object): boolean %checks (node instanceof BabelNodeTSTypeParameterInstantiation)
   declare export function isTSTypeParameterDeclaration(node: ?Object, opts?: ?Object): boolean %checks (node instanceof BabelNodeTSTypeParameterDeclaration)
   declare export function isTSTypeParameter(node: ?Object, opts?: ?Object): boolean %checks (node instanceof BabelNodeTSTypeParameter)
-  declare export function isExpression(node: ?Object, opts?: ?Object): boolean
+  declare export function isExpression(node: ?Object, opts?: ?Object): boolean %checks (
+    node instanceof BabelNodeArrayExpression ||
+    node instanceof BabelNodeAssignmentExpression ||
+    node instanceof BabelNodeBinaryExpression ||
+    node instanceof BabelNodeCallExpression ||
+    node instanceof BabelNodeConditionalExpression ||
+    node instanceof BabelNodeFunctionExpression ||
+    node instanceof BabelNodeIdentifier ||
+    node instanceof BabelNodeStringLiteral ||
+    node instanceof BabelNodeNumericLiteral ||
+    node instanceof BabelNodeNullLiteral ||
+    node instanceof BabelNodeBooleanLiteral ||
+    node instanceof BabelNodeRegExpLiteral ||
+    node instanceof BabelNodeLogicalExpression ||
+    node instanceof BabelNodeMemberExpression ||
+    node instanceof BabelNodeNewExpression ||
+    node instanceof BabelNodeObjectExpression ||
+    node instanceof BabelNodeSequenceExpression ||
+    node instanceof BabelNodeParenthesizedExpression ||
+    node instanceof BabelNodeThisExpression ||
+    node instanceof BabelNodeUnaryExpression ||
+    node instanceof BabelNodeUpdateExpression ||
+    node instanceof BabelNodeArrowFunctionExpression ||
+    node instanceof BabelNodeClassExpression ||
+    node instanceof BabelNodeMetaProperty ||
+    node instanceof BabelNodeSuper ||
+    node instanceof BabelNodeTaggedTemplateExpression ||
+    node instanceof BabelNodeTemplateLiteral ||
+    node instanceof BabelNodeYieldExpression ||
+    node instanceof BabelNodeTypeCastExpression ||
+    node instanceof BabelNodeJSXElement ||
+    node instanceof BabelNodeJSXFragment ||
+    node instanceof BabelNodeAwaitExpression ||
+    node instanceof BabelNodeBindExpression ||
+    node instanceof BabelNodeOptionalMemberExpression ||
+    node instanceof BabelNodePipelinePrimaryTopicReference ||
+    node instanceof BabelNodeOptionalCallExpression ||
+    node instanceof BabelNodeImport ||
+    node instanceof BabelNodeDoExpression ||
+    node instanceof BabelNodeBigIntLiteral ||
+    node instanceof BabelNodeTSAsExpression ||
+    node instanceof BabelNodeTSTypeAssertion ||
+    node instanceof BabelNodeTSNonNullExpression
+  )
   declare export function isBinary(node: ?Object, opts?: ?Object): boolean
   declare export function isScopable(node: ?Object, opts?: ?Object): boolean
   declare export function isBlockParent(node: ?Object, opts?: ?Object): boolean
@@ -2143,7 +2186,7 @@ declare module "@babel/types" {
   declare export function isBlockScoped(node: BabelNode): boolean
   declare export function isImmutable(node: BabelNode): boolean
   declare export function isLet(node: BabelNode): boolean
-  declare export function isNode(node: ?Object): boolean
+  declare export function isNode(node: ?Object): boolean %checks (node instanceof BabelNode)
   declare export function isNodesEquivalent(a: any, b: any): boolean
   declare export function isPlaceholderType(placeholderType: string, targetType: string): boolean
   declare export function isReferenced(node: BabelNode, parent: BabelNode, grandparent?: BabelNode): boolean

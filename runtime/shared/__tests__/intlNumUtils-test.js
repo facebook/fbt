@@ -78,14 +78,12 @@ describe('intlNumUtils:', () => {
   }
 
   function prepareForHindiDevanagariFormat() {
-    override(
-      Object.assign({}, _hindiFormat, {
-        numberingSystemData: {
-          digits:
-            '\u0966\u0967\u0968\u0969\u096A\u096B\u096C\u096D\u096E\u096F',
-        },
-      }),
-    );
+    override({
+      ..._hindiFormat,
+      numberingSystemData: {
+        digits: '\u0966\u0967\u0968\u0969\u096A\u096B\u096C\u096D\u096E\u096F',
+      },
+    });
   }
 
   function prepareForArabicFormat() {
@@ -108,18 +106,18 @@ describe('intlNumUtils:', () => {
     });
   }
 
-  describe('intNumUtils.formatNumberRaw', function() {
-    it('Should work with integer input', function() {
+  describe('intNumUtils.formatNumberRaw', function () {
+    it('Should work with integer input', function () {
       expect(u.formatNumberRaw(5)).toBe('5');
       expect(u.formatNumberRaw(5, 3)).toBe('5.000');
     });
 
-    it('Should work with string input', function() {
+    it('Should work with string input', function () {
       expect(u.formatNumberRaw('5')).toBe('5');
       expect(u.formatNumberRaw('5', 3)).toBe('5.000');
     });
 
-    it('Should not round when no decimals are specified', function() {
+    it('Should not round when no decimals are specified', function () {
       expect(u.formatNumberRaw(5.499)).toBe('5.499');
       expect(u.formatNumberRaw(5.5)).toBe('5.5');
       expect(u.formatNumberRaw(5.499, null)).toBe('5.499');
@@ -131,31 +129,31 @@ describe('intlNumUtils:', () => {
       expect(u.formatNumberRaw('5.5', null)).toBe('5.5');
     });
 
-    it('Should round (not truncate) decimals for numbers', function() {
+    it('Should round (not truncate) decimals for numbers', function () {
       expect(u.formatNumberRaw(1234.5655, 2)).toBe('1234.57');
       expect(u.formatNumberRaw(1234.5644, 2)).toBe('1234.56');
       expect(u.formatNumberRaw(-1234.5655, 2)).toBe('-1234.57');
       expect(u.formatNumberRaw(-1234.5644, 2)).toBe('-1234.56');
     });
 
-    it('Should truncate (not round) decimals for strings', function() {
+    it('Should truncate (not round) decimals for strings', function () {
       expect(u.formatNumberRaw('1234.5655', 2)).toBe('1234.56');
       expect(u.formatNumberRaw('1234.5644', 2)).toBe('1234.56');
       expect(u.formatNumberRaw('-1234.5655', 2)).toBe('-1234.56');
       expect(u.formatNumberRaw('-1234.5644', 2)).toBe('-1234.56');
     });
 
-    it('Should handle a higher precision than given', function() {
+    it('Should handle a higher precision than given', function () {
       expect(u.formatNumberRaw(1234.1, 5)).toBe('1234.10000');
       expect(u.formatNumberRaw('1234.1', 5)).toBe('1234.10000');
     });
 
-    it('Should respect delimiters passed', function() {
+    it('Should respect delimiters passed', function () {
       expect(u.formatNumberRaw(1234.54, 2, '.', ',')).toBe('1.234,54');
       expect(u.formatNumberRaw('1234.54', 2, '.', ',')).toBe('1.234,54');
     });
 
-    it('Should handle large numbers', function() {
+    it('Should handle large numbers', function () {
       expect(u.formatNumberRaw('1000000000000000', 2)).toBe(
         '1000000000000000.00',
       );
@@ -167,7 +165,7 @@ describe('intlNumUtils:', () => {
       );
     });
 
-    it('Should handle small numbers', function() {
+    it('Should handle small numbers', function () {
       expect(u.formatNumberRaw(0.000000199, 9)).toBe('1.99e-7');
       expect(u.formatNumberRaw(0.000000199, 7)).toBe('2e-7');
       expect(u.formatNumberRaw(0.0000000199, 7)).toBe('0.0000000');
@@ -175,35 +173,35 @@ describe('intlNumUtils:', () => {
     });
   });
 
-  describe('intNumUtils.formatNumber', function() {
-    beforeEach(function() {
+  describe('intNumUtils.formatNumber', function () {
+    beforeEach(function () {
       prepareForAmericanFormat();
     });
 
-    it('Should work with integer input', function() {
+    it('Should work with integer input', function () {
       expect(u.formatNumber(5)).toBe('5');
       expect(u.formatNumber(5, 3)).toBe('5.000');
     });
 
-    it('Should not round when no decimals are specified', function() {
+    it('Should not round when no decimals are specified', function () {
       expect(u.formatNumber(5.499)).toBe('5.499');
       expect(u.formatNumber(5.5)).toBe('5.5');
       expect(u.formatNumber(5.499, null)).toBe('5.499');
       expect(u.formatNumber(5.5, null)).toBe('5.5');
     });
 
-    it('Should round (not truncate) decimals', function() {
+    it('Should round (not truncate) decimals', function () {
       expect(u.formatNumber(1234.5655, 2)).toBe('1234.57');
       expect(u.formatNumber(1234.5644, 2)).toBe('1234.56');
       expect(u.formatNumber(-1234.5655, 2)).toBe('-1234.57');
       expect(u.formatNumber(-1234.5644, 2)).toBe('-1234.56');
     });
 
-    it('Should handle a higher precision than given', function() {
+    it('Should handle a higher precision than given', function () {
       expect(u.formatNumber(1234.1, 5)).toBe('1234.10000');
     });
 
-    it('Should respect user locale for number formatting', function() {
+    it('Should respect user locale for number formatting', function () {
       override({
         decimalSeparator: '#',
         numberDelimiter: '/',
@@ -221,24 +219,24 @@ describe('intlNumUtils:', () => {
     });
   });
 
-  describe('intNumUtils.formatNumberWithThousandDelimiters', function() {
-    beforeEach(function() {
+  describe('intNumUtils.formatNumberWithThousandDelimiters', function () {
+    beforeEach(function () {
       prepareForAmericanFormat();
     });
 
-    it('Should work with integer input', function() {
+    it('Should work with integer input', function () {
       expect(u.formatNumberWithThousandDelimiters(5)).toBe('5');
       expect(u.formatNumberWithThousandDelimiters(5, 3)).toBe('5.000');
     });
 
-    it('Should not round when no decimals are specified', function() {
+    it('Should not round when no decimals are specified', function () {
       expect(u.formatNumberWithThousandDelimiters(5.499)).toBe('5.499');
       expect(u.formatNumberWithThousandDelimiters(5.5)).toBe('5.5');
       expect(u.formatNumberWithThousandDelimiters(5.499, null)).toBe('5.499');
       expect(u.formatNumberWithThousandDelimiters(5.5, null)).toBe('5.5');
     });
 
-    it('Should round (not truncate) decimals', function() {
+    it('Should round (not truncate) decimals', function () {
       expect(u.formatNumberWithThousandDelimiters(1234.5655, 2)).toBe(
         '1,234.57',
       );
@@ -253,13 +251,13 @@ describe('intlNumUtils:', () => {
       );
     });
 
-    it('Should handle a higher precision than given', function() {
+    it('Should handle a higher precision than given', function () {
       expect(u.formatNumberWithThousandDelimiters(1234.1, 5)).toBe(
         '1,234.10000',
       );
     });
 
-    it('Should respect primary and secondary grouping sizes in Hindi', function() {
+    it('Should respect primary and secondary grouping sizes in Hindi', function () {
       prepareForHindiLatinFormat();
       expect(u.formatNumberWithThousandDelimiters(12)).toBe('12');
       expect(u.formatNumberWithThousandDelimiters(1234)).toBe('1,234');
@@ -271,7 +269,7 @@ describe('intlNumUtils:', () => {
       jest.resetModules();
     });
 
-    it('Should render native digits when available', function() {
+    it('Should render native digits when available', function () {
       prepareForHindiDevanagariFormat();
       expect(u.formatNumberWithThousandDelimiters(0)).toBe('\u0966');
       expect(u.formatNumberWithThousandDelimiters(1234)).toBe(
@@ -289,7 +287,7 @@ describe('intlNumUtils:', () => {
       jest.resetModules();
     });
 
-    it('Should respect user locale for number formatting', function() {
+    it('Should respect user locale for number formatting', function () {
       override({
         decimalSeparator: '#',
         numberDelimiter: '/',
@@ -309,12 +307,12 @@ describe('intlNumUtils:', () => {
     });
   });
 
-  describe('intlNumUtils.formatNumberWithLimitedSigFig', function() {
-    beforeEach(function() {
+  describe('intlNumUtils.formatNumberWithLimitedSigFig', function () {
+    beforeEach(function () {
       prepareForAmericanFormat();
     });
 
-    it('Should format number in significant figures and decimals', function() {
+    it('Should format number in significant figures and decimals', function () {
       expect(u.formatNumberWithLimitedSigFig(123456789, 0, 2)).toBe(
         '120,000,000',
       );
@@ -324,17 +322,17 @@ describe('intlNumUtils:', () => {
     });
   });
 
-  describe('intlNumUtils.parseNumberRaw', function() {
-    beforeEach(function() {
+  describe('intlNumUtils.parseNumberRaw', function () {
+    beforeEach(function () {
       prepareForAmericanFormat();
     });
 
-    it('Should return null for non-numeric input', function() {
+    it('Should return null for non-numeric input', function () {
       expect(u.parseNumber('')).toBe(null);
       expect(u.parseNumber('asdf')).toBe(null);
     });
 
-    it('Should infer the decimal symbol (period)', function() {
+    it('Should infer the decimal symbol (period)', function () {
       expect(u.parseNumber('0')).toBe(0);
       expect(u.parseNumber('100.00')).toBe(100);
       expect(u.parseNumber('$ 100.00')).toBe(100);
@@ -354,7 +352,7 @@ describe('intlNumUtils:', () => {
       expect(u.parseNumber('-123,456,789')).toBe(-123456789);
     });
 
-    it('Should respect the decimal symbol passed', function() {
+    it('Should respect the decimal symbol passed', function () {
       expect(u.parseNumberRaw('100,235', ',')).toBe(100.235);
       expect(u.parseNumberRaw('100,', ',')).toBe(100); // No decimal digits
       expect(u.parseNumberRaw('123.456.789', ',', '.')).toBe(123456789); // 2+ '.'s
@@ -365,19 +363,19 @@ describe('intlNumUtils:', () => {
       expect(u.parseNumberRaw('300,02,000 132', ' ', ',')).toBe(30002000.132); // space
     });
 
-    it('Should support Spanish thousand delimiters (spaces)', function() {
+    it('Should support Spanish thousand delimiters (spaces)', function () {
       expect(u.parseNumberRaw('123 456 789', '.')).toBe(123456789);
       expect(u.parseNumberRaw('123 456 789', ',')).toBe(123456789);
       expect(u.parseNumberRaw('1 234,56', ',')).toBe(1234.56);
     });
   });
 
-  describe('intlNumUtils.parseNumber', function() {
-    beforeEach(function() {
+  describe('intlNumUtils.parseNumber', function () {
+    beforeEach(function () {
       prepareForAmericanFormat();
     });
 
-    it('Should parse numbers with English delimiters', function() {
+    it('Should parse numbers with English delimiters', function () {
       expect(u.parseNumber('0')).toBe(0);
       expect(u.parseNumber('100.00')).toBe(100);
       expect(u.parseNumber('$ 100.00')).toBe(100);
@@ -397,7 +395,7 @@ describe('intlNumUtils:', () => {
       expect(u.parseNumber('-123,456,789')).toBe(-123456789);
     });
 
-    it('Should parse numbers with French/German/etc. delimiters', function() {
+    it('Should parse numbers with French/German/etc. delimiters', function () {
       prepareForBrazilianFormat();
 
       expect(u.parseNumber('100,00')).toBe(100);
@@ -418,7 +416,7 @@ describe('intlNumUtils:', () => {
       expect(u.parseNumber('-123.456.789')).toBe(-123456789);
     });
 
-    it('Should parse numbers including Peruvian and Russian currency', function() {
+    it('Should parse numbers including Peruvian and Russian currency', function () {
       expect(u.parseNumber('S/. 450.00')).toBe(450);
       expect(u.parseNumber('S/..45')).toBe(0.45);
       expect(u.parseNumber('p. 450.00')).toBe(450);
@@ -432,7 +430,7 @@ describe('intlNumUtils:', () => {
       expect(u.parseNumber('S/.,45')).toBe(0.45);
     });
 
-    it('Should parse numbers starting with currency separator', function() {
+    it('Should parse numbers starting with currency separator', function () {
       expect(u.parseNumber('.75')).toBe(0.75);
       expect(u.parseNumber('.75942345')).toBe(0.75942345);
 
@@ -442,7 +440,7 @@ describe('intlNumUtils:', () => {
       expect(u.parseNumber(',75942345')).toBe(0.75942345);
     });
 
-    it('Should parse numbers with Arabic keyboard input characters', function() {
+    it('Should parse numbers with Arabic keyboard input characters', function () {
       prepareForArabicFormat();
       // test cases that use \u066b as decimal separator
       expect(u.parseNumber('\u0660\u066b\u0661\u0662\u0663')).toBe(0.123);
@@ -484,7 +482,7 @@ describe('intlNumUtils:', () => {
       jest.resetModules();
     });
 
-    it('Should parse numbers with Persian keyboard input characters', function() {
+    it('Should parse numbers with Persian keyboard input characters', function () {
       prepareForPersianFormat();
       // Persian characters
       expect(u.parseNumber('\u06f0\u066B\u06f1\u06f2\u06f3')).toBe(0.123);
@@ -520,12 +518,12 @@ describe('intlNumUtils:', () => {
     });
   });
 
-  describe('intlNumUtils.parseNumber with Parser', function() {
-    beforeEach(function() {
+  describe('intlNumUtils.parseNumber with Parser', function () {
+    beforeEach(function () {
       prepareForAmericanFormat();
     });
 
-    it('Parser should handle symbols with dot nicely', function() {
+    it('Parser should handle symbols with dot nicely', function () {
       expect(u.parseNumber('S/. 450.00')).toBe(450);
       expect(u.parseNumber('S/..45')).toBe(0.45);
       expect(u.parseNumber('p. 450.00')).toBe(450);
@@ -539,13 +537,13 @@ describe('intlNumUtils:', () => {
       expect(u.parseNumber('.75942345')).toBe(0.75942345);
     });
 
-    it('Parser should ignore spaces as much as possible', function() {
+    it('Parser should ignore spaces as much as possible', function () {
       expect(u.parseNumberRaw('123 456 789', '.')).toBe(123456789);
       expect(u.parseNumberRaw('123 456 789', ',')).toBe(123456789);
       expect(u.parseNumberRaw('1 234,56', ',')).toBe(1234.56);
     });
 
-    it('Should parse American format correctly with Parser', function() {
+    it('Should parse American format correctly with Parser', function () {
       expect(u.parseNumber('0')).toBe(0);
       expect(u.parseNumber('100.00')).toBe(100);
       expect(u.parseNumber('$ 100.00')).toBe(100);
@@ -565,7 +563,7 @@ describe('intlNumUtils:', () => {
       expect(u.parseNumber('-123,456,789')).toBe(-123456789);
     });
 
-    it('Parser should handle Brazilian format properly', function() {
+    it('Parser should handle Brazilian format properly', function () {
       prepareForBrazilianFormat();
 
       expect(u.parseNumber('100,00')).toBe(100);
@@ -586,14 +584,14 @@ describe('intlNumUtils:', () => {
       expect(u.parseNumber('-123.456.789')).toBe(-123456789);
     });
 
-    it('Parser should not handle pathological cases', function() {
+    it('Parser should not handle pathological cases', function () {
       expect(u.parseNumber('-100-,0%*#$00.00')).toBe(null); // unforgiving
       expect(u.parseNumber('-$100-,0$!@#00.00')).toBe(null); // unforgiving
       expect(u.parseNumberRaw('1.45.345', '.')).toBe(null);
       expect(u.parseNumberRaw('1,45,345', ',')).toBe(null);
     });
 
-    it('Parser should handle currencies with dots', function() {
+    it('Parser should handle currencies with dots', function () {
       expect(u.parseNumber('kr.2000')).toBe(2000);
       expect(u.parseNumber('\u0631.\u0633.2000')).toBe(2000);
       expect(u.parseNumber('S/.2000')).toBe(2000);
@@ -601,14 +599,14 @@ describe('intlNumUtils:', () => {
     });
   });
 
-  describe('intNumUtils.getIntegerString', function() {
-    it('Should throw in __DEV__ if thousandDelimiter is empty', function() {
+  describe('intNumUtils.getIntegerString', function () {
+    it('Should throw in __DEV__ if thousandDelimiter is empty', function () {
       expect(() => u.getIntegerString(1000, '')).toThrowError(
         'thousandDelimiter cannot be empty string',
       );
     });
 
-    it('Should leave numbers in the range [-999, 999] unchanged', function() {
+    it('Should leave numbers in the range [-999, 999] unchanged', function () {
       expect(u.getIntegerString(-999, ',')).toBe('-999');
       expect(u.getIntegerString(-100, ',')).toBe('-100');
       expect(u.getIntegerString(-1, ',')).toBe('-1');
@@ -618,7 +616,7 @@ describe('intlNumUtils:', () => {
       expect(u.getIntegerString(999, ',')).toBe('999');
     });
 
-    it('Should format numbers in the range [-inf, -1000] and [1000, inf]', function() {
+    it('Should format numbers in the range [-inf, -1000] and [1000, inf]', function () {
       expect(u.getIntegerString(-123456789, ',')).toBe('-123,456,789');
       expect(u.getIntegerString(-12345, ',')).toBe('-12,345');
       expect(u.getIntegerString(-1000, ',')).toBe('-1,000');
@@ -627,7 +625,7 @@ describe('intlNumUtils:', () => {
       expect(u.getIntegerString(123456789, ',')).toBe('123,456,789');
     });
 
-    it('Should support a variety of thousandDelimiters', function() {
+    it('Should support a variety of thousandDelimiters', function () {
       expect(u.getIntegerString(1234, '.')).toBe('1.234');
       expect(u.getIntegerString(1234, '\u066C')).toBe('1\u066C234');
       expect(u.getIntegerString(1234, '::')).toBe('1::234');

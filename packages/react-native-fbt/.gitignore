@@ -26,6 +26,7 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
+!ios/FbtModule.xcodeproj/project.pbxproj
 
 # Android/IntelliJ
 #

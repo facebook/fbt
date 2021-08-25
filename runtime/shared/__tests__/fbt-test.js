@@ -2,57 +2,45 @@
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
  * @format
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  * @typechecks
  * @flow
  */
 
-/* eslint-disable fb-www/dot-notation, fb-www/fbt-no-project */
+/* eslint-disable fb-www/fbt-no-project */
 
 'use strict';
 
-import typeof intlNumUtilsType from 'intlNumUtils';
+import type {IntlVariationsEnum} from 'IntlVariations';
 
 jest.mock('FbtNumberType');
+jest.mock('translationOverrideListener'); // FB internal
 
 import type {FbtRuntimeCallInput, FbtTranslatedInput} from 'FbtHooks';
 
+const GenderConst = require('GenderConst');
 // Warning: importing JS modules outside of beforeEach blocks is generally bad practice
 // in jest tests. We might need to move these modules inside beforeEach().
 // These ones can stay here for now since they have a consistent behavior across this test suite.
-const FbtNumberType = require('FbtNumberType');
 const IntlVariations = require('IntlVariations');
-const React = require('React');
-const ReactDOM = require('ReactDOM');
+const ReactDOM = require('ReactDOMLegacy_DEPRECATED');
 
 const invariant = require('invariant');
-
-const ONE = String(IntlVariations.NUMBER_ONE);
-const FEW = String(IntlVariations.NUMBER_FEW);
-const MALE = String(IntlVariations.GENDER_MALE);
-const FEMALE = String(IntlVariations.GENDER_FEMALE);
+const React = require('react');
 
 let domContainer;
 let fbt;
 let fbtRuntime;
-let intlNumUtils;
 
 describe('fbt', () => {
   beforeEach(() => {
     jest.resetModules();
-
-    intlNumUtils = jest.requireActual<intlNumUtilsType>('intlNumUtils');
     fbtRuntime = jest.requireActual('fbt');
     fbt = require('fbt');
     domContainer = document.createElement('div');
-
-    // Use a locale that has FEW.
-    FbtNumberType.getVariation = jest.requireActual(
-      'IntlCLDRNumberType19',
-    ).getVariation;
   });
 
-  it('should memoize new strings', function() {
+  it('should memoize new strings', function () {
     expect(fbtRuntime._getCachedFbt('sample string')).toEqual(undefined);
 
     expect(fbtRuntime._('sample string')).toEqual(
@@ -60,17 +48,17 @@ describe('fbt', () => {
     );
   });
 
-  it('should trivially handle tokenless strings', function() {
+  it('should trivially handle tokenless strings', function () {
     expect(fbt('without tokens', 'test')).toEqual('without tokens');
   });
 
-  it('should handle common strings', function() {
+  it('should handle common strings', function () {
     expect(fbt.c('Accept')).toEqual(
       fbt('Accept', 'Button/Link: Accept conditions'),
     );
   });
 
-  it('should replace tokens with named values', function() {
+  it('should replace tokens with named values', function () {
     expect(
       fbt('with token ' + fbt.param('token', 'A') + ' here', 'test'),
     ).toEqual('with token A here');
@@ -86,16 +74,16 @@ describe('fbt', () => {
     ).toEqual('with tokens A and B');
   });
 
-  it('should remove punctuation when a value ends with it', function() {
-    expect(
-      fbt('They said ' + fbt.param('quote', '"Hi!"') + '.', 'test'),
-    ).toEqual('They said "Hi!"');
-    expect(fbt('They said ' + fbt.param('quote', 'bye') + '.', 'test')).toEqual(
-      'They said bye.',
+  it('should remove punctuation when a value ends with it', function () {
+    expect(fbt('Play ' + fbt.param('game', 'Chess!') + '!', 'test')).toEqual(
+      'Play Chess!',
     );
+    expect(
+      fbt("What's on your mind " + fbt.param('name', 'T.J.') + '?', 'test'),
+    ).toEqual("What's on your mind T.J.?");
   });
 
-  it('should allow values that look like token patterns', function() {
+  it('should allow values that look like token patterns', function () {
     expect(
       fbt(
         'with tokens ' +
@@ -108,7 +96,7 @@ describe('fbt', () => {
     ).toEqual('with tokens {tokenB} and B');
   });
 
-  it('should support objects as token values', function() {
+  it('should support objects as token values', function () {
     // We expect that this returns an opaque React fragment instead of an array.
     // We use this to preserve identity of nested React elements.
     const argument = <div />;
@@ -117,13 +105,13 @@ describe('fbt', () => {
       'test',
     );
     const items = [];
-    React.Children.forEach(fragment, function(item) {
+    React.Children.forEach(fragment, function (item) {
       items.push(item);
     });
     expect(items).toEqual(['with token ', argument, ' here']);
   });
 
-  it('should render empty string for null values', function() {
+  it('should render empty string for null values', function () {
     expect(fbt(fbt.param('null_value', null), 'test')).toEqual('');
   });
 
@@ -160,7 +148,7 @@ describe('fbt', () => {
     }
   }
 
-  it('should use wildcard defaults', function() {
+  it('should use wildcard defaults', function () {
     expect(
       fbt(
         'with something like ' +
@@ -171,7 +159,7 @@ describe('fbt', () => {
     ).toEqual('with something like 42 wildcards');
   });
 
-  it('should format numeric value', function() {
+  it('should format numeric value', function () {
     expect(
       fbt(
         'A total amount is ' + fbt.param('count', 10000, {number: true}),
@@ -180,7 +168,7 @@ describe('fbt', () => {
     ).toEqual('A total amount is 10,000');
   });
 
-  it('should keep literal value as is', function() {
+  it('should keep literal value as is', function () {
     expect(
       fbt('A total amount is ' + fbt.param('count', 10000), 'Test string'),
     ).toEqual('A total amount is 10000');
@@ -188,16 +176,17 @@ describe('fbt', () => {
 
   function renderAndExtractChildDivs(component) {
     const node = ReactDOM.findDOMNode(ReactDOM.render(component, domContainer));
-    // TODO T21716504: flow thinks ReactDOM.findDOMNode returns Text...
+    // flow thinks ReactDOM.findDOMNode can return a type of Text...
     invariant(node instanceof Element, 'Expected node to be an Element');
-    const resultingElements = node && node.getElementsByTagName('div');
+    const resultingElements = node.getElementsByTagName('div');
+    // $FlowFixMe[method-unbinding] added when improving typing for this parameters
     return Array.prototype.slice.call(resultingElements, 0);
   }
 
-  it('should not warn when unkeyed React components are params', function() {
+  it('should not warn when unkeyed React components are params', function () {
     jest.spyOn(console, 'warn').mockImplementation(() => {});
     const nodes = renderAndExtractChildDivs(
-      <TestComponent value="A" childA={<div />} childB={<div />} />,
+      <TestComponent childA={<div />} childB={<div />} value="A" />,
     );
     expect(nodes.length).toBe(2);
     /* $FlowFixMe[prop-missing] (>=0.99.0 site=www) This comment suppresses an
@@ -208,10 +197,10 @@ describe('fbt', () => {
 
   function expectChildSetsToRetainIdentity(setA, setB) {
     const nodesA = renderAndExtractChildDivs(
-      <TestComponent value="A" childA={setA} childB={setB} />,
+      <TestComponent childA={setA} childB={setB} value="A" />,
     );
     const nodesB = renderAndExtractChildDivs(
-      <TestComponent value="B" childA={setA} childB={setB} />,
+      <TestComponent childA={setA} childB={setB} value="B" />,
     );
 
     expect(nodesA.length).toBe(2);
@@ -222,7 +211,7 @@ describe('fbt', () => {
     expect(nodesA[1]).toBe(nodesB[0]);
   }
 
-  it('should retain React identity when sentence order changes', function() {
+  it('should retain React identity when sentence order changes', function () {
     expectChildSetsToRetainIdentity(<div key="A" />, <div key="B" />);
   });
 
@@ -240,13 +229,13 @@ describe('fbt', () => {
   //   );
   // });
 
-  it('should replace QuickTranslation strings', function() {
+  it('should replace QuickTranslation strings', function () {
     expect(
       fbtRuntime._(['This is a QT string', '8b0c31a270a324f26d2417a358106611']),
     ).toEqual('override');
   });
 
-  it('should replace QuickTranslation strings with params', function() {
+  it('should replace QuickTranslation strings with params', function () {
     expect(
       fbtRuntime._(
         ['Just a {param}', 'fakeHash3'],
@@ -255,7 +244,7 @@ describe('fbt', () => {
     ).toEqual('Override a substitute');
   });
 
-  it('should replace QuickTranslation "trees"', function() {
+  it('should replace QuickTranslation "trees"', function () {
     const runtimeArg = {
       s: ['This is a QT with a {param}', 'fakeHash1'],
       p: ['These are QTs with a {param}', 'fakeHash2'],
@@ -275,32 +264,7 @@ describe('fbt', () => {
     ).toEqual('These are overrides and a test');
   });
 
-  it('should handle variated numbers', function() {
-    const previousNumberTypeGetter = FbtNumberType.getVariation;
-    FbtNumberType.getVariation = jest.requireActual(
-      'IntlCLDRNumberType31',
-    ).getVariation;
-    const numToType = {
-      '21': IntlVariations.NUMBER_ONE,
-      '22': IntlVariations.NUMBER_TWO,
-      '103': IntlVariations.NUMBER_FEW,
-      '1000000': IntlVariations.NUMBER_MANY,
-      '15': IntlVariations.NUMBER_OTHER,
-    };
-    for (const n in numToType) {
-      const type = numToType[n];
-      const displayNumber = intlNumUtils.formatNumberWithThousandDelimiters(
-        parseFloat(n),
-      );
-      expect(fbtRuntime._param('num', parseInt(n, 10), [0])).toEqual([
-        [type, '*'],
-        {num: displayNumber},
-      ]);
-    }
-    FbtNumberType.getVariation = previousNumberTypeGetter;
-  });
-
-  it('should create a tuple for fbt.subject if valid', function() {
+  it('should create a tuple for fbt.subject if valid', function () {
     expect(fbtRuntime._subject(IntlVariations.GENDER_MALE)).toEqual([
       [IntlVariations.GENDER_MALE, '*'],
       null,
@@ -308,13 +272,13 @@ describe('fbt', () => {
     expect(() => fbtRuntime._subject(0)).toThrow('Invalid gender provided');
   });
 
-  it('should leave non-QuickTranslation strings alone', function() {
+  it('should leave non-QuickTranslation strings alone', function () {
     expect(
       fbtRuntime._(["This isn't", '8b0c31a270a324f26d2417a358106612']),
     ).toEqual("This isn't");
   });
 
-  it('should access table with multiple tokens containing subject', function() {
+  it('should access table with multiple tokens containing subject', function () {
     expect(
       fbt(
         'Invited by ' + fbt.plural('friend', 1, {showCount: 'yes'}) + '.',
@@ -322,83 +286,6 @@ describe('fbt', () => {
         {subject: IntlVariations.GENDER_UNKNOWN},
       ),
     ).toEqual('Invited by 1 friend.');
-  });
-
-  it('should access table with fallback logic', function() {
-    const FbtHooks = require('FbtHooks');
-    let genderMock;
-    // $FlowFixMe[cannot-write] We need to mock this method
-    FbtHooks.getViewerContext = jest.fn(() => ({
-      GENDER: genderMock,
-    }));
-
-    const table = {
-      __vcg: 1, // viewer-context gender
-      '*': {},
-    };
-    table['*']['A'] = {'*': 'A,UNKNOWN,OTHER {name} has {num}'};
-    table['*']['A'][ONE] = 'A,UNKNOWN,ONE {name} has {num}';
-    table['*']['A'][FEW] = 'A,UNKNOWN,FEW {name} has {num}';
-    table['*']['B'] = {'*': 'B,UNKNOWN,OTHER {name} has {num}'};
-    table['*']['B'][ONE] = 'B,UNKNOWN,ONE {name} has {num}';
-    table['*']['B'][FEW] = 'B,UNKNOWN,FEW {name} has {num}';
-    table[MALE] = {A: {'*': 'A,MALE,OTHER {name} has {num}'}};
-    table[MALE]['A'][ONE] = 'A,MALE,ONE {name} has {num}';
-    // table['*'][male]['A'][FEW] = fallback to other ^^^
-    // table['*'][male]['B'] = fallback to unknown gender ^^^
-    table[FEMALE] = {B: {'*': 'B,FEMALE,OTHER {name} has {num}'}};
-    table[FEMALE]['B'][FEW] = 'B,FEMALE,FEW {name} has {num}';
-    // table[female]['B'][ONE] = fallback to other ^^^
-    // table[female]['A'] = fallback to unknown gender ^^^
-
-    const few = fbtRuntime._param('num', 10, [0] /*Variations.NUMBER*/);
-    const other = fbtRuntime._param('num', 20, [0]);
-    const one = fbtRuntime._param('num', 1, [0]);
-    const A = fbtRuntime._enum('A', {A: 'A', B: 'B'});
-    const B = fbtRuntime._enum('B', {A: 'A', B: 'B'});
-    const name = fbtRuntime._param('name', 'Bob');
-
-    // GENDER UNKNOWN
-    genderMock = IntlVariations.GENDER_UNKNOWN;
-    let tests = [
-      {arg: [A, few, name], expected: 'A,UNKNOWN,FEW Bob has 10'},
-      {arg: [A, one, name], expected: 'A,UNKNOWN,ONE Bob has 1'},
-      {arg: [A, other, name], expected: 'A,UNKNOWN,OTHER Bob has 20'},
-      {arg: [B, few, name], expected: 'B,UNKNOWN,FEW Bob has 10'},
-      {arg: [B, one, name], expected: 'B,UNKNOWN,ONE Bob has 1'},
-      {arg: [B, other, name], expected: 'B,UNKNOWN,OTHER Bob has 20'},
-    ];
-    const runTest = function(test) {
-      try {
-        expect(fbtRuntime._(table, test.arg)).toBe(test.expected);
-      } catch (error) {
-        error.message += `\ntest.expected="${test.expected}"`;
-        throw error;
-      }
-    };
-    tests.forEach(runTest);
-
-    genderMock = IntlVariations.GENDER_MALE;
-    tests = [
-      {arg: [A, few, name], expected: 'A,MALE,OTHER Bob has 10'},
-      {arg: [A, one, name], expected: 'A,MALE,ONE Bob has 1'},
-      {arg: [A, other, name], expected: 'A,MALE,OTHER Bob has 20'},
-      {arg: [B, few, name], expected: 'B,UNKNOWN,FEW Bob has 10'},
-      {arg: [B, one, name], expected: 'B,UNKNOWN,ONE Bob has 1'},
-      {arg: [B, other, name], expected: 'B,UNKNOWN,OTHER Bob has 20'},
-    ];
-    tests.forEach(runTest);
-
-    genderMock = IntlVariations.GENDER_FEMALE;
-    tests = [
-      {arg: [A, few, name], expected: 'A,UNKNOWN,FEW Bob has 10'},
-      {arg: [A, one, name], expected: 'A,UNKNOWN,ONE Bob has 1'},
-      {arg: [A, other, name], expected: 'A,UNKNOWN,OTHER Bob has 20'},
-      {arg: [B, few, name], expected: 'B,FEMALE,FEW Bob has 10'},
-      {arg: [B, one, name], expected: 'B,FEMALE,OTHER Bob has 1'},
-      {arg: [B, other, name], expected: 'B,FEMALE,OTHER Bob has 20'},
-    ];
-    tests.forEach(runTest);
   });
 
   it('should have a return type compatible with the public Fbt type', () => {
@@ -447,5 +334,89 @@ describe('fbt', () => {
         ),
       ).toEqual(fbtParams);
     });
+  });
+
+  describe(': given a string with implicit parameters', () => {
+    function getFbt({viewer, ownerGender, object, count}) {
+      return (
+        <fbt desc="description">
+          <fbt:name gender={viewer.gender} name="name">
+            {viewer.name}
+          </fbt:name>
+          clicked on
+          <strong>
+            <fbt:pronoun gender={GenderConst[ownerGender]} type="possessive" />
+            <a href="#link">
+              <fbt:enum
+                enum-range={{
+                  photo: 'photo',
+                  comment: 'comment',
+                }}
+                value={object}
+              />
+            </a>
+          </strong>{' '}
+          <em>
+            <fbt:plural count={count} showCount="yes">
+              time
+            </fbt:plural>
+          </em>
+        </fbt>
+      );
+    }
+
+    // DEBUG: show the babel-plugin-fbt transform output
+    // console.warn('getFbt = \n----\n%s\n----\n', getFbt + '');
+
+    const combinations = {
+      viewers: ([
+        {
+          gender: IntlVariations.GENDER_MALE,
+          name: 'Bob',
+        },
+        {
+          gender: IntlVariations.GENDER_FEMALE,
+          name: 'Betty',
+        },
+        {
+          gender: IntlVariations.GENDER_UNKNOWN,
+          name: 'Kim',
+        },
+      ]: Array<{
+        gender: IntlVariationsEnum,
+        name: string,
+      }>),
+      ownerGenders: ([
+        'FEMALE_SINGULAR',
+        'MALE_SINGULAR',
+        'UNKNOWN_PLURAL',
+      ]: Array<$Keys<typeof GenderConst>>),
+      objects: ['photo', 'comment'],
+      counts: [1, 10],
+    };
+
+    combinations.viewers.forEach(viewer =>
+      combinations.ownerGenders.forEach(ownerGender =>
+        combinations.objects.forEach(object =>
+          combinations.counts.forEach(count =>
+            describe(`where
+              viewer=${viewer.name},
+              ownerGender=${ownerGender},
+              object=${object},
+              count=${count}\n`, () =>
+              it(`should produce proper nested fbt results`, () => {
+                expect(
+                  getFbt({
+                    viewer,
+                    ownerGender,
+                    object,
+                    count,
+                  }),
+                ).toMatchSnapshot();
+              })),
+          ),
+        ),
+      ),
+    );
   });
 });

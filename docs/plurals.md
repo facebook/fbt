@@ -28,7 +28,7 @@ OR
 fbt(
   'You have ' +
     fbt.plural('a like', getLikeCount(), {
-      name: 'number of likes,
+      name: 'number of likes',
       showCount: 'ifMany',
       many: 'likes',
     }) +
@@ -39,17 +39,28 @@ fbt(
 ```
 
 Both the above examples generate the following during [collection](collection).
-```
+```js
 "phrases": [
   {
-    "hashToText": {
-      "bae7d2f1abd57d08a9dca0b5d05edee8": "You have {number of likes} likes on your photos",
-      "3306b396e08398f28d921b46039f008c": "You have {number of likes} likes on your photo",
-      "c9e4b5b48f38634ffecaf34956a4b186": "You have a like on your photos",
-      "cb49d6d764ea8aabdca0e9db7f10ba34": "You have a like on your photo"
+    "hashToLeaf": {
+      "bae7d2f1abd57d08a9dca0b5d05edee8": {
+        "text": "You have {number of likes} likes on your photos",
+        "desc": "plural example",
+      },
+      "3306b396e08398f28d921b46039f008c": {
+        "text": "You have {number of likes} likes on your photo",
+        "desc": "plural example",
+      },
+      "c9e4b5b48f38634ffecaf34956a4b186": {
+        "text": "You have a like on your photos",
+        "desc": "plural example",
+      },
+      "cb49d6d764ea8aabdca0e9db7f10ba34": {
+        "text": "You have a like on your photo"
+        "desc": "plural example",
+      },
     },
     "type": "table",
-    "desc": "plural example",
     ...
   }
 ]
@@ -60,11 +71,11 @@ Both the above examples generate the following during [collection](collection).
 
 #### Optional arguments:
 * **many** `string`: Represents the plural form of the string in English.  Default is `{singular} + 's'`
-* **showCount** `"yes"|"no"|"ifMany"`: Whether to show the `{number}` in the string.   
+* **showCount** `"yes"|"no"|"ifMany"`: Whether to show the `{number}` in the string.
 *Note that the singular phrase never has a token, but inlines to `1`. This is to account for languages like Hebrew for which showing the actual number isn't appropriate*
 
   * **"no"**: (*DEFAULT*) Don't show the count
   * **"ifMany"**: Show the count only in plural case
   * **"yes"**: Show the count in all cases
-* **name** `string`: Name of the token where count shows up. (*Default*: `"number"`) 
+* **name** `string`: Name of the token where count shows up. (*Default*: `"number"`)
 * **value** `mixed`: For overriding the displayed `number`

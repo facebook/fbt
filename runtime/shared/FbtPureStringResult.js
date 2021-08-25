@@ -11,11 +11,14 @@
  *
  * @format
  * @flow strict-local
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  */
+
+/* eslint-disable fb-www/no-commonjs */
 
 const FbtResult = require('FbtResult');
 
-class FbtPureStringResult extends FbtResult {}
+class FbtPureStringResultImpl extends FbtResult {}
 
-module.exports = FbtPureStringResult;
+// $FlowExpectedError Force exported type to match FbtPureStringResult from the fbt.js libdef
+module.exports = (FbtPureStringResultImpl: Class<FbtPureStringResult>);

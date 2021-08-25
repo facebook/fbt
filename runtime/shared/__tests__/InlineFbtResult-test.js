@@ -8,11 +8,12 @@
 jest.disableAutomock();
 
 const InlineFbtResult = require('InlineFbtResult');
-const React = require('React');
 const ReactTestUtils = require('ReactTestUtils');
 
-describe('InlineFbtResult', function() {
-  it('behaves like a string and a React element', function() {
+const React = require('react');
+
+describe('InlineFbtResult', function () {
+  it('behaves like a string and a React element', function () {
     const result = new InlineFbtResult(
       ['hippopotamus'],
       false,

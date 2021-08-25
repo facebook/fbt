@@ -3,6 +3,7 @@
  *
  * @format
  * @flow
+ * @emails oncall+i18n_fbt_js
  */
 
 const {execSync} = require('child_process');

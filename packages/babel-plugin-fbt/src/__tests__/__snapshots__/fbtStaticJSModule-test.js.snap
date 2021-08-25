@@ -1,0 +1,1082 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fbt preserveWhitespace argument should NOT preserve whitespaces that do not neighbor raw text jsx elements and raw text 1`] = `
+const fbt = require("fbt");
+
+var x = fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        desc: "d",
+        text: "{=Where do}{=spaces}{=go?} Good {=question} !",
+        tokenAliases: {
+          "=Where do": "=m0",
+          "=spaces": "=m1",
+          "=go?": "=m2",
+          "=question": "=m4",
+        },
+      },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [
+    fbt._implicitParam(
+      "=m0",
+      /*#__PURE__*/ React.createElement(
+        "span",
+        null,
+        fbt._(
+          /* __FBT__ start */ {
+            jsfbt: {
+              t: {
+                desc:
+                  'In the phrase: "{=Where do}{=spaces}{=go?} Good {=question} !"',
+                text: "Where do",
+              },
+              m: [],
+            },
+            project: "",
+          } /* __FBT__ end */
+        )
+      )
+    ),
+    fbt._implicitParam(
+      "=m1",
+      /*#__PURE__*/ React.createElement(
+        "b",
+        null,
+        fbt._(
+          /* __FBT__ start */ {
+            jsfbt: {
+              t: {
+                desc:
+                  'In the phrase: "{=Where do}{=spaces}{=go?} Good {=question} !"',
+                text: "spaces",
+              },
+              m: [],
+            },
+            project: "",
+          } /* __FBT__ end */
+        )
+      )
+    ),
+    fbt._implicitParam(
+      "=m2",
+      /*#__PURE__*/ React.createElement(
+        "i",
+        null,
+        fbt._(
+          /* __FBT__ start */ {
+            jsfbt: {
+              t: {
+                desc:
+                  'In the phrase: "{=Where do}{=spaces}{=go?} Good {=question} !"',
+                text: "go?",
+              },
+              m: [],
+            },
+            project: "",
+          } /* __FBT__ end */
+        )
+      )
+    ),
+    fbt._implicitParam(
+      "=m4",
+      /*#__PURE__*/ React.createElement(
+        "i",
+        null,
+        fbt._(
+          /* __FBT__ start */ {
+            jsfbt: {
+              t: {
+                desc:
+                  'In the phrase: "{=Where do}{=spaces}{=go?} Good {=question} !"',
+                text: "question",
+              },
+              m: [],
+            },
+            project: "",
+          } /* __FBT__ end */
+        )
+      )
+    ),
+  ]
+);
+
+`;
+
+exports[`fbt preserveWhitespace argument should NOT preserve whitespaces that do not neighbor raw text jsx elements and string variation arguments nested inside jsx element 1`] = `
+var fbt_sv_arg_0;
+
+const fbt = require("fbt");
+
+var x =
+  ((fbt_sv_arg_0 = fbt._plural(this.state.ex1Count)),
+  fbt._(
+    /* __FBT__ start */ {
+      jsfbt: {
+        t: {
+          "*": {
+            desc: "d",
+            text:
+              "{=OuterJsx1} RawText {=OuterJsx2}{=InnerJsx1(plural)sInnerJsx2}",
+            tokenAliases: {
+              "=OuterJsx1": "=m0",
+              "=OuterJsx2": "=m2",
+              "=InnerJsx1(plural)sInnerJsx2": "=m3",
+            },
+          },
+          _1: {
+            desc: "d",
+            text:
+              "{=OuterJsx1} RawText {=OuterJsx2}{=InnerJsx1(plural)InnerJsx2}",
+            tokenAliases: {
+              "=OuterJsx1": "=m0",
+              "=OuterJsx2": "=m2",
+              "=InnerJsx1(plural)InnerJsx2": "=m3",
+            },
+          },
+        },
+        m: [null],
+      },
+      project: "",
+    } /* __FBT__ end */,
+    [
+      fbt_sv_arg_0,
+      fbt._implicitParam(
+        "=m0",
+        /*#__PURE__*/ React.createElement(
+          "a",
+          null,
+          fbt._(
+            /* __FBT__ start */ {
+              jsfbt: {
+                t: {
+                  "*": {
+                    desc:
+                      'In the phrase: "{=OuterJsx1} RawText {=OuterJsx2}{=InnerJsx1(plural)sInnerJsx2}"',
+                    text: "OuterJsx1",
+                  },
+                  _1: {
+                    desc:
+                      'In the phrase: "{=OuterJsx1} RawText {=OuterJsx2}{=InnerJsx1(plural)InnerJsx2}"',
+                    text: "OuterJsx1",
+                  },
+                },
+                m: [null],
+              },
+              project: "",
+            } /* __FBT__ end */,
+            [fbt_sv_arg_0]
+          )
+        )
+      ),
+      fbt._implicitParam(
+        "=m2",
+        /*#__PURE__*/ React.createElement(
+          "b",
+          null,
+          fbt._(
+            /* __FBT__ start */ {
+              jsfbt: {
+                t: {
+                  "*": {
+                    desc:
+                      'In the phrase: "{=OuterJsx1} RawText {=OuterJsx2}{=InnerJsx1(plural)sInnerJsx2}"',
+                    text: "OuterJsx2",
+                  },
+                  _1: {
+                    desc:
+                      'In the phrase: "{=OuterJsx1} RawText {=OuterJsx2}{=InnerJsx1(plural)InnerJsx2}"',
+                    text: "OuterJsx2",
+                  },
+                },
+                m: [null],
+              },
+              project: "",
+            } /* __FBT__ end */,
+            [fbt_sv_arg_0]
+          )
+        )
+      ),
+      fbt._implicitParam(
+        "=m3",
+        /*#__PURE__*/ React.createElement(
+          "b",
+          null,
+          fbt._(
+            /* __FBT__ start */ {
+              jsfbt: {
+                t: {
+                  "*": {
+                    desc:
+                      'In the phrase: "{=OuterJsx1} RawText {=OuterJsx2}{=InnerJsx1(plural)sInnerJsx2}"',
+                    text: "{=InnerJsx1}(plural)s{=InnerJsx2}",
+                    tokenAliases: { "=InnerJsx1": "=m1", "=InnerJsx2": "=m3" },
+                  },
+                  _1: {
+                    desc:
+                      'In the phrase: "{=OuterJsx1} RawText {=OuterJsx2}{=InnerJsx1(plural)InnerJsx2}"',
+                    text: "{=InnerJsx1}(plural){=InnerJsx2}",
+                    tokenAliases: { "=InnerJsx1": "=m1", "=InnerJsx2": "=m3" },
+                  },
+                },
+                m: [null],
+              },
+              project: "",
+            } /* __FBT__ end */,
+            [
+              fbt_sv_arg_0,
+              fbt._implicitParam(
+                "=m1",
+                /*#__PURE__*/ React.createElement(
+                  "i",
+                  null,
+                  fbt._(
+                    /* __FBT__ start */ {
+                      jsfbt: {
+                        t: {
+                          "*": {
+                            desc:
+                              'In the phrase: "{=OuterJsx1} RawText {=OuterJsx2}{=InnerJsx1}(plural)s{=InnerJsx2}"',
+                            text: "InnerJsx1",
+                          },
+                          _1: {
+                            desc:
+                              'In the phrase: "{=OuterJsx1} RawText {=OuterJsx2}{=InnerJsx1}(plural){=InnerJsx2}"',
+                            text: "InnerJsx1",
+                          },
+                        },
+                        m: [null],
+                      },
+                      project: "",
+                    } /* __FBT__ end */,
+                    [fbt_sv_arg_0]
+                  )
+                )
+              ),
+              fbt._implicitParam(
+                "=m3",
+                /*#__PURE__*/ React.createElement(
+                  "i",
+                  null,
+                  fbt._(
+                    /* __FBT__ start */ {
+                      jsfbt: {
+                        t: {
+                          "*": {
+                            desc:
+                              'In the phrase: "{=OuterJsx1} RawText {=OuterJsx2}{=InnerJsx1}(plural)s{=InnerJsx2}"',
+                            text: "InnerJsx2",
+                          },
+                          _1: {
+                            desc:
+                              'In the phrase: "{=OuterJsx1} RawText {=OuterJsx2}{=InnerJsx1}(plural){=InnerJsx2}"',
+                            text: "InnerJsx2",
+                          },
+                        },
+                        m: [null],
+                      },
+                      project: "",
+                    } /* __FBT__ end */,
+                    [fbt_sv_arg_0]
+                  )
+                )
+              ),
+            ]
+          )
+        )
+      ),
+    ]
+  ));
+
+`;
+
+exports[`fbt preserveWhitespace argument should NOT preserve whitespaces that do not neighbor raw text jsx elements with string variation arguments 1`] = `
+var fbt_sv_arg_0;
+
+const fbt = require("fbt");
+
+var x =
+  ((fbt_sv_arg_0 = fbt._plural(this.state.ex1Count, "number")),
+  fbt._(
+    /* __FBT__ start */ {
+      jsfbt: {
+        t: {
+          "*": {
+            desc: "d",
+            text: "{=There should be}{=[number] spaces} !",
+            tokenAliases: {
+              "=There should be": "=m0",
+              "=[number] spaces": "=m1",
+            },
+          },
+          _1: {
+            desc: "d",
+            text: "{=There should be}{=a space} !",
+            tokenAliases: { "=There should be": "=m0", "=a space": "=m1" },
+          },
+        },
+        m: [{ token: "number", type: 2, singular: true }],
+      },
+      project: "",
+    } /* __FBT__ end */,
+    [
+      fbt_sv_arg_0,
+      fbt._implicitParam(
+        "=m0",
+        /*#__PURE__*/ React.createElement(
+          "span",
+          null,
+          fbt._(
+            /* __FBT__ start */ {
+              jsfbt: {
+                t: {
+                  "*": {
+                    desc:
+                      'In the phrase: "{=There should be}{=[number] spaces} !"',
+                    text: "There should be",
+                  },
+                  _1: {
+                    desc: 'In the phrase: "{=There should be}{=a space} !"',
+                    text: "There should be",
+                  },
+                },
+                m: [{ token: "number", type: 2, singular: true }],
+              },
+              project: "",
+            } /* __FBT__ end */,
+            [fbt_sv_arg_0]
+          )
+        )
+      ),
+      fbt._implicitParam(
+        "=m1",
+        /*#__PURE__*/ React.createElement(
+          "b",
+          null,
+          fbt._(
+            /* __FBT__ start */ {
+              jsfbt: {
+                t: {
+                  "*": {
+                    desc:
+                      'In the phrase: "{=There should be}{=[number] spaces} !"',
+                    text: "{number} spaces",
+                  },
+                  _1: {
+                    desc: 'In the phrase: "{=There should be}{=a space} !"',
+                    text: "a space",
+                  },
+                },
+                m: [{ token: "number", type: 2, singular: true }],
+              },
+              project: "",
+            } /* __FBT__ end */,
+            [fbt_sv_arg_0]
+          )
+        )
+      ),
+    ]
+  ));
+
+`;
+
+exports[`fbt preserveWhitespace argument should NOT preserve whitespaces that do not neighbor raw text should not preserve whitespace around text in JSXExpression 1`] = `
+var fbt_sv_arg_0;
+
+const fbt = require("fbt");
+
+var x =
+  ((fbt_sv_arg_0 = fbt._plural(this.state.ex1Count)),
+  fbt._(
+    /* __FBT__ start */ {
+      jsfbt: {
+        t: {
+          "*": {
+            desc: "d",
+            text:
+              "{=OuterJsx1}textInJSXExpression{=OuterJsx2}{=rawText textInJSXExpressionInnerJsx1textInJSXExpression(plural)stextInJSXExpressionInnerJsx2textInJSXExpression}",
+            tokenAliases: {
+              "=OuterJsx1": "=m0",
+              "=OuterJsx2": "=m2",
+              "=rawText textInJSXExpressionInnerJsx1textInJSXExpression(plural)stextInJSXExpressionInnerJsx2textInJSXExpression":
+                "=m3",
+            },
+          },
+          _1: {
+            desc: "d",
+            text:
+              "{=OuterJsx1}textInJSXExpression{=OuterJsx2}{=rawText textInJSXExpressionInnerJsx1textInJSXExpression(plural)textInJSXExpressionInnerJsx2textInJSXExpression}",
+            tokenAliases: {
+              "=OuterJsx1": "=m0",
+              "=OuterJsx2": "=m2",
+              "=rawText textInJSXExpressionInnerJsx1textInJSXExpression(plural)textInJSXExpressionInnerJsx2textInJSXExpression":
+                "=m3",
+            },
+          },
+        },
+        m: [null],
+      },
+      project: "",
+    } /* __FBT__ end */,
+    [
+      fbt_sv_arg_0,
+      fbt._implicitParam(
+        "=m0",
+        /*#__PURE__*/ React.createElement(
+          "a",
+          null,
+          fbt._(
+            /* __FBT__ start */ {
+              jsfbt: {
+                t: {
+                  "*": {
+                    desc:
+                      'In the phrase: "{=OuterJsx1}textInJSXExpression{=OuterJsx2}{=rawText textInJSXExpressionInnerJsx1textInJSXExpression(plural)stextInJSXExpressionInnerJsx2textInJSXExpression}"',
+                    text: "OuterJsx1",
+                  },
+                  _1: {
+                    desc:
+                      'In the phrase: "{=OuterJsx1}textInJSXExpression{=OuterJsx2}{=rawText textInJSXExpressionInnerJsx1textInJSXExpression(plural)textInJSXExpressionInnerJsx2textInJSXExpression}"',
+                    text: "OuterJsx1",
+                  },
+                },
+                m: [null],
+              },
+              project: "",
+            } /* __FBT__ end */,
+            [fbt_sv_arg_0]
+          )
+        )
+      ),
+      fbt._implicitParam(
+        "=m2",
+        /*#__PURE__*/ React.createElement(
+          "b",
+          null,
+          fbt._(
+            /* __FBT__ start */ {
+              jsfbt: {
+                t: {
+                  "*": {
+                    desc:
+                      'In the phrase: "{=OuterJsx1}textInJSXExpression{=OuterJsx2}{=rawText textInJSXExpressionInnerJsx1textInJSXExpression(plural)stextInJSXExpressionInnerJsx2textInJSXExpression}"',
+                    text: "OuterJsx2",
+                  },
+                  _1: {
+                    desc:
+                      'In the phrase: "{=OuterJsx1}textInJSXExpression{=OuterJsx2}{=rawText textInJSXExpressionInnerJsx1textInJSXExpression(plural)textInJSXExpressionInnerJsx2textInJSXExpression}"',
+                    text: "OuterJsx2",
+                  },
+                },
+                m: [null],
+              },
+              project: "",
+            } /* __FBT__ end */,
+            [fbt_sv_arg_0]
+          )
+        )
+      ),
+      fbt._implicitParam(
+        "=m3",
+        /*#__PURE__*/ React.createElement(
+          "b",
+          null,
+          fbt._(
+            /* __FBT__ start */ {
+              jsfbt: {
+                t: {
+                  "*": {
+                    desc:
+                      'In the phrase: "{=OuterJsx1}textInJSXExpression{=OuterJsx2}{=rawText textInJSXExpressionInnerJsx1textInJSXExpression(plural)stextInJSXExpressionInnerJsx2textInJSXExpression}"',
+                    text:
+                      "rawText textInJSXExpression{=InnerJsx1}textInJSXExpression(plural)stextInJSXExpression{=InnerJsx2}textInJSXExpression",
+                    tokenAliases: { "=InnerJsx1": "=m2", "=InnerJsx2": "=m7" },
+                  },
+                  _1: {
+                    desc:
+                      'In the phrase: "{=OuterJsx1}textInJSXExpression{=OuterJsx2}{=rawText textInJSXExpressionInnerJsx1textInJSXExpression(plural)textInJSXExpressionInnerJsx2textInJSXExpression}"',
+                    text:
+                      "rawText textInJSXExpression{=InnerJsx1}textInJSXExpression(plural)textInJSXExpression{=InnerJsx2}textInJSXExpression",
+                    tokenAliases: { "=InnerJsx1": "=m2", "=InnerJsx2": "=m7" },
+                  },
+                },
+                m: [null],
+              },
+              project: "",
+            } /* __FBT__ end */,
+            [
+              fbt_sv_arg_0,
+              fbt._implicitParam(
+                "=m2",
+                /*#__PURE__*/ React.createElement(
+                  "i",
+                  null,
+                  fbt._(
+                    /* __FBT__ start */ {
+                      jsfbt: {
+                        t: {
+                          "*": {
+                            desc:
+                              'In the phrase: "{=OuterJsx1}textInJSXExpression{=OuterJsx2}rawText textInJSXExpression{=InnerJsx1}textInJSXExpression(plural)stextInJSXExpression{=InnerJsx2}textInJSXExpression"',
+                            text: "InnerJsx1",
+                          },
+                          _1: {
+                            desc:
+                              'In the phrase: "{=OuterJsx1}textInJSXExpression{=OuterJsx2}rawText textInJSXExpression{=InnerJsx1}textInJSXExpression(plural)textInJSXExpression{=InnerJsx2}textInJSXExpression"',
+                            text: "InnerJsx1",
+                          },
+                        },
+                        m: [null],
+                      },
+                      project: "",
+                    } /* __FBT__ end */,
+                    [fbt_sv_arg_0]
+                  )
+                )
+              ),
+              fbt._implicitParam(
+                "=m7",
+                /*#__PURE__*/ React.createElement(
+                  "i",
+                  null,
+                  fbt._(
+                    /* __FBT__ start */ {
+                      jsfbt: {
+                        t: {
+                          "*": {
+                            desc:
+                              'In the phrase: "{=OuterJsx1}textInJSXExpression{=OuterJsx2}rawText textInJSXExpression{=InnerJsx1}textInJSXExpression(plural)stextInJSXExpression{=InnerJsx2}textInJSXExpression"',
+                            text: "InnerJsx2",
+                          },
+                          _1: {
+                            desc:
+                              'In the phrase: "{=OuterJsx1}textInJSXExpression{=OuterJsx2}rawText textInJSXExpression{=InnerJsx1}textInJSXExpression(plural)textInJSXExpression{=InnerJsx2}textInJSXExpression"',
+                            text: "InnerJsx2",
+                          },
+                        },
+                        m: [null],
+                      },
+                      project: "",
+                    } /* __FBT__ end */,
+                    [fbt_sv_arg_0]
+                  )
+                )
+              ),
+            ]
+          )
+        )
+      ),
+    ]
+  ));
+
+`;
+
+exports[`fbt preserveWhitespace argument should NOT preserve whitespaces that do not neighbor raw text should preserve voluntarily added spaces between NON-raw text 1`] = `
+var fbt_sv_arg_0;
+
+const fbt = require("fbt");
+
+var x =
+  ((fbt_sv_arg_0 = fbt._plural(this.state.ex1Count)),
+  fbt._(
+    /* __FBT__ start */ {
+      jsfbt: {
+        t: {
+          "*": {
+            desc: "d",
+            text:
+              "{=OuterJsx1} {=OuterJsx2}{=InnerJsx1 (plural)s InnerJsx2 InnerJsx3}",
+            tokenAliases: {
+              "=OuterJsx1": "=m0",
+              "=OuterJsx2": "=m2",
+              "=InnerJsx1 (plural)s InnerJsx2 InnerJsx3": "=m3",
+            },
+          },
+          _1: {
+            desc: "d",
+            text:
+              "{=OuterJsx1} {=OuterJsx2}{=InnerJsx1 (plural) InnerJsx2 InnerJsx3}",
+            tokenAliases: {
+              "=OuterJsx1": "=m0",
+              "=OuterJsx2": "=m2",
+              "=InnerJsx1 (plural) InnerJsx2 InnerJsx3": "=m3",
+            },
+          },
+        },
+        m: [null],
+      },
+      project: "",
+    } /* __FBT__ end */,
+    [
+      fbt_sv_arg_0,
+      fbt._implicitParam(
+        "=m0",
+        /*#__PURE__*/ React.createElement(
+          "a",
+          null,
+          fbt._(
+            /* __FBT__ start */ {
+              jsfbt: {
+                t: {
+                  "*": {
+                    desc:
+                      'In the phrase: "{=OuterJsx1} {=OuterJsx2}{=InnerJsx1 (plural)s InnerJsx2 InnerJsx3}"',
+                    text: "OuterJsx1",
+                  },
+                  _1: {
+                    desc:
+                      'In the phrase: "{=OuterJsx1} {=OuterJsx2}{=InnerJsx1 (plural) InnerJsx2 InnerJsx3}"',
+                    text: "OuterJsx1",
+                  },
+                },
+                m: [null],
+              },
+              project: "",
+            } /* __FBT__ end */,
+            [fbt_sv_arg_0]
+          )
+        )
+      ),
+      fbt._implicitParam(
+        "=m2",
+        /*#__PURE__*/ React.createElement(
+          "b",
+          null,
+          fbt._(
+            /* __FBT__ start */ {
+              jsfbt: {
+                t: {
+                  "*": {
+                    desc:
+                      'In the phrase: "{=OuterJsx1} {=OuterJsx2}{=InnerJsx1 (plural)s InnerJsx2 InnerJsx3}"',
+                    text: "OuterJsx2",
+                  },
+                  _1: {
+                    desc:
+                      'In the phrase: "{=OuterJsx1} {=OuterJsx2}{=InnerJsx1 (plural) InnerJsx2 InnerJsx3}"',
+                    text: "OuterJsx2",
+                  },
+                },
+                m: [null],
+              },
+              project: "",
+            } /* __FBT__ end */,
+            [fbt_sv_arg_0]
+          )
+        )
+      ),
+      fbt._implicitParam(
+        "=m3",
+        /*#__PURE__*/ React.createElement(
+          "b",
+          null,
+          fbt._(
+            /* __FBT__ start */ {
+              jsfbt: {
+                t: {
+                  "*": {
+                    desc:
+                      'In the phrase: "{=OuterJsx1} {=OuterJsx2}{=InnerJsx1 (plural)s InnerJsx2 InnerJsx3}"',
+                    text: "{=InnerJsx1} (plural)s {=InnerJsx2} {=InnerJsx3}",
+                    tokenAliases: {
+                      "=InnerJsx1": "=m2",
+                      "=InnerJsx2": "=m6",
+                      "=InnerJsx3": "=m8",
+                    },
+                  },
+                  _1: {
+                    desc:
+                      'In the phrase: "{=OuterJsx1} {=OuterJsx2}{=InnerJsx1 (plural) InnerJsx2 InnerJsx3}"',
+                    text: "{=InnerJsx1} (plural) {=InnerJsx2} {=InnerJsx3}",
+                    tokenAliases: {
+                      "=InnerJsx1": "=m2",
+                      "=InnerJsx2": "=m6",
+                      "=InnerJsx3": "=m8",
+                    },
+                  },
+                },
+                m: [null],
+              },
+              project: "",
+            } /* __FBT__ end */,
+            [
+              fbt_sv_arg_0,
+              fbt._implicitParam(
+                "=m2",
+                /*#__PURE__*/ React.createElement(
+                  "i",
+                  null,
+                  fbt._(
+                    /* __FBT__ start */ {
+                      jsfbt: {
+                        t: {
+                          "*": {
+                            desc:
+                              'In the phrase: "{=OuterJsx1} {=OuterJsx2}{=InnerJsx1} (plural)s {=InnerJsx2} {=InnerJsx3}"',
+                            text: "InnerJsx1",
+                          },
+                          _1: {
+                            desc:
+                              'In the phrase: "{=OuterJsx1} {=OuterJsx2}{=InnerJsx1} (plural) {=InnerJsx2} {=InnerJsx3}"',
+                            text: "InnerJsx1",
+                          },
+                        },
+                        m: [null],
+                      },
+                      project: "",
+                    } /* __FBT__ end */,
+                    [fbt_sv_arg_0]
+                  )
+                )
+              ),
+              fbt._implicitParam(
+                "=m6",
+                /*#__PURE__*/ React.createElement(
+                  "i",
+                  null,
+                  fbt._(
+                    /* __FBT__ start */ {
+                      jsfbt: {
+                        t: {
+                          "*": {
+                            desc:
+                              'In the phrase: "{=OuterJsx1} {=OuterJsx2}{=InnerJsx1} (plural)s {=InnerJsx2} {=InnerJsx3}"',
+                            text: "InnerJsx2",
+                          },
+                          _1: {
+                            desc:
+                              'In the phrase: "{=OuterJsx1} {=OuterJsx2}{=InnerJsx1} (plural) {=InnerJsx2} {=InnerJsx3}"',
+                            text: "InnerJsx2",
+                          },
+                        },
+                        m: [null],
+                      },
+                      project: "",
+                    } /* __FBT__ end */,
+                    [fbt_sv_arg_0]
+                  )
+                )
+              ),
+              fbt._implicitParam(
+                "=m8",
+                /*#__PURE__*/ React.createElement(
+                  "i",
+                  null,
+                  fbt._(
+                    /* __FBT__ start */ {
+                      jsfbt: {
+                        t: {
+                          "*": {
+                            desc:
+                              'In the phrase: "{=OuterJsx1} {=OuterJsx2}{=InnerJsx1} (plural)s {=InnerJsx2} {=InnerJsx3}"',
+                            text: "InnerJsx3",
+                          },
+                          _1: {
+                            desc:
+                              'In the phrase: "{=OuterJsx1} {=OuterJsx2}{=InnerJsx1} (plural) {=InnerJsx2} {=InnerJsx3}"',
+                            text: "InnerJsx3",
+                          },
+                        },
+                        m: [null],
+                      },
+                      project: "",
+                    } /* __FBT__ end */,
+                    [fbt_sv_arg_0]
+                  )
+                )
+              ),
+            ]
+          )
+        )
+      ),
+    ]
+  ));
+
+`;
+
+exports[`fbt preserveWhitespace argument should NOT preserve whitespaces that do not neighbor raw text should treat comments in JSXExpression like they are not here 1`] = `
+var fbt_sv_arg_0;
+
+const fbt = require("fbt");
+
+var x =
+  ((fbt_sv_arg_0 = fbt._plural(this.state.ex1Count)),
+  fbt._(
+    /* __FBT__ start */ {
+      jsfbt: {
+        t: {
+          "*": {
+            desc: "d",
+            text: "{=OuterJsx1}{=OuterJsx2}{=InnerJsx1(plural)s rawText}",
+            tokenAliases: {
+              "=OuterJsx1": "=m0",
+              "=OuterJsx2": "=m1",
+              "=InnerJsx1(plural)s rawText": "=m2",
+            },
+          },
+          _1: {
+            desc: "d",
+            text: "{=OuterJsx1}{=OuterJsx2}{=InnerJsx1(plural) rawText}",
+            tokenAliases: {
+              "=OuterJsx1": "=m0",
+              "=OuterJsx2": "=m1",
+              "=InnerJsx1(plural) rawText": "=m2",
+            },
+          },
+        },
+        m: [null],
+      },
+      project: "",
+    } /* __FBT__ end */,
+    [
+      fbt_sv_arg_0,
+      fbt._implicitParam(
+        "=m0",
+        /*#__PURE__*/ React.createElement(
+          "a",
+          null,
+          fbt._(
+            /* __FBT__ start */ {
+              jsfbt: {
+                t: {
+                  "*": {
+                    desc:
+                      'In the phrase: "{=OuterJsx1}{=OuterJsx2}{=InnerJsx1(plural)s rawText}"',
+                    text: "OuterJsx1",
+                  },
+                  _1: {
+                    desc:
+                      'In the phrase: "{=OuterJsx1}{=OuterJsx2}{=InnerJsx1(plural) rawText}"',
+                    text: "OuterJsx1",
+                  },
+                },
+                m: [null],
+              },
+              project: "",
+            } /* __FBT__ end */,
+            [fbt_sv_arg_0]
+          )
+        )
+      ),
+      fbt._implicitParam(
+        "=m1",
+        /*#__PURE__*/ React.createElement(
+          "b",
+          null,
+          fbt._(
+            /* __FBT__ start */ {
+              jsfbt: {
+                t: {
+                  "*": {
+                    desc:
+                      'In the phrase: "{=OuterJsx1}{=OuterJsx2}{=InnerJsx1(plural)s rawText}"',
+                    text: "OuterJsx2",
+                  },
+                  _1: {
+                    desc:
+                      'In the phrase: "{=OuterJsx1}{=OuterJsx2}{=InnerJsx1(plural) rawText}"',
+                    text: "OuterJsx2",
+                  },
+                },
+                m: [null],
+              },
+              project: "",
+            } /* __FBT__ end */,
+            [fbt_sv_arg_0]
+          )
+        )
+      ),
+      fbt._implicitParam(
+        "=m2",
+        /*#__PURE__*/ React.createElement(
+          "b",
+          null,
+          fbt._(
+            /* __FBT__ start */ {
+              jsfbt: {
+                t: {
+                  "*": {
+                    desc:
+                      'In the phrase: "{=OuterJsx1}{=OuterJsx2}{=InnerJsx1(plural)s rawText}"',
+                    text: "{=InnerJsx1}(plural)s rawText",
+                    tokenAliases: { "=InnerJsx1": "=m2" },
+                  },
+                  _1: {
+                    desc:
+                      'In the phrase: "{=OuterJsx1}{=OuterJsx2}{=InnerJsx1(plural) rawText}"',
+                    text: "{=InnerJsx1}(plural) rawText",
+                    tokenAliases: { "=InnerJsx1": "=m2" },
+                  },
+                },
+                m: [null],
+              },
+              project: "",
+            } /* __FBT__ end */,
+            [
+              fbt_sv_arg_0,
+              fbt._implicitParam(
+                "=m2",
+                /*#__PURE__*/ React.createElement(
+                  "i",
+                  null,
+                  fbt._(
+                    /* __FBT__ start */ {
+                      jsfbt: {
+                        t: {
+                          "*": {
+                            desc:
+                              'In the phrase: "{=OuterJsx1}{=OuterJsx2}{=InnerJsx1}(plural)s rawText"',
+                            text: "InnerJsx1",
+                          },
+                          _1: {
+                            desc:
+                              'In the phrase: "{=OuterJsx1}{=OuterJsx2}{=InnerJsx1}(plural) rawText"',
+                            text: "InnerJsx1",
+                          },
+                        },
+                        m: [null],
+                      },
+                      project: "",
+                    } /* __FBT__ end */,
+                    [fbt_sv_arg_0]
+                  )
+                )
+              ),
+            ]
+          )
+        )
+      ),
+    ]
+  ));
+
+`;
+
+exports[`fbt preserveWhitespace argument should preserve whitespace around text with inner text and string variation 1`] = `
+var fbt_sv_arg_0;
+
+const fbt = require("fbt");
+
+var x =
+  ((fbt_sv_arg_0 = fbt._plural(this.state.ex1Count)),
+  fbt._(
+    /* __FBT__ start */ {
+      jsfbt: {
+        t: {
+          "*": {
+            desc: "d",
+            text: "outerText {=outerJsx}{=innerJsx innerText (plural)s}",
+            tokenAliases: {
+              "=outerJsx": "=m1",
+              "=innerJsx innerText (plural)s": "=m2",
+            },
+          },
+          _1: {
+            desc: "d",
+            text: "outerText {=outerJsx}{=innerJsx innerText (plural)}",
+            tokenAliases: {
+              "=outerJsx": "=m1",
+              "=innerJsx innerText (plural)": "=m2",
+            },
+          },
+        },
+        m: [null],
+      },
+      project: "",
+    } /* __FBT__ end */,
+    [
+      fbt_sv_arg_0,
+      fbt._implicitParam(
+        "=m1",
+        /*#__PURE__*/ React.createElement(
+          "a",
+          null,
+          fbt._(
+            /* __FBT__ start */ {
+              jsfbt: {
+                t: {
+                  "*": {
+                    desc:
+                      'In the phrase: "outerText {=outerJsx}{=innerJsx innerText (plural)s}"',
+                    text: "outerJsx",
+                  },
+                  _1: {
+                    desc:
+                      'In the phrase: "outerText {=outerJsx}{=innerJsx innerText (plural)}"',
+                    text: "outerJsx",
+                  },
+                },
+                m: [null],
+              },
+              project: "",
+            } /* __FBT__ end */,
+            [fbt_sv_arg_0]
+          )
+        )
+      ),
+      fbt._implicitParam(
+        "=m2",
+        /*#__PURE__*/ React.createElement(
+          "b",
+          null,
+          fbt._(
+            /* __FBT__ start */ {
+              jsfbt: {
+                t: {
+                  "*": {
+                    desc:
+                      'In the phrase: "outerText {=outerJsx}{=innerJsx innerText (plural)s}"',
+                    text: "{=innerJsx} innerText (plural)s",
+                    tokenAliases: { "=innerJsx": "=m1" },
+                  },
+                  _1: {
+                    desc:
+                      'In the phrase: "outerText {=outerJsx}{=innerJsx innerText (plural)}"',
+                    text: "{=innerJsx} innerText (plural)",
+                    tokenAliases: { "=innerJsx": "=m1" },
+                  },
+                },
+                m: [null],
+              },
+              project: "",
+            } /* __FBT__ end */,
+            [
+              fbt_sv_arg_0,
+              fbt._implicitParam(
+                "=m1",
+                /*#__PURE__*/ React.createElement(
+                  "i",
+                  null,
+                  fbt._(
+                    /* __FBT__ start */ {
+                      jsfbt: {
+                        t: {
+                          "*": {
+                            desc:
+                              'In the phrase: "outerText {=outerJsx}{=innerJsx} innerText (plural)s"',
+                            text: "innerJsx",
+                          },
+                          _1: {
+                            desc:
+                              'In the phrase: "outerText {=outerJsx}{=innerJsx} innerText (plural)"',
+                            text: "innerJsx",
+                          },
+                        },
+                        m: [null],
+                      },
+                      project: "",
+                    } /* __FBT__ end */,
+                    [fbt_sv_arg_0]
+                  )
+                )
+              ),
+            ]
+          )
+        )
+      ),
+    ]
+  ));
+
+`;

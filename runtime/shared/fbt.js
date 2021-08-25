@@ -16,13 +16,17 @@
  * @flow strict-local
  * @typechecks
  * @format
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  */
 
 /* eslint max-len: ["warn", 120] */
 require('FbtEnv').setupOnce();
 
 import type {FbtInputOpts, FbtRuntimeInput, FbtTableArgs} from 'FbtHooks';
+import type {ParamVariationType, ValidPronounUsagesType} from 'FbtRuntimeTypes';
+import type {FbtTableKey, PatternHash, PatternString} from 'FbtTable';
+import type {FbtTableArg} from 'FbtTableAccessor';
+import type {GenderConstEnum} from 'GenderConst';
 
 const FbtHooks = require('FbtHooks');
 const {overrides} = require('FbtQTOverrides');
@@ -43,29 +47,26 @@ let jsonExportMode = false; // Used only in React Native
 
 const {ARG} = FbtTable;
 
-const VARIATIONS = {
-  NUMBER: 0,
-  GENDER: 1,
+const ParamVariation: ParamVariationType = {
+  number: 0,
+  gender: 1,
 };
 
-// Must match ValidPronounUsages in FbtConstants.js
-const PRONOUN_USAGE = {
-  OBJECT: 0,
-  POSSESSIVE: 1,
-  REFLEXIVE: 2,
-  SUBJECT: 3,
+const ValidPronounUsages: ValidPronounUsagesType = {
+  object: 0,
+  possessive: 1,
+  reflexive: 2,
+  subject: 3,
 };
 
-const _cachedFbtResults = {};
-
-const fbt = function() {};
+const cachedFbtResults: {[patternStr: PatternString]: Fbt} = {};
 
 /**
  * fbt._() iterates through all indices provided in `args` and accesses
  * the relevant entry in the `table` resulting in the appropriate
  * pattern string.  It then substitutes all relevant substitutions.
  *
- * @param {string|object|array} table - Example: {
+ * @param inputTable - Example: {
  *   "singular": "You have a cat in a photo album named {title}",
  *   "plural": "You have cats in a photo album named {title}"
  * }
@@ -80,16 +81,16 @@ const fbt = function() {};
  * -or-
  *    ["You have a cat in a photo album named {title}", <hash>]
  *
- * @param {?array<array>} args - arguments from which to pull substitutions
+ * @param inputArgs - arguments from which to pull substitutions
  *    Example: [["singular", null], [null, {title: "felines!"}]]
  *
- * @param {?object} options - options for runtime
+ * @param options - options for runtime
  * translation dictionary access. hk stands for hash key which is used to look
  * up translated payload in React Native. ehk stands for enum hash key which
  * contains a structured enums to hash keys map which will later be traversed
  * to look up enum-less translated payload.
  */
-fbt._ = function(
+function fbtCallsite(
   inputTable: FbtRuntimeInput,
   inputArgs: ?FbtTableArgs,
   options: ?FbtInputOpts,
@@ -178,22 +179,24 @@ fbt._ = function(
     );
   }
 
-  const cachedFbt = _cachedFbtResults[patternString];
+  const cachedFbt = cachedFbtResults[patternString];
   const hasSubstitutions = _hasKeys(allSubstitutions);
+
   if (cachedFbt && !hasSubstitutions) {
     return cachedFbt;
   } else {
     const fbtContent = substituteTokens(patternString, allSubstitutions);
-    const result = _wrapContent(fbtContent, patternString, patternHash);
+    // Use this._wrapContent voluntarily so that it can be overwritten in fbs.js
+    const result = (this._wrapContent: typeof wrapContent)(
+      fbtContent,
+      patternString,
+      patternHash,
+    );
     if (!hasSubstitutions) {
-      _cachedFbtResults[patternString] = result;
+      cachedFbtResults[patternString] = result;
     }
     return result;
   }
-};
-
-if (__DEV__) {
-  fbt._getCachedFbt = s => _cachedFbtResults[s];
 }
 
 /**
@@ -211,78 +214,106 @@ function _hasKeys(o) {
 /**
  * fbt._enum() takes an enum value and returns a tuple in the format:
  * [value, null]
- * @param {string|number} value - Example: "id1"
- * @param {object} range - Example: {"id1": "groups", "id2": "videos", ...}
+ * @param value - Example: "id1"
+ * @param range - Example: {"id1": "groups", "id2": "videos", ...}
  */
-fbt._enum = function(value, range) {
+function fbtEnum(
+  value: FbtTableKey,
+  range: {[enumKey: string]: string},
+): FbtTableArg {
   if (__DEV__) {
     invariant(value in range, 'invalid value: %s', value);
   }
   return FbtTableAccessor.getEnumResult(value);
-};
+}
 
 /**
  * fbt._subject() takes a gender value and returns a tuple in the format:
  * [variation, null]
- * @param {number} value - Example: "16777216"
+ * @param value - Example: "16777216"
  */
-fbt._subject = function(value) {
+function fbtSubject(value: GenderConstEnum): FbtTableArg {
   return FbtTableAccessor.getGenderResult(
     getGenderVariations(value),
     null,
     value,
   );
-};
+}
 
 /**
  * fbt._param() takes a `label` and `value` returns a tuple in the format:
  * [?variation, {label: "replaces {label} in pattern string"}]
- * @param {string} label - Example: "label"
- * @param {?string|number|object|array|DOMElement} value
+ * @param label - Example: "label"
+ * @param value
  *   - E.g. 'replaces {label} in pattern'
- * @param {?array} variations
- *   - E.g. [0], [0,count], or [0,foo.someNumber() + 1]
+ * @param variations Variation type and variation value (if explicitly provided)
+ *   E.g.
+ *   number: `[0]`, `[0, count]`, or `[0, foo.someNumber() + 1]`
+ *   gender: `[1, someGender]`
  */
-fbt._param = function(label, value, variations) {
+function fbtParam(
+  label: string,
+  value: mixed,
+  variations?:
+    | [$PropertyType<ParamVariationType, 'number'>, ?number]
+    | [$PropertyType<ParamVariationType, 'gender'>, GenderConstEnum],
+): FbtTableArg {
   const substitution = {[label]: value};
   if (variations) {
-    if (variations[0] === VARIATIONS.NUMBER) {
+    if (variations[0] === ParamVariation.number) {
       const number = variations.length > 1 ? variations[1] : value;
       invariant(typeof number === 'number', 'fbt.param expected number');
 
-      const variation = getNumberVariations(number);
+      const variation = getNumberVariations(number); // this will throw if `number` is invalid
       if (typeof value === 'number') {
         substitution[label] = intlNumUtils.formatNumberWithThousandDelimiters(
           value,
         );
       }
       return FbtTableAccessor.getNumberResult(variation, substitution, number);
-    } else if (variations[0] === VARIATIONS.GENDER) {
-      invariant(variations.length > 1, 'expected gender value');
+    } else if (variations[0] === ParamVariation.gender) {
       const gender = variations[1];
-      const variation = getGenderVariations(gender);
-      return FbtTableAccessor.getGenderResult(variation, substitution, gender);
+      invariant(gender != null, 'expected gender value');
+      return FbtTableAccessor.getGenderResult(
+        getGenderVariations(gender),
+        substitution,
+        gender,
+      );
     } else {
       invariant(false, 'Unknown invariant mask');
     }
   } else {
     return FbtTableAccessor.getSubstitution(substitution);
   }
-};
+}
+
+/**
+ * fbt._implicitParam() behaves like fbt._param()
+ */
+function fbtImplicitParam(
+  label: string,
+  value: mixed,
+  variations?:
+    | [$PropertyType<ParamVariationType, 'number'>, ?number]
+    | [$PropertyType<ParamVariationType, 'gender'>, GenderConstEnum],
+): FbtTableArg {
+  return this._param(label, value, variations);
+}
 
 /**
  * fbt._plural() takes a `count` and 2 optional params: `label` and `value`.
  * It returns a tuple in the format:
  * [?variation, {label: "replaces {label} in pattern string"}]
- * @param {number} count - Example: 2
- * @param {?string} label
+ * @param count - Example: 2
+ * @param label
  *   - E.g. 'replaces {number} in pattern'
- * @param {?string} value
+ * @param value
  *   - The value to use (instead of count) for replacing {label}
  */
-fbt._plural = function(count, label, value) {
+function fbtPlural(count: number, label: ?string, value?: mixed): FbtTableArg {
   const variation = getNumberVariations(count);
   const substitution = {};
+  // $FlowFixMe[sketchy-null-string]
   if (label) {
     if (typeof value === 'number') {
       substitution[label] = intlNumUtils.formatNumberWithThousandDelimiters(
@@ -290,20 +321,25 @@ fbt._plural = function(count, label, value) {
       );
     } else {
       substitution[label] =
+        // $FlowFixMe[sketchy-null-mixed]
         value || intlNumUtils.formatNumberWithThousandDelimiters(count);
     }
   }
   return FbtTableAccessor.getNumberResult(variation, substitution, count);
-};
+}
 
 /**
  * fbt._pronoun() takes a 'usage' string and a GenderConst value and returns a tuple in the format:
  * [variations, null]
- * @param {number} usage - Example: PRONOUN_USAGE.object.
- * @param {number} gender - Example: GenderConst.MALE_SINGULAR
- * @param {?object} options - Example: { human: 1 }
+ * @param usage - Example: PronounUsage.object.
+ * @param gender - Example: GenderConst.MALE_SINGULAR
+ * @param options - Example: { human: 1 }
  */
-fbt._pronoun = function(usage, gender, options) {
+function fbtPronoun(
+  usage: $Values<typeof ValidPronounUsages>,
+  gender: GenderConstEnum,
+  options: ?{human?: 1},
+): FbtTableArg {
   invariant(
     gender !== GenderConst.NOT_A_PERSON || !options || !options.human,
     'Gender cannot be GenderConst.NOT_A_PERSON if you set "human" to true',
@@ -311,13 +347,16 @@ fbt._pronoun = function(usage, gender, options) {
 
   const genderKey = getPronounGenderKey(usage, gender);
   return FbtTableAccessor.getPronounResult(genderKey);
-};
+}
 
-// See JSFbtTable::getPronounGenderKey().
+/**
+ * Must match implementation from babel-plugin-fbt/src/fbt-nodes/FbtPronounNode.js
+ */
 function getPronounGenderKey(usage, gender) {
   switch (gender) {
     case GenderConst.NOT_A_PERSON:
-      return usage === PRONOUN_USAGE.OBJECT || usage === PRONOUN_USAGE.REFLEXIVE
+      return usage === ValidPronounUsages.object ||
+        usage === ValidPronounUsages.reflexive
         ? GenderConst.NOT_A_PERSON
         : GenderConst.UNKNOWN_PLURAL;
 
@@ -329,7 +368,7 @@ function getPronounGenderKey(usage, gender) {
     case GenderConst.MALE_SINGULAR_GUESS:
       return GenderConst.MALE_SINGULAR;
 
-    case GenderConst.MIXED_SINGULAR: // And MIXED_PLURAL; they have the same integer values.
+    case GenderConst.MIXED_UNKNOWN:
     case GenderConst.FEMALE_PLURAL:
     case GenderConst.MALE_PLURAL:
     case GenderConst.NEUTER_PLURAL:
@@ -338,7 +377,7 @@ function getPronounGenderKey(usage, gender) {
 
     case GenderConst.NEUTER_SINGULAR:
     case GenderConst.UNKNOWN_SINGULAR:
-      return usage === PRONOUN_USAGE.REFLEXIVE
+      return usage === ValidPronounUsages.reflexive
         ? GenderConst.NOT_A_PERSON
         : GenderConst.UNKNOWN_PLURAL;
   }
@@ -351,41 +390,49 @@ function getPronounGenderKey(usage, gender) {
  * fbt.name() takes a `label`, `value`, and `gender` and
  * returns a tuple in the format:
  * [gender, {label: "replaces {label} in pattern string"}]
- * @param {string} label - Example: "label"
- * @param {?string|number|object|array|DOMElement} value
+ * @param label - Example: "label"
+ * @param value
  *   - E.g. 'replaces {label} in pattern'
- * @param {number} gender - Example: "IntlVariations.GENDER_FEMALE"
+ * @param gender - Example: "IntlVariations.GENDER_FEMALE"
  */
-fbt._name = function(label, value, gender) {
+function fbtName(
+  label: string,
+  value: mixed,
+  gender: GenderConstEnum,
+): FbtTableArg {
   const variation = getGenderVariations(gender);
   const substitution = {};
   substitution[label] = value;
   return FbtTableAccessor.getGenderResult(variation, substitution, gender);
-};
+}
 
-function _wrapContent(fbtContent, patternString, patternHash): Fbt {
+function wrapContent(
+  fbtContent: $NestedFbtContentItems | string,
+  translation: PatternString,
+  hash: ?PatternHash,
+): Fbt {
   const contents = typeof fbtContent === 'string' ? [fbtContent] : fbtContent;
   const errorListener = FbtHooks.getErrorListener({
-    translation: patternString,
-    hash: patternHash,
+    translation,
+    hash,
   });
   const result = FbtHooks.getFbtResult({
     contents,
     errorListener,
-    patternString,
-    patternHash,
+    patternHash: hash,
+    patternString: translation,
   });
   // $FlowFixMe[incompatible-return] FbtHooks.getFbtResult returns mixed.
   return result;
 }
 
-fbt.enableJsonExportMode = function() {
+function enableJsonExportMode(): void {
   jsonExportMode = true;
-};
+}
 
-fbt.disableJsonExportMode = function() {
+function disableJsonExportMode(): void {
   jsonExportMode = false;
-};
+}
 
 // Must define this as a standalone function
 // because Flow doesn't support %check on as a class static method
@@ -393,6 +440,22 @@ function isFbtInstance(value: mixed): boolean %checks {
   return value instanceof FbtResultBase;
 }
 
+const fbt = function () {};
+fbt._ = fbtCallsite;
+fbt._enum = fbtEnum;
+fbt._implicitParam = fbtImplicitParam;
+fbt._name = fbtName;
+fbt._param = fbtParam;
+fbt._plural = fbtPlural;
+fbt._pronoun = fbtPronoun;
+fbt._subject = fbtSubject;
+fbt._wrapContent = wrapContent;
+fbt.disableJsonExportMode = disableJsonExportMode;
+fbt.enableJsonExportMode = enableJsonExportMode;
 fbt.isFbtInstance = isFbtInstance;
 
+if (__DEV__) {
+  fbt._getCachedFbt = (s: string): Fbt => cachedFbtResults[s];
+}
+// Use $-FlowFixMe instead of $-FlowExpectedError since fbsource doesn't use the latter
 module.exports = ((fbt: $FlowFixMe): $FbtFunctionAPI);

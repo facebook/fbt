@@ -3,7 +3,7 @@
  *
  * @format
  * @flow
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  */
 
 const intlList: JestMockFn<
@@ -19,7 +19,15 @@ const intlList: JestMockFn<
       ?$Keys<$TEMPORARY$object<{|AND: string, NONE: string, OR: string|}>>,
   >,
   string,
-> = jest.fn<$ReadOnlyArray<*>, string>(
+> = jest.fn<
+  $ReadOnlyArray<
+    ?$Keys<{COMMA: string, SEMICOLON: string}> &
+      any &
+      $ReadOnlyArray<React$Node> &
+      ?$Keys<{AND: string, NONE: string, OR: string}>,
+  >,
+  string,
+>(
   (
     items: $ReadOnlyArray<React$Node>,
     conjunction: ?$Keys<typeof CONJUNCTIONS>,

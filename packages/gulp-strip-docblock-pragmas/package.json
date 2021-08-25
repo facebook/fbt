@@ -1,0 +1,30 @@
+{
+  "name": "gulp-strip-docblock-pragmas",
+  "description": "Strip specific pragmas from your file's docblock in Gulp",
+  "version": "0.0.3",
+  "main": "src/index.js",
+  "license": "MIT",
+  "dependencies": {
+    "jest-docblock": "^26.0.0",
+    "through2": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=6.0"
+  },
+  "keywords": [
+    "gulpplugin",
+    "gulp",
+    "docblock"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/facebook/fbt.git"
+  },
+  "scripts": {
+    "test": "yarn jest"
+  },
+  "bugs": "https://github.com/facebook/fbt/issues",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}

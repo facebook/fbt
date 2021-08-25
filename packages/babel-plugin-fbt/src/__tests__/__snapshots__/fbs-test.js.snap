@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test declarative (jsx) <fbs> syntax translation should convert a common string 1`] = `
+const fbs = require("fbs");
+
+const fbsCommonElem = fbs._(
+  /* __FBT__ start */ {
+    jsfbt: { t: { desc: "Button to post a comment", text: "Post" }, m: [] },
+    project: "",
+  } /* __FBT__ end */
+);
+
+`;
+
+exports[`Test declarative (jsx) <fbs> syntax translation should convert a simple string 1`] = `
+const fbs = require("fbs");
+
+const fbsElem = fbs._(
+  /* __FBT__ start */ {
+    jsfbt: { t: { desc: "str_description", text: "a simple string" }, m: [] },
+    project: "",
+  } /* __FBT__ end */
+);
+
+`;
+
+exports[`Test declarative (jsx) <fbs> syntax translation should convert a string with a parameter 1`] = `
+const fbs = require("fbs");
+
+const fbsElem = fbs._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: { desc: "str_description", text: "a string with a {param name}" },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [fbs._param("param name", parameter)]
+);
+
+`;
+
+exports[`Test functional fbs() syntax translation should convert a common string 1`] = `
+const fbs = require("fbs");
+
+const fbsCommonCall = fbs._(
+  /* __FBT__ start */ {
+    jsfbt: { t: { desc: "Button to post a comment", text: "Post" }, m: [] },
+    project: "",
+  } /* __FBT__ end */
+);
+
+`;
+
+exports[`Test functional fbs() syntax translation should convert a simple string 1`] = `
+const fbs = require("fbs");
+
+const fbsCall = fbs._(
+  /* __FBT__ start */ {
+    jsfbt: { t: { desc: "str_description", text: "a simple string" }, m: [] },
+    project: "",
+  } /* __FBT__ end */
+);
+
+`;
+
+exports[`Test functional fbs() syntax translation should convert a string with a gender parameter 1`] = `
+const fbs = require("fbs");
+
+const IntlVariations = require("IntlVariations");
+
+const fbsCall = fbs._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        "*": { desc: "str_description", text: "a string with a {param name}" },
+      },
+      m: [{ token: "param name", type: 1 }],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [fbs._param("param name", parameter, [1, IntlVariations.GENDER_MALE])]
+);
+
+`;

@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  *
  * @noflow
+ * @emails oncall+i18n_fbt_js
  */
 
 import React from "react";

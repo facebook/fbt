@@ -1,0 +1,28 @@
+/**
+ * Copyright 2004-present Facebook. All Rights Reserved.
+ *
+ * @format
+ * @flow strict
+ * @emails oncall+i18n_fbt_js
+ */
+
+'use strict';
+
+/**
+ * Just the minimum Flow definitions necessary to use SparkMD5 with other files
+ */
+declare class SparkMD5 {
+  constructor(): void;
+
+  /**
+   * Performs the md5 hash on a string.
+   * A conversion will be applied if utf8 string is detected.
+   *
+   * @param str The string
+   * @param raw True to get the raw result, false to get the hex result
+   */
+  static hash(str: string, raw: boolean): string | Array<number>;
+  static hash(str: string): string;
+}
+
+declare module.exports: Class<SparkMD5>;

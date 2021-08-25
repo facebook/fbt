@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  *
  * @noflow
+ * @emails oncall+i18n_fbt_js
  */
 
 module.exports = {
@@ -33,7 +34,7 @@ module.exports = {
         alt: "FBT Logo",
         src: "img/fbt.png"
       },
-      links: [
+      items: [
         { to: "docs/getting_started_on_web", label: "Docs", position: "right" },
         { to: "help", label: "Help", position: "right" },
         {
@@ -80,6 +81,24 @@ module.exports = {
               href: "https://twitter.com/fbt_js"
             }
           ]
+        },
+        {
+          title: 'Legal',
+          // Please do not remove the privacy and terms, it's a legal requirement.
+          items: [
+            {
+              label: 'Privacy',
+              href: 'https://opensource.facebook.com/legal/privacy/',
+              target: '_blank',
+              rel: 'noreferrer noopener',
+            },
+            {
+              label: 'Terms',
+              href: 'https://opensource.facebook.com/legal/terms/',
+              target: '_blank',
+              rel: 'noreferrer noopener',
+            },
+          ],
         },
         {
           title: "More",

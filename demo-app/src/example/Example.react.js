@@ -4,14 +4,19 @@
  * Copyright (c) Facebook, Inc. and its affiliates. All rights reserved.
  *
  * @format
+ * @noflow
  * @fbt {"project": "fbt-demo-project"}
+ * @emails oncall+i18n_fbt_js
  */
+
+/* eslint-disable fb-www/flow-exact-by-default-object-types */
 
 import './css/Example.css';
 import classNames from 'classnames';
 import fbt, {GenderConst, IntlVariations, init} from 'fbt';
 import * as React from 'react';
 
+// eslint-disable-next-line fb-www/no-module-aliasing
 const ExampleEnum = require('./Example$FbtEnum');
 
 const viewerContext = {
@@ -61,6 +66,12 @@ const LOCALES = Object.freeze({
     bcp47: 'ja',
     displayName: '\u65E5\u672C\u8A9E',
     englishName: 'Japanese',
+    rtl: false,
+  }),
+  ru_RU: Object.freeze({
+    bcp47: 'ru',
+    displayName: 'Русский',
+    englishName: 'Russian',
     rtl: false,
   }),
 });
@@ -122,9 +133,9 @@ export default class Example extends React.Component<Props, State> {
             <fbt desc="header">Construct sentences</fbt>
           </h1>
           <h2>
-            <fbt desc="yet another header">
-              Use the form below to see FBT in action.
-            </fbt>
+            {/* For fbt common strings, the description will be sourced from an external manifest.
+            See `--fbt-common-path` option from `fbt-collect` and common_strings.json */}
+            <fbt common={true}>Use the form below to see FBT in action.</fbt>
           </h2>
           <form action="" method="get" onSubmit={this.onSubmit}>
             <fieldset>
@@ -160,10 +171,10 @@ export default class Example extends React.Component<Props, State> {
                   className={classNames('example_input', 'example_input--40')}>
                   <input
                     name="name"
-                    placeholder={fbt('name', 'name field')}
                     onChange={(event: SyntheticUIEvent<>) => {
                       this.setState({ex1Name: event.target.value});
                     }}
+                    placeholder={fbt('name', 'name field')}
                     type="text"
                   />
                 </span>
@@ -171,11 +182,11 @@ export default class Example extends React.Component<Props, State> {
                   className={classNames('example_input', 'example_input--30')}>
                   <input
                     name="count"
-                    placeholder={fbt('count', 'count field')}
                     onChange={(event: SyntheticUIEvent<>) => {
                       const val = parseInt(event.target.value, 10);
                       this.setState({ex1Count: isNaN(val) ? 1 : val});
                     }}
+                    placeholder={fbt('count', 'count field')}
                     type="number"
                   />
                 </span>
@@ -207,15 +218,15 @@ export default class Example extends React.Component<Props, State> {
             <fieldset>
               <span className="sentence example_row">
                 <fbt desc="example 1">
-                  <fbt:param name="name" gender={this.state.ex1Gender}>
+                  <fbt:param gender={this.state.ex1Gender} name="name">
                     <b className="padRight">{this.state.ex1Name}</b>
                   </fbt:param>
                   has shared
                   <a className="neatoLink" href="#">
                     <fbt:plural
+                      count={this.state.ex1Count}
                       many="photos"
-                      showCount="ifMany"
-                      count={this.state.ex1Count}>
+                      showCount="ifMany">
                       a photo
                     </fbt:plural>
                   </a>
@@ -230,10 +241,10 @@ export default class Example extends React.Component<Props, State> {
                   className={classNames('example_input', 'example_input--40')}>
                   <input
                     name="ex2Name"
-                    placeholder={fbt('name', 'name field')}
                     onChange={(event: SyntheticUIEvent<>) => {
                       this.setState({ex2Name: event.target.value});
                     }}
+                    placeholder={fbt('name', 'name field')}
                     type="text"
                   />
                 </span>
@@ -300,9 +311,9 @@ export default class Example extends React.Component<Props, State> {
                     <a href="#">View</a>
                   </b>{' '}
                   <fbt:pronoun
-                    type="possessive"
                     gender={this.state.ex2Pronoun}
-                    human="true"
+                    human={false}
+                    type="possessive"
                   />{' '}
                   <fbt:enum
                     enum-range={ExampleEnum}
@@ -315,10 +326,10 @@ export default class Example extends React.Component<Props, State> {
               <span className="example_row">
                 <button
                   className="bottom"
-                  type="submit"
                   onClick={e => {
                     window.open('https://github.com/facebook/fbt', '_blank');
-                  }}>
+                  }}
+                  type="submit">
                   {fbt('Try it out!', 'Sign up button')}
                 </button>
               </span>

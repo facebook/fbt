@@ -7,7 +7,7 @@
  * kept in sync.
  *
  * Run the following command to sync the change from www to fbsource.
- *   js1 upgrade www-shared -p fbt --local ~/www
+ *   js1 upgrade www-shared -p intl
  *
  * Renders a list of items, similar to :fbt:large-list / :intl:large-list. This
  * is similar to doing .join(', ') but is culturally-aware (uses fbt calls) and
@@ -18,17 +18,16 @@
  * @fbt {"project": "intl-core"}
  * @typechecks
  * @flow strict-local
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  */
 
 // flowlint ambiguous-object-type:error
 
 'use strict';
 
-const React = require('React');
-
 const fbt = require('fbt');
 const invariant = require('invariant');
+const React = require('react');
 
 const CONJUNCTIONS = {
   AND: 'AND',
@@ -37,17 +36,18 @@ const CONJUNCTIONS = {
 };
 
 const DELIMITERS = {
+  BULLET: 'BULLET',
   COMMA: 'COMMA',
   SEMICOLON: 'SEMICOLON',
 };
 
-const intlList = function<TItem: React.Node>(
+const intlList = function <TItem: React.Node>(
   items: $ReadOnlyArray<TItem>,
   conjunction: ?$Keys<typeof CONJUNCTIONS>,
   delimiter: ?$Keys<typeof DELIMITERS>,
 ): TItem | Fbt {
   if (__DEV__) {
-    items.forEach(function(item) {
+    items.forEach(function (item) {
       invariant(
         typeof item === 'string' || React.isValidElement(item),
         'Must provide a string or ReactComponent to intlList.',
@@ -78,6 +78,20 @@ const intlList = function<TItem: React.Node>(
             }>
             <fbt:param name="previous items">{output}</fbt:param>
             {'; '}
+            <fbt:param name="following items">{items[i]}</fbt:param>
+          </fbt>
+        );
+        break;
+      case DELIMITERS.BULLET:
+        output = (
+          <fbt
+            desc={
+              'A list of items of various types separated by bullets, for example: ' +
+              '"Menlo Park, CA \u2022 Seattle, WA \u2022 New York City, NY". ' +
+              '{previous items} and {following items} are themselves ' +
+              'lists that contain one or more items.'
+            }>
+            <fbt:param name="previous items">{output}</fbt:param> &bull;{' '}
             <fbt:param name="following items">{items[i]}</fbt:param>
           </fbt>
         );
@@ -154,6 +168,18 @@ function _getConjunction(
               <fbt:param name="last item">{lastItem}</fbt:param>
             </fbt>
           );
+        case DELIMITERS.BULLET:
+          return (
+            <fbt
+              desc={
+                'A list of items of various types separated by bullets, for example: ' +
+                '"Menlo Park, CA \u2022 Seattle, WA \u2022 New York City, NY". ' +
+                '{previous items} contains one or more items.'
+              }>
+              <fbt:param name="list of items">{list}</fbt:param> &bull;{' '}
+              <fbt:param name="last item">{lastItem}</fbt:param>
+            </fbt>
+          );
         default:
           return (
             <fbt
@@ -179,12 +205,15 @@ function _getConjunction(
 intlList.DELIMITERS = DELIMITERS;
 intlList.CONJUNCTIONS = CONJUNCTIONS;
 
-module.exports = (intlList: (<TItem: React.Node>(
-  items: $ReadOnlyArray<TItem>,
-  conjunction: ?$Keys<typeof CONJUNCTIONS>,
-  delimiter: ?$Keys<typeof DELIMITERS>,
-) => TItem | Fbt) & {
+type IntlListExport = {|
+  <TItem: React.Node>(
+    items: $ReadOnlyArray<TItem>,
+    conjunction: ?$Keys<typeof CONJUNCTIONS>,
+    delimiter: ?$Keys<typeof DELIMITERS>,
+  ): TItem | Fbt,
+
   DELIMITERS: typeof DELIMITERS,
   CONJUNCTIONS: typeof CONJUNCTIONS,
-  ...
-});
+|};
+
+module.exports = (intlList: IntlListExport);

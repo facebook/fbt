@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Fbt Enum should handle functional enums (with references) (import default) 1`] = `
+import fbt from "fbt";
+import aEnum from "Test$FbtEnum";
+
+var x = fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        id1: { desc: "enums!", text: "Click to see groups" },
+        id2: { desc: "enums!", text: "Click to see photos" },
+        id3: { desc: "enums!", text: "Click to see videos" },
+      },
+      m: [null],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [fbt._enum(id, aEnum)]
+);
+
+`;
+
+exports[`Test Fbt Enum should handle functional enums (with references) (import star) 1`] = `
+import fbt from "fbt";
+import * as aEnum from "Test$FbtEnum";
+
+var x = fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        id1: { desc: "enums!", text: "Click to see groups" },
+        id2: { desc: "enums!", text: "Click to see photos" },
+        id3: { desc: "enums!", text: "Click to see videos" },
+      },
+      m: [null],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [fbt._enum(id, aEnum)]
+);
+
+`;
+
+exports[`Test Fbt Enum should handle functional enums (with references) (require) 1`] = `
+const fbt = require("fbt");
+
+let aEnum = require("Test$FbtEnum");
+
+var x = fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        id1: { desc: "enums!", text: "Click to see groups" },
+        id2: { desc: "enums!", text: "Click to see photos" },
+        id3: { desc: "enums!", text: "Click to see videos" },
+      },
+      m: [null],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [fbt._enum(id, aEnum)]
+);
+
+`;
+
+exports[`Test Fbt Enum should handle functional enums (with references) in templates 1`] = `
+const fbt = require("fbt");
+
+let aEnum = require("Test$FbtEnum");
+
+var x = fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        id1: { desc: "enums!", text: "Click to see groups" },
+        id2: { desc: "enums!", text: "Click to see photos" },
+        id3: { desc: "enums!", text: "Click to see videos" },
+      },
+      m: [null],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [fbt._enum(id, aEnum)]
+);
+
+`;
+
+exports[`Test Fbt Enum should handle jsx enums (with references) 1`] = `
+const fbt = require("fbt");
+
+let aEnum = require("Test$FbtEnum");
+
+var x = fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        id1: { desc: "enums!", text: "Click to see groups" },
+        id2: { desc: "enums!", text: "Click to see photos" },
+        id3: { desc: "enums!", text: "Click to see videos" },
+      },
+      m: [null],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [fbt._enum(id, aEnum)]
+);
+
+`;
+
+exports[`Test Fbt Enum should handle jsx string literals 1`] = `
+const fbt = require("fbt");
+
+let aEnum = require("Test$FbtEnum");
+
+var x = fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        id1: { desc: "enums!", text: "Click to see groups" },
+        id2: { desc: "enums!", text: "Click to see photos" },
+        id3: { desc: "enums!", text: "Click to see videos" },
+      },
+      m: [null],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [fbt._enum("id1", aEnum)]
+);
+
+`;

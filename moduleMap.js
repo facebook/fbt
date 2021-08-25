@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  *
  * @format
+ * @noflow
+ * @emails oncall+i18n_fbt_js
  */
 'use strict';
 
@@ -13,7 +15,7 @@ const moduleMap = Object.assign(
   {
     invariant: 'invariant',
     React: 'react',
-    ReactDOM: 'react-dom',
+    ReactDOMLegacy_DEPRECATED: 'react-dom',
   },
 );
 

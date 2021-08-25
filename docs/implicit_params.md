@@ -8,8 +8,8 @@ sidebar_label: Implicit parameters
 ### The hidden `__viewing_user__` token
 
 If a token of `__viewing_user__` is provided, it is expected to have the
-corresponding [`type`](translation) of `IntlVariations.GENDER*`. When
-provided, at [translation](translation) time, `JSFbtBuilder` will
+corresponding [`type`](translating) of `IntlVariations.GENDER*`. When
+provided, at [translation](translating) time, `JSFbtBuilder` will
 create a special key in its table payload which signals to the runtime
 to check the gender of `IntlVariations.GENDER` in order to variate on
 gender.
@@ -19,7 +19,7 @@ gender.
 
 Similar to [viewer gender](implicit_params#viewer-gender), this is an
 implicit variation based on gender.  Whether the variation is provided
-is determined at the [translation](translation) level.  A translator
+is determined at the [translation](translating) level.  A translator
 may choose to variate on `__subject__` or not.
 
 Unlike viewer gender, subject requires that the `fbt` callsite provide it via the [optional argument](api_intro#optional-attributes)

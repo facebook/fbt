@@ -3,7 +3,7 @@
  *
  * Dummy class on www. Fetches translations from language packs on RN/CS.
  *
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  * @flow strict-local
  * @format
  */
@@ -14,7 +14,7 @@ import type {FbtRuntimeCallInput, FbtTranslatedInput} from 'FbtHooks';
 
 const FbtHooks = require('FbtHooks');
 
-let translatedFbts = null;
+let translatedFbts: TranslationDict = {};
 
 type TranslationStr = string;
 
@@ -30,7 +30,7 @@ const FbtTranslations = {
     const {args, options} = input;
     const hashKey = options?.hk;
     const {locale} = FbtHooks.getViewerContext();
-    const table = translatedFbts?.[locale];
+    const table = translatedFbts[locale];
     if (__DEV__) {
       if (!table && locale !== DEFAULT_SRC_LOCALE) {
         console.warn('Translations have not been provided');
@@ -48,6 +48,19 @@ const FbtTranslations = {
 
   registerTranslations(translations: TranslationDict): void {
     translatedFbts = translations;
+  },
+
+  getRegisteredTranslations(): TranslationDict {
+    return translatedFbts;
+  },
+
+  mergeTranslations(newTranslations: TranslationDict): void {
+    Object.keys(newTranslations).forEach(locale => {
+      translatedFbts[locale] = Object.assign(
+        translatedFbts[locale] ?? {},
+        newTranslations[locale],
+      );
+    });
   },
 };
 

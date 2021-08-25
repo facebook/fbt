@@ -1,8 +1,9 @@
 # Since .gitignore is not considered when .npmignore is present
 node_modules
 
-translate/__tests__
-bin/__fixtures__
-bin/__tests__
-__mocks__
-__tests__
+# Example of expected npm output files: P150537602
+**
+!dist/**
+**/__tests__
+**/__fixtures__
+**/__mocks__

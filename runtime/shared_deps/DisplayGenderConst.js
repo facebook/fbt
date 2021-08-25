@@ -7,6 +7,7 @@
  *
  * @flow strict
  * @nolint
+ * @emails oncall+i18n_fbt_js
  */
 
 export type DisplayGenderConstType = "UNKNOWN" | "FEMALE" | "MALE" | "NEUTER";

@@ -11,7 +11,7 @@
  *
  * @format
  * @flow strict
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  */
 
 const REACT_ELEMENT_TYPE = ((typeof Symbol === 'function' &&

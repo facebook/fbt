@@ -1,7 +1,7 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  * @flow strict-local
  * @format
  */
@@ -35,10 +35,9 @@ export type FbtRuntimeInput =
   | [PatternString, PatternHash]
   | FbtInputTable;
 
-export type FbtInputTable = {
+export type FbtInputTable = {|
   [key: FbtTableKey]: FbtRuntimeInput,
-  ...,
-};
+|};
 
 export type FbtTableArgs = Array<FbtTableArg>;
 
@@ -56,7 +55,7 @@ export type FbtTranslatedInput = {
  */
 export type FbtEnumHashKeyTable = {
   [key: FbtTableKey]: PatternString | FbtEnumHashKeyTable,
-  ...,
+  ...
 };
 
 export type FbtInputOpts = {

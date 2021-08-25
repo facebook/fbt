@@ -7,23 +7,34 @@ require "json"
 
 package = JSON.parse(File.read(File.join(__dir__, "package.json")))
 
-Pod::Spec.new do |s|
-  s.name         = "react-native-fbt"
-  s.version      = package["version"]
-  s.summary      = package["description"]
-  s.description  = <<-DESC
-                  react-native-fbt
-                   DESC
-  s.homepage     = "https://github.com/facebook/fbt.git"
-  s.license      = "MIT"
-  s.platforms    = { :ios => "10.0", :tvos => "10.0" }
-  s.authors      = { "Your Name" => "yourname@email.com" }
-  s.source       = { :git => "https://github.com/facebook/fbt.git", :tag => "#{s.version}" }
+folly_compiler_flags = '-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1 -Wno-comma -Wno-shorten-64-to-32'
+folly_version = '2021.04.26.00'
 
-  s.source_files = "ios/**/*.{h,m,mm,swift}"
-  s.requires_arc = true
+Pod::Spec.new do |s|
+  s.name            = "react-native-fbt"
+  s.version         = package["version"]
+  s.summary         = package["description"]
+  s.description     = "react-native-fbt"
+  s.homepage        = "https://github.com/facebook/fbt.git"
+  s.license         = "MIT"
+  s.platforms       = { :ios => "11.0", :tvos => "11.0" }
+  s.compiler_flags  = folly_compiler_flags + ' -Wno-nullability-completeness'
+  s.author          = "Facebook, Inc. and its affiliates"
+  s.source          = { :git => "https://github.com/facebook/fbt.git", :tag => "#{s.version}" }
+
+  s.source_files    = "ios/**/*.{h,m,mm,swift}"
+  s.requires_arc    = true
 
   s.dependency "React"
+  s.dependency "RCT-Folly", folly_version
 
   # s.dependency "..."
+
+  # Enable codegen for this library
+  use_react_native_codegen!(s, {
+    :react_native_path => "../react-native",
+    :js_srcs_dir => "./js",
+    :modules_output_dir => "./ios",
+    :library_name => "FBReactNativeFbtModuleSpec"
+  })
 end

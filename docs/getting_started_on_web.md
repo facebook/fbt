@@ -16,6 +16,8 @@ The required NPM modules to add to your `dependencies` in your app are:
  * [**babel-plugin-fbt-runtime**](https://www.npmjs.com/package/babel-plugin-fbt-runtime) - The secondary Babel transform
    * Transforms the raw payloads within `fbt._(...)` so they can be used at runtime (by `fbt._`)
    * NOTE: [This plugin should get merged into `babel-plugin-fbt`](https://github.com/facebook/fbt/issues/125)
+ * [**@fbtjs/default-collection-transform**](https://www.npmjs.com/package/@fbtjs/default-collection-transform)
+   * Only required if if you elect *not* to pass a custom `--transform` nor `--custom-collector` in the [collection script](https://github.com/facebook/fbt/blob/3fc75eb5b3303db6041df098b5f77a94b5f36309/packages/babel-plugin-fbt/src/bin/collectFbt.js#L116-L152)
 
 If you're unfamiliar with [Babel](https://babeljs.io/), you can read through [their documentation here](https://babeljs.io/)
 
@@ -46,19 +48,20 @@ You'll need to add the fbt babel transforms in a manner similar to our demo-app.
 ## Build-time / offline processes
 
 ### Collection
-There are scripts bundled into the `babel-plugin-fbt` package that are desigend for collecting source text (and associated metadata) from your application's source.
+There are scripts bundled into the `babel-plugin-fbt` package that are designed for collecting source text (and associated metadata) from your application's source.
 These are:
 
- * [manifest](https://github.com/facebook/fbt/blob/master/packages/babel-plugin-fbt/bin/manifest.bin.js) -
+ * [fbt-manifest](https://github.com/facebook/fbt/blob/19531133625dab1d38995dcf578dcfdfa0b09048/packages/babel-plugin-fbt/package.json#L10) -
    Scans provided filesystem paths and generates a manifest of the [enumeration modules](https://facebook.github.io/fbt/docs/enums)
    * **NOTE**: Enum modules must end in [$FbtEnum.(js|jsx|ts|tsx)](https://github.com/facebook/fbt/blob/3a5441708ca6b71c2c18fe5a952d1058a22306d1/packages/babel-plugin-fbt/bin/manifest.js#L66) (i.e. `Foo$FbtEnum.js`)
- * [collectFBT](https://github.com/facebook/fbt/blob/master/packages/babel-plugin-fbt/bin/collectFBT.bin.js) -
+ * [fbt-collectFbt](https://github.com/facebook/fbt/blob/19531133625dab1d38995dcf578dcfdfa0b09048/packages/babel-plugin-fbt/package.json#L9) -
    Given source input, extract any source text and print them to STDOUT as JSON
+   * [**@fbtjs/default-collection-transform**](https://www.npmjs.com/package/@fbtjs/default-collection-transform) - As mentioned, this optional package provides a default transform for collection
 
 ### Translation
- * [translate](https://github.com/facebook/fbt/blob/master/packages/babel-plugin-fbt/bin/translate.bin.js) -
+ * [fbt-translate](https://github.com/facebook/fbt/blob/19531133625dab1d38995dcf578dcfdfa0b09048/packages/babel-plugin-fbt/package.json#L11) -
    Creates translation payloads for runtime
-   * Takes extracted source text (from `collectFBT`) and [translations provided in JSON format](https://facebook.github.io/fbt/docs/translating) to produce these payloads
+   * Takes extracted source text (from `collectFbt`) and [translations provided in JSON format](https://facebook.github.io/fbt/docs/translating) to produce these payloads
 
 ### How to use these scripts
 You can see how the demo-app [calls into these scripts here](https://github.com/facebook/fbt/blob/3a5441708ca6b71c2c18fe5a952d1058a22306d1/demo-app/package.json#L11-L14).
@@ -73,7 +76,7 @@ The `fbt` runtime requires that you initialize with your relevant translations v
 
 ### Changing of translation locale on the fly
 
-Let's assume you've split your translation payloads per locale using the [`--output-dir` option](https://github.com/facebook/fbt/blob/98d0516290975f614737387748769e235bf61216/packages/babel-plugin-fbt/bin/translate.js#L145-L153) of the [`translate` script](https://github.com/facebook/fbt/blob/master/packages/babel-plugin-fbt/bin/translate.js). In this example, your app was initialized with the `es_ES` translation payload and, upon user request, you need to load `fr_FR` translations and show these in the UI. (We'll assume that your app already has access to the new translation payload)
+Let's assume you've split your translation payloads per locale using the [`--output-dir` option](https://github.com/facebook/fbt/blob/98d0516290975f614737387748769e235bf61216/packages/babel-plugin-fbt/bin/translate.js#L145-L153) of the [`translate` script](https://github.com/facebook/fbt/blob/master/packages/babel-plugin-fbt/src/bin/translate.js). In this example, your app was initialized with the `es_ES` translation payload and, upon user request, you need to load `fr_FR` translations and show these in the UI. (We'll assume that your app already has access to the new translation payload)
 
 In order to change of translation locale on the fly, you'll need to do all the items below:
 

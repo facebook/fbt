@@ -1,7 +1,12 @@
 # Global build-related files
-node_modules
+
+node_modules # @oss-only
+**/node_modules # @oss-only
+
 yarn-error.log
 .flow-results
+# file checksums used by gulp-once
+.checksums
 
 # MacOS
 .DS_Store
@@ -23,11 +28,12 @@ live-demo-app/output
 live-demo-app/src/translatedFbts.json
 live-demo-app/yarn-error.log
 
-# "Built" Publisehd NPM modules
-packages/fbt/**
-!packages/fbt/.yarnrc
-!packages/fbt/package.json
-!packages/fbt/README.md
+# fbt runtime package
+packages/fbt/lib/**/*.js.flow
+packages/fbt/dist
+packages/fbt/lib # @oss-only
+packages/fbt/LICENSE
+packages/fbt/node_modules/.bin/fbt-*
 
 # documentation build artifacts
 website/build/

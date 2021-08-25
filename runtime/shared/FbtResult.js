@@ -11,7 +11,7 @@
  *
  * @format
  * @flow strict-local
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  */
 
 // flowlint ambiguous-object-type:error
@@ -20,7 +20,7 @@ import type {FbtResolvedPayload} from 'FbtHooks';
 const FbtReactUtil = require('FbtReactUtil');
 const FbtResultBase = require('FbtResultBase');
 
-const FbtComponent = (props: Props): mixed => props.content;
+const FbtResultComponent = (props: Props): mixed => props.content;
 
 type Props = {content: $NestedFbtContentItems, ...};
 
@@ -30,7 +30,7 @@ class FbtResult extends FbtResultBase {
   key: ?string = null;
   props: Props;
   ref: ?React$Ref<React$ElementType> = null;
-  type: (props: Props) => mixed = FbtComponent;
+  type: (props: Props) => mixed = FbtResultComponent;
 
   constructor(
     contents: $NestedFbtContentItems,

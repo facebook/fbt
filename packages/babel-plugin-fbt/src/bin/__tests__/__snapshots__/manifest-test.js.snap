@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`manifest should extract strings 1`] = `
+"{
+  \\"bin/__fixtures__/.enum_manifest.json\\": []
+}"
+`;
+
+exports[`manifest should extract strings 2`] = `
+"{
+  \\"CommonJS$FbtEnum\\": {
+    \\"id1\\": \\"groups\\",
+    \\"id2\\": \\"photos\\",
+    \\"id3\\": \\"videos\\"
+  },
+  \\"ExportDefault$FbtEnum\\": {
+    \\"id1\\": \\"groups\\",
+    \\"id2\\": \\"photos\\",
+    \\"id3\\": \\"videos\\"
+  }
+}"
+`;

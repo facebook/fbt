@@ -3,6 +3,7 @@
  *
  * @format
  * @flow strict
+ * @emails oncall+internationalization
  */
 
 'use strict';
@@ -63,6 +64,7 @@ declare type Fbt = string | FbtWithoutString;
  * All translated strings wrapped in `fbs()` or `<fbs>` type.
  * If this is composed of "string parameters" (fbs.param),
  * then it'll only accept plain string values, or other `Fbs` objects.
+ * @see {@link https://fburl.com/wiki/ix5srv2p} for more info
  */
 declare type Fbs = FbtPureStringResult;
 
@@ -145,43 +147,13 @@ declare interface IFbtResultBase {
   _store?: {validated: boolean, ...};
 }
 
-declare interface IFbtStringish {
-  // Warning: The following methods are only applicable during the transition
-  // period for some existing code that uses string method on Fbt string.
-  //
-  // The fbt string should be considered as the final string to be displayed
-  // and therefore should not be manipulated.
-  // This relies on toString() which contains i18n logging logic to track impressions.
-  // I.e. If you use this, i18n will register the string as displayed!
-  //
-  // The following methods are expected not to be supported soon.
-
-  // Methods from String
-  indexOf: typeof String.prototype.indexOf;
-  match: typeof String.prototype.match;
-  normalize: typeof String.prototype.normalize;
-  replace: typeof String.prototype.replace;
-  search: typeof String.prototype.search;
-  slice: typeof String.prototype.slice;
-  split: typeof String.prototype.split;
-  substr: typeof String.prototype.substr;
-  substring: typeof String.prototype.substring;
-  toLowerCase: typeof String.prototype.toLowerCase;
-  toUpperCase: typeof String.prototype.toUpperCase;
-}
-
-// String result wrapper intended for ComponentScript.
-// Similar to FbtResultBase except that:
-// - it can only be assembled from strings, not React elements
-// - it doesn't behave like a stringish object
-declare class FbtPureStringResult implements IFbtResultBase {
-  // implements IFbtResultBase
+declare class $FbtResultBase implements IFbtResultBase {
   constructor(
     contents: $ReadOnlyArray<any>,
     errorListener: ?IFbtErrorListener,
   ): void;
-  getContents: $PropertyType<IFbtResultBase, 'getContents'>;
-  toJSON: $PropertyType<IFbtResultBase, 'toJSON'>;
+  getContents(): any;
+  toJSON(): string;
   // TODO(T27672828) Move code of toString() inside unwrap()
   // Returns the translated string value (similar to a `toString()` method)
   // This is deliberately named differently to avoid making this class behave
@@ -189,22 +161,9 @@ declare class FbtPureStringResult implements IFbtResultBase {
   // unwrap(): string;
 }
 
-declare class $FbtResultBase extends FbtPureStringResult
-  implements IFbtStringish {
-  // implements IFbtStringish
-  indexOf: $PropertyType<IFbtStringish, 'indexOf'>;
-  match: $PropertyType<IFbtStringish, 'match'>;
-  normalize: $PropertyType<IFbtStringish, 'normalize'>;
-  replace: $PropertyType<IFbtStringish, 'replace'>;
-  search: $PropertyType<IFbtStringish, 'search'>;
-  slice: $PropertyType<IFbtStringish, 'slice'>;
-  split: $PropertyType<IFbtStringish, 'split'>;
-  substr: $PropertyType<IFbtStringish, 'substr'>;
-  substring: $PropertyType<IFbtStringish, 'substring'>;
-  toLowerCase: $PropertyType<IFbtStringish, 'toLowerCase'>;
-  toString: $PropertyType<IFbtStringish, 'toString'>;
-  toUpperCase: $PropertyType<IFbtStringish, 'toUpperCase'>;
-}
+// String result wrapper intended for ComponentScript.
+// Similar to FbtResultBase except that it can only be assembled from strings, not React elements.
+declare class FbtPureStringResult extends $FbtResultBase {}
 
 // Represents the input of an fbt.param
 type $FbtParamInput = React$Node;
@@ -233,7 +192,7 @@ type $GenericFbtFunctionAPI<Input, Output, ParamInput, ParamOutput> = {
       ...
     },
   ): Output,
-  param(
+  param: (
     name: string,
     value: ParamInput,
     options?: {
@@ -241,26 +200,27 @@ type $GenericFbtFunctionAPI<Input, Output, ParamInput, ParamOutput> = {
       gender?: $IntlVariationsEnum,
       ...
     },
-  ): ParamOutput,
-  enum(
+  ) => ParamOutput,
+  enum: (
     value: string,
     range: $ReadOnlyArray<string> | {[key: string]: string, ...},
-  ): ParamOutput,
-  name(
+  ) => ParamOutput,
+  name: (
     tokenName: string,
     value: string,
     gender: $IntlVariationsEnum,
-  ): ParamOutput,
-  plural(
+  ) => ParamOutput,
+  plural: (
     label: string,
     count: number,
     options?: {
       many?: string,
       showCount?: 'ifMany' | 'no' | 'yes',
-      ...
+      name?: string, // token name
+      value?: $FbtContentItem, // optional value to replace token (rather than count)
     },
-  ): ParamOutput,
-  pronoun(
+  ) => ParamOutput,
+  pronoun: (
     usage: 'object' | 'possessive' | 'reflexive' | 'subject',
     gender: $GenderConstEnum,
     options?: {
@@ -268,16 +228,16 @@ type $GenericFbtFunctionAPI<Input, Output, ParamInput, ParamOutput> = {
       human?: boolean,
       ...
     },
-  ): ParamOutput,
-  sameParam(name: string): ParamOutput,
-  c(text: string): Output,
+  ) => ParamOutput,
+  sameParam: (name: string) => ParamOutput,
+  c: (text: string) => Output,
   jsonEncode: boolean,
   replaceParams: boolean,
   // Only used in React Native in fbsource
-  enableJsonExportMode(): void,
+  enableJsonExportMode: () => void,
   // Only used in React Native in fbsource
-  disableJsonExportMode(): void,
-  isFbtInstance(value: mixed): boolean,
+  disableJsonExportMode: () => void,
+  isFbtInstance: (value: mixed) => boolean,
   ...
 };
 
@@ -287,6 +247,13 @@ type $StringBasedFbtFunctionAPI<
   ParamOutput,
 > = $GenericFbtFunctionAPI<string, Output, ParamInput, ParamOutput>;
 
+/**
+ * NOTE how the fbs() functional API relies on using an array of content items
+ * instead of the legacy string concatenation pattern.
+ *
+ * This is needed because we have to define the accepted types of the array items in Flow
+ * (which isn't possible if we used the string concatenation code pattern)
+ */
 type $ArrayBasedFbtFunctionAPI<Output, ParamInput> = $GenericFbtFunctionAPI<
   $ReadOnlyArray<string | $FbtParamOutput>,
   Output,

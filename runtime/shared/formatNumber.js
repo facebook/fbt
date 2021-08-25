@@ -11,7 +11,7 @@
  *
  * @format
  * @flow strict-local
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  */
 
 'use strict';

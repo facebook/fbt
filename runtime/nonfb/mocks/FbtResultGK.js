@@ -3,6 +3,7 @@
  *
  * @format
  * @flow strict
+ * @emails oncall+i18n_fbt_js
  */
 
 const FbtResultGK = {

@@ -1,16 +1,32 @@
 {
   "license": "MIT",
-  "main": "index.js",
+  "main": "dist/index.js",
   "name": "babel-plugin-fbt",
   "description": "The FBT Babel localization transform",
   "//version": "Follow SemVer specs at https://semver.org/",
-  "version": "0.15.0",
-  "bin": {
-    "fbt-collect": "bin/collectFBT.bin.js",
-    "fbt-manifest": "bin/manifest.bin.js",
-    "fbt-translate": "bin/translate.bin.js"
+  "version": "0.21.0",
+  "engines": {
+    "node": ">= 12.16.0"
   },
-  "devDependencies": {},
+  "bin": {
+    "fbt-collect": "dist/bin/collectFbt.bin.js",
+    "fbt-manifest": "dist/bin/manifest.bin.js",
+    "fbt-translate": "dist/bin/translate.bin.js"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.8.3",
+    "@babel/plugin-proposal-optional-catch-binding": "^7.2.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.12.7",
+    "@babel/plugin-proposal-class-properties": "7.1.0",
+    "@babel/plugin-syntax-flow": "^7.2.0",
+    "babel-preset-fbjs": "^3.1.2",
+    "babel-plugin-transform-flow-enums": "^0.0.1",
+    "flow-enums-runtime": "^0.0.4",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-once": "^2.1.1",
+    "gulp-rename": "^1.4.0"
+  },
   "dependencies": {
     "@babel/core": "^7.0.0",
     "@babel/generator": "^7.0.0",
@@ -18,13 +34,11 @@
     "@babel/plugin-transform-flow-strip-types": "^7.2.0",
     "@babel/plugin-transform-modules-commonjs": "^7.8.3",
     "@babel/types": "^7.2.2",
-    "fb-babel-plugin-utils": "^0.10.0",
-    "fbjs-scripts": "^1.2.0",
-    "fbjs": "^1.0.0",
+    "fb-babel-plugin-utils": "^0.13.0",
     "glob": "^7.1.6",
-    "jest-docblock": "^24.3.0",
+    "invariant": "^2.2.4",
+    "jest-docblock": "^26.0.0",
     "nullthrows": "^1.1.1",
-    "shelljs": "^0.8.4",
     "yargs": "^15.3.1"
   },
   "repository": {
@@ -33,6 +47,11 @@
     "directory": "packages/babel-plugin-fbt"
   },
   "scripts": {
-    "publish_to_npm_latest": "yarn publish . && git push --tags && git push"
+    "prepack": "gulp --series clean build",
+    "publish_to_npm_latest": "yarn publish . && git push --tags && git push",
+    "watch": "gulp watch"
+  },
+  "peerDependencies": {
+    "@fbtjs/default-collection-transform": "~0.0.3"
   }
 }

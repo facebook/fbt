@@ -25,7 +25,8 @@ declare module "fb-tiger-hash" {
     static UTF16: string;
   }
 
-  export function hashPhrases(
-    phraseData: Array<PhraseData>,
-  ): Array<Array<string>>;
+  export function getFbtHash(
+    text: string,
+    description: string,
+  ): string;
 }

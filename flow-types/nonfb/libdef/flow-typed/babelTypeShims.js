@@ -3,6 +3,7 @@
  *
  * @format
  * @flow strict
+ * @emails oncall+i18n_fbt_js
  */
 
 declare module '@babel/core' {
@@ -44,26 +45,24 @@ declare module '@babel/core' {
     parent: ?BabelNode;
     parentPath: ?NodePath<>;
     replaceWith(replacement: BabelNode): this;
-    traverse<State: {...}, ExtraProps: {}>(
-      transform: BabelTransform<ExtraProps>,
-      state: State,
-    ): void;
+    traverse<State: {...}>(transform: BabelTransform, state?: State): void;
     context: TraversalContext<B>;
+    skip(): void;
   }
 
   declare type NodePathOf<BabelNode> = NodePath<BabelNode>;
 
-  declare type BabelTransform<ExtraProps: {}> = {
-    CallExpression?: (
-      path: NodePathOf<BabelNodeCallExpression & ExtraProps>,
-    ) => void,
-    JSXElement?: (path: NodePathOf<BabelNodeJSXElement & ExtraProps>) => void,
+  declare type BabelTransform = {
+    CallExpression?: (path: NodePathOf<BabelNodeCallExpression>) => void,
+    JSXElement?: (path: NodePathOf<BabelNodeJSXElement>) => void,
+    JSXElement?: (path: NodePathOf<BabelNodeJSXElement>) => void,
+    StringLiteral?: (path: NodePathOf<BabelNodeStringLiteral>) => void,
   };
 
-  declare type BabelTransformPlugin<ExtraProps: {}> = {
+  declare type BabelTransformPlugin = {
     pre: () => void,
     name: string,
-    visitor: BabelTransform<ExtraProps>,
+    visitor: BabelTransform,
   };
 
   declare type BabelPluginList = Array<
@@ -77,7 +76,7 @@ declare module '@babel/core' {
     opts: {
       ast?: boolean,
       code?: boolean,
-      filename?: string,
+      filename?: ?string,
       plugins: BabelPluginList,
       sourceType?: string,
     },

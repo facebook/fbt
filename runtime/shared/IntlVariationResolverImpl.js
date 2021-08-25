@@ -1,7 +1,9 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
- * @format
+ *
+ * @emails oncall+i18n_fbt_js
  * @flow strict-local
+ * @format
  */
 
 const FbtHooks = require('FbtHooks');

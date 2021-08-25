@@ -12,7 +12,7 @@
  * @flow strict-local
  * @typechecks
  * @format
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  */
 
 // flowlint ambiguous-object-type:error
@@ -198,7 +198,7 @@ function formatNumber(value: number, decimals?: ?number): string {
  * integer, `2` to round to nearest cent when displaying currency, etc.
  */
 function formatNumberWithThousandDelimiters(
-  value: number,
+  value: number | string,
   decimals?: ?number,
 ): string {
   const NumberFormatConfig = NumberFormatConsts.get(

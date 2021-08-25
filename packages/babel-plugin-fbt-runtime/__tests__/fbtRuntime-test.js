@@ -2,16 +2,14 @@
  *
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
- * @nolint
- * @emails oncall+internationalization
+ * @emails oncall+i18n_fbt_js
  * @format
  */
 
 jest.autoMockOff();
 
 const {transformSync: babelTransform} = require('@babel/core');
-const {withFbtRequireStatement} = require('babel-plugin-fbt/FbtTestUtil.js');
-
+const {withFbtRequireStatement} = require('babel-plugin-fbt/dist/FbtTestUtil');
 const {TestUtil} = require('fb-babel-plugin-utils');
 
 function transform(source, pluginOptions) {
@@ -41,7 +39,7 @@ describe('Test hash key generation', () => {
         fbt('Foo', 'Bar');
       `),
       output: withFbtRequireStatement(`
-        fbt._('Foo', null, {hk: '3ktBJ2'});
+        fbt._('Foo', null, {hk: '227BGA'});
       `),
     };
     runTest(data, true);
@@ -71,11 +69,11 @@ lines">
               React.createElement(
                 'b',
                 null,
-                fbt._('simple', null, {hk: '2pjKFw'}),
+                fbt._('simple', null, {hk: '4qbcU8'}),
               ),
             ),
           ],
-          {hk: '2xRGl8'},
+          {hk: '1xZ4be'},
         );`,
       ),
     };
@@ -105,7 +103,7 @@ describe('Test enum hash keys generation', () => {
                 "c": 'C'
               })
             ],
-            {hk: "NT3sR"},
+            {hk: "4fsyit"},
           );`,
         ),
       },
@@ -135,9 +133,9 @@ describe('Test enum hash keys generation', () => {
             ],
             {
               ehk: {
-                a: "2gRMkN",
-                b: "3NsO2f",
-                c: "3eytjU"
+                a: "4uSStb",
+                b: "WGbrk",
+                c: "4cijxf"
               }
             },
           );`,
@@ -192,19 +190,19 @@ describe('Test enum hash keys generation', () => {
             {
               ehk: {
                 a: {
-                  x: "5Lquv",
-                  y: "3RQlhz",
-                  z: "3ZpRpY"
+                  x: "2iLukh",
+                  y: "HiUYK",
+                  z: "4y43qC"
                 },
                 b: {
-                  x: "djeja",
-                  y: "1Cl3e7",
-                  z: "31zfrM"
+                  x: "3iS7k",
+                  y: "4v1slU",
+                  z: "wSyUv"
                 },
                 c: {
-                  x: "2z0mci",
-                  y: "2xJRMx",
-                  z: "HAwfA"
+                  x: "3UuIpO",
+                  y: "4ieJt4",
+                  z: "8SVh3"
                 },
               },
             },
@@ -214,4 +212,67 @@ describe('Test enum hash keys generation', () => {
       true,
     );
   });
+});
+
+describe('Test replacing clear token names with mangled tokens', () => {
+  const data = {
+    input: withFbtRequireStatement(
+      `<fbt desc="d">
+          <b>Your</b>
+          friends
+          <b>shared</b>
+          <fbt:plural
+            many="photos"
+            showCount="ifMany"
+            count={ex1.count}>
+            a photo
+          </fbt:plural>
+        </fbt>;`,
+    ),
+    output: `var fbt_sv_arg_0;
+      const fbt = require("fbt");
+      fbt_sv_arg_0 = fbt._plural(ex1.count, "number"),
+      fbt._(
+        {
+          "*": "{=m0} friends {=m2}{number} photos",
+          "_1": "{=m0} friends {=m2} a photo",
+        },
+        [
+          fbt_sv_arg_0,
+          fbt._implicitParam(
+            "=m0",
+            /*#__PURE__*/React.createElement(
+              "b",
+              null,
+              fbt._(
+                {
+                  "*": "Your",
+                  "_1": "Your"
+                },
+                [fbt_sv_arg_0],
+                {hk: "3AIVHA"},
+              ),
+            ),
+          ),
+          fbt._implicitParam(
+            "=m2",
+            /*#__PURE__*/React.createElement(
+              "b",
+              null,
+              fbt._(
+                {
+                  "*": "shared",
+                  "_1": "shared"
+                },
+                [fbt_sv_arg_0],
+                {hk: "3CHy8o"},
+              ),
+            ),
+          ),
+        ],
+        {hk: "1dNTwY"},
+      );`,
+  };
+  runTest(data, true);
+  runTest(data, false);
 });

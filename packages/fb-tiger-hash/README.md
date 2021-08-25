@@ -9,7 +9,7 @@ implementation for backwards compatability.
 See [its use in HHVM](https://github.com/facebook/hhvm/blob/281303d/hphp/runtime/ext/hash/ext_hash.cpp#L94-L97)
 
 It's main intended use is for the [Facebook FBT internationalization
-framework](https://facebookincubator.github.io/fbt), where a hashing
+framework](https://facebook.github.io/fbt), where a hashing
 algorithm is supplied to create unique identifiers from source strings
 and their descriptions.
 

@@ -4,12 +4,30 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @format
+ * @noflow
+ * @emails oncall+i18n_fbt_js
  */
+/*eslint max-len: ["error", 100]*/
 
 'use strict';
 
 /*global expect, it, describe*/
+
+/*::
+type TestEntry = {
+  // Test case filter:
+  // If `focus` is set, only run tests where `filter='focus'`
+  // If `skip` is set, this test entry won't be executed
+  filter?: 'focus' | 'skip',
+  input: string, // Input JS code to test
+  options?: {...}, // Babel transform options
+  output: string, // expected output code
+  // Set to `true` if an error is expected.
+  // You can also set an expected error string.
+  throws?: string | boolean,
+};
+type TestData = {[testTitle: string]: TestEntry};
+*/
 
 const babel = require('@babel/core');
 const generate = require('@babel/generator').default;
@@ -54,6 +72,12 @@ function getDefaultTransformForPlugins(plugins) {
 }
 
 function parse(code) {
+  if ((typeof code !== 'string' && typeof code !== 'object') || code == null) {
+    // eslint-disable-next-line fb-www/no-new-error
+    throw new Error(
+      `Code must be a string or AST object but got: ${typeof code}`,
+    );
+  }
   return babelParser.parse(code, {
     sourceType: 'module',
     plugins: ['flow', 'jsx', 'nullishCoalescingOperator'],
@@ -103,6 +127,23 @@ function normalizeSourceCode(sourceCode /*: string */) /*: string */ {
     },
     sourceCode,
   ).code.trim();
+}
+
+/**
+ * Given a test config's "filter" status, decides whether we should run it with
+ * jest's it/fit/xit function.
+ */
+function getJestUnitTestFunction(
+  testEntry /*: TestEntry */,
+) /*: (title: string, callback: () => void) => void */ {
+  switch (testEntry.filter) {
+    case 'focus':
+      return it.only;
+    case 'skip':
+      return it.skip;
+    default:
+      return it;
+  }
 }
 
 module.exports = {
@@ -171,7 +212,7 @@ Actual   : <<<${excerptDiffFromActual}>>>
 
 AST diff:
 ====
-${jsonDiff.diffString(actualTree, expectedTree)}
+${jsonDiff.diffString(expectedTree, actualTree)}
 ====
 `;
       console.error(errMessage);
@@ -182,10 +223,18 @@ ${jsonDiff.diffString(actualTree, expectedTree)}
     }
   },
 
-  testSection(testData, transform, options) {
-    Object.keys(testData).forEach(test => {
-      const testInfo = testData[test];
-      it(test, () => {
+  // Alias of `getJestUnitTestFunction`
+  $it: getJestUnitTestFunction,
+
+  testSection(
+    testData /*: TestData */,
+    transform /*: Function */, // Babel transform function
+    options /*: {
+      comments?: boolean, // if true, strip comments from Babel transform output
+    } */,
+  ) /*: void */ {
+    Object.entries(testData).forEach(([title, testInfo]) => {
+      getJestUnitTestFunction(testInfo)(title, () => {
         if (testInfo.throws === true) {
           expect(() => transform(testInfo.input, testInfo.options)).toThrow();
         } else if (typeof testInfo.throws === 'string') {

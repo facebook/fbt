@@ -5,37 +5,108 @@
  * transform. It extracts jsfbt and strip out extra information from the payload
  * produced by the fbt syntax transform.
  *
- * @format
+ * @emails oncall+i18n_fbt_js
+ * @flow
+ * @noformat
  */
 
 'use strict';
 
 /* eslint consistent-return: 0 */
 /* eslint max-len: ["warn", 120] */
-/* jslint node: true */
 
-const {fbtHashKey: jenkinsHashKey} = require('babel-plugin-fbt');
+/*::
+import typeof BabelTypes from '@babel/types';
+import type {BabelTransformPlugin} from '@babel/core';
+import type {SentinelPayload} from 'babel-plugin-fbt/dist/babel-processors/FbtFunctionCallProcessor';
+import type {FbtTableKey, PatternString} from '../../runtime/shared/FbtTable';
+import type {TableJSFBTTree, TableJSFBTTreeLeaf} from 'babel-plugin-fbt';
+import type {FbtRuntimeInput} from 'FbtHooks';
+
+export type PluginOptions = {|
+  fbtHashKeyModule?: string,
+  fbtSentinel?: string,
+  reactNativeMode?: boolean,
+|};
+*/
+
+const {
+  FbtNodeUtil: {tokenNameToTextPattern},
+  JSFbtUtil: {mapLeaves},
+  fbtHashKey: jenkinsHashKey,
+} = require('babel-plugin-fbt');
 const {shiftEnumsToTop} = require('babel-plugin-fbt').FbtShiftEnums;
-const invariant = require('fbjs/lib/invariant');
+const {SENTINEL} = require('babel-plugin-fbt/dist/FbtConstants');
+const invariant = require('invariant');
 
-let fbtHashKey = jenkinsHashKey;
-module.exports = function fbtRuntime(babel) {
+let fbtHashKey /*: typeof jenkinsHashKey */ = jenkinsHashKey;
+
+/**
+ * Utility function to cast the Babel transform plugin options to the right type
+ */
+function getPluginOptions(plugin /*: $Shape<{opts: ?PluginOptions}> */) /*: PluginOptions */ {
+  const {opts} = plugin;
+  if (opts == null || typeof opts !== 'object') {
+    // eslint-disable-next-line fb-www/no-new-error
+    throw new Error(`Expected to opts property to be an object. `
+      + `Current value is ${String(opts)} (${typeof opts})`);
+  }
+  // $FlowExpectedError[prop-missing]
+  // $FlowExpectedError[incompatible-exact]
+  return opts;
+}
+
+/**
+ * Helper method to convert jsfbt tree leaf to runtime input leaf by:
+ *  1. Stripping away keys (e.g desc and tokenAliases) that are unneccessary
+ *    for runtime and only keep the `text` key.
+ *  2. Replacing clear token names in the text with mangled tokens.
+ */
+function convertJSFBTLeafToRuntimeInputText(leaf /*: $ReadOnly<TableJSFBTTreeLeaf> */) /* : PatternString */ {
+  const {tokenAliases} = leaf;
+  if (tokenAliases == null) {
+    return leaf.text;
+  }
+  return Object.keys(tokenAliases).reduce(
+    (mangledText /*: string */, clearToken /*: string */) => {
+      const clearTokenName = tokenNameToTextPattern(clearToken);
+      const mangledTokenName = tokenNameToTextPattern(tokenAliases[clearToken]);
+      // Since a string is not allowed to have implicit params with duplicatd
+      // token names, replacing the first and therefore the only occurance of
+      // `clearTokenName` is sufficient.
+      return mangledText.replace(clearTokenName, mangledTokenName);
+    },
+    leaf.text,
+  );
+}
+
+module.exports = function BabelPluginFbtRuntime(babel /*: {
+  types: BabelTypes,
+} */) /*: BabelTransformPlugin */ {
   const t = babel.types;
 
-  function _buildEnumToHashKeyObjectExpression(curLevel, desc, enumsLeft) {
-    const properties = [];
+  // Need to extract this as a standalone function for Flow type check refinements
+  const {isCallExpression} = t;
 
+  function _buildEnumToHashKeyObjectExpression(
+    curLevel /*: PatternString | $ReadOnly<TableJSFBTTree> */,
+    enumsLeft /*: number */,
+  ) /*: BabelNodeObjectExpression */ {
+    const properties = [];
+    invariant(typeof curLevel === 'object',
+      'Expected curLevel to be an object instead of %s', typeof curLevel);
     for (const enumKey in curLevel) {
       properties.push(
         t.objectProperty(
           t.identifier(enumKey),
           enumsLeft === 1
-            ? t.stringLiteral(fbtHashKey(curLevel[enumKey], desc))
+            ? t.stringLiteral(fbtHashKey(curLevel[enumKey]))
             : _buildEnumToHashKeyObjectExpression(
-                curLevel[enumKey],
-                desc,
-                enumsLeft - 1,
-              ),
+              // TODO(T86653403) Add support for consolidated JSFBT structure to RN
+              // $FlowFixMe[incompatible-call]
+              curLevel[enumKey],
+              enumsLeft - 1,
+            ),
         ),
       );
     }
@@ -45,9 +116,11 @@ module.exports = function fbtRuntime(babel) {
 
   return {
     pre() {
-      this.opts.fbtSentinel = this.opts.fbtSentinel || '__FBT__';
-      if (this.opts.fbtHashKeyModule) {
-        fbtHashKey = require(this.opts.fbtHashKeyModule);
+      const opts = getPluginOptions(this);
+      this.opts.fbtSentinel = opts.fbtSentinel || SENTINEL;
+      if (opts.fbtHashKeyModule) {
+        // $FlowExpectedError[unsupported-syntax] Dynamic import needed
+        fbtHashKey = require(opts.fbtHashKeyModule);
       }
     },
 
@@ -72,65 +145,82 @@ module.exports = function fbtRuntime(babel) {
        * fbt._("jsfbt test") or fbt._({... jsfbt table})
        */
       StringLiteral(path) {
-        const sentinelLength = this.opts.fbtSentinel.length;
+        const {fbtSentinel, reactNativeMode} = getPluginOptions(this);
+        if (fbtSentinel == null || fbtSentinel.trim() == '') {
+          // eslint-disable-next-line fb-www/no-new-error
+          throw new Error(`fbtSentinel must be a non-empty string. `
+            + `Current value is ${String(fbtSentinel)} (${typeof fbtSentinel})`);
+        }
+        const sentinelLength = fbtSentinel.length;
         let phrase = path.node.value;
         if (
-          !phrase.startsWith(this.opts.fbtSentinel) ||
-          !phrase.endsWith(this.opts.fbtSentinel) ||
+          !phrase.startsWith(fbtSentinel) ||
+          !phrase.endsWith(fbtSentinel) ||
           phrase.length <= sentinelLength * 2
         ) {
           return;
         }
 
-        phrase = JSON.parse(
+        phrase = (JSON.parse(
           phrase.slice(sentinelLength, phrase.length - sentinelLength),
-        );
+        ) /*: SentinelPayload */);
 
-        let payload;
-        if (phrase.type === 'text') {
-          payload = phrase.jsfbt;
-          path.replaceWith(t.stringLiteral(payload));
-        } else {
-          invariant(phrase.type === 'table', 'JSFbt only has 2 types');
-          payload = phrase.jsfbt.t;
-          path.replaceWithSourceString(JSON.stringify(payload));
-        }
+        const payload = phrase.jsfbt.t;
+        const runtimeInput = mapLeaves(
+          payload,
+          convertJSFBTLeafToRuntimeInputText,
+        );
+        // $FlowFixMe[prop-missing] replaceWithSourceString's type is not defined yet
+        path.replaceWithSourceString(JSON.stringify(runtimeInput));
+
+        const parentNode = path.parentPath && path.parentPath.node;
+        invariant(isCallExpression(parentNode),
+          'Expected parent node to be a BabelNodeCallExpression');
 
         // Append runtime options - key for runtime dictionary lookup
-        if (path.parentPath.node.arguments.length === 1) {
+        if (parentNode.arguments.length === 1) {
           // Second param 'args' could be omitted sometimes. Use null here
-          path.parentPath.node.arguments.push(t.nullLiteral());
+          parentNode.arguments.push(t.nullLiteral());
         }
         invariant(
-          path.parentPath.node.arguments.length === 2,
+          parentNode.arguments.length === 2,
           'Expecting options to be the third param',
         );
 
         let shiftedJsfbt;
         let enumCount = 0;
-        if (this.opts.reactNativeMode) {
+        if (reactNativeMode) {
           ({shiftedJsfbt, enumCount} = shiftEnumsToTop(phrase.jsfbt));
         }
 
         if (enumCount > 0) {
-          path.parentPath.node.arguments.push(
+          invariant(
+            shiftedJsfbt != null,
+            'Expecting shiftedJsfbt to be defined',
+          );
+          parentNode.arguments.push(
+            // The expected method name is `objectExpression` but
+            // it already works as-is apparently...
+            // $FlowFixMe[prop-missing] Use objectExpression() instead
             t.ObjectExpression([
               t.objectProperty(
                 t.identifier('ehk'), // enumHashKey
                 _buildEnumToHashKeyObjectExpression(
                   shiftedJsfbt,
-                  phrase.desc,
                   enumCount,
                 ),
               ),
             ]),
           );
         } else {
-          path.parentPath.node.arguments.push(
+          parentNode.arguments.push(
+            // The expected method name is `objectExpression` but
+            // it already works as-is apparently...
+            // $FlowFixMe[prop-missing] Use objectExpression() instead
             t.ObjectExpression([
               t.objectProperty(
                 t.identifier('hk'),
-                t.stringLiteral(fbtHashKey(payload, phrase.desc)),
+                t.stringLiteral(fbtHashKey(payload)),
               ),
             ]),
           );

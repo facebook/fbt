@@ -1,0 +1,794 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test declarative (jsx) fbt syntax translation Enable explicit whitespace 1`] = `
+const fbt = require("fbt");
+
+var x = fbt._(
+  /* __FBT__ start */ {
+    jsfbt: { t: { desc: "squelched", text: "{one} {two} {three}" }, m: [] },
+    project: "",
+  } /* __FBT__ end */,
+  [fbt._param("one", one), fbt._param("two", two), fbt._param("three", three)]
+);
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation Squelch whitespace when in an expression 1`] = `
+const fbt = require("fbt");
+
+var x = fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        desc: "squelched",
+        text: "Squelched white space... with some other stuff.",
+      },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */
+);
+
+baz();
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation fbt:param with multiple empty expression containers should be ok 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: { t: { desc: "some-desc", text: "{foo}" }, m: [] },
+    project: "",
+  } /* __FBT__ end */,
+  [fbt._param("foo", foo)]
+);
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should be able to house arbitrary markup within fbt:param nodes 1`] = `
+const fbt = require("fbt");
+
+<div>
+  {fbt._(
+    /* __FBT__ start */ {
+      jsfbt: { t: { desc: "...", text: "{time} by {user name}" }, m: [] },
+      project: "",
+    } /* __FBT__ end */,
+    [
+      fbt._param("time", formatDate(date, "F d, Y")),
+      fbt._param(
+        "user name",
+        <Link
+          href={{
+            url: user.link,
+          }}
+        >
+          {user.name}
+        </Link>
+      ),
+    ]
+  )}
+</div>;
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should be able to nest within React nodes 1`] = `
+const fbt = require("fbt");
+
+var x = (
+  <div>
+    {fbt._(
+      /* __FBT__ start */ {
+        jsfbt: { t: { desc: "nested!", text: "A nested string" }, m: [] },
+        project: "",
+      } /* __FBT__ end */
+    )}
+  </div>
+);
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should convert simple strings 1`] = `
+const fbt = require("fbt");
+
+var x = fbt._(
+  /* __FBT__ start */ {
+    jsfbt: { t: { desc: "It's simple", text: "A simple string" }, m: [] },
+    project: "",
+  } /* __FBT__ end */
+);
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should correctly destruct expression values in options 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: { "*": { desc: "d", text: "str {count}" } },
+      m: [{ token: "count", type: 2 }],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [fbt._param("count", getNum(), [0, someNum])]
+);
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should filter comment and empty expressions from children 1`] = `
+const fbt = require("fbt");
+
+var x = fbt._(
+  /* __FBT__ start */ {
+    jsfbt: { t: { desc: "It's simple", text: "A simple string" }, m: [] },
+    project: "",
+  } /* __FBT__ end */
+);
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should handle concatenated descriptions 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        desc: "A very long description that we will concatenate a few times",
+        text: "Here it is",
+      },
+      m: [],
+    },
+    project: "Withaproject",
+  } /* __FBT__ end */
+);
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should handle empty string 1`] = `
+const fbt = require("fbt");
+
+var x = fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        desc: "a message!",
+        text: "A parameterized message to: {emptyString}",
+      },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [fbt._param("emptyString", " ")]
+);
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should handle enums (with array values) 1`] = `
+const fbt = require("fbt");
+
+var x = fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        id1: { desc: "enums!", text: "Click to see groups" },
+        id2: { desc: "enums!", text: "Click to see photos" },
+        id3: { desc: "enums!", text: "Click to see videos" },
+      },
+      m: [null],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [
+    fbt._enum(id, {
+      id1: "groups",
+      id2: "photos",
+      id3: "videos",
+    }),
+  ]
+);
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should handle enums with more text 1`] = `
+const fbt = require("fbt");
+
+var x = fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        id1: { desc: "enums!", text: "Click to see groups Hey-hey!" },
+        id2: { desc: "enums!", text: "Click to see photos Hey-hey!" },
+        id3: { desc: "enums!", text: "Click to see videos Hey-hey!" },
+      },
+      m: [null],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [
+    fbt._enum(id, {
+      id1: "groups",
+      id2: "photos",
+      id3: "videos",
+    }),
+  ]
+);
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should handle number={true} - (same output as above test) 1`] = `
+const fbt = require("fbt");
+
+var x = fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: { "*": { desc: "variations!", text: "Click to see {count} links" } },
+      m: [{ token: "count", type: 2 }],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [fbt._param("count", c, [0])]
+);
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should handle object pronoun (react native) 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        0: { desc: "d", text: "I know this." },
+        1: { desc: "d", text: "I know her." },
+        2: { desc: "d", text: "I know him." },
+        "*": { desc: "d", text: "I know them." },
+      },
+      m: [{ type: 3 }],
+    },
+    project: "p",
+  } /* __FBT__ end */,
+  [fbt._pronoun(0, gender)]
+);
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should handle object pronoun 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        0: { desc: "d", text: "I know this." },
+        1: { desc: "d", text: "I know her." },
+        2: { desc: "d", text: "I know him." },
+        "*": { desc: "d", text: "I know them." },
+      },
+      m: [null],
+    },
+    project: "p",
+  } /* __FBT__ end */,
+  [fbt._pronoun(0, gender)]
+);
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should handle params 1`] = `
+const fbt = require("fbt");
+
+var x = fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        desc: "a message!",
+        text: "A parameterized message to: {personName}",
+      },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [fbt._param("personName", theName)]
+);
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should handle single expression with concentated strings 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: { t: { desc: "foo", text: "foobar" }, m: [] },
+    project: "",
+  } /* __FBT__ end */
+);
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should handle subject+reflexive pronouns (react native) 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        1: { 1: { desc: "d", text: "She wished herself a happy birthday." } },
+        2: { 2: { desc: "d", text: "He wished himself a happy birthday." } },
+        "*": {
+          "*": { desc: "d", text: "They wished themselves a happy birthday." },
+        },
+      },
+      m: [{ type: 3 }, { type: 3 }],
+    },
+    project: "p",
+  } /* __FBT__ end */,
+  [
+    fbt._pronoun(3, gender, {
+      human: 1,
+    }),
+    fbt._pronoun(2, gender, {
+      human: 1,
+    }),
+  ]
+);
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should handle subject+reflexive pronouns 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        1: { 1: { desc: "d", text: "She wished herself a happy birthday." } },
+        2: { 2: { desc: "d", text: "He wished himself a happy birthday." } },
+        "*": {
+          "*": { desc: "d", text: "They wished themselves a happy birthday." },
+        },
+      },
+      m: [null, null],
+    },
+    project: "p",
+  } /* __FBT__ end */,
+  [
+    fbt._pronoun(3, gender, {
+      human: 1,
+    }),
+    fbt._pronoun(2, gender, {
+      human: 1,
+    }),
+  ]
+);
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should handle template descriptions 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        desc:
+          "A very long description that will be a template across multiple lines",
+        text: "Here it is",
+      },
+      m: [],
+    },
+    project: "Withaproject",
+  } /* __FBT__ end */
+);
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should handle variations 1`] = `
+const fbt = require("fbt");
+
+var x = fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: { "*": { desc: "variations!", text: "Click to see {count} links" } },
+      m: [{ token: "count", type: 2 }],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [fbt._param("count", c, [0])]
+);
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should ignore __private attributes 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: { t: { desc: "some-desc", text: "{foo}" }, m: [] },
+    project: "",
+  } /* __FBT__ end */,
+  [fbt._param("foo", foo)]
+);
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should ignore non-expression children in fbt:param 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: { t: { desc: "some-desc", text: "{foo}" }, m: [] },
+    project: "",
+  } /* __FBT__ end */,
+  [fbt._param("foo", foo)]
+);
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should insert param value for same-param 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: { t: { desc: "d", text: "str {foo} and {foo}" }, m: [] },
+    project: "",
+  } /* __FBT__ end */,
+  [fbt._param("foo", Bar)]
+);
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should maintain order of params and enums 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        x: { "*": { desc: "some-desc", text: "Hello, {foo}x{bar}" } },
+        y: { "*": { desc: "some-desc", text: "Hello, {foo}y{bar}" } },
+      },
+      m: [null, { token: "bar", type: 2 }],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [
+    fbt._enum(x, {
+      x: "x",
+      y: "y",
+    }),
+    fbt._param("bar", bar, [0, n]),
+    fbt._param("foo", foo),
+  ]
+);
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should not insert extra space 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: { desc: "Greating in i18n demo", text: "Hello, {guest}!" },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [fbt._param("guest", guest)]
+);
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should strip out more newlines 1`] = `
+const fbt = require("fbt");
+
+var x = fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        desc: "moar lines",
+        text: "A simple string... with some other stuff.",
+      },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */
+);
+
+baz();
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should strip out newlines 1`] = `
+const fbt = require("fbt");
+
+var x = fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        desc: "Test trailing space when not last child",
+        text: "Preamble {parm}",
+      },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [fbt._param("parm", blah)]
+);
+
+baz();
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should strip out newlines in Reactish <Fbt> 1`] = `
+const fbt = require("fbt");
+
+var x = fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        desc: "Test trailing space when not last child",
+        text: "Preamble {parm}",
+      },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [fbt._param("parm", blah)]
+);
+
+baz();
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should support html escapes 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: { t: { desc: 'foo "bar"', text: "×" }, m: [] },
+    project: "",
+  } /* __FBT__ end */
+);
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should support unicode characters 1`] = `
+const fbt = require("fbt"); // A backslash \\ in comments
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        desc: "unicode characters",
+        text:
+          "A copyright sign ©, a multi byte character 💩, and a backslash \\\\.",
+      },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */
+);
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should treat multiline descs as a single line 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        desc:
+          "hi how are you today im doing well i guess how is your mother is she well yeah why not lets go home and never come back.",
+        text: "lol",
+      },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */
+);
+
+`;
+
+exports[`Test fbt transforms without the jsx transform [legacy buggy behavior] <fbt:pronoun> should insert a space character between two fbt constructs that don't neighbor raw text 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        "*": { "*": { desc: "", text: "You can add thesetags to anything." } },
+        _1: { _1: { desc: "", text: "You can add this tag to anything." } },
+      },
+      m: [null, null],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [fbt._plural(count), fbt._plural(count)]
+);
+
+`;
+
+exports[`Test fbt transforms without the jsx transform nested in div 1`] = `
+const fbt = require("fbt");
+
+let x = (
+  <div>
+    {fbt._(
+      /* __FBT__ start */ {
+        jsfbt: { t: { desc: "nested!", text: "A nested string" }, m: [] },
+        project: "",
+      } /* __FBT__ end */
+    )}
+  </div>
+);
+
+`;
+
+exports[`Test fbt transforms without the jsx transform not nested 1`] = `
+const fbt = require("fbt");
+
+let x = fbt._(
+  /* __FBT__ start */ {
+    jsfbt: { t: { desc: "nested!", text: "A nested string" }, m: [] },
+    project: "",
+  } /* __FBT__ end */
+);
+
+`;
+
+exports[`Test fbt transforms without the jsx transform short bool syntax for doNotExtract attribute 1`] = `
+const fbt = require("fbt");
+
+let x = fbt._(
+  /* __FBT__ start */ {
+    jsfbt: { t: { desc: "", text: "Test" }, m: [] },
+    project: "",
+  } /* __FBT__ end */
+);
+
+`;
+
+exports[`Test fbt transforms without the jsx transform short bool syntax for number attribute 1`] = `
+const fbt = require("fbt");
+
+let x = fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: { "*": { desc: "", text: "{name}" } },
+      m: [{ token: "name", type: 2 }],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [fbt._param("name", "name", [0])]
+);
+
+`;
+
+exports[`Test fbt transforms without the jsx transform should fail to preserve whitespace in text when preserveWhitespace=true (known bug) 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        desc: "desc with 3   spaces",
+        text: "Some text with 3 spaces in between.",
+      },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */
+);
+
+`;
+
+exports[`Test fbt transforms without the jsx transform when using within template literals should dedupe plurals 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        "*": { "*": { desc: "desc...", text: "There are {number} photos." } },
+        _1: { _1: { desc: "desc...", text: "There is 1 photo." } },
+      },
+      m: [null, { token: "number", type: 2, singular: true }],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [fbt._plural(num), fbt._plural(num, "number", hi())]
+);
+
+`;
+
+exports[`Test fbt transforms without the jsx transform when using within template literals should work with a basic <fbt> 1`] = `
+const fbt = require("fbt");
+
+html\`<div>
+  \${fbt._(
+    /* __FBT__ start */ {
+      jsfbt: { t: { desc: "some desc", text: "basic text" }, m: [] },
+      project: "some project",
+    } /* __FBT__ end */
+  )}
+</div>\`;
+
+`;
+
+exports[`Test fbt transforms without the jsx transform when using within template literals should work with a nested <fbt> within an <fbt:param> 1`] = `
+const fbt = require("fbt");
+
+html\`<div>
+  \${fbt._(
+    /* __FBT__ start */ {
+      jsfbt: {
+        t: { desc: "some desc", text: "outer text {param text}" },
+        m: [],
+      },
+      project: "some project",
+    } /* __FBT__ end */,
+    [
+      fbt._param(
+        "param text",
+        html\`<strong>
+          \${fbt._(
+            /* __FBT__ start */ {
+              jsfbt: {
+                t: { desc: "inner string", text: "inner text {inner param}" },
+                m: [],
+              },
+              project: "",
+            } /* __FBT__ end */,
+            [fbt._param("inner param", "bold")]
+          )}
+        </strong>\`
+      ),
+    ]
+  )}
+</div>\`;
+
+`;
+
+exports[`Test fbt transforms without the jsx transform when using within template literals should work with basic <fbt> auto-parameterization 1`] = `
+const fbt = require("fbt");
+
+html\`<div>
+  \${fbt._(
+    /* __FBT__ start */ {
+      jsfbt: {
+        t: {
+          desc: "some desc",
+          text: "outer text {=bold text}",
+          tokenAliases: { "=bold text": "=m1" },
+        },
+        m: [],
+      },
+      project: "some project",
+    } /* __FBT__ end */,
+    [
+      fbt._implicitParam(
+        "=m1",
+        <strong>
+          {fbt._(
+            /* __FBT__ start */ {
+              jsfbt: {
+                t: {
+                  desc: 'In the phrase: "outer text {=bold text}"',
+                  text: "bold text",
+                },
+                m: [],
+              },
+              project: "some project",
+            } /* __FBT__ end */
+          )}
+        </strong>
+      ),
+    ]
+  )}
+</div>\`;
+
+`;
