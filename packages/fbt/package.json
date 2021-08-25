@@ -17,11 +17,13 @@
   "homepage": "https://facebook.github.io/fbt/",
   "bugs": "https://github.com/facebook/fbt/issues",
   "files": [
+    "index.d.ts",
     "dist/",
     "lib/",
     "LICENSE"
   ],
   "main": "lib/FbtPublic.js",
+  "types": "index.d.ts",
   "style": "dist/fbt.css",
   "repository": {
     "type": "git",

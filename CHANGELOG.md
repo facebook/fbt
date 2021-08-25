@@ -53,6 +53,7 @@ List of changes for each released npm package version.
     Unreleased changes that have landed in master. Click to see more.
   </summary>
 
+  - [feat] Add typescript definitions for `fbt` module
   - [chore] Update babel-plugin-fbt-runtime dependency version to `^0.10.x`
   - [chore] Update babel-plugin-fbt dependency version to `^0.21.x`
   - [fix] Ensure that `fbs()` really returns `FbtPureStringResult` objects
