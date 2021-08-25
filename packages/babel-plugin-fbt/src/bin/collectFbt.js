@@ -243,6 +243,11 @@ function processSource(source) {
   }
 }
 
+// To fix an error: Using `babel-preset-react-app` requires that you specify `NODE_ENV` or `BABEL_ENV` environment variables
+if (process.env.NODE_ENV === undefined) {
+  process.env.NODE_ENV = 'production';
+}
+
 if (argv[args.HELP]) {
   yargs.showHelp();
 } else if (!argv._.length) {

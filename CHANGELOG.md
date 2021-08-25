@@ -144,6 +144,9 @@ List of changes for each released npm package version.
     <summary>
       Unreleased changes that have landed in master. Click to see more.
     </summary>
+
+  - [fix] Auto define a `NODE_ENV` variable (it required by `babel-preset-react-app` module)
+
   </details>
 
 - 0.21.0:
