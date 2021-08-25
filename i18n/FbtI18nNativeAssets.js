@@ -22,7 +22,6 @@
  */
 
 'use strict';
-
 import NativeFbtModule from 'react-native-fbt';
 
 const _translationsDictionary: {[hashKey: string]: ?string} = {};
