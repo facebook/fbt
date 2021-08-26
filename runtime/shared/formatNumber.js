@@ -16,42 +16,42 @@
 
 'use strict';
 
-const fbt = require('fbt');
+const fbs = require('fbs');
 const intlNumUtils = require('intlNumUtils');
 
 function formatNumber(value: number, decimals?: ?number): string {
   return intlNumUtils.formatNumber(value, decimals);
 }
 
-function getAtLeastString(maxnumber: number, decimals?: ?number): string {
-  const result = (
-    <fbt desc="Label with meaning 'at least number'" project="locale_data">
-      <fbt:param name="number" number={maxnumber}>
-        {intlNumUtils.formatNumberWithThousandDelimiters(maxnumber, decimals)}
-      </fbt:param>+
-    </fbt>
-  );
+function getAtLeastString(maxNumber: number, decimals?: ?number): Fbs {
   // after we start using CLDR data, it will not be fbt anymore.
-  return result.toString();
+  return (
+    <fbs desc="Label with meaning 'at least number'" project="locale_data">
+      <fbs:param name="number" number={maxNumber}>
+        {intlNumUtils.formatNumberWithThousandDelimiters(maxNumber, decimals)}
+      </fbs:param>
+      {'+'}
+    </fbs>
+  );
 }
 
-function getLessThanString(minnumber: number, decimals?: ?number): string {
-  const result = (
-    <fbt desc="Label with meaning 'less than number'" project="locale_data">
-      &lt;<fbt:param name="number" number={minnumber}>
-        {intlNumUtils.formatNumberWithThousandDelimiters(minnumber, decimals)}
-      </fbt:param>
-    </fbt>
-  );
+function getLessThanString(minNumber: number, decimals?: ?number): Fbs {
   // after we start using CLDR data, it will not be fbt anymore.
-  return result.toString();
+  return (
+    <fbs desc="Label with meaning 'less than number'" project="locale_data">
+      {'<'}
+      <fbs:param name="number" number={minNumber}>
+        {intlNumUtils.formatNumberWithThousandDelimiters(minNumber, decimals)}
+      </fbs:param>
+    </fbs>
+  );
 }
 
 function formatNumberWithMaxLimit(
   value: number,
   maxvalue: number,
   decimals?: ?number,
-): string {
+): Fbs | string {
   return value > maxvalue
     ? getAtLeastString(maxvalue, decimals)
     : intlNumUtils.formatNumberWithThousandDelimiters(value, decimals);
@@ -61,7 +61,7 @@ function formatNumberWithMinLimit(
   value: number,
   minvalue: number,
   decimals?: ?number,
-): string {
+): Fbs | string {
   return value < minvalue
     ? getLessThanString(minvalue, decimals)
     : intlNumUtils.formatNumberWithThousandDelimiters(value, decimals);
