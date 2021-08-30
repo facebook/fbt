@@ -17,16 +17,17 @@
 
 // flowlint ambiguous-object-type:error
 
+import type {
+  NumberingSystemData,
+  StandardDecimalPatternInfo,
+} from 'NumberFormatConfig';
+
 const FbtHooks = require('FbtHooks');
 const NumberFormatConsts = require('NumberFormatConsts');
 
 const escapeRegex = require('escapeRegex');
 
 const DEFAULT_GROUPING_SIZE = 3;
-import type {
-  StandardDecimalPatternInfo,
-  NumberingSystemData,
-} from 'NumberFormatConfig';
 
 const CURRENCIES_WITH_DOTS = [
   '\u0433\u0440\u043d.',
