@@ -22,7 +22,7 @@ const FbtResultBase = require('FbtResultBase');
 
 const FbtResultComponent = (props: Props): mixed => props.content;
 
-type Props = {content: $NestedFbtContentItems, ...};
+type Props = $ReadOnly<{content: $NestedFbtContentItems, ...}>;
 
 class FbtResult extends FbtResultBase {
   $$typeof: symbol | $TEMPORARY$number<0xeac7> =
