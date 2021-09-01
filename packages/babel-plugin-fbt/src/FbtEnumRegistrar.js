@@ -10,16 +10,16 @@
 
 import type {NodePathOf} from '@babel/core';
 
+const {FBT_ENUM_MODULE_SUFFIX} = require('./FbtConstants');
+const t = require('@babel/types');
+const path = require('path');
+
 type NodeCallExpression = NodePathOf<BabelNodeCallExpression>;
 type NodeImportDeclaration = NodePathOf<BabelNodeImportDeclaration>;
 export type EnumKey = string;
 type EnumValue = string;
 export type EnumModule = {|+[EnumKey]: EnumValue|};
 export type EnumManifest = {+[enumModuleName: string]: ?EnumModule};
-
-const {FBT_ENUM_MODULE_SUFFIX} = require('./FbtConstants');
-const t = require('@babel/types');
-const path = require('path');
 
 const fbtEnumMapping: {[enumAlias: string]: ?string} = {};
 

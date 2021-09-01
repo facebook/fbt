@@ -24,6 +24,25 @@ import typeof {FbtVariationType} from './translate/IntlVariations';
 import type {BabelTransformPlugin} from '@babel/core';
 import typeof BabelTypes from '@babel/types';
 
+const FbtCommonFunctionCallProcessor = require('./babel-processors/FbtCommonFunctionCallProcessor');
+const FbtFunctionCallProcessor = require('./babel-processors/FbtFunctionCallProcessor');
+const JSXFbtProcessor = require('./babel-processors/JSXFbtProcessor');
+const FbtNodeUtil = require('./fbt-nodes/FbtNodeUtil');
+const FbtCommon = require('./FbtCommon');
+const {
+  JSModuleName: {FBT},
+  ValidFbtOptions,
+} = require('./FbtConstants');
+const FbtEnumRegistrar = require('./FbtEnumRegistrar');
+const fbtHashKey = require('./fbtHashKey');
+const FbtShiftEnums = require('./FbtShiftEnums');
+const FbtUtil = require('./FbtUtil');
+const JSFbtUtil = require('./JSFbtUtil');
+const {
+  RequireCheck: {isRequireAlias},
+} = require('fb-babel-plugin-utils');
+const {parse: parseDocblock} = require('jest-docblock');
+
 /**
  * Map of extra fbt options (or JSX attributes) to accept on fbt callsites.
  *
@@ -31,7 +50,6 @@ import typeof BabelTypes from '@babel/types';
  * without doing any further processing on them.
  */
 export type ExtraOptions = {[optionName: string]: boolean};
-
 type FbtEnumLoader = (enumFilePath: string) => EnumModule;
 export type PluginOptions = {|
   collectFbt?: boolean,
@@ -55,13 +73,10 @@ export type PluginOptions = {|
   generateOuterTokenName?: boolean,
   reactNativeMode?: boolean,
 |};
-
 type TokenAlias = string;
-
 export type TokenAliases = {|
   [clearTokenName: string]: TokenAlias,
 |};
-
 /**
  * This is the main payload collected from the fbt callsite.
  *
@@ -76,7 +91,6 @@ export type TableJSFBTTree =
   | {|
       [key: FbtTableKey]: TableJSFBTTree,
     |};
-
 export type TableJSFBTTreeLeaf = {|
   desc: string,
   hash?: PatternHash,
@@ -90,7 +104,6 @@ export type TableJSFBTTreeLeaf = {|
   // So the outer token name of the inner string will be "=World"
   outerTokenName?: string,
 |};
-
 // Describes the usage of one level of the JSFBT table tree
 export type JSFBTMetaEntry = $ReadOnly<
   | {|
@@ -110,16 +123,13 @@ export type JSFBTMetaEntry = $ReadOnly<
       range: $ReadOnlyArray<string>,
     |},
 >;
-
 export type TableJSFBT = $ReadOnly<{|
   t: $ReadOnly<TableJSFBTTree>,
   m: $ReadOnlyArray<?JSFBTMetaEntry>,
 |}>;
-
 export type ObjectWithJSFBT = {|
   jsfbt: TableJSFBT,
 |};
-
 export type Phrase = {|
   ...FbtCallSiteOptions,
   col_beg: number,
@@ -131,33 +141,13 @@ export type Phrase = {|
   ...ObjectWithJSFBT,
 |};
 type ChildToParentMap = {[childIndex: number]: number};
-
 export type BabelPluginFbt = {
   ({types: BabelTypes, ...}): BabelTransformPlugin,
   getExtractedStrings: () => Array<Phrase>,
   getChildToParentRelationships: () => ChildToParentMap,
   fbtHashKey: typeof fbtHashKey,
 };
-
-const FbtCommonFunctionCallProcessor = require('./babel-processors/FbtCommonFunctionCallProcessor');
-const FbtFunctionCallProcessor = require('./babel-processors/FbtFunctionCallProcessor');
-const JSXFbtProcessor = require('./babel-processors/JSXFbtProcessor');
-const FbtCommon = require('./FbtCommon');
-const {
-  JSModuleName: {FBT},
-  ValidFbtOptions,
-} = require('./FbtConstants');
-const FbtEnumRegistrar = require('./FbtEnumRegistrar');
-const fbtHashKey = require('./fbtHashKey');
-const FbtNodeUtil = require('./fbt-nodes/FbtNodeUtil');
-const FbtShiftEnums = require('./FbtShiftEnums');
-const FbtUtil = require('./FbtUtil');
-const JSFbtUtil = require('./JSFbtUtil');
 const {checkOption, objMap} = FbtUtil;
-const {
-  RequireCheck: {isRequireAlias},
-} = require('fb-babel-plugin-utils');
-const {parse: parseDocblock} = require('jest-docblock');
 
 /**
  * Default options passed from a docblock.

@@ -19,24 +19,8 @@ import type {
   JSModuleNameType,
 } from './FbtConstants';
 import typeof BabelTypes from '@babel/types';
-type BabelNodeJSXAttributes = $ReadOnlyArray<
-  $ElementType<$PropertyType<BabelNodeJSXOpeningElement, 'attributes'>, number>,
->;
-export type BabelNodeCallExpressionArg =
-  | BabelNodeExpression
-  | BabelNodeSpreadElement
-  | BabelNodeJSXNamespacedName
-  | BabelNodeArgumentPlaceholder;
-export type BabelNodeCallExpressionArgument = $ElementType<
-  $PropertyType<BabelNodeCallExpression, 'arguments'>,
-  number,
->;
-export type ParamSet = {[parameterName: string]: ?BabelNode};
 
 const {JSModuleName, ModuleNameRegExp} = require('./FbtConstants');
-const invariant = require('invariant');
-const nullthrows = require('nullthrows');
-const {FBS, FBT} = JSModuleName;
 const {
   arrayExpression,
   callExpression,
@@ -68,7 +52,24 @@ const {
 const {
   generateFormattedCodeFromAST,
 } = require('fb-babel-plugin-utils/TestUtil');
+const invariant = require('invariant');
+const nullthrows = require('nullthrows');
 const util = require('util');
+
+type BabelNodeJSXAttributes = $ReadOnlyArray<
+  $ElementType<$PropertyType<BabelNodeJSXOpeningElement, 'attributes'>, number>,
+>;
+export type BabelNodeCallExpressionArg =
+  | BabelNodeExpression
+  | BabelNodeSpreadElement
+  | BabelNodeJSXNamespacedName
+  | BabelNodeArgumentPlaceholder;
+export type BabelNodeCallExpressionArgument = $ElementType<
+  $PropertyType<BabelNodeCallExpression, 'arguments'>,
+  number,
+>;
+export type ParamSet = {[parameterName: string]: ?BabelNode};
+const {FBS, FBT} = JSModuleName;
 
 function normalizeSpaces(
   value: string,

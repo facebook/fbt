@@ -16,6 +16,8 @@
 
 import type {ValidPronounUsagesType} from '../../../runtime/shared/FbtRuntimeTypes';
 
+const keyMirror = require('fbjs/lib/keyMirror');
+
 export type FbtOptionValue = string | boolean | BabelNode;
 export type FbtOptionValues<K> = {|[K]: ?FbtOptionValue|};
 export type FbtOptionConfig<K> = {|[K]: {[optionValue: string]: true} | true|};
@@ -31,13 +33,10 @@ export type FbtCallSiteOptions = $Shape<{|
   // TODO(T56277500) Refine to expected type: BabelNode
   subject?: ?FbtOptionValue,
 |}>;
-
 // JS module names without the "React FBT" variant
 export type JSModuleNameType = 'fbt' | 'fbs';
 export type ValidPronounUsagesKey = $Keys<ValidPronounUsagesType>;
 export type FbtTypeValue = $Values<typeof FbtType>;
-
-const keyMirror = require('fbjs/lib/keyMirror');
 
 const SENTINEL = '__FBT__';
 

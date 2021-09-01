@@ -11,9 +11,10 @@
 // flowlint ambiguous-object-type:error
 
 import type {JSModuleNameType} from './FbtConstants';
-export type FbtCommonMap = {[text: string]: string, ...};
 
 const path = require('path');
+
+export type FbtCommonMap = {[text: string]: string, ...};
 const textToDesc: FbtCommonMap = {};
 
 const FbtCommon = {
