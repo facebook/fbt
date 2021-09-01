@@ -16,17 +16,6 @@ import type {GenderConstEnum} from '../Gender';
 import type {StringVariationArgsMap} from './FbtArguments';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 
-type Options = {|
-  // If true, capitalize the pronoun text
-  capitalize?: ?boolean,
-  // BabelNodeCallExpressionArg representing the value of the `gender`
-  gender: BabelNodeCallExpressionArg,
-  // If true, exclude non-human-related pronouns from the generated string variations
-  human?: ?boolean,
-  // Type of pronoun
-  type: ValidPronounUsagesKey,
-|};
-
 const {
   ValidPronounOptions,
   ValidPronounUsages,
@@ -42,22 +31,33 @@ const {
   varDump,
 } = require('../FbtUtil');
 const Gender = require('../Gender');
-const {GENDER_CONST} = Gender;
 const {GENDER_ANY} = require('../translate/IntlVariations');
 const {GenderStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
+const FbtNodeType = require('./FbtNodeType');
 const {createInstanceFromFbtConstructCallsite} = require('./FbtNodeUtil');
 const {
+  identifier,
   isStringLiteral,
   numericLiteral,
-  identifier,
   objectExpression,
   objectProperty,
 } = require('@babel/types');
 const forEachObject = require('fbjs/lib/forEachObject');
 const invariant = require('invariant');
 const nullthrows = require('nullthrows');
-const FbtNodeType = require('./FbtNodeType');
+
+type Options = {|
+  // If true, capitalize the pronoun text
+  capitalize?: ?boolean,
+  // BabelNodeCallExpressionArg representing the value of the `gender`
+  gender: BabelNodeCallExpressionArg,
+  // If true, exclude non-human-related pronouns from the generated string variations
+  human?: ?boolean,
+  // Type of pronoun
+  type: ValidPronounUsagesKey,
+|};
+const {GENDER_CONST} = Gender;
 
 const candidatePronounGenders: $ReadOnlyArray<GenderConstEnum> = consolidatedPronounGenders();
 

@@ -30,6 +30,13 @@ import type FbtSameParamNode from './FbtSameParamNode';
 import type FbtTextNode from './FbtTextNode';
 import type {Scope} from '@babel/core';
 
+const FbtNodeChecker = require('../FbtNodeChecker');
+const {compactBabelNodeProps, errorAt, varDump} = require('../FbtUtil');
+const FbtNodeType = require('./FbtNodeType');
+const {default: traverse} = require('@babel/traverse');
+const {isCallExpression, isNewExpression} = require('@babel/types');
+const invariant = require('invariant');
+
 export type FbtChildNode =
   | FbtEnumNode
   | FbtImplicitParamNode
@@ -40,7 +47,6 @@ export type FbtChildNode =
   | FbtSameParamNode
   | FbtTextNode;
 export type AnyFbtNode = FbtNode<any, any, any, any>;
-
 export type PlainJSXNode = {|
   babelNode: BabelNodeJSXOpeningElement,
   // Simplified representation of the JSX opening element's attributes for convenience.
@@ -50,7 +56,6 @@ export type PlainJSXNode = {|
   props: $ReadOnly<{[name: string]: string | number}>,
   type: string,
 |};
-
 export type PlainFbtNode = {|
   type: FbtNodeType,
   +children?: $ReadOnlyArray<PlainFbtNode>,
@@ -58,13 +63,6 @@ export type PlainFbtNode = {|
   phraseIndex?: ?number,
   wrapperNode?: ?PlainJSXNode,
 |};
-
-const FbtNodeChecker = require('../FbtNodeChecker');
-const FbtNodeType = require('./FbtNodeType');
-const {compactBabelNodeProps, errorAt, varDump} = require('../FbtUtil');
-const {isCallExpression, isNewExpression} = require('@babel/types');
-const invariant = require('invariant');
-const {default: traverse} = require('@babel/traverse');
 
 /**
  * Base class that represents an fbt construct like <fbt>, <fbt:param>, etc...

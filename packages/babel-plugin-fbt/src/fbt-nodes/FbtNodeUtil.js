@@ -18,14 +18,14 @@ import type FbtImplicitParamNodeType from './FbtImplicitParamNode';
 import type {AnyFbtNode, FbtChildNode, PlainFbtNode} from './FbtNode';
 import type FbtNodeType from './FbtNodeType';
 
+const FbtNodeChecker = require('../FbtNodeChecker');
+const {errorAt, normalizeSpaces, varDump} = require('../FbtUtil');
+const invariant = require('invariant');
+
 export type FromBabelNodeFunctionArgs = {|
   moduleName: JSModuleNameType,
   node: BabelNode,
 |};
-
-const FbtNodeChecker = require('../FbtNodeChecker');
-const {errorAt, normalizeSpaces, varDump} = require('../FbtUtil');
-const invariant = require('invariant');
 
 function createInstanceFromFbtConstructCallsite<N: {}>(
   moduleName: JSModuleNameType,

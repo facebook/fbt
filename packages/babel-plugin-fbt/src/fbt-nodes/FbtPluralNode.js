@@ -14,18 +14,6 @@ import type {BabelNodeCallExpressionArg} from '../FbtUtil';
 import type {StringVariationArgsMap} from './FbtArguments';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 
-type Options = {|
-  // Represents the number used for determining the plural case at runtime
-  count: BabelNodeCallExpressionArg,
-  many?: ?string, // text to show when count>1
-  name: ?string, // token name
-  // If `yes`, show the `count` number as a prefix of the current plural text
-  // If `ifMany`, behaves as `yes` when the count value is greater than 1
-  // Else, `no` to hide the `count` number
-  showCount: $Keys<typeof ShowCountKeys>,
-  value?: ?BabelNodeCallExpressionArg, // optional value to replace token (rather than count)
-|};
-
 const {
   PLURAL_PARAM_TOKEN,
   ShowCountKeys,
@@ -51,6 +39,18 @@ const {
 const {isStringLiteral, stringLiteral} = require('@babel/types');
 const invariant = require('invariant');
 const nullthrows = require('nullthrows');
+
+type Options = {|
+  // Represents the number used for determining the plural case at runtime
+  count: BabelNodeCallExpressionArg,
+  many?: ?string, // text to show when count>1
+  name: ?string, // token name
+  // If `yes`, show the `count` number as a prefix of the current plural text
+  // If `ifMany`, behaves as `yes` when the count value is greater than 1
+  // Else, `no` to hide the `count` number
+  showCount: $Keys<typeof ShowCountKeys>,
+  value?: ?BabelNodeCallExpressionArg, // optional value to replace token (rather than count)
+|};
 
 /**
  * Represents an <fbt:plural> or fbt.plural() construct.

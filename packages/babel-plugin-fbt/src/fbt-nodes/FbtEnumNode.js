@@ -15,21 +15,14 @@ import type {BabelNodeCallExpressionArg} from '../FbtUtil';
 import type {StringVariationArgsMap} from './FbtArguments';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 
-type Options = {|
-  range: EnumModule, // key/value pairs to use for this fbt:enum
-  // Represents the enum value that'll be used to select
-  // the corresponding enum string variation at runtime
-  value: BabelNodeCallExpressionArg,
-|};
-
 const {FBT_ENUM_MODULE_SUFFIX} = require('../FbtConstants');
 const FbtEnumRegistrar = require('../FbtEnumRegistrar');
 const {
   createFbtRuntimeArgCallExpression,
   enforceBabelNode,
+  enforceBabelNodeCallExpressionArg,
   errorAt,
   varDump,
-  enforceBabelNodeCallExpressionArg,
 } = require('../FbtUtil');
 const {EnumStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
@@ -48,6 +41,13 @@ const {
 } = require('@babel/types');
 const invariant = require('invariant');
 const nullthrows = require('nullthrows');
+
+type Options = {|
+  range: EnumModule, // key/value pairs to use for this fbt:enum
+  // Represents the enum value that'll be used to select
+  // the corresponding enum string variation at runtime
+  value: BabelNodeCallExpressionArg,
+|};
 
 /**
  * Represents an <fbt:enum> or fbt.enum() construct.
