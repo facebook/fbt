@@ -61,7 +61,7 @@ const CURRENCIES_WITH_DOTS = [
   'S/.',
 ];
 
-const _regexCache = {};
+const _regexCache: {[string]: RegExp} = {};
 function _buildRegex(pattern: string): RegExp {
   if (!_regexCache[pattern]) {
     _regexCache[pattern] = new RegExp(pattern, 'i');
@@ -401,7 +401,7 @@ function _getNativeDigitsMap(): ?{[string]: string, ...} {
   const NumberFormatConfig = NumberFormatConsts.get(
     FbtHooks.getViewerContext().locale,
   );
-  const nativeDigitMap = {};
+  const nativeDigitMap: {[string]: string} = {};
   const digits =
     NumberFormatConfig.numberingSystemData &&
     NumberFormatConfig.numberingSystemData.digits;

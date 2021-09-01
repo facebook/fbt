@@ -312,7 +312,7 @@ function fbtImplicitParam(
  */
 function fbtPlural(count: number, label: ?string, value?: mixed): FbtTableArg {
   const variation = getNumberVariations(count);
-  const substitution = {};
+  const substitution: {[string]: mixed} = {};
   // $FlowFixMe[sketchy-null-string]
   if (label) {
     if (typeof value === 'number') {
@@ -401,7 +401,7 @@ function fbtName(
   gender: GenderConstEnum,
 ): FbtTableArg {
   const variation = getGenderVariations(gender);
-  const substitution = {};
+  const substitution: {[string]: mixed} = {};
   substitution[label] = value;
   return FbtTableAccessor.getGenderResult(variation, substitution, gender);
 }
