@@ -14,12 +14,12 @@ import type {
 } from '../../../../runtime/shared/FbtTable';
 import type {HashToLeaf, PackagerPhrase} from './FbtCollector';
 
+const {onEachLeaf} = require('../JSFbtUtil');
+
 export type HashFunction = (
   text: PatternString,
   description: string,
 ) => PatternHash;
-
-const {onEachLeaf} = require('../JSFbtUtil');
 
 /**
  * TextPackager massages the data to handle multiple texts in fbt payloads (like
@@ -35,7 +35,7 @@ class TextPackager {
   pack(phrases: Array<PackagerPhrase>): Array<PackagerPhrase> {
     return phrases.map(phrase => {
       const hashToLeaf: HashToLeaf = {};
-      onEachLeaf(phrase, ({text, desc}) => {
+      onEachLeaf(phrase, ({desc, text}) => {
         hashToLeaf[this._hash(text, desc)] = {
           text,
           desc,
@@ -48,20 +48,6 @@ class TextPackager {
       };
     });
   }
-}
-
-function _flattenTexts(texts) {
-  if (typeof texts === 'string') {
-    // Return all tree leaves of a jsfbt TABLE or singleton array in the case of
-    // a TEXT type
-    return [texts];
-  }
-
-  const aggregate = [];
-  for (const k in texts) {
-    aggregate.push.apply(aggregate, _flattenTexts(texts[k]));
-  }
-  return aggregate;
 }
 
 module.exports = TextPackager;

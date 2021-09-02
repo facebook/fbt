@@ -17,8 +17,7 @@ import typeof {
   GENDER_ANY,
   NUMBER_ANY,
 } from '../translate/IntlVariations';
-import type FbtNode from './FbtNode';
-import type {AnyFbtNode} from './FbtNode';
+import type FbtNode, {AnyFbtNode} from './FbtNode';
 
 const {compactBabelNodeProps, getRawSource, varDump} = require('../FbtUtil');
 const invariant = require('invariant');

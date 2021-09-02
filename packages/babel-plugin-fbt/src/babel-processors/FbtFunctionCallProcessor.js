@@ -19,57 +19,19 @@ import type {ObjectWithJSFBT, PluginOptions} from '../index.js';
 import type {NodePathOf} from '@babel/core';
 import typeof BabelTypes from '@babel/types';
 
-type NodePath = NodePathOf<BabelNodeCallExpression>;
-
-export type FbtFunctionCallPhrase = {|
-  ...FbtCallSiteOptions,
-  ...ObjectWithJSFBT,
-|};
-
-export type SentinelPayload = {|
-  ...ObjectWithJSFBT,
-  project: string,
-|};
-
-export type MetaPhrase = {|
-  compactStringVariations: CompactStringVariations,
-  // FbtNode abstraction whose phrase's data comes from
-  fbtNode: FbtElementNode | FbtImplicitParamNode,
-  // Phrase data
-  phrase: FbtFunctionCallPhrase,
-  // Index of the outer-phrase (assuming that the current phrase is an inner-phrase)
-  // If the current phrase is the top-level phrase, it won't be defined.
-  parentIndex: ?number,
-|};
-
-type CompactStringVariations = {|
-  // Compacted string variation argument list
-  array: $ReadOnlyArray<AnyStringVariationArg>,
-  // Mapping of the original item indexes so that:
-  //   For the output array item at index `k`, the original SVArgument index is `indexMap[k]`
-  indexMap: $ReadOnlyArray<number>,
-|};
-
-// In the final fbt runtime call, runtime arguments that create string variation
-// will become identifiers(references to local variables) if there exist string variations
-// AND inner strings.
-type StringVariationRuntimeArgumentBabelNodes =
-  | Array<BabelNodeIdentifier>
-  | Array<BabelNodeCallExpression>;
-
 const {StringVariationArgsMap} = require('../fbt-nodes/FbtArguments');
 const FbtElementNode = require('../fbt-nodes/FbtElementNode');
+const FbtImplicitParamNode = require('../fbt-nodes/FbtImplicitParamNode');
 const FbtParamNode = require('../fbt-nodes/FbtParamNode');
 const {SENTINEL} = require('../FbtConstants');
 const FbtNodeChecker = require('../FbtNodeChecker');
-const FbtImplicitParamNode = require('../fbt-nodes/FbtImplicitParamNode');
 const {
   convertToStringArrayNodeIfNeeded,
   createFbtRuntimeArgCallExpression,
+  enforceBoolean,
+  enforceString,
   errorAt,
   varDump,
-  enforceString,
-  enforceBoolean,
 } = require('../FbtUtil');
 const JSFbtBuilder = require('../JSFbtBuilder');
 const addLeafToTree = require('../utils/addLeafToTree');
@@ -92,6 +54,39 @@ const {
 const {Buffer} = require('buffer');
 const invariant = require('invariant');
 const nullthrows = require('nullthrows');
+
+type NodePath = NodePathOf<BabelNodeCallExpression>;
+export type FbtFunctionCallPhrase = {|
+  ...FbtCallSiteOptions,
+  ...ObjectWithJSFBT,
+|};
+export type SentinelPayload = {|
+  ...ObjectWithJSFBT,
+  project: string,
+|};
+export type MetaPhrase = {|
+  compactStringVariations: CompactStringVariations,
+  // FbtNode abstraction whose phrase's data comes from
+  fbtNode: FbtElementNode | FbtImplicitParamNode,
+  // Phrase data
+  phrase: FbtFunctionCallPhrase,
+  // Index of the outer-phrase (assuming that the current phrase is an inner-phrase)
+  // If the current phrase is the top-level phrase, it won't be defined.
+  parentIndex: ?number,
+|};
+type CompactStringVariations = {|
+  // Compacted string variation argument list
+  array: $ReadOnlyArray<AnyStringVariationArg>,
+  // Mapping of the original item indexes so that:
+  //   For the output array item at index `k`, the original SVArgument index is `indexMap[k]`
+  indexMap: $ReadOnlyArray<number>,
+|};
+// In the final fbt runtime call, runtime arguments that create string variation
+// will become identifiers(references to local variables) if there exist string variations
+// AND inner strings.
+type StringVariationRuntimeArgumentBabelNodes =
+  | Array<BabelNodeIdentifier>
+  | Array<BabelNodeCallExpression>;
 
 const emptyArgsCombinations: [[]] = [[]];
 const STRING_VARIATION_RUNTIME_ARGUMENT_IDENTIFIER_PREFIX = 'fbt_sv_arg';
