@@ -60,8 +60,23 @@ describe('collectFbt', () => {
     }
   }
 
-  it('should extract strings', () => {
+  it('should extract fbt strings', () => {
     var res = collect('const fbt = require(\'fbt\');<fbt desc="foo">bar</fbt>');
+
+    var expected = {
+      type: 'text',
+      desc: 'foo',
+      jsfbt: 'bar',
+    };
+
+    var actual = {};
+    Object.keys(expected).map(key => (actual[key] = res.phrases[0][key]));
+
+    expect(actual).toEqual(expected);
+  });
+
+  it('should extract fbs strings', () => {
+    var res = collect('const fbs = require(\'fbs\');<fbs desc="foo">bar</fbs>');
 
     var expected = {
       type: 'text',
