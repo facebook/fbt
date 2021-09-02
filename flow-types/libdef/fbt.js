@@ -25,21 +25,21 @@ declare opaque type FbtString: string;
 /**
  * Translated string from an `<fbt>` element.
  *
- * This is an opaque type so you may _only_ create an `FbtElement` by using an
- * `<fbt>` element.
- *
  * Unlike `FbtString`, you cannot use `FbtElement` like any normal string. Since
  * `<fbt>` can have nested React nodes its internal structure is hidden from the
  * end user.
  *
  * There are some string-like properties and methods you may use, like `length`
  * and `toString()`.
+ *
+ * This should have been an opaque type so you may _only_ create an `FbtElement` by using an
+ * `<fbt>` element, but we can't do it yet since there are flow issues with React's defaultProps.
+ *
+ * See:
+ *  - An Fbt in defaultProps breaks: https://fburl.com/cer2jdjd
+ *  - Opaque types with truthy bounds aren't excluded from the type of
+ *   logical 'and' expressions. https://fburl.com/9b5vm9wh
  */
-// Not using `opaque` yet since there are flow issues with React's defaultProps
-// See:
-// - An Fbt in defaultProps breaks: https://fburl.com/cer2jdjd
-// - Opaque types with truthy bounds aren't excluded from the type of
-//   logical 'and' expressions. https://fburl.com/9b5vm9wh
 declare type FbtElement = $FbtResultBase;
 
 /**
