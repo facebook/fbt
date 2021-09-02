@@ -277,7 +277,14 @@ function getOptionsFromAttributes(
   return t.objectExpression(options);
 }
 
-type ErrorWithBabelNodeLocation = Error & {_hasBabelNodeLocation?: boolean};
+type ErrorWithBabelNodeLocation = Error &
+  interface {
+    _hasBabelNodeLocation?: boolean,
+  };
+
+interface IBabelNodeWithLocation {
+  loc: ?BabelNodeSourceLocation;
+}
 
 /**
  * Prepend Babel node debug info (location, source code) to an Error message.
@@ -287,9 +294,7 @@ type ErrorWithBabelNodeLocation = Error & {_hasBabelNodeLocation?: boolean};
  * If it's a string, we'll create a new Error object ourselves.
  */
 function errorAt(
-  astNode: ?{
-    loc: ?BabelNodeSourceLocation,
-  },
+  astNode: ?IBabelNodeWithLocation,
   msgOrError: string | ErrorWithBabelNodeLocation = '',
   options: {
     suggestOSSWebsite?: boolean,
@@ -318,9 +323,7 @@ function errorAt(
 }
 
 function createErrorMessageAtNode(
-  astNode: ?{
-    loc: ?BabelNodeSourceLocation,
-  },
+  astNode: ?IBabelNodeWithLocation,
   msg: string = '',
   options: {
     suggestOSSWebsite?: boolean,
@@ -849,12 +852,13 @@ function convertToStringArrayNodeIfNeeded(
  *   }
  */
 function compactBabelNodeProps(
-  object: {},
+  object: interface {},
   serializeSourceCode: boolean = true,
-): {} {
+): {...} {
+  // $FlowExpectedError[cannot-spread-interface] Force-cast `interface` to an `object` type
   const ret = {...object};
   for (const propName in ret) {
-    if (Object.prototype.hasOwnProperty.call(ret, propName)) {
+    if (ret.hasOwnProperty(propName)) {
       const propValue = ret[propName];
       if (!isNode(propValue)) {
         continue;

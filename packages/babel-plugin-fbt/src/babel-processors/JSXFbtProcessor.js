@@ -359,6 +359,7 @@ class JSXFbtProcessor {
 const jsxFbtConstructToFunctionalFormTransform = {
   JSXElement(path: NodePathOf<BabelNodeJSXElement>) {
     const {node} = path;
+    // $FlowFixMe[object-this-reference] Babel transforms run with the plugin context by default
     const moduleName = (this.moduleName: JSModuleNameType);
     const name = validateNamespacedFbtElement(
       moduleName,

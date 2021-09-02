@@ -27,7 +27,7 @@ export type FromBabelNodeFunctionArgs = {|
   node: BabelNode,
 |};
 
-function createInstanceFromFbtConstructCallsite<N: {}>(
+function createInstanceFromFbtConstructCallsite<N: AnyFbtNode>(
   moduleName: JSModuleNameType,
   node: BabelNode,
   Constructor: Class<N> & $ReadOnly<{type: FbtNodeType}>,

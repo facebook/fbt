@@ -381,19 +381,25 @@ class FbtElementNode
     setUniqueToken(source.node, this.moduleName, name, this._tokenSet);
   }
 
+  static __compactTokenSet(obj: mixed): mixed {
+    invariant(
+      obj &&
+        typeof obj === 'object' &&
+        typeof obj._tokenSet === 'object' &&
+        obj._tokenSet,
+      'Expected _tokenSet property to be defined',
+    );
+    // $FlowFixMe[cannot-write] Flow refines mixed to an read-only object for some unknown reason...
+    obj._tokenSet = compactBabelNodeProps(obj._tokenSet, false);
+    return obj;
+  }
+
   /**
    * For debugging and unit tests
    */
-  static __toJSONForTestsOnlyHelper(
-    instance: FbtElementNode | FbtImplicitParamNodeType,
-  ): mixed {
-    const ret = FbtNode.prototype.__toJSONForTestsOnly.call(instance);
-    ret._tokenSet = compactBabelNodeProps(ret._tokenSet, false);
-    return ret;
-  }
-
   __toJSONForTestsOnly(): mixed {
-    return this.constructor.__toJSONForTestsOnlyHelper(this);
+    const ret = super.__toJSONForTestsOnly();
+    return this.constructor.__compactTokenSet(ret);
   }
 }
 

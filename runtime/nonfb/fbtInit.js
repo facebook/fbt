@@ -24,13 +24,16 @@ export type FbtInitInput = {
   translations: TranslationDict,
 };
 
+// Using "auto-bind" to avoid Flow "method-unbinding" issue
+const getFbtResult = FbtResult.get.bind(FbtResult);
+
 function fbtInit(input: FbtInitInput): void {
   FbtTranslations.registerTranslations(input.translations);
 
   // Hookup default implementations
   const hooks = input.hooks ?? {};
   if (hooks.getFbtResult == null) {
-    hooks.getFbtResult = FbtResult.get;
+    hooks.getFbtResult = getFbtResult;
   }
   if (hooks.getFbsResult == null) {
     hooks.getFbsResult = getFbsResult;

@@ -168,6 +168,7 @@ class FbtParamNode extends FbtNode<
       this.getArgsForStringVariationCalc().forEach(expectedArg => {
         const svArg = argsMap.get(this);
         invariant(
+          // $FlowExpectedError[method-unbinding] We're just comparing methods by reference
           svArg.constructor === expectedArg.constructor,
           'Expected SVArgument instance of %s but got %s instead: %s',
           expectedArg.constructor.name || 'unknown',

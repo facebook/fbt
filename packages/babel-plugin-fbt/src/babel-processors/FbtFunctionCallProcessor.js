@@ -56,14 +56,17 @@ const invariant = require('invariant');
 const nullthrows = require('nullthrows');
 
 type NodePath = NodePathOf<BabelNodeCallExpression>;
+
 export type FbtFunctionCallPhrase = {|
   ...FbtCallSiteOptions,
   ...ObjectWithJSFBT,
 |};
+
 export type SentinelPayload = {|
   ...ObjectWithJSFBT,
   project: string,
 |};
+
 export type MetaPhrase = {|
   compactStringVariations: CompactStringVariations,
   // FbtNode abstraction whose phrase's data comes from
@@ -74,6 +77,7 @@ export type MetaPhrase = {|
   // If the current phrase is the top-level phrase, it won't be defined.
   parentIndex: ?number,
 |};
+
 type CompactStringVariations = {|
   // Compacted string variation argument list
   array: $ReadOnlyArray<AnyStringVariationArg>,
@@ -81,6 +85,7 @@ type CompactStringVariations = {|
   //   For the output array item at index `k`, the original SVArgument index is `indexMap[k]`
   indexMap: $ReadOnlyArray<number>,
 |};
+
 // In the final fbt runtime call, runtime arguments that create string variation
 // will become identifiers(references to local variables) if there exist string variations
 // AND inner strings.

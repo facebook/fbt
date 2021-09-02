@@ -116,8 +116,10 @@ module.exports = function BabelPluginFbtRuntime(babel /*: {
 
   return {
     pre() {
-      const opts = getPluginOptions(this);
-      this.opts.fbtSentinel = opts.fbtSentinel || SENTINEL;
+      // $FlowFixMe[object-this-reference] Babel transforms run with the plugin context by default
+      const visitor = this;
+      const opts = getPluginOptions(visitor);
+      visitor.opts.fbtSentinel = opts.fbtSentinel || SENTINEL;
       if (opts.fbtHashKeyModule) {
         // $FlowExpectedError[unsupported-syntax] Dynamic import needed
         fbtHashKey = require(opts.fbtHashKeyModule);
@@ -145,6 +147,7 @@ module.exports = function BabelPluginFbtRuntime(babel /*: {
        * fbt._("jsfbt test") or fbt._({... jsfbt table})
        */
       StringLiteral(path) {
+        // $FlowFixMe[object-this-reference] Babel transforms run with the plugin context by default
         const {fbtSentinel, reactNativeMode} = getPluginOptions(this);
         if (fbtSentinel == null || fbtSentinel.trim() == '') {
           // eslint-disable-next-line fb-www/no-new-error
@@ -190,7 +193,7 @@ module.exports = function BabelPluginFbtRuntime(babel /*: {
         let shiftedJsfbt;
         let enumCount = 0;
         if (reactNativeMode) {
-          ({shiftedJsfbt, enumCount} = shiftEnumsToTop(phrase.jsfbt));
+          ({enumCount, shiftedJsfbt} = shiftEnumsToTop(phrase.jsfbt));
         }
 
         if (enumCount > 0) {

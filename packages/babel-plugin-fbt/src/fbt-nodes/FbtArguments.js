@@ -215,7 +215,7 @@ class NumberStringVariationArg extends StringVariationArg<
   }
 }
 
-function assertInstanceOf<C: {}>(
+function assertInstanceOf<C: interface {}>(
   value: mixed,
   Constructor: Class<C> & {name: string},
 ): C {

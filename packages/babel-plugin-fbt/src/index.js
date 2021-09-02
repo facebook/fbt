@@ -169,13 +169,15 @@ function FbtTransform(babel: {types: BabelTypes}): BabelTransformPlugin {
 
   return {
     pre() {
-      const pluginOptions: PluginOptions = this.opts;
+      // $FlowFixMe[object-this-reference] Babel transforms run with the plugin context by default
+      const visitor = this;
+      const pluginOptions: PluginOptions = visitor.opts;
       pluginOptions.fbtBase64 = pluginOptions.fbtBase64;
 
       FbtCommon.init(pluginOptions);
       FbtEnumRegistrar.setEnumManifest(getEnumManifest(pluginOptions));
-      initExtraOptions(this);
-      initDefaultOptions(this);
+      initExtraOptions(visitor);
+      initDefaultOptions(visitor);
       allMetaPhrases = [];
       childToParent = {};
     },
@@ -219,6 +221,7 @@ function FbtTransform(babel: {types: BabelTypes}): BabelTransformPlugin {
        * );
        */
       CallExpression(path) {
+        // $FlowFixMe[object-this-reference] Babel transforms run with the plugin context by default
         const visitor = this;
         const fileSource = visitor.file.code;
         const pluginOptions: PluginOptions = visitor.opts;

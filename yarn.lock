@@ -4063,9 +4063,9 @@ flow-bin@0.87.0:
   version "0.87.0"
   resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.87.0.tgz#fab7f984d8cc767e93fa9eb01cf7d57ed744f19d"
 
-flow-bin@^0.152.0:
-  version "0.152.0"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.152.0.tgz#6980d0cd58f59e9aefd580b11109a1d56eba46b1"
+flow-bin@^0.158.0:
+  version "0.158.0"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.158.0.tgz#0a09763d41eb8ec7135ced6a3b9f8fa370a393d8"
 
 flow-enums-runtime@^0.0.4:
   version "0.0.4"

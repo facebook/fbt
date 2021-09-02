@@ -16,6 +16,7 @@ List of changes for each released npm package version.
 - [fbt-rn-android-native versions [Deprecated]](#fbt-rn-android-native-versions-deprecated)
 
 ### Top-level Github
+- [chore] Upgrade to Flow v0.158.0
 - [fix] Add missing dependencies for `@babel/preset-react`
 - [build] Add test to ensure published versions are in sync
 - [feat] Add example of fbt common to the demo-app. See `<fbt common={true}>...</fbt>`.
