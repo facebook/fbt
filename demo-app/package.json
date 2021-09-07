@@ -52,7 +52,6 @@
     "css-loader": "1.0.1",
     "fb-tiger-hash": "0.2.0-rc1-beta",
     "file-loader": "2.0.0",
-    "flow-bin": "0.87.0",
     "html-webpack-plugin": "^4.5.0",
     "invariant": "^2.2.4",
     "jest": "^24.8.0",
