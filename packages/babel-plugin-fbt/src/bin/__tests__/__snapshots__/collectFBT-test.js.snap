@@ -1288,6 +1288,50 @@ Object {
 }
 `;
 
+exports[`collectFbt should extract fbs strings 1`] = `
+Object {
+  "childParentMappings": Object {},
+  "phrases": Array [
+    Object {
+      "col_beg": 27,
+      "col_end": 52,
+      "jsfbt": Object {
+        "m": Array [],
+        "t": Object {
+          "desc": "foo",
+          "text": "bar",
+        },
+      },
+      "line_beg": 1,
+      "line_end": 1,
+      "project": "",
+    },
+  ],
+}
+`;
+
+exports[`collectFbt should extract fbt strings 1`] = `
+Object {
+  "childParentMappings": Object {},
+  "phrases": Array [
+    Object {
+      "col_beg": 27,
+      "col_end": 52,
+      "jsfbt": Object {
+        "m": Array [],
+        "t": Object {
+          "desc": "foo",
+          "text": "bar",
+        },
+      },
+      "line_beg": 1,
+      "line_end": 1,
+      "project": "",
+    },
+  ],
+}
+`;
+
 exports[`collectFbt should extract fbt.c strings 1`] = `
 Object {
   "childParentMappings": Object {},
@@ -1305,28 +1349,6 @@ Object {
       },
       "line_beg": 3,
       "line_end": 3,
-      "project": "",
-    },
-  ],
-}
-`;
-
-exports[`collectFbt should extract strings 1`] = `
-Object {
-  "childParentMappings": Object {},
-  "phrases": Array [
-    Object {
-      "col_beg": 27,
-      "col_end": 52,
-      "jsfbt": Object {
-        "m": Array [],
-        "t": Object {
-          "desc": "foo",
-          "text": "bar",
-        },
-      },
-      "line_beg": 1,
-      "line_end": 1,
       "project": "",
     },
   ],

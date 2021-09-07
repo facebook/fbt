@@ -13,6 +13,7 @@
 
 const {extractEnumsAndFlattenPhrases} = require('../FbtShiftEnums');
 const fbt = require('../index');
+const FbtUtil = require('../FbtUtil');
 const fs = require('graceful-fs');
 
 export type ExternalTransform = (
@@ -107,7 +108,7 @@ class FbtCollector implements IFbtCollector {
       reactNativeMode: this._config.reactNativeMode,
     };
 
-    if (!/<[Ff]bt|fbt(\.c)?\s*\(/.test(source)) {
+    if (!FbtUtil.textContainsFbtLikeModule(source)) {
       return;
     }
 
