@@ -68,7 +68,7 @@ second token.
 ```
 <fbt desc="param example">
   <fbt:name name="name" gender={gender}>
-    <a href="#">{name}</a>
+    {<a href="#">{name}</a>}
   </fbt:name>
   shared a link.  Tell
   <fbt:same-param name="name" />
@@ -79,7 +79,7 @@ fbt(
   fbt.name(
     'name',
      <a href="#">{name}</a>,
-     {gender: gender}
+     gender
    ) +
   ' shared a link.  Tell ' + fbt.sameParam('name') + ' you liked it.',
   'param example'
