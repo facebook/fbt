@@ -17,16 +17,17 @@
 
 // flowlint ambiguous-object-type:error
 
+import type {
+  NumberingSystemData,
+  StandardDecimalPatternInfo,
+} from 'NumberFormatConfig';
+
 const FbtHooks = require('FbtHooks');
 const NumberFormatConsts = require('NumberFormatConsts');
 
 const escapeRegex = require('escapeRegex');
 
 const DEFAULT_GROUPING_SIZE = 3;
-import type {
-  StandardDecimalPatternInfo,
-  NumberingSystemData,
-} from 'NumberFormatConfig';
 
 const CURRENCIES_WITH_DOTS = [
   '\u0433\u0440\u043d.',
@@ -60,7 +61,7 @@ const CURRENCIES_WITH_DOTS = [
   'S/.',
 ];
 
-const _regexCache = {};
+const _regexCache: {[string]: RegExp} = {};
 function _buildRegex(pattern: string): RegExp {
   if (!_regexCache[pattern]) {
     _regexCache[pattern] = new RegExp(pattern, 'i');
@@ -400,7 +401,7 @@ function _getNativeDigitsMap(): ?{[string]: string, ...} {
   const NumberFormatConfig = NumberFormatConsts.get(
     FbtHooks.getViewerContext().locale,
   );
-  const nativeDigitMap = {};
+  const nativeDigitMap: {[string]: string} = {};
   const digits =
     NumberFormatConfig.numberingSystemData &&
     NumberFormatConfig.numberingSystemData.digits;

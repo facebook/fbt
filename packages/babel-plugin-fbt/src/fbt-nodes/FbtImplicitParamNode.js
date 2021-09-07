@@ -298,7 +298,7 @@ class FbtImplicitParamNode
       }
     }
 
-    fbtChildren.forEach(implicitParam.appendChild, implicitParam);
+    fbtChildren.forEach(child => implicitParam.appendChild(child));
     return implicitParam;
   }
 
@@ -307,7 +307,8 @@ class FbtImplicitParamNode
   }
 
   __toJSONForTestsOnly(): mixed {
-    return FbtElementNode.__toJSONForTestsOnlyHelper(this);
+    const ret = super.__toJSONForTestsOnly();
+    return FbtElementNode.__compactTokenSet(ret);
   }
 
   toPlainFbtNode(): PlainFbtNode {

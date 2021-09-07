@@ -20,14 +20,6 @@ import type {BabelNodeCallExpressionArg} from '../FbtUtil';
 import type {StringVariationArgsMap} from './FbtArguments';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 
-type Options = {|
-  // `BabelNode` representing the `gender` of the fbt:name's value
-  gender: BabelNodeCallExpressionArg,
-  name: string, // Name of the string token
-  // `BabelNode` representing the `value` of the fbt:name to render on the UI
-  value: BabelNodeCallExpressionArg,
-|};
-
 const {
   createFbtRuntimeArgCallExpression,
   enforceBabelNodeCallExpressionArg,
@@ -43,6 +35,14 @@ const {
 } = require('./FbtNodeUtil');
 const {isStringLiteral, stringLiteral} = require('@babel/types');
 const invariant = require('invariant');
+
+type Options = {|
+  // `BabelNode` representing the `gender` of the fbt:name's value
+  gender: BabelNodeCallExpressionArg,
+  name: string, // Name of the string token
+  // `BabelNode` representing the `value` of the fbt:name to render on the UI
+  value: BabelNodeCallExpressionArg,
+|};
 
 /**
  * Represents an <fbt:name> or fbt.name() construct.

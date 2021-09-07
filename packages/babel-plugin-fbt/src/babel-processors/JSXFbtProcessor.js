@@ -14,18 +14,12 @@ import type {JSModuleNameType} from '../FbtConstants';
 import type {NodePathOf} from '@babel/core';
 import typeof BabelTypes from '@babel/types';
 
-type NodePath = NodePathOf<BabelNodeJSXElement>;
-type BabelNodeJSXElementChild = $ElementType<
-  $PropertyType<BabelNodeJSXElement, 'children'>,
-  number,
->;
-
 const FbtCommon = require('../FbtCommon');
 const {
+  CommonOption,
   FbtCallMustHaveAtLeastOneOfTheseAttributes,
   FbtRequiredAttributes,
   ValidFbtOptions,
-  CommonOption,
 } = require('../FbtConstants');
 const FbtNodeChecker = require('../FbtNodeChecker');
 const {
@@ -53,6 +47,12 @@ const {
   stringLiteral,
 } = require('@babel/types');
 const invariant = require('invariant');
+
+type NodePath = NodePathOf<BabelNodeJSXElement>;
+type BabelNodeJSXElementChild = $ElementType<
+  $PropertyType<BabelNodeJSXElement, 'children'>,
+  number,
+>;
 
 class JSXFbtProcessor {
   moduleName: JSModuleNameType;
@@ -206,7 +206,7 @@ class JSXFbtProcessor {
     }
   }
 
-  _createFbtFunctionCallNode({text, desc, options}) {
+  _createFbtFunctionCallNode({desc, options, text}) {
     const {moduleName, node, path} = this;
     invariant(text != null, 'text cannot be null');
     invariant(desc != null, 'desc cannot be null');
@@ -359,6 +359,7 @@ class JSXFbtProcessor {
 const jsxFbtConstructToFunctionalFormTransform = {
   JSXElement(path: NodePathOf<BabelNodeJSXElement>) {
     const {node} = path;
+    // $FlowFixMe[object-this-reference] Babel transforms run with the plugin context by default
     const moduleName = (this.moduleName: JSModuleNameType);
     const name = validateNamespacedFbtElement(
       moduleName,

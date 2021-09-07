@@ -41,8 +41,13 @@ describe('collectFbt', () => {
     return JSON.parse(JSON.stringify(output));
   }
 
-  it('should extract strings', () => {
+  it('should extract fbt strings', () => {
     var res = collect('const fbt = require(\'fbt\');<fbt desc="foo">bar</fbt>');
+    expect(res).toMatchSnapshot();
+  });
+
+  it('should extract fbs strings', () => {
+    var res = collect('const fbs = require(\'fbs\');<fbs desc="foo">bar</fbs>');
     expect(res).toMatchSnapshot();
   });
 

@@ -9,7 +9,7 @@
  * @emails oncall+i18n_fbt_js
  */
 
-/* eslint-disable fb-www/flow-exact-by-default-object-types */
+/* eslint-disable fb-flow/use-exact-by-default-object-type */
 
 import './css/Example.css';
 import classNames from 'classnames';

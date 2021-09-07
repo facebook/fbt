@@ -17,6 +17,11 @@ using namespace facebook::react;
 
 RCT_EXPORT_MODULE(FbtModule)
 
+- (std::shared_ptr<TurboModule>)getTurboModule:(const ObjCTurboModule::InitParams &)params
+{
+  return std::make_shared<NativeFbtModuleSpecJSI>(params);
+}
+
 RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(getString:(NSString *)hashKey)
 {
   NSString* translation = NSLocalizedString(hashKey, .normal);

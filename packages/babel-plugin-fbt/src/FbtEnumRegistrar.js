@@ -10,6 +10,10 @@
 
 import type {NodePathOf} from '@babel/core';
 
+const {FBT_ENUM_MODULE_SUFFIX} = require('./FbtConstants');
+const t = require('@babel/types');
+const path = require('path');
+
 type NodeCallExpression = NodePathOf<BabelNodeCallExpression>;
 type NodeImportDeclaration = NodePathOf<BabelNodeImportDeclaration>;
 export type EnumKey = string;
@@ -17,21 +21,17 @@ type EnumValue = string;
 export type EnumModule = {|+[EnumKey]: EnumValue|};
 export type EnumManifest = {+[enumModuleName: string]: ?EnumModule};
 
-const {FBT_ENUM_MODULE_SUFFIX} = require('./FbtConstants');
-const t = require('@babel/types');
-const path = require('path');
-
 const fbtEnumMapping: {[enumAlias: string]: ?string} = {};
 
 let enumManifest: ?EnumManifest;
 
-const FbtEnumRegistrar = {
+class FbtEnumRegistrar {
   /**
    * Set the enum manifest. I.e. a mapping of enum module names -> enum entries
    */
   setEnumManifest(manifest: ?EnumManifest): void {
     enumManifest = manifest;
-  },
+  }
 
   /**
    * Associate a JS variable name to an Fbt enum module name
@@ -43,14 +43,14 @@ const FbtEnumRegistrar = {
       return;
     }
     fbtEnumMapping[alias] = moduleName;
-  },
+  }
 
   /**
    * Returns the Fbt enum module name for a given variable name (if any)
    */
   getModuleName(name: string): ?string {
     return fbtEnumMapping[name];
-  },
+  }
 
   /**
    * Returns the Fbt enum module name for a given variable name (if any)
@@ -60,7 +60,7 @@ const FbtEnumRegistrar = {
     return enumManifest != null && moduleName != null
       ? enumManifest[moduleName]
       : null;
-  },
+  }
 
   /**
    * Processes a `require(...)` call and registers the fbt enum if applicable.
@@ -76,7 +76,7 @@ const FbtEnumRegistrar = {
     // $FlowFixMe Need to check that parent path exists and that the node is correct
     const alias = (path.parentPath.node.id.name: string);
     this.setModuleAlias(alias, modulePath);
-  },
+  }
 
   /**
    * Processes a `import ... from '...';` statement and registers the fbt enum
@@ -104,7 +104,7 @@ const FbtEnumRegistrar = {
       const modulePath = node.source.value;
       this.setModuleAlias(alias, modulePath);
     }
-  },
-};
+  }
+}
 
-module.exports = FbtEnumRegistrar;
+module.exports = (new FbtEnumRegistrar(): FbtEnumRegistrar);

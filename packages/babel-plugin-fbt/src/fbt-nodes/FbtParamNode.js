@@ -18,17 +18,6 @@ import type {
 import type {StringVariationArgsMap} from './FbtArguments';
 import type {FromBabelNodeFunctionArgs} from './FbtNodeUtil';
 
-type Options = {|
-  gender?: ?BabelNodeExpression, // Represents the `gender`
-  name: string, // Name of the string token
-  // If `true`, the string that uses this fbt:param will have number variations.
-  // The `number` value will be inferred from the value of fbt:param
-  // If `number` is a `BabelNode`, then we'll use it internally as the value to determine
-  // the number variation, and the fbt:param value will represent the UI text to render.
-  number?: ?true | BabelNodeExpression,
-  value: BabelNodeCallExpressionArgument,
-|};
-
 const {ValidParamOptions} = require('../FbtConstants');
 const {
   collectOptionsFromFbtConstruct,
@@ -50,13 +39,24 @@ const {
 } = require('./FbtNodeUtil');
 const {
   arrayExpression,
-  isStringLiteral,
   isExpression,
+  isStringLiteral,
   numericLiteral,
   stringLiteral,
 } = require('@babel/types');
 const invariant = require('invariant');
 const nullthrows = require('nullthrows');
+
+type Options = {|
+  gender?: ?BabelNodeExpression, // Represents the `gender`
+  name: string, // Name of the string token
+  // If `true`, the string that uses this fbt:param will have number variations.
+  // The `number` value will be inferred from the value of fbt:param
+  // If `number` is a `BabelNode`, then we'll use it internally as the value to determine
+  // the number variation, and the fbt:param value will represent the UI text to render.
+  number?: ?true | BabelNodeExpression,
+  value: BabelNodeCallExpressionArgument,
+|};
 
 /**
  * Variations.
@@ -168,6 +168,7 @@ class FbtParamNode extends FbtNode<
       this.getArgsForStringVariationCalc().forEach(expectedArg => {
         const svArg = argsMap.get(this);
         invariant(
+          // $FlowExpectedError[method-unbinding] We're just comparing methods by reference
           svArg.constructor === expectedArg.constructor,
           'Expected SVArgument instance of %s but got %s instead: %s',
           expectedArg.constructor.name || 'unknown',

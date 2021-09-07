@@ -17,17 +17,16 @@ import typeof {
   GENDER_ANY,
   NUMBER_ANY,
 } from '../translate/IntlVariations';
-import type {AnyFbtNode} from './FbtNode';
-import type FbtNode from './FbtNode';
+import type FbtNode, {AnyFbtNode} from './FbtNode';
+
+const {compactBabelNodeProps, getRawSource, varDump} = require('../FbtUtil');
+const invariant = require('invariant');
 
 export type AnyStringVariationArg =
   | EnumStringVariationArg
   | GenderStringVariationArg
   | NumberStringVariationArg;
 export type AnyFbtArgument = GenericArg | AnyStringVariationArg;
-
-const {compactBabelNodeProps, getRawSource, varDump} = require('../FbtUtil');
-const invariant = require('invariant');
 
 /**
  * Base class representing fbt construct arguments that support dynamic values at runtime.
@@ -216,7 +215,7 @@ class NumberStringVariationArg extends StringVariationArg<
   }
 }
 
-function assertInstanceOf<C: {}>(
+function assertInstanceOf<C: interface {}>(
   value: mixed,
   Constructor: Class<C> & {name: string},
 ): C {

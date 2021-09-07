@@ -19,6 +19,42 @@ import type {ObjectWithJSFBT, PluginOptions} from '../index.js';
 import type {NodePathOf} from '@babel/core';
 import typeof BabelTypes from '@babel/types';
 
+const {StringVariationArgsMap} = require('../fbt-nodes/FbtArguments');
+const FbtElementNode = require('../fbt-nodes/FbtElementNode');
+const FbtImplicitParamNode = require('../fbt-nodes/FbtImplicitParamNode');
+const FbtParamNode = require('../fbt-nodes/FbtParamNode');
+const {SENTINEL} = require('../FbtConstants');
+const FbtNodeChecker = require('../FbtNodeChecker');
+const {
+  convertToStringArrayNodeIfNeeded,
+  createFbtRuntimeArgCallExpression,
+  enforceBoolean,
+  enforceString,
+  errorAt,
+  varDump,
+} = require('../FbtUtil');
+const JSFbtBuilder = require('../JSFbtBuilder');
+const addLeafToTree = require('../utils/addLeafToTree');
+const {
+  arrayExpression,
+  assignmentExpression,
+  callExpression,
+  clone,
+  cloneDeep,
+  identifier,
+  isBlockStatement,
+  isProgram,
+  jsxExpressionContainer,
+  memberExpression,
+  sequenceExpression,
+  stringLiteral,
+  variableDeclaration,
+  variableDeclarator,
+} = require('@babel/types');
+const {Buffer} = require('buffer');
+const invariant = require('invariant');
+const nullthrows = require('nullthrows');
+
 type NodePath = NodePathOf<BabelNodeCallExpression>;
 
 export type FbtFunctionCallPhrase = {|
@@ -56,42 +92,6 @@ type CompactStringVariations = {|
 type StringVariationRuntimeArgumentBabelNodes =
   | Array<BabelNodeIdentifier>
   | Array<BabelNodeCallExpression>;
-
-const {StringVariationArgsMap} = require('../fbt-nodes/FbtArguments');
-const FbtElementNode = require('../fbt-nodes/FbtElementNode');
-const FbtParamNode = require('../fbt-nodes/FbtParamNode');
-const {SENTINEL} = require('../FbtConstants');
-const FbtNodeChecker = require('../FbtNodeChecker');
-const FbtImplicitParamNode = require('../fbt-nodes/FbtImplicitParamNode');
-const {
-  convertToStringArrayNodeIfNeeded,
-  createFbtRuntimeArgCallExpression,
-  errorAt,
-  varDump,
-  enforceString,
-  enforceBoolean,
-} = require('../FbtUtil');
-const JSFbtBuilder = require('../JSFbtBuilder');
-const addLeafToTree = require('../utils/addLeafToTree');
-const {
-  arrayExpression,
-  assignmentExpression,
-  callExpression,
-  clone,
-  cloneDeep,
-  identifier,
-  isBlockStatement,
-  isProgram,
-  jsxExpressionContainer,
-  memberExpression,
-  sequenceExpression,
-  stringLiteral,
-  variableDeclaration,
-  variableDeclarator,
-} = require('@babel/types');
-const {Buffer} = require('buffer');
-const invariant = require('invariant');
-const nullthrows = require('nullthrows');
 
 const emptyArgsCombinations: [[]] = [[]];
 const STRING_VARIATION_RUNTIME_ARGUMENT_IDENTIFIER_PREFIX = 'fbt_sv_arg';

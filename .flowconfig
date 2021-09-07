@@ -22,7 +22,10 @@ module.system.node.resolve_dirname=node_modules
 
 # TODO(T60942430) Set object definitions to be exact by default
 # exact_by_default=true
+
+# Force flow to consider `<fbs*>` as the given type
 facebook.fbs=Fbs
+# Force flow to consider `<fbt*>` as the given type
 facebook.fbt=FbtElement
 
 # Map imported internal plugins
@@ -71,4 +74,4 @@ untyped-import
 untyped-type-import
 
 [version]
-^0.152.0
+^0.158.0

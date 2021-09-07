@@ -50,7 +50,7 @@
     "babel-loader": "8.0.4",
     "classnames": "2.2.6",
     "css-loader": "1.0.1",
-    "fb-tiger-hash": "x.x.x",
+    "fb-tiger-hash": "0.2.0-rc1-beta",
     "file-loader": "2.0.0",
     "flow-bin": "0.87.0",
     "html-webpack-plugin": "^4.5.0",
