@@ -1,4 +1,0 @@
-# Since .gitignore is not considered when .npmignore is present
-node_modules
-
-__tests__

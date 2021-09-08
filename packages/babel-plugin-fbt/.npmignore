@@ -1,9 +1,0 @@
-# Since .gitignore is not considered when .npmignore is present
-node_modules
-
-# Example of expected npm output files: P150537602
-**
-!dist/**
-**/__tests__
-**/__fixtures__
-**/__mocks__
