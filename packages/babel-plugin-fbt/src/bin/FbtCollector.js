@@ -14,6 +14,7 @@
 const {extractEnumsAndFlattenPhrases} = require('../FbtShiftEnums');
 // eslint-disable-next-line fb-www/no-module-aliasing
 const fbt = require('../index');
+const FbtUtil = require('../FbtUtil');
 const fs = require('graceful-fs');
 const path = require('path');
 
@@ -101,7 +102,7 @@ class FbtCollector implements IFbtCollector {
       options.filename = filename;
     }
 
-    if (!/<[Ff]bt|fbt(\.c)?\s*\(/.test(source)) {
+    if (!FbtUtil.textContainsFbtLikeModule(source)) {
       return;
     }
 
