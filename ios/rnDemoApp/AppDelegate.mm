@@ -7,8 +7,19 @@
 
 #import "AppDelegate.h"
 
-// TODO: Import <reacthermes/HermesExecutorFactory.h> instead if RCT_USE_HERMES is true.
+#ifndef RCT_USE_HERMES
+#if __has_include(<reacthermes/HermesExecutorFactory.h>)
+#define RCT_USE_HERMES 1
+#else
+#define RCT_USE_HERMES 0
+#endif
+#endif
+
+#if RCT_USE_HERMES
+#import <reacthermes/HermesExecutorFactory.h>
+#else
 #import <React/JSCExecutorFactory.h>
+#endif
 
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
@@ -80,8 +91,12 @@
   #endif
 
   __weak __typeof(self) weakSelf = self;
-  // TODO: Use HermesExecutorFactory if using Hermes
+
+#if RCT_USE_HERMES
+  return std::make_unique<facebook::react::HermesExecutorFactory>(
+#else
   return std::make_unique<facebook::react::JSCExecutorFactory>(
+#endif
       facebook::react::RCTJSIExecutorRuntimeInstaller([weakSelf, bridge](facebook::jsi::Runtime &runtime) {
         if (!bridge) {
           return;
