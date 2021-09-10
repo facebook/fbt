@@ -135,12 +135,15 @@ List of changes for each released npm package version.
 
   </details>
 
+- 0.20.1:
+  - [fix] Fix ability to detect fbs JS callsites from FbtCollector
+
 - 0.20.0:
   - [refactor] Hang FbtUtil modules off of babel-plugin-fbt
   - [refactor]! Replace `fbtBabelPluginPath` with actual referenct to `fbtModule` in external transform
 
 - 0.19.2:
-  - [chore] Update devDependency of `gulp-strip-docblock-pragmas` 
+  - [chore] Update devDependency of `gulp-strip-docblock-pragmas`
 
 - 0.19.1:
   - [chore] Update fb-babel-plugin-utils dependency version
