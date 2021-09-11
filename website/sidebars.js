@@ -27,6 +27,7 @@ module.exports = {
     ],
     "JS Transforms": ["transform"],
     Collection: ["collection"],
-    Translating: ["translating", "standards"]
+    Translating: ["translating", "standards"],
+    Typescript: ["using_typescript"]
   }
 };
