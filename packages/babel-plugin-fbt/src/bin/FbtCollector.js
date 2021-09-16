@@ -11,9 +11,23 @@
 
 'use strict';
 
+import type {
+  PatternHash,
+  PatternString,
+} from '../../../../runtime/shared/FbtTable';
+import type {PlainFbtNode} from '../fbt-nodes/FbtNode';
+import type {EnumManifest} from '../FbtEnumRegistrar';
+import type {
+  BabelPluginFbt,
+  ExtraOptions,
+  Phrase,
+  PluginOptions,
+} from '../index';
+import type {BabelPluginList, BabelPresetList} from '@babel/core';
+
 const {extractEnumsAndFlattenPhrases} = require('../FbtShiftEnums');
-const fbt = require('../index');
 const FbtUtil = require('../FbtUtil');
+const fbt = require('../index');
 const fs = require('graceful-fs');
 
 export type ExternalTransform = (
@@ -21,20 +35,6 @@ export type ExternalTransform = (
   opts: TransformOptions,
   filename: ?string,
 ) => mixed;
-
-import type {BabelPluginList, BabelPresetList} from '@babel/core';
-import type {PlainFbtNode} from '../fbt-nodes/FbtNode';
-import type {EnumManifest} from '../FbtEnumRegistrar';
-import type {
-  PatternHash,
-  PatternString,
-} from '../../../../runtime/shared/FbtTable';
-import type {
-  BabelPluginFbt,
-  Phrase,
-  ExtraOptions,
-  PluginOptions,
-} from '../index';
 export type CollectorConfig = {|
   fbtCommonPath?: string,
   plugins?: BabelPluginList,
@@ -43,7 +43,10 @@ export type CollectorConfig = {|
   transform?: ?ExternalTransform,
   generateOuterTokenName?: boolean,
 |};
-export type ChildParentMappings = {[prop: number]: number};
+type ParentPhraseIndex = number;
+export type ChildParentMappings = {
+  [childPhraseIndex: number]: ParentPhraseIndex,
+};
 export type Errors = {[file: string]: Error};
 export type HashToLeaf = {
   [hash: PatternHash]: {|

@@ -46,21 +46,125 @@ export type FbtChildNode =
   | FbtPronounNode
   | FbtSameParamNode
   | FbtTextNode;
+
 export type AnyFbtNode = FbtNode<any, any, any, any>;
+
+/**
+ * Abstract representation of a JSX element.
+ *
+ * More exactly, it represents `BabelNodeJSXOpeningElement` which is the top-level AST node that
+ * represents a JSX element.
+ */
 export type PlainJSXNode = {|
-  babelNode: BabelNodeJSXOpeningElement,
-  // Simplified representation of the JSX opening element's attributes for convenience.
-  // We're currently only representing string literal attributes because it's not fully clear
-  // how we'd want to represent other more complex types of attribute values.
-  // If more complex types are needed, the Babel AST is available off the `babelNode` field.
-  props: $ReadOnly<{[name: string]: string | number}>,
+  /**
+   * Type of the JSX element. E.g. "div", "strong", "ToolTipComponent", etc...
+   * It's generic so that it can represent any arbitrary JSX element.
+   */
   type: string,
+  /**
+   * The actual Babel AST node representing this JSX node internally.
+   * Note that it may contain more contents at the JSX attributes level.
+   * I.e. the JSX element's attributes are stored here,
+   * but also exposed in a simplified way on the `props` field.
+   */
+  babelNode: BabelNodeJSXOpeningElement,
+  /**
+   * Simplified representation of the JSX opening element's attributes for convenience.
+   * We're currently only representing string literal attributes because it's not fully clear
+   * how we'd want to represent other more complex types of attribute values.
+   * If more complex types are needed, the Babel AST is available off the `babelNode` field.
+   */
+  props: $ReadOnly<{[name: string]: string | number}>,
 |};
+
+/**
+ * Representation of an Fbt node meant to be exported to external programs.
+ *
+ * - Recursive structure
+ * - May provides a phrase index to help find strings produced from that fbt node. See `phraseIndex`
+ * - May carry additional info about a JSX element that wraps this fbt node. See `wrapperNode`
+ *
+ *
+ * Given an fbt like:
+ *
+ * ```
+ * <fbt desc="...">
+ *   Hello <strong>world</strong>
+ * </fbt>
+ * ```
+ *
+ * Then we would have a hierarchy like this:
+ *
+ * ```
+ * {
+ *   "phraseIndex": 0,
+ *   "type": "element"
+ *   "children": [
+ *     {
+ *       "type": "text"
+ *     },
+ *     {
+ *       "phraseIndex": 1,
+ *       "children": [
+ *         {
+ *           "type": "text"
+ *         }
+ *       ],
+ *       "type": "implicitParam",
+ *       "wrapperNode": {
+ *         "type": "strong",
+ *         "babelNode": {
+ *           "type": "JSXOpeningElement",
+ *           ...
+ *           "name": {
+ *             "type": "JSXIdentifier",
+ *             ...
+ *             "name": "strong"
+ *           },
+ *           "attributes": [
+ *             {
+ *               "type": "JSXAttribute",
+ *               ...
+ *               "name": {
+ *                 "type": "JSXIdentifier",
+ *                 ...
+ *                 "name": "color"
+ *               },
+ *               "value": {
+ *                 "type": "StringLiteral",
+ *                 ...
+ *                 "extra": {
+ *                   "rawValue": "red",
+ *                   "raw": "\"red\""
+ *                 },
+ *                 "value": "red"
+ *               }
+ *             }
+ *           ],
+ *           "selfClosing": false
+ *         },
+ *         "props": {
+ *           "color": "red"
+ *         }
+ *       }
+ *     }
+ *   ],
+ * }
+ * ```
+ */
 export type PlainFbtNode = {|
   type: FbtNodeType,
   +children?: $ReadOnlyArray<PlainFbtNode>,
-  // Not read-only because it needs to be set at a later stage, when all phrases have been extracted
+  /**
+   * Index of the phrase corresponding to this fbt node in the `phrases` array.
+   * @see {CollectFbtOutput.phrases}
+   *
+   * Not read-only because it needs to be set at a later stage, when all phrases have been extracted
+   */
   phraseIndex?: ?number,
+  /**
+   * Abstract representation of a JSX element that wraps the current fbt node, if any.
+   */
   wrapperNode?: ?PlainJSXNode,
 |};
 
