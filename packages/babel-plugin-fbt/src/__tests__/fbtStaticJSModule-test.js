@@ -13,7 +13,7 @@ const {
   snapshotTransform,
   transform,
   withFbtRequireStatement,
-} = require('../FbtTestUtil');
+} = require('./FbtTestUtil');
 const {TestUtil} = require('fb-babel-plugin-utils');
 
 function runTest(data, extra) {

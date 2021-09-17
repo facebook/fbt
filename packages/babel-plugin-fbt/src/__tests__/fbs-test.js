@@ -12,7 +12,7 @@ const {
   jsCodeFbtCallSerializer,
   snapshotTransform,
   withFbsRequireStatement,
-} = require('../FbtTestUtil');
+} = require('./FbtTestUtil');
 
 expect.addSnapshotSerializer(jsCodeFbtCallSerializer);
 

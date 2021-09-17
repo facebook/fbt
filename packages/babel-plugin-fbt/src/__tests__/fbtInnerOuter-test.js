@@ -5,7 +5,7 @@
  * @format
  */
 
-const {transform, withFbtRequireStatement} = require('../FbtTestUtil');
+const {transform, withFbtRequireStatement} = require('./FbtTestUtil');
 const assert = require('assert');
 
 function testChildToParentRelationships(testData, expected) {
