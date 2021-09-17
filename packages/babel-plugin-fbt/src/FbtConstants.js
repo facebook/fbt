@@ -136,9 +136,8 @@ const JSModuleName = {
 };
 
 // Used to help detect the usage of the JS fbt/fbs API inside a JS file
-const ModuleNameRegExp: RegExp = new RegExp(
-  `\\b(?:${Object.values(JSModuleName).join('|')})\\b`,
-);
+// Closely matches the Grep regexp in https://fburl.com/code/y1yt6slg
+const ModuleNameRegExp: RegExp = /<[Ff]b[st]\b|fb[st](\.c)?\s*\(/;
 
 const FBT_ENUM_MODULE_SUFFIX = '$FbtEnum';
 
