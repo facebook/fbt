@@ -877,7 +877,13 @@ function compactBabelNodeProps(
  * It's a variant of JSON.stringify() that supports `undefined`
  */
 function varDump(value: mixed, depth: number = 1): string {
-  return util.inspect(value, {depth}) || 'undefined';
+  return (
+    util.inspect(value, {
+      depth,
+      // Disable colors due to T100307063
+      colors: false,
+    }) || 'undefined'
+  );
 }
 
 function enforceString(value: mixed, valueDesc: ?string): string {
