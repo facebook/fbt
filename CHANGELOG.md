@@ -133,6 +133,7 @@ List of changes for each released npm package version.
       Unreleased changes that have landed in master. Click to see more.
     </summary>
 
+  - [fix] Improve detection pattern of fbt/fbs JS callsites from FbtCollector
   </details>
 
 - 0.20.1:
