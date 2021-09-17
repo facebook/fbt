@@ -13,19 +13,6 @@
 import type {PlainFbtNode} from '../fbt-nodes/FbtNode';
 import type {TableJSFBT} from '../index';
 import type {ChildParentMappings, PackagerPhrase} from './FbtCollector';
-export type CollectFbtOutput = {|
-  phrases: Array<{|
-    ...PackagerPhrase,
-    jsfbt?: TableJSFBT,
-  |}>,
-  childParentMappings: ChildParentMappings,
-  fbtElementNodes?: ?Array<PlainFbtNode>,
-|};
-
-export type CollectFbtOutputPhrase = $ElementType<
-  $PropertyType<CollectFbtOutput, 'phrases'>,
-  number,
->;
 
 const {packagerTypes} = require('./collectFbtConstants');
 const {
@@ -36,6 +23,71 @@ const {
 const fs = require('fs');
 const path = require('path');
 const yargs = require('yargs');
+
+/**
+ * This represents the JSON output format of this script.
+ */
+export type CollectFbtOutput = {|
+  /**
+   * List of phrases extracted from the given JS source code.
+   * Note that for a given fbt callsite, we may extract multiple phrases.
+   */
+  phrases: Array<{|
+    ...PackagerPhrase,
+    /**
+     * This field is present only when the TERSE script option is `false`
+     */
+    jsfbt?: TableJSFBT,
+  |}>,
+  /**
+   * Mapping of child phrase index to their parent phrase index.
+   * This allows us to determine which phrases (from the `phrases` field) are "top-level" strings,
+   * and which other phrases are its children.
+   * Since JSX elements can be nested, child phrases can also contain other children too.
+   *
+   * Given an fbt callsite like:
+   *
+   * <fbt desc="...">
+   *   Welcome <b>to the <i>jungle</i></b>
+   * </fbt>
+   *
+   * The phrases will be:
+   *
+   *   Index 0: phrase for "Welcome {=to the jungle}"
+   *   Index 1: phrase for "to the {=jungle}"
+   *   Index 2: phrase for "jungle"
+   *
+   * Consequently, `childParentMappings` will be:
+   *
+   * ```
+   * "childParentMappings": {
+   *   // childIndex: parentIndex
+   *   "1": 0,
+   *   "2": 1
+   * }
+   * ```
+   *
+   * The phrase at index 0 is absent from `childParentMappings`'s keys, so it's a top-level string.
+   * The phrase at index 1 has a parent at index 0.
+   * The phrase at index 2 has a parent at index 1; so it's a grand-child.
+   */
+  childParentMappings: ChildParentMappings,
+  /**
+   * List fbt element nodes (which in a sense represents the fbt DOM tree) for each fbt callsite
+   * found in the source code.
+   *
+   * This is done like this so that we only need to represent one fbt DOM tree per fbt callsite.
+   * (avoids duplication)
+   *
+   * This field is present only when the GEN_FBT_NODES script option is `true`
+   */
+  fbtElementNodes?: ?Array<PlainFbtNode>,
+|};
+
+export type CollectFbtOutputPhrase = $ElementType<
+  $PropertyType<CollectFbtOutput, 'phrases'>,
+  number,
+>;
 
 const args = {
   COMMON_STRINGS: 'fbt-common-path',

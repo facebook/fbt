@@ -10,7 +10,7 @@
 
 'use strict';
 
-const {SENTINEL} = require('./FbtConstants');
+const {SENTINEL} = require('../FbtConstants');
 const {transformSync} = require('@babel/core');
 const prettier = require('prettier');
 
@@ -30,7 +30,7 @@ function transform(source: string, pluginOptions: $FlowFixMe): string {
           throwIfNamespace: false,
         },
       ],
-      [require('./index'), pluginOptions],
+      [require('../index'), pluginOptions],
     ],
     sourceType: 'module',
   }).code;
@@ -46,7 +46,7 @@ function transformKeepJsx(source: string, pluginOptions: $FlowFixMe): string {
       ast: false,
       plugins: [
         require('@babel/plugin-syntax-jsx'),
-        [require('./index'), pluginOptions],
+        [require('../index'), pluginOptions],
       ],
       sourceType: 'module',
     }).code,

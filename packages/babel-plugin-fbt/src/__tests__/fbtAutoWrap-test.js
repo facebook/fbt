@@ -9,7 +9,7 @@ const {
   jsCodeFbtCallSerializer,
   snapshotTransform,
   withFbtRequireStatement,
-} = require('../FbtTestUtil');
+} = require('./FbtTestUtil');
 const {TestUtil} = require('fb-babel-plugin-utils');
 
 expect.addSnapshotSerializer(jsCodeFbtCallSerializer);

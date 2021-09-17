@@ -8,7 +8,7 @@
 
 'use strict';
 
-const {jsCodeNonASCIICharSerializer} = require('../../FbtTestUtil');
+const {jsCodeNonASCIICharSerializer} = require('../../__tests__/FbtTestUtil');
 const {processJSON} = require('../translateUtils');
 
 expect.addSnapshotSerializer(jsCodeNonASCIICharSerializer);

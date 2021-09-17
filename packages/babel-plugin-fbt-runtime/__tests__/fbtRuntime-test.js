@@ -9,7 +9,9 @@
 jest.autoMockOff();
 
 const {transformSync: babelTransform} = require('@babel/core');
-const {withFbtRequireStatement} = require('babel-plugin-fbt/dist/FbtTestUtil');
+const {
+  withFbtRequireStatement,
+} = require('babel-plugin-fbt/dist/__tests__/FbtTestUtil');
 const {TestUtil} = require('fb-babel-plugin-utils');
 
 function transform(source, pluginOptions) {
