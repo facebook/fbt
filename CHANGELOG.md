@@ -160,9 +160,6 @@ List of changes for each released npm package version.
 - 0.20.2:
   - [fix] Improve detection pattern of fbt/fbs JS callsites from FbtCollector
 
-- 0.20.2:
-  - [fix] Improve detection pattern of fbt/fbs JS callsites from FbtCollector
-
 - 0.20.1:
   - [fix] Fix ability to detect fbs JS callsites from FbtCollector
 
