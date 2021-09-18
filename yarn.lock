@@ -2525,10 +2525,10 @@ babel-plugin-fbt-runtime@^0.9.17:
     "@babel/core" "^7.0.0"
     fbjs "^1.0.0"
 
-babel-plugin-fbt@^0.20.1:
-  version "0.20.1"
-  resolved "https://registry.yarnpkg.com/babel-plugin-fbt/-/babel-plugin-fbt-0.20.1.tgz#df721c2f1b5cdaef786aeb28611633cbc0e8ace8"
-  integrity sha512-CxdPfT+RxjHvbm1fcL2tltMUbm9IUrQlkYuznN3njFNEaHAO2ekjZEBMsGkOpAW7Rr+F7KyYzLwtu2RsTpn5DQ==
+babel-plugin-fbt@^0.20.0:
+  version "0.20.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-fbt/-/babel-plugin-fbt-0.20.0.tgz#5c6a405c7bb2ac2ae6d0dca96a02ee68e818750f"
+  integrity sha512-ASqRIjqtxDpKDLDaiWZWQ1thwHIjftP/LxwJGl0crVkC2m91BEk/X0DATZ59TtA1reDmJbDKlH/JOVIKTnbD2Q==
   dependencies:
     "@babel/core" "^7.0.0"
     "@babel/generator" "^7.0.0"
