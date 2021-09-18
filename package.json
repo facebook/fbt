@@ -24,7 +24,7 @@
     "@fbtjs/default-collection-transform": "^0.0.3",
     "@react-native-community/eslint-config": "^2.0.0",
     "babel-jest": "^26.6.3",
-    "babel-plugin-fbt": "^0.20.0",
+    "babel-plugin-fbt": "^0.20.1",
     "babel-plugin-fbt-runtime": "^0.9.17",
     "babel-preset-react-native": "^4.0.1",
     "eslint": "^7.14.0",
