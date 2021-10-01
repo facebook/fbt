@@ -12,9 +12,9 @@ As an example
 ```js
 const intlList = require('fbt/lib/intlList');
 const CONJUNCTIONS = intlList.CONJUNCTIONS;
-const DELIMITER = intlList.DELIMITER;
+const DELIMITERS = intlList.DELIMITERS;
 let people = ['Adam', 'Becky', fbt('4 others', 'last item')]
-intlList(people, CONJUNCTIONS.AND, DELIMITER.COMMA);
+intlList(people, CONJUNCTIONS.AND, DELIMITERS.COMMA);
 ```
 produces the fbt
 ```
