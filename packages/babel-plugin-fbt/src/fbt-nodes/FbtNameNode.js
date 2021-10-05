@@ -115,7 +115,7 @@ class FbtNameNode extends FbtNode<
   }
 
   getFbtRuntimeArg(): BabelNodeCallExpression {
-    const {name, value, gender} = this.options;
+    const {gender, name, value} = this.options;
     return createFbtRuntimeArgCallExpression(
       this,
       [stringLiteral(name), value, gender].filter(Boolean),

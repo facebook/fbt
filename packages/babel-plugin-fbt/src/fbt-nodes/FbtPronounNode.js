@@ -186,7 +186,7 @@ class FbtPronounNode extends FbtNode<
   }
 
   getFbtRuntimeArg(): BabelNodeCallExpression {
-    const {gender, type, human} = this.options;
+    const {gender, human, type} = this.options;
     const numericUsageExpr = numericLiteral(ValidPronounUsages[type]);
 
     const pronounArgs = [numericUsageExpr, gender];
