@@ -4,13 +4,13 @@ title: Translating
 sidebar_label: Translating FBTs
 ---
 
-The [`translate`](https://github.com/facebook/fbt/blob/master/packages/babel-plugin-fbt/src/bin/translate.js) script expects a JSON payload coming in from `STDIN`
+The [`translate`](https://github.com/facebook/fbt/blob/main/packages/babel-plugin-fbt/src/bin/translate.js) script expects a JSON payload coming in from `STDIN`
 that has FBT `phrases` (just like those collected from `collectFbt`)
 alongside the relevant translations for a given locale.
 
 In addition to the below example, the `translation_input.json`
 provided in our [GitHub demo
-app](https://github.com/facebook/fbt/blob/master/demo-app/translation_input.json)
+app](https://github.com/facebook/fbt/blob/main/demo-app/translation_input.json)
 is a good reference on the "schema" used for the translations.
 
 ```json
