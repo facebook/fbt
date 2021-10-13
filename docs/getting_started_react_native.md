@@ -36,7 +36,7 @@ android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayo
 * Copy the files in the i18n folder of the demo app into your app. Find an explanation of each file below:
 
 [NativeFbtModule.js](https://github.com/facebook/fbt/blob/rn-demo-app/i18n/NativeFbtModule.js)
-* TurboModule specification enabling usage in JavaScript of the [Android Native Module](https://github.com/facebook/fbt/blob/master/packages/react-native-fbt/android/src/main/java/com/facebook/react/modules/FbtModule.java)
+* TurboModule specification enabling usage in JavaScript of the [Android Native Module](https://github.com/facebook/fbt/blob/main/packages/react-native-fbt/android/src/main/java/com/facebook/react/modules/FbtModule.java)
 
 [FbtI18nNativeAssets.js](https://github.com/facebook/fbt/blob/rn-demo-app/i18n/FbtI18nNativeAssets.js)
 * JavaScript wrapper around the native module

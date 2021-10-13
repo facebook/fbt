@@ -51,7 +51,7 @@ List of changes for each released npm package version.
 ### fbt versions
 <details>
   <summary>
-    Unreleased changes that have landed in master. Click to see more.
+    Unreleased changes that have landed in main. Click to see more.
   </summary>
 
   - [chore] Update babel-plugin-fbt-runtime dependency version to `^0.10.x`
@@ -143,7 +143,7 @@ List of changes for each released npm package version.
 ### babel-plugin-fbt versions
   <details>
     <summary>
-      Unreleased changes that have landed in master. Click to see more.
+      Unreleased changes that have landed in main. Click to see more.
     </summary>
   </details>
 
@@ -279,7 +279,7 @@ List of changes for each released npm package version.
 ### babel-plugin-fbt-runtime versions
   <details>
     <summary>
-      Unreleased changes that have landed in master. Click to see more.
+      Unreleased changes that have landed in main. Click to see more.
     </summary>
   </details>
 
@@ -339,7 +339,7 @@ List of changes for each released npm package version.
 
   <details>
     <summary>
-      Unreleased changes that have landed in master. Click to see more.
+      Unreleased changes that have landed in main. Click to see more.
     </summary>
 
   </details>
@@ -366,7 +366,7 @@ List of changes for each released npm package version.
 ### @fbtjs/default-collection-transform versions
   <details>
     <summary>
-      Unreleased changes that have landed in master. Click to see more.
+      Unreleased changes that have landed in main. Click to see more.
     </summary>
 
   - [chore] Update peer dependency on babel-plugin-fbt
@@ -391,7 +391,7 @@ List of changes for each released npm package version.
 ### fb-babel-plugin-utils versions
   <details>
     <summary>
-     Unreleased changes that have landed in master. Click to see more.
+     Unreleased changes that have landed in main. Click to see more.
     </summary>
   </details>
 

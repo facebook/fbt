@@ -5,7 +5,7 @@ sidebar_label: Extracting translatable texts
 ---
 We provide
 
-[`collectFbt.js`](https://github.com/facebook/fbt/blob/master/packages/babel-plugin-fbt/src/bin/collectFbt.js)
+[`collectFbt.js`](https://github.com/facebook/fbt/blob/main/packages/babel-plugin-fbt/src/bin/collectFbt.js)
 as a utility for collecting strings.  It expects a JSON input of:
 ```
 {
@@ -85,7 +85,7 @@ when *building* the translated payloads.
 
 The hash of the callsite (defaulting to `jenkins` hash) is used to
 look up the payload in
-[`FbtTranslations`](https://github.com/facebook/fbt/blob/master/runtime/nonfb/FbtTranslations.js).
+[`FbtTranslations`](https://github.com/facebook/fbt/blob/main/runtime/nonfb/FbtTranslations.js).
 This is basically the hash of the object you see in `jsfbt`.
 
 See [Translating FBTs](translating) for getting your translations in

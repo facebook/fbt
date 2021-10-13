@@ -6,7 +6,7 @@ sidebar_label: Web
 
 ## Try the Demo
 Check out our [Github](https://github.com/facebook/fbt) repository and run the Webpack demo app.
-See ["Building and starting the demo app"](https://github.com/facebook/fbt/tree/master/demo-app#building-and-starting-the-demo-app)
+See ["Building and starting the demo app"](https://github.com/facebook/fbt/tree/main/demo-app#building-and-starting-the-demo-app)
 # Integrating into your app
 
 ## NPM module dependencies
@@ -76,7 +76,7 @@ The `fbt` runtime requires that you initialize with your relevant translations v
 
 ### Changing of translation locale on the fly
 
-Let's assume you've split your translation payloads per locale using the [`--output-dir` option](https://github.com/facebook/fbt/blob/98d0516290975f614737387748769e235bf61216/packages/babel-plugin-fbt/bin/translate.js#L145-L153) of the [`translate` script](https://github.com/facebook/fbt/blob/master/packages/babel-plugin-fbt/src/bin/translate.js). In this example, your app was initialized with the `es_ES` translation payload and, upon user request, you need to load `fr_FR` translations and show these in the UI. (We'll assume that your app already has access to the new translation payload)
+Let's assume you've split your translation payloads per locale using the [`--output-dir` option](https://github.com/facebook/fbt/blob/98d0516290975f614737387748769e235bf61216/packages/babel-plugin-fbt/bin/translate.js#L145-L153) of the [`translate` script](https://github.com/facebook/fbt/blob/main/packages/babel-plugin-fbt/src/bin/translate.js). In this example, your app was initialized with the `es_ES` translation payload and, upon user request, you need to load `fr_FR` translations and show these in the UI. (We'll assume that your app already has access to the new translation payload)
 
 In order to change of translation locale on the fly, you'll need to do all the items below:
 
