@@ -589,9 +589,9 @@ function getOpeningElementAttributes(
   });
 }
 
-function extractEnumRange(
-  node: BabelNodeObjectExpression,
-): {[name: string]: BabelNodeStringLiteral} {
+function extractEnumRange(node: BabelNodeObjectExpression): {
+  [name: string]: BabelNodeStringLiteral,
+} {
   return node.properties.reduce((acc, prop) => {
     if (!isObjectProperty(prop)) {
       throw new Error(

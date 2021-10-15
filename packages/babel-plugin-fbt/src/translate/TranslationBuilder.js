@@ -111,9 +111,8 @@ class TranslationBuilder {
     this._tableOrHash = fbtSite.getTableOrHash();
     this._hasVCGenderVariation = this._findVCGenderVariation();
     this._hasTranslations = this._translationsExist();
-    this._getConstraintMapWithMemoization = _createMemoizedConstraintMapGetter(
-      this,
-    );
+    this._getConstraintMapWithMemoization =
+      _createMemoizedConstraintMapGetter(this);
     this._inclHash = inclHash;
 
     // If a gender variation exists, add it to our table

@@ -173,13 +173,11 @@ describe('translate-test.js', () => {
                 hashToLeaf: {
                   '/gj3gwqx1z8Xw233oZgOpQ==': {
                     text: '{number} photos',
-                    desc:
-                      'In the phrase: "{name} has shared {=[number] photos} with you"',
+                    desc: 'In the phrase: "{name} has shared {=[number] photos} with you"',
                   },
                   '8UZCD6gFUKN+U5UUo1I3/w==': {
                     text: 'a photo',
-                    desc:
-                      'In the phrase: "{name} has shared {=a photo} with you"',
+                    desc: 'In the phrase: "{name} has shared {=a photo} with you"',
                   },
                 },
                 filepath: 'src/example/Example.react.js',
@@ -192,14 +190,12 @@ describe('translate-test.js', () => {
                   t: {
                     '*': {
                       '*': {
-                        desc:
-                          'In the phrase: "{name} has shared {=[number] photos} with you"',
+                        desc: 'In the phrase: "{name} has shared {=[number] photos} with you"',
                         text: '{number} photos',
                         tokenAliases: {},
                       },
                       _1: {
-                        desc:
-                          'In the phrase: "{name} has shared {=a photo} with you"',
+                        desc: 'In the phrase: "{name} has shared {=a photo} with you"',
                         text: 'a photo',
                         tokenAliases: {},
                       },

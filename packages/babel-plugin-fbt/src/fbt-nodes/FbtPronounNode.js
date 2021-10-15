@@ -59,7 +59,8 @@ type Options = {|
 |};
 const {GENDER_CONST} = Gender;
 
-const candidatePronounGenders: $ReadOnlyArray<GenderConstEnum> = consolidatedPronounGenders();
+const candidatePronounGenders: $ReadOnlyArray<GenderConstEnum> =
+  consolidatedPronounGenders();
 
 const HUMAN_OPTION = 'human';
 

@@ -180,8 +180,10 @@ const getNamespacedArgs = function (moduleName) {
     name(node) {
       const attributes = node.openingElement.attributes;
       const nameAttribute = getAttributeByNameOrThrow(attributes, 'name').value;
-      const genderAttribute = getAttributeByNameOrThrow(attributes, 'gender')
-        .value;
+      const genderAttribute = getAttributeByNameOrThrow(
+        attributes,
+        'gender',
+      ).value;
 
       const children = filterEmptyNodes(node.children);
       const nameChildren = children.filter(function (child) {

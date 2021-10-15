@@ -33,8 +33,10 @@ const argv = yargs
       'processing shared enums)',
   )
   .default('src-manifest', '.src_manifest.json')
-  .describe('src-manifest', 'The path or filename to write the source manifest')
-  .argv;
+  .describe(
+    'src-manifest',
+    'The path or filename to write the source manifest',
+  ).argv;
 
 if (argv.help) {
   yargs.showHelp();

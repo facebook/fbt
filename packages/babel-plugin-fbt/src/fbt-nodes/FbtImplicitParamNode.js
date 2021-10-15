@@ -61,7 +61,8 @@ class FbtImplicitParamNode
     FbtChildNode,
     null,
   >
-  implements IFbtElementNode {
+  implements IFbtElementNode
+{
   static +type: FbtNodeType = FbtNodeType.ImplicitParam;
 
   _tokenSet: ParamSet = {};

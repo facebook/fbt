@@ -46,9 +46,7 @@ function extractEnumsAndFlattenPhrases(
  * Used by fbt-runtime babel plugin to build a table of enums to hashes of leaf
  * tables. See FbtShiftEnumsTest for example input and output.
  */
-function shiftEnumsToTop(
-  jsfbt: TableJSFBT,
-): {|
+function shiftEnumsToTop(jsfbt: TableJSFBT): {|
   shiftedJsfbt: $ReadOnly<TableJSFBTTree>,
   enumCount: number,
 |} {
