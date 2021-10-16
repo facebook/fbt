@@ -145,6 +145,8 @@ List of changes for each released npm package version.
     <summary>
       Unreleased changes that have landed in main. Click to see more.
     </summary>
+
+    - [fix] Add missing @babel/register dependency
   </details>
 
 - 0.21.0:
