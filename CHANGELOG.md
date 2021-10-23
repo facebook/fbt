@@ -135,6 +135,7 @@ List of changes for each released npm package version.
 
   </details>
 
+- 0.20.3: Accidental npm release. It's the same as babel-plugin-fbt@0.20.2.
 - 0.20.2:
   - [fix] Improve detection pattern of fbt/fbs JS callsites from FbtCollector
 
