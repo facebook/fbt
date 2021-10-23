@@ -47,7 +47,7 @@ const Showcase = ({ showAll = false }) => {
               "button button--primary button--outline",
               styles.button
             )}
-            href="https://github.com/facebook/fbt/edit/master/website/docusaurus.config.js"
+            href="https://github.com/facebook/fbt/edit/main/website/docusaurus.config.js"
           >
             Add your company/project
           </Link>

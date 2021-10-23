@@ -1,6 +1,6 @@
 /**
  *
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * @emails oncall+i18n_fbt_js
  * @format

@@ -120,9 +120,12 @@ class FbtSite extends FbtSiteBase<FbtSiteMetaEntry, FbtSiteHashToTextAndDesc> {
     const leaf = coerceToTableJSFBTTreeLeaf(entry);
     return leaf != null
       ? textAndDescToHash[this._serializeTextAndDesc(leaf.text, leaf.desc)]
-      : objMap(entry, (
-          branch, // $FlowFixMe[incompatible-call] `branch` must be TableJSFBTTree type
-        ) => FbtSite._hashifyLeaves(branch, textAndDescToHash));
+      : objMap(
+          entry,
+          (
+            branch, // $FlowFixMe[incompatible-call] `branch` must be TableJSFBTTree type
+          ) => FbtSite._hashifyLeaves(branch, textAndDescToHash),
+        );
   }
 
   /**

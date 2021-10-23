@@ -200,7 +200,7 @@ class FbtPluralNode extends FbtNode<
   }
 
   getFbtRuntimeArg(): BabelNodeCallExpression {
-    const {count, showCount, value, name} = this.options;
+    const {count, name, showCount, value} = this.options;
 
     const pluralArgs = [count];
     if (showCount !== ShowCountKeys.no) {

@@ -266,9 +266,8 @@ function fbtParam(
 
       const variation = getNumberVariations(number); // this will throw if `number` is invalid
       if (typeof value === 'number') {
-        substitution[label] = intlNumUtils.formatNumberWithThousandDelimiters(
-          value,
-        );
+        substitution[label] =
+          intlNumUtils.formatNumberWithThousandDelimiters(value);
       }
       return FbtTableAccessor.getNumberResult(variation, substitution, number);
     } else if (variations[0] === ParamVariation.gender) {
@@ -316,9 +315,8 @@ function fbtPlural(count: number, label: ?string, value?: mixed): FbtTableArg {
   // $FlowFixMe[sketchy-null-string]
   if (label) {
     if (typeof value === 'number') {
-      substitution[label] = intlNumUtils.formatNumberWithThousandDelimiters(
-        value,
-      );
+      substitution[label] =
+        intlNumUtils.formatNumberWithThousandDelimiters(value);
     } else {
       substitution[label] =
         // $FlowFixMe[sketchy-null-mixed]

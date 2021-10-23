@@ -437,7 +437,8 @@ class FbtNode<
   throwIfAnyArgumentContainsFunctionCallOrClassInstantiation(
     scope: Scope<BabelNodeCallExpression>,
   ) {
-    const argsToCheck = this.getArgsThatShouldNotContainFunctionCallOrClassInstantiation();
+    const argsToCheck =
+      this.getArgsThatShouldNotContainFunctionCallOrClassInstantiation();
     for (const argumentName in argsToCheck) {
       const argument = argsToCheck[argumentName];
       if (isCallExpression(argument) || isNewExpression(argument)) {

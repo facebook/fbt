@@ -132,9 +132,10 @@ const testData = {
     ),
   },
 
-  'should wrap a string next to an explicit <fbt:param> that has a implicit <fbt:param> within it': {
-    input: withFbtRequireStatement(
-      `<fbt desc="d">
+  'should wrap a string next to an explicit <fbt:param> that has a implicit <fbt:param> within it':
+    {
+      input: withFbtRequireStatement(
+        `<fbt desc="d">
         outer string that should not appear in inner desc
         <fbt:param name="explicit fbt param">
           <div>
@@ -145,8 +146,8 @@ const testData = {
           </div>
         </fbt:param>
       </fbt>;`,
-    ),
-  },
+      ),
+    },
 
   'should work with multiple <fbt> calls in one file': {
     input: withFbtRequireStatement(

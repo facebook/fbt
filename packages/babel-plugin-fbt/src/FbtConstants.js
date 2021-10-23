@@ -50,9 +50,8 @@ const ShowCount = {
   ifMany: true,
 };
 
-const ShowCountKeys: $ObjMapi<typeof ShowCount, <K>(K) => K> = keyMirror(
-  ShowCount,
-);
+const ShowCountKeys: $ObjMapi<typeof ShowCount, <K>(K) => K> =
+  keyMirror(ShowCount);
 
 const PluralOptions = {
   value: true, // optional value to replace token (rather than count)
@@ -73,10 +72,8 @@ const ValidPronounUsages: ValidPronounUsagesType = {
   subject: 3,
 };
 
-const ValidPronounUsagesKeys: $ObjMapi<
-  typeof ValidPronounUsages,
-  <K>(K) => K,
-> = keyMirror(ValidPronounUsages);
+const ValidPronounUsagesKeys: $ObjMapi<typeof ValidPronounUsages, <K>(K) => K> =
+  keyMirror(ValidPronounUsages);
 
 const ValidPronounOptions = {
   human: {true: true, false: true},

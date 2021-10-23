@@ -125,7 +125,8 @@ class FbtElementNode
     FbtChildNode,
     Options,
   >
-  implements IFbtElementNode {
+  implements IFbtElementNode
+{
   static +type: FbtNodeType = FbtNodeType.Element;
 
   _tokenSet: ParamSet = {};
@@ -158,9 +159,10 @@ class FbtElementNode
     instance: FbtElementNode | FbtImplicitParamNodeType,
     subject: ?BabelNode,
   ): $ReadOnlyArray<AnyStringVariationArg> {
-    return (isNode(subject)
-      ? [new GenderStringVariationArg(instance, subject, [GENDER_ANY])]
-      : []
+    return (
+      isNode(subject)
+        ? [new GenderStringVariationArg(instance, subject, [GENDER_ANY])]
+        : []
     ).concat(...instance.children.map(c => c.getArgsForStringVariationCalc()));
   }
 

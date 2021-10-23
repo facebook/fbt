@@ -1,5 +1,5 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * @format
  * @emails oncall+i18n_fbt_js
@@ -221,9 +221,8 @@ class FbtFunctionCallProcessor {
   _createRootFbtRuntimeCall(
     metaPhrases: $ReadOnlyArray<MetaPhrase>,
   ): BabelNodeCallExpression | BabelNodeSequenceExpression {
-    const stringVariationRuntimeArgs = this._createRuntimeArgsFromStringVariantNodes(
-      metaPhrases[0],
-    );
+    const stringVariationRuntimeArgs =
+      this._createRuntimeArgsFromStringVariantNodes(metaPhrases[0]);
     if (!this._hasStringVariationAndContainsInnerString(metaPhrases)) {
       return this._createFbtRuntimeCallForMetaPhrase(
         metaPhrases,
@@ -233,9 +232,10 @@ class FbtFunctionCallProcessor {
     }
     this._throwIfStringVariationArgsMayCauseSideEffects(metaPhrases);
 
-    const stringVariationRuntimeArgIdentifiers = this._generateUniqueIdentifiersForRuntimeArgs(
-      stringVariationRuntimeArgs.length,
-    );
+    const stringVariationRuntimeArgIdentifiers =
+      this._generateUniqueIdentifiersForRuntimeArgs(
+        stringVariationRuntimeArgs.length,
+      );
     const fbtRuntimeCall = this._createFbtRuntimeCallForMetaPhrase(
       metaPhrases,
       0,
@@ -639,9 +639,7 @@ class FbtFunctionCallProcessor {
    * @returns only options that are considered "defined".
    * I.e. Options whose value is `false` or nullish will be skipped.
    */
-  _getSharedPhraseOptions({
-    options: fbtElementOptions,
-  }: FbtElementNode): {|
+  _getSharedPhraseOptions({options: fbtElementOptions}: FbtElementNode): {|
     ...$ObjMap<FbtElementNodeOptions, <T>(T) => ?T>,
     project: string,
   |} {

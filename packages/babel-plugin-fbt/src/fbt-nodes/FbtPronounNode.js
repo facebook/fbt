@@ -59,7 +59,8 @@ type Options = {|
 |};
 const {GENDER_CONST} = Gender;
 
-const candidatePronounGenders: $ReadOnlyArray<GenderConstEnum> = consolidatedPronounGenders();
+const candidatePronounGenders: $ReadOnlyArray<GenderConstEnum> =
+  consolidatedPronounGenders();
 
 const HUMAN_OPTION = 'human';
 
@@ -186,7 +187,7 @@ class FbtPronounNode extends FbtNode<
   }
 
   getFbtRuntimeArg(): BabelNodeCallExpression {
-    const {gender, type, human} = this.options;
+    const {gender, human, type} = this.options;
     const numericUsageExpr = numericLiteral(ValidPronounUsages[type]);
 
     const pronounArgs = [numericUsageExpr, gender];

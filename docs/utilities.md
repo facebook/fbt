@@ -6,15 +6,15 @@ sidebar_label: Runtime Utilities
 
 Bundled with fbt come a few useful utilities for constructing strings.
 ### intlList(...)
-[`intlList`](https://github.com/facebook/fbt/blob/master/runtime/shared/intlList.js) creates `fbt` instances with selectable conjunctions given an array.
+[`intlList`](https://github.com/facebook/fbt/blob/main/runtime/shared/intlList.js) creates `fbt` instances with selectable conjunctions given an array.
 
 As an example
 ```js
 const intlList = require('fbt/lib/intlList');
 const CONJUNCTIONS = intlList.CONJUNCTIONS;
-const DELIMITER = intlList.DELIMITER;
+const DELIMITERS = intlList.DELIMITERS;
 let people = ['Adam', 'Becky', fbt('4 others', 'last item')]
-intlList(people, CONJUNCTIONS.AND, DELIMITER.COMMA);
+intlList(people, CONJUNCTIONS.AND, DELIMITERS.COMMA);
 ```
 produces the fbt
 ```

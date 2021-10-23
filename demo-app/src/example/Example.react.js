@@ -1,6 +1,4 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
- *
  * Copyright (c) Facebook, Inc. and its affiliates. All rights reserved.
  *
  * @format
@@ -57,6 +55,7 @@ const LOCALES = Object.freeze({
     rtl: true,
   }),
   he_IL: Object.freeze({
+    /* eslint-disable-next-line fb-www/gender-neutral-language */
     bcp47: 'he',
     displayName: '\u05E2\u05D1\u05E8\u05D9\u05EA',
     englishName: 'Hebrew',

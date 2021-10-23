@@ -14,8 +14,8 @@ https://facebook.github.io/fbt
 ### Note
 
 If you're trying to browse the source code,
-[**packages/fbt**](https://github.com/facebook/fbt/tree/master/packages/fbt)
+[**packages/fbt**](https://github.com/facebook/fbt/tree/main/packages/fbt)
 is the destination for the built package, and is largely empty.  The source
 lives in the
-[**runtime** directory](https://github.com/facebook/fbt/tree/master/runtime)
+[**runtime** directory](https://github.com/facebook/fbt/tree/main/runtime)
 in the [GitHub repository](https://github.com/facebook/fbt).
