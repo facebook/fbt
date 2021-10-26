@@ -160,6 +160,7 @@ List of changes for each released npm package version.
     We're also adding support for a new way to call fbt() using an array of inputs instead of string concatenation.
     See [#35](https://github.com/facebook/fbt/issues/35)
 
+- 0.20.3: Accidental npm release. It's the same as babel-plugin-fbt@0.20.2.
 - 0.20.2:
   - [fix] Improve detection pattern of fbt/fbs JS callsites from FbtCollector
 
