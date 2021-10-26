@@ -121,6 +121,12 @@ class FbtNameNode extends FbtNode<
       [stringLiteral(name), value, gender].filter(Boolean),
     );
   }
+
+  getArgsThatShouldNotContainFunctionCallOrClassInstantiation(): $ReadOnly<{
+    [argName: string]: BabelNodeCallExpressionArg,
+  }> {
+    return {gender: this.options.gender};
+  }
 }
 
 module.exports = FbtNameNode;

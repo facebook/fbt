@@ -2372,8 +2372,7 @@ const generalTestData = {
         `Expect string variation runtime arguments to not contain` +
         ` function calls or class instantiations, but "count" argument contains a function call or class instantiation.`,
     },
-
-  'should throw for string with a nested JSX fragment and string variation arguments that have nested function calls':
+  'should throw for string with a nested JSX fragment and string variation arguments that have nested function calls (fbt:plural).':
     {
       inputWithArraySyntax: withFbtRequireStatement(
         `var React = require('react');
@@ -2384,7 +2383,7 @@ const generalTestData = {
               B1
               <b>
                 C1
-                {fbt.plural('world', 2 * a.getValue())}
+                {fbt.plural('world', getValue())}
               </b>
               B2
             </a>,
@@ -2395,8 +2394,134 @@ const generalTestData = {
       ),
 
       throws:
-        `Expect string variation runtime arguments to not contain` +
-        ` function calls or class instantiations, but "count" argument contains a function call or class instantiation.`,
+        `Expect string variation runtime arguments to not be function calls or ` +
+        `class instantiations, but "count" argument is a function call or class instantiation.`,
+    },
+  'should throw for string with a nested JSX fragment and string variation arguments that have nested function calls (fbt:enum).':
+    {
+      inputWithArraySyntax: withFbtRequireStatement(
+        `var React = require('react');
+        var x = fbt(
+          [
+            'A1 ',
+            <a>
+              B1
+              <b>
+                C1
+                {fbt.enum(getValue(), ['world'])}
+              </b>
+              B2
+            </a>,
+            ' A2',
+          ],
+          'string with nested JSX fragments',
+        );`,
+      ),
+
+      throws:
+        `Expect string variation runtime arguments to not be function calls or ` +
+        `class instantiations, but "value" argument is a function call or class instantiation.`,
+    },
+  'should throw for string with a nested JSX fragment and string variation arguments that have nested function calls (fbt:name).':
+    {
+      inputWithArraySyntax: withFbtRequireStatement(
+        `var React = require('react');
+        var x = fbt(
+          [
+            'A1 ',
+            <a>
+              B1
+              <b>
+                C1
+                {fbt.name('name', getName(), getGender())}
+              </b>
+              B2
+            </a>,
+            ' A2',
+          ],
+          'string with nested JSX fragments',
+        );`,
+      ),
+
+      throws:
+        `Expect string variation runtime arguments to not be function calls or ` +
+        `class instantiations, but "gender" argument is a function call or class instantiation.`,
+    },
+  'should throw for string with a nested JSX fragment and string variation arguments that have nested function calls (fbt:param with number).':
+    {
+      inputWithArraySyntax: withFbtRequireStatement(
+        `var React = require('react');
+        var x = fbt(
+          [
+            'A1 ',
+            <a>
+              B1
+              <b>
+                C1
+                {fbt.param('name', paramValue(), {number: getNumber()})}
+              </b>
+              B2
+            </a>,
+            ' A2',
+          ],
+          'string with nested JSX fragments',
+        );`,
+      ),
+
+      throws:
+        `Expect string variation runtime arguments to not be function calls or ` +
+        `class instantiations, but "number" argument is a function call or class instantiation.`,
+    },
+  'should throw for string with a nested JSX fragment and string variation arguments that have nested function calls (fbt:param with gender).':
+    {
+      inputWithArraySyntax: withFbtRequireStatement(
+        `var React = require('react');
+        var x = fbt(
+          [
+            'A1 ',
+            <a>
+              B1
+              <b>
+                C1
+                {fbt.param('name', paramValue(), {gender: getGender()})}
+              </b>
+              B2
+            </a>,
+            ' A2',
+          ],
+          'string with nested JSX fragments',
+        );`,
+      ),
+
+      throws:
+        `Expect string variation runtime arguments to not be function calls or ` +
+        `class instantiations, but "gender" argument is a function call or class instantiation.`,
+    },
+
+  'should throw for string with a nested JSX fragment and string variation arguments that have nested function calls (fbt:pronoun)':
+    {
+      inputWithArraySyntax: withFbtRequireStatement(
+        `var React = require('react');
+        var x = fbt(
+          [
+            'A1 ',
+            <a>
+              B1
+              <b>
+                C1
+                {fbt.pronoun('object', getGender())}
+              </b>
+              B2
+            </a>,
+            ' A2',
+          ],
+          'string with nested JSX fragments',
+        );`,
+      ),
+
+      throws:
+        `Expect string variation runtime arguments to not be function calls or ` +
+        `class instantiations, but "gender" argument is a function call or class instantiation.`,
     },
 
   'should not throw for string with a nested JSX fragment and string variation arguments':

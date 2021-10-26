@@ -429,10 +429,11 @@ class FbtNode<
    *
    * Arguments that decide string variations:
    *  fbt:element: the 'subject' value
-   *  fbt:plural: the 'count' value. 'value' is okay
-   *  fbt:param: the 'gender/number' value. 'value' is okay
-   *  fbt:pronoun: the 'gender' value
    *  fbt:enum: the 'enum' value
+   *  fbt:name: the 'gender' value
+   *  fbt:param: the 'gender/number' value. 'value' is okay
+   *  fbt:plural: the 'count' value. 'value' is okay
+   *  fbt:pronoun: the 'gender' value
    */
   throwIfAnyArgumentContainsFunctionCallOrClassInstantiation(
     scope: Scope<BabelNodeCallExpression>,

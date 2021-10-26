@@ -146,6 +146,7 @@ List of changes for each released npm package version.
       Unreleased changes that have landed in main. Click to see more.
     </summary>
 
+    - [fix!] (fbt:name) Fix issue where we failed to prevent users from using a "gender" value issued from a function/class invocation
     - [fix!] (fbt:enum) Fix issue where we failed to detect that enum object keys were issued from computed values instead of being statically defined
     - [fix] Move flow-enums-runtime from devDependency to a normal dependency since it's needed by FbtNodeType at runtime
     - [fix] Add missing @babel/register dependency
