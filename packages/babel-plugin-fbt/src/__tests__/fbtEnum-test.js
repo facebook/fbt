@@ -107,6 +107,46 @@ describe('Test Fbt Enum', () => {
     ).toThrowError('Enum values must be string literals');
   });
 
+  describe('when used with dynamic enum keys', () => {
+    it('should throw the enum key is a variable (BabelNodeIdentifier)', () => {
+      expect(() =>
+        snapshotTransform(
+          withFbtRequireStatement(
+            `const foo = 'anything';
+            <fbt desc="try fbt:enum with a dynamic enum key">
+              <fbt:enum
+                enum-range={{
+                  [foo]: 'bar',
+                }}
+                value={myValue}
+              />
+            </fbt>;`,
+          ),
+          {fbtEnumManifest: TestFbtEnumManifest},
+        ),
+      ).toThrowError('Enum keys must be string literals instead of `');
+    });
+
+    it('should throw the enum key is a variable (MemberExpression)', () => {
+      expect(() =>
+        snapshotTransform(
+          withFbtRequireStatement(
+            `const foo = {bar: 'anything'};
+            <fbt desc="try fbt:enum with a dynamic enum key">
+              <fbt:enum
+                enum-range={{
+                  [foo.bar]: 'baz',
+                }}
+                value={myValue}
+              />
+            </fbt>;`,
+          ),
+          {fbtEnumManifest: TestFbtEnumManifest},
+        ),
+      ).toThrowError('Enum keys must be string literals instead of `');
+    });
+  });
+
   it('should throw on multiple import types', () => {
     expect(() =>
       snapshotTransform(

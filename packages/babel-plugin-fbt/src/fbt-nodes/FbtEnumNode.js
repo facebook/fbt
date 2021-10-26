@@ -96,22 +96,29 @@ class FbtEnumNode extends FbtNode<
         rangeNode.properties.forEach(prop => {
           invariant(
             isObjectProperty(prop),
-            'Enum entries must be standard object properties',
+            'Enum entries must be standard object properties. ' +
+              'Method or spread expressions are forbidden',
           );
           const valueNode = prop.value;
-          const keyNode = prop.key;
+          const keyNode: mixed = prop.key;
           invariant(
             isStringLiteral(valueNode),
             'Enum values must be string literals',
           );
-          invariant(
-            isStringLiteral(keyNode) ||
-              isIdentifier(keyNode) ||
-              isNumericLiteral(keyNode),
-            'Enum keys must be string literals instead of `%s`',
-            keyNode.type,
-          );
-          range[keyNode.name || keyNode.value] = valueNode.value;
+          if (isStringLiteral(keyNode) || isNumericLiteral(keyNode)) {
+            // $FlowFixMe[cannot-write] Force write here to assemble the range object
+            range[keyNode.value.toString()] = valueNode.value;
+          } else {
+            invariant(
+              isIdentifier(keyNode) && prop.computed === false,
+              'Enum keys must be string literals instead of `%s` ' +
+                'when using an object with computed property names',
+              // $FlowFixMe[incompatible-use] BabelNode child classes have a "type" property
+              keyNode.type,
+            );
+            // $FlowFixMe[cannot-write] Force write here to assemble the range object
+            range[keyNode.name] = valueNode.value;
+          }
         });
         invariant(
           Object.keys(range).length,
