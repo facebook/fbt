@@ -33,12 +33,12 @@ describe('Test Fbt Enum', () => {
     runTest({
       input: withFbtRequireStatement(
         `let aEnum = require('Test$FbtEnum');
-          var x = (
-            <fbt desc="enums!">
-              Click to see
-              <fbt:enum enum-range={aEnum} value={id} />
-            </fbt>
-          );`,
+        var x = (
+          <fbt desc="enums!">
+            Click to see
+            <fbt:enum enum-range={aEnum} value={id} />
+          </fbt>
+        );`,
       ),
     });
   });
@@ -47,12 +47,12 @@ describe('Test Fbt Enum', () => {
     runTest({
       input: withFbtRequireStatement(
         `let aEnum = require('Test$FbtEnum');
-          var x = (
-            <fbt desc="enums!">
-              Click to see
-              <fbt:enum enum-range={aEnum} value="id1" />
-            </fbt>
-          );`,
+        var x = (
+          <fbt desc="enums!">
+            Click to see
+            <fbt:enum enum-range={aEnum} value="id1" />
+          </fbt>
+        );`,
       ),
     });
   });
@@ -61,7 +61,7 @@ describe('Test Fbt Enum', () => {
     runTest({
       input: withFbtRequireStatement(
         `let aEnum = require('Test$FbtEnum');
-          var x = fbt('Click to see ' + fbt.enum(id, aEnum), 'enums!');`,
+        var x = fbt('Click to see ' + fbt.enum(id, aEnum), 'enums!');`,
       ),
     });
   });
