@@ -146,6 +146,7 @@ List of changes for each released npm package version.
       Unreleased changes that have landed in main. Click to see more.
     </summary>
 
+    - [fix] Move flow-enums-runtime from devDependency to a normal dependency since it's needed by FbtNodeType at runtime
     - [fix] Add missing @babel/register dependency
   </details>
 
