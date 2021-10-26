@@ -445,9 +445,8 @@ class FbtNode<
       if (isCallExpression(argument) || isNewExpression(argument)) {
         throw errorAt(
           this.node,
-          'Expect string variation runtime arguments to not be' +
-            ' function calls or class instantiations,' +
-            ` but "${argumentName}" argument is a function call or class instantiation.`,
+          `Expected string variation runtime argument "${argumentName}" ` +
+            `to not be a function call or class instantiation expression.`,
         );
       }
       // Look for function or class call nested in the argument
@@ -457,9 +456,8 @@ class FbtNode<
           'CallExpression|NewExpression'(path) {
             throw errorAt(
               path.node,
-              'Expect string variation runtime arguments to not contain' +
-                ' function calls or class instantiations,' +
-                ` but "${argumentName}" argument contains a function call or class instantiation.`,
+              `Expected string variation runtime argument "${argumentName}" ` +
+                `to not contain a function call or class instantiation expression.`,
             );
           },
         },

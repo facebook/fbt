@@ -2343,8 +2343,8 @@ const generalTestData = {
       ),
 
       throws:
-        `Expect string variation runtime arguments to not be` +
-        ` function calls or class instantiations, but "subject" argument is a function call or class instantiation.`,
+        `Expected string variation runtime argument "subject" ` +
+        `to not be a function call or class instantiation expression.`,
     },
 
   'should throw for string with a nested JSX fragment and string variation arguments that have nested class instantiation.':
@@ -2369,8 +2369,8 @@ const generalTestData = {
       ),
 
       throws:
-        `Expect string variation runtime arguments to not contain` +
-        ` function calls or class instantiations, but "count" argument contains a function call or class instantiation.`,
+        `Expected string variation runtime argument "count" ` +
+        `to not contain a function call or class instantiation expression.`,
     },
   'should throw for string with a nested JSX fragment and string variation arguments that have nested function calls (fbt:plural).':
     {
@@ -2394,8 +2394,8 @@ const generalTestData = {
       ),
 
       throws:
-        `Expect string variation runtime arguments to not be function calls or ` +
-        `class instantiations, but "count" argument is a function call or class instantiation.`,
+        `Expected string variation runtime argument "count" ` +
+        `to not be a function call or class instantiation expression.`,
     },
   'should throw for string with a nested JSX fragment and string variation arguments that have nested function calls (fbt:enum).':
     {
@@ -2419,8 +2419,8 @@ const generalTestData = {
       ),
 
       throws:
-        `Expect string variation runtime arguments to not be function calls or ` +
-        `class instantiations, but "value" argument is a function call or class instantiation.`,
+        `Expected string variation runtime argument "value" ` +
+        `to not be a function call or class instantiation expression.`,
     },
   'should throw for string with a nested JSX fragment and string variation arguments that have nested function calls (fbt:name).':
     {
@@ -2444,8 +2444,8 @@ const generalTestData = {
       ),
 
       throws:
-        `Expect string variation runtime arguments to not be function calls or ` +
-        `class instantiations, but "gender" argument is a function call or class instantiation.`,
+        `Expected string variation runtime argument "gender" ` +
+        `to not be a function call or class instantiation expression.`,
     },
   'should throw for string with a nested JSX fragment and string variation arguments that have nested function calls (fbt:param with number).':
     {
@@ -2469,8 +2469,8 @@ const generalTestData = {
       ),
 
       throws:
-        `Expect string variation runtime arguments to not be function calls or ` +
-        `class instantiations, but "number" argument is a function call or class instantiation.`,
+        `Expected string variation runtime argument "number" ` +
+        `to not be a function call or class instantiation expression.`,
     },
   'should throw for string with a nested JSX fragment and string variation arguments that have nested function calls (fbt:param with gender).':
     {
@@ -2494,8 +2494,8 @@ const generalTestData = {
       ),
 
       throws:
-        `Expect string variation runtime arguments to not be function calls or ` +
-        `class instantiations, but "gender" argument is a function call or class instantiation.`,
+        `Expected string variation runtime argument "gender" ` +
+        `to not be a function call or class instantiation expression.`,
     },
 
   'should throw for string with a nested JSX fragment and string variation arguments that have nested function calls (fbt:pronoun)':
@@ -2520,8 +2520,8 @@ const generalTestData = {
       ),
 
       throws:
-        `Expect string variation runtime arguments to not be function calls or ` +
-        `class instantiations, but "gender" argument is a function call or class instantiation.`,
+        `Expected string variation runtime argument "gender" ` +
+        `to not be a function call or class instantiation expression.`,
     },
 
   'should not throw for string with a nested JSX fragment and string variation arguments':
