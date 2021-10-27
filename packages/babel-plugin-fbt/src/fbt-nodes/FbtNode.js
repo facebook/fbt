@@ -446,7 +446,8 @@ class FbtNode<
         throw errorAt(
           this.node,
           `Expected string variation runtime argument "${argumentName}" ` +
-            `to not be a function call or class instantiation expression.`,
+            `to not be a function call or class instantiation expression. ` +
+            `See https://fburl.com/i18n_js_fbt_extraction_limits`,
         );
       }
       // Look for function or class call nested in the argument
@@ -457,7 +458,8 @@ class FbtNode<
             throw errorAt(
               path.node,
               `Expected string variation runtime argument "${argumentName}" ` +
-                `to not contain a function call or class instantiation expression.`,
+                `to not contain a function call or class instantiation expression. ` +
+                `See https://fburl.com/i18n_js_fbt_extraction_limits`,
             );
           },
         },
