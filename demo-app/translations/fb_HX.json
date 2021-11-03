@@ -2,12 +2,8 @@
   "fb-locale": "fb_HX",
   "translations": {
     "f9df2DVor1ccX0uzZbuDVQ==": {
-      "tokens": [
-        "__viewing_user__"
-      ],
-      "types": [
-        3
-      ],
+      "tokens": ["__viewing_user__"],
+      "types": [3],
       "translations": [
         {
           "translation": "Y0u\u042f \u2132\u0411\u30c6 D3m0",
@@ -30,12 +26,8 @@
       ]
     },
     "PvA+AsZdpZXw81g/J3Ow0Q==": {
-      "tokens": [
-        "__viewing_user__"
-      ],
-      "types": [
-        3
-      ],
+      "tokens": ["__viewing_user__"],
+      "types": [3],
       "translations": [
         {
           "translation": "(0n5+ruc+ 53nt3n<35",
@@ -58,12 +50,8 @@
       ]
     },
     "BJj5GnFcg5DWU/fW7CqXRQ==": {
-      "tokens": [
-        "__viewing_user__"
-      ],
-      "types": [
-        3
-      ],
+      "tokens": ["__viewing_user__"],
+      "types": [3],
       "translations": [
         {
           "translation": "|_|53 +h3 ph0\u042f/X\\ |o310w +0 533 \u2132\u0411\u30c6 in 4c+10n.",
@@ -156,12 +144,8 @@
       ]
     },
     "PqPPir8Kg9xSlqdednPFOg==": {
-      "tokens": [
-        "name"
-      ],
-      "types": [
-        3
-      ],
+      "tokens": ["name"],
+      "types": [3],
       "translations": [
         {
           "translation": "{name} h45 5h4r3d {=a photo} w1th y0u",

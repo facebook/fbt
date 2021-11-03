@@ -302,12 +302,8 @@
       ]
     },
     "/gj3gwqx1z8Xw233oZgOpQ==": {
-      "tokens": [
-        "number"
-      ],
-      "types": [
-        28
-      ],
+      "tokens": ["number"],
+      "types": [28],
       "translations": [
         {
           "translation": "{number} \u0635\u0648\u0631\u0629",
