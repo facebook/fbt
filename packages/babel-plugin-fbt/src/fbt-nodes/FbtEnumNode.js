@@ -162,10 +162,6 @@ class FbtEnumNode extends FbtNode<
   }
 
   getArgsForStringVariationCalc(): $ReadOnlyArray<EnumStringVariationArg> {
-    // TODO(T40113359): de-duplicate enums. See https://fburl.com/diffusion/8if4osaa
-    // That probably needs to be done at the FbtElementNode level
-    // Should we also add the enum-range to EnumStringVariationArg? Or this instance?
-    // That would help detect cases where fbt:enum is used with non-identical enum-range keys.
     return [
       new EnumStringVariationArg(
         this,

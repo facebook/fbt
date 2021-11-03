@@ -253,9 +253,6 @@ function FbtTransform(babel: {types: BabelTypes}): BabelTransformPlugin {
           return;
         }
 
-        // TODO(T40113359): remove this once we're done implementing proper conversion to fbt nodes
-        // root.convertToFbtNode();
-
         const {callNode, metaPhrases} = root.convertToFbtRuntimeCall();
         path.replaceWith(callNode);
 

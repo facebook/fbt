@@ -2813,7 +2813,6 @@ function prepareTestDataForInputKey(inputKeyName) {
 
 function describeTestScenarios(testData) {
   describe('Translation transform', () => {
-    // TODO(T40113359): remove this filtering when the clientside JS transform is implemented
     const filteredTestData = {};
     for (const title in testData) {
       const scenario = {...testData[title]};
