@@ -41,16 +41,6 @@
       ],
       "types": []
     },
-    "/gj3gwqx1z8Xw233oZgOpQ==": {
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "{number} \u05ea\u05de\u05d5\u05e0\u05d5\u05ea",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "1PKQnkF/lWmk79Tv/ys24A==": {
       "tokens": [],
       "translations": [
@@ -76,16 +66,6 @@
       "translations": [
         {
           "translation": "\u05dc{name} \u05d9\u05e9 \u05e4\u05d5\u05e1\u05d8 \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d4.",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "8UZCD6gFUKN+U5UUo1I3/w==": {
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "\u05ea\u05de\u05d5\u05e0\u05d4",
           "variations": {}
         }
       ],
@@ -120,34 +100,6 @@
         }
       ],
       "types": []
-    },
-    "BJj5GnFcg5DWU/fW7CqXRQ==": {
-      "tokens": [
-        "__viewing_user__"
-      ],
-      "translations": [
-        {
-          "translation": "\u05d4\u05e9\u05ea\u05de\u05e9/\u05d9 \u05d1\u05d8\u05d5\u05e4\u05e1 \u05dc\u05de\u05d8\u05d4 \u05db\u05d3\u05d9 \u05dc\u05e8\u05d0\u05d5\u05ea \u05d0\u05ea FBT \u05d1\u05e4\u05e2\u05d5\u05dc\u05d4.",
-          "variations": {
-            "0": 3
-          }
-        },
-        {
-          "translation": "\u05d4\u05e9\u05ea\u05de\u05e9\u05d9 \u05d1\u05d8\u05d5\u05e4\u05e1 \u05dc\u05de\u05d8\u05d4 \u05db\u05d3\u05d9 \u05dc\u05e8\u05d0\u05d5\u05ea \u05d0\u05ea FBT \u05d1\u05e4\u05e2\u05d5\u05dc\u05d4.",
-          "variations": {
-            "0": 2
-          }
-        },
-        {
-          "translation": "\u05d4\u05e9\u05ea\u05de\u05e9 \u05d1\u05d8\u05d5\u05e4\u05e1 \u05dc\u05de\u05d8\u05d4 \u05db\u05d3\u05d9 \u05dc\u05e8\u05d0\u05d5\u05ea \u05d0\u05ea FBT \u05d1\u05e4\u05e2\u05d5\u05dc\u05d4.",
-          "variations": {
-            "0": 1
-          }
-        }
-      ],
-      "types": [
-        3
-      ]
     },
     "CcRrycO18VroWvGAcg0u7w==": {
       "tokens": [],
@@ -228,34 +180,6 @@
         }
       ],
       "types": []
-    },
-    "Kb0bgdPFst+Bq13gtG2Obg==": {
-      "tokens": [
-        "__viewing_user__"
-      ],
-      "translations": [
-        {
-          "translation": "\u05e6\u05e4\u05d9",
-          "variations": {
-            "0": 2
-          }
-        },
-        {
-          "translation": "\u05e6\u05e4\u05d4",
-          "variations": {
-            "0": 1
-          }
-        },
-        {
-          "translation": "\u05e6\u05e4\u05d4/\u05e6\u05e4\u05d9",
-          "variations": {
-            "0": 3
-          }
-        }
-      ],
-      "types": [
-        3
-      ]
     },
     "N4hL52x52Phrk/Bzp1RkTg==": {
       "tokens": [],
@@ -370,16 +294,6 @@
       "translations": [
         {
           "translation": "\u05d6\u05db\u05e8",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "mmqgrx7cIVUnJZnhEIjItw==": {
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "{=View}",
           "variations": {}
         }
       ],

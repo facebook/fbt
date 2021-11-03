@@ -41,58 +41,6 @@
       ],
       "types": []
     },
-    "/gj3gwqx1z8Xw233oZgOpQ==": {
-      "tokens": [
-        "number"
-      ],
-      "translations": [
-        {
-          "id": 110154509,
-          "translation": "{number} \u0635\u0648\u0631\u0629",
-          "variations": {
-            "0": 24
-          }
-        },
-        {
-          "id": 110154499,
-          "translation": "{number} \u0635\u0648\u0631",
-          "variations": {
-            "0": 20
-          }
-        },
-        {
-          "id": 110154500,
-          "translation": "{number} \u0635\u0648\u0631\u0629",
-          "variations": {
-            "0": 12
-          }
-        },
-        {
-          "id": 110154465,
-          "translation": "\u0635\u0648\u0631\u0629 \u0648\u0627\u062d\u062f\u0629",
-          "variations": {
-            "0": 4
-          }
-        },
-        {
-          "id": 110154464,
-          "translation": "{number} \u0635\u0648\u0631\u0629",
-          "variations": {
-            "0": 16
-          }
-        },
-        {
-          "id": 110154497,
-          "translation": "\u0635\u0648\u0631\u062a\u064a\u0646",
-          "variations": {
-            "0": 8
-          }
-        }
-      ],
-      "types": [
-        28
-      ]
-    },
     "1PKQnkF/lWmk79Tv/ys24A==": {
       "tokens": [],
       "translations": [
@@ -123,16 +71,6 @@
       ],
       "types": []
     },
-    "8UZCD6gFUKN+U5UUo1I3/w==": {
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "\u0635\u0648\u0631\u0629",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "95jC7mDsBpqzCbCA3504zw==": {
       "tokens": [],
       "translations": [
@@ -158,16 +96,6 @@
       "translations": [
         {
           "translation": "\u064a\u0645\u0643\u0646\u0643 \u0627\u0644\u062a\u062c\u0631\u0628\u0629!",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "BJj5GnFcg5DWU/fW7CqXRQ==": {
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "\u064a\u0645\u0643\u0646\u0643 \u0627\u0633\u062a\u062e\u062f\u0627\u0645 \u0627\u0644\u0646\u0645\u0648\u0630\u062c \u0623\u062f\u0646\u0627\u0647 \u0644\u0631\u0624\u064a\u0629 FBT \u0623\u062b\u0646\u0627\u0621 \u0627\u0644\u0639\u0645\u0644.",
           "variations": {}
         }
       ],
@@ -248,16 +176,6 @@
       "translations": [
         {
           "translation": "\u0627\u0644\u0639\u062f\u062f",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "Kb0bgdPFst+Bq13gtG2Obg==": {
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "\u0645\u0634\u0627\u0647\u062f\u0629",
           "variations": {}
         }
       ],
@@ -358,16 +276,6 @@
       "translations": [
         {
           "translation": "\u0630\u0643\u0631",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "mmqgrx7cIVUnJZnhEIjItw==": {
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "{=View}",
           "variations": {}
         }
       ],

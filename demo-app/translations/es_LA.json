@@ -41,16 +41,6 @@
       ],
       "types": []
     },
-    "/gj3gwqx1z8Xw233oZgOpQ==": {
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "{number} fotos",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "1PKQnkF/lWmk79Tv/ys24A==": {
       "tokens": [],
       "translations": [
@@ -81,16 +71,6 @@
       ],
       "types": []
     },
-    "8UZCD6gFUKN+U5UUo1I3/w==": {
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "una foto",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "95jC7mDsBpqzCbCA3504zw==": {
       "tokens": [],
       "translations": [
@@ -116,16 +96,6 @@
       "translations": [
         {
           "translation": "\u00a1Pru\u00e9balo!",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "BJj5GnFcg5DWU/fW7CqXRQ==": {
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Usa el siguiente formulario  para ver FBT en acci\u00f3n.",
           "variations": {}
         }
       ],
@@ -206,16 +176,6 @@
       "translations": [
         {
           "translation": "n\u00famero",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "Kb0bgdPFst+Bq13gtG2Obg==": {
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Mira",
           "variations": {}
         }
       ],
@@ -316,16 +276,6 @@
       "translations": [
         {
           "translation": "Hombre",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "mmqgrx7cIVUnJZnhEIjItw==": {
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "{=View}",
           "variations": {}
         }
       ],

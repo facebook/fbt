@@ -41,34 +41,6 @@
       ],
       "types": []
     },
-    "/gj3gwqx1z8Xw233oZgOpQ==": {
-      "tokens": [
-        "number"
-      ],
-      "translations": [
-        {
-          "translation": "{number} \u0444\u043e\u0442\u043e\u0433\u0440\u0430\u0444\u0438\u0438",
-          "variations": {
-            "0": 20
-          }
-        },
-        {
-          "translation": "{number} \u0444\u043e\u0442\u043e\u0433\u0440\u0430\u0444\u0438\u0439",
-          "variations": {
-            "0": 12
-          }
-        },
-        {
-          "translation": "{number} \u0444\u043e\u0442\u043e",
-          "variations": {
-            "0": 4
-          }
-        }
-      ],
-      "types": [
-        28
-      ]
-    },
     "1PKQnkF/lWmk79Tv/ys24A==": {
       "tokens": [],
       "translations": [
@@ -83,7 +55,7 @@
       "tokens": [],
       "translations": [
         {
-          "translation": "{name} \u0445\u043e\u0447\u0435\u0442 \u043f\u043e\u0434\u0435\u043b\u0438\u0442\u044c\u0441\u044f \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435\u0439! {=View} \u0435\u0433\u043e \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0443.",
+          "translation": "{name} \u0445\u043e\u0447\u0435\u0442 \u043f\u043e\u0434\u0435\u043b\u0438\u0442\u044c\u0441\u044f \u0421\u0442\u0440\u0430\u043d\u0438\u0446\u0435\u0439! {=View} \u0435\u0433\u043e \u0421\u0442\u0440\u0430\u043d\u0438\u0446\u0443.",
           "variations": {}
         }
       ],
@@ -94,16 +66,6 @@
       "translations": [
         {
           "translation": "{name} \u0445\u043e\u0447\u0435\u0442 \u043f\u043e\u0434\u0435\u043b\u0438\u0442\u044c\u0441\u044f \u043f\u0443\u0431\u043b\u0438\u043a\u0430\u0446\u0438\u0435\u0439! {=View} \u0435\u0435 \u043f\u0443\u0431\u043b\u0438\u043a\u0430\u0446\u0438\u044e.",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "8UZCD6gFUKN+U5UUo1I3/w==": {
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "\u0444\u043e\u0442\u043e",
           "variations": {}
         }
       ],
@@ -123,7 +85,7 @@
       "tokens": [],
       "translations": [
         {
-          "translation": "{name} \u0445\u043e\u0447\u0435\u0442 \u043f\u043e\u0434\u0435\u043b\u0438\u0442\u044c\u0441\u044f \u0441\u0441\u044b\u043b\u043a\u043e\u0439! {=View} \u0435\u0435 \u0441\u0441\u044b\u043b\u043a\u0443.",
+          "translation": "{name} \u0445\u043e\u0447\u0435\u0442 \u043f\u043e\u0434\u0435\u043b\u0438\u0442\u044c\u0441\u044f \u0432\u0438\u0434\u0435\u043e! {=View} \u0435\u0435 \u0432\u0438\u0434\u0435\u043e.",
           "variations": {}
         }
       ],
@@ -134,16 +96,6 @@
       "translations": [
         {
           "translation": "\u041f\u043e\u043f\u0440\u043e\u0431\u043e\u0432\u0430\u0442\u044c!",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "BJj5GnFcg5DWU/fW7CqXRQ==": {
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "\u0418\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0439\u0442\u0435 \u0444\u043e\u0440\u043c\u0443 \u043d\u0438\u0436\u0435, \u0447\u0442\u043e\u0431\u044b \u0443\u0432\u0438\u0434\u0435\u0442\u044c FBT \u0432 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0438.",
           "variations": {}
         }
       ],
@@ -229,16 +181,6 @@
       ],
       "types": []
     },
-    "Kb0bgdPFst+Bq13gtG2Obg==": {
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "\u041f\u0440\u043e\u0441\u043c\u043e\u0442\u0440\u0435\u0442\u044c",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "N4hL52x52Phrk/Bzp1RkTg==": {
       "tokens": [],
       "translations": [
@@ -265,19 +207,19 @@
       ],
       "translations": [
         {
-          "translation": "{name} \u043f\u043e\u0434\u0435\u043b\u0438\u043b\u0441\u044f {=a photo} \u0441 \u0432\u0430\u043c\u0438",
-          "variations": {
-            "0": 1
-          }
-        },
-        {
-          "translation": "{name} \u043f\u043e\u0434\u0435\u043b\u0438\u043b\u0430\u0441\u044c {=a photo} \u0441 \u0432\u0430\u043c\u0438",
+          "translation": "{name} \u043f\u043e\u0434\u0435\u043b\u0438\u043b\u0430\u0441\u044c \u0441 \u0432\u0430\u043c\u0438 {=a photo}",
           "variations": {
             "0": 2
           }
         },
         {
-          "translation": "{name} \u043f\u043e\u0434\u0435\u043b\u0438\u043b\u0441\u044f(-\u0430\u0441\u044c) {=a photo} \u0441 \u0432\u0430\u043c\u0438",
+          "translation": "{name} \u043f\u043e\u0434\u0435\u043b\u0438\u043b\u0441\u044f \u0441 \u0432\u0430\u043c\u0438 {=a photo}",
+          "variations": {
+            "0": 1
+          }
+        },
+        {
+          "translation": "{name} \u043f\u043e\u0434\u0435\u043b\u0438\u043b\u0441\u044f(-\u0430\u0441\u044c) \u0441 \u0432\u0430\u043c\u0438 {=a photo}",
           "variations": {
             "0": 3
           }
@@ -331,7 +273,7 @@
       "tokens": [],
       "translations": [
         {
-          "translation": "{name} \u0445\u043e\u0447\u0435\u0442 \u043f\u043e\u0434\u0435\u043b\u0438\u0442\u044c\u0441\u044f \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435\u0439! {=View} \u0435\u0435 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0443.",
+          "translation": "{name} \u0445\u043e\u0447\u0435\u0442 \u043f\u043e\u0434\u0435\u043b\u0438\u0442\u044c\u0441\u044f \u0421\u0442\u0440\u0430\u043d\u0438\u0446\u0435\u0439! {=View} \u0435\u0435 \u0421\u0442\u0440\u0430\u043d\u0438\u0446\u0443.",
           "variations": {}
         }
       ],
@@ -357,21 +299,11 @@
       ],
       "types": []
     },
-    "mmqgrx7cIVUnJZnhEIjItw==": {
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "{=View}",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "ocUjztl+ZCTxysGLukn+kw==": {
       "tokens": [],
       "translations": [
         {
-          "translation": "{name} \u0445\u043e\u0447\u0435\u0442 \u043f\u043e\u0434\u0435\u043b\u0438\u0442\u044c\u0441\u044f \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435\u0439! {=View} \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0443.",
+          "translation": "{name} \u0445\u043e\u0447\u0435\u0442 \u043f\u043e\u0434\u0435\u043b\u0438\u0442\u044c\u0441\u044f \u0421\u0442\u0440\u0430\u043d\u0438\u0446\u0435\u0439! {=View} \u0421\u0442\u0440\u0430\u043d\u0438\u0446\u0443.",
           "variations": {}
         }
       ],
