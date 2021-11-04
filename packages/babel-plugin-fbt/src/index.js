@@ -86,11 +86,10 @@ export type TokenAliases = {|
  *   parameters passed to the various fbt constructs (param, plural, pronoun) of this callsite;
  *   and tree leaves are TableJSFBTTreeLeaf objects.
  */
-export type TableJSFBTTree =
-  | TableJSFBTTreeLeaf
-  | {|
-      [key: FbtTableKey]: TableJSFBTTree,
-    |};
+export type TableJSFBTTree = TableJSFBTTreeLeaf | TableJSFBTTreeBranch;
+export type TableJSFBTTreeBranch = {|
+  [key: FbtTableKey]: TableJSFBTTree,
+|};
 export type TableJSFBTTreeLeaf = {|
   desc: string,
   hash?: PatternHash,
@@ -104,6 +103,7 @@ export type TableJSFBTTreeLeaf = {|
   // So the outer token name of the inner string will be "=World"
   outerTokenName?: string,
 |};
+
 // Describes the usage of one level of the JSFBT table tree
 export type JSFBTMetaEntry = $ReadOnly<
   | {|

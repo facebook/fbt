@@ -31,6 +31,17 @@ export type FbtSiteHashToText = {|
 
 /**
  * Jsfbt table with leaves hashified.
+ *
+ * @example Single fbt plain string
+ * 'hash_of_single_plain_string'
+ *
+ * @example Fbt string with multiple variations
+ * {
+ *   '*': {
+ *     '*': 'hash_1',
+ *     _1: 'hash_2',
+ *   },
+ * }
  */
 export type FbtSiteHashifiedTableJSFBTTree =
   | PatternHash

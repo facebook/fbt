@@ -59,5 +59,6 @@ describe('Test serialization', () => {
     const original = f.serialize();
     const hydrated = FbtSite.deserialize(original).serialize();
     expect(original).toEqual(hydrated);
+    expect(original).toMatchSnapshot();
   });
 });

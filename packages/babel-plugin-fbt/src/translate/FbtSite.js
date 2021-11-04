@@ -13,7 +13,11 @@ import type {
   PatternString,
 } from '../../../../runtime/shared/FbtTable';
 import type {CollectFbtOutputPhrase} from '../bin/collectFbt.js';
-import type {JSFBTMetaEntry, TableJSFBTTree} from '../index';
+import type {
+  JSFBTMetaEntry,
+  TableJSFBTTree,
+  TableJSFBTTreeBranch,
+} from '../index';
 import type {
   FbtSiteHashifiedTableJSFBTTree,
   FbtSiteHashToTextAndDesc,
@@ -121,10 +125,9 @@ class FbtSite extends FbtSiteBase<FbtSiteMetaEntry, FbtSiteHashToTextAndDesc> {
     return leaf != null
       ? textAndDescToHash[this._serializeTextAndDesc(leaf.text, leaf.desc)]
       : objMap(
-          entry,
-          (
-            branch, // $FlowFixMe[incompatible-call] `branch` must be TableJSFBTTree type
-          ) => FbtSite._hashifyLeaves(branch, textAndDescToHash),
+          // $FlowExpectedError[incompatible-cast] `entry` must be TableJSFBTTreeBranch type
+          (entry: $ReadOnly<TableJSFBTTreeBranch>),
+          branch => FbtSite._hashifyLeaves(branch, textAndDescToHash),
         );
   }
 
