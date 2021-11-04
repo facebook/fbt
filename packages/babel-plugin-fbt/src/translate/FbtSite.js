@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-'strict';
+'use strict';
 
 import type {
   PatternHash,
