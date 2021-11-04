@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test serialization should serialize/deserialize as expected 1`] = `
+Object {
+  "_d": Object {
+    "m": Array [
+      Object {
+        "token": "name",
+        "type": 1,
+      },
+      Object {
+        "token": "number",
+        "type": 2,
+      },
+    ],
+    "t": Object {
+      "*": Object {
+        "*": Object {
+          "desc": "example 1",
+          "text": "{name} has shared {=[number] photos} with you",
+          "tokenAliases": Object {
+            "=[number] photos": "=m2",
+          },
+        },
+        "_1": Object {
+          "desc": "example 1",
+          "text": "{name} has shared {=a photo} with you",
+          "tokenAliases": Object {
+            "=a photo": "=m2",
+          },
+        },
+      },
+    },
+  },
+  "h2t": Object {
+    "PqPPir8Kg9xSlqdednPFOg==": Object {
+      "desc": "example 1",
+      "text": "{name} has shared {=a photo} with you",
+    },
+    "gVKMc/8jq5vnYR5v2bb32g==": Object {
+      "desc": "example 1",
+      "text": "{name} has shared {=[number] photos} with you",
+    },
+  },
+  "p": "fbt-demo-project",
+}
+`;
