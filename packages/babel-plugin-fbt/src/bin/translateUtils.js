@@ -6,7 +6,7 @@
  * @emails oncall+i18n_fbt_js
  */
 
-'strict';
+'use strict';
 
 import type {
   PatternHash,

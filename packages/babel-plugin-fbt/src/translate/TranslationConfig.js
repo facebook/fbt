@@ -6,7 +6,7 @@
  * @flow
  */
 
-'strict';
+'use strict';
 
 import type {
   LangToNumberTypeValues,
