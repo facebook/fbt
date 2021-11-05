@@ -8,6 +8,7 @@
 
 'use strict';
 
+import type {TokenAliases} from '..';
 import type {
   PatternHash,
   PatternString,
@@ -28,7 +29,7 @@ import type {
 } from './IntlVariations';
 
 const {objMap} = require('../FbtUtil');
-const {coerceToTableJSFBTTreeLeaf} = require('../JSFbtUtil');
+const {coerceToTableJSFBTTreeLeaf, onEachLeaf} = require('../JSFbtUtil');
 const {
   FbtSiteBase,
   FbtSiteMetaEntryBase,
@@ -44,7 +45,12 @@ type TextAndDescToHash = {|
   [textAndDesc: TextAndDescConcatenation]: PatternHash,
 |};
 
+type FbtSiteHashToTokenAliases = {|
+  [hash: PatternHash]: ?TokenAliases,
+|};
+
 type SerializedFbtSite = {|
+  h2a: FbtSiteHashToTokenAliases,
   h2t: FbtSiteHashToTextAndDesc,
   p: string,
   _d: {|t: FbtSiteHashifiedTableJSFBTTree, m: $ReadOnlyArray<?JSFBTMetaEntry>|},
@@ -73,6 +79,8 @@ type SerializedFbtSite = {|
  * }
  */
 class FbtSite extends FbtSiteBase<FbtSiteMetaEntry, FbtSiteHashToTextAndDesc> {
+  +_hashToTokenAliases: FbtSiteHashToTokenAliases;
+
   constructor(
     hashToTextAndDesc: FbtSiteHashToTextAndDesc,
     tableData: {|
@@ -80,6 +88,7 @@ class FbtSite extends FbtSiteBase<FbtSiteMetaEntry, FbtSiteHashToTextAndDesc> {
       t: FbtSiteHashifiedTableJSFBTTree,
     |},
     project: string,
+    hashToTokenAliases: FbtSiteHashToTokenAliases,
   ) {
     super(
       hashToTextAndDesc,
@@ -87,6 +96,11 @@ class FbtSite extends FbtSiteBase<FbtSiteMetaEntry, FbtSiteHashToTextAndDesc> {
       FbtSiteMetadata.wrap(tableData.m),
       project,
     );
+    this._hashToTokenAliases = hashToTokenAliases;
+  }
+
+  getHashToTokenAliases(): FbtSiteHashToTokenAliases {
+    return this._hashToTokenAliases;
   }
 
   static fromScan(json: CollectFbtOutputPhrase): FbtSite {
@@ -109,7 +123,16 @@ class FbtSite extends FbtSiteBase<FbtSiteMetaEntry, FbtSiteHashToTextAndDesc> {
       t: FbtSite._hashifyLeaves(jsfbt.t, textAndDescToHash),
       m: jsfbt.m,
     };
-    return new FbtSite(hashToLeaf, tableData, json.project);
+    const hashToTokenAliases = {};
+    onEachLeaf({jsfbt}, leaf => {
+      const hash =
+        textAndDescToHash[this._serializeTextAndDesc(leaf.text, leaf.desc)];
+      if (leaf.tokenAliases != null) {
+        hashToTokenAliases[hash] = leaf.tokenAliases;
+      }
+    });
+
+    return new FbtSite(hashToLeaf, tableData, json.project, hashToTokenAliases);
   }
 
   /**
@@ -153,6 +176,7 @@ class FbtSite extends FbtSiteBase<FbtSiteMetaEntry, FbtSiteHashToTextAndDesc> {
 
   serialize(): SerializedFbtSite {
     return {
+      h2a: this.getHashToTokenAliases(),
       h2t: this.getHashToLeaf(),
       p: this.getProject(),
       _d: {
@@ -163,7 +187,7 @@ class FbtSite extends FbtSiteBase<FbtSiteMetaEntry, FbtSiteHashToTextAndDesc> {
   }
 
   static deserialize(json: $ReadOnly<SerializedFbtSite>): FbtSite {
-    return new FbtSite(json.h2t, json._d, json.p);
+    return new FbtSite(json.h2t, json._d, json.p, json.h2a);
   }
 }
 

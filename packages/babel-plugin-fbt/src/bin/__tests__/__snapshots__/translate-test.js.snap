@@ -61,16 +61,16 @@ Array [
     "translatedPhrases": Array [
       Object {
         "*": Object {
-          "*": "{name} \\u05e9\\u05d9\\u05ea\\u05e3/\\u05e9\\u05d9\\u05ea\\u05e4\\u05d4 \\u05d0\\u05d9\\u05ea\\u05da {=[number] photos}",
-          "_1": "{name} \\u05e9\\u05d9\\u05ea\\u05e3/\\u05e9\\u05d9\\u05ea\\u05e4\\u05d4 \\u05d0\\u05d9\\u05ea\\u05da {=a photo}",
+          "*": "{name} =[number] photos \\u05e9\\u05d9\\u05ea\\u05e3/\\u05e9\\u05d9\\u05ea\\u05e4\\u05d4 \\u05d0\\u05d9\\u05ea\\u05da {=m2}",
+          "_1": "{name} a photo \\u05e9\\u05d9\\u05ea\\u05e3/\\u05e9\\u05d9\\u05ea\\u05e4\\u05d4 \\u05d0\\u05d9\\u05ea\\u05da {=m2}",
         },
         "1": Object {
-          "*": "{name} \\u05e9\\u05d9\\u05ea\\u05e3 \\u05d0\\u05d9\\u05ea\\u05da {=[number] photos}",
-          "_1": "{name} \\u05e9\\u05d9\\u05ea\\u05e3 \\u05d0\\u05d9\\u05ea\\u05da {=a photo}",
+          "*": "{name} =[number] photos \\u05e9\\u05d9\\u05ea\\u05e3 \\u05d0\\u05d9\\u05ea\\u05da {=m2}",
+          "_1": "{name} a photo \\u05e9\\u05d9\\u05ea\\u05e3 \\u05d0\\u05d9\\u05ea\\u05da {=m2}",
         },
         "2": Object {
-          "*": "{name} \\u05e9\\u05d9\\u05ea\\u05e4\\u05d4 \\u05d0\\u05d9\\u05ea\\u05da {=[number] photos}",
-          "_1": "{name} \\u05e9\\u05d9\\u05ea\\u05e4\\u05d4 \\u05d0\\u05d9\\u05ea\\u05da {=a photo}",
+          "*": "{name} =[number] photos \\u05e9\\u05d9\\u05ea\\u05e4\\u05d4 \\u05d0\\u05d9\\u05ea\\u05da {=m2}",
+          "_1": "{name} a photo \\u05e9\\u05d9\\u05ea\\u05e4\\u05d4 \\u05d0\\u05d9\\u05ea\\u05da {=m2}",
         },
       },
       Object {

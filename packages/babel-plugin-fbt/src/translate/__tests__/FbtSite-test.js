@@ -55,6 +55,14 @@ describe('Test serialization', () => {
         ],
       },
       'fbt-demo-project',
+      {
+        'gVKMc/8jq5vnYR5v2bb32g==': {
+          '=[number] photos': '=m2',
+        },
+        'PqPPir8Kg9xSlqdednPFOg==': {
+          '=a photo': '=m2',
+        },
+      },
     );
     const original = f.serialize();
     const hydrated = FbtSite.deserialize(original).serialize();

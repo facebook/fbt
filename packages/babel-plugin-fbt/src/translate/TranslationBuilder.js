@@ -20,14 +20,16 @@ import type {
 import type TranslationConfig from './TranslationConfig';
 import type {ConstraintKey} from './VariationConstraintUtils';
 
+const {tokenNameToTextPattern} = require('../fbt-nodes/FbtNodeUtil');
 const {hasKeys} = require('../FbtUtil');
+const {FbtSite, FbtSiteMetaEntry} = require('./FbtSite');
 const IntlVariations = require('./IntlVariations');
 const TranslationData = require('./TranslationData');
 const {buildConstraintKey} = require('./VariationConstraintUtils');
 const invariant = require('invariant');
 const nullthrows = require('nullthrows');
-const {EXACTLY_ONE, isValidValue, Mask} = IntlVariations;
-const {FbtSiteMetaEntry, FbtSite} = require('./FbtSite');
+
+const {EXACTLY_ONE, Mask, isValidValue} = IntlVariations;
 
 /**
  * Map from a string's hash to its translation payload.
@@ -290,6 +292,19 @@ class TranslationBuilder {
         // If no translation available, use the English source text
         translation =
           defaultTranslation ?? this._fbtSite.getHashToLeaf()[hash].text;
+      }
+    }
+
+    // Replace clear tokens with their token aliases
+    if (translation != null) {
+      const tokenAliases = this._fbtSite.getHashToTokenAliases()[hash];
+      if (tokenAliases != null) {
+        for (const clearToken in tokenAliases) {
+          translation = translation.replace(
+            tokenNameToTextPattern(clearToken),
+            tokenNameToTextPattern(tokenAliases[clearToken]),
+          );
+        }
       }
     }
 

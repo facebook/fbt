@@ -123,11 +123,11 @@ describe('translate-test.js', () => {
               {
                 hashToLeaf: {
                   'gVKMc/8jq5vnYR5v2bb32g==': {
-                    text: '{name} has shared {=[number] photos} with you',
+                    text: '{name} has shared {=[number] photos} with you. View =[number] photos',
                     desc: 'example 1',
                   },
                   'PqPPir8Kg9xSlqdednPFOg==': {
-                    text: '{name} has shared {=a photo} with you',
+                    text: '{name} has shared {=a photo} with you. View a photo',
                     desc: 'example 1',
                   },
                 },
@@ -142,14 +142,14 @@ describe('translate-test.js', () => {
                     '*': {
                       '*': {
                         desc: 'example 1',
-                        text: '{name} has shared {=[number] photos} with you',
+                        text: '{name} has shared {=[number] photos} with you. View =[number] photos',
                         tokenAliases: {
                           '=[number] photos': '=m2',
                         },
                       },
                       _1: {
                         desc: 'example 1',
-                        text: '{name} has shared {=a photo} with you',
+                        text: '{name} has shared {=a photo} with you. View a photo',
                         tokenAliases: {
                           '=a photo': '=m2',
                         },
@@ -173,11 +173,11 @@ describe('translate-test.js', () => {
                 hashToLeaf: {
                   '/gj3gwqx1z8Xw233oZgOpQ==': {
                     text: '{number} photos',
-                    desc: 'In the phrase: "{name} has shared {=[number] photos} with you"',
+                    desc: 'In the phrase: "{name} has shared {=[number] photos} with you. View =[number] photos"',
                   },
                   '8UZCD6gFUKN+U5UUo1I3/w==': {
                     text: 'a photo',
-                    desc: 'In the phrase: "{name} has shared {=a photo} with you"',
+                    desc: 'In the phrase: "{name} has shared {=a photo} with you. View a photo"',
                   },
                 },
                 filepath: 'src/example/Example.react.js',
@@ -190,12 +190,12 @@ describe('translate-test.js', () => {
                   t: {
                     '*': {
                       '*': {
-                        desc: 'In the phrase: "{name} has shared {=[number] photos} with you"',
+                        desc: 'In the phrase: "{name} has shared {=[number] photos} with you. View =[number] photos"',
                         text: '{number} photos',
                         tokenAliases: {},
                       },
                       _1: {
-                        desc: 'In the phrase: "{name} has shared {=a photo} with you"',
+                        desc: 'In the phrase: "{name} has shared {=a photo} with you. View a photo"',
                         text: 'a photo',
                         tokenAliases: {},
                       },
@@ -225,19 +225,19 @@ describe('translate-test.js', () => {
                     translations: [
                       {
                         translation:
-                          '{name} \u05e9\u05d9\u05ea\u05e4\u05d4 \u05d0\u05d9\u05ea\u05da {=[number] photos}',
+                          '{name} =[number] photos \u05e9\u05d9\u05ea\u05e4\u05d4 \u05d0\u05d9\u05ea\u05da {=[number] photos}',
                         id: 108537963,
                         variations: {'0': 2},
                       },
                       {
                         translation:
-                          '{name} \u05e9\u05d9\u05ea\u05e3 \u05d0\u05d9\u05ea\u05da {=[number] photos}',
+                          '{name} =[number] photos \u05e9\u05d9\u05ea\u05e3 \u05d0\u05d9\u05ea\u05da {=[number] photos}',
                         id: 108537953,
                         variations: {'0': 1},
                       },
                       {
                         translation:
-                          '{name} \u05e9\u05d9\u05ea\u05e3/\u05e9\u05d9\u05ea\u05e4\u05d4 \u05d0\u05d9\u05ea\u05da {=[number] photos}',
+                          '{name} =[number] photos \u05e9\u05d9\u05ea\u05e3/\u05e9\u05d9\u05ea\u05e4\u05d4 \u05d0\u05d9\u05ea\u05da {=[number] photos}',
                         id: 108537972,
                         variations: {'0': 3},
                       },
@@ -249,19 +249,19 @@ describe('translate-test.js', () => {
                     translations: [
                       {
                         translation:
-                          '{name} \u05e9\u05d9\u05ea\u05e4\u05d4 \u05d0\u05d9\u05ea\u05da {=a photo}',
+                          '{name} a photo \u05e9\u05d9\u05ea\u05e4\u05d4 \u05d0\u05d9\u05ea\u05da {=a photo}',
                         id: 108537963,
                         variations: {'0': 2},
                       },
                       {
                         translation:
-                          '{name} \u05e9\u05d9\u05ea\u05e3 \u05d0\u05d9\u05ea\u05da {=a photo}',
+                          '{name} a photo \u05e9\u05d9\u05ea\u05e3 \u05d0\u05d9\u05ea\u05da {=a photo}',
                         id: 108537953,
                         variations: {'0': 1},
                       },
                       {
                         translation:
-                          '{name} \u05e9\u05d9\u05ea\u05e3/\u05e9\u05d9\u05ea\u05e4\u05d4 \u05d0\u05d9\u05ea\u05da {=a photo}',
+                          '{name} a photo \u05e9\u05d9\u05ea\u05e3/\u05e9\u05d9\u05ea\u05e4\u05d4 \u05d0\u05d9\u05ea\u05da {=a photo}',
                         id: 108537972,
                         variations: {'0': 3},
                       },
