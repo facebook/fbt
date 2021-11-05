@@ -17,11 +17,11 @@ Array [
     "fb-locale": "fb_HX",
     "translatedPhrases": Array [
       Object {
-        "LINK": "{name} \\u05e9\\u05dd",
-        "PAGE": "{name} \\u05e9\\u05dd\\u05dd",
-        "PHOTO": "{name} \\u05e9\\u05dd\\u05dd\\u05dd",
-        "POST": "{name} \\u05e9\\u05dd\\u05dd\\u05dd\\u05dd",
-        "VIDEO": "{name} \\u05e9\\u05dd\\u05dd\\u05dd\\u05dd\\u05dd",
+        "LINK": "translation is: {name} has a link to share",
+        "PAGE": "translation is: {name} has a page to share",
+        "PHOTO": "translation is: {name} has a photo to share",
+        "POST": "translation is: {name} has a post to share",
+        "VIDEO": "translation is: {name} has a video to share",
       },
     ],
   },
@@ -34,9 +34,9 @@ Array [
     "fb-locale": "fb_HX",
     "translatedPhrases": Array [
       Object {
-        "*": "\\u05e9\\u05dd\\u05e9",
-        "1": "\\u05e9\\u05dd\\u05e9\\u05dd",
-        "2": "\\u05e9\\u05dd\\u05dd",
+        "*": "translation is: they shared a photo",
+        "1": "translation is: she shared a photo",
+        "2": "translation is: he shared a photo",
       },
     ],
   },
@@ -48,7 +48,7 @@ Array [
   Object {
     "fb-locale": "fb_HX",
     "translatedPhrases": Array [
-      "\\u05e9\\u05dd",
+      "Translation data for Your FBT Demo",
     ],
   },
 ]
@@ -61,22 +61,14 @@ Array [
     "translatedPhrases": Array [
       Object {
         "*": Object {
-          "*": "{name} =[number] photos \\u05e9\\u05d9\\u05ea\\u05e3/\\u05e9\\u05d9\\u05ea\\u05e4\\u05d4 \\u05d0\\u05d9\\u05ea\\u05da {=m2}",
-          "_1": "{name} a photo \\u05e9\\u05d9\\u05ea\\u05e3/\\u05e9\\u05d9\\u05ea\\u05e4\\u05d4 \\u05d0\\u05d9\\u05ea\\u05da {=m2}",
-        },
-        "1": Object {
-          "*": "{name} =[number] photos \\u05e9\\u05d9\\u05ea\\u05e3 \\u05d0\\u05d9\\u05ea\\u05da {=m2}",
-          "_1": "{name} a photo \\u05e9\\u05d9\\u05ea\\u05e3 \\u05d0\\u05d9\\u05ea\\u05da {=m2}",
-        },
-        "2": Object {
-          "*": "{name} =[number] photos \\u05e9\\u05d9\\u05ea\\u05e4\\u05d4 \\u05d0\\u05d9\\u05ea\\u05da {=m2}",
-          "_1": "{name} a photo \\u05e9\\u05d9\\u05ea\\u05e4\\u05d4 \\u05d0\\u05d9\\u05ea\\u05da {=m2}",
+          "*": "translation is: {name} has shared {=m2}. View =[number] photos",
+          "_1": "translation is: {name} has shared {=m2}. View a photo",
         },
       },
       Object {
         "*": Object {
-          "*": "{number} \\u05ea\\u05de\\u05d5\\u05e0\\u05d5\\u05ea",
-          "_1": "\\u05ea\\u05de\\u05d5\\u05e0\\u05d4",
+          "*": "translation is: {number} photos",
+          "_1": "translation is: a photo",
         },
       },
     ],

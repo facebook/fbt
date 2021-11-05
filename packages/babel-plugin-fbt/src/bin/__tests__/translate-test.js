@@ -102,7 +102,7 @@ describe('translate-test.js', () => {
                     types: [],
                     translations: [
                       {
-                        translation: '\u05e9\u05dd',
+                        translation: 'Translation data for Your FBT Demo',
                         variations: {},
                       },
                     ],
@@ -225,19 +225,19 @@ describe('translate-test.js', () => {
                     translations: [
                       {
                         translation:
-                          '{name} =[number] photos \u05e9\u05d9\u05ea\u05e4\u05d4 \u05d0\u05d9\u05ea\u05da {=[number] photos}',
+                          'translation is: {name} has shared {=[number] photos}. View =[number] photos',
                         id: 108537963,
                         variations: {'0': 2},
                       },
                       {
                         translation:
-                          '{name} =[number] photos \u05e9\u05d9\u05ea\u05e3 \u05d0\u05d9\u05ea\u05da {=[number] photos}',
+                          'translation is: {name} has shared {=[number] photos}. View =[number] photos',
                         id: 108537953,
                         variations: {'0': 1},
                       },
                       {
                         translation:
-                          '{name} =[number] photos \u05e9\u05d9\u05ea\u05e3/\u05e9\u05d9\u05ea\u05e4\u05d4 \u05d0\u05d9\u05ea\u05da {=[number] photos}',
+                          'translation is: {name} has shared {=[number] photos}. View =[number] photos',
                         id: 108537972,
                         variations: {'0': 3},
                       },
@@ -249,19 +249,19 @@ describe('translate-test.js', () => {
                     translations: [
                       {
                         translation:
-                          '{name} a photo \u05e9\u05d9\u05ea\u05e4\u05d4 \u05d0\u05d9\u05ea\u05da {=a photo}',
+                          'translation is: {name} has shared {=a photo}. View a photo',
                         id: 108537963,
                         variations: {'0': 2},
                       },
                       {
                         translation:
-                          '{name} a photo \u05e9\u05d9\u05ea\u05e3 \u05d0\u05d9\u05ea\u05da {=a photo}',
+                          'translation is: {name} has shared {=a photo}. View a photo',
                         id: 108537953,
                         variations: {'0': 1},
                       },
                       {
                         translation:
-                          '{name} a photo \u05e9\u05d9\u05ea\u05e3/\u05e9\u05d9\u05ea\u05e4\u05d4 \u05d0\u05d9\u05ea\u05da {=a photo}',
+                          'translation is: {name} has shared {=a photo}. View a photo',
                         id: 108537972,
                         variations: {'0': 3},
                       },
@@ -272,8 +272,7 @@ describe('translate-test.js', () => {
                     types: [],
                     translations: [
                       {
-                        translation:
-                          '{number} \u05ea\u05de\u05d5\u05e0\u05d5\u05ea',
+                        translation: 'translation is: {number} photos',
                         id: 107911344,
                         variations: {},
                       },
@@ -284,7 +283,7 @@ describe('translate-test.js', () => {
                     types: [],
                     translations: [
                       {
-                        translation: '\u05ea\u05de\u05d5\u05e0\u05d4',
+                        translation: 'translation is: a photo',
                         id: 107911340,
                         variations: {},
                       },
@@ -363,7 +362,8 @@ describe('translate-test.js', () => {
                       types: [],
                       translations: [
                         {
-                          translation: '\u05e9\u05dd\u05e9\u05dd',
+                          // eslint-disable-next-line fb-www/gender-neutral-language
+                          translation: 'translation is: she shared a photo',
                           variations: {},
                         },
                       ],
@@ -373,7 +373,8 @@ describe('translate-test.js', () => {
                       types: [],
                       translations: [
                         {
-                          translation: '\u05e9\u05dd\u05dd',
+                          // eslint-disable-next-line fb-www/gender-neutral-language
+                          translation: 'translation is: he shared a photo',
                           variations: {},
                         },
                       ],
@@ -383,7 +384,7 @@ describe('translate-test.js', () => {
                       types: [],
                       translations: [
                         {
-                          translation: '\u05e9\u05dd\u05e9',
+                          translation: 'translation is: they shared a photo',
                           variations: {},
                         },
                       ],
@@ -467,7 +468,8 @@ describe('translate-test.js', () => {
                     types: [],
                     translations: [
                       {
-                        translation: '{name} \u05e9\u05dd',
+                        translation:
+                          'translation is: {name} has a link to share',
                         variations: {},
                       },
                     ],
@@ -477,7 +479,8 @@ describe('translate-test.js', () => {
                     types: [],
                     translations: [
                       {
-                        translation: '{name} \u05e9\u05dd\u05dd',
+                        translation:
+                          'translation is: {name} has a page to share',
                         variations: {},
                       },
                     ],
@@ -487,7 +490,8 @@ describe('translate-test.js', () => {
                     types: [],
                     translations: [
                       {
-                        translation: '{name} \u05e9\u05dd\u05dd\u05dd',
+                        translation:
+                          'translation is: {name} has a photo to share',
                         variations: {},
                       },
                     ],
@@ -497,7 +501,8 @@ describe('translate-test.js', () => {
                     types: [],
                     translations: [
                       {
-                        translation: '{name} \u05e9\u05dd\u05dd\u05dd\u05dd',
+                        translation:
+                          'translation is: {name} has a post to share',
                         variations: {},
                       },
                     ],
@@ -508,7 +513,7 @@ describe('translate-test.js', () => {
                     translations: [
                       {
                         translation:
-                          '{name} \u05e9\u05dd\u05dd\u05dd\u05dd\u05dd',
+                          'translation is: {name} has a video to share',
                         variations: {},
                       },
                     ],
