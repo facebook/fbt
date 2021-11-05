@@ -31,7 +31,7 @@ export type PluginOptions = {|
 */
 
 const {
-  FbtNodeUtil: {tokenNameToTextPattern},
+  FbtUtil: {replaceClearTokensWithTokenAliases},
   JSFbtUtil: {mapLeaves},
   fbtHashKey: jenkinsHashKey,
 } = require('babel-plugin-fbt');
@@ -63,21 +63,7 @@ function getPluginOptions(plugin /*: $Shape<{opts: ?PluginOptions}> */) /*: Plug
  *  2. Replacing clear token names in the text with mangled tokens.
  */
 function convertJSFBTLeafToRuntimeInputText(leaf /*: $ReadOnly<TableJSFBTTreeLeaf> */) /* : PatternString */ {
-  const {tokenAliases} = leaf;
-  if (tokenAliases == null) {
-    return leaf.text;
-  }
-  return Object.keys(tokenAliases).reduce(
-    (mangledText /*: string */, clearToken /*: string */) => {
-      const clearTokenName = tokenNameToTextPattern(clearToken);
-      const mangledTokenName = tokenNameToTextPattern(tokenAliases[clearToken]);
-      // Since a string is not allowed to have implicit params with duplicatd
-      // token names, replacing the first and therefore the only occurance of
-      // `clearTokenName` is sufficient.
-      return mangledText.replace(clearTokenName, mangledTokenName);
-    },
-    leaf.text,
-  );
+  return replaceClearTokensWithTokenAliases(leaf.text, leaf.tokenAliases);
 }
 
 module.exports = function BabelPluginFbtRuntime(babel /*: {

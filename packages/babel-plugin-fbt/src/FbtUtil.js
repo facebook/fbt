@@ -11,6 +11,7 @@
 
 'use strict';
 
+import type {PatternString} from '../../../runtime/shared/FbtTable';
 import type {AnyFbtNode} from './fbt-nodes/FbtNode';
 import type {
   FbtOptionConfig,
@@ -18,6 +19,7 @@ import type {
   FbtOptionValues,
   JSModuleNameType,
 } from './FbtConstants';
+import type {TokenAliases} from './index';
 import typeof BabelTypes from '@babel/types';
 
 const {JSModuleName, ModuleNameRegExp} = require('./FbtConstants');
@@ -1034,6 +1036,33 @@ function createFbtRuntimeArgCallExpression(
   );
 }
 
+/**
+ * Clear token names in translations and runtime call texts need to be replaced
+ * by their aliases in order for the runtime logic to work.
+ */
+function replaceClearTokensWithTokenAliases(
+  textOrTranslation: PatternString,
+  tokenAliases: ?TokenAliases,
+): string {
+  if (tokenAliases == null) {
+    return textOrTranslation;
+  }
+
+  // avoid cyclic dependency
+  const {tokenNameToTextPattern} = require('./fbt-nodes/FbtNodeUtil');
+  return Object.keys(tokenAliases).reduce(
+    (mangledText: string, clearToken: string) => {
+      const clearTokenName = tokenNameToTextPattern(clearToken);
+      const mangledTokenName = tokenNameToTextPattern(tokenAliases[clearToken]);
+      // Since a string is not allowed to have implicit params with duplicated
+      // token names, replacing the first and therefore the only occurence of
+      // `clearTokenName` is sufficient.
+      return mangledText.replace(clearTokenName, mangledTokenName);
+    },
+    textOrTranslation,
+  );
+}
+
 module.exports = {
   assertModuleName,
   checkOption,
@@ -1065,6 +1094,7 @@ module.exports = {
   hasKeys,
   normalizeSpaces,
   objMap,
+  replaceClearTokensWithTokenAliases,
   setUniqueToken,
   textContainsFbtLikeModule,
   validateNamespacedFbtElement,

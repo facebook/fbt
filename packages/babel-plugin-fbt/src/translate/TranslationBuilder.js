@@ -20,8 +20,8 @@ import type {
 import type TranslationConfig from './TranslationConfig';
 import type {ConstraintKey} from './VariationConstraintUtils';
 
-const {tokenNameToTextPattern} = require('../fbt-nodes/FbtNodeUtil');
 const {hasKeys} = require('../FbtUtil');
+const {replaceClearTokensWithTokenAliases} = require('../FbtUtil');
 const {FbtSite, FbtSiteMetaEntry} = require('./FbtSite');
 const IntlVariations = require('./IntlVariations');
 const TranslationData = require('./TranslationData');
@@ -297,15 +297,10 @@ class TranslationBuilder {
 
     // Replace clear tokens with their token aliases
     if (translation != null) {
-      const tokenAliases = this._fbtSite.getHashToTokenAliases()[hash];
-      if (tokenAliases != null) {
-        for (const clearToken in tokenAliases) {
-          translation = translation.replace(
-            tokenNameToTextPattern(clearToken),
-            tokenNameToTextPattern(tokenAliases[clearToken]),
-          );
-        }
-      }
+      translation = replaceClearTokensWithTokenAliases(
+        translation,
+        this._fbtSite.getHashToTokenAliases()[hash],
+      );
     }
 
     // Couple the string with a hash if it was marked as such.  We do this

@@ -147,6 +147,8 @@ List of changes for each released npm package version.
       Unreleased changes that have landed in main. Click to see more.
     </summary>
 
+    - [refactor] Make TranslationBuilder use clear token replacement helper in FbtUtil.js
+    - [chore] Improve translate-test.js and FbtSite-test.js
     - [fix] Replace clear tokens in translation data with their token aliases
     - [fix!] (fbt:name) Fix issue where we failed to prevent users from using a "gender" value issued from a function/class invocation
     - [fix!] (fbt:enum) Fix issue where we failed to detect that enum object keys were issued from computed values instead of being statically defined
@@ -288,6 +290,8 @@ List of changes for each released npm package version.
   <details>
     <summary>
       Unreleased changes that have landed in main. Click to see more.
+
+      - [refactor] Move clear token replacement logic to babel-plugin-fbt/src/FbtUtil.js
     </summary>
   </details>
 
