@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test serialization should serialize/deserialize as expected 1`] = `
+exports[`FbtSite: testing fromScan should serialize/deserialize as expected 1`] = `
 Object {
   "_d": Object {
     "m": Array [
@@ -15,20 +15,8 @@ Object {
     ],
     "t": Object {
       "*": Object {
-        "*": Object {
-          "desc": "example 1",
-          "text": "{name} has shared {=[number] photos} with you",
-          "tokenAliases": Object {
-            "=[number] photos": "=m2",
-          },
-        },
-        "_1": Object {
-          "desc": "example 1",
-          "text": "{name} has shared {=a photo} with you",
-          "tokenAliases": Object {
-            "=a photo": "=m2",
-          },
-        },
+        "*": "gVKMc/8jq5vnYR5v2bb32g==",
+        "_1": "PqPPir8Kg9xSlqdednPFOg==",
       },
     },
   },
