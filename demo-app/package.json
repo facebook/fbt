@@ -8,8 +8,7 @@
   "license": "MIT",
   "scripts": {
     "all": "babel-node run_all",
-    "build": ">&2 echo 'The webpack step is not enabled yet. TODO(T40113359) Re-enable this once the babel-plugin-fbt library is more mature to be tested'",
-    "//build": "webpack",
+    "build": "webpack",
     "clean-build": "yarn clean-fbts && yarn install && yarn build",
     "clean-fbts": "rm .enum_manifest.json .src_manifest.json .source_strings.json src/translatedFbts.json .test_*.json 2&> /dev/null || exit 0",
     "collect-fbts": "fbt-collect --fbt-common-path ./common_strings.json --pretty --manifest < .src_manifest.json > .source_strings.json",
