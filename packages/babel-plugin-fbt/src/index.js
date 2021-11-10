@@ -73,7 +73,13 @@ export type PluginOptions = {|
   generateOuterTokenName?: boolean,
   reactNativeMode?: boolean,
 |};
+/**
+ * Token alias (aka mangled token name)
+ */
 type TokenAlias = string;
+/**
+ * Dictionary of clear token names to aliases (aka mangled token names)
+ */
 export type TokenAliases = {|
   [clearTokenName: string]: TokenAlias,
 |};
