@@ -6843,12 +6843,12 @@ react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
 
-"react-native-fbt@>=0.0.5 <1.0.x":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/react-native-fbt/-/react-native-fbt-0.0.5.tgz#f22b8d4c20d92e87df9216497f987fe26d1e6953"
-  integrity sha512-VvtKoHlgWSgjS3D3lVaTZuaqovStBdP07iAWmdUrooTgwRMVgYOn0vjZaqGUy/sf5ijX+G9ZHGWRsGfLELcdgA==
+"react-native-fbt@>=0.0.6 <1.0.x":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/react-native-fbt/-/react-native-fbt-0.0.6.tgz#ae0acf18dc7f67e4502580b6663cc9c6cfef9a08"
+  integrity sha512-EgO4RqY2DFaj0FX8jmb40UQGeVzWT+4VA49coZgqAUXpZSXQpi/r4Lp+S1GSKOfHNbTRTTNeqmr+xT0IfiPyTA==
 
-"react-native@>=0.64.0 <1.0.x":
+"react-native@>=0.65.1 <1.0.x":
   version "0.65.1"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.65.1.tgz#bd8cd313e0eb8ddcf08e61e3f8b54b7fc31a418c"
   integrity sha512-0UOVSnlssweQZjuaUtzViCifE/4tXm8oRbxwakopc8GavPu9vLulde145GOw6QVYiOy4iL50f+2XXRdX9NmMeQ==
@@ -6923,10 +6923,10 @@ react-transform-hmr@^1.0.4:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
-react@17.0.1:
-  version "17.0.1"
-  resolved "https://registry.yarnpkg.com/react/-/react-17.0.1.tgz#6e0600416bd57574e3f86d92edba3d9008726127"
-  integrity sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w==
+react@17.0.2:
+  version "17.0.2"
+  resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
+  integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
