@@ -1,7 +1,7 @@
 {
   "name": "react-native-fbt",
   "title": "FBT React Native Module",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Native module to enable the usage of the FBT translation framework in React Native apps.",
   "main": "js/NativeFbtModule.js",
   "repository": {
@@ -17,11 +17,11 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "peerDependencies": {
-    "react": "17.0.1",
-    "react-native": ">=0.64.0 <1.0.x"
+    "react": "17.0.2",
+    "react-native": ">=0.65.1 <1.0.x"
   },
   "devDependencies": {
-    "react": "^17.0.1",
-    "react-native": "^0.64.0"
+    "react": "^17.0.2",
+    "react-native": "^0.65.1"
   }
 }
