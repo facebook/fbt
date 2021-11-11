@@ -255,8 +255,8 @@ function fbtParam(
   label: string,
   value: mixed,
   variations?:
-    | [ParamVariationType['number'], ?number]
-    | [ParamVariationType['gender'], GenderConstEnum],
+    | [$PropertyType<ParamVariationType, 'number'>, ?number]
+    | [$PropertyType<ParamVariationType, 'gender'>, GenderConstEnum],
 ): FbtTableArg {
   const substitution = {[label]: value};
   if (variations) {
@@ -293,8 +293,8 @@ function fbtImplicitParam(
   label: string,
   value: mixed,
   variations?:
-    | [ParamVariationType['number'], ?number]
-    | [ParamVariationType['gender'], GenderConstEnum],
+    | [$PropertyType<ParamVariationType, 'number'>, ?number]
+    | [$PropertyType<ParamVariationType, 'gender'>, GenderConstEnum],
 ): FbtTableArg {
   return this._param(label, value, variations);
 }
