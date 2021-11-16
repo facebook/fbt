@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<fea74ee2ad6fbdb1fc076f202bba7c0f>>
+ * @generated SignedSource<<6c0f4b462bfce5757dd01dc9abc41c47>>
  * @codegen-command : phps FBSyncAll
  *
  * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -18,8 +18,9 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
+ * Nice wrapper to use generate-android-localizables from babel node directly
  *
- * Nice wraper to use generate-android-localizables from babel node directly
+ * @noflow
  */
 
 'use strict';
