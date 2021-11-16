@@ -6,21 +6,16 @@
  */
 
 #import "RCTFbtModule.h"
-#import "FBReactNativeFbtModuleSpec.h"
+#import <ReactNativeFbtSpec/ReactNativeFbtSpec.h>
 
 using namespace facebook::react;
 
-@interface RCTFbtModule () <NativeFbtModuleSpec>
+@interface RCTFbtModule () <NativeReactNativeFbtSpec>
 @end
 
 @implementation RCTFbtModule
 
 RCT_EXPORT_MODULE(FbtModule)
-
-- (std::shared_ptr<TurboModule>)getTurboModule:(const ObjCTurboModule::InitParams &)params
-{
-  return std::make_shared<NativeFbtModuleSpecJSI>(params);
-}
 
 RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(getString:(NSString *)hashKey)
 {
@@ -32,6 +27,11 @@ RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(getString:(NSString *)hashKey)
   } else {
     return translation;
   }
+}
+
+- (std::shared_ptr<TurboModule>)getTurboModule:(const ObjCTurboModule::InitParams &)params
+{
+  return std::make_shared<NativeReactNativeFbtSpecJSI>(params);
 }
 
 @end

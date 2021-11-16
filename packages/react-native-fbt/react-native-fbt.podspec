@@ -34,7 +34,7 @@ Pod::Spec.new do |s|
   use_react_native_codegen!(s, {
     :react_native_path => "../react-native",
     :js_srcs_dir => "./js",
-    :modules_output_dir => "./ios",
-    :library_name => "FBReactNativeFbtModuleSpec"
+    :library_type => "modules",
+    :output_dir => "./ios"
   })
 end
