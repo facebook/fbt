@@ -353,7 +353,7 @@ export default class Example extends React.Component<Props, State> {
             </li>
           ))}
         </ul>
-        <p className="copyright">{`Facebook \u00A9 2018`}</p>
+        <p className="copyright">{`Facebook \u00A9 2021`}</p>
       </div>
     );
   }
