@@ -356,7 +356,7 @@ exports[`Example.react renders the example 1`] = `
   <p
     className="copyright"
   >
-    Facebook © 2018
+    Facebook © 2021
   </p>
 </div>
 `;
