@@ -28,7 +28,6 @@
 #import <React/RCTRootView.h>
 
 #import <React/CoreModulesPlugins.h>
-#import <ReactNativeFbtSpec/ReactNativeFbtSpec.h>
 
 #import <ReactCommon/RCTTurboModuleManager.h>
 
