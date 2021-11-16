@@ -11,7 +11,8 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "fbsource-dev": "node scripts/configure-fbsource-dev-deps.js"
   },
   "dependencies": {
     "react": "17.0.2",
