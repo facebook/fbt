@@ -23,5 +23,17 @@
   "devDependencies": {
     "react": "^17.0.2",
     "react-native": "^0.66.0"
+  },
+  "codegenConfig": {
+    "libraries": [
+      {
+        "name": "ReactNativeFbtSpec",
+        "ios": {
+          "_outputDir": "ios/"
+        },
+        "android": {},
+        "jsSrcsDir": "js/"
+      }
+    ]
   }
 }
