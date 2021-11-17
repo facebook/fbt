@@ -28,9 +28,8 @@
     "libraries": [
       {
         "name": "ReactNativeFbtSpec",
-        "ios": {
-          "_outputDir": "ios/"
-        },
+        "type": "modules",
+        "ios": {},
         "android": {},
         "jsSrcsDir": "js/"
       }
