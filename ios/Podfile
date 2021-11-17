@@ -9,8 +9,15 @@ if ENV['USE_FRAMEWORKS'] == '1'
   use_frameworks!
 end
 
-def pods()
+def pods(options = {})
   config = use_native_modules!
+
+  if options[:use_codegen]
+    Pod::UI.puts "[Codegen] Building target with codegen library discovery enabled."
+    pre_install do |installer|
+      use_react_native_codegen_discovery!({react_native_path: config[:reactNativePath], app_path: "#{Dir.pwd}/.."})
+    end
+  end
 
   fabric_enabled = false
   if ENV['USE_FABRIC'] == '1'
@@ -22,7 +29,8 @@ def pods()
 end
 
 target 'rnDemoApp' do
-  pods()
+  # TODO: Ideally, we don't use this roundabout way of enabling the codegen. But this way we can re-use the react_native_path config
+  pods({ :use_codegen => ENV['USE_CODEGEN_DISCOVERY'] == '1' })
 
   # Enables Flipper.
   #
