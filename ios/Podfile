@@ -12,17 +12,17 @@ end
 def pods(options = {})
   config = use_native_modules!
 
-  if options[:use_codegen]
-    Pod::UI.puts "[Codegen] Building target with codegen library discovery enabled."
-    pre_install do |installer|
-      use_react_native_codegen_discovery!({react_native_path: config[:reactNativePath], app_path: "#{Dir.pwd}/.."})
-    end
-  end
-
   fabric_enabled = false
   if ENV['USE_FABRIC'] == '1'
     puts "Building rn-demo-app with Fabric enabled."
     fabric_enabled = true
+  end
+
+  if options[:use_codegen]
+    Pod::UI.puts "[Codegen] Building target with codegen library discovery enabled."
+    pre_install do |installer|
+      use_react_native_codegen_discovery!({react_native_path: config[:reactNativePath], app_path: "#{Dir.pwd}/..", fabric_enabled: fabric_enabled})
+    end
   end
 
   use_react_native!(path: config[:reactNativePath], fabric_enabled: fabric_enabled, hermes_enabled: true)
