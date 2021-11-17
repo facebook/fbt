@@ -35,7 +35,7 @@ Pod::Spec.new do |s|
     :react_native_path => "../react-native",
     :js_srcs_dir => "./js",
     :library_name => "ReactNativeFbtSpec",
-    :library_type => "module",
+    :library_type => "modules",
     :modules_output_dir => "./ios",
     :output_dir => "./ios"
   })
