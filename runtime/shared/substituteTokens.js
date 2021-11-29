@@ -107,6 +107,7 @@ function substituteTokens<Arg: mixed>(
             parameter,
           );
         }
+        // TODO(T106260833) Log error when we cannot resolve all fbt parameters using FbtHooks
 
         const argument = args[parameter];
         if (argument != null && typeof argument === 'object') {
