@@ -63,12 +63,12 @@ class FbtSiteBase<
   +hashToLeaf: HashToLeaf;
   +project: string;
   +table: FbtSiteHashifiedTableJSFBTTree;
-  +metadata: Array<?MetaDataEntry>;
+  +metadata: $ReadOnlyArray<?MetaDataEntry>;
 
   constructor(
     hashToLeaf: HashToLeaf,
     table: FbtSiteHashifiedTableJSFBTTree,
-    metadata: Array<?MetaDataEntry>,
+    metadata: $ReadOnlyArray<?MetaDataEntry>,
     project: string,
   ) {
     this.hashToLeaf = hashToLeaf;
@@ -99,7 +99,7 @@ class FbtSiteBase<
     return this.table;
   }
 
-  getMetadata(): Array<?MetaDataEntry> {
+  getMetadata(): $ReadOnlyArray<?MetaDataEntry> {
     return this.metadata;
   }
 }

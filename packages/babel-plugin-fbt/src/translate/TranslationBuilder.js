@@ -88,7 +88,7 @@ class TranslationBuilder {
   +_hasTranslations: boolean;
   +_hasVCGenderVariation: boolean;
   +_inclHash: boolean;
-  +_metadata: Array<?FbtSiteMetaEntry>;
+  +_metadata: $ReadOnlyArray<?FbtSiteMetaEntry>;
   +_tableOrHash: FbtSiteHashifiedTableJSFBTTree;
   +_tokenToMask: TokenToMask;
   +_translations: HashToTranslation;
@@ -120,12 +120,13 @@ class TranslationBuilder {
     // If a gender variation exists, add it to our table
     if (this._hasVCGenderVariation) {
       this._tableOrHash = {'*': this._tableOrHash};
-      this._metadata.unshift(
+      this._metadata = [
         FbtSiteMetaEntry.wrap({
           token: IntlVariations.VIEWING_USER,
           type: IntlVariations.FbtVariationType.GENDER,
         }),
-      );
+        ...this._metadata,
+      ];
     }
 
     for (let ii = 0; ii < this._metadata.length; ++ii) {

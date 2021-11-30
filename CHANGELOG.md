@@ -147,6 +147,7 @@ List of changes for each released npm package version.
       Unreleased changes that have landed in main. Click to see more.
     </summary>
 
+    - [fix] Stop TranslationBuilder from mutating FbtSite
     - [refactor] Make TranslationBuilder use clear token replacement helper in FbtUtil.js
     - [chore] Improve translate-test.js and FbtSite-test.js
     - [fix] Replace clear tokens in translation data with their token aliases
