@@ -11,11 +11,31 @@
       ],
       "types": []
     },
+    "+GIAo9dvEfv5V1574993kQ==": {
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "{=View}",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
     "+JZjqgCHObNg6jWov91o+w==": {
       "tokens": [],
       "translations": [
         {
           "translation": "\u05dc\u05d0 \u05d9\u05d3\u05d5\u05e2 (\u05e8\u05d1\u05d9\u05dd)",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "+Owe0R1Wgj++SFlrgb3vIg==": {
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "{=View}",
           "variations": {}
         }
       ],
@@ -41,6 +61,34 @@
       ],
       "types": []
     },
+    "0V7ZnHNmh24KOTMXet6egA==": {
+      "tokens": [
+        "__viewing_user__"
+      ],
+      "translations": [
+        {
+          "translation": "\u05e6\u05e4\u05d4/\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 3
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d4",
+          "variations": {
+            "0": 1
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 2
+          }
+        }
+      ],
+      "types": [
+        3
+      ]
+    },
     "1PKQnkF/lWmk79Tv/ys24A==": {
       "tokens": [],
       "translations": [
@@ -61,6 +109,72 @@
       ],
       "types": []
     },
+    "2TyGkzVNJtXrFsOOeLJHmg==": {
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "\u05db\u05d3\u05d9 \u05dc\u05e8\u05d0\u05d5\u05ea \u05d0\u05ea FBT \u05d1\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d9\u05e9 \u05dc\u05d4\u05e9\u05ea\u05de\u05e9 \u05d1\u05d8\u05d5\u05e4\u05e1 \u05dc\u05de\u05d8\u05d4.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "2g/nu1wXuAprwkG0x4g2Sg==": {
+      "tokens": [
+        "__viewing_user__"
+      ],
+      "translations": [
+        {
+          "translation": "\u05e6\u05e4\u05d4",
+          "variations": {
+            "0": 1
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 2
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d4/\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 3
+          }
+        }
+      ],
+      "types": [
+        3
+      ]
+    },
+    "62QihzloOzTvYfmN4kGi1g==": {
+      "tokens": [
+        "__viewing_user__"
+      ],
+      "translations": [
+        {
+          "translation": "\u05e6\u05e4\u05d4/\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 3
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 2
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d4",
+          "variations": {
+            "0": 1
+          }
+        }
+      ],
+      "types": [
+        3
+      ]
+    },
     "7y2mltlG5nn8ihCz2AK1AQ==": {
       "tokens": [],
       "translations": [
@@ -70,6 +184,34 @@
         }
       ],
       "types": []
+    },
+    "8K2CwVTkZPiVRBcu2gFh4A==": {
+      "tokens": [
+        "__viewing_user__"
+      ],
+      "translations": [
+        {
+          "translation": "\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 2
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d4/\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 3
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d4",
+          "variations": {
+            "0": 1
+          }
+        }
+      ],
+      "types": [
+        3
+      ]
     },
     "95jC7mDsBpqzCbCA3504zw==": {
       "tokens": [],
@@ -111,11 +253,31 @@
       ],
       "types": []
     },
+    "D87XJZSHjYQzRdfgvXwPMg==": {
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "{=View}",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
     "DFDZjshVSmmTwi62nfXNfQ==": {
       "tokens": [],
       "translations": [
         {
           "translation": "\u05de\u05d9\u05df:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "FAiBPkgSJICLgZnkc2PE1g==": {
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "{=View}",
           "variations": {}
         }
       ],
@@ -130,6 +292,82 @@
         }
       ],
       "types": []
+    },
+    "Fh9O2R9Ecm7yAu9A3DkE9Q==": {
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "{=View}",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "GZrheYAXDr0g8K9k2uDWKA==": {
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "{=View}",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "HYOiaHtMv4SZkQ1G4kJzXg==": {
+      "tokens": [
+        "__viewing_user__"
+      ],
+      "translations": [
+        {
+          "translation": "\u05e6\u05e4\u05d4/\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 3
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d4",
+          "variations": {
+            "0": 1
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 2
+          }
+        }
+      ],
+      "types": [
+        3
+      ]
+    },
+    "HtVslFb7gTHOErVosGI4JQ==": {
+      "tokens": [
+        "__viewing_user__"
+      ],
+      "translations": [
+        {
+          "translation": "\u05e6\u05e4\u05d4",
+          "variations": {
+            "0": 1
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d4/\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 3
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 2
+          }
+        }
+      ],
+      "types": [
+        3
+      ]
     },
     "HusiL84DARy+8jiK7kc7qg==": {
       "tokens": [],
@@ -181,6 +419,16 @@
       ],
       "types": []
     },
+    "MV5PidWM4Z+cPo0rqGfplA==": {
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "{=View}",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
     "N4hL52x52Phrk/Bzp1RkTg==": {
       "tokens": [],
       "translations": [
@@ -190,6 +438,62 @@
         }
       ],
       "types": []
+    },
+    "NZayMjBYVOrnk/YJIHEeMw==": {
+      "tokens": [
+        "__viewing_user__"
+      ],
+      "translations": [
+        {
+          "translation": "\u05e6\u05e4\u05d4/\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 3
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 2
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d4",
+          "variations": {
+            "0": 1
+          }
+        }
+      ],
+      "types": [
+        3
+      ]
+    },
+    "PY1wTdwttmhzWyQcxs2pjw==": {
+      "tokens": [
+        "__viewing_user__"
+      ],
+      "translations": [
+        {
+          "translation": "\u05e6\u05e4\u05d4",
+          "variations": {
+            "0": 1
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d4/\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 3
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 2
+          }
+        }
+      ],
+      "types": [
+        3
+      ]
     },
     "Pcdu2jt+bnKzFRSeBLICcQ==": {
       "tokens": [],
@@ -239,6 +543,84 @@
       ],
       "types": []
     },
+    "Q9mOAQ+ogHG20z2QkEkNmQ==": {
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "\u05ea\u05de\u05d5\u05e0\u05d4",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "QmD55w5xaIZyL7KH6IiL/g==": {
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "{=View}",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "SstLBRSU3v7yXGZsOxZjfA==": {
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "{=View}",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "U/ajWfEsN4CQrHpGY/vrjg==": {
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "{=View}",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "UdOsPgT8LuNeE+cmSqU8hw==": {
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "{=View}",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "WTvjwq3MRRlwqCfYcX7mPw==": {
+      "tokens": [
+        "__viewing_user__"
+      ],
+      "translations": [
+        {
+          "translation": "\u05e6\u05e4\u05d4/\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 3
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 2
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d4",
+          "variations": {
+            "0": 1
+          }
+        }
+      ],
+      "types": [
+        3
+      ]
+    },
     "Yjqpv79V3JSE255LFP0AAA==": {
       "tokens": [],
       "translations": [
@@ -254,6 +636,16 @@
       "translations": [
         {
           "translation": "\u05dc\u05d0 \u05d9\u05d3\u05d5\u05e2",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "dM0FrjIfxfJN9ssJ+3KuiA==": {
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "{=View}",
           "variations": {}
         }
       ],
@@ -289,6 +681,100 @@
       ],
       "types": []
     },
+    "gVKMc/8jq5vnYR5v2bb32g==": {
+      "tokens": [
+        "name"
+      ],
+      "translations": [
+        {
+          "translation": "{name} \u05e9\u05d9\u05ea\u05e3 \u05d0\u05d9\u05ea\u05da {=[number] photos}",
+          "variations": {
+            "0": 1
+          }
+        },
+        {
+          "translation": "{name} \u05e9\u05d9\u05ea\u05e3/\u05e9\u05d9\u05ea\u05e4\u05d4 \u05d0\u05d9\u05ea\u05da {=[number] photos}",
+          "variations": {
+            "0": 3
+          }
+        },
+        {
+          "translation": "{name} \u05e9\u05d9\u05ea\u05e4\u05d4 \u05d0\u05d9\u05ea\u05da {=[number] photos}",
+          "variations": {
+            "0": 2
+          }
+        }
+      ],
+      "types": [
+        3
+      ]
+    },
+    "kFRDiDKN3KACFyC0YzbdDg==": {
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "{=View}",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "kWoh+a8Q6EYN5VFiM40S7g==": {
+      "tokens": [
+        "__viewing_user__"
+      ],
+      "translations": [
+        {
+          "translation": "\u05e6\u05e4\u05d4",
+          "variations": {
+            "0": 1
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 2
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d4/\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 3
+          }
+        }
+      ],
+      "types": [
+        3
+      ]
+    },
+    "kyOdXxi5Nw1ONx5Mv5NR0Q==": {
+      "tokens": [
+        "__viewing_user__"
+      ],
+      "translations": [
+        {
+          "translation": "\u05e6\u05e4\u05d4",
+          "variations": {
+            "0": 1
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 2
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d4/\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 3
+          }
+        }
+      ],
+      "types": [
+        3
+      ]
+    },
     "ljoRgg3SRs0vzbkgFv1tSA==": {
       "tokens": [],
       "translations": [
@@ -309,6 +795,34 @@
       ],
       "types": []
     },
+    "pb4CFZWkRPo5gG05ZpMq+A==": {
+      "tokens": [
+        "__viewing_user__"
+      ],
+      "translations": [
+        {
+          "translation": "\u05e6\u05e4\u05d4/\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 3
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 2
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d4",
+          "variations": {
+            "0": 1
+          }
+        }
+      ],
+      "types": [
+        3
+      ]
+    },
     "pmznwyWXEqrG9HZwb5aGsQ==": {
       "tokens": [],
       "translations": [
@@ -319,11 +833,125 @@
       ],
       "types": []
     },
+    "q1N+TrH4hB6rKcUCIvn0LA==": {
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "{=View}",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "sN74Xit9wwCnSYYz1TrF0w==": {
+      "tokens": [
+        "__viewing_user__"
+      ],
+      "translations": [
+        {
+          "translation": "\u05e6\u05e4\u05d4",
+          "variations": {
+            "0": 1
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d4/\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 3
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 2
+          }
+        }
+      ],
+      "types": [
+        3
+      ]
+    },
+    "tYYOLLMbffdJQQlSVEVv/A==": {
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "{number} \u05ea\u05de\u05d5\u05e0\u05d5\u05ea",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "vC7YhdaCftXBXQ/fitVzXw==": {
+      "tokens": [
+        "__viewing_user__"
+      ],
+      "translations": [
+        {
+          "translation": "\u05e6\u05e4\u05d4/\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 3
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 2
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d4",
+          "variations": {
+            "0": 1
+          }
+        }
+      ],
+      "types": [
+        3
+      ]
+    },
+    "xV4+VPr3bTc8rxKqq1nvqw==": {
+      "tokens": [
+        "__viewing_user__"
+      ],
+      "translations": [
+        {
+          "translation": "\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 2
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d4/\u05e6\u05e4\u05d9",
+          "variations": {
+            "0": 3
+          }
+        },
+        {
+          "translation": "\u05e6\u05e4\u05d4",
+          "variations": {
+            "0": 1
+          }
+        }
+      ],
+      "types": [
+        3
+      ]
+    },
     "z67lDQSKUy/LXrqrRHj3aw==": {
       "tokens": [],
       "translations": [
         {
           "translation": "\u05dc{name} \u05d9\u05e9 \u05ea\u05de\u05d5\u05e0\u05d4 \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3! {=View} \u05d1\u05e1\u05e8\u05d8\u05d5\u05df \u05e9\u05dc\u05d4.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "zNiUtG0pPyYDiWhQhd8m5g==": {
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "{=View}",
           "variations": {}
         }
       ],
