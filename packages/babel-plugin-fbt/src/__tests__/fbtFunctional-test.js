@@ -201,6 +201,133 @@ const generalTestData = {
     throws: `There's already a token called "name" in this fbt call`,
   },
 
+  'should throw when a fbt.param is nested inside another fbt.param': {
+    input: withFbtRequireStatement(
+      `var z = fbt(
+        'a ' +
+        fbt.param('name', fbt.param('name2', val2)) +
+        ' b',
+        'desc',
+      );`,
+    ),
+
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var z = fbt(
+        [
+          'a ',
+          fbt.param('name', fbt.param('name2', val2)),
+          ' b',
+        ], 'desc',
+      );`,
+    ),
+
+    throws:
+      `Expected fbt constructs to not nest inside fbt constructs, ` +
+      `but found fbt.param nest inside fbt.param`,
+  },
+
+  'should throw when a fbt.param is nested inside a fbt.name': {
+    input: withFbtRequireStatement(
+      `var z = fbt(
+        'a ' +
+        fbt.name('name', fbt.param('paramName', val2), gender) +
+        ' b',
+        'desc',
+      );`,
+    ),
+
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var z = fbt(
+        [
+          'a ',
+          fbt.name('name', fbt.param('paramName', val2), gender),
+          ' b',
+        ], 'desc',
+      );`,
+    ),
+
+    throws:
+      `Expected fbt constructs to not nest inside fbt constructs, ` +
+      `but found fbt.param nest inside fbt.name`,
+  },
+
+  'should not throw when a fbt.param is nested inside a fbt which is nested inside a fbt.name':
+    {
+      input: withFbtRequireStatement(
+        `var z = fbt(
+        'a ' +
+        fbt.name(
+          'name',
+          fbt(
+            fbt.param('paramName', val2),
+            "desc inner",
+          ),
+          gender,
+        ) +
+        ' b',
+        'desc',
+      );`,
+      ),
+
+      inputWithArraySyntax: withFbtRequireStatement(
+        `var z = fbt(
+        [
+          'a ',
+          fbt.name(
+            'name',
+            fbt(
+              fbt.param('paramName', val2),
+              "desc inner",
+            ),
+            gender,
+          ),
+          ' b',
+        ], 'desc',
+      );`,
+      ),
+
+      output: withFbtRequireStatement(
+        `var z = fbt._(
+        ${payload({
+          jsfbt: {
+            t: {
+              '*': {
+                desc: 'desc',
+                text: 'a {name} b',
+              },
+            },
+            m: [
+              {
+                token: 'name',
+                type: 1,
+              },
+            ],
+          },
+          project: '',
+        })},
+        [
+          fbt._name(
+            "name",
+            fbt._(
+              ${payload({
+                jsfbt: {
+                  t: {
+                    desc: 'desc inner',
+                    text: '{paramName}',
+                  },
+                  m: [],
+                },
+                project: '',
+              })},
+              [fbt._param("paramName", val2)],
+            ),
+            gender,
+          ),
+        ],
+      );`,
+      ),
+    },
+
   // Initially needed for JS source maps accuracy
   'should maintain intra-argument newlines': {
     input: withFbtRequireStatement(

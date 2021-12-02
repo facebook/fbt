@@ -259,6 +259,8 @@ function FbtTransform(babel: {types: BabelTypes}): BabelTransformPlugin {
           return;
         }
 
+        root.throwIfExistsNestedFbtConstruct();
+
         const {callNode, metaPhrases} = root.convertToFbtRuntimeCall();
         path.replaceWith(callNode);
 

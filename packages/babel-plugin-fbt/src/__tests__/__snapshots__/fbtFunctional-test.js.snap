@@ -1799,6 +1799,48 @@ Array [
 ]
 `;
 
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should not throw when a fbt.param is nested inside a fbt which is nested inside a fbt.name" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "name",
+          "type": 1,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "desc": "desc",
+          "text": "a {name} b",
+        },
+      },
+    },
+    "line_beg": 2,
+    "line_end": 15,
+    "project": "",
+  },
+  Object {
+    "col_beg": 12,
+    "col_end": 13,
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "desc inner",
+        "text": "{paramName}",
+      },
+    },
+    "line_beg": 7,
+    "line_end": 10,
+    "project": "",
+  },
+]
+`;
+
 exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data (react native) for scenario "should respect the doNotExtract option" 1`] = `Array []`;
 
 exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should accept well-formed options" 1`] = `
@@ -3519,6 +3561,48 @@ Array [
     },
     "line_beg": 8,
     "line_end": 13,
+    "project": "",
+  },
+]
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should collect correct meta data for scenario "should not throw when a fbt.param is nested inside a fbt which is nested inside a fbt.name" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "name",
+          "type": 1,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "desc": "desc",
+          "text": "a {name} b",
+        },
+      },
+    },
+    "line_beg": 2,
+    "line_end": 15,
+    "project": "",
+  },
+  Object {
+    "col_beg": 12,
+    "col_end": 13,
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "desc inner",
+        "text": "{paramName}",
+      },
+    },
+    "line_beg": 7,
+    "line_end": 10,
     "project": "",
   },
 ]
@@ -7665,6 +7749,146 @@ FbtElementNode {
         "moduleName": "fbt",
       },
       "options": null,
+      "parent": "FbtElementNode",
+    },
+  ],
+  "moduleName": "fbt",
+  "node": "BabelNode[type=CallExpression]",
+  "nodeChecker": FbtNodeChecker {
+    "moduleName": "fbt",
+  },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": null,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
+  "parent": undefined,
+}
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should not throw when a fbt.param is nested inside a fbt which is nested inside a fbt.name" 1`] = `
+FbtElementNode {
+  "__nodeCode": "fbt(['a ', fbt.name('name', fbt([fbt.param('paramName', val2)], \\"desc inner\\"), gender), ' b'], 'desc')",
+  "__stringVariationArgs": Array [
+    GenderStringVariationArg {
+      "__nodeCode": "gender",
+      "candidateValues": Array [
+        "*",
+      ],
+      "fbtNode": "FbtNameNode",
+      "isCollapsible": false,
+      "node": "BabelNode[type=Identifier]",
+      "value": undefined,
+    },
+  ],
+  "_tokenSet": Object {
+    "name": "BabelNode[type=CallExpression]",
+  },
+  "_variationFactorValues": Array [],
+  "children": Array [
+    FbtTextNode {
+      "__nodeCode": "'a '",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=StringLiteral]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "options": null,
+      "parent": "FbtElementNode",
+    },
+    FbtNameNode {
+      "__nodeCode": "fbt.name('name', fbt([fbt.param('paramName', val2)], \\"desc inner\\"), gender)",
+      "__stringVariationArgs": Array [
+        GenderStringVariationArg {
+          "__nodeCode": "gender",
+          "candidateValues": Array [
+            "*",
+          ],
+          "fbtNode": "FbtNameNode",
+          "isCollapsible": false,
+          "node": "BabelNode[type=Identifier]",
+          "value": undefined,
+        },
+      ],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=CallExpression]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "options": Object {
+        "__genderCode": "gender",
+        "__valueCode": "fbt([fbt.param('paramName', val2)], \\"desc inner\\")",
+        "gender": "BabelNode[type=Identifier]",
+        "name": "name",
+        "value": "BabelNode[type=CallExpression]",
+      },
+      "parent": "FbtElementNode",
+    },
+    FbtTextNode {
+      "__nodeCode": "' b'",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=StringLiteral]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "options": null,
+      "parent": "FbtElementNode",
+    },
+  ],
+  "moduleName": "fbt",
+  "node": "BabelNode[type=CallExpression]",
+  "nodeChecker": FbtNodeChecker {
+    "moduleName": "fbt",
+  },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": null,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
+  "parent": undefined,
+}
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should not throw when a fbt.param is nested inside a fbt which is nested inside a fbt.name" 2`] = `
+FbtElementNode {
+  "__nodeCode": "fbt([fbt.param('paramName', val2)], \\"desc inner\\")",
+  "__stringVariationArgs": Array [],
+  "_tokenSet": Object {
+    "paramName": "BabelNode[type=CallExpression]",
+  },
+  "_variationFactorValues": Array [],
+  "children": Array [
+    FbtParamNode {
+      "__nodeCode": "fbt.param('paramName', val2)",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=CallExpression]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "options": Object {
+        "__valueCode": "val2",
+        "gender": null,
+        "name": "paramName",
+        "number": null,
+        "value": "BabelNode[type=Identifier]",
+      },
       "parent": "FbtElementNode",
     },
   ],
@@ -11884,6 +12108,146 @@ FbtElementNode {
 }
 `;
 
+exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should not throw when a fbt.param is nested inside a fbt which is nested inside a fbt.name" 1`] = `
+FbtElementNode {
+  "__nodeCode": "fbt(['a ', fbt.name('name', fbt([fbt.param('paramName', val2)], \\"desc inner\\"), gender), ' b'], 'desc')",
+  "__stringVariationArgs": Array [
+    GenderStringVariationArg {
+      "__nodeCode": "gender",
+      "candidateValues": Array [
+        "*",
+      ],
+      "fbtNode": "FbtNameNode",
+      "isCollapsible": false,
+      "node": "BabelNode[type=Identifier]",
+      "value": undefined,
+    },
+  ],
+  "_tokenSet": Object {
+    "name": "BabelNode[type=CallExpression]",
+  },
+  "_variationFactorValues": Array [],
+  "children": Array [
+    FbtTextNode {
+      "__nodeCode": "'a '",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=StringLiteral]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "options": null,
+      "parent": "FbtElementNode",
+    },
+    FbtNameNode {
+      "__nodeCode": "fbt.name('name', fbt([fbt.param('paramName', val2)], \\"desc inner\\"), gender)",
+      "__stringVariationArgs": Array [
+        GenderStringVariationArg {
+          "__nodeCode": "gender",
+          "candidateValues": Array [
+            "*",
+          ],
+          "fbtNode": "FbtNameNode",
+          "isCollapsible": false,
+          "node": "BabelNode[type=Identifier]",
+          "value": undefined,
+        },
+      ],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=CallExpression]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "options": Object {
+        "__genderCode": "gender",
+        "__valueCode": "fbt([fbt.param('paramName', val2)], \\"desc inner\\")",
+        "gender": "BabelNode[type=Identifier]",
+        "name": "name",
+        "value": "BabelNode[type=CallExpression]",
+      },
+      "parent": "FbtElementNode",
+    },
+    FbtTextNode {
+      "__nodeCode": "' b'",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=StringLiteral]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "options": null,
+      "parent": "FbtElementNode",
+    },
+  ],
+  "moduleName": "fbt",
+  "node": "BabelNode[type=CallExpression]",
+  "nodeChecker": FbtNodeChecker {
+    "moduleName": "fbt",
+  },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": null,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
+  "parent": undefined,
+}
+`;
+
+exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should not throw when a fbt.param is nested inside a fbt which is nested inside a fbt.name" 2`] = `
+FbtElementNode {
+  "__nodeCode": "fbt([fbt.param('paramName', val2)], \\"desc inner\\")",
+  "__stringVariationArgs": Array [],
+  "_tokenSet": Object {
+    "paramName": "BabelNode[type=CallExpression]",
+  },
+  "_variationFactorValues": Array [],
+  "children": Array [
+    FbtParamNode {
+      "__nodeCode": "fbt.param('paramName', val2)",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=CallExpression]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "options": Object {
+        "__valueCode": "val2",
+        "gender": null,
+        "name": "paramName",
+        "number": null,
+        "value": "BabelNode[type=Identifier]",
+      },
+      "parent": "FbtElementNode",
+    },
+  ],
+  "moduleName": "fbt",
+  "node": "BabelNode[type=CallExpression]",
+  "nodeChecker": FbtNodeChecker {
+    "moduleName": "fbt",
+  },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": null,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
+  "parent": undefined,
+}
+`;
+
 exports[`Functional FBT API using array arguments: Meta-data collection should create correct FbtNode objects for scenario "should respect the doNotExtract option" 1`] = `
 FbtElementNode {
   "__nodeCode": "fbt(['A doNotExtract string'], \\"should not be extracted\\", {
@@ -12784,6 +13148,48 @@ Array [
 ]
 `;
 
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should not throw when a fbt.param is nested inside a fbt which is nested inside a fbt.name" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "name",
+          "type": 1,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "desc": "desc",
+          "text": "a {name} b",
+        },
+      },
+    },
+    "line_beg": 2,
+    "line_end": 14,
+    "project": "",
+  },
+  Object {
+    "col_beg": 10,
+    "col_end": 11,
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "desc inner",
+        "text": "{paramName}",
+      },
+    },
+    "line_beg": 6,
+    "line_end": 9,
+    "project": "",
+  },
+]
+`;
+
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data (react native) for scenario "should respect the doNotExtract option" 1`] = `Array []`;
 
 exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should accept well-formed options" 1`] = `
@@ -13587,6 +13993,48 @@ Array [
     },
     "line_beg": 2,
     "line_end": 6,
+    "project": "",
+  },
+]
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should collect correct meta data for scenario "should not throw when a fbt.param is nested inside a fbt which is nested inside a fbt.name" 1`] = `
+Array [
+  Object {
+    "col_beg": 10,
+    "col_end": 7,
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [
+        Object {
+          "token": "name",
+          "type": 1,
+        },
+      ],
+      "t": Object {
+        "*": Object {
+          "desc": "desc",
+          "text": "a {name} b",
+        },
+      },
+    },
+    "line_beg": 2,
+    "line_end": 14,
+    "project": "",
+  },
+  Object {
+    "col_beg": 10,
+    "col_end": 11,
+    "filepath": undefined,
+    "jsfbt": Object {
+      "m": Array [],
+      "t": Object {
+        "desc": "desc inner",
+        "text": "{paramName}",
+      },
+    },
+    "line_beg": 6,
+    "line_end": 9,
     "project": "",
   },
 ]
@@ -16369,6 +16817,146 @@ FbtElementNode {
         "moduleName": "fbt",
       },
       "options": null,
+      "parent": "FbtElementNode",
+    },
+  ],
+  "moduleName": "fbt",
+  "node": "BabelNode[type=CallExpression]",
+  "nodeChecker": FbtNodeChecker {
+    "moduleName": "fbt",
+  },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": null,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
+  "parent": undefined,
+}
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should not throw when a fbt.param is nested inside a fbt which is nested inside a fbt.name" 1`] = `
+FbtElementNode {
+  "__nodeCode": "fbt(['a ', fbt.name('name', fbt([fbt.param('paramName', val2)], \\"desc inner\\"), gender), ' b'], 'desc')",
+  "__stringVariationArgs": Array [
+    GenderStringVariationArg {
+      "__nodeCode": "gender",
+      "candidateValues": Array [
+        "*",
+      ],
+      "fbtNode": "FbtNameNode",
+      "isCollapsible": false,
+      "node": "BabelNode[type=Identifier]",
+      "value": undefined,
+    },
+  ],
+  "_tokenSet": Object {
+    "name": "BabelNode[type=CallExpression]",
+  },
+  "_variationFactorValues": Array [],
+  "children": Array [
+    FbtTextNode {
+      "__nodeCode": "'a '",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=StringLiteral]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "options": null,
+      "parent": "FbtElementNode",
+    },
+    FbtNameNode {
+      "__nodeCode": "fbt.name('name', fbt([fbt.param('paramName', val2)], \\"desc inner\\"), gender)",
+      "__stringVariationArgs": Array [
+        GenderStringVariationArg {
+          "__nodeCode": "gender",
+          "candidateValues": Array [
+            "*",
+          ],
+          "fbtNode": "FbtNameNode",
+          "isCollapsible": false,
+          "node": "BabelNode[type=Identifier]",
+          "value": undefined,
+        },
+      ],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=CallExpression]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "options": Object {
+        "__genderCode": "gender",
+        "__valueCode": "fbt([fbt.param('paramName', val2)], \\"desc inner\\")",
+        "gender": "BabelNode[type=Identifier]",
+        "name": "name",
+        "value": "BabelNode[type=CallExpression]",
+      },
+      "parent": "FbtElementNode",
+    },
+    FbtTextNode {
+      "__nodeCode": "' b'",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=StringLiteral]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "options": null,
+      "parent": "FbtElementNode",
+    },
+  ],
+  "moduleName": "fbt",
+  "node": "BabelNode[type=CallExpression]",
+  "nodeChecker": FbtNodeChecker {
+    "moduleName": "fbt",
+  },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": null,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
+  "parent": undefined,
+}
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects (react native) for scenario "should not throw when a fbt.param is nested inside a fbt which is nested inside a fbt.name" 2`] = `
+FbtElementNode {
+  "__nodeCode": "fbt([fbt.param('paramName', val2)], \\"desc inner\\")",
+  "__stringVariationArgs": Array [],
+  "_tokenSet": Object {
+    "paramName": "BabelNode[type=CallExpression]",
+  },
+  "_variationFactorValues": Array [],
+  "children": Array [
+    FbtParamNode {
+      "__nodeCode": "fbt.param('paramName', val2)",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=CallExpression]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "options": Object {
+        "__valueCode": "val2",
+        "gender": null,
+        "name": "paramName",
+        "number": null,
+        "value": "BabelNode[type=Identifier]",
+      },
       "parent": "FbtElementNode",
     },
   ],
@@ -19204,6 +19792,146 @@ FbtElementNode {
         "moduleName": "fbt",
       },
       "options": null,
+      "parent": "FbtElementNode",
+    },
+  ],
+  "moduleName": "fbt",
+  "node": "BabelNode[type=CallExpression]",
+  "nodeChecker": FbtNodeChecker {
+    "moduleName": "fbt",
+  },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": null,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
+  "parent": undefined,
+}
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should not throw when a fbt.param is nested inside a fbt which is nested inside a fbt.name" 1`] = `
+FbtElementNode {
+  "__nodeCode": "fbt(['a ', fbt.name('name', fbt([fbt.param('paramName', val2)], \\"desc inner\\"), gender), ' b'], 'desc')",
+  "__stringVariationArgs": Array [
+    GenderStringVariationArg {
+      "__nodeCode": "gender",
+      "candidateValues": Array [
+        "*",
+      ],
+      "fbtNode": "FbtNameNode",
+      "isCollapsible": false,
+      "node": "BabelNode[type=Identifier]",
+      "value": undefined,
+    },
+  ],
+  "_tokenSet": Object {
+    "name": "BabelNode[type=CallExpression]",
+  },
+  "_variationFactorValues": Array [],
+  "children": Array [
+    FbtTextNode {
+      "__nodeCode": "'a '",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=StringLiteral]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "options": null,
+      "parent": "FbtElementNode",
+    },
+    FbtNameNode {
+      "__nodeCode": "fbt.name('name', fbt([fbt.param('paramName', val2)], \\"desc inner\\"), gender)",
+      "__stringVariationArgs": Array [
+        GenderStringVariationArg {
+          "__nodeCode": "gender",
+          "candidateValues": Array [
+            "*",
+          ],
+          "fbtNode": "FbtNameNode",
+          "isCollapsible": false,
+          "node": "BabelNode[type=Identifier]",
+          "value": undefined,
+        },
+      ],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=CallExpression]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "options": Object {
+        "__genderCode": "gender",
+        "__valueCode": "fbt([fbt.param('paramName', val2)], \\"desc inner\\")",
+        "gender": "BabelNode[type=Identifier]",
+        "name": "name",
+        "value": "BabelNode[type=CallExpression]",
+      },
+      "parent": "FbtElementNode",
+    },
+    FbtTextNode {
+      "__nodeCode": "' b'",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=StringLiteral]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "options": null,
+      "parent": "FbtElementNode",
+    },
+  ],
+  "moduleName": "fbt",
+  "node": "BabelNode[type=CallExpression]",
+  "nodeChecker": FbtNodeChecker {
+    "moduleName": "fbt",
+  },
+  "options": Object {
+    "author": null,
+    "common": false,
+    "doNotExtract": null,
+    "preserveWhitespace": false,
+    "project": "",
+    "subject": null,
+  },
+  "parent": undefined,
+}
+`;
+
+exports[`Functional FBT API using string-concatenated arguments: Meta-data collection should create correct FbtNode objects for scenario "should not throw when a fbt.param is nested inside a fbt which is nested inside a fbt.name" 2`] = `
+FbtElementNode {
+  "__nodeCode": "fbt([fbt.param('paramName', val2)], \\"desc inner\\")",
+  "__stringVariationArgs": Array [],
+  "_tokenSet": Object {
+    "paramName": "BabelNode[type=CallExpression]",
+  },
+  "_variationFactorValues": Array [],
+  "children": Array [
+    FbtParamNode {
+      "__nodeCode": "fbt.param('paramName', val2)",
+      "__stringVariationArgs": Array [],
+      "_variationFactorValues": Array [],
+      "children": Array [],
+      "moduleName": "fbt",
+      "node": "BabelNode[type=CallExpression]",
+      "nodeChecker": FbtNodeChecker {
+        "moduleName": "fbt",
+      },
+      "options": Object {
+        "__valueCode": "val2",
+        "gender": null,
+        "name": "paramName",
+        "number": null,
+        "value": "BabelNode[type=Identifier]",
+      },
       "parent": "FbtElementNode",
     },
   ],
