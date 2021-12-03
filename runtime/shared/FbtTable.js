@@ -1,5 +1,5 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * Provides types related to fbt table access and the algorithm for
  * recursively accessing the table entries and returning the leaves

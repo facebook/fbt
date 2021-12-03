@@ -1,5 +1,5 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * Dummy class on www. Fetches translations from language packs on RN/CS.
  *

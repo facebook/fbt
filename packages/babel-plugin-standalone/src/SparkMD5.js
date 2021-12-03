@@ -1,5 +1,5 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * This code essentially is taken from
  * https://github.com/satazor/SparkMD5/blob/master/spark-md5.js.

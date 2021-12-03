@@ -1,5 +1,5 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * Same set of 'usage' values as in :fbt:pronoun::type. Must match
  * PRONOUN_USAGE in fbt.js.

@@ -1,5 +1,5 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * Flow doesn't know about the transformations of fbt() calls into tables, so
  * all it sees is that callers are adding strings and arrays, which isn't

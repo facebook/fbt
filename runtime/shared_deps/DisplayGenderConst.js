@@ -1,5 +1,5 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * This file is generated. Do not modify it manually!
  * Keep it in sync with the source location in the "meerkat" folder.
