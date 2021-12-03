@@ -201,6 +201,15 @@ const generalTestData = {
     throws: `There's already a token called "name" in this fbt call`,
   },
 
+  'should throw when a fbt.param is used outside of fbt': {
+    input: withFbtRequireStatement(`var z = fbt.param('name', val);`),
+
+    throws:
+      `Fbt constructs can only be used within the scope of an fbt` +
+      ` string. I.e. It should be used directly inside an ` +
+      `‹fbt› / ‹fbs› callsite`,
+  },
+
   'should throw when a fbt.param is nested inside another fbt.param': {
     input: withFbtRequireStatement(
       `var z = fbt(

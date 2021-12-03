@@ -21,7 +21,7 @@ import type {FbtCommonMap} from './FbtCommon';
 import type {FbtCallSiteOptions} from './FbtConstants';
 import type {EnumManifest, EnumModule} from './FbtEnumRegistrar';
 import typeof {FbtVariationType} from './translate/IntlVariations';
-import type {BabelTransformPlugin} from '@babel/core';
+import type {BabelTransformPlugin, NodePathOf} from '@babel/core';
 import typeof BabelTypes from '@babel/types';
 
 const FbtCommonFunctionCallProcessor = require('./babel-processors/FbtCommonFunctionCallProcessor');
@@ -35,8 +35,10 @@ const {
 } = require('./FbtConstants');
 const FbtEnumRegistrar = require('./FbtEnumRegistrar');
 const fbtHashKey = require('./fbtHashKey');
+const FbtNodeChecker = require('./FbtNodeChecker');
 const FbtShiftEnums = require('./FbtShiftEnums');
 const FbtUtil = require('./FbtUtil');
+const {errorAt} = require('./FbtUtil');
 const JSFbtUtil = require('./JSFbtUtil');
 const {
   RequireCheck: {isRequireAlias},
@@ -280,7 +282,27 @@ function FbtTransform(babel: {types: BabelTypes}): BabelTransformPlugin {
             }
           });
         }
-      }, // CallExpression
+      },
+
+      Program: {
+        exit(path) {
+          path.traverse({
+            CallExpression(path: NodePathOf<BabelNodeCallExpression>) {
+              if (
+                FbtNodeChecker.getFbtConstructNameFromFunctionCall(path.node) !=
+                null
+              ) {
+                throw errorAt(
+                  path.node,
+                  `Fbt constructs can only be used within the scope of an fbt` +
+                    ` string. I.e. It should be used directly inside an ` +
+                    `‹fbt› / ‹fbs› callsite`,
+                );
+              }
+            },
+          });
+        },
+      }, // Program
     }, // visitor
   }; // babel plugin return
 }

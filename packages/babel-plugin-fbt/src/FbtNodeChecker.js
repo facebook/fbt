@@ -190,6 +190,23 @@ class FbtNodeChecker {
     return null;
   }
 
+  /**
+   * This is same as the non-static getFbtConstructNameFromFunctionCall except
+   * it accepts any of the three fbt modules (`FBT`, `FBS` or `REACT_FBT`).
+   */
+  static getFbtConstructNameFromFunctionCall(node: BabelNode): ?FbtNodeType {
+    return (
+      (isCallExpression(node) &&
+        isMemberExpression(node.callee) &&
+        isIdentifier(node.callee.object) &&
+        isIdentifier(node.callee.property) &&
+        [FBT, FBS, REACT_FBT].includes(node.callee.object.name) &&
+        typeof node.callee.property.name === 'string' &&
+        FbtNodeType.cast(node.callee.property.name)) ||
+      null
+    );
+  }
+
   // Not defining the static value here because of JS syntax compatibility issues in node.js v10.x
   static COMMON_STRING_METHOD_NAME: 'c' = 'c';
 }

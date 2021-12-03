@@ -147,6 +147,7 @@ List of changes for each released npm package version.
       Unreleased changes that have landed in main. Click to see more.
     </summary>
 
+    - [fix] Check for untransformed fbt constructs after FbtTransform
     - [fix] Check for nested fbt constructs
     - [fix] Stop TranslationBuilder from mutating FbtSite
     - [refactor] Make TranslationBuilder use clear token replacement helper in FbtUtil.js
