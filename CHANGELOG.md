@@ -148,6 +148,7 @@ List of changes for each released npm package version.
       Unreleased changes that have landed in main. Click to see more.
     </summary>
 
+    - [feature] Introduce a script to identify new/updated strings after Auto-Param
     - [feat]! Pull out common `desc` from leaves and include `tokenAliases`
     when calculating `hash_key` in fbtJenkinsHash.js
     - [fix] Check for untransformed fbt constructs after FbtTransform
