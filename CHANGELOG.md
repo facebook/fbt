@@ -148,6 +148,8 @@ List of changes for each released npm package version.
       Unreleased changes that have landed in main. Click to see more.
     </summary>
 
+    - [feat]! Pull out common `desc` from leaves and include `tokenAliases`
+    when calculating `hash_key` in fbtJenkinsHash.js
     - [fix] Check for untransformed fbt constructs after FbtTransform
     - [fix] Check for nested fbt constructs
     - [fix] Stop TranslationBuilder from mutating FbtSite
@@ -295,6 +297,8 @@ List of changes for each released npm package version.
     <summary>
       Unreleased changes that have landed in main. Click to see more.
 
+      - [chore] Update fbtRuntime-test.js after the definition of `hash_key` in
+      fbtJenkinsHash.js was modified
       - [refactor] Move clear token replacement logic to babel-plugin-fbt/src/FbtUtil.js
     </summary>
   </details>

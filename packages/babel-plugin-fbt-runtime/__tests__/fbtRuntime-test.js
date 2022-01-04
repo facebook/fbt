@@ -41,7 +41,7 @@ describe('Test hash key generation', () => {
         fbt('Foo', 'Bar');
       `),
       output: withFbtRequireStatement(`
-        fbt._('Foo', null, {hk: '227BGA'});
+        fbt._('Foo', null, {hk: '3ktBJ2'});
       `),
     };
     runTest(data, true);
@@ -71,11 +71,11 @@ lines">
               React.createElement(
                 'b',
                 null,
-                fbt._('simple', null, {hk: '4qbcU8'}),
+                fbt._('simple', null, {hk: '2pjKFw'}),
               ),
             ),
           ],
-          {hk: '1xZ4be'},
+          {hk: '2xRGl8'},
         );`,
       ),
     };
@@ -105,7 +105,7 @@ describe('Test enum hash keys generation', () => {
                 "c": 'C'
               })
             ],
-            {hk: "4fsyit"},
+            {hk: "NT3sR"},
           );`,
         ),
       },
@@ -135,9 +135,9 @@ describe('Test enum hash keys generation', () => {
             ],
             {
               ehk: {
-                a: "4uSStb",
-                b: "WGbrk",
-                c: "4cijxf"
+                a: "2gRMkN",
+                b: "3NsO2f",
+                c: "3eytjU"
               }
             },
           );`,
@@ -192,19 +192,19 @@ describe('Test enum hash keys generation', () => {
             {
               ehk: {
                 a: {
-                  x: "2iLukh",
-                  y: "HiUYK",
-                  z: "4y43qC"
+                  x: "5Lquv",
+                  y: "3RQlhz",
+                  z: "3ZpRpY"
                 },
                 b: {
-                  x: "3iS7k",
-                  y: "4v1slU",
-                  z: "wSyUv"
+                  x: "djeja",
+                  y: "1Cl3e7",
+                  z: "31zfrM"
                 },
                 c: {
-                  x: "3UuIpO",
-                  y: "4ieJt4",
-                  z: "8SVh3"
+                  x: "2z0mci",
+                  y: "2xJRMx",
+                  z: "HAwfA"
                 },
               },
             },
@@ -272,7 +272,7 @@ describe('Test replacing clear token names with mangled tokens', () => {
             ),
           ),
         ],
-        {hk: "1dNTwY"},
+        {hk: "2mDoBt"},
       );`,
   };
   runTest(data, true);
