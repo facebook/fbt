@@ -67,7 +67,7 @@ function getTextPackager(hashModulePath: string): TextPackager {
         typeof hashingModule.getFbtHash === 'function'),
     'Expected hashing module to expose a default value that is a function, ' +
       'or an object with a getFbtHash() function property. Hashing module location: `%s`',
-    hashingModule,
+    hashModulePath,
   );
   return new TextPackager(
     typeof hashingModule === 'function'
