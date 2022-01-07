@@ -282,7 +282,7 @@ const testData = {
       </fbt>`,
     ),
 
-    throws: true,
+    throws: `Invalid option "qux". Only allowed: number, gender, name`,
   },
 
   'should ignore __private attributes': {
@@ -395,7 +395,7 @@ const testData = {
       </fbt>`,
     ),
 
-    throws: true,
+    throws: `fbt:param expects an {expression} or JSX element, and only one`,
   },
 
   'fbt:param with multiple empty expression containers should be ok': {
