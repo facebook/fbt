@@ -55,6 +55,7 @@ List of changes for each released npm package version.
     Unreleased changes that have landed in main. Click to see more.
   </summary>
 
+  - [feat] Add user's regional local in `IntlViewerContext`
   - [feat] Improve resilience of detection of fbt parameters inside translated string patterns and improve error message format.
   - [chore] Update babel-plugin-fbt-runtime dependency version to `^0.10.x`
   - [chore] Update babel-plugin-fbt dependency version to `^0.21.x`

@@ -15,6 +15,7 @@ const IntlVariations = require('IntlVariations');
 // and required in the OSS version
 const IntlViewerContext = {
   GENDER: IntlVariations.GENDER_UNKNOWN,
+  regionalLocale: 'en_US',
   locale: 'en_US',
 };
 
