@@ -446,6 +446,7 @@ class FbtFunctionCallProcessor {
               m: jsfbtMetadata,
             },
           };
+          const svArgsMapList = [];
 
           (argsCombinations.length
             ? argsCombinations
@@ -466,10 +467,10 @@ class FbtFunctionCallProcessor {
               leaf.tokenAliases = tokenAliases;
             }
 
-            if (
-              this.pluginOptions.generateOuterTokenName &&
-              !(fbtNode instanceof FbtElementNode)
-            ) {
+            if (fbtNode instanceof FbtElementNode) {
+              // gather list of svArgsMap for all args combination for later sanity checks
+              svArgsMapList.push(svArgsMap);
+            } else if (this.pluginOptions.generateOuterTokenName) {
               leaf.outerTokenName = fbtNode.getTokenName(svArgsMap);
             }
 
@@ -484,6 +485,10 @@ class FbtFunctionCallProcessor {
               phrase.jsfbt.t = leaf;
             }
           });
+
+          if (fbtNode instanceof FbtElementNode) {
+            fbtNode.assertNoOverallTokenNameCollision(svArgsMapList);
+          }
 
           return {
             compactStringVariations,
