@@ -231,6 +231,122 @@ const testData = {
       </fbt>;`,
     ),
   },
+
+  'can handle multiple variations in nested strings': {
+    input: withFbtRequireStatement(
+      `<fbt desc="some-desc">
+        Level 1
+        <fbt:param name="foo">
+          {foo}
+        </fbt:param>
+        <a>
+          Level 2
+          <fbt:name name="bar" gender={g}>
+            {bar}
+          </fbt:name>
+
+          <b>
+            Level 3
+            <fbt:plural
+              name="baz"
+              count={num}
+              showCount="yes">
+              cat
+            </fbt:plural>
+          </b>
+        </a>
+      </fbt>`,
+    ),
+  },
+
+  'can handle multiple variations in nested strings with substrings that look identical':
+    {
+      input: withFbtRequireStatement(
+        `<fbt desc="description" subject={g0}>
+          Level 1
+          <a href="#new">
+            {/* Substring A */}
+            <fbt:pronoun type="possessive" gender={g1} /> some_pronoun
+          </a>
+          <b>
+            Level 2
+            <a href="#new">
+              {/* Substring B: it looks identical to Substring A but uses another gender value */}
+              <fbt:pronoun type="possessive" gender={g2} /> some_pronoun
+            </a>
+          </b>
+        </fbt>`,
+      ),
+    },
+
+  'can handle multiple variations in nested strings and a subject gender': {
+    input: withFbtRequireStatement(
+      `<fbt desc="description" subject={g0}>
+        Level 1
+        <a href="#new">
+          <fbt:pronoun type="possessive" gender={g1} /> some_pronoun
+        </a>
+        <b>
+          Level 2
+          <fbt:plural
+            name="foo"
+            count={num}
+            showCount="yes">
+            cat
+          </fbt:plural>
+        </b>
+      </fbt>`,
+    ),
+  },
+
+  'prevent token name collisions among fbt constructs across all nesting levels (v1)':
+    {
+      input: withFbtRequireStatement(
+        `<fbt desc="some-desc">
+          Level 1
+          <fbt:param name="foo">
+            {foo}
+          </fbt:param>
+          <a>
+            Level 2
+            <fbt:name name="foo" gender={g}>
+              {foo}
+            </fbt:name>
+          </a>
+        </fbt>`,
+      ),
+
+      throws: "There's already a token called `foo` in this fbt call.",
+    },
+
+  'prevent token name collisions among fbt constructs across all nesting levels (v2)':
+    {
+      input: withFbtRequireStatement(
+        `<fbt desc="some-desc">
+          Level 1
+          <fbt:param name="bar">
+            {bar}
+          </fbt:param>
+          <a>
+            Level 2
+            <fbt:name name="foo" gender={g}>
+              {foo}
+            </fbt:name>
+            <b>
+              Level 3
+              <fbt:plural
+                name="foo"
+                count={num}
+                showCount="yes">
+                cat
+              </fbt:plural>
+            </b>
+          </a>
+        </fbt>`,
+      ),
+
+      throws: "There's already a token called `foo` in this fbt call.",
+    },
 };
 
 describe('Test jsx auto-wrapping of implicit parameters', () =>
