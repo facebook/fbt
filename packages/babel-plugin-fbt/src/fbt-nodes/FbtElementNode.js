@@ -38,13 +38,13 @@ const {
   expandStringConcat,
   normalizeSpaces,
   setUniqueToken,
-  varDump,
 } = require('../FbtUtil');
 const {GENDER_ANY} = require('../translate/IntlVariations');
 const {GenderStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
 const FbtNodeType = require('./FbtNodeType');
 const {
+  buildFbtNodeMapForSameParam,
   getChildNodeText,
   getChildNodeTextForDescription,
   getTextFromFbtNodeTree,
@@ -182,9 +182,11 @@ class FbtElementNode
     instance: FbtElementNode | FbtImplicitParamNodeType,
     argsMap: StringVariationArgsMap,
   ): void {
+    const FbtSameParamNode = require('./FbtSameParamNode');
     instance.children.forEach(child => {
       const tokenName = child.getTokenName(argsMap);
-      if (tokenName != null) {
+      // FbtSameParamNode token names are allowed to be redundant by design
+      if (tokenName != null && !(child instanceof FbtSameParamNode)) {
         instance.registerToken(tokenName, child);
       }
     });
@@ -408,41 +410,8 @@ class FbtElementNode
   assertNoOverallTokenNameCollision(
     argsMapList: $ReadOnlyArray<StringVariationArgsMap>,
   ): void {
-    // Importing this module only here to avoid dependency cycle
-    const FbtImplicitParamNode = require('./FbtImplicitParamNode');
-    const FbtSameParamNode = require('./FbtSameParamNode');
-
-    const tokenNameToFbtNode: {[tokenName: string]: ?AnyFbtNode} = {};
     argsMapList.forEach(argsMap => {
-      runOnNestedChildren(this, child => {
-        if (
-          // FbtImplicitParamNode token names appear redundant but
-          // they'll be deduplicated via the token name mangling logic
-          child instanceof FbtImplicitParamNode ||
-          // FbtSameParamNode token names are allowed to be redundant by design
-          child instanceof FbtSameParamNode
-        ) {
-          return;
-        }
-        const tokenName = child.getTokenName(argsMap);
-        if (tokenName != null) {
-          const existingFbtNode = tokenNameToFbtNode[tokenName];
-          invariant(
-            existingFbtNode == null || existingFbtNode === child,
-            "There's already a token called `%s` in this %s call. " +
-              'Use %s.sameParam if you want to reuse the same token name or ' +
-              'give this token a different name.\n' +
-              'Existing FbtNode=%s\n' +
-              'Redundant FbtNode=%s',
-            tokenName,
-            this.moduleName,
-            this.moduleName,
-            varDump(existingFbtNode),
-            varDump(child),
-          );
-          tokenNameToFbtNode[tokenName] = child;
-        }
-      });
+      buildFbtNodeMapForSameParam(this, argsMap);
     });
   }
 }

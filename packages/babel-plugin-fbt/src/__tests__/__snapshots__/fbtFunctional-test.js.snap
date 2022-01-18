@@ -6755,7 +6755,9 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "options": null,
+      "options": Object {
+        "name": "count",
+      },
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -7167,7 +7169,9 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "options": null,
+      "options": Object {
+        "name": "name1",
+      },
       "parent": "FbtElementNode",
     },
   ],
@@ -11094,7 +11098,9 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "options": null,
+      "options": Object {
+        "name": "count",
+      },
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -11506,7 +11512,9 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "options": null,
+      "options": Object {
+        "name": "name1",
+      },
       "parent": "FbtElementNode",
     },
   ],
@@ -16103,7 +16111,9 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "options": null,
+      "options": Object {
+        "name": "count",
+      },
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -16515,7 +16525,9 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "options": null,
+      "options": Object {
+        "name": "name1",
+      },
       "parent": "FbtElementNode",
     },
   ],
@@ -19078,7 +19090,9 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "options": null,
+      "options": Object {
+        "name": "count",
+      },
       "parent": "FbtElementNode",
     },
     FbtTextNode {
@@ -19490,7 +19504,9 @@ FbtElementNode {
       "nodeChecker": FbtNodeChecker {
         "moduleName": "fbt",
       },
-      "options": null,
+      "options": Object {
+        "name": "name1",
+      },
       "parent": "FbtElementNode",
     },
   ],
