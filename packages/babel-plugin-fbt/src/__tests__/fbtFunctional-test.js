@@ -1918,6 +1918,72 @@ const generalTestData = {
     ),
   },
 
+  'should throw if the token name of a sameParam construct is not defined': {
+    input: withFbtRequireStatement(
+      `var z = fbt(
+        fbt.param('name1', val1) + ' and ' + fbt.sameParam('name2'),
+        'd',
+      );`,
+    ),
+
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var z = fbt(
+        [
+          fbt.param('name1', val1),
+          ' and ',
+          fbt.sameParam('name2'),
+        ], 'd',
+      );`,
+    ),
+
+    throws:
+      'Expected fbt `sameParam` construct with name=`name2` to refer to ' +
+      'a `name` or `param` construct using the same token name',
+  },
+
+  'should throw if the token name of a sameParam construct in a nested string is not defined':
+    {
+      inputWithArraySyntax: withFbtRequireStatement(
+        `var z = fbt(
+        [
+          fbt.param('name', val1),
+          ' and ',
+          <b>
+            inner string
+            {fbt.sameParam('name1')}
+          </b>,
+        ], 'd',
+      );`,
+      ),
+
+      throws:
+        'Expected fbt `sameParam` construct with name=`name1` to refer to ' +
+        'a `name` or `param` construct using the same token name',
+    },
+
+  'should throw if the sameParam refers to a plural construct': {
+    input: withFbtRequireStatement(
+      `var z = fbt(
+        fbt.plural('cat', count, {value: someValueFunction(), name: 'tokenName', showCount: 'yes'}) + ' and ' + fbt.sameParam('tokenName'),
+        'd',
+      );`,
+    ),
+
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var z = fbt(
+        [
+          fbt.plural('cat', count, {value: someValueFunction(), name: 'tokenName', showCount: 'yes'}),
+          ' and ',
+          fbt.sameParam('tokenName'),
+        ], 'd',
+      );`,
+    ),
+
+    throws:
+      'Expected fbt `sameParam` construct with name=`tokenName` to refer to ' +
+      'a `name` or `param` construct using the same token name',
+  },
+
   'should insert param in place of fbt.sameParam if it exists': {
     input: withFbtRequireStatement(
       `var z = fbt(
