@@ -1,5 +1,5 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * @emails oncall+i18n_fbt_js
  * @format
@@ -232,7 +232,7 @@ describe('collectFbt', () => {
         [
           "const fbt = require('fbt');",
           'const uh = 0;',
-          'fbt(`${fbt.param("1", uh)} ${fbt.param("2", uh)} ${fbt.sameParam("3")} 4`, "counting");',
+          'fbt(`${fbt.param("1", uh)} ${fbt.param("2", uh)} ${fbt.sameParam("2")} 3`, "counting");',
         ].join('\n'),
       );
 
@@ -245,7 +245,7 @@ describe('collectFbt', () => {
           "const fbt = require('fbt');",
           'const uh = 0;',
           "fbt(`${fbt.enum(uh, {0:'a', 1:'b'})} ${fbt.param(\"2\", uh)}\n" +
-            '${fbt.sameParam("3")} 4`, "counting");',
+            '${fbt.sameParam("2")} 3`, "counting");',
         ].join('\n'),
       );
       expect(res).toMatchSnapshot();

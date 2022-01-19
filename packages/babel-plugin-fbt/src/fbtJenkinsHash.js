@@ -1,5 +1,5 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * @format
  * @flow strict-local
@@ -13,15 +13,45 @@
 import type {TableJSFBTTree, TableJSFBTTreeLeaf} from './index';
 
 const jenkinsHash = require('./jenkinsHash');
-const {mapLeaves} = require('./JSFbtUtil');
+const {mapLeaves, onEachLeaf} = require('./JSFbtUtil');
+const invariant = require('invariant');
 
 function fbtJenkinsHash(jsfbt: $ReadOnly<TableJSFBTTree>): number {
-  // Strip leaves of metadata keys and only keep `text` and `desc` key.
-  // This will give us the flexibility of modifying metadata without updating hashes.
+  let desc = null;
+  let leavesHaveSameDesc = true;
+  onEachLeaf({jsfbt: {t: jsfbt, m: []}}, (leaf: TableJSFBTTreeLeaf) => {
+    if (desc == null) {
+      desc = leaf.desc;
+    } else if (desc !== leaf.desc) {
+      leavesHaveSameDesc = false;
+    }
+  });
+
+  if (leavesHaveSameDesc) {
+    const hashInputTree = mapLeaves(
+      jsfbt,
+      (leaf: $ReadOnly<TableJSFBTTreeLeaf>) => {
+        return leaf.tokenAliases != null
+          ? {text: leaf.text, tokenAliases: leaf.tokenAliases}
+          : leaf.text;
+      },
+    );
+    invariant(
+      desc != null,
+      'Expect `desc` to be nonnull as `TableJSFBTTree` should contain at least ' +
+        'one leaf.',
+    );
+    const key = JSON.stringify(hashInputTree) + '|' + desc;
+    return jenkinsHash(key);
+  }
+
   const hashInputTree = mapLeaves(
     jsfbt,
     (leaf: $ReadOnly<TableJSFBTTreeLeaf>) => {
-      return {desc: leaf.desc, text: leaf.text};
+      const newLeaf = {desc: leaf.desc, text: leaf.text};
+      return leaf.tokenAliases != null
+        ? {...newLeaf, tokenAliases: leaf.tokenAliases}
+        : newLeaf;
     },
   );
   return jenkinsHash(JSON.stringify(hashInputTree));

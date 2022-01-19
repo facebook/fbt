@@ -1,12 +1,12 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * @emails oncall+i18n_fbt_js
  * @format
  * @flow strict-local
  */
 
-'strict';
+'use strict';
 
 import type {
   FbtTableKey,
@@ -20,14 +20,16 @@ import type {
 import type TranslationConfig from './TranslationConfig';
 import type {ConstraintKey} from './VariationConstraintUtils';
 
-const {hasKeys} = require('../FbtUtil');
+const {hasKeys, varDump} = require('../FbtUtil');
+const {replaceClearTokensWithTokenAliases} = require('../FbtUtil');
+const {FbtSite, FbtSiteMetaEntry} = require('./FbtSite');
 const IntlVariations = require('./IntlVariations');
 const TranslationData = require('./TranslationData');
 const {buildConstraintKey} = require('./VariationConstraintUtils');
 const invariant = require('invariant');
 const nullthrows = require('nullthrows');
-const {EXACTLY_ONE, isValidValue, Mask} = IntlVariations;
-const {FbtSiteMetaEntry, FbtSite} = require('./FbtSite');
+
+const {EXACTLY_ONE, Mask, isValidValue} = IntlVariations;
 
 /**
  * Map from a string's hash to its translation payload.
@@ -86,7 +88,7 @@ class TranslationBuilder {
   +_hasTranslations: boolean;
   +_hasVCGenderVariation: boolean;
   +_inclHash: boolean;
-  +_metadata: Array<?FbtSiteMetaEntry>;
+  +_metadata: $ReadOnlyArray<?FbtSiteMetaEntry>;
   +_tableOrHash: FbtSiteHashifiedTableJSFBTTree;
   +_tokenToMask: TokenToMask;
   +_translations: HashToTranslation;
@@ -118,12 +120,13 @@ class TranslationBuilder {
     // If a gender variation exists, add it to our table
     if (this._hasVCGenderVariation) {
       this._tableOrHash = {'*': this._tableOrHash};
-      this._metadata.unshift(
+      this._metadata = [
         FbtSiteMetaEntry.wrap({
           token: IntlVariations.VIEWING_USER,
           type: IntlVariations.FbtVariationType.GENDER,
         }),
-      );
+        ...this._metadata,
+      ];
     }
 
     for (let ii = 0; ii < this._metadata.length; ++ii) {
@@ -135,7 +138,8 @@ class TranslationBuilder {
         );
         this._tokenToMask[token] = nullthrows(
           metadata.getVariationMask(),
-          'Expect `metadata.getVariationMask()` to be nonnull because `metadata.hasVariationMask() === true`.',
+          'Expect `metadata.getVariationMask()` to be nonnull because ' +
+            '`metadata.hasVariationMask() === true`.',
         );
       }
     }
@@ -150,7 +154,8 @@ class TranslationBuilder {
     if (this._hasVCGenderVariation) {
       invariant(
         table != null && typeof table !== 'string' && !Array.isArray(table),
-        'Expect `table` to not be a TranslationLeaf when the string has a hidden viewer context token.',
+        'Expect `table` to not be a TranslationLeaf when ' +
+          'the string has a hidden viewer context token.',
       );
       // This hidden key is checked during JS fbt runtime to signal that we
       // should access the first entry of our table with the viewer's gender
@@ -239,15 +244,19 @@ class TranslationBuilder {
         );
         invariant(
           mask === Mask.NUMBER || mask === Mask.GENDER,
-          'Unknown variation mask',
+          'Unknown variation mask: %s (%s)',
+          varDump(mask),
+          typeof mask,
         );
         invariant(
           isValidValue(key),
-          'We expect variation value keys for variations',
+          'Expect variation keys to be coercible to IntlVariationsEnum: current key=%s (%s)',
+          varDump(key),
+          typeof key,
         );
         const token = nullthrows(
           metadata.getToken(),
-          'Expect `token` to not be null as the metadata has variation mask.',
+          'Expect `token` to not be falsy when the metadata has a variation mask.',
         );
         const variationCandidates = _getTypesFromMask(mask);
         variationCandidates.forEach(variationKey => {
@@ -291,6 +300,14 @@ class TranslationBuilder {
         translation =
           defaultTranslation ?? this._fbtSite.getHashToLeaf()[hash].text;
       }
+    }
+
+    // Replace clear tokens with their token aliases
+    if (translation != null) {
+      translation = replaceClearTokensWithTokenAliases(
+        translation,
+        this._fbtSite.getHashToTokenAliases()[hash],
+      );
     }
 
     // Couple the string with a hash if it was marked as such.  We do this

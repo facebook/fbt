@@ -1,5 +1,5 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * @format
  * @emails oncall+i18n_fbt_js
@@ -44,6 +44,7 @@ const {GenderStringVariationArg} = require('./FbtArguments');
 const FbtNode = require('./FbtNode');
 const FbtNodeType = require('./FbtNodeType');
 const {
+  buildFbtNodeMapForSameParam,
   getChildNodeText,
   getChildNodeTextForDescription,
   getTextFromFbtNodeTree,
@@ -181,9 +182,11 @@ class FbtElementNode
     instance: FbtElementNode | FbtImplicitParamNodeType,
     argsMap: StringVariationArgsMap,
   ): void {
+    const FbtSameParamNode = require('./FbtSameParamNode');
     instance.children.forEach(child => {
       const tokenName = child.getTokenName(argsMap);
-      if (tokenName != null) {
+      // FbtSameParamNode token names are allowed to be redundant by design
+      if (tokenName != null && !(child instanceof FbtSameParamNode)) {
         instance.registerToken(tokenName, child);
       }
     });
@@ -402,6 +405,14 @@ class FbtElementNode
   __toJSONForTestsOnly(): mixed {
     const ret = super.__toJSONForTestsOnly();
     return this.constructor.__compactTokenSet(ret);
+  }
+
+  assertNoOverallTokenNameCollision(
+    argsMapList: $ReadOnlyArray<StringVariationArgsMap>,
+  ): void {
+    argsMapList.forEach(argsMap => {
+      buildFbtNodeMapForSameParam(this, argsMap);
+    });
   }
 }
 

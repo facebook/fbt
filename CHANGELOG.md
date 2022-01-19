@@ -16,6 +16,7 @@ List of changes for each released npm package version.
 - [fbt-rn-android-native versions [Deprecated]](#fbt-rn-android-native-versions-deprecated)
 
 ### Top-level Github
+- [chore] Update copyright headers to 'Meta Platforms, Inc.'
 - [chore] Upgrade to Flow v0.158.0
 - [fix] Add missing dependencies for `@babel/preset-react`
 - [build] Add test to ensure published versions are in sync
@@ -54,12 +55,16 @@ List of changes for each released npm package version.
     Unreleased changes that have landed in main. Click to see more.
   </summary>
 
+</details>
+
+- 0.17.0:
+  - [feat] Add user's regional local in `IntlViewerContext`
+  - [feat] Improve resilience of detection of fbt parameters inside translated string patterns and improve error message format.
   - [chore] Update babel-plugin-fbt-runtime dependency version to `^0.10.x`
   - [chore] Update babel-plugin-fbt dependency version to `^0.21.x`
   - [fix] Ensure that `fbs()` really returns `FbtPureStringResult` objects
   - [fix] Force fbs:plural to only show plain text custom UI values.
-
-</details>
+  - [feat] Convert babel-plugin-fbt raw JSFBT payload to runtime friendly version and add fbt._implicitParam() client-side method
 
 - 0.16.6:
   - [feat] Add a new `FbtTranslations.getRegisteredTranslations` function
@@ -146,19 +151,37 @@ List of changes for each released npm package version.
       Unreleased changes that have landed in main. Click to see more.
     </summary>
 
-    - [fix] Move flow-enums-runtime from devDependency to a normal dependency since it's needed by FbtNodeType at runtime
-    - [fix] Add missing @babel/register dependency
+    0.21.0-rc8-beta
+      - [fix]! Prevent `fbt.sameParam` from referring to a non-existent token name or a plural construct token
+      - [fix]! Prevent token name collisions among fbt constructs across all nesting levels
+
+    0.21.0-rc1-beta - 0.21.0-rc7-beta
+      - [fix] Add missing `fbjs` npm dependency
+      - [feature] Introduce a script to identify new/updated strings after Auto-Param
+      - [feat]! Pull out common `desc` from leaves and include `tokenAliases`
+      when calculating `hash_key` in fbtJenkinsHash.js
+      - [fix] Check for untransformed fbt constructs after FbtTransform
+      - [fix] Check for nested fbt constructs
+      - [fix] Stop TranslationBuilder from mutating FbtSite
+      - [refactor] Make TranslationBuilder use clear token replacement helper in FbtUtil.js
+      - [chore] Improve translate-test.js and FbtSite-test.js
+      - [fix] Replace clear tokens in translation data with their token aliases
+      - [fix!] (fbt:name) Fix issue where we failed to prevent users from using a "gender" value issued from a function/class invocation
+      - [fix!] (fbt:enum) Fix issue where we failed to detect that enum object keys were issued from computed values instead of being statically defined
+      - [fix] Move flow-enums-runtime from devDependency to a normal dependency since it's needed by FbtNodeType at runtime
+      - [fix] Add missing @babel/register dependency
+      - [feat] Print error message for each missing entry in input JSON
+      - [chore] Update fb-babel-plugin-utils dependency version
+      - [refactor] Improve readability of JS code output serialized with Jest snapshots
+      - [chore]! Drop support for node.js `<12.16.x`
+      - [feat]! Refactor the string extraction algorithm to properly generate meaningful text/description pairs for fbt callsites
+        that contain JSX presentational elements.
+        We're also adding support for a new way to call fbt() using an array of inputs instead of string concatenation.
+        See [#35](https://github.com/facebook/fbt/issues/35)
   </details>
 
 - 0.21.0:
-  - [feat] Print error message for each missing entry in input JSON
-  - [chore] Update fb-babel-plugin-utils dependency version
-  - [refactor] Improve readability of JS code output serialized with Jest snapshots
-  - [chore]! Drop support for node.js `<12.16.x`
-  - [feat]! Refactor the string extraction algorithm to properly generate meaningful text/description pairs for fbt callsites
-    that contain JSX presentational elements.
-    We're also adding support for a new way to call fbt() using an array of inputs instead of string concatenation.
-    See [#35](https://github.com/facebook/fbt/issues/35)
+  - This version was published accidently. Please ignore.
 
 - 0.20.3: Accidental npm release. It's the same as babel-plugin-fbt@0.20.2.
 - 0.20.2:
@@ -284,6 +307,10 @@ List of changes for each released npm package version.
   <details>
     <summary>
       Unreleased changes that have landed in main. Click to see more.
+
+      - [chore] Update fbtRuntime-test.js after the definition of `hash_key` in
+      fbtJenkinsHash.js was modified
+      - [refactor] Move clear token replacement logic to babel-plugin-fbt/src/FbtUtil.js
     </summary>
   </details>
 

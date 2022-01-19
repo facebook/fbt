@@ -1,5 +1,5 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * @emails oncall+i18n_fbt_js
  * @format
@@ -10,8 +10,8 @@ jest.autoMockOff();
 
 const TestFbtEnumManifest = require('TestFbtEnumManifest');
 
-const {payload, transform, withFbtRequireStatement} = require('./FbtTestUtil');
 const {FbtVariationType} = require('../translate/IntlVariations');
+const {payload, transform, withFbtRequireStatement} = require('./FbtTestUtil');
 const {TestUtil} = require('fb-babel-plugin-utils');
 
 // Given a test config's "filter" status, decides whether we should run it with
@@ -200,6 +200,142 @@ const generalTestData = {
 
     throws: `There's already a token called "name" in this fbt call`,
   },
+
+  'should throw when a fbt.param is used outside of fbt': {
+    input: withFbtRequireStatement(`var z = fbt.param('name', val);`),
+
+    throws:
+      `Fbt constructs can only be used within the scope of an fbt` +
+      ` string. I.e. It should be used directly inside an ` +
+      `‹fbt› / ‹fbs› callsite`,
+  },
+
+  'should throw when a fbt.param is nested inside another fbt.param': {
+    input: withFbtRequireStatement(
+      `var z = fbt(
+        'a ' +
+        fbt.param('name', fbt.param('name2', val2)) +
+        ' b',
+        'desc',
+      );`,
+    ),
+
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var z = fbt(
+        [
+          'a ',
+          fbt.param('name', fbt.param('name2', val2)),
+          ' b',
+        ], 'desc',
+      );`,
+    ),
+
+    throws:
+      `Expected fbt constructs to not nest inside fbt constructs, ` +
+      `but found fbt.param nest inside fbt.param`,
+  },
+
+  'should throw when a fbt.param is nested inside a fbt.name': {
+    input: withFbtRequireStatement(
+      `var z = fbt(
+        'a ' +
+        fbt.name('name', fbt.param('paramName', val2), gender) +
+        ' b',
+        'desc',
+      );`,
+    ),
+
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var z = fbt(
+        [
+          'a ',
+          fbt.name('name', fbt.param('paramName', val2), gender),
+          ' b',
+        ], 'desc',
+      );`,
+    ),
+
+    throws:
+      `Expected fbt constructs to not nest inside fbt constructs, ` +
+      `but found fbt.param nest inside fbt.name`,
+  },
+
+  'should not throw when a fbt.param is nested inside a fbt which is nested inside a fbt.name':
+    {
+      input: withFbtRequireStatement(
+        `var z = fbt(
+        'a ' +
+        fbt.name(
+          'name',
+          fbt(
+            fbt.param('paramName', val2),
+            "desc inner",
+          ),
+          gender,
+        ) +
+        ' b',
+        'desc',
+      );`,
+      ),
+
+      inputWithArraySyntax: withFbtRequireStatement(
+        `var z = fbt(
+        [
+          'a ',
+          fbt.name(
+            'name',
+            fbt(
+              fbt.param('paramName', val2),
+              "desc inner",
+            ),
+            gender,
+          ),
+          ' b',
+        ], 'desc',
+      );`,
+      ),
+
+      output: withFbtRequireStatement(
+        `var z = fbt._(
+        ${payload({
+          jsfbt: {
+            t: {
+              '*': {
+                desc: 'desc',
+                text: 'a {name} b',
+              },
+            },
+            m: [
+              {
+                token: 'name',
+                type: 1,
+              },
+            ],
+          },
+          project: '',
+        })},
+        [
+          fbt._name(
+            "name",
+            fbt._(
+              ${payload({
+                jsfbt: {
+                  t: {
+                    desc: 'desc inner',
+                    text: '{paramName}',
+                  },
+                  m: [],
+                },
+                project: '',
+              })},
+              [fbt._param("paramName", val2)],
+            ),
+            gender,
+          ),
+        ],
+      );`,
+      ),
+    },
 
   // Initially needed for JS source maps accuracy
   'should maintain intra-argument newlines': {
@@ -402,172 +538,172 @@ const generalTestData = {
     {
       inputWithArraySyntax: withFbtRequireStatement(
         `var React = require('react');
-      var fbt_sv_arg_2 = 2;
-      function a(fbt_sv_arg_3) {
-        var fbt_sv_arg_0 = 1;
-        <fbt desc="example 1">
-          <fbt:param name="name" gender={this.state.ex1Gender}>
-            <b className="padRight">{this.state.ex1Name}</b>
-          </fbt:param>
-          has shared
-          <a className="neatoLink" href="#" tabindex={123} id={"uniq"}>
-            <strong>
-              <fbt:plural
-                many="photos"
-                showCount="ifMany"
-                count={this.state.ex1Count}>
-                a photo
-              </fbt:plural>
-            </strong>
-          </a>
-          with you
-        </fbt>;
-      }`,
+        var fbt_sv_arg_2 = 2;
+        function a(fbt_sv_arg_3) {
+          var fbt_sv_arg_0 = 1;
+          <fbt desc="example 1">
+            <fbt:param name="name" gender={this.state.ex1Gender}>
+              <b className="padRight">{this.state.ex1Name}</b>
+            </fbt:param>
+            has shared
+            <a className="neatoLink" href="#" tabindex={123} id={"uniq"}>
+              <strong>
+                <fbt:plural
+                  many="photos"
+                  showCount="ifMany"
+                  count={this.state.ex1Count}>
+                  a photo
+                </fbt:plural>
+              </strong>
+            </a>
+            with you
+          </fbt>;
+        }`,
       ),
 
       output: withFbtRequireStatement(
         `var React = require('react');
-      var fbt_sv_arg_2 = 2;
-      function a(fbt_sv_arg_3) {
-        var fbt_sv_arg_1, fbt_sv_arg_4;
-        var fbt_sv_arg_0 = 1;
-        (
-          fbt_sv_arg_1 = fbt._param(
-            "name",
-            /*#__PURE__*/React.createElement(
-              "b",
-              {className: "padRight"},
-              this.state.ex1Name,
-            ),
-            [1, this.state.ex1Gender],
-          ),
-          fbt_sv_arg_4 = fbt._plural(this.state.ex1Count, "number"),
-          fbt._(
-          ${payload({
-            jsfbt: {
-              t: {
-                '*': {
-                  '*': {
-                    desc: 'example 1',
-                    text: '{name} has shared {=[number] photos} with you',
-                    tokenAliases: {'=[number] photos': '=m2'},
-                  },
-                  _1: {
-                    desc: 'example 1',
-                    text: '{name} has shared {=a photo} with you',
-                    tokenAliases: {'=a photo': '=m2'},
-                  },
-                },
-              },
-              m: [
-                {
-                  token: 'name',
-                  type: 1,
-                },
-                {
-                  token: 'number',
-                  type: 2,
-                  singular: true,
-                },
-              ],
-            },
-            project: '',
-          })},
-          [
-            fbt_sv_arg_1,
-            fbt_sv_arg_4,
-            fbt._implicitParam(
-              "=m2",
+        var fbt_sv_arg_2 = 2;
+        function a(fbt_sv_arg_3) {
+          var fbt_sv_arg_1, fbt_sv_arg_4;
+          var fbt_sv_arg_0 = 1;
+          (
+            fbt_sv_arg_1 = fbt._param(
+              "name",
               /*#__PURE__*/React.createElement(
-                "a",
-                {
-                  className: "neatoLink",
-                  href: "#",
-                  tabindex: 123,
-                  id: "uniq",
-                },
-                fbt._(
-                  ${payload({
-                    jsfbt: {
-                      t: {
-                        '*': {
-                          '*': {
-                            desc: 'In the phrase: "{name} has shared {=[number] photos} with you"',
-                            text: '{=[number] photos}',
-                            tokenAliases: {'=[number] photos': '=m1'},
-                          },
-                          _1: {
-                            desc: 'In the phrase: "{name} has shared {=a photo} with you"',
-                            text: '{=a photo}',
-                            tokenAliases: {'=a photo': '=m1'},
-                          },
-                        },
-                      },
-                      m: [
-                        {
-                          token: 'name',
-                          type: 1,
-                        },
-                        {
-                          token: 'number',
-                          type: 2,
-                          singular: true,
-                        },
-                      ],
+                "b",
+                {className: "padRight"},
+                this.state.ex1Name,
+              ),
+              [1, this.state.ex1Gender],
+            ),
+            fbt_sv_arg_4 = fbt._plural(this.state.ex1Count, "number"),
+            fbt._(
+            ${payload({
+              jsfbt: {
+                t: {
+                  '*': {
+                    '*': {
+                      desc: 'example 1',
+                      text: '{name} has shared {=[number] photos} with you',
+                      tokenAliases: {'=[number] photos': '=m2'},
                     },
-                    project: '',
-                  })},
-                  [
-                    fbt_sv_arg_1,
-                    fbt_sv_arg_4,
-                    fbt._implicitParam(
-                      "=m1",
-                      /*#__PURE__*/React.createElement(
-                        "strong",
-                        null,
-                        fbt._(
-                          ${payload({
-                            jsfbt: {
-                              t: {
-                                '*': {
-                                  '*': {
-                                    desc: 'In the phrase: "{name} has shared {=[number] photos} with you"',
-                                    text: '{number} photos',
-                                  },
-                                  _1: {
-                                    desc: 'In the phrase: "{name} has shared {=a photo} with you"',
-                                    text: 'a photo',
-                                  },
-                                },
-                              },
-                              m: [
-                                {
-                                  token: 'name',
-                                  type: 1,
-                                },
-                                {
-                                  token: 'number',
-                                  type: 2,
-                                  singular: true,
-                                },
-                              ],
+                    _1: {
+                      desc: 'example 1',
+                      text: '{name} has shared {=a photo} with you',
+                      tokenAliases: {'=a photo': '=m2'},
+                    },
+                  },
+                },
+                m: [
+                  {
+                    token: 'name',
+                    type: 1,
+                  },
+                  {
+                    token: 'number',
+                    type: 2,
+                    singular: true,
+                  },
+                ],
+              },
+              project: '',
+            })},
+            [
+              fbt_sv_arg_1,
+              fbt_sv_arg_4,
+              fbt._implicitParam(
+                "=m2",
+                /*#__PURE__*/React.createElement(
+                  "a",
+                  {
+                    className: "neatoLink",
+                    href: "#",
+                    tabindex: 123,
+                    id: "uniq",
+                  },
+                  fbt._(
+                    ${payload({
+                      jsfbt: {
+                        t: {
+                          '*': {
+                            '*': {
+                              desc: 'In the phrase: "{name} has shared {=[number] photos} with you"',
+                              text: '{=[number] photos}',
+                              tokenAliases: {'=[number] photos': '=m1'},
                             },
-                            project: '',
-                          })},
-                          [
-                            fbt_sv_arg_1,
-                            fbt_sv_arg_4,
-                          ],
+                            _1: {
+                              desc: 'In the phrase: "{name} has shared {=a photo} with you"',
+                              text: '{=a photo}',
+                              tokenAliases: {'=a photo': '=m1'},
+                            },
+                          },
+                        },
+                        m: [
+                          {
+                            token: 'name',
+                            type: 1,
+                          },
+                          {
+                            token: 'number',
+                            type: 2,
+                            singular: true,
+                          },
+                        ],
+                      },
+                      project: '',
+                    })},
+                    [
+                      fbt_sv_arg_1,
+                      fbt_sv_arg_4,
+                      fbt._implicitParam(
+                        "=m1",
+                        /*#__PURE__*/React.createElement(
+                          "strong",
+                          null,
+                          fbt._(
+                            ${payload({
+                              jsfbt: {
+                                t: {
+                                  '*': {
+                                    '*': {
+                                      desc: 'In the phrase: "{name} has shared {=[number] photos} with you"',
+                                      text: '{number} photos',
+                                    },
+                                    _1: {
+                                      desc: 'In the phrase: "{name} has shared {=a photo} with you"',
+                                      text: 'a photo',
+                                    },
+                                  },
+                                },
+                                m: [
+                                  {
+                                    token: 'name',
+                                    type: 1,
+                                  },
+                                  {
+                                    token: 'number',
+                                    type: 2,
+                                    singular: true,
+                                  },
+                                ],
+                              },
+                              project: '',
+                            })},
+                            [
+                              fbt_sv_arg_1,
+                              fbt_sv_arg_4,
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            )
-          ]
-        ));
-      }`,
+              )
+            ]
+          ));
+        }`,
       ),
     },
 
@@ -1782,6 +1918,72 @@ const generalTestData = {
     ),
   },
 
+  'should throw if the token name of a sameParam construct is not defined': {
+    input: withFbtRequireStatement(
+      `var z = fbt(
+        fbt.param('name1', val1) + ' and ' + fbt.sameParam('name2'),
+        'd',
+      );`,
+    ),
+
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var z = fbt(
+        [
+          fbt.param('name1', val1),
+          ' and ',
+          fbt.sameParam('name2'),
+        ], 'd',
+      );`,
+    ),
+
+    throws:
+      'Expected fbt `sameParam` construct with name=`name2` to refer to ' +
+      'a `name` or `param` construct using the same token name',
+  },
+
+  'should throw if the token name of a sameParam construct in a nested string is not defined':
+    {
+      inputWithArraySyntax: withFbtRequireStatement(
+        `var z = fbt(
+        [
+          fbt.param('name', val1),
+          ' and ',
+          <b>
+            inner string
+            {fbt.sameParam('name1')}
+          </b>,
+        ], 'd',
+      );`,
+      ),
+
+      throws:
+        'Expected fbt `sameParam` construct with name=`name1` to refer to ' +
+        'a `name` or `param` construct using the same token name',
+    },
+
+  'should throw if the sameParam refers to a plural construct': {
+    input: withFbtRequireStatement(
+      `var z = fbt(
+        fbt.plural('cat', count, {value: someValueFunction(), name: 'tokenName', showCount: 'yes'}) + ' and ' + fbt.sameParam('tokenName'),
+        'd',
+      );`,
+    ),
+
+    inputWithArraySyntax: withFbtRequireStatement(
+      `var z = fbt(
+        [
+          fbt.plural('cat', count, {value: someValueFunction(), name: 'tokenName', showCount: 'yes'}),
+          ' and ',
+          fbt.sameParam('tokenName'),
+        ], 'd',
+      );`,
+    ),
+
+    throws:
+      'Expected fbt `sameParam` construct with name=`tokenName` to refer to ' +
+      'a `name` or `param` construct using the same token name',
+  },
+
   'should insert param in place of fbt.sameParam if it exists': {
     input: withFbtRequireStatement(
       `var z = fbt(
@@ -2319,107 +2521,232 @@ const generalTestData = {
         'template literals without any expressions, or fbt constructs',
     },
 
-  'should throw for string with a nested JSX fragment and string variation arguments that are function calls':
+  'should throw for string with a nested JSX fragment and subject gender contains function calls':
     {
       inputWithArraySyntax: withFbtRequireStatement(
         `var React = require('react');
-      var x = fbt(
-        [
-          'A1 ',
-          <a>
-            B1
-            <b>
-              C1
-            </b>
-            B2
-          </a>,
-          ' A2',
-        ],
-        'string with nested JSX fragments',
-        {
-          subject: subjectValue(),
-        }
-      );`,
+        var x = fbt(
+          [
+            'A1 ',
+            <a>
+              B1
+              <b>
+                C1
+              </b>
+              B2
+            </a>,
+            ' A2',
+          ],
+          'string with nested JSX fragments',
+          {
+            subject: subjectValue(),
+          }
+        );`,
       ),
 
       throws:
-        `Expect string variation runtime arguments to not be` +
-        ` function calls or class instantiations, but "subject" argument is a function call or class instantiation.`,
+        `Expected string variation runtime argument "subject" ` +
+        `to not be a function call or class instantiation expression.`,
     },
 
   'should throw for string with a nested JSX fragment and string variation arguments that have nested class instantiation.':
     {
       inputWithArraySyntax: withFbtRequireStatement(
         `var React = require('react');
-      var x = fbt(
-        [
-          'A1 ',
-          <a>
-            B1
-            <b>
-              C1
-              {fbt.plural('world', (new SomeRandomClass(), value))}
-            </b>
-            B2
-          </a>,
-          ' A2',
-        ],
-        'string with nested JSX fragments',
-      );`,
+        var x = fbt(
+          [
+            'A1 ',
+            <a>
+              B1
+              <b>
+                C1
+                {fbt.plural('world', (new SomeRandomClass(), value))}
+              </b>
+              B2
+            </a>,
+            ' A2',
+          ],
+          'string with nested JSX fragments',
+        );`,
       ),
 
       throws:
-        `Expect string variation runtime arguments to not contain` +
-        ` function calls or class instantiations, but "count" argument contains a function call or class instantiation.`,
+        `Expected string variation runtime argument "count" ` +
+        `to not contain a function call or class instantiation expression.`,
     },
-
-  'should throw for string with a nested JSX fragment and string variation arguments that have nested function calls':
+  'should throw for string with a nested JSX fragment and string variation arguments that have nested function calls (fbt:plural).':
     {
       inputWithArraySyntax: withFbtRequireStatement(
         `var React = require('react');
-      var x = fbt(
-        [
-          'A1 ',
-          <a>
-            B1
-            <b>
-              C1
-              {fbt.plural('world', 2 * a.getValue())}
-            </b>
-            B2
-          </a>,
-          ' A2',
-        ],
-        'string with nested JSX fragments',
-      );`,
+        var x = fbt(
+          [
+            'A1 ',
+            <a>
+              B1
+              <b>
+                C1
+                {fbt.plural('world', getValue())}
+              </b>
+              B2
+            </a>,
+            ' A2',
+          ],
+          'string with nested JSX fragments',
+        );`,
       ),
 
       throws:
-        `Expect string variation runtime arguments to not contain` +
-        ` function calls or class instantiations, but "count" argument contains a function call or class instantiation.`,
+        `Expected string variation runtime argument "count" ` +
+        `to not be a function call or class instantiation expression.`,
+    },
+  'should throw for string with a nested JSX fragment and string variation arguments that have nested function calls (fbt:enum).':
+    {
+      inputWithArraySyntax: withFbtRequireStatement(
+        `var React = require('react');
+        var x = fbt(
+          [
+            'A1 ',
+            <a>
+              B1
+              <b>
+                C1
+                {fbt.enum(getValue(), ['world'])}
+              </b>
+              B2
+            </a>,
+            ' A2',
+          ],
+          'string with nested JSX fragments',
+        );`,
+      ),
+
+      throws:
+        `Expected string variation runtime argument "value" ` +
+        `to not be a function call or class instantiation expression.`,
+    },
+  'should throw for string with a nested JSX fragment and string variation arguments that have nested function calls (fbt:name).':
+    {
+      inputWithArraySyntax: withFbtRequireStatement(
+        `var React = require('react');
+        var x = fbt(
+          [
+            'A1 ',
+            <a>
+              B1
+              <b>
+                C1
+                {fbt.name('name', getName(), getGender())}
+              </b>
+              B2
+            </a>,
+            ' A2',
+          ],
+          'string with nested JSX fragments',
+        );`,
+      ),
+
+      throws:
+        `Expected string variation runtime argument "gender" ` +
+        `to not be a function call or class instantiation expression.`,
+    },
+  'should throw for string with a nested JSX fragment and string variation arguments that have nested function calls (fbt:param with number).':
+    {
+      inputWithArraySyntax: withFbtRequireStatement(
+        `var React = require('react');
+        var x = fbt(
+          [
+            'A1 ',
+            <a>
+              B1
+              <b>
+                C1
+                {fbt.param('name', paramValue(), {number: getNumber()})}
+              </b>
+              B2
+            </a>,
+            ' A2',
+          ],
+          'string with nested JSX fragments',
+        );`,
+      ),
+
+      throws:
+        `Expected string variation runtime argument "number" ` +
+        `to not be a function call or class instantiation expression.`,
+    },
+  'should throw for string with a nested JSX fragment and string variation arguments that have nested function calls (fbt:param with gender).':
+    {
+      inputWithArraySyntax: withFbtRequireStatement(
+        `var React = require('react');
+        var x = fbt(
+          [
+            'A1 ',
+            <a>
+              B1
+              <b>
+                C1
+                {fbt.param('name', paramValue(), {gender: getGender()})}
+              </b>
+              B2
+            </a>,
+            ' A2',
+          ],
+          'string with nested JSX fragments',
+        );`,
+      ),
+
+      throws:
+        `Expected string variation runtime argument "gender" ` +
+        `to not be a function call or class instantiation expression.`,
+    },
+
+  'should throw for string with a nested JSX fragment and string variation arguments that have nested function calls (fbt:pronoun)':
+    {
+      inputWithArraySyntax: withFbtRequireStatement(
+        `var React = require('react');
+        var x = fbt(
+          [
+            'A1 ',
+            <a>
+              B1
+              <b>
+                C1
+                {fbt.pronoun('object', getGender())}
+              </b>
+              B2
+            </a>,
+            ' A2',
+          ],
+          'string with nested JSX fragments',
+        );`,
+      ),
+
+      throws:
+        `Expected string variation runtime argument "gender" ` +
+        `to not be a function call or class instantiation expression.`,
     },
 
   'should not throw for string with a nested JSX fragment and string variation arguments':
     {
       inputWithArraySyntax: withFbtRequireStatement(
         `var React = require('react');
-      var x = fbt(
-        [
-          'A1 ',
-          <a>
-            B1
-            <b>
-              C1
-              {fbt.param('count', someRandomFunction(), {number: true})}
-              C2
-              {fbt.plural('cat', catCount, {value: someValueFunction(), name: 'cat_token', showCount: 'ifMany', many: 'cats'})}
-            </b>
-            B2
-          </a>,
-          ' A2',
-        ],
-        'string with nested JSX fragments',
-      );`,
+        var x = fbt(
+          [
+            'A1 ',
+            <a>
+              B1
+              <b>
+                C1
+                {fbt.param('count', someRandomFunction(), {number: true})}
+                C2
+                {fbt.plural('cat', catCount, {value: someValueFunction(), name: 'cat_token', showCount: 'ifMany', many: 'cats'})}
+              </b>
+              B2
+            </a>,
+            ' A2',
+          ],
+          'string with nested JSX fragments',
+        );`,
       ),
 
       output: `var fbt_sv_arg_0, fbt_sv_arg_1;
@@ -2553,17 +2880,17 @@ with some other stuff.\`
     {
       input: withFbtRequireStatement(
         `var x = fbt(
-        \`Look!  \${fbt.enum('groups', {
-          groups: 'Groups',
-          photos: 'Photos',
-          videos: 'Videos',
-        })}  and  \${fbt.enum('groups', {
-          "groups": 'groups',
-          "photos": 'photos',
-          "videos": 'videos',
-        })}!\`,
-        'enums!',
-      );`,
+          \`Look!  \${fbt.enum('groups', {
+            groups: 'Groups',
+            photos: 'Photos',
+            videos: 'Videos',
+          })}  and  \${fbt.enum('groups', {
+            "groups": 'groups',
+            "photos": 'photos',
+            "videos": 'videos',
+          })}!\`,
+          'enums!',
+        );`,
       ),
 
       output: withFbtRequireStatement(
@@ -2688,7 +3015,6 @@ function prepareTestDataForInputKey(inputKeyName) {
 
 function describeTestScenarios(testData) {
   describe('Translation transform', () => {
-    // TODO(T40113359): remove this filtering when the clientside JS transform is implemented
     const filteredTestData = {};
     for (const title in testData) {
       const scenario = {...testData[title]};

@@ -1,5 +1,665 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Test jsx auto-wrapping of implicit parameters can handle multiple variations in nested strings 1`] = `
+var fbt_sv_arg_0, fbt_sv_arg_1;
+
+const fbt = require("fbt");
+
+(fbt_sv_arg_0 = fbt._name("bar", bar, g)),
+  (fbt_sv_arg_1 = fbt._plural(num, "baz")),
+  fbt._(
+    /* __FBT__ start */ {
+      jsfbt: {
+        t: {
+          "*": {
+            "*": {
+              desc: "some-desc",
+              text: "Level 1 {foo}{=Level 2 [bar]Level 3 [baz] cats}",
+              tokenAliases: { "=Level 2 [bar]Level 3 [baz] cats": "=m2" },
+            },
+            _1: {
+              desc: "some-desc",
+              text: "Level 1 {foo}{=Level 2 [bar]Level 3 1 cat}",
+              tokenAliases: { "=Level 2 [bar]Level 3 1 cat": "=m2" },
+            },
+          },
+        },
+        m: [
+          { token: "bar", type: 1 },
+          { token: "baz", type: 2, singular: true },
+        ],
+      },
+      project: "",
+    } /* __FBT__ end */,
+    [
+      fbt_sv_arg_0,
+      fbt_sv_arg_1,
+      fbt._param("foo", foo),
+      fbt._implicitParam(
+        "=m2",
+        /*#__PURE__*/ React.createElement(
+          "a",
+          null,
+          fbt._(
+            /* __FBT__ start */ {
+              jsfbt: {
+                t: {
+                  "*": {
+                    "*": {
+                      desc:
+                        'In the phrase: "Level 1 {foo}{=Level 2 [bar]Level 3 [baz] cats}"',
+                      text: "Level 2 {bar}{=Level 3 [baz] cats}",
+                      tokenAliases: { "=Level 3 [baz] cats": "=m2" },
+                    },
+                    _1: {
+                      desc:
+                        'In the phrase: "Level 1 {foo}{=Level 2 [bar]Level 3 1 cat}"',
+                      text: "Level 2 {bar}{=Level 3 1 cat}",
+                      tokenAliases: { "=Level 3 1 cat": "=m2" },
+                    },
+                  },
+                },
+                m: [
+                  { token: "bar", type: 1 },
+                  { token: "baz", type: 2, singular: true },
+                ],
+              },
+              project: "",
+            } /* __FBT__ end */,
+            [
+              fbt_sv_arg_0,
+              fbt_sv_arg_1,
+              fbt._implicitParam(
+                "=m2",
+                /*#__PURE__*/ React.createElement(
+                  "b",
+                  null,
+                  fbt._(
+                    /* __FBT__ start */ {
+                      jsfbt: {
+                        t: {
+                          "*": {
+                            "*": {
+                              desc:
+                                'In the phrase: "Level 1 {foo}Level 2 {bar}{=Level 3 [baz] cats}"',
+                              text: "Level 3 {baz} cats",
+                            },
+                            _1: {
+                              desc:
+                                'In the phrase: "Level 1 {foo}Level 2 {bar}{=Level 3 1 cat}"',
+                              text: "Level 3 1 cat",
+                            },
+                          },
+                        },
+                        m: [
+                          { token: "bar", type: 1 },
+                          { token: "baz", type: 2, singular: true },
+                        ],
+                      },
+                      project: "",
+                    } /* __FBT__ end */,
+                    [fbt_sv_arg_0, fbt_sv_arg_1]
+                  )
+                )
+              ),
+            ]
+          )
+        )
+      ),
+    ]
+  );
+
+`;
+
+exports[`Test jsx auto-wrapping of implicit parameters can handle multiple variations in nested strings and a subject gender 1`] = `
+var fbt_sv_arg_0, fbt_sv_arg_1, fbt_sv_arg_2;
+
+const fbt = require("fbt");
+
+(fbt_sv_arg_0 = fbt._subject(g0)),
+  (fbt_sv_arg_1 = fbt._pronoun(1, g1)),
+  (fbt_sv_arg_2 = fbt._plural(num, "foo")),
+  fbt._(
+    /* __FBT__ start */ {
+      jsfbt: {
+        t: {
+          "*": {
+            1: {
+              "*": {
+                desc: "description",
+                text: "Level 1 {=her some_pronoun}{=Level 2 [foo] cats}",
+                tokenAliases: {
+                  "=her some_pronoun": "=m1",
+                  "=Level 2 [foo] cats": "=m2",
+                },
+              },
+              _1: {
+                desc: "description",
+                text: "Level 1 {=her some_pronoun}{=Level 2 1 cat}",
+                tokenAliases: {
+                  "=her some_pronoun": "=m1",
+                  "=Level 2 1 cat": "=m2",
+                },
+              },
+            },
+            2: {
+              "*": {
+                desc: "description",
+                text: "Level 1 {=his some_pronoun}{=Level 2 [foo] cats}",
+                tokenAliases: {
+                  "=his some_pronoun": "=m1",
+                  "=Level 2 [foo] cats": "=m2",
+                },
+              },
+              _1: {
+                desc: "description",
+                text: "Level 1 {=his some_pronoun}{=Level 2 1 cat}",
+                tokenAliases: {
+                  "=his some_pronoun": "=m1",
+                  "=Level 2 1 cat": "=m2",
+                },
+              },
+            },
+            "*": {
+              "*": {
+                desc: "description",
+                text: "Level 1 {=their some_pronoun}{=Level 2 [foo] cats}",
+                tokenAliases: {
+                  "=their some_pronoun": "=m1",
+                  "=Level 2 [foo] cats": "=m2",
+                },
+              },
+              _1: {
+                desc: "description",
+                text: "Level 1 {=their some_pronoun}{=Level 2 1 cat}",
+                tokenAliases: {
+                  "=their some_pronoun": "=m1",
+                  "=Level 2 1 cat": "=m2",
+                },
+              },
+            },
+          },
+        },
+        m: [
+          { token: "__subject__", type: 1 },
+          null,
+          { token: "foo", type: 2, singular: true },
+        ],
+      },
+      project: "",
+    } /* __FBT__ end */,
+    [
+      fbt_sv_arg_0,
+      fbt_sv_arg_1,
+      fbt_sv_arg_2,
+      fbt._implicitParam(
+        "=m1",
+        /*#__PURE__*/ React.createElement(
+          "a",
+          {
+            href: "#new",
+          },
+          fbt._(
+            /* __FBT__ start */ {
+              jsfbt: {
+                t: {
+                  "*": {
+                    1: {
+                      "*": {
+                        desc:
+                          'In the phrase: "Level 1 {=her some_pronoun}{=Level 2 [foo] cats}"',
+                        text: "her some_pronoun",
+                      },
+                      _1: {
+                        desc:
+                          'In the phrase: "Level 1 {=her some_pronoun}{=Level 2 1 cat}"',
+                        text: "her some_pronoun",
+                      },
+                    },
+                    2: {
+                      "*": {
+                        desc:
+                          'In the phrase: "Level 1 {=his some_pronoun}{=Level 2 [foo] cats}"',
+                        text: "his some_pronoun",
+                      },
+                      _1: {
+                        desc:
+                          'In the phrase: "Level 1 {=his some_pronoun}{=Level 2 1 cat}"',
+                        text: "his some_pronoun",
+                      },
+                    },
+                    "*": {
+                      "*": {
+                        desc:
+                          'In the phrase: "Level 1 {=their some_pronoun}{=Level 2 [foo] cats}"',
+                        text: "their some_pronoun",
+                      },
+                      _1: {
+                        desc:
+                          'In the phrase: "Level 1 {=their some_pronoun}{=Level 2 1 cat}"',
+                        text: "their some_pronoun",
+                      },
+                    },
+                  },
+                },
+                m: [
+                  { token: "__subject__", type: 1 },
+                  null,
+                  { token: "foo", type: 2, singular: true },
+                ],
+              },
+              project: "",
+            } /* __FBT__ end */,
+            [fbt_sv_arg_0, fbt_sv_arg_1, fbt_sv_arg_2]
+          )
+        )
+      ),
+      fbt._implicitParam(
+        "=m2",
+        /*#__PURE__*/ React.createElement(
+          "b",
+          null,
+          fbt._(
+            /* __FBT__ start */ {
+              jsfbt: {
+                t: {
+                  "*": {
+                    1: {
+                      "*": {
+                        desc:
+                          'In the phrase: "Level 1 {=her some_pronoun}{=Level 2 [foo] cats}"',
+                        text: "Level 2 {foo} cats",
+                      },
+                      _1: {
+                        desc:
+                          'In the phrase: "Level 1 {=her some_pronoun}{=Level 2 1 cat}"',
+                        text: "Level 2 1 cat",
+                      },
+                    },
+                    2: {
+                      "*": {
+                        desc:
+                          'In the phrase: "Level 1 {=his some_pronoun}{=Level 2 [foo] cats}"',
+                        text: "Level 2 {foo} cats",
+                      },
+                      _1: {
+                        desc:
+                          'In the phrase: "Level 1 {=his some_pronoun}{=Level 2 1 cat}"',
+                        text: "Level 2 1 cat",
+                      },
+                    },
+                    "*": {
+                      "*": {
+                        desc:
+                          'In the phrase: "Level 1 {=their some_pronoun}{=Level 2 [foo] cats}"',
+                        text: "Level 2 {foo} cats",
+                      },
+                      _1: {
+                        desc:
+                          'In the phrase: "Level 1 {=their some_pronoun}{=Level 2 1 cat}"',
+                        text: "Level 2 1 cat",
+                      },
+                    },
+                  },
+                },
+                m: [
+                  { token: "__subject__", type: 1 },
+                  null,
+                  { token: "foo", type: 2, singular: true },
+                ],
+              },
+              project: "",
+            } /* __FBT__ end */,
+            [fbt_sv_arg_0, fbt_sv_arg_1, fbt_sv_arg_2]
+          )
+        )
+      ),
+    ]
+  );
+
+`;
+
+exports[`Test jsx auto-wrapping of implicit parameters can handle multiple variations in nested strings with substrings that look identical 1`] = `
+var fbt_sv_arg_0, fbt_sv_arg_1, fbt_sv_arg_2;
+
+const fbt = require("fbt");
+
+(fbt_sv_arg_0 = fbt._subject(g0)),
+  (fbt_sv_arg_1 = fbt._pronoun(1, g1)),
+  (fbt_sv_arg_2 = fbt._pronoun(1, g2)),
+  fbt._(
+    /* __FBT__ start */ {
+      jsfbt: {
+        t: {
+          "*": {
+            1: {
+              1: {
+                desc: "description",
+                text: "Level 1 {=her some_pronoun}{=Level 2 her some_pronoun}",
+                tokenAliases: {
+                  "=her some_pronoun": "=m1",
+                  "=Level 2 her some_pronoun": "=m2",
+                },
+              },
+              2: {
+                desc: "description",
+                text: "Level 1 {=her some_pronoun}{=Level 2 his some_pronoun}",
+                tokenAliases: {
+                  "=her some_pronoun": "=m1",
+                  "=Level 2 his some_pronoun": "=m2",
+                },
+              },
+              "*": {
+                desc: "description",
+                text:
+                  "Level 1 {=her some_pronoun}{=Level 2 their some_pronoun}",
+                tokenAliases: {
+                  "=her some_pronoun": "=m1",
+                  "=Level 2 their some_pronoun": "=m2",
+                },
+              },
+            },
+            2: {
+              1: {
+                desc: "description",
+                text: "Level 1 {=his some_pronoun}{=Level 2 her some_pronoun}",
+                tokenAliases: {
+                  "=his some_pronoun": "=m1",
+                  "=Level 2 her some_pronoun": "=m2",
+                },
+              },
+              2: {
+                desc: "description",
+                text: "Level 1 {=his some_pronoun}{=Level 2 his some_pronoun}",
+                tokenAliases: {
+                  "=his some_pronoun": "=m1",
+                  "=Level 2 his some_pronoun": "=m2",
+                },
+              },
+              "*": {
+                desc: "description",
+                text:
+                  "Level 1 {=his some_pronoun}{=Level 2 their some_pronoun}",
+                tokenAliases: {
+                  "=his some_pronoun": "=m1",
+                  "=Level 2 their some_pronoun": "=m2",
+                },
+              },
+            },
+            "*": {
+              1: {
+                desc: "description",
+                text:
+                  "Level 1 {=their some_pronoun}{=Level 2 her some_pronoun}",
+                tokenAliases: {
+                  "=their some_pronoun": "=m1",
+                  "=Level 2 her some_pronoun": "=m2",
+                },
+              },
+              2: {
+                desc: "description",
+                text:
+                  "Level 1 {=their some_pronoun}{=Level 2 his some_pronoun}",
+                tokenAliases: {
+                  "=their some_pronoun": "=m1",
+                  "=Level 2 his some_pronoun": "=m2",
+                },
+              },
+              "*": {
+                desc: "description",
+                text:
+                  "Level 1 {=their some_pronoun}{=Level 2 their some_pronoun}",
+                tokenAliases: {
+                  "=their some_pronoun": "=m1",
+                  "=Level 2 their some_pronoun": "=m2",
+                },
+              },
+            },
+          },
+        },
+        m: [{ token: "__subject__", type: 1 }, null, null],
+      },
+      project: "",
+    } /* __FBT__ end */,
+    [
+      fbt_sv_arg_0,
+      fbt_sv_arg_1,
+      fbt_sv_arg_2,
+      fbt._implicitParam(
+        "=m1",
+        /*#__PURE__*/ React.createElement(
+          "a",
+          {
+            href: "#new",
+          },
+          fbt._(
+            /* __FBT__ start */ {
+              jsfbt: {
+                t: {
+                  "*": {
+                    1: {
+                      1: {
+                        desc:
+                          'In the phrase: "Level 1 {=her some_pronoun}{=Level 2 her some_pronoun}"',
+                        text: "her some_pronoun",
+                      },
+                      2: {
+                        desc:
+                          'In the phrase: "Level 1 {=her some_pronoun}{=Level 2 his some_pronoun}"',
+                        text: "her some_pronoun",
+                      },
+                      "*": {
+                        desc:
+                          'In the phrase: "Level 1 {=her some_pronoun}{=Level 2 their some_pronoun}"',
+                        text: "her some_pronoun",
+                      },
+                    },
+                    2: {
+                      1: {
+                        desc:
+                          'In the phrase: "Level 1 {=his some_pronoun}{=Level 2 her some_pronoun}"',
+                        text: "his some_pronoun",
+                      },
+                      2: {
+                        desc:
+                          'In the phrase: "Level 1 {=his some_pronoun}{=Level 2 his some_pronoun}"',
+                        text: "his some_pronoun",
+                      },
+                      "*": {
+                        desc:
+                          'In the phrase: "Level 1 {=his some_pronoun}{=Level 2 their some_pronoun}"',
+                        text: "his some_pronoun",
+                      },
+                    },
+                    "*": {
+                      1: {
+                        desc:
+                          'In the phrase: "Level 1 {=their some_pronoun}{=Level 2 her some_pronoun}"',
+                        text: "their some_pronoun",
+                      },
+                      2: {
+                        desc:
+                          'In the phrase: "Level 1 {=their some_pronoun}{=Level 2 his some_pronoun}"',
+                        text: "their some_pronoun",
+                      },
+                      "*": {
+                        desc:
+                          'In the phrase: "Level 1 {=their some_pronoun}{=Level 2 their some_pronoun}"',
+                        text: "their some_pronoun",
+                      },
+                    },
+                  },
+                },
+                m: [{ token: "__subject__", type: 1 }, null, null],
+              },
+              project: "",
+            } /* __FBT__ end */,
+            [fbt_sv_arg_0, fbt_sv_arg_1, fbt_sv_arg_2]
+          )
+        )
+      ),
+      fbt._implicitParam(
+        "=m2",
+        /*#__PURE__*/ React.createElement(
+          "b",
+          null,
+          fbt._(
+            /* __FBT__ start */ {
+              jsfbt: {
+                t: {
+                  "*": {
+                    1: {
+                      1: {
+                        desc:
+                          'In the phrase: "Level 1 {=her some_pronoun}{=Level 2 her some_pronoun}"',
+                        text: "Level 2 {=her some_pronoun}",
+                        tokenAliases: { "=her some_pronoun": "=m1" },
+                      },
+                      2: {
+                        desc:
+                          'In the phrase: "Level 1 {=her some_pronoun}{=Level 2 his some_pronoun}"',
+                        text: "Level 2 {=his some_pronoun}",
+                        tokenAliases: { "=his some_pronoun": "=m1" },
+                      },
+                      "*": {
+                        desc:
+                          'In the phrase: "Level 1 {=her some_pronoun}{=Level 2 their some_pronoun}"',
+                        text: "Level 2 {=their some_pronoun}",
+                        tokenAliases: { "=their some_pronoun": "=m1" },
+                      },
+                    },
+                    2: {
+                      1: {
+                        desc:
+                          'In the phrase: "Level 1 {=his some_pronoun}{=Level 2 her some_pronoun}"',
+                        text: "Level 2 {=her some_pronoun}",
+                        tokenAliases: { "=her some_pronoun": "=m1" },
+                      },
+                      2: {
+                        desc:
+                          'In the phrase: "Level 1 {=his some_pronoun}{=Level 2 his some_pronoun}"',
+                        text: "Level 2 {=his some_pronoun}",
+                        tokenAliases: { "=his some_pronoun": "=m1" },
+                      },
+                      "*": {
+                        desc:
+                          'In the phrase: "Level 1 {=his some_pronoun}{=Level 2 their some_pronoun}"',
+                        text: "Level 2 {=their some_pronoun}",
+                        tokenAliases: { "=their some_pronoun": "=m1" },
+                      },
+                    },
+                    "*": {
+                      1: {
+                        desc:
+                          'In the phrase: "Level 1 {=their some_pronoun}{=Level 2 her some_pronoun}"',
+                        text: "Level 2 {=her some_pronoun}",
+                        tokenAliases: { "=her some_pronoun": "=m1" },
+                      },
+                      2: {
+                        desc:
+                          'In the phrase: "Level 1 {=their some_pronoun}{=Level 2 his some_pronoun}"',
+                        text: "Level 2 {=his some_pronoun}",
+                        tokenAliases: { "=his some_pronoun": "=m1" },
+                      },
+                      "*": {
+                        desc:
+                          'In the phrase: "Level 1 {=their some_pronoun}{=Level 2 their some_pronoun}"',
+                        text: "Level 2 {=their some_pronoun}",
+                        tokenAliases: { "=their some_pronoun": "=m1" },
+                      },
+                    },
+                  },
+                },
+                m: [{ token: "__subject__", type: 1 }, null, null],
+              },
+              project: "",
+            } /* __FBT__ end */,
+            [
+              fbt_sv_arg_0,
+              fbt_sv_arg_1,
+              fbt_sv_arg_2,
+              fbt._implicitParam(
+                "=m1",
+                /*#__PURE__*/ React.createElement(
+                  "a",
+                  {
+                    href: "#new",
+                  },
+                  fbt._(
+                    /* __FBT__ start */ {
+                      jsfbt: {
+                        t: {
+                          "*": {
+                            1: {
+                              1: {
+                                desc:
+                                  'In the phrase: "Level 1 {=her some_pronoun}Level 2 {=her some_pronoun}"',
+                                text: "her some_pronoun",
+                              },
+                              2: {
+                                desc:
+                                  'In the phrase: "Level 1 {=her some_pronoun}Level 2 {=his some_pronoun}"',
+                                text: "his some_pronoun",
+                              },
+                              "*": {
+                                desc:
+                                  'In the phrase: "Level 1 {=her some_pronoun}Level 2 {=their some_pronoun}"',
+                                text: "their some_pronoun",
+                              },
+                            },
+                            2: {
+                              1: {
+                                desc:
+                                  'In the phrase: "Level 1 {=his some_pronoun}Level 2 {=her some_pronoun}"',
+                                text: "her some_pronoun",
+                              },
+                              2: {
+                                desc:
+                                  'In the phrase: "Level 1 {=his some_pronoun}Level 2 {=his some_pronoun}"',
+                                text: "his some_pronoun",
+                              },
+                              "*": {
+                                desc:
+                                  'In the phrase: "Level 1 {=his some_pronoun}Level 2 {=their some_pronoun}"',
+                                text: "their some_pronoun",
+                              },
+                            },
+                            "*": {
+                              1: {
+                                desc:
+                                  'In the phrase: "Level 1 {=their some_pronoun}Level 2 {=her some_pronoun}"',
+                                text: "her some_pronoun",
+                              },
+                              2: {
+                                desc:
+                                  'In the phrase: "Level 1 {=their some_pronoun}Level 2 {=his some_pronoun}"',
+                                text: "his some_pronoun",
+                              },
+                              "*": {
+                                desc:
+                                  'In the phrase: "Level 1 {=their some_pronoun}Level 2 {=their some_pronoun}"',
+                                text: "their some_pronoun",
+                              },
+                            },
+                          },
+                        },
+                        m: [{ token: "__subject__", type: 1 }, null, null],
+                      },
+                      project: "",
+                    } /* __FBT__ end */,
+                    [fbt_sv_arg_0, fbt_sv_arg_1, fbt_sv_arg_2]
+                  )
+                )
+              ),
+            ]
+          )
+        )
+      ),
+    ]
+  );
+
+`;
+
 exports[`Test jsx auto-wrapping of implicit parameters should auto wrap a simple test with a nested level 1`] = `
 const fbt = require("fbt");
 

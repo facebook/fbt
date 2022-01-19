@@ -1,5 +1,5 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * @format
  * @emails oncall+i18n_fbt_js
@@ -205,6 +205,84 @@ function getChildNodeTextForDescription(
   }
 }
 
+/**
+ * This function gets the mapping from a `FbtSameParamNode`'s token name to
+ * the `FbtNode` that shares the same token name.
+ * This function also performs token name validation and throws if:
+ *     some fbt nodes in the tree have duplicate token names
+ *        OR
+ *     some `FbtSameParamNode` nodes refer to non-existent token names
+ *
+ * For example, this function will return
+ *    {
+ *      "paramToken" => FbtParamNode // which represents <fbt:param name="tokenName">{a}</fbt:param>
+ *      "nameToken" => FbtNameNode // which represents <fbt:name name="tokenName2">{name}</fbt:name>
+ *    }
+ * for the following fbt callsite
+ *    <fbt>
+ *      <fbt:param name="paramToken">{a}</fbt:param>
+ *      {','}
+ *      <fbt:sameParam name="paramToken" />
+ *      {','}
+ *      <fbt:name name="nameToken">{name}</fbt:name>
+ *      and finally
+ *      <fbt:sameParam name="nameToken" />
+ *    </fbt>
+ */
+function buildFbtNodeMapForSameParam(
+  fbtNode: FbtElementNode,
+  argsMap: StringVariationArgsMap,
+): {|[string]: FbtChildNode|} {
+  // Importing this module only here to avoid dependency cycle
+  const FbtImplicitParamNode = require('./FbtImplicitParamNode');
+  const FbtSameParamNode = require('./FbtSameParamNode');
+  const tokenNameToFbtNode = {};
+  const tokenNameToSameParamNode: {[string]: FbtSameParamNode} = {};
+  runOnNestedChildren(fbtNode, child => {
+    if (child instanceof FbtSameParamNode) {
+      tokenNameToSameParamNode[child.getTokenName(argsMap)] = child;
+      return;
+    } else if (
+      // FbtImplicitParamNode token names appear redundant but
+      // they'll be deduplicated via the token name mangling logic
+      child instanceof FbtImplicitParamNode
+    ) {
+      return;
+    }
+    const tokenName = child.getTokenName(argsMap);
+    if (tokenName != null) {
+      const existingFbtNode = tokenNameToFbtNode[tokenName];
+      invariant(
+        existingFbtNode == null || existingFbtNode === child,
+        "There's already a token called `%s` in this %s call. " +
+          'Use %s.sameParam if you want to reuse the same token name or ' +
+          'give this token a different name.\n' +
+          'Existing FbtNode=%s\n' +
+          'Redundant FbtNode=%s',
+        tokenName,
+        fbtNode.moduleName,
+        fbtNode.moduleName,
+        varDump(existingFbtNode),
+        varDump(child),
+      );
+      tokenNameToFbtNode[tokenName] = child;
+    }
+  });
+
+  const sameParamTokenNameToRealFbtNode = {};
+  for (const sameParamTokenName in tokenNameToSameParamNode) {
+    const realFbtNode = tokenNameToFbtNode[sameParamTokenName];
+    invariant(
+      realFbtNode != null,
+      'Expected fbt `sameParam` construct with name=`%s` to refer to a ' +
+        '`name` or `param` construct using the same token name',
+      sameParamTokenName,
+    );
+    sameParamTokenNameToRealFbtNode[sameParamTokenName] = realFbtNode;
+  }
+  return sameParamTokenNameToRealFbtNode;
+}
+
 module.exports = {
   convertToTokenName,
   convertIndexInSiblingsArrayToOuterTokenAlias,
@@ -212,6 +290,7 @@ module.exports = {
   getChildNodeText,
   getChildNodeTextForDescription,
   getClosestElementOrImplicitParamNodeAncestor,
+  buildFbtNodeMapForSameParam,
   getTextFromFbtNodeTree,
   getTokenAliasesFromFbtNodeTree,
   runOnNestedChildren,

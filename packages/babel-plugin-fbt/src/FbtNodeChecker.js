@@ -1,5 +1,5 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * @format
  * @emails oncall+i18n_fbt_js
@@ -188,6 +188,23 @@ class FbtNodeChecker {
       return fbsChecker;
     }
     return null;
+  }
+
+  /**
+   * This is same as the non-static getFbtConstructNameFromFunctionCall except
+   * it accepts any of the three fbt modules (`FBT`, `FBS` or `REACT_FBT`).
+   */
+  static getFbtConstructNameFromFunctionCall(node: BabelNode): ?FbtNodeType {
+    return (
+      (isCallExpression(node) &&
+        isMemberExpression(node.callee) &&
+        isIdentifier(node.callee.object) &&
+        isIdentifier(node.callee.property) &&
+        [FBT, FBS, REACT_FBT].includes(node.callee.object.name) &&
+        typeof node.callee.property.name === 'string' &&
+        FbtNodeType.cast(node.callee.property.name)) ||
+      null
+    );
   }
 
   // Not defining the static value here because of JS syntax compatibility issues in node.js v10.x

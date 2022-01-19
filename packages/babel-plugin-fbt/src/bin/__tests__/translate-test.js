@@ -1,5 +1,5 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * @emails oncall+i18n_fbt_js
  * @format
@@ -102,7 +102,7 @@ describe('translate-test.js', () => {
                     types: [],
                     translations: [
                       {
-                        translation: '\u05e9\u05dd',
+                        translation: 'Translation data for Your FBT Demo',
                         variations: {},
                       },
                     ],
@@ -123,11 +123,11 @@ describe('translate-test.js', () => {
               {
                 hashToLeaf: {
                   'gVKMc/8jq5vnYR5v2bb32g==': {
-                    text: '{name} has shared {=[number] photos} with you',
+                    text: '{name} has shared {=[number] photos} with you. View =[number] photos',
                     desc: 'example 1',
                   },
                   'PqPPir8Kg9xSlqdednPFOg==': {
-                    text: '{name} has shared {=a photo} with you',
+                    text: '{name} has shared {=a photo} with you. View a photo',
                     desc: 'example 1',
                   },
                 },
@@ -142,14 +142,14 @@ describe('translate-test.js', () => {
                     '*': {
                       '*': {
                         desc: 'example 1',
-                        text: '{name} has shared {=[number] photos} with you',
+                        text: '{name} has shared {=[number] photos} with you. View =[number] photos',
                         tokenAliases: {
                           '=[number] photos': '=m2',
                         },
                       },
                       _1: {
                         desc: 'example 1',
-                        text: '{name} has shared {=a photo} with you',
+                        text: '{name} has shared {=a photo} with you. View a photo',
                         tokenAliases: {
                           '=a photo': '=m2',
                         },
@@ -173,11 +173,11 @@ describe('translate-test.js', () => {
                 hashToLeaf: {
                   '/gj3gwqx1z8Xw233oZgOpQ==': {
                     text: '{number} photos',
-                    desc: 'In the phrase: "{name} has shared {=[number] photos} with you"',
+                    desc: 'In the phrase: "{name} has shared {=[number] photos} with you. View =[number] photos"',
                   },
                   '8UZCD6gFUKN+U5UUo1I3/w==': {
                     text: 'a photo',
-                    desc: 'In the phrase: "{name} has shared {=a photo} with you"',
+                    desc: 'In the phrase: "{name} has shared {=a photo} with you. View a photo"',
                   },
                 },
                 filepath: 'src/example/Example.react.js',
@@ -190,12 +190,12 @@ describe('translate-test.js', () => {
                   t: {
                     '*': {
                       '*': {
-                        desc: 'In the phrase: "{name} has shared {=[number] photos} with you"',
+                        desc: 'In the phrase: "{name} has shared {=[number] photos} with you. View =[number] photos"',
                         text: '{number} photos',
                         tokenAliases: {},
                       },
                       _1: {
-                        desc: 'In the phrase: "{name} has shared {=a photo} with you"',
+                        desc: 'In the phrase: "{name} has shared {=a photo} with you. View a photo"',
                         text: 'a photo',
                         tokenAliases: {},
                       },
@@ -225,19 +225,19 @@ describe('translate-test.js', () => {
                     translations: [
                       {
                         translation:
-                          '{name} \u05e9\u05d9\u05ea\u05e4\u05d4 \u05d0\u05d9\u05ea\u05da {=[number] photos}',
+                          'translation is: {name} has shared {=[number] photos}. View =[number] photos',
                         id: 108537963,
                         variations: {'0': 2},
                       },
                       {
                         translation:
-                          '{name} \u05e9\u05d9\u05ea\u05e3 \u05d0\u05d9\u05ea\u05da {=[number] photos}',
+                          'translation is: {name} has shared {=[number] photos}. View =[number] photos',
                         id: 108537953,
                         variations: {'0': 1},
                       },
                       {
                         translation:
-                          '{name} \u05e9\u05d9\u05ea\u05e3/\u05e9\u05d9\u05ea\u05e4\u05d4 \u05d0\u05d9\u05ea\u05da {=[number] photos}',
+                          'translation is: {name} has shared {=[number] photos}. View =[number] photos',
                         id: 108537972,
                         variations: {'0': 3},
                       },
@@ -249,19 +249,19 @@ describe('translate-test.js', () => {
                     translations: [
                       {
                         translation:
-                          '{name} \u05e9\u05d9\u05ea\u05e4\u05d4 \u05d0\u05d9\u05ea\u05da {=a photo}',
+                          'translation is: {name} has shared {=a photo}. View a photo',
                         id: 108537963,
                         variations: {'0': 2},
                       },
                       {
                         translation:
-                          '{name} \u05e9\u05d9\u05ea\u05e3 \u05d0\u05d9\u05ea\u05da {=a photo}',
+                          'translation is: {name} has shared {=a photo}. View a photo',
                         id: 108537953,
                         variations: {'0': 1},
                       },
                       {
                         translation:
-                          '{name} \u05e9\u05d9\u05ea\u05e3/\u05e9\u05d9\u05ea\u05e4\u05d4 \u05d0\u05d9\u05ea\u05da {=a photo}',
+                          'translation is: {name} has shared {=a photo}. View a photo',
                         id: 108537972,
                         variations: {'0': 3},
                       },
@@ -272,8 +272,7 @@ describe('translate-test.js', () => {
                     types: [],
                     translations: [
                       {
-                        translation:
-                          '{number} \u05ea\u05de\u05d5\u05e0\u05d5\u05ea',
+                        translation: 'translation is: {number} photos',
                         id: 107911344,
                         variations: {},
                       },
@@ -284,7 +283,7 @@ describe('translate-test.js', () => {
                     types: [],
                     translations: [
                       {
-                        translation: '\u05ea\u05de\u05d5\u05e0\u05d4',
+                        translation: 'translation is: a photo',
                         id: 107911340,
                         variations: {},
                       },
@@ -363,7 +362,8 @@ describe('translate-test.js', () => {
                       types: [],
                       translations: [
                         {
-                          translation: '\u05e9\u05dd\u05e9\u05dd',
+                          // eslint-disable-next-line fb-www/gender-neutral-language
+                          translation: 'translation is: she shared a photo',
                           variations: {},
                         },
                       ],
@@ -373,7 +373,8 @@ describe('translate-test.js', () => {
                       types: [],
                       translations: [
                         {
-                          translation: '\u05e9\u05dd\u05dd',
+                          // eslint-disable-next-line fb-www/gender-neutral-language
+                          translation: 'translation is: he shared a photo',
                           variations: {},
                         },
                       ],
@@ -383,7 +384,7 @@ describe('translate-test.js', () => {
                       types: [],
                       translations: [
                         {
-                          translation: '\u05e9\u05dd\u05e9',
+                          translation: 'translation is: they shared a photo',
                           variations: {},
                         },
                       ],
@@ -467,7 +468,8 @@ describe('translate-test.js', () => {
                     types: [],
                     translations: [
                       {
-                        translation: '{name} \u05e9\u05dd',
+                        translation:
+                          'translation is: {name} has a link to share',
                         variations: {},
                       },
                     ],
@@ -477,7 +479,8 @@ describe('translate-test.js', () => {
                     types: [],
                     translations: [
                       {
-                        translation: '{name} \u05e9\u05dd\u05dd',
+                        translation:
+                          'translation is: {name} has a page to share',
                         variations: {},
                       },
                     ],
@@ -487,7 +490,8 @@ describe('translate-test.js', () => {
                     types: [],
                     translations: [
                       {
-                        translation: '{name} \u05e9\u05dd\u05dd\u05dd',
+                        translation:
+                          'translation is: {name} has a photo to share',
                         variations: {},
                       },
                     ],
@@ -497,7 +501,8 @@ describe('translate-test.js', () => {
                     types: [],
                     translations: [
                       {
-                        translation: '{name} \u05e9\u05dd\u05dd\u05dd\u05dd',
+                        translation:
+                          'translation is: {name} has a post to share',
                         variations: {},
                       },
                     ],
@@ -508,7 +513,7 @@ describe('translate-test.js', () => {
                     translations: [
                       {
                         translation:
-                          '{name} \u05e9\u05dd\u05dd\u05dd\u05dd\u05dd',
+                          'translation is: {name} has a video to share',
                         variations: {},
                       },
                     ],

@@ -1,7 +1,7 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
- * @generated SignedSource<<82164e5c689dd9874f55ccb2f7c4979f>>
+ * @generated SignedSource<<6c49e84337f457433372fc953678f81f>>
  *
  * @codegen-command : phps FBLocToLangScript
  *

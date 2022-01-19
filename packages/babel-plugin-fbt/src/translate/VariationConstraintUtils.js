@@ -1,12 +1,12 @@
 /**
- * (c) Facebook, Inc. and its affiliates. Confidential and proprietary.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * @emails oncall+i18n_fbt_js
  * @format
  * @flow strict-local
  */
 
-'strict';
+'use strict';
 
 import type {TokenConstraintPairs} from './TranslationBuilder';
 

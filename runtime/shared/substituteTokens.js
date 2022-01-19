@@ -1,5 +1,5 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * This file is shared between www and fbsource and www is the source of truth.
  * When you make change to this file on www, please make sure you test it on
@@ -23,6 +23,12 @@ import {
 } from 'IntlPunctuation';
 
 import invariant from 'invariant';
+
+/*
+ * $FlowFixMe[method-unbinding] Use original method in case the token names contain
+ * a 'hasOwnProperty' key too; or if userland code redefined that method.
+ */
+const {hasOwnProperty} = Object.prototype;
 
 // This pattern finds tokens inside a string: 'string with {token} inside'.
 // It also grabs any punctuation that may be present after the token, such as
@@ -92,12 +98,16 @@ function substituteTokens<Arg: mixed>(
       parameterRegexp,
       (_match: string, parameter: string, punctuation: string): string => {
         if (__DEV__) {
-          if (!args.hasOwnProperty(parameter)) {
-            throw new Error(
-              'Translatable string expects parameter ' + parameter,
-            );
-          }
+          invariant(
+            hasOwnProperty.call(args, parameter),
+            'Expected fbt parameter names (%s) to also contain `%s`',
+            Object.keys(args)
+              .map(paramName => `\`${paramName}\``)
+              .join(', '),
+            parameter,
+          );
         }
+        // TODO(T106260833) Log error when we cannot resolve all fbt parameters using FbtHooks
 
         const argument = args[parameter];
         if (argument != null && typeof argument === 'object') {

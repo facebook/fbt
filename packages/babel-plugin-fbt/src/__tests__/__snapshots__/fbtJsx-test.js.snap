@@ -173,6 +173,32 @@ var x = fbt._(
   /* __FBT__ start */ {
     jsfbt: {
       t: {
+        groups: { desc: "enums!", text: "Click to see groups" },
+        photos: { desc: "enums!", text: "Click to see photos" },
+        videos: { desc: "enums!", text: "Click to see videos" },
+      },
+      m: [null],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [
+    fbt._enum(id, {
+      groups: "groups",
+      photos: "photos",
+      videos: "videos",
+    }),
+  ]
+);
+
+`;
+
+exports[`Test declarative (jsx) fbt syntax translation should handle enums (with object values) 1`] = `
+const fbt = require("fbt");
+
+var x = fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
         id1: { desc: "enums!", text: "Click to see groups" },
         id2: { desc: "enums!", text: "Click to see photos" },
         id3: { desc: "enums!", text: "Click to see videos" },

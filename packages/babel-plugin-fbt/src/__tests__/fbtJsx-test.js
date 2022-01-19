@@ -1,5 +1,5 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * @emails oncall+i18n_fbt_js
  * @format
@@ -161,10 +161,28 @@ const testData = {
     input: withFbtRequireStatement(
       `var x = <fbt desc="enums!">
         Click to see
-        <fbt:enum enum-range={{
-          id1:"groups",
-          id2:"photos",
-          id3:"videos"}}
+        <fbt:enum
+          enum-range={[
+            "groups",
+            "photos",
+            "videos"
+          ]}
+          value={id}
+        />
+      </fbt>;`,
+    ),
+  },
+
+  'should handle enums (with object values)': {
+    input: withFbtRequireStatement(
+      `var x = <fbt desc="enums!">
+        Click to see
+        <fbt:enum
+          enum-range={{
+            id1: "groups",
+            id2: "photos",
+            id3: "videos"
+          }}
           value={id}
         />
       </fbt>;`,
@@ -175,10 +193,12 @@ const testData = {
     input: withFbtRequireStatement(
       `var x = <fbt desc="enums!">
         Click to see
-        <fbt:enum enum-range={{
-          id1:"groups",
-          id2:"photos",
-          id3:"videos"}}
+        <fbt:enum
+          enum-range={{
+            id1: "groups",
+            id2: "photos",
+            id3: "videos"
+          }}
           value={id}
         />
         Hey-hey!
@@ -262,7 +282,7 @@ const testData = {
       </fbt>`,
     ),
 
-    throws: true,
+    throws: `Invalid option "qux". Only allowed: number, gender, name`,
   },
 
   'should ignore __private attributes': {
@@ -375,7 +395,7 @@ const testData = {
       </fbt>`,
     ),
 
-    throws: true,
+    throws: `fbt:param expects an {expression} or JSX element, and only one`,
   },
 
   'fbt:param with multiple empty expression containers should be ok': {

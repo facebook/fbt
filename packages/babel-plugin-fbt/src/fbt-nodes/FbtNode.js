@@ -1,5 +1,5 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * @format
  * @emails oncall+i18n_fbt_js
@@ -429,10 +429,11 @@ class FbtNode<
    *
    * Arguments that decide string variations:
    *  fbt:element: the 'subject' value
-   *  fbt:plural: the 'count' value. 'value' is okay
-   *  fbt:param: the 'gender/number' value. 'value' is okay
-   *  fbt:pronoun: the 'gender' value
    *  fbt:enum: the 'enum' value
+   *  fbt:name: the 'gender' value
+   *  fbt:param: the 'gender/number' value. 'value' is okay
+   *  fbt:plural: the 'count' value. 'value' is okay
+   *  fbt:pronoun: the 'gender' value
    */
   throwIfAnyArgumentContainsFunctionCallOrClassInstantiation(
     scope: Scope<BabelNodeCallExpression>,
@@ -444,9 +445,9 @@ class FbtNode<
       if (isCallExpression(argument) || isNewExpression(argument)) {
         throw errorAt(
           this.node,
-          'Expect string variation runtime arguments to not be' +
-            ' function calls or class instantiations,' +
-            ` but "${argumentName}" argument is a function call or class instantiation.`,
+          `Expected string variation runtime argument "${argumentName}" ` +
+            `to not be a function call or class instantiation expression. ` +
+            `See https://fburl.com/i18n_js_fbt_extraction_limits`,
         );
       }
       // Look for function or class call nested in the argument
@@ -456,9 +457,9 @@ class FbtNode<
           'CallExpression|NewExpression'(path) {
             throw errorAt(
               path.node,
-              'Expect string variation runtime arguments to not contain' +
-                ' function calls or class instantiations,' +
-                ` but "${argumentName}" argument contains a function call or class instantiation.`,
+              `Expected string variation runtime argument "${argumentName}" ` +
+                `to not contain a function call or class instantiation expression. ` +
+                `See https://fburl.com/i18n_js_fbt_extraction_limits`,
             );
           },
         },

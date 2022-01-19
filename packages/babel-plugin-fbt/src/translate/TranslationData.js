@@ -1,12 +1,12 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * @emails oncall+i18n_fbt_js
  * @format
  * @flow strict-local
  */
 
-'strict';
+'use strict';
 
 import type {IntlFbtVariationTypeValue} from './IntlVariations';
 import type TranslationConfig from './TranslationConfig';

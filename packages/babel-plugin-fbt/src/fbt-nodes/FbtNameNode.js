@@ -1,5 +1,5 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * @format
  * @emails oncall+i18n_fbt_js
@@ -120,6 +120,12 @@ class FbtNameNode extends FbtNode<
       this,
       [stringLiteral(name), value, gender].filter(Boolean),
     );
+  }
+
+  getArgsThatShouldNotContainFunctionCallOrClassInstantiation(): $ReadOnly<{
+    [argName: string]: BabelNodeCallExpressionArg,
+  }> {
+    return {gender: this.options.gender};
   }
 }
 

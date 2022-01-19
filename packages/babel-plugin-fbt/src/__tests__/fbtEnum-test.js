@@ -1,5 +1,5 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * @emails oncall+i18n_fbt_js
  * @format
@@ -33,12 +33,12 @@ describe('Test Fbt Enum', () => {
     runTest({
       input: withFbtRequireStatement(
         `let aEnum = require('Test$FbtEnum');
-          var x = (
-            <fbt desc="enums!">
-              Click to see
-              <fbt:enum enum-range={aEnum} value={id} />
-            </fbt>
-          );`,
+        var x = (
+          <fbt desc="enums!">
+            Click to see
+            <fbt:enum enum-range={aEnum} value={id} />
+          </fbt>
+        );`,
       ),
     });
   });
@@ -47,12 +47,12 @@ describe('Test Fbt Enum', () => {
     runTest({
       input: withFbtRequireStatement(
         `let aEnum = require('Test$FbtEnum');
-          var x = (
-            <fbt desc="enums!">
-              Click to see
-              <fbt:enum enum-range={aEnum} value="id1" />
-            </fbt>
-          );`,
+        var x = (
+          <fbt desc="enums!">
+            Click to see
+            <fbt:enum enum-range={aEnum} value="id1" />
+          </fbt>
+        );`,
       ),
     });
   });
@@ -61,7 +61,7 @@ describe('Test Fbt Enum', () => {
     runTest({
       input: withFbtRequireStatement(
         `let aEnum = require('Test$FbtEnum');
-          var x = fbt('Click to see ' + fbt.enum(id, aEnum), 'enums!');`,
+        var x = fbt('Click to see ' + fbt.enum(id, aEnum), 'enums!');`,
       ),
     });
   });
@@ -105,6 +105,46 @@ describe('Test Fbt Enum', () => {
         {fbtEnumManifest: TestFbtEnumManifest},
       ),
     ).toThrowError('Enum values must be string literals');
+  });
+
+  describe('when used with dynamic enum keys', () => {
+    it('should throw the enum key is a variable (BabelNodeIdentifier)', () => {
+      expect(() =>
+        snapshotTransform(
+          withFbtRequireStatement(
+            `const foo = 'anything';
+            <fbt desc="try fbt:enum with a dynamic enum key">
+              <fbt:enum
+                enum-range={{
+                  [foo]: 'bar',
+                }}
+                value={myValue}
+              />
+            </fbt>;`,
+          ),
+          {fbtEnumManifest: TestFbtEnumManifest},
+        ),
+      ).toThrowError('Enum keys must be string literals instead of `');
+    });
+
+    it('should throw the enum key is a variable (MemberExpression)', () => {
+      expect(() =>
+        snapshotTransform(
+          withFbtRequireStatement(
+            `const foo = {bar: 'anything'};
+            <fbt desc="try fbt:enum with a dynamic enum key">
+              <fbt:enum
+                enum-range={{
+                  [foo.bar]: 'baz',
+                }}
+                value={myValue}
+              />
+            </fbt>;`,
+          ),
+          {fbtEnumManifest: TestFbtEnumManifest},
+        ),
+      ).toThrowError('Enum keys must be string literals instead of `');
+    });
   });
 
   it('should throw on multiple import types', () => {

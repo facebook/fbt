@@ -11,7 +11,7 @@ Object {
         "m": Array [],
         "t": Object {
           "desc": "counting",
-          "text": "{1} {2} {3} 4",
+          "text": "{1} {2} {2} 3",
         },
       },
       "line_beg": 3,
@@ -158,11 +158,11 @@ Object {
         "t": Object {
           "0": Object {
             "desc": "counting",
-            "text": "a {2} {3} 4",
+            "text": "a {2} {2} 3",
           },
           "1": Object {
             "desc": "counting",
-            "text": "b {2} {3} 4",
+            "text": "b {2} {2} 3",
           },
         },
       },

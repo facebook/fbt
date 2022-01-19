@@ -22,6 +22,7 @@ import typeof BabelTypes from '@babel/types';
 const {StringVariationArgsMap} = require('../fbt-nodes/FbtArguments');
 const FbtElementNode = require('../fbt-nodes/FbtElementNode');
 const FbtImplicitParamNode = require('../fbt-nodes/FbtImplicitParamNode');
+const FbtNodeType = require('../fbt-nodes/FbtNodeType');
 const FbtParamNode = require('../fbt-nodes/FbtParamNode');
 const {SENTINEL} = require('../FbtConstants');
 const FbtNodeChecker = require('../FbtNodeChecker');
@@ -445,6 +446,7 @@ class FbtFunctionCallProcessor {
               m: jsfbtMetadata,
             },
           };
+          const svArgsMapList = [];
 
           (argsCombinations.length
             ? argsCombinations
@@ -465,10 +467,10 @@ class FbtFunctionCallProcessor {
               leaf.tokenAliases = tokenAliases;
             }
 
-            if (
-              this.pluginOptions.generateOuterTokenName &&
-              !(fbtNode instanceof FbtElementNode)
-            ) {
+            if (fbtNode instanceof FbtElementNode) {
+              // gather list of svArgsMap for all args combination for later sanity checks
+              svArgsMapList.push(svArgsMap);
+            } else if (this.pluginOptions.generateOuterTokenName) {
               leaf.outerTokenName = fbtNode.getTokenName(svArgsMap);
             }
 
@@ -483,6 +485,10 @@ class FbtFunctionCallProcessor {
               phrase.jsfbt.t = leaf;
             }
           });
+
+          if (fbtNode instanceof FbtElementNode) {
+            fbtNode.assertNoOverallTokenNameCollision(svArgsMapList);
+          }
 
           return {
             compactStringVariations,
@@ -516,6 +522,87 @@ class FbtFunctionCallProcessor {
       callNode,
       metaPhrases,
     };
+  }
+
+  /**
+   * fbt constructs are not allowed to be direct children of fbt constructs.
+   * For example it is not okay to have
+   *    <fbt desc='desc'>
+   *      <fbt:param name="outer">
+   *        <fbt:param name="inner">
+   *          variable
+   *        </fbt:param>
+   *      </fbt:param>
+   *    </fbt>
+   * However, the next example is okay because the inner `fbt:param` sits inside
+   * an inner fbt.
+   *    <fbt desc='outer string'>
+   *      <fbt:param name="outer">
+   *        <fbt desc='inner string'>
+   *          <fbt:param name="inner">
+   *            variable
+   *          </fbt:param>
+   *        </fbt>
+   *      </fbt:param>
+   *    </fbt>
+   */
+  throwIfExistsNestedFbtConstruct(): void {
+    this.path.traverse(
+      {
+        CallExpression(path: NodePathOf<BabelNodeCallExpression>) {
+          // eslint-disable-next-line max-len
+          // $FlowFixMe[object-this-reference] Babel transforms run with the plugin context by default
+          const nodeChecker = (this.nodeChecker: FbtNodeChecker);
+          const constructs = [
+            FbtNodeType.Enum,
+            FbtNodeType.Name,
+            FbtNodeType.Param,
+            FbtNodeType.Plural,
+            FbtNodeType.Pronoun,
+            FbtNodeType.SameParam,
+          ];
+
+          const childFbtConstructName =
+            nodeChecker.getFbtConstructNameFromFunctionCall(path.node);
+          if (!constructs.includes(childFbtConstructName)) {
+            return;
+          }
+
+          let parentPath = path.parentPath;
+          while (parentPath != null) {
+            const parentNode = parentPath.node;
+            if (
+              FbtNodeChecker.forFbtFunctionCall(parentNode) != null ||
+              // children JSX fbt aren't yet converted to function call by JSXFbtProcessor
+              FbtNodeChecker.forJSXFbt(parentNode) != null
+            ) {
+              return;
+            }
+
+            const parentFbtConstructName =
+              nodeChecker.getFbtConstructNameFromFunctionCall(parentNode);
+            if (constructs.includes(parentFbtConstructName)) {
+              throw errorAt(
+                parentNode,
+                `Expected fbt constructs to not nest inside fbt constructs, ` +
+                  `but found ` +
+                  `${nodeChecker.moduleName}.${(nullthrows(
+                    childFbtConstructName,
+                  ): string)} ` +
+                  `nest inside ` +
+                  `${nodeChecker.moduleName}.${(nullthrows(
+                    parentFbtConstructName,
+                  ): string)}`,
+              );
+            }
+            parentPath = parentPath.parentPath;
+          }
+        },
+      },
+      {
+        nodeChecker: this.nodeChecker,
+      },
+    );
   }
 
   /**

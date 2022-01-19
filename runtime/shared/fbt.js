@@ -1,5 +1,5 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * Flow doesn't know about the transformations of fbt() calls into tables, so
  * all it sees is that callers are adding strings and arrays, which isn't
@@ -19,7 +19,6 @@
  * @emails oncall+i18n_fbt_js
  */
 
-/* eslint max-len: ["warn", 120] */
 require('FbtEnv').setupOnce();
 
 import type {FbtInputOpts, FbtRuntimeInput, FbtTableArgs} from 'FbtHooks';
@@ -117,7 +116,7 @@ function fbtCallsite(
   //
   // OSS: The table is the English payload, and, by default, we lookup the
   //      translated payload via FbtTranslations
-  let {table: pattern, args} = FbtHooks.getTranslatedInput({
+  let {args, table: pattern} = FbtHooks.getTranslatedInput({
     table: inputTable,
     args: inputArgs,
     options,

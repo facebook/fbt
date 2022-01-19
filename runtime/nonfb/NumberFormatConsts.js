@@ -1,7 +1,7 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
- * @generated SignedSource<<bac2642719d7c78e2bc55d026dae17e3>>
+ * @generated SignedSource<<f3feb9d4258ddabb2b226583b47787f7>>
  *
  * @flow strict
  * @emails oncall+i18n_fbt_js

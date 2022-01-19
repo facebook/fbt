@@ -1,5 +1,5 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * @format
  * @emails oncall+i18n_fbt_js
@@ -21,7 +21,7 @@ import type {FbtCommonMap} from './FbtCommon';
 import type {FbtCallSiteOptions} from './FbtConstants';
 import type {EnumManifest, EnumModule} from './FbtEnumRegistrar';
 import typeof {FbtVariationType} from './translate/IntlVariations';
-import type {BabelTransformPlugin} from '@babel/core';
+import type {BabelTransformPlugin, NodePathOf} from '@babel/core';
 import typeof BabelTypes from '@babel/types';
 
 const FbtCommonFunctionCallProcessor = require('./babel-processors/FbtCommonFunctionCallProcessor');
@@ -35,8 +35,10 @@ const {
 } = require('./FbtConstants');
 const FbtEnumRegistrar = require('./FbtEnumRegistrar');
 const fbtHashKey = require('./fbtHashKey');
+const FbtNodeChecker = require('./FbtNodeChecker');
 const FbtShiftEnums = require('./FbtShiftEnums');
 const FbtUtil = require('./FbtUtil');
+const {errorAt} = require('./FbtUtil');
 const JSFbtUtil = require('./JSFbtUtil');
 const {
   RequireCheck: {isRequireAlias},
@@ -73,7 +75,13 @@ export type PluginOptions = {|
   generateOuterTokenName?: boolean,
   reactNativeMode?: boolean,
 |};
+/**
+ * Token alias (aka mangled token name)
+ */
 type TokenAlias = string;
+/**
+ * Dictionary of clear token names to aliases (aka mangled token names)
+ */
 export type TokenAliases = {|
   [clearTokenName: string]: TokenAlias,
 |};
@@ -86,11 +94,10 @@ export type TokenAliases = {|
  *   parameters passed to the various fbt constructs (param, plural, pronoun) of this callsite;
  *   and tree leaves are TableJSFBTTreeLeaf objects.
  */
-export type TableJSFBTTree =
-  | TableJSFBTTreeLeaf
-  | {|
-      [key: FbtTableKey]: TableJSFBTTree,
-    |};
+export type TableJSFBTTree = TableJSFBTTreeLeaf | TableJSFBTTreeBranch;
+export type TableJSFBTTreeBranch = {|
+  [key: FbtTableKey]: TableJSFBTTree,
+|};
 export type TableJSFBTTreeLeaf = {|
   desc: string,
   hash?: PatternHash,
@@ -104,6 +111,7 @@ export type TableJSFBTTreeLeaf = {|
   // So the outer token name of the inner string will be "=World"
   outerTokenName?: string,
 |};
+
 // Describes the usage of one level of the JSFBT table tree
 export type JSFBTMetaEntry = $ReadOnly<
   | {|
@@ -253,8 +261,7 @@ function FbtTransform(babel: {types: BabelTypes}): BabelTransformPlugin {
           return;
         }
 
-        // TODO(T40113359): remove this once we're done implementing proper conversion to fbt nodes
-        // root.convertToFbtNode();
+        root.throwIfExistsNestedFbtConstruct();
 
         const {callNode, metaPhrases} = root.convertToFbtRuntimeCall();
         path.replaceWith(callNode);
@@ -275,7 +282,27 @@ function FbtTransform(babel: {types: BabelTypes}): BabelTransformPlugin {
             }
           });
         }
-      }, // CallExpression
+      },
+
+      Program: {
+        exit(path) {
+          path.traverse({
+            CallExpression(path: NodePathOf<BabelNodeCallExpression>) {
+              if (
+                FbtNodeChecker.getFbtConstructNameFromFunctionCall(path.node) !=
+                null
+              ) {
+                throw errorAt(
+                  path.node,
+                  `Fbt constructs can only be used within the scope of an fbt` +
+                    ` string. I.e. It should be used directly inside an ` +
+                    `‹fbt› / ‹fbs› callsite`,
+                );
+              }
+            },
+          });
+        },
+      }, // Program
     }, // visitor
   }; // babel plugin return
 }

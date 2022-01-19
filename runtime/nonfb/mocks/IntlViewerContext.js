@@ -1,5 +1,5 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * @format
  * @flow strict
@@ -15,6 +15,7 @@ const IntlVariations = require('IntlVariations');
 // and required in the OSS version
 const IntlViewerContext = {
   GENDER: IntlVariations.GENDER_UNKNOWN,
+  regionalLocale: 'en_US',
   locale: 'en_US',
 };
 

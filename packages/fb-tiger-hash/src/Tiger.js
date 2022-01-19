@@ -1,5 +1,5 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * An implementation of the Tiger hash function.  It specifically
  * supports the original PHP implementation that swapped byte order

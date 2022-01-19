@@ -8,8 +8,7 @@
   "license": "MIT",
   "scripts": {
     "all": "babel-node run_all",
-    "build": ">&2 echo 'The webpack step is not enabled yet. TODO(T40113359) Re-enable this once the babel-plugin-fbt library is more mature to be tested'",
-    "//build": "webpack",
+    "build": "webpack",
     "clean-build": "yarn clean-fbts && yarn install && yarn build",
     "clean-fbts": "rm .enum_manifest.json .src_manifest.json .source_strings.json src/translatedFbts.json .test_*.json 2&> /dev/null || exit 0",
     "collect-fbts": "fbt-collect --fbt-common-path ./common_strings.json --pretty --manifest < .src_manifest.json > .source_strings.json",
@@ -60,7 +59,7 @@
     "raf": "3.4.1",
     "react-test-renderer": "16.6.3",
     "remove-flow-types-loader": "1.1.0",
-    "shelljs": "^0.8.4",
+    "shelljs": "^0.8.5",
     "style-loader": "0.23.1",
     "webpack": "^5.4.0",
     "webpack-cli": "^3.3.12",

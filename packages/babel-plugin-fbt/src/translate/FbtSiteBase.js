@@ -1,12 +1,12 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * @emails oncall+i18n_fbt_js
  * @format
  * @flow strict-local
  */
 
-'strict';
+'use strict';
 
 import type {
   FbtTableKey,
@@ -31,6 +31,17 @@ export type FbtSiteHashToText = {|
 
 /**
  * Jsfbt table with leaves hashified.
+ *
+ * @example Single fbt plain string
+ * 'hash_of_single_plain_string'
+ *
+ * @example Fbt string with multiple variations
+ * {
+ *   '*': {
+ *     '*': 'hash_1',
+ *     _1: 'hash_2',
+ *   },
+ * }
  */
 export type FbtSiteHashifiedTableJSFBTTree =
   | PatternHash
@@ -52,12 +63,12 @@ class FbtSiteBase<
   +hashToLeaf: HashToLeaf;
   +project: string;
   +table: FbtSiteHashifiedTableJSFBTTree;
-  +metadata: Array<?MetaDataEntry>;
+  +metadata: $ReadOnlyArray<?MetaDataEntry>;
 
   constructor(
     hashToLeaf: HashToLeaf,
     table: FbtSiteHashifiedTableJSFBTTree,
-    metadata: Array<?MetaDataEntry>,
+    metadata: $ReadOnlyArray<?MetaDataEntry>,
     project: string,
   ) {
     this.hashToLeaf = hashToLeaf;
@@ -88,7 +99,7 @@ class FbtSiteBase<
     return this.table;
   }
 
-  getMetadata(): Array<?MetaDataEntry> {
+  getMetadata(): $ReadOnlyArray<?MetaDataEntry> {
     return this.metadata;
   }
 }
