@@ -12,6 +12,7 @@ List of changes for each released npm package version.
 - [fb-tiger-hash versions](#fb-tiger-hash-versions)
 - [fb-babel-plugin-utils versions](#fb-babel-plugin-utils-versions)
 - [gulp-rewrite-flowtyped-modules versions](#gulp-rewrite-flowtyped-modules-versions)
+- [gulp-strip-docblock-pragmas versions](#gulp-strip-docblock-pragmas-versions)
 - [react-native-fbt versions](#react-native-fbt-versions)
 - [fbt-rn-android-native versions [Deprecated]](#fbt-rn-android-native-versions-deprecated)
 
@@ -54,6 +55,8 @@ List of changes for each released npm package version.
   <summary>
     Unreleased changes that have landed in main. Click to see more.
   </summary>
+
+  - [chore] Add `.npmignore` config (avoid exporting some build, debug & test files)
 
 </details>
 
@@ -150,6 +153,8 @@ List of changes for each released npm package version.
     <summary>
       Unreleased changes that have landed in main. Click to see more.
     </summary>
+
+    - [chore] Improve `.npmignore` config (avoid exporting some build, debug & test files)
 
     0.21.0-rc8-beta
       - [fix]! Prevent `fbt.sameParam` from referring to a non-existent token name or a plural construct token
@@ -307,11 +312,12 @@ List of changes for each released npm package version.
   <details>
     <summary>
       Unreleased changes that have landed in main. Click to see more.
-
-      - [chore] Update fbtRuntime-test.js after the definition of `hash_key` in
-      fbtJenkinsHash.js was modified
-      - [refactor] Move clear token replacement logic to babel-plugin-fbt/src/FbtUtil.js
     </summary>
+
+    - [chore] Improve `.npmignore` config (avoid exporting some build, debug & test files)
+    - [chore] Update fbtRuntime-test.js after the definition of `hash_key` in
+    fbtJenkinsHash.js was modified
+    - [refactor] Move clear token replacement logic to babel-plugin-fbt/src/FbtUtil.js
   </details>
 
 - 0.10.0:
@@ -373,6 +379,8 @@ List of changes for each released npm package version.
       Unreleased changes that have landed in main. Click to see more.
     </summary>
 
+    - [chore] Improve `.npmignore` config (avoid exporting some build, debug & test files)
+
   </details>
 
 - 0.2.0:
@@ -400,6 +408,7 @@ List of changes for each released npm package version.
       Unreleased changes that have landed in main. Click to see more.
     </summary>
 
+  - [chore] Improve `.npmignore` config (avoid exporting some build, debug & test files)
   - [chore] Update peer dependency on babel-plugin-fbt
 
   </details>
@@ -424,6 +433,8 @@ List of changes for each released npm package version.
     <summary>
      Unreleased changes that have landed in main. Click to see more.
     </summary>
+
+    - [chore] Add `.npmignore` config (avoid exporting some build, debug & test files)
   </details>
 
 - 0.13.0:
@@ -457,10 +468,39 @@ List of changes for each released npm package version.
 
 ### gulp-rewrite-flowtyped-modules versions
 
+  <details>
+    <summary>
+     Unreleased changes that have landed in main. Click to see more.
+    </summary>
+
+    - [chore] Improve `.npmignore` config (avoid exporting some build, debug & test files)
+  </details>
+
 - 0.0.9:
   - Initial commit
 
+### gulp-strip-docblock-pragmas versions
+
+  <details>
+    <summary>
+     Unreleased changes that have landed in main. Click to see more.
+    </summary>
+
+    - [chore] Improve `.npmignore` config (avoid exporting some build, debug & test files)
+  </details>
+
+- 0.0.3:
+  - Initial release
+
 ### react-native-fbt versions
+
+  <details>
+    <summary>
+     Unreleased changes that have landed in main. Click to see more.
+    </summary>
+
+    - [chore] Improve `.npmignore` config (avoid exporting some build, debug & test files)
+  </details>
 
 - 0.0.1:
   - New React Native package that enables the FBT library for both iOS and Android
