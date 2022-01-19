@@ -1,3 +1,9 @@
-src/__tests__
+# Since .gitignore is not considered when .npmignore is present
+node_modules
+
 .yarnrc
-*.log
+**.log
+**.tgz
+**/__fixtures__
+**/__mocks__
+**/__tests__

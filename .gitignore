@@ -7,6 +7,8 @@ yarn-error.log
 .flow-results
 # file checksums used by gulp-once
 .checksums
+# Ignore npm pack files generated during npm publish testing
+**.tgz
 
 # MacOS
 .DS_Store
