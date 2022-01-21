@@ -15,6 +15,9 @@ const process = require('process');
 
 const legacyPhrasesFile = path.resolve(process.argv[2]);
 const newPhrasesFile = path.resolve(process.argv[3]);
+const shouldReturnPhraseWithNewHashKey =
+  process.argv[4] === '--return-new-hash-key';
+
 const legacyPhrases = require(legacyPhrasesFile);
 const newPhrases = require(newPhrasesFile);
 
@@ -43,6 +46,13 @@ const CATEGORY = {
   UPDATED_DESC_DUE_TO_HIDDEN_TOKEN_AND_ADDED_VARIATIONS:
     'UPDATED_DESC_DUE_TO_HIDDEN_TOKEN_AND_ADDED_VARIATIONS',
   UPDATED_DESC_DUE_TO_OTHER_REASON: 'UPDATED_DESC_DUE_TO_OTHER_REASON',
+  // A new string's `hash_key` could be different from the old one for two reasons:
+  //  1. the new string has updated text or description
+  //  2. the new string has the same text and descrition as the legacy string,
+  //    but it now has `tokenAliases` because it contains inner strings
+  //
+  // Category `SAME_HASH_BUT_UPDATED_HASH_KEY` only covers the second type.
+  SAME_HASH_BUT_UPDATED_HASH_KEY: 'SAME_HASH_BUT_UPDATED_HASH_KEY',
 };
 
 /**
@@ -92,17 +102,33 @@ function categorizeStringsInPhrase(
   const legacyLeaves = legacyPhrase[HASH_TO_LEAF];
   const newLeaves = newPhrase[HASH_TO_LEAF];
   if (areNewAndLegacyLeavesIdentical(newLeaves, legacyLeaves)) {
+    const commonResult = {
+      project: newPhrase.project,
+      filepath: newPhrase.filepath,
+      lineBeg: newPhrase.line_beg,
+      lineEnd: newPhrase.line_end,
+      hashKey: newPhrase.hash_key,
+      legacyHashKey: legacyPhrase.hash_key,
+    };
+    if (
+      newPhrase.hash_key !== legacyPhrase.hash_key &&
+      shouldReturnPhraseWithNewHashKey
+    ) {
+      for (const [hash, {desc, text}] of Object.entries(newLeaves)) {
+        newStringByCategory[CATEGORY.SAME_HASH_BUT_UPDATED_HASH_KEY][hash] = {
+          ...commonResult,
+          legacyHash: hash,
+          text,
+          legacyText: text,
+          desc,
+          legacyDesc: desc,
+        };
+      }
+      return;
+    }
     const {m: mNew} = newPhrase.jsfbt;
     const {m: mOld} = legacyPhrase.jsfbt;
     if (mNew.length > mOld.length) {
-      const commonResult = {
-        project: newPhrase.project,
-        filepath: newPhrase.filepath,
-        lineBeg: newPhrase.line_beg,
-        lineEnd: newPhrase.line_end,
-        hashKey: newPhrase.hash_key,
-        legacyHashKey: legacyPhrase.hash_key,
-      };
       for (const [hash, {desc, text}] of Object.entries(newLeaves)) {
         newStringByCategory[
           CATEGORY.SAME_HASH_BUT_ADDITIONAL_IMPLICIT_VARIATIONS

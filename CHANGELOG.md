@@ -17,6 +17,7 @@ List of changes for each released npm package version.
 - [fbt-rn-android-native versions [Deprecated]](#fbt-rn-android-native-versions-deprecated)
 
 ### Top-level Github
+- [minor] Identify strings with updated `hash_key` in `categorizeNewStrings.js`
 - [chore] Update copyright headers to 'Meta Platforms, Inc.'
 - [chore] Upgrade to Flow v0.158.0
 - [fix] Add missing dependencies for `@babel/preset-react`
