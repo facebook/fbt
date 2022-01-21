@@ -29,6 +29,7 @@ List of changes for each released npm package version.
 - [chore] Adding @noflow annotations
 - [chore] Upgrade to Flow v0.127.0
 - [fix] Relax required version patterns of npm dependencies
+- [fix] Inline `fbjs` dependency
 - Sync `babelTypeShims.js` to GitHub. It was previously missing due to internal config issues.
 - Upgrade to Flow v0.123.0
 - [doc] Add Fbt Common Strings documentation

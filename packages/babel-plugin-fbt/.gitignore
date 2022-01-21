@@ -1,7 +1,8 @@
 yarn.lock
 
 dist/**/*.js.flow
-dist # @oss-only
+# @oss-only
+dist 
 
 # file checksums used by gulp-once
 .checksums
