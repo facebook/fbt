@@ -130,6 +130,8 @@ declare interface IFbtErrorListener {
    */
   +onStringSerializationError?: (content: $FbtContentItem) => void;
 
+  +onDuplicateSubstitutionTokenError?: (duplicateTokenName: string) => void;
+
   +onStringMethodUsed?: (method: string) => void;
 }
 
@@ -241,11 +243,8 @@ type $GenericFbtFunctionAPI<Input, Output, ParamInput, ParamOutput> = {
   ...
 };
 
-type $StringBasedFbtFunctionAPI<
-  Output,
-  ParamInput,
-  ParamOutput,
-> = $GenericFbtFunctionAPI<string, Output, ParamInput, ParamOutput>;
+type $StringBasedFbtFunctionAPI<Output, ParamInput, ParamOutput> =
+  $GenericFbtFunctionAPI<string, Output, ParamInput, ParamOutput>;
 
 /**
  * NOTE how the fbs() functional API relies on using an array of content items
