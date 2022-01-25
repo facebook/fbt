@@ -19,7 +19,7 @@ module.exports = {
     alias: {
       invariant: path.resolve(
         __dirname,
-        '../node_modules/fbjs/lib/invariant.js'
+        '../node_modules/invariant/invariant.js'
       ),
     },
     modules: [

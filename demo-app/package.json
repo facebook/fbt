@@ -74,7 +74,7 @@
     "@fbtjs/default-collection-transform": "x.x.x",
     "babel-plugin-fbt-runtime": "x.x.x",
     "babel-plugin-minify-replace": "^0.5.0",
-    "fbjs": "^1.0.0",
+    "invariant": "^2.2.4",
     "fbt": "x.x.x",
     "react": "^16.6.3",
     "react-dom": "^16.6.3"

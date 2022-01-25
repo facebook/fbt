@@ -43,7 +43,6 @@ const {
   objectExpression,
   objectProperty,
 } = require('@babel/types');
-const forEachObject = require('fbjs/lib/forEachObject');
 const invariant = require('invariant');
 const nullthrows = require('nullthrows');
 
@@ -253,11 +252,13 @@ function getPronounGenderKey(
 // Prepare the list of genders actually used by the pronoun construct
 function consolidatedPronounGenders(): $ReadOnlyArray<GenderConstEnum> {
   const set = new Set();
-  forEachObject(GENDER_CONST, gender => {
-    forEachObject(ValidPronounUsagesKeys, usage => {
-      set.add(getPronounGenderKey(usage, gender));
-    });
-  });
+
+  for (const genderKey of Object.keys(GENDER_CONST)) {
+    for (const usageKey of Object.keys(ValidPronounUsagesKeys)) {
+      set.add(getPronounGenderKey(ValidPronounUsagesKeys[usageKey], GENDER_CONST[genderKey]));
+    }
+  };
+
   return Array.from(set).sort((left, right) => left - right);
 }
 

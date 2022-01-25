@@ -35,7 +35,6 @@
     "@babel/register": "^7.0.0",
     "@babel/types": "^7.2.2",
     "fb-babel-plugin-utils": "0.13.0-beta",
-    "fbjs": "^1.0.0",
     "flow-enums-runtime": "^0.0.4",
     "glob": "^7.1.6",
     "invariant": "^2.2.4",
