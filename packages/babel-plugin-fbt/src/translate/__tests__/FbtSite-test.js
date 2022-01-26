@@ -85,10 +85,4 @@ describe('FbtSite: testing fromScan', () => {
     });
   });
 
-  it('should serialize/deserialize as expected', () => {
-    const original = fbtSite.serialize();
-    const hydrated = FbtSite.deserialize(original).serialize();
-    expect(original).toEqual(hydrated);
-    expect(original).toMatchSnapshot();
-  });
 });
