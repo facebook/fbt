@@ -9,7 +9,7 @@
 #     collect legacy strings
 #   - Upgrade to babel-plugin-fbt@~0.21.0 in your package.json and run `yarn install`
 #   - Run `yarn fbt-collect` to collect new strings
-#   - Run `./categorize_new_strings.sh <legacy_srings.json> <new_strings.json>`
+#   - Run `./categorize_new_strings.sh <legacy_srings.json> <new_strings.json> [--return-new-hash-key]`
 #
 #######################
 
@@ -17,6 +17,11 @@ set -euo pipefail
 
 inputFileLegacy=$1
 inputFileNew=$2
+optionReturnPhrasesWithNewHashKey=""
+if [[ $# -gt 2 ]]; then
+  optionReturnPhrasesWithNewHashKey=$3
+fi
+
 tempFileLegacy=$inputFileLegacy.temp.json
 tempFileNew=$inputFileNew.temp.json
 
@@ -24,5 +29,5 @@ jq '.phrases' "$inputFileLegacy" | jq '.|=sort_by(.filepath, .line_beg, .col_beg
 jq '.phrases' "$inputFileNew" | jq '.|=sort_by(.filepath, .line_beg, .col_beg)' --sort-keys >& "$tempFileNew"
 
 node categorizeNewStrings.js \
-  "$tempFileLegacy" "$tempFileNew" > "new_strings_by_category.json" && \
-  rm "$tempFileLegacy" "$tempFileNew"
+  "$tempFileLegacy" "$tempFileNew" "$optionReturnPhrasesWithNewHashKey" \
+  > "new_strings_by_category.json" && rm "$tempFileLegacy" "$tempFileNew"

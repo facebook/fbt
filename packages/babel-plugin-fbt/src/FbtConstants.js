@@ -16,7 +16,7 @@
 
 import type {ValidPronounUsagesType} from '../../../runtime/shared/FbtRuntimeTypes';
 
-const keyMirror = require('fbjs/lib/keyMirror');
+const keyMirror = require('./utils/keyMirror');
 
 export type FbtOptionValue = string | boolean | BabelNode;
 export type FbtOptionValues<K> = {|[K]: ?FbtOptionValue|};

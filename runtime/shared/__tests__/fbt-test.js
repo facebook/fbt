@@ -11,12 +11,8 @@
 
 'use strict';
 
-import type {IntlVariationsEnum} from 'IntlVariations';
-
-jest.mock('FbtNumberType');
-jest.mock('translationOverrideListener'); // FB internal
-
 import type {FbtRuntimeCallInput, FbtTranslatedInput} from 'FbtHooks';
+import type {IntlVariationsEnum} from 'IntlVariations';
 
 const GenderConst = require('GenderConst');
 // Warning: importing JS modules outside of beforeEach blocks is generally bad practice
@@ -27,6 +23,9 @@ const ReactDOM = require('ReactDOMLegacy_DEPRECATED');
 
 const invariant = require('invariant');
 const React = require('react');
+
+jest.mock('FbtNumberType');
+jest.mock('translationOverrideListener'); // FB internal
 
 let domContainer;
 let fbt;
@@ -229,6 +228,49 @@ describe('fbt', () => {
   //   );
   // });
 
+  describe('when encountering duplicate token substitutions', () => {
+    let FbtFBLogger;
+    beforeEach(() => {
+      jest.mock('FBLogger', () =>
+        jest.fn(_loggerProject => ({
+          blameToPreviousDirectory: jest.fn(() => ({
+            blameToPreviousDirectory: jest.fn(() => {
+              return (FbtFBLogger = {
+                mustfix: jest.fn(() => {}),
+              });
+            }),
+          })),
+        })),
+      );
+    });
+
+    it('should log the duplicate token coming from the same type of construct', () => {
+      fbtRuntime._('Just a {tokenName}', [
+        fbtRuntime._param('tokenName', 'substitute'),
+        fbtRuntime._param('tokenName', 'substitute'),
+      ]);
+      expect(FbtFBLogger.mustfix).toHaveBeenCalledWith(
+        'Cannot register a substitution with token=`%s` more than once',
+        'tokenName',
+      );
+    });
+
+    it('should log the duplicate token coming from the different constructs', () => {
+      fbtRuntime._('Just a {tokenName}', [
+        fbtRuntime._param('tokenName', 'substitute'),
+        fbtRuntime._name(
+          'tokenName',
+          'person name',
+          IntlVariations.GENDER_UNKNOWN,
+        ),
+      ]);
+      expect(FbtFBLogger.mustfix).toHaveBeenCalledWith(
+        'Cannot register a substitution with token=`%s` more than once',
+        'tokenName',
+      );
+    });
+  });
+
   it('should replace QuickTranslation strings', function () {
     expect(
       fbtRuntime._(['This is a QT string', '8b0c31a270a324f26d2417a358106611']),
@@ -337,7 +379,7 @@ describe('fbt', () => {
   });
 
   describe(': given a string with implicit parameters', () => {
-    function getFbt({viewer, ownerGender, object, count}) {
+    function getFbt({count, object, ownerGender, viewer}) {
       return (
         <fbt desc="description">
           <fbt:name gender={viewer.gender} name="name">

@@ -16,11 +16,6 @@
   ],
   "homepage": "https://facebook.github.io/fbt/",
   "bugs": "https://github.com/facebook/fbt/issues",
-  "files": [
-    "dist/",
-    "lib/",
-    "LICENSE"
-  ],
   "main": "lib/FbtPublic.js",
   "style": "dist/fbt.css",
   "repository": {

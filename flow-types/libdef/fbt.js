@@ -130,15 +130,17 @@ declare interface IFbtErrorListener {
    */
   +onStringSerializationError?: (content: $FbtContentItem) => void;
 
+  +onDuplicateSubstitutionTokenError_EXPERIMENTAL?: (duplicateTokenName: string) => void;
+
   +onStringMethodUsed?: (method: string) => void;
 }
 
 declare interface IFbtResultBase {
   constructor(
-    contents: $ReadOnlyArray<any>,
+    contents: $NestedFbtContentItems,
     errorListener: ?IFbtErrorListener,
   ): void;
-  getContents(): any;
+  getContents(): $NestedFbtContentItems;
   // This relies on toString() which contains i18n logging logic to track impressions.
   // I.e. If you use this, i18n will register the string as displayed!
   toJSON(): string;
@@ -152,7 +154,7 @@ declare class $FbtResultBase implements IFbtResultBase {
     contents: $ReadOnlyArray<any>,
     errorListener: ?IFbtErrorListener,
   ): void;
-  getContents(): any;
+  getContents(): $NestedFbtContentItems;
   toJSON(): string;
   // TODO(T27672828) Move code of toString() inside unwrap()
   // Returns the translated string value (similar to a `toString()` method)
@@ -241,11 +243,8 @@ type $GenericFbtFunctionAPI<Input, Output, ParamInput, ParamOutput> = {
   ...
 };
 
-type $StringBasedFbtFunctionAPI<
-  Output,
-  ParamInput,
-  ParamOutput,
-> = $GenericFbtFunctionAPI<string, Output, ParamInput, ParamOutput>;
+type $StringBasedFbtFunctionAPI<Output, ParamInput, ParamOutput> =
+  $GenericFbtFunctionAPI<string, Output, ParamInput, ParamOutput>;
 
 /**
  * NOTE how the fbs() functional API relies on using an array of content items

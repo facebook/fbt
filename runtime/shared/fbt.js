@@ -19,13 +19,16 @@
  * @emails oncall+i18n_fbt_js
  */
 
-require('FbtEnv').setupOnce();
+/* eslint-disable fb-www/order-requires */
 
 import type {FbtInputOpts, FbtRuntimeInput, FbtTableArgs} from 'FbtHooks';
 import type {ParamVariationType, ValidPronounUsagesType} from 'FbtRuntimeTypes';
 import type {FbtTableKey, PatternHash, PatternString} from 'FbtTable';
 import type {FbtTableArg} from 'FbtTableAccessor';
 import type {GenderConstEnum} from 'GenderConst';
+
+const FbtEnv = require('FbtEnv');
+FbtEnv.setupOnce();
 
 const FbtHooks = require('FbtHooks');
 const {overrides} = require('FbtQTOverrides');
@@ -41,6 +44,12 @@ const {
 const intlNumUtils = require('intlNumUtils');
 const invariant = require('invariant');
 const substituteTokens = require('substituteTokens');
+
+/*
+ * $FlowFixMe[method-unbinding] Use original method in case the token names contain
+ * a 'hasOwnProperty' key too; or if userland code redefined that method.
+ */
+const {hasOwnProperty} = Object.prototype;
 
 let jsonExportMode = false; // Used only in React Native
 
@@ -145,10 +154,8 @@ function fbtCallsite(
       // translations. If pattern is not a string here, table has not been accessed
       pattern = FbtTable.access(pattern, args, 0);
     }
-    allSubstitutions = Object.assign(
-      {},
-      ...args.map(arg => arg[ARG.SUBSTITUTION] || {}),
-    );
+
+    allSubstitutions = getAllSubstitutions(args);
     invariant(pattern !== null, 'Table access failed');
   }
 
@@ -196,6 +203,28 @@ function fbtCallsite(
     }
     return result;
   }
+}
+
+function getAllSubstitutions(args) {
+  const allSubstitutions = {};
+  args.forEach(arg => {
+    const substitution = arg[ARG.SUBSTITUTION];
+    if (!substitution) {
+      return;
+    }
+    for (const tokenName in substitution) {
+      if (hasOwnProperty.call(substitution, tokenName)) {
+        if (allSubstitutions[tokenName] != null) {
+          FbtHooks.getErrorListener({
+            translation: '<<unresolved translation>>',
+            hash: null,
+          })?.onDuplicateSubstitutionTokenError_EXPERIMENTAL?.(tokenName);
+        }
+        allSubstitutions[tokenName] = substitution[tokenName];
+      }
+    }
+  });
+  return allSubstitutions;
 }
 
 /**

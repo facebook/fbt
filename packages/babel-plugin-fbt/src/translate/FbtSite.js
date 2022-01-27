@@ -173,22 +173,6 @@ class FbtSite extends FbtSiteBase<FbtSiteMetaEntry, FbtSiteHashToTextAndDesc> {
   ): TextAndDescConcatenation {
     return JSON.stringify({text, desc});
   }
-
-  serialize(): SerializedFbtSite {
-    return {
-      h2a: this.getHashToTokenAliases(),
-      h2t: this.getHashToLeaf(),
-      p: this.getProject(),
-      _d: {
-        t: this.table,
-        m: FbtSiteMetadata.unwrap(this.metadata),
-      },
-    };
-  }
-
-  static deserialize(json: $ReadOnly<SerializedFbtSite>): FbtSite {
-    return new FbtSite(json.h2t, json._d, json.p, json.h2a);
-  }
 }
 
 // TODO: T92487383 Sync FbtSiteMetaEntry to the FbtSiteBase class.
