@@ -137,10 +137,10 @@ declare interface IFbtErrorListener {
 
 declare interface IFbtResultBase {
   constructor(
-    contents: $ReadOnlyArray<any>,
+    contents: $NestedFbtContentItems,
     errorListener: ?IFbtErrorListener,
   ): void;
-  getContents(): any;
+  getContents(): $NestedFbtContentItems;
   // This relies on toString() which contains i18n logging logic to track impressions.
   // I.e. If you use this, i18n will register the string as displayed!
   toJSON(): string;
@@ -154,7 +154,7 @@ declare class $FbtResultBase implements IFbtResultBase {
     contents: $ReadOnlyArray<any>,
     errorListener: ?IFbtErrorListener,
   ): void;
-  getContents(): any;
+  getContents(): $NestedFbtContentItems;
   toJSON(): string;
   // TODO(T27672828) Move code of toString() inside unwrap()
   // Returns the translated string value (similar to a `toString()` method)
