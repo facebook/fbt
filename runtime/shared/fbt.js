@@ -218,7 +218,7 @@ function getAllSubstitutions(args) {
           FbtHooks.getErrorListener({
             translation: '<<unresolved translation>>',
             hash: null,
-          })?.onDuplicateSubstitutionTokenError?.(tokenName);
+          })?.onDuplicateSubstitutionTokenError_EXPERIMENTAL?.(tokenName);
         }
         allSubstitutions[tokenName] = substitution[tokenName];
       }

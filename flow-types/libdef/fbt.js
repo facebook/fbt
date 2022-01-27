@@ -130,7 +130,7 @@ declare interface IFbtErrorListener {
    */
   +onStringSerializationError?: (content: $FbtContentItem) => void;
 
-  +onDuplicateSubstitutionTokenError?: (duplicateTokenName: string) => void;
+  +onDuplicateSubstitutionTokenError_EXPERIMENTAL?: (duplicateTokenName: string) => void;
 
   +onStringMethodUsed?: (method: string) => void;
 }

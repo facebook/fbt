@@ -58,7 +58,7 @@ List of changes for each released npm package version.
     Unreleased changes that have landed in main. Click to see more.
   </summary>
 
-  - [feat] Add sanity check to ensure that each patter string token is mapped to a single substitution value.
+  - [feat] *[Experimental]* Add sanity check to ensure that each patter string token is mapped to a single substitution value.
   - [chore] Add `.npmignore` config (avoid exporting some build, debug & test files)
 
 </details>
