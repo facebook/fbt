@@ -581,6 +581,24 @@ fbt._(
 
 `;
 
+exports[`Test declarative (jsx) fbt syntax translation should support non-breasking space character 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        desc: "desc with non-breaking   space",
+        text: "text with non-breaking   space",
+      },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */
+);
+
+`;
+
 exports[`Test declarative (jsx) fbt syntax translation should support unicode characters 1`] = `
 const fbt = require("fbt"); // A backslash \\ in comments
 

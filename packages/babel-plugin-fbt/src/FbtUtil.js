@@ -81,7 +81,9 @@ function normalizeSpaces(
   if (options && options.preserveWhitespace) {
     return value;
   }
-  return value.replace(/\s+/g, ' ');
+  // We're  willingly preserving non-breaking space characters (\u00A0)
+  // See D33402749 for more info.
+  return value.replace(/[^\S\u00A0]+/g, ' ');
 }
 
 /**

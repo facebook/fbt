@@ -326,6 +326,16 @@ const testData = {
     ),
   },
 
+  'should support non-breasking space character': {
+    // multiple spaces are normalized to a single space
+    // but &nbsp characters are preserved
+    input: withFbtRequireStatement(
+      `<fbt desc="desc with    non-breaking&nbsp;&nbsp;&nbsp;space">
+          text with    non-breaking&nbsp;&nbsp;&nbsp;space
+      </fbt>`,
+    ),
+  },
+
   'should support unicode characters': {
     input: withFbtRequireStatement(
       `// A backslash \\ in comments
