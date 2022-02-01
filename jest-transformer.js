@@ -1,8 +1,9 @@
 /**
  * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
- * @noflow
- * @format
+ *
  * @emails oncall+i18n_fbt_js
+ * @format
+ * @noflow
  */
 
 module.exports = require('babel-jest').createTransformer({
