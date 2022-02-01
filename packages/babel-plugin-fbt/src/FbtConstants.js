@@ -7,9 +7,9 @@
  * but fbt() already uses 'type' as the tag within the fbt table data for the
  * to-be-localized text.
  *
- * @format
  * @emails oncall+i18n_fbt_js
  * @flow strict-local
+ * @format
  */
 
 /*eslint max-len: ["error", 100]*/

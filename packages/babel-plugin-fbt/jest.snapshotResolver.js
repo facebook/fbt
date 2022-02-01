@@ -4,8 +4,8 @@
  * See https://jestjs.io/docs/en/configuration#snapshotresolver-string
  *
  * @emails oncall+i18n_fbt_js
- * @noflow
  * @format
+ * @noflow
  */
 
 'use strict';

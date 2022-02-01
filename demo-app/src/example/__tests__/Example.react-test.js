@@ -1,8 +1,8 @@
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
- * @format
  * @emails oncall+i18n_fbt_js
+ * @format
  */
 
 import Example from '../Example.react';

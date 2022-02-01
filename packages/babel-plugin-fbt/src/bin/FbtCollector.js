@@ -1,10 +1,10 @@
 /**
  * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
+ * @emails oncall+i18n_fbt_js
+ * @flow
  * @format
  * @noformat
- * @flow
- * @emails oncall+i18n_fbt_js
  */
 
 /* eslint max-len: ["warn", 120] */

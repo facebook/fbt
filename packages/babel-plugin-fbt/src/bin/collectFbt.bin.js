@@ -2,9 +2,9 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
- * @format
- * @flow strict-local
  * @emails oncall+i18n_fbt_js
+ * @flow strict-local
+ * @format
  */
 
 'use strict';

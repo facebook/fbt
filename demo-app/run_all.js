@@ -1,9 +1,9 @@
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
- * @format
- * @flow
  * @emails oncall+i18n_fbt_js
+ * @flow
+ * @format
  */
 
 const {execSync} = require('child_process');

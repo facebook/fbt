@@ -17,6 +17,7 @@
  *
  * @emails oncall+i18n_fbt_js
  * Flow does not support BigInt yet
+ *
  * @noflow
  */
 

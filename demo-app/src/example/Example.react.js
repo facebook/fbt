@@ -1,10 +1,10 @@
 /**
  * Copyright (c) Facebook, Inc. and its affiliates. All rights reserved.
  *
+ * @emails oncall+i18n_fbt_js
+ * @fbt {"project": "fbt-demo-project"}
  * @format
  * @noflow
- * @fbt {"project": "fbt-demo-project"}
- * @emails oncall+i18n_fbt_js
  */
 
 /* eslint-disable fb-flow/use-exact-by-default-object-type */

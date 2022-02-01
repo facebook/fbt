@@ -2,9 +2,9 @@
 /**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
+ * @emails oncall+i18n_fbt_js
  * @format
  * @noflow
- * @emails oncall+i18n_fbt_js
  */
 
 'use strict';

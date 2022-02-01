@@ -1,8 +1,8 @@
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
- * @flow strict
  * @emails oncall+i18n_fbt_js
+ * @flow strict
  */
 
 const Example$FbtEnum = {

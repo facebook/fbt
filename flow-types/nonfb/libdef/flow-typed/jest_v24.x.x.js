@@ -1,9 +1,9 @@
 /**
  * From https://github.com/flow-typed/flow-typed/blob/master/definitions/npm/jest_v24.x.x/flow_v0.104.x-/jest_v24.x.x.js
  *
- * @format
- * @flow strict
  * @emails oncall+i18n_fbt_js
+ * @flow strict
+ * @format
  */
 
 type JestMockFn<TArguments: $ReadOnlyArray<*>, TReturn> = {

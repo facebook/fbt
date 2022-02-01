@@ -1,8 +1,8 @@
 /**
  * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
- * @noflow
  * @emails oncall+i18n_fbt_js
+ * @noflow
  */
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');

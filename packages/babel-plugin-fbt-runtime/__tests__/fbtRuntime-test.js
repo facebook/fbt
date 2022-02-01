@@ -1,5 +1,4 @@
 /**
- *
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * @emails oncall+i18n_fbt_js

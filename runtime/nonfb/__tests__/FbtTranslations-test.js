@@ -1,8 +1,8 @@
 /**
  * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
- * @flow
  * @emails oncall+i18n_fbt_oss
+ * @flow
  */
 
 import FbtTranslations from '../FbtTranslations';

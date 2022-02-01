@@ -1,9 +1,9 @@
-/*
+/**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
+ * @emails oncall+i18n_fbt_js
  * @format
  * @noflow
- * @emails oncall+i18n_fbt_js
  */
 const babel = require('@babel/core');
 const createCacheKeyFunction = require('fbjs-scripts/jest/createCacheKeyFunction');
