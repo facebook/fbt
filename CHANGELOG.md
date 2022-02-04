@@ -159,6 +159,8 @@ List of changes for each released npm package version.
       Unreleased changes that have landed in main. Click to see more.
     </summary>
 
+    0.21.0-rc10-beta
+    - [feature] Support fbt `common` attribute without value
     - [chore] Add tests for common fbt
 
     0.21.0-rc9-beta

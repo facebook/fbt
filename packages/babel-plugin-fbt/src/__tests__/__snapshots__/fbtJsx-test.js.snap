@@ -259,6 +259,21 @@ var x = fbt._(
 
 `;
 
+exports[`Test declarative (jsx) fbt syntax translation should handle fbt common attribute without value 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: { desc: 'The description for the common string "Okay"', text: "Okay" },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */
+);
+
+`;
+
 exports[`Test declarative (jsx) fbt syntax translation should handle number={true} - (same output as above test) 1`] = `
 const fbt = require("fbt");
 

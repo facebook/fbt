@@ -37,6 +37,7 @@ const {
 const getNamespacedArgs = require('../getNamespacedArgs');
 const {
   arrayExpression,
+  booleanLiteral,
   callExpression,
   identifier,
   isCallExpression,
@@ -316,10 +317,18 @@ class JSXFbtProcessor {
       this._getOpeningElementAttributes(),
       CommonOption,
     );
-    const commonAttrValue = commonAttr && commonAttr.value;
-    if (!commonAttrValue) {
+    if (commonAttr == null) {
       return null;
     }
+
+    // A JSX/HTML tag attribute without value is default to boolean value true.
+    // E.g. `<fbt common>Done</fbt>`
+    const commonAttrValue = commonAttr.value;
+    if (commonAttrValue == null) {
+      return booleanLiteral(true);
+    }
+
+    // E.g. `<fbt common={true}>Done</fbt>`
     if (commonAttrValue.type === 'JSXExpressionContainer') {
       const expression = commonAttrValue.expression;
       if (expression.type === 'BooleanLiteral') {

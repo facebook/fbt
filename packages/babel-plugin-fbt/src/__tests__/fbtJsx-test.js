@@ -448,6 +448,23 @@ const testData = {
 
     throws: `Unknown string \"Some undefined common string\" for <fbt common={true}>`,
   },
+
+  'should handle fbt common attribute without value': {
+    input: withFbtRequireStatement(`<fbt common>Okay</fbt>`),
+
+    options: {
+      fbtCommon: {Okay: 'The description for the common string "Okay"'},
+    },
+  },
+
+  'should throw for fbt that has description and common attribute (without value)':
+    {
+      input: withFbtRequireStatement(`<fbt common={true} desc='d'>No</fbt>`),
+
+      options: {fbtCommon: {No: 'The description for the common string "No"'}},
+
+      throws: `<fbt common={true}> must not have \"desc\" attribute`,
+    },
 };
 
 describe('Test declarative (jsx) fbt syntax translation', () =>
@@ -616,3 +633,30 @@ describe('Test fbt transforms without the jsx transform', () => {
       `),
     ).toMatchSnapshot());
 });
+
+describe(
+  'Test common fbt with value-less `common` attribute should have same ' +
+    'runtime call as the regular common fbt',
+  () => {
+    const options = {
+      fbtCommon: {Submit: 'The description for the common string "Submit"'},
+    };
+    expect(
+      snapshotTransformKeepJsx(
+        `
+        const fbt = require("fbt");
+        let x = <fbt common>Submit</fbt>;
+      `,
+        options,
+      ),
+    ).toEqual(
+      snapshotTransformKeepJsx(
+        `
+        const fbt = require("fbt");
+        let x = <fbt common={true}>Submit</fbt>;
+      `,
+        options,
+      ),
+    );
+  },
+);
