@@ -420,6 +420,34 @@ const testData = {
       </fbt>`,
     ),
   },
+
+  'should handle common string': {
+    input: withFbtRequireStatement(`<fbt common={true}>Done</fbt>`),
+
+    options: {
+      fbtCommon: {Done: 'The description for the common string "Done"'},
+    },
+  },
+
+  'should throw for strings with `common` attribute equal to false': {
+    input: withFbtRequireStatement(`<fbt common={false}>Yes</fbt>`),
+
+    options: {
+      fbtCommon: {Yes: 'The description for the common string "Yes"'},
+    },
+
+    throws: `Unable to find attribute \"desc\".`,
+  },
+
+  'should throw on undefined common string': {
+    input: withFbtRequireStatement(
+      `<fbt common={true}>Some undefined common string</fbt>`,
+    ),
+
+    options: {},
+
+    throws: `Unknown string \"Some undefined common string\" for <fbt common={true}>`,
+  },
 };
 
 describe('Test declarative (jsx) fbt syntax translation', () =>

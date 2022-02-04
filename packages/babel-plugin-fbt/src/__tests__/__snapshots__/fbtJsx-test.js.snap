@@ -129,6 +129,21 @@ var x = fbt._(
 
 `;
 
+exports[`Test declarative (jsx) fbt syntax translation should handle common string 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: { desc: 'The description for the common string "Done"', text: "Done" },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */
+);
+
+`;
+
 exports[`Test declarative (jsx) fbt syntax translation should handle concatenated descriptions 1`] = `
 const fbt = require("fbt");
 

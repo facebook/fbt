@@ -159,6 +159,8 @@ List of changes for each released npm package version.
       Unreleased changes that have landed in main. Click to see more.
     </summary>
 
+    - [chore] Add tests for common fbt
+
     0.21.0-rc9-beta
       - [fix]! Fixed issue where non-breaking space characters (`&nbsp;`) in `<fbt>` callsites were being replaced by space characters
       - [chore] Improve `.npmignore` config (avoid exporting some build, debug & test files)

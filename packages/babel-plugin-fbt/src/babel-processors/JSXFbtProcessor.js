@@ -114,7 +114,6 @@ class JSXFbtProcessor {
     const commonAttributeValue = this._getCommonAttributeValue();
     let desc;
 
-    // TODO(T83043301) create an <fbt common={true}> test case in the JSX fbt test suite
     if (commonAttributeValue && commonAttributeValue.value) {
       const rawTextValue = (texts.elements || [])
         .map(stringNode => {
