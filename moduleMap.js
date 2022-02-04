@@ -14,7 +14,7 @@ const moduleMap = Object.assign(
   require('fbjs-scripts/third-party-module-map'),
   {
     invariant: 'invariant',
-    React: 'react',
+    react: 'react',
     ReactDOMLegacy_DEPRECATED: 'react-dom',
   },
 );
