@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * @emails oncall+i18n_fbt_js
- * @flow
+ * @flow strict-local
  * @format
  */
 
@@ -192,17 +192,17 @@ class FbtFunctionCallProcessor {
   ): BabelNodeCallExpression {
     const {phrase} = metaPhrases[metaPhraseIndex];
     const {pluginOptions} = this;
-    // $FlowFixMe[speculation-ambiguous] we're deprecating the "type" property soon anyway
     const argsOutput = JSON.stringify(
       ({
         jsfbt: phrase.jsfbt,
         project: phrase.project,
       }: SentinelPayload),
     );
-    const encodedOutput = pluginOptions.fbtBase64
-      ? Buffer.from(argsOutput).toString('base64')
-      : argsOutput;
-    const fbtSentinel = pluginOptions.fbtSentinel || SENTINEL;
+    const encodedOutput =
+      pluginOptions.fbtBase64 === true
+        ? Buffer.from(argsOutput).toString('base64')
+        : argsOutput;
+    const fbtSentinel = pluginOptions.fbtSentinel ?? SENTINEL;
     const args = [stringLiteral(fbtSentinel + encodedOutput + fbtSentinel)];
 
     const fbtRuntimeArgs = this._createFbtRuntimeArgumentsForMetaPhrase(
@@ -470,7 +470,7 @@ class FbtFunctionCallProcessor {
             if (fbtNode instanceof FbtElementNode) {
               // gather list of svArgsMap for all args combination for later sanity checks
               svArgsMapList.push(svArgsMap);
-            } else if (this.pluginOptions.generateOuterTokenName) {
+            } else if (this.pluginOptions.generateOuterTokenName === true) {
               leaf.outerTokenName = fbtNode.getTokenName(svArgsMap);
             }
 

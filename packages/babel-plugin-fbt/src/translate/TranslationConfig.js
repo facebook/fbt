@@ -2,7 +2,7 @@
  * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * @emails oncall+i18n_fbt_js
- * @flow
+ * @flow strict-local
  * @format
  */
 
@@ -21,6 +21,7 @@ import type {
 const IntlNumberType = require('./CLDR/IntlNumberType');
 const IntlGenderType = require('./gender/IntlGenderType');
 const {EXACTLY_ONE, FbtVariationType} = require('./IntlVariations');
+const invariant = require('invariant');
 
 /**
  * Represents a given locale's variation (number/gender) configuration.
@@ -50,8 +51,18 @@ class TranslationConfig {
   isDefaultVariation(variation: mixed): boolean {
     // variation could be "*", or it could be number variation or
     // gender variation value in either string or number type.
-    // $FlowFixMe[incompatible-call] Allow `variation` to be any type so that existing translations still work
-    const value = Number.parseInt(variation, 10);
+    let value;
+    if (typeof variation === 'number') {
+      value = variation;
+    } else {
+      invariant(
+        typeof variation === 'string',
+        'Expect keys in translated payload to be either string or number type ' +
+          'but got a key of type `%s`',
+        variation,
+      );
+      value = Number.parseInt(variation, 10);
+    }
     if (Number.isNaN(value)) {
       return false;
     }

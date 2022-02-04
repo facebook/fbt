@@ -2,7 +2,7 @@
  * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * @emails oncall+i18n_fbt_js
- * @flow
+ * @flow strict-local
  * @format
  */
 
@@ -14,12 +14,12 @@ import type {JSModuleNameType} from '../FbtConstants';
 import type {NodePathOf} from '@babel/core';
 import typeof BabelTypes from '@babel/types';
 
-type NodePath = NodePathOf<BabelNodeCallExpression>;
-
 const FbtCommon = require('../FbtCommon');
 const {CommonOption} = require('../FbtConstants');
 const FbtNodeChecker = require('../FbtNodeChecker');
 const {errorAt, expandStringConcat, normalizeSpaces} = require('../FbtUtil');
+
+type NodePath = NodePathOf<BabelNodeCallExpression>;
 
 /**
  * This class provides utility methods to process the babel node of the fbt common function call.
@@ -80,7 +80,7 @@ class FbtCommonFunctionCallProcessor {
     ).trim();
 
     const desc = FbtCommon.getDesc(text);
-    if (!desc) {
+    if (desc == null || desc === '') {
       throw errorAt(
         node,
         FbtCommon.getUnknownCommonStringErrorMessage(moduleName, text),
