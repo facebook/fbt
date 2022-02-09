@@ -58,12 +58,12 @@ List of changes for each released npm package version.
   <summary>
     Unreleased changes that have landed in main. Click to see more.
   </summary>
-
-  - [fix] Fix React dependency in intlList.js
-  - [feat] *[Experimental]* Add sanity check to ensure that each patter string token is mapped to a single substitution value.
-  - [chore] Add `.npmignore` config (avoid exporting some build, debug & test files)
-
 </details>
+
+- 0.17.1:
+  - [fix] Fix React dependency in intlList.js
+  - [feat] Add sanity check to ensure that each pattern string token is mapped to a single substitution value.
+  - [chore] Add `.npmignore` config (avoid exporting some build, debug & test files)
 
 - 0.17.0:
   - [feat] Add user's regional local in `IntlViewerContext`
@@ -160,8 +160,8 @@ List of changes for each released npm package version.
     </summary>
 
     0.21.0-rc10-beta
-    - [feature] Support fbt `common` attribute without value
-    - [chore] Add tests for common fbt
+      - [feature] Support fbt `common` attribute without value
+      - [chore] Add tests for common fbt
 
     0.21.0-rc9-beta
       - [fix]! Fixed issue where non-breaking space characters (`&nbsp;`) in `<fbt>` callsites were being replaced by space characters
