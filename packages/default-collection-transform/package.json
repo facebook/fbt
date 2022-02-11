@@ -1,6 +1,6 @@
 {
   "name": "@fbtjs/default-collection-transform",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "The default collection transform to run for FBT collection",
   "license": "MIT",
   "main": "index.js",

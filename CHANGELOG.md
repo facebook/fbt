@@ -418,11 +418,11 @@ List of changes for each released npm package version.
     <summary>
       Unreleased changes that have landed in main. Click to see more.
     </summary>
+  </details>
 
+- 0.0.4:
   - [chore] Improve `.npmignore` config (avoid exporting some build, debug & test files)
   - [chore] Update peer dependency on babel-plugin-fbt
-
-  </details>
 
 - 0.0.3:
   - Update peer dependency on babel-plugin-fbt
