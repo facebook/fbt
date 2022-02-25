@@ -1,9 +1,9 @@
 /**
  * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
- * @format
- * @flow
  * @emails oncall+i18n_fbt_js
+ * @flow
+ * @format
  */
 
 const intlList: JestMockFn<

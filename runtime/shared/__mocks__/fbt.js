@@ -1,8 +1,8 @@
 /**
  * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
- * @format
  * @emails oncall+i18n_fbt_js
+ * @format
  */
 
 const invariant = require('invariant');

@@ -1,9 +1,9 @@
 /**
  * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
- * @format
- * @flow strict-local
  * @emails oncall+i18n_fbt_js
+ * @flow strict-local
+ * @format
  */
 import type {IntlVariationsEnum} from 'IntlVariations';
 
