@@ -214,12 +214,11 @@ function getAllSubstitutions(args) {
     }
     for (const tokenName in substitution) {
       if (hasOwnProperty.call(substitution, tokenName)) {
-        if (allSubstitutions[tokenName] != null) {
-          FbtHooks.getErrorListener({
-            translation: '<<unresolved translation>>',
-            hash: null,
-          })?.onDuplicateSubstitutionTokenError_EXPERIMENTAL?.(tokenName);
-        }
+        invariant(
+          allSubstitutions[tokenName] == null,
+          'Cannot register a substitution with token=`%s` more than once',
+          tokenName,
+        );
         allSubstitutions[tokenName] = substitution[tokenName];
       }
     }

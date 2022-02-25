@@ -1,10 +1,10 @@
 /**
  * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
- * @format
  * @emails oncall+i18n_fbt_js
- * @typechecks
  * @flow
+ * @format
+ * @typechecks
  */
 
 /* eslint-disable fb-www/fbt-no-project */
@@ -229,44 +229,29 @@ describe('fbt', () => {
   // });
 
   describe('when encountering duplicate token substitutions', () => {
-    let FbtFBLogger;
-    beforeEach(() => {
-      jest.mock('FBLogger', () =>
-        jest.fn(_loggerProject => ({
-          blameToPreviousDirectory: jest.fn(() => ({
-            blameToPreviousDirectory: jest.fn(() => {
-              return (FbtFBLogger = {
-                mustfix: jest.fn(() => {}),
-              });
-            }),
-          })),
-        })),
-      );
-    });
-
     it('should log the duplicate token coming from the same type of construct', () => {
-      fbtRuntime._('Just a {tokenName}', [
-        fbtRuntime._param('tokenName', 'substitute'),
-        fbtRuntime._param('tokenName', 'substitute'),
-      ]);
-      expect(FbtFBLogger.mustfix).toHaveBeenCalledWith(
-        'Cannot register a substitution with token=`%s` more than once',
-        'tokenName',
+      expect(() =>
+        fbtRuntime._('Just a {tokenName}', [
+          fbtRuntime._param('tokenName', 'substitute'),
+          fbtRuntime._param('tokenName', 'substitute'),
+        ]),
+      ).toThrowErrorMatchingInlineSnapshot(
+        `"Cannot register a substitution with token=\`tokenName\` more than once"`,
       );
     });
 
     it('should log the duplicate token coming from the different constructs', () => {
-      fbtRuntime._('Just a {tokenName}', [
-        fbtRuntime._param('tokenName', 'substitute'),
-        fbtRuntime._name(
-          'tokenName',
-          'person name',
-          IntlVariations.GENDER_UNKNOWN,
-        ),
-      ]);
-      expect(FbtFBLogger.mustfix).toHaveBeenCalledWith(
-        'Cannot register a substitution with token=`%s` more than once',
-        'tokenName',
+      expect(() =>
+        fbtRuntime._('Just a {tokenName}', [
+          fbtRuntime._param('tokenName', 'substitute'),
+          fbtRuntime._name(
+            'tokenName',
+            'person name',
+            IntlVariations.GENDER_UNKNOWN,
+          ),
+        ]),
+      ).toThrowErrorMatchingInlineSnapshot(
+        `"Cannot register a substitution with token=\`tokenName\` more than once"`,
       );
     });
   });

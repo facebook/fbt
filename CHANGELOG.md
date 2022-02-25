@@ -58,11 +58,14 @@ List of changes for each released npm package version.
   <summary>
     Unreleased changes that have landed in main. Click to see more.
   </summary>
+
+  - [chore] Throw an exception if we detect duplicate token names when using the low-level `fbt._()` API (See [9bb6890](https://github.com/facebook/fbt/commit/9bb689040b0c4d03ca7df68dde4a1dfb44949533) / D33476399)
+
 </details>
 
 - 0.17.1:
   - [fix] Fix React dependency in intlList.js
-  - [feat] Add sanity check to ensure that each pattern string token is mapped to a single substitution value.
+  - [feat] *[Experimental]* Add sanity check to ensure that each pattern string token is mapped to a single substitution value.
   - [chore] Add `.npmignore` config (avoid exporting some build, debug & test files)
 
 - 0.17.0:
