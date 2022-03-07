@@ -139,6 +139,7 @@ class FbtResultBase implements IFbtResultBase {
       if (Array.isArray(content)) {
         // $FlowFixMe[method-unbinding] added when improving typing for this parameters
         result.push.apply(result, FbtResultBase.flattenToArray(content));
+        // $FlowFixMe[incompatible-type]
       } else if (content instanceof FbtResultBase) {
         // $FlowFixMe[method-unbinding] added when improving typing for this parameters
         result.push.apply(result, content.flattenToArray());
