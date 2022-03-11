@@ -63,7 +63,7 @@ const intlList = function <TItem: React.Node>(
   }
 
   const lastItem = items[count - 1];
-  let output = items[0];
+  let output: TItem | Fbt = items[0];
 
   for (let i = 1; i < count - 1; ++i) {
     switch (delimiter) {
