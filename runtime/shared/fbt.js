@@ -104,6 +104,7 @@ function fbtCallsite(
   options: ?FbtInputOpts,
 ): Fbt {
   // TODO T61652022: Remove this when no longer used in fbsource
+  // $FlowFixMe[sketchy-null-string]
   if ((options?.hk || options?.ehk) && jsonExportMode) {
     /* $FlowFixMe[incompatible-return] : breaking typing because this should
      * never happen */
