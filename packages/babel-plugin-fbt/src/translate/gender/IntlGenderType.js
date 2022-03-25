@@ -1,7 +1,10 @@
 /**
- * Copyright 2004-present Facebook. All Rights Reserved.
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
- * @generated SignedSource<<2015a449248f6952509505be6717d1d1>>
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * @generated SignedSource<<bae36609aef9e1c56f4051383323bedd>>
  *
  * Run `phps GenderGenScript` to regenerate this file.
  *
