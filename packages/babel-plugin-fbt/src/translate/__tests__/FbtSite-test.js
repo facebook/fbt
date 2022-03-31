@@ -84,5 +84,4 @@ describe('FbtSite: testing fromScan', () => {
       },
     });
   });
-
 });
