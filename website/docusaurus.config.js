@@ -5,27 +5,28 @@
  * LICENSE file in the root directory of this source tree.
  *
  * @emails oncall+i18n_fbt_js
+ * @format
  * @noflow
  */
 
 module.exports = {
-  title: "FBT",
-  tagline: "An internationalization framework",
-  url: "https://facebook.github.io",
-  baseUrl: "/fbt/",
-  favicon: "img/favicon_blue.png",
-  projectName: "fbt",
-  organizationName: "facebook",
-  scripts: ["https://buttons.github.io/buttons.js"],
+  title: 'FBT',
+  tagline: 'An internationalization framework',
+  url: 'https://facebook.github.io',
+  baseUrl: '/fbt/',
+  favicon: 'img/favicon_blue.png',
+  projectName: 'fbt',
+  organizationName: 'facebook',
+  scripts: ['https://buttons.github.io/buttons.js'],
   customFields: {
     users: [
       {
-        caption: "Facebook",
-        imageUrl: "img/flogo_RGB_HEX-72.svg",
-        infoUrl: "https://www.facebook.com",
-        pinned: true
-      }
-    ]
+        caption: 'Facebook',
+        imageUrl: 'img/flogo_RGB_HEX-72.svg',
+        infoUrl: 'https://www.facebook.com',
+        pinned: true,
+      },
+    ],
   },
   themeConfig: {
     announcementBar: {
@@ -37,58 +38,58 @@ module.exports = {
       isCloseable: false,
     },
     navbar: {
-      title: "FBT",
+      title: 'FBT',
       logo: {
-        alt: "FBT Logo",
-        src: "img/fbt.png"
+        alt: 'FBT Logo',
+        src: 'img/fbt.png',
       },
       items: [
-        { to: "docs/getting_started_on_web", label: "Docs", position: "right" },
-        { to: "help", label: "Help", position: "right" },
+        {to: 'docs/getting_started_on_web', label: 'Docs', position: 'right'},
+        {to: 'help', label: 'Help', position: 'right'},
         {
-          href: "https://github.com/facebook/fbt",
-          label: "GitHub",
-          position: "right"
-        }
-      ]
+          href: 'https://github.com/facebook/fbt',
+          label: 'GitHub',
+          position: 'right',
+        },
+      ],
     },
     footer: {
-      style: "dark",
+      style: 'dark',
       logo: {
-        alt: "Facebook Open Source Logo",
-        src: "https://docusaurus.io/img/oss_logo.png",
-        href: "https://opensource.facebook.com/"
+        alt: 'Facebook Open Source Logo',
+        src: 'https://docusaurus.io/img/oss_logo.png',
+        href: 'https://opensource.facebook.com/',
       },
       copyright: `Copyright © ${new Date().getFullYear()} Facebook, Inc.`,
       links: [
         {
-          title: "Docs",
+          title: 'Docs',
           items: [
-            { label: "Getting Started", to: "docs/getting_started_on_web" },
-            { label: "Help", to: "help" },
+            {label: 'Getting Started', to: 'docs/getting_started_on_web'},
+            {label: 'Help', to: 'help'},
             {
-              label: "API Reference",
-              to: "docs/api_intro"
-            }
-          ]
+              label: 'API Reference',
+              to: 'docs/api_intro',
+            },
+          ],
         },
         {
-          title: "Community",
+          title: 'Community',
           items: [
-            { label: "User Showcase", to: "users" },
+            {label: 'User Showcase', to: 'users'},
             {
-              label: "Stack Overflow",
-              href: "http://stackoverflow.com/questions/tagged/fbt"
+              label: 'Stack Overflow',
+              href: 'http://stackoverflow.com/questions/tagged/fbt',
             },
             {
-              label: "Discord Channel",
-              href: "https://discord.gg/cQvXZr5"
+              label: 'Discord Channel',
+              href: 'https://discord.gg/cQvXZr5',
             },
             {
-              label: "Twitter",
-              href: "https://twitter.com/fbt_js"
-            }
-          ]
+              label: 'Twitter',
+              href: 'https://twitter.com/fbt_js',
+            },
+          ],
         },
         {
           title: 'Legal',
@@ -109,37 +110,37 @@ module.exports = {
           ],
         },
         {
-          title: "More",
+          title: 'More',
           items: [
-            { label: "Blog", to: "blog" },
+            {label: 'Blog', to: 'blog'},
             {
-              label: "Github",
-              href: "https://github.com/facebook/fbt"
+              label: 'Github',
+              href: 'https://github.com/facebook/fbt',
             },
-          ]
-        }
-      ]
+          ],
+        },
+      ],
     },
-    image: "img/fbt.png",
+    image: 'img/fbt.png',
     algolia: {
-      apiKey: "5c2d8a0fd96316854e1f0eabd60c39ec",
-      indexName: "fbt",
+      apiKey: '5c2d8a0fd96316854e1f0eabd60c39ec',
+      indexName: 'fbt',
     },
   },
   presets: [
     [
-      "@docusaurus/preset-classic",
+      '@docusaurus/preset-classic',
       {
         docs: {
-          path: "../docs",
-          sidebarPath: require.resolve("./sidebars.js"),
+          path: '../docs',
+          sidebarPath: require.resolve('./sidebars.js'),
           showLastUpdateAuthor: true,
-          showLastUpdateTime: true
+          showLastUpdateTime: true,
         },
         theme: {
-          customCss: require.resolve("./src/css/custom.css")
-        }
-      }
-    ]
-  ]
+          customCss: require.resolve('./src/css/custom.css'),
+        },
+      },
+    ],
+  ],
 };

@@ -6,27 +6,28 @@
  *
  * @emails oncall+i18n_fbt_js
  * @flow strict
+ * @format
  */
 
 module.exports = {
   docs: {
-    "Getting started": [
-      "getting_started_on_web",
-      "getting_started_react_native"
+    'Getting started': [
+      'getting_started_on_web',
+      'getting_started_react_native',
     ],
     API: [
-      "api_intro",
-      "params",
-      "implicit_params",
-      "plurals",
-      "enums",
-      "pronouns",
-      "autoparam",
-      "common",
-      "utilities"
+      'api_intro',
+      'params',
+      'implicit_params',
+      'plurals',
+      'enums',
+      'pronouns',
+      'autoparam',
+      'common',
+      'utilities',
     ],
-    "JS Transforms": ["transform"],
-    Collection: ["collection"],
-    Translating: ["translating", "standards"]
-  }
+    'JS Transforms': ['transform'],
+    Collection: ['collection'],
+    Translating: ['translating', 'standards'],
+  },
 };

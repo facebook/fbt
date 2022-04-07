@@ -5,22 +5,22 @@
  * LICENSE file in the root directory of this source tree.
  *
  * @emails oncall+i18n_fbt_js
+ * @format
  * @noflow
  */
 
-import React from "react";
-import Layout from "@theme/Layout";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import Showcase from "../components/Showcase";
+import Showcase from '../components/Showcase';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import Layout from '@theme/Layout';
+import React from 'react';
 
 const Users = () => {
-  const { siteConfig = {} } = useDocusaurusContext();
+  const {siteConfig = {}} = useDocusaurusContext();
 
   return (
     <Layout
-      title={`${siteConfig.title} - ${siteConfig.tagline}`}
       description={siteConfig.tagline}
-    >
+      title={`${siteConfig.title} - ${siteConfig.tagline}`}>
       <Showcase showAll />
     </Layout>
   );

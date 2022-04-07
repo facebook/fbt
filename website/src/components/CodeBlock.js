@@ -5,20 +5,21 @@
  * LICENSE file in the root directory of this source tree.
  *
  * @emails oncall+i18n_fbt_js
+ * @format
  * @noflow
  */
 
-import React from "react";
-import Highlight, { defaultProps } from "prism-react-renderer";
+import Highlight, {defaultProps} from 'prism-react-renderer';
+import React from 'react';
 
-const CodeBlock = ({ code }) => (
+const CodeBlock = ({code}) => (
   <Highlight {...defaultProps} code={code} language="jsx">
-    {({ className, style, tokens, getLineProps, getTokenProps }) => (
-      <pre className={className} style={{ ...style, textAlign: "left" }}>
+    {({className, getLineProps, getTokenProps, style, tokens}) => (
+      <pre className={className} style={{...style, textAlign: 'left'}}>
         {tokens.map((line, i) => (
-          <div {...getLineProps({ line, key: i })}>
+          <div {...getLineProps({line, key: i})}>
             {line.map((token, key) => (
-              <span {...getTokenProps({ token, key })} />
+              <span {...getTokenProps({token, key})} />
             ))}
           </div>
         ))}
