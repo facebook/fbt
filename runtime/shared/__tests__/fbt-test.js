@@ -11,7 +11,11 @@
 
 'use strict';
 
-import type {FbtRuntimeCallInput, FbtTranslatedInput} from 'FbtHooks';
+import type {
+  FbtResolvedPayload,
+  FbtRuntimeCallInput,
+  FbtTranslatedInput,
+} from 'FbtHooks';
 import type {IntlVariationsEnum} from 'IntlVariations';
 
 const GenderConst = require('GenderConst');
@@ -334,6 +338,26 @@ describe('fbt', () => {
     expect(fbtRuntime._('sample string', null, null)).toEqual(
       'ALL YOUR TRANSLATION ARE BELONG TO US',
     );
+  });
+
+  it('should pass extra options to FbtHooks.getFbtResult', () => {
+    require('FbtHooks').register({
+      getFbtResult(input: FbtResolvedPayload): mixed {
+        const FbtResult = require('FbtResult');
+        const {extraOptions} = input;
+        const fbtResult = FbtResult.get(input).toString();
+        if (extraOptions?.renderStringInBracket === 'yes') {
+          return `[${fbtResult}]`;
+        }
+        return fbtResult;
+      },
+    });
+    expect(fbtRuntime._('A simple string', null)).toEqual('A simple string');
+    expect(
+      fbtRuntime._('Another simple string', null, {
+        eo: {renderStringInBracket: 'yes'},
+      }),
+    ).toEqual('[Another simple string]');
   });
 
   describe('given a string that is only made of contiguous tokens', () => {
