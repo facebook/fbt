@@ -95,14 +95,82 @@ fbt._(
 
 `;
 
-exports[`fbt() API:  using extraOptions should accept "locale" extra option 1`] = `
+exports[`fbt() API:  using extraOptions JSX fbt should accept extra options with limited value set 1`] = `
+const fbt = require("fbt");
+
+fbt._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        desc: "d",
+        text: "This is an {=inner string} and a {token}",
+        tokenAliases: { "=inner string": "=m1" },
+      },
+      m: [],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [
+    fbt._param(
+      "token",
+      fbt._(
+        /* __FBT__ start */ {
+          jsfbt: { t: { desc: "d", text: "another string" }, m: [] },
+          project: "",
+        } /* __FBT__ end */,
+        null,
+        {
+          eo: {
+            private: "yes",
+          },
+        }
+      )
+    ),
+    fbt._implicitParam(
+      "=m1",
+      /*#__PURE__*/ React.createElement(
+        "b",
+        null,
+        fbt._(
+          /* __FBT__ start */ {
+            jsfbt: {
+              t: {
+                desc:
+                  'In the phrase: "This is an {=inner string} and a {token}"',
+                text: "inner string",
+              },
+              m: [],
+            },
+            project: "",
+          } /* __FBT__ end */
+        )
+      )
+    ),
+  ],
+  {
+    eo: {
+      locale: "ar_AR",
+    },
+  }
+);
+
+`;
+
+exports[`fbt() API:  using extraOptions functional fbt should accept "locale" extra option 1`] = `
 const fbt = require("fbt");
 
 fbt._(
   /* __FBT__ start */ {
     jsfbt: { t: { desc: "Bar", text: "Foo" }, m: [] },
     project: "",
-  } /* __FBT__ end */
+  } /* __FBT__ end */,
+  null,
+  {
+    eo: {
+      locale: "ar_AR",
+      private: "yes",
+    },
+  }
 );
 
 `;

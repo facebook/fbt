@@ -16,20 +16,107 @@ const {
 expect.addSnapshotSerializer(jsCodeFbtCallSerializer);
 
 function runTest(data, extra) {
-  expect(snapshotTransform(data.input, extra)).toMatchSnapshot();
+  const runSnapshotTransform = () => snapshotTransform(data.input, extra);
+  if (typeof data.throws === 'string' || data.throws instanceof RegExp) {
+    expect(runSnapshotTransform).toThrow(data.throws);
+  } else {
+    expect(runSnapshotTransform()).toMatchSnapshot();
+  }
 }
 
 describe('fbt() API: ', () => {
   describe('using extraOptions', () => {
-    it('should accept "locale" extra option', () => {
+    it('functional fbt should accept "locale" extra option', () => {
       runTest(
         {
           input: withFbtRequireStatement(
-            `fbt("Foo", "Bar", {locale: locale.data});`,
+            `fbt("Foo", "Bar", {locale: "ar_AR", private: "yes"});`,
           ),
         },
         {
-          extraOptions: {locale: true},
+          extraOptions: {locale: true, private: {yes: true}},
+        },
+      );
+    });
+
+    it('JSX fbt should accept extra options with limited value set', () => {
+      runTest(
+        {
+          input: withFbtRequireStatement(
+            `<fbt desc='d' locale='ar_AR'>
+              This is an
+              <b>inner string</b>
+              and a
+              <fbt:param name='token'>
+                <fbt desc='d' private='yes'>
+                  another string
+                </fbt>
+              </fbt:param>
+            </fbt>;`,
+          ),
+        },
+        {
+          extraOptions: {locale: true, private: {yes: true}},
+        },
+      );
+    });
+
+    it('functional fbt should throw on non-native attributes that are not set in `extraOptions`', () => {
+      runTest(
+        {
+          input: withFbtRequireStatement(
+            `fbt("Foo", "Bar", {locale: "ar_AR"});`,
+          ),
+          throws: `Invalid option "locale". Only allowed: author, common, doNotExtract, preserveWhitespace, project, subject `,
+        },
+        {
+          extraOptions: {},
+        },
+      );
+    });
+
+    it('JSX fbt should throw on non-native attributes that are not set in `extraOptions`', () => {
+      runTest(
+        {
+          input: withFbtRequireStatement(
+            `<fbt desc='d' locale='ar_AR' private='true'>
+              This is a string
+            </fbt>;`,
+          ),
+          throws: `Invalid option "locale". Only allowed: private, author, common, doNotExtract, preserveWhitespace, project, subject `,
+        },
+        {
+          extraOptions: {private: true},
+        },
+      );
+    });
+
+    it('functional fbt should throw on invalid option value', () => {
+      runTest(
+        {
+          input: withFbtRequireStatement(
+            `fbt("Foo", "Bar", {private: "yes"});`,
+          ),
+          throws: `Option "private" has an invalid value: "yes". Only allowed: no`,
+        },
+        {
+          extraOptions: {private: {no: true}},
+        },
+      );
+    });
+
+    it('JSX fbt should throw on invalid option value', () => {
+      runTest(
+        {
+          input: withFbtRequireStatement(
+            `<fbt desc='d' private='aRandomValue'>
+              This is a string
+            </fbt>;`,
+          ),
+          throws: `Option "private" has an invalid value: "aRandomValue". Only allowed: yes, no`,
+        },
+        {
+          extraOptions: {private: {yes: true, no: true}},
         },
       );
     });

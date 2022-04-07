@@ -172,7 +172,7 @@ module.exports = function BabelPluginFbtRuntime(babel /*: {
           parentNode.arguments.push(t.nullLiteral());
         }
         invariant(
-          parentNode.arguments.length === 2,
+          parentNode.arguments.length === 2 || parentNode.arguments.length === 3,
           'Expecting options to be the third param',
         );
 
