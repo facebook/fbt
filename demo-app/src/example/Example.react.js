@@ -11,7 +11,7 @@
 
 import './css/Example.css';
 import classNames from 'classnames';
-import fbt, {GenderConst, IntlVariations, init} from 'fbt';
+import {GenderConst, IntlVariations, fbs, fbt, init} from 'fbt';
 import * as React from 'react';
 
 // eslint-disable-next-line fb-www/no-module-aliasing
@@ -173,7 +173,7 @@ export default class Example extends React.Component<Props, State> {
                     onChange={(event: SyntheticUIEvent<>) => {
                       this.setState({ex1Name: event.target.value});
                     }}
-                    placeholder={fbt('name', 'name field')}
+                    placeholder={fbs('name', 'name field')}
                     type="text"
                   />
                 </span>
@@ -185,7 +185,7 @@ export default class Example extends React.Component<Props, State> {
                       const val = parseInt(event.target.value, 10);
                       this.setState({ex1Count: isNaN(val) ? 1 : val});
                     }}
-                    placeholder={fbt('count', 'count field')}
+                    placeholder={fbs('count', 'count field')}
                     type="number"
                   />
                 </span>
@@ -198,16 +198,16 @@ export default class Example extends React.Component<Props, State> {
                       });
                     }}>
                     <option value={IntlVariations.GENDER_UNKNOWN}>
-                      <fbt desc="Gender Select label">Gender:</fbt>
+                      <fbs desc="Gender Select label">Gender:</fbs>
                     </option>
                     <option value={IntlVariations.GENDER_UNKNOWN}>
-                      <fbt desc="Unknown gender">Unknown</fbt>
+                      <fbs desc="Unknown gender">Unknown</fbs>
                     </option>
                     <option value={IntlVariations.GENDER_MALE}>
-                      <fbt desc="Male gender">Male</fbt>
+                      <fbs desc="Male gender">Male</fbs>
                     </option>
                     <option value={IntlVariations.GENDER_FEMALE}>
-                      <fbt desc="Female gender">Female</fbt>
+                      <fbs desc="Female gender">Female</fbs>
                     </option>
                   </select>
                 </span>
@@ -243,7 +243,7 @@ export default class Example extends React.Component<Props, State> {
                     onChange={(event: SyntheticUIEvent<>) => {
                       this.setState({ex2Name: event.target.value});
                     }}
-                    placeholder={fbt('name', 'name field')}
+                    placeholder={fbs('name', 'name field')}
                     type="text"
                   />
                 </span>
@@ -271,22 +271,22 @@ export default class Example extends React.Component<Props, State> {
                       });
                     }}>
                     <option value={GenderConst.UNKNOWN_PLURAL}>
-                      <fbt desc="Gender Select label">Gender:</fbt>
+                      <fbs desc="Gender Select label">Gender:</fbs>
                     </option>
                     <option value={GenderConst.NOT_A_PERSON}>
-                      <fbt desc="Gender Select label">Not a person</fbt>
+                      <fbs desc="Gender Select label">Not a person</fbs>
                     </option>
                     <option value={GenderConst.UNKNOWN_PLURAL}>
-                      <fbt desc="Gender Select label">Unknown (Plural)</fbt>
+                      <fbs desc="Gender Select label">Unknown (Plural)</fbs>
                     </option>
                     <option value={GenderConst.UNKNOWN_SINGULAR}>
-                      <fbt desc="Gender Select label">Unknown (singular)</fbt>
+                      <fbs desc="Gender Select label">Unknown (singular)</fbs>
                     </option>
                     <option value={GenderConst.MALE_SINGULAR}>
-                      <fbt desc="Gender Select label">Male (singular)</fbt>
+                      <fbs desc="Gender Select label">Male (singular)</fbs>
                     </option>
                     <option value={GenderConst.FEMALE_SINGULAR}>
-                      <fbt desc="Gender Select label">Female (singular)</fbt>
+                      <fbs desc="Gender Select label">Female (singular)</fbs>
                     </option>
                   </select>
                 </span>

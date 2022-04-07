@@ -11,6 +11,7 @@ const FbtTranslations = require('FbtTranslations');
 const GenderConst = require('GenderConst');
 const IntlVariations = require('IntlVariations');
 
+const fbs = require('fbs');
 const fbt = require('fbt');
 const init = require('fbtInit');
 
@@ -21,6 +22,7 @@ const init = require('fbtInit');
 const FbtPublic = {
   __esModule: true,
   default: fbt,
+  fbs,
   fbt,
   FbtResult,
   FbtTranslations,
