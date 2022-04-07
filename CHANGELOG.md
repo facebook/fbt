@@ -334,10 +334,17 @@ List of changes for each released npm package version.
       Unreleased changes that have landed in main. Click to see more.
     </summary>
 
-    - [chore] Improve `.npmignore` config (avoid exporting some build, debug & test files)
-    - [chore] Update fbtRuntime-test.js after the definition of `hash_key` in
-    fbtJenkinsHash.js was modified
-    - [refactor] Move clear token replacement logic to babel-plugin-fbt/src/FbtUtil.js
+    0.10.0-rc6-beta
+      - [feat] Append hk/ehk to the `fbt._()  'options' argument rather than
+        overriding the 'options' argument. This exposes extra options, which are
+         dumped by `babel-plugin-fbt` to the 'options' argument, in fbt runtime
+        calls.
+
+    0.10.0-rc1-beta - 0.10.0-rc5-beta
+      - [chore] Improve `.npmignore` config (avoid exporting some build, debug & test files)
+      - [chore] Update fbtRuntime-test.js after the definition of `hash_key` in
+      fbtJenkinsHash.js was modified
+      - [refactor] Move clear token replacement logic to babel-plugin-fbt/src/FbtUtil.js
   </details>
 
 - 0.10.0:
