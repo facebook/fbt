@@ -10,7 +10,7 @@
 
 'use strict';
 
-import type {JSModuleNameType} from '../FbtConstants';
+import type {FbtExtraOptionConfig, JSModuleNameType} from '../FbtConstants';
 import type {BabelNodeCallExpressionArg, ParamSet} from '../FbtUtil';
 import type {TokenAliases} from '../index.js';
 import type {
@@ -132,12 +132,18 @@ class FbtElementNode
 
   _tokenSet: ParamSet = {};
 
-  getOptions(): Options {
+  getOptions(validExtraOptions?: $ReadOnly<FbtExtraOptionConfig>): Options {
     const {node} = this;
+    const allValidOptions = {...validExtraOptions, ...ValidFbtOptions};
     const rawOptions = collectOptionsFromFbtConstruct(
       this.moduleName,
       node,
-      ValidFbtOptions,
+      /**
+       * $FlowFixMe - For some reason flow is comparing the value of `allValidOptions`
+       * , which is of boolean type, with the first branch of `FbtOptionConfig<K>`
+       * which is an object
+       */
+      allValidOptions,
       FbtBooleanOptions,
     );
 
@@ -255,9 +261,11 @@ class FbtElementNode
   static fromBabelNode({
     moduleName,
     node,
+    validExtraOptions,
   }: {|
     moduleName: JSModuleNameType,
     node: BabelNode,
+    validExtraOptions: $ReadOnly<FbtExtraOptionConfig>,
   |}): ?FbtElementNode {
     if (!isCallExpression(node)) {
       return null;
@@ -265,6 +273,7 @@ class FbtElementNode
     const fbtElement = new FbtElementNode({
       moduleName,
       node,
+      validExtraOptions,
     });
     const {
       arguments: [fbtContentsNode],

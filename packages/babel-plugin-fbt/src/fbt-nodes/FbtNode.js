@@ -10,7 +10,7 @@
 
 'use strict';
 
-import type {JSModuleNameType} from '../FbtConstants';
+import type {FbtExtraOptionConfig, JSModuleNameType} from '../FbtConstants';
 import type {
   BabelNodeCallExpressionArg,
   BabelNodeCallExpressionArgument,
@@ -207,11 +207,13 @@ class FbtNode<
     moduleName,
     node,
     parent,
+    validExtraOptions,
   }: {|
     children?: ?$ReadOnlyArray<MaybeChildNode>,
     moduleName: JSModuleNameType,
     node: CurBabelNode,
     parent?: ?AnyFbtNode,
+    validExtraOptions?: $ReadOnly<FbtExtraOptionConfig>,
   |}): void {
     this.moduleName = moduleName;
     this.node = node;
@@ -220,18 +222,22 @@ class FbtNode<
     }
     this.children = children != null ? [...children] : [];
     this.nodeChecker = FbtNodeChecker.forModule(moduleName);
-    this.options = this.getOptions();
+    this.options = this.getOptions(validExtraOptions);
     this.initCheck();
   }
 
   /**
    * Gather and standardize the valid "options" of the fbt construct.
    * @see {@link FbtNode#options}
+   * @param _validExtraOptions
+   *    Options allowed in addition to the standard options of this construct.
+   *    This is only used by FbtElementNode at the moment, for which users of
+   *    `babel-plugin-fbt` can specify custom options via `extraOptions` option.
    *
    * Note that the fbt construct's options will be stored in `this.options`
    * just after constructing this class instance.
    */
-  getOptions(): Options {
+  getOptions(_validExtraOptions?: $ReadOnly<FbtExtraOptionConfig>): Options {
     throw errorAt(
       this.node,
       'This method must be implemented in a child class',

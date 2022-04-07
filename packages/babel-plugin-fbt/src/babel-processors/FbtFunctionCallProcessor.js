@@ -13,7 +13,11 @@
 import type {AnyStringVariationArg} from '../fbt-nodes/FbtArguments';
 import type {Options as FbtElementNodeOptions} from '../fbt-nodes/FbtElementNode';
 import type {AnyFbtNode} from '../fbt-nodes/FbtNode';
-import type {FbtCallSiteOptions, JSModuleNameType} from '../FbtConstants';
+import type {
+  FbtCallSiteOptions,
+  FbtExtraOptionConfig,
+  JSModuleNameType,
+} from '../FbtConstants';
 import type {TableJSFBTTree, TableJSFBTTreeLeaf} from '../index';
 import type {ObjectWithJSFBT, PluginOptions} from '../index.js';
 import type {NodePathOf} from '@babel/core';
@@ -103,6 +107,7 @@ const STRING_VARIATION_RUNTIME_ARGUMENT_IDENTIFIER_PREFIX = 'fbt_sv_arg';
  */
 class FbtFunctionCallProcessor {
   defaultFbtOptions: FbtCallSiteOptions;
+  validFbtExtraOptions: $ReadOnly<FbtExtraOptionConfig>;
   fileSource: string;
   moduleName: JSModuleNameType;
   node: $PropertyType<NodePath, 'node'>;
@@ -118,15 +123,18 @@ class FbtFunctionCallProcessor {
     nodeChecker,
     path,
     pluginOptions,
+    validFbtExtraOptions,
   }: {
     babelTypes: BabelTypes,
     defaultFbtOptions: FbtCallSiteOptions,
+    validFbtExtraOptions: $ReadOnly<FbtExtraOptionConfig>,
     fileSource: string,
     nodeChecker: FbtNodeChecker,
     path: NodePath,
     pluginOptions: PluginOptions,
   }): void {
     this.defaultFbtOptions = defaultFbtOptions;
+    this.validFbtExtraOptions = validFbtExtraOptions;
     this.fileSource = fileSource;
     this.moduleName = nodeChecker.moduleName;
     this.node = path.node;
@@ -142,9 +150,11 @@ class FbtFunctionCallProcessor {
     fileSource,
     path,
     pluginOptions,
+    validFbtExtraOptions,
   }: {
     babelTypes: BabelTypes,
     defaultFbtOptions: FbtCallSiteOptions,
+    validFbtExtraOptions: $ReadOnly<FbtExtraOptionConfig>,
     fileSource: string,
     path: NodePath,
     pluginOptions: PluginOptions,
@@ -154,6 +164,7 @@ class FbtFunctionCallProcessor {
       ? new FbtFunctionCallProcessor({
           babelTypes,
           defaultFbtOptions,
+          validFbtExtraOptions,
           fileSource,
           nodeChecker,
           path,
@@ -620,7 +631,11 @@ class FbtFunctionCallProcessor {
     );
     fbtCallArgs[0] = fbtContentsNode;
 
-    const elementNode = FbtElementNode.fromBabelNode({moduleName, node});
+    const elementNode = FbtElementNode.fromBabelNode({
+      moduleName,
+      node,
+      validExtraOptions: this.validFbtExtraOptions,
+    });
     if (elementNode == null) {
       throw errorAt(
         node,
