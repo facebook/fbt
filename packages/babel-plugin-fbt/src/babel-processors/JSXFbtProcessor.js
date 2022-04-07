@@ -10,7 +10,7 @@
 
 'use strict';
 
-import type {JSModuleNameType} from '../FbtConstants';
+import type {FbtExtraOptionConfig, JSModuleNameType} from '../FbtConstants';
 import type {NodePathOf} from '@babel/core';
 import typeof BabelTypes from '@babel/types';
 
@@ -61,30 +61,36 @@ class JSXFbtProcessor {
   nodeChecker: FbtNodeChecker;
   path: NodePath;
   t: BabelTypes;
+  validFbtExtraOptions: $ReadOnly<FbtExtraOptionConfig>;
   _openingElementAttributes: ?$ReadOnlyArray<BabelNodeJSXAttribute>;
 
   constructor({
     babelTypes,
     nodeChecker,
     path,
+    validFbtExtraOptions,
   }: {
     babelTypes: BabelTypes,
     nodeChecker: FbtNodeChecker,
     path: NodePath,
+    validFbtExtraOptions: $ReadOnly<FbtExtraOptionConfig>,
   }): void {
     this.moduleName = nodeChecker.moduleName;
     this.node = path.node;
     this.nodeChecker = nodeChecker;
     this.path = path;
+    this.validFbtExtraOptions = validFbtExtraOptions;
     this.t = babelTypes;
   }
 
   static create({
     babelTypes,
     path,
+    validFbtExtraOptions,
   }: {
     babelTypes: BabelTypes,
     path: NodePath,
+    validFbtExtraOptions: $ReadOnly<FbtExtraOptionConfig>,
   }): ?JSXFbtProcessor {
     const nodeChecker = FbtNodeChecker.forJSXFbt(path.node);
     return nodeChecker != null
@@ -92,6 +98,7 @@ class JSXFbtProcessor {
           babelTypes,
           nodeChecker,
           path,
+          validFbtExtraOptions,
         })
       : null;
   }
@@ -161,7 +168,7 @@ class JSXFbtProcessor {
         ? getOptionsFromAttributes(
             this.t,
             attrs,
-            ValidFbtOptions,
+            {...this.validFbtExtraOptions, ...ValidFbtOptions},
             FbtRequiredAttributes,
           )
         : null;
