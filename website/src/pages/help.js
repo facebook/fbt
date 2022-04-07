@@ -6,6 +6,7 @@
  *
  * @emails oncall+i18n_fbt_js
  * @noflow
+ * @format
  */
 
 import React from "react";
