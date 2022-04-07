@@ -23,6 +23,7 @@ module.exports = {
       'enums',
       'pronouns',
       'autoparam',
+      'enforcing_plain_text',
       'common',
       'utilities',
     ],

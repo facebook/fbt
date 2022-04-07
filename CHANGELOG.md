@@ -61,6 +61,7 @@ List of changes for each released npm package version.
 </details>
 
 - 0.18.0:
+  - Expose the `fbs` API to output plain-text translatable strings.
   - [feat] Expose `extraOptions` to FbtHooks.getFbtResult
   - [chore] Throw an exception if we detect duplicate token names when using the low-level `fbt._()` API (See [9bb6890](https://github.com/facebook/fbt/commit/9bb689040b0c4d03ca7df68dde4a1dfb44949533) / D33476399)
 
