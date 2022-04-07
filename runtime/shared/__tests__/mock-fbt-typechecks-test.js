@@ -1,8 +1,8 @@
 /**
  * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
- * @format
  * @emails i18n-tests@fb.com
+ * @format
  * @typechecks
  */
 /* eslint "fb-www/require-flow-strict-local": "off" */

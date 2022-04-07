@@ -9,9 +9,9 @@
  * Run the following command to sync the change from www to fbsource.
  *   js1 upgrade www-shared -p intl
  *
+ * @emails oncall+i18n_fbt_js
  * @format
  * @typechecks
- * @emails oncall+i18n_fbt_js
  */
 
 'use strict';

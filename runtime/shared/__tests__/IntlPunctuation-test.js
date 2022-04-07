@@ -1,9 +1,9 @@
 /**
  * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
- * @format
  * @emails i18n-tests@fb.com
  * @flow strict-local
+ * @format
  */
 
 /* eslint-disable fb-www/check-unicode-format */
