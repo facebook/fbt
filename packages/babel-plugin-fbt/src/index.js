@@ -45,17 +45,14 @@ const {
 } = require('fb-babel-plugin-utils');
 const {parse: parseDocblock} = require('jest-docblock');
 
-/**
- * Map of extra fbt options (or JSX attributes) to accept on fbt callsites.
- *
- * We will only accept them at the parsing phase and output them when rendering fbt._() callsites,
- * without doing any further processing on them.
- */
-export type ExtraOptions = {[optionName: string]: boolean};
 type FbtEnumLoader = (enumFilePath: string) => EnumModule;
 export type PluginOptions = {|
   collectFbt?: boolean,
-  extraOptions: ExtraOptions,
+  // Map of extra fbt options (or JSX attributes) to accept on fbt callsites.
+  // We will only accept them at the parsing phase and output them when rendering fbt._() callsites,
+  // without doing any further processing on them.
+  // We only accept plain string literals as option values at the moment.
+  extraOptions: FbtExtraOptionConfig,
   fbtBase64?: boolean,
   fbtCommon?: FbtCommonMap,
   fbtCommonPath?: ?string,
@@ -337,14 +334,7 @@ FbtTransform.getFbtElementNodes = (): Array<PlainFbtNode> => {
 };
 
 function initExtraOptions(state) {
-  const validExtraOptions = {};
-  const extraOptions = state.opts.extraOptions || {};
-  for (const optionKey in extraOptions) {
-    if (extraOptions[optionKey] === true) {
-      validExtraOptions[optionKey] = true;
-    }
-  }
-  validFbtExtraOptions = Object.freeze(validExtraOptions);
+  validFbtExtraOptions = Object.freeze(state.opts.extraOptions || {});
 }
 
 function initDefaultOptions(state) {

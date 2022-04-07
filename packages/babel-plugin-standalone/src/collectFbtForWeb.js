@@ -15,8 +15,8 @@ import type {
   PatternHash,
   PatternString,
 } from '../../../runtime/shared/FbtTable';
-import type {ExtraOptions} from 'babel-plugin-fbt';
 import type {CollectFbtOutput} from 'babel-plugin-fbt/dist/bin/collectFbt';
+import type {FbtExtraOptionConfig} from 'babel-plugin-fbt/dist/FbtConstants';
 
 const SparkMD5 = require('./SparkMD5');
 const {
@@ -41,10 +41,10 @@ function collectFbtPayloadFromSource(
     genFbtNodes: boolean,
     terse?: boolean,
   |},
-  extraOptions: ExtraOptions,
+  extraOptions: FbtExtraOptionConfig,
 ): CollectFbtOutput {
   const fileName = 'dummy_file';
-  const {terse, genFbtNodes, ...collectorConfig} = config;
+  const {genFbtNodes, terse, ...collectorConfig} = config;
   const fbtCollector = new FbtCollector(collectorConfig, extraOptions);
 
   fbtCollector.collectFromOneFile(source, fileName);
