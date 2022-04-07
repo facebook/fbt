@@ -20,14 +20,20 @@
   <img src="https://facebook.github.io/fbt/img/fbt.png" height="150" width="150" alt="FBT"/>
 </h1>
 
-FBT is an internationalization framework for JavaScript designed to be not just **powerful** and **flexible**, but also **simple** and **intuitive**.  It helps with the following:
+FBT is an internationalization framework for JavaScript designed to be not just **powerful** and **flexible**, but also **simple** and **intuitive**.
+It helps with the following:
 * Organizing your source text for translation
 * Composing grammatically correct translatable UI
 * Eliminating verbose boilerplate for generating UI
 
+## Online Resources
+
+* [Official Website](https://facebook.github.io/fbt)
+* [Documentation](https://facebook.github.io/fbt/docs/getting_started_on_web)
+
 ## Examples
-[See our demo here](demo-app/src/example/Example.react.js)
-[See our React Native demo here](https://github.com/facebook/fbt/tree/rn-demo-app)
+* [See our demo here](demo-app/src/example/Example.react.js)
+* [See our React Native demo here](https://github.com/facebook/fbt/tree/rn-demo-app)
 
 ## Requirements
 * [Node.js](https://nodejs.org/)
@@ -58,9 +64,6 @@ lookup translated payloads generated at build-time.  FBT creates tables
 of all possible variations for the given fbt phrase and accesses this
 at runtime.
 
-## Full documentation
-https://facebook.github.io/fbt
-
 ## Join the fbt community
 * [Website](https://facebook.github.io/fbt)
 * [Facebook group](https://www.facebook.com/groups/498204277369868)
@@ -74,29 +77,24 @@ See [CHANGELOG](CHANGELOG.md).
 
 ## List of npm modules published from this repo:
 
-- [fbt](https://www.npmjs.com/package/fbt) (client-side)
-  - See [package.json](packages/fbt/package.json)
 - [babel-plugin-fbt](https://www.npmjs.com/package/babel-plugin-fbt) (build-time / server-side)
   - See [package.json](packages/babel-plugin-fbt/package.json)
-- [@fbtjs/default-collection-transform](https://www.npmjs.com/package/@fbtjs/default-collection-transform) (build-time)
-  - See [package.json](packages/default-collection-transform/package.json) 
 - [babel-plugin-fbt-runtime](https://www.npmjs.com/package/babel-plugin-fbt-runtime) (server-side)
   - See [package.json](packages/babel-plugin-fbt-runtime/package.json)
+- [@fbtjs/default-collection-transform](https://www.npmjs.com/package/@fbtjs/default-collection-transform) (build-time)
+  - See [package.json](packages/default-collection-transform/package.json)
 - [fb-babel-plugin-utils](https://www.npmjs.com/package/fb-babel-plugin-utils) (server-side, used by `babel-plugin-fbt-runtime`)
   - See [package.json](packages/fb-babel-plugin-utils/package.json)
-
-## How to release a new npm version
-
-```
-# Go to the module's folder (where package.json is located)
-cd fbt-runtime/
-# or
-# cd packages/babel-plugin-fbt/
-# cd packages/babel-plugin-runtime/
-
-# publishes to npm and push new git tag to Github
-yarn publish_to_npm_latest
-```
+- [fbt](https://www.npmjs.com/package/fbt) (client-side)
+  - See [package.json](packages/fbt/package.json)
+- [fb-tiger-hash](https://www.npmjs.com/package/fb-tiger-hash) (build-time)
+  - See [package.json](packages/fb-tiger-hash/package.json)
+- [gulp-rewrite-flowtyped-modules](https://www.npmjs.com/package/gulp-rewrite-flowtyped-modules) (build-time)
+  - See [package.json](packages/gulp-rewrite-flowtyped-modules/package.json)
+- [gulp-strip-docblock-pragmas](https://www.npmjs.com/package/gulp-strip-docblock-pragmas) (build-time)
+  - See [package.json](packages/gulp-strip-docblock-pragmas/package.json)
+- [react-native-fbt](https://www.npmjs.com/package/react-native-fbt) (build-time)
+  - See [package.json](packages/react-native-fbt/package.json)
 
 ## License
 FBT is MIT licensed, as found in the [LICENSE](LICENSE) file.
