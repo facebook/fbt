@@ -8,7 +8,7 @@
 
 /* eslint max-len: ["warn", 120] */
 
-import type {ExtraOptions} from '../index';
+import type {FbtExtraOptionConfig} from '../FbtConstants.js';
 import type {CollectFbtOutput} from './collectFbt';
 import type {
   CollectorConfig,
@@ -100,7 +100,7 @@ function getPackagers(
 
 function getFbtCollector(
   collectorConfig: CollectorConfig,
-  extraOptions: ExtraOptions,
+  extraOptions: FbtExtraOptionConfig,
   customCollectorPath: ?string,
 ): IFbtCollector {
   if (customCollectorPath == null) {

@@ -16,13 +16,9 @@ import type {
   PatternString,
 } from '../../../../runtime/shared/FbtTable';
 import type {PlainFbtNode} from '../fbt-nodes/FbtNode';
+import type {FbtExtraOptionConfig} from '../FbtConstants';
 import type {EnumManifest} from '../FbtEnumRegistrar';
-import type {
-  BabelPluginFbt,
-  ExtraOptions,
-  Phrase,
-  PluginOptions,
-} from '../index';
+import type {BabelPluginFbt, Phrase, PluginOptions} from '../index';
 import type {BabelPluginList, BabelPresetList} from '@babel/core';
 
 const {extractEnumsAndFlattenPhrases} = require('../FbtShiftEnums');
@@ -66,7 +62,10 @@ export type TransformOptions = {|
 |};
 
 export interface IFbtCollector {
-  constructor(config: CollectorConfig, extraOptions: ExtraOptions): void;
+  constructor(
+    config: CollectorConfig,
+    extraOptions: FbtExtraOptionConfig,
+  ): void;
   collectFromOneFile(
     source: string,
     filename: ?string,
@@ -85,10 +84,10 @@ export interface IFbtCollector {
 class FbtCollector implements IFbtCollector {
   _phrases: Array<PackagerPhrase>;
   _errors: Errors;
-  _extraOptions: ExtraOptions;
+  _extraOptions: FbtExtraOptionConfig;
   _config: CollectorConfig;
 
-  constructor(config: CollectorConfig, extraOptions: ExtraOptions) {
+  constructor(config: CollectorConfig, extraOptions: FbtExtraOptionConfig) {
     this._phrases = [];
     this._errors = {};
     this._extraOptions = extraOptions;

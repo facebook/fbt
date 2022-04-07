@@ -21,7 +21,7 @@ const keyMirror = require('./utils/keyMirror');
 export type FbtOptionValue = string | boolean | BabelNode;
 export type FbtOptionValues<K> = {|[K]: ?FbtOptionValue|};
 export type FbtOptionConfig<K> = {|[K]: {[optionValue: string]: true} | true|};
-export type FbtExtraOptionConfig = {|[optionName: string]: true|};
+export type FbtExtraOptionConfig = FbtOptionConfig<string>;
 // export type FbtCallSiteOptions = {[$Keys<typeof ValidFbtOptions>]: ?FbtOptionValue};
 export type FbtCallSiteOptions = $Shape<{|
   author?: ?FbtOptionValue,
