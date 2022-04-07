@@ -163,6 +163,12 @@ List of changes for each released npm package version.
       Unreleased changes that have landed in main. Click to see more.
     </summary>
 
+    0.21.0-rc11-beta
+      - [feat] Export non-native options that are specified through `extraOptions` to the 'options' argument (3rd argument) in fbt._() calls
+      - [fix] Make `ValidFbtOptions` immutable
+      - [chore] Address several dependency vulnerabilities
+      - [chore] Update file headers and LICENSE file
+
     0.21.0-rc10-beta
       - [feature] Support fbt `common` attribute without value
       - [chore] Add tests for common fbt

@@ -180,6 +180,38 @@ class FbtImplicitParamNode
   }
 
   /**
+   * The fbt._() call generated from an inner string surrounded by JSX tags would
+   * inherit extra options specified on its ancestor fbt callsite. Consider this
+   * example:
+   *
+   * <fbt desc='d' myOption='yes'>
+   *  This is
+   *  <b>
+   *    an inner string and
+   *    <b>
+   *      another inner string
+   *    </b>
+   *  </b>
+   * </fbt>
+   *
+   * We would generate `fbt._('another inner string', null, {eo: {myOption: 'yes'}})`
+   * for the innermost string.
+   */
+  getExtraOptionsNode(): ?BabelNodeObjectExpression {
+    let ancestorNode = this.parent;
+    while (!(ancestorNode instanceof FbtElementNode) && ancestorNode != null) {
+      ancestorNode = ancestorNode.parent;
+    }
+    invariant(
+      ancestorNode instanceof FbtElementNode,
+      'Expect every `FbtImplicitParamNode` to have a `FbtElementNode` ancestor ' +
+        'but could not find one for %s',
+      varDump(this),
+    );
+    return ancestorNode.getExtraOptionsNode();
+  }
+
+  /**
    * Create a new class instance given a BabelNode root node.
    * If that node is incompatible, we'll just return `null`.
    */
