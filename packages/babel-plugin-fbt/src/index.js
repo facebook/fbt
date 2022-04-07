@@ -18,7 +18,7 @@ import type {
 import type {MetaPhrase} from './babel-processors/FbtFunctionCallProcessor';
 import type {AnyFbtNode, PlainFbtNode} from './fbt-nodes/FbtNode';
 import type {FbtCommonMap} from './FbtCommon';
-import type {FbtCallSiteOptions} from './FbtConstants';
+import type {FbtCallSiteOptions, FbtExtraOptionConfig} from './FbtConstants';
 import type {EnumManifest, EnumModule} from './FbtEnumRegistrar';
 import typeof {FbtVariationType} from './translate/IntlVariations';
 import type {BabelTransformPlugin, NodePathOf} from '@babel/core';
@@ -163,6 +163,11 @@ const {checkOption, objMap} = FbtUtil;
 let defaultOptions: FbtCallSiteOptions;
 
 /**
+ * Non-native fbt options that we accept and pass to fbt._() calls
+ */
+let validFbtExtraOptions: $ReadOnly<FbtExtraOptionConfig>;
+
+/**
  * An array containing all collected phrases.
  */
 let allMetaPhrases: Array<{|...MetaPhrase, phrase: Phrase|}>;
@@ -199,6 +204,7 @@ function FbtTransform(babel: {types: BabelTypes}): BabelTransformPlugin {
         const root = JSXFbtProcessor.create({
           babelTypes: t,
           path,
+          validFbtExtraOptions,
         });
 
         if (!root) {
@@ -220,9 +226,10 @@ function FbtTransform(babel: {types: BabelTypes}): BabelTransformPlugin {
        * fbt._(
        *   fbtSentinel +
        *   JSON.stringify({
-       *     type: "text",
-       *     texts: ["text"],
-       *     desc: "desc",
+       *     jsfbt: {
+       *      text: "text",
+       *      desc: "desc",
+       *     },
        *     project: "project",
        *   }) +
        *   fbtSentinel
@@ -253,6 +260,7 @@ function FbtTransform(babel: {types: BabelTypes}): BabelTransformPlugin {
           babelTypes: t,
           defaultFbtOptions: defaultOptions,
           fileSource,
+          validFbtExtraOptions,
           path,
           pluginOptions,
         });
@@ -329,7 +337,14 @@ FbtTransform.getFbtElementNodes = (): Array<PlainFbtNode> => {
 };
 
 function initExtraOptions(state) {
-  Object.assign(ValidFbtOptions, state.opts.extraOptions || {});
+  const validExtraOptions = {};
+  const extraOptions = state.opts.extraOptions || {};
+  for (const optionKey in extraOptions) {
+    if (extraOptions[optionKey] === true) {
+      validExtraOptions[optionKey] = true;
+    }
+  }
+  validFbtExtraOptions = Object.freeze(validExtraOptions);
 }
 
 function initDefaultOptions(state) {
