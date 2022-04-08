@@ -52,3 +52,9 @@ E.g.
  * @fbt {"author": "me", "project": "awesome sauce"}
  */
 ```
+
+----
+
+## Can I enforce `fbt` strings to be rendered only as plain-text?
+
+Yes, please use the [`fbs` API as per this documentation.](enforcing_plain_text)
