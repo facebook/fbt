@@ -58,10 +58,11 @@ List of changes for each released npm package version.
   <summary>
     Unreleased changes that have landed in main. Click to see more.
   </summary>
-
-  - [chore] Throw an exception if we detect duplicate token names when using the low-level `fbt._()` API (See [9bb6890](https://github.com/facebook/fbt/commit/9bb689040b0c4d03ca7df68dde4a1dfb44949533) / D33476399)
-
 </details>
+
+- 0.18.0:
+  - [feat] Expose `extraOptions` to FbtHooks.getFbtResult
+  - [chore] Throw an exception if we detect duplicate token names when using the low-level `fbt._()` API (See [9bb6890](https://github.com/facebook/fbt/commit/9bb689040b0c4d03ca7df68dde4a1dfb44949533) / D33476399)
 
 - 0.17.1:
   - [fix] Fix React dependency in intlList.js
@@ -161,6 +162,12 @@ List of changes for each released npm package version.
     <summary>
       Unreleased changes that have landed in main. Click to see more.
     </summary>
+
+    0.21.0-rc11-beta
+      - [feat] Export non-native options that are specified through `extraOptions` to the 'options' argument (3rd argument) in fbt._() calls
+      - [fix] Make `ValidFbtOptions` immutable
+      - [chore] Address several dependency vulnerabilities
+      - [chore] Update file headers and LICENSE file
 
     0.21.0-rc10-beta
       - [feature] Support fbt `common` attribute without value

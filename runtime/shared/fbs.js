@@ -8,6 +8,7 @@
  * @format
  */
 
+import type {ExtraOptionValues} from 'FbtHooks';
 import type {ParamVariationType} from 'FbtRuntimeTypes';
 import type {PatternHash, PatternString} from 'FbtTable';
 import type {FbtTableArg} from 'FbtTableAccessor';
@@ -64,6 +65,7 @@ const FbsImpl = {
     fbtContent: $NestedFbtContentItems | string,
     translation: PatternString,
     hash: ?PatternHash,
+    extraOptions: ?ExtraOptionValues,
   ): Fbs {
     const contents = typeof fbtContent === 'string' ? [fbtContent] : fbtContent;
     const errorListener = FbtHooks.getErrorListener({hash, translation});
@@ -71,6 +73,7 @@ const FbsImpl = {
     return FbtHooks.getFbsResult({
       contents,
       errorListener,
+      extraOptions,
       patternHash: hash,
       patternString: translation,
     });

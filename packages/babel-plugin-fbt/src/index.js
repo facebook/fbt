@@ -18,7 +18,7 @@ import type {
 import type {MetaPhrase} from './babel-processors/FbtFunctionCallProcessor';
 import type {AnyFbtNode, PlainFbtNode} from './fbt-nodes/FbtNode';
 import type {FbtCommonMap} from './FbtCommon';
-import type {FbtCallSiteOptions} from './FbtConstants';
+import type {FbtCallSiteOptions, FbtExtraOptionConfig} from './FbtConstants';
 import type {EnumManifest, EnumModule} from './FbtEnumRegistrar';
 import typeof {FbtVariationType} from './translate/IntlVariations';
 import type {BabelTransformPlugin, NodePathOf} from '@babel/core';
@@ -30,6 +30,7 @@ const JSXFbtProcessor = require('./babel-processors/JSXFbtProcessor');
 const FbtNodeUtil = require('./fbt-nodes/FbtNodeUtil');
 const FbtCommon = require('./FbtCommon');
 const {
+  EXTRA_OPTIONS_KEY,
   JSModuleName: {FBT},
   ValidFbtOptions,
 } = require('./FbtConstants');
@@ -45,17 +46,14 @@ const {
 } = require('fb-babel-plugin-utils');
 const {parse: parseDocblock} = require('jest-docblock');
 
-/**
- * Map of extra fbt options (or JSX attributes) to accept on fbt callsites.
- *
- * We will only accept them at the parsing phase and output them when rendering fbt._() callsites,
- * without doing any further processing on them.
- */
-export type ExtraOptions = {[optionName: string]: boolean};
 type FbtEnumLoader = (enumFilePath: string) => EnumModule;
 export type PluginOptions = {|
   collectFbt?: boolean,
-  extraOptions: ExtraOptions,
+  // Map of extra fbt options (or JSX attributes) to accept on fbt callsites.
+  // We will only accept them at the parsing phase and output them when rendering fbt._() callsites,
+  // without doing any further processing on them.
+  // We only accept plain string literals as option values at the moment.
+  extraOptions: FbtExtraOptionConfig,
   fbtBase64?: boolean,
   fbtCommon?: FbtCommonMap,
   fbtCommonPath?: ?string,
@@ -163,6 +161,11 @@ const {checkOption, objMap} = FbtUtil;
 let defaultOptions: FbtCallSiteOptions;
 
 /**
+ * Non-native fbt options that we accept and pass to fbt._() calls
+ */
+let validFbtExtraOptions: $ReadOnly<FbtExtraOptionConfig>;
+
+/**
  * An array containing all collected phrases.
  */
 let allMetaPhrases: Array<{|...MetaPhrase, phrase: Phrase|}>;
@@ -199,6 +202,7 @@ function FbtTransform(babel: {types: BabelTypes}): BabelTransformPlugin {
         const root = JSXFbtProcessor.create({
           babelTypes: t,
           path,
+          validFbtExtraOptions,
         });
 
         if (!root) {
@@ -220,9 +224,10 @@ function FbtTransform(babel: {types: BabelTypes}): BabelTransformPlugin {
        * fbt._(
        *   fbtSentinel +
        *   JSON.stringify({
-       *     type: "text",
-       *     texts: ["text"],
-       *     desc: "desc",
+       *     jsfbt: {
+       *      text: "text",
+       *      desc: "desc",
+       *     },
        *     project: "project",
        *   }) +
        *   fbtSentinel
@@ -253,6 +258,7 @@ function FbtTransform(babel: {types: BabelTypes}): BabelTransformPlugin {
           babelTypes: t,
           defaultFbtOptions: defaultOptions,
           fileSource,
+          validFbtExtraOptions,
           path,
           pluginOptions,
         });
@@ -329,7 +335,7 @@ FbtTransform.getFbtElementNodes = (): Array<PlainFbtNode> => {
 };
 
 function initExtraOptions(state) {
-  Object.assign(ValidFbtOptions, state.opts.extraOptions || {});
+  validFbtExtraOptions = Object.freeze(state.opts.extraOptions || {});
 }
 
 function initDefaultOptions(state) {
@@ -391,5 +397,6 @@ FbtTransform.FbtShiftEnums = FbtShiftEnums;
 FbtTransform.JSFbtUtil = JSFbtUtil;
 FbtTransform.FbtUtil = FbtUtil;
 FbtTransform.FbtNodeUtil = FbtNodeUtil;
+FbtTransform.EXTRA_OPTIONS_KEY = EXTRA_OPTIONS_KEY;
 
 module.exports = FbtTransform;

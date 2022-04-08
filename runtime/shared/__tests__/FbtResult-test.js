@@ -10,8 +10,8 @@
  *   js1 upgrade www-shared -p fbt --local ~/www
  *
  * @emails oncall+i18n_fbt_js
- * @format
  * @flow
+ * @format
  */
 
 jest.disableAutomock();

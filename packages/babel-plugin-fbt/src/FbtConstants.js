@@ -21,6 +21,7 @@ const keyMirror = require('./utils/keyMirror');
 export type FbtOptionValue = string | boolean | BabelNode;
 export type FbtOptionValues<K> = {|[K]: ?FbtOptionValue|};
 export type FbtOptionConfig<K> = {|[K]: {[optionValue: string]: true} | true|};
+export type FbtExtraOptionConfig = FbtOptionConfig<string>;
 // export type FbtCallSiteOptions = {[$Keys<typeof ValidFbtOptions>]: ?FbtOptionValue};
 export type FbtCallSiteOptions = $Shape<{|
   author?: ?FbtOptionValue,
@@ -88,14 +89,14 @@ const PronounRequiredAttributes = {
 /**
  * Valid options allowed in the fbt(...) calls.
  */
-const ValidFbtOptions = {
+const ValidFbtOptions = Object.freeze({
   author: true,
   common: true,
   doNotExtract: true,
   preserveWhitespace: true,
   project: true,
   subject: true,
-};
+});
 
 const FbtBooleanOptions = {
   preserveWhitespace: true,
@@ -138,8 +139,11 @@ const ModuleNameRegExp: RegExp = /<[Ff]b[st]\b|fb[st](\.c)?\s*\(/;
 
 const FBT_ENUM_MODULE_SUFFIX = '$FbtEnum';
 
+const EXTRA_OPTIONS_KEY = 'eo';
+
 module.exports = {
   CommonOption,
+  EXTRA_OPTIONS_KEY,
   FBT_ENUM_MODULE_SUFFIX,
   FbtBooleanOptions,
   FbtCallMustHaveAtLeastOneOfTheseAttributes,

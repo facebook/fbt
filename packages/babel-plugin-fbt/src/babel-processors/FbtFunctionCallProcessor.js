@@ -11,9 +11,13 @@
 'use strict';
 
 import type {AnyStringVariationArg} from '../fbt-nodes/FbtArguments';
-import type {Options as FbtElementNodeOptions} from '../fbt-nodes/FbtElementNode';
+import type {FbtElementNodeNativeOptions} from '../fbt-nodes/FbtElementNode';
 import type {AnyFbtNode} from '../fbt-nodes/FbtNode';
-import type {FbtCallSiteOptions, JSModuleNameType} from '../FbtConstants';
+import type {
+  FbtCallSiteOptions,
+  FbtExtraOptionConfig,
+  JSModuleNameType,
+} from '../FbtConstants';
 import type {TableJSFBTTree, TableJSFBTTreeLeaf} from '../index';
 import type {ObjectWithJSFBT, PluginOptions} from '../index.js';
 import type {NodePathOf} from '@babel/core';
@@ -24,7 +28,7 @@ const FbtElementNode = require('../fbt-nodes/FbtElementNode');
 const FbtImplicitParamNode = require('../fbt-nodes/FbtImplicitParamNode');
 const FbtNodeType = require('../fbt-nodes/FbtNodeType');
 const FbtParamNode = require('../fbt-nodes/FbtParamNode');
-const {SENTINEL} = require('../FbtConstants');
+const {EXTRA_OPTIONS_KEY, SENTINEL} = require('../FbtConstants');
 const FbtNodeChecker = require('../FbtNodeChecker');
 const {
   convertToStringArrayNodeIfNeeded,
@@ -47,6 +51,9 @@ const {
   isProgram,
   jsxExpressionContainer,
   memberExpression,
+  nullLiteral,
+  objectExpression,
+  objectProperty,
   sequenceExpression,
   stringLiteral,
   variableDeclaration,
@@ -103,6 +110,7 @@ const STRING_VARIATION_RUNTIME_ARGUMENT_IDENTIFIER_PREFIX = 'fbt_sv_arg';
  */
 class FbtFunctionCallProcessor {
   defaultFbtOptions: FbtCallSiteOptions;
+  validFbtExtraOptions: $ReadOnly<FbtExtraOptionConfig>;
   fileSource: string;
   moduleName: JSModuleNameType;
   node: $PropertyType<NodePath, 'node'>;
@@ -118,15 +126,18 @@ class FbtFunctionCallProcessor {
     nodeChecker,
     path,
     pluginOptions,
+    validFbtExtraOptions,
   }: {
     babelTypes: BabelTypes,
     defaultFbtOptions: FbtCallSiteOptions,
+    validFbtExtraOptions: $ReadOnly<FbtExtraOptionConfig>,
     fileSource: string,
     nodeChecker: FbtNodeChecker,
     path: NodePath,
     pluginOptions: PluginOptions,
   }): void {
     this.defaultFbtOptions = defaultFbtOptions;
+    this.validFbtExtraOptions = validFbtExtraOptions;
     this.fileSource = fileSource;
     this.moduleName = nodeChecker.moduleName;
     this.node = path.node;
@@ -142,9 +153,11 @@ class FbtFunctionCallProcessor {
     fileSource,
     path,
     pluginOptions,
+    validFbtExtraOptions,
   }: {
     babelTypes: BabelTypes,
     defaultFbtOptions: FbtCallSiteOptions,
+    validFbtExtraOptions: $ReadOnly<FbtExtraOptionConfig>,
     fileSource: string,
     path: NodePath,
     pluginOptions: PluginOptions,
@@ -154,6 +167,7 @@ class FbtFunctionCallProcessor {
       ? new FbtFunctionCallProcessor({
           babelTypes,
           defaultFbtOptions,
+          validFbtExtraOptions,
           fileSource,
           nodeChecker,
           path,
@@ -190,8 +204,10 @@ class FbtFunctionCallProcessor {
     metaPhraseIndex: number,
     stringVariationRuntimeArgs: StringVariationRuntimeArgumentBabelNodes,
   ): BabelNodeCallExpression {
-    const {phrase} = metaPhrases[metaPhraseIndex];
+    const {fbtNode, phrase} = metaPhrases[metaPhraseIndex];
     const {pluginOptions} = this;
+
+    // 1st argument - Sentinel Payload
     const argsOutput = JSON.stringify(
       ({
         jsfbt: phrase.jsfbt,
@@ -205,6 +221,7 @@ class FbtFunctionCallProcessor {
     const fbtSentinel = pluginOptions.fbtSentinel ?? SENTINEL;
     const args = [stringLiteral(fbtSentinel + encodedOutput + fbtSentinel)];
 
+    // 2nd argument - `FbtTableArgs` in the fbt runtime calls
     const fbtRuntimeArgs = this._createFbtRuntimeArgumentsForMetaPhrase(
       metaPhrases,
       metaPhraseIndex,
@@ -213,6 +230,20 @@ class FbtFunctionCallProcessor {
     if (fbtRuntimeArgs.length > 0) {
       args.push(arrayExpression(fbtRuntimeArgs));
     }
+
+    // 3rd argument - Extra options which eventually become part of `FbtInputOpts`
+    const extraOptionsNode = fbtNode.getExtraOptionsNode();
+    if (extraOptionsNode != null) {
+      if (args.length === 1) {
+        args.push(nullLiteral());
+      }
+      args.push(
+        objectExpression([
+          objectProperty(identifier(EXTRA_OPTIONS_KEY), extraOptionsNode),
+        ]),
+      );
+    }
+
     return callExpression(
       memberExpression(identifier(this.moduleName), identifier('_')),
       args,
@@ -620,7 +651,11 @@ class FbtFunctionCallProcessor {
     );
     fbtCallArgs[0] = fbtContentsNode;
 
-    const elementNode = FbtElementNode.fromBabelNode({moduleName, node});
+    const elementNode = FbtElementNode.fromBabelNode({
+      moduleName,
+      node,
+      validExtraOptions: this.validFbtExtraOptions,
+    });
     if (elementNode == null) {
       throw errorAt(
         node,
@@ -727,7 +762,7 @@ class FbtFunctionCallProcessor {
    * I.e. Options whose value is `false` or nullish will be skipped.
    */
   _getSharedPhraseOptions({options: fbtElementOptions}: FbtElementNode): {|
-    ...$ObjMap<FbtElementNodeOptions, <T>(T) => ?T>,
+    ...$ObjMap<FbtElementNodeNativeOptions, <T>(T) => ?T>,
     project: string,
   |} {
     const {defaultFbtOptions} = this;

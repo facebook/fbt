@@ -65,7 +65,7 @@ describe('fbs', () => {
             <fbs desc="some desc">
               Hello{' '}
               <fbs:param name="name">
-                {<fbs desc="param text">world</fbs>}
+                <fbs desc="param text">world</fbs>
               </fbs:param>
             </fbs>
           ).toString(),
@@ -138,7 +138,10 @@ describe('fbs', () => {
       it('<fbs> should throw an error', () => {
         expect(() => (
           <fbs desc="some desc">
-            Hello <fbs:param name="name">{<strong>world!</strong>}</fbs:param>
+            Hello{' '}
+            <fbs:param name="name">
+              <strong>world!</strong>
+            </fbs:param>
           </fbs>
         )).toThrowErrorMatchingInlineSnapshot(
           `"Expected fbs parameter value to be the result of fbs(), <fbs/>, or a string; instead we got \`[object Object]\` (type: object)"`,

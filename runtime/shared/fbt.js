@@ -13,15 +13,19 @@
  * Run the following command to sync the change from www to fbsource.
  *   js1 upgrade www-shared -p fbt --local ~/www
  *
- * @flow strict-local
- * @typechecks
- * @format
  * @emails oncall+i18n_fbt_js
+ * @flow strict-local
+ * @format
+ * @typechecks
  */
 
 /* eslint-disable fb-www/order-requires */
-
-import type {FbtInputOpts, FbtRuntimeInput, FbtTableArgs} from 'FbtHooks';
+import type {
+  ExtraOptionValues,
+  FbtInputOpts,
+  FbtRuntimeInput,
+  FbtTableArgs,
+} from 'FbtHooks';
 import type {ParamVariationType, ValidPronounUsagesType} from 'FbtRuntimeTypes';
 import type {FbtTableKey, PatternHash, PatternString} from 'FbtTable';
 import type {FbtTableArg} from 'FbtTableAccessor';
@@ -198,6 +202,7 @@ function fbtCallsite(
       fbtContent,
       patternString,
       patternHash,
+      options?.eo,
     );
     if (!hasSubstitutions) {
       cachedFbtResults[patternString] = result;
@@ -436,6 +441,7 @@ function wrapContent(
   fbtContent: $NestedFbtContentItems | string,
   translation: PatternString,
   hash: ?PatternHash,
+  extraOptions: ?ExtraOptionValues,
 ): Fbt {
   const contents = typeof fbtContent === 'string' ? [fbtContent] : fbtContent;
   const errorListener = FbtHooks.getErrorListener({
@@ -445,6 +451,7 @@ function wrapContent(
   const result = FbtHooks.getFbtResult({
     contents,
     errorListener,
+    extraOptions,
     patternHash: hash,
     patternString: translation,
   });
