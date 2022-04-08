@@ -17,6 +17,7 @@ const FbtHooksImpl = require('FbtHooksImpl');
 export type FbtResolvedPayload = {|
   contents: $NestedFbtContentItems,
   errorListener: ?IFbtErrorListener,
+  extraOptions: ?ExtraOptionValues,
   patternString: PatternString,
   patternHash: ?PatternHash,
 |};
@@ -58,8 +59,22 @@ export type FbtInputOpts = {
   hk?: string,
   // enum hash key
   ehk?: FbtEnumHashKeyTable,
+  eo?: ExtraOptionValues,
   ...
 };
+/**
+ * Map of extra fbt options (or JSX attributes) to accept on fbt callsites.
+ *
+ * We accept them at the parsing phase and output them when rendering fbt._()
+ * callsites, without doing any further processing on them.
+ *
+ * Extra options are then exposed in fbt hooks which allows external developers
+ * to use them for custom logic.
+ */
+export type ExtraOptionValues = {|
+  [optionName: string]: ExtraOptionValue,
+|};
+export type ExtraOptionValue = string;
 export type FbtRuntimeCallInput = {
   table: FbtRuntimeInput,
   args: ?FbtTableArgs,
