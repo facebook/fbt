@@ -20,7 +20,7 @@ import typeof BabelTypes from '@babel/types';
 import type {BabelTransformPlugin} from '@babel/core';
 import type {SentinelPayload} from 'babel-plugin-fbt/dist/babel-processors/FbtFunctionCallProcessor';
 import type {FbtTableKey, PatternString} from '../../runtime/shared/FbtTable';
-import type {TableJSFBTTree, TableJSFBTTreeLeaf} from 'babel-plugin-fbt';
+import type {TableJSFBTTree, TableJSFBTTreeLeaf, TableJSFBT} from 'babel-plugin-fbt';
 import type {FbtRuntimeInput} from 'FbtHooks';
 
 export type PluginOptions = {|
@@ -30,8 +30,9 @@ export type PluginOptions = {|
 |};
 */
 
+const {isObjectExpression} = require('@babel/types');
 const {
-  FbtUtil: {replaceClearTokensWithTokenAliases},
+  FbtUtil: {replaceClearTokensWithTokenAliases, varDump},
   JSFbtUtil: {mapLeaves},
   fbtHashKey: jenkinsHashKey,
 } = require('babel-plugin-fbt');
@@ -100,6 +101,47 @@ module.exports = function BabelPluginFbtRuntime(babel /*: {
     return t.objectExpression(properties);
   }
 
+  function _appendHashKeyOption(
+    optionsNode /*: ?BabelNodeObjectExpression */,
+    jsfbt /*: TableJSFBT */,
+    reactNativeMode /*: ?boolean */,
+  ) /* : BabelNodeObjectExpression */ {
+    let shiftedJsfbt;
+    let enumCount = 0;
+    if (reactNativeMode) {
+      ({enumCount, shiftedJsfbt} = shiftEnumsToTop(jsfbt));
+    }
+
+    const options = optionsNode == null ? [] : [...optionsNode.properties];
+    if (enumCount > 0) {
+      invariant(
+        shiftedJsfbt != null,
+        'Expecting shiftedJsfbt to be defined',
+      );
+      options.push(
+        t.objectProperty(
+          t.identifier('ehk'), // enumHashKey
+          _buildEnumToHashKeyObjectExpression(
+            shiftedJsfbt,
+            enumCount,
+          ),
+        ),
+      );
+    } else {
+      options.push(
+        t.objectProperty(
+          t.identifier('hk'),
+          t.stringLiteral(fbtHashKey(jsfbt.t)),
+        ),
+      );
+    }
+
+    // The expected method name is `objectExpression` but
+    // it already works as-is apparently...
+    // $FlowFixMe[prop-missing] Use objectExpression() instead
+    return t.ObjectExpression(options);
+  }
+
   return {
     pre() {
       // $FlowFixMe[object-this-reference] Babel transforms run with the plugin context by default
@@ -154,9 +196,8 @@ module.exports = function BabelPluginFbtRuntime(babel /*: {
           phrase.slice(sentinelLength, phrase.length - sentinelLength),
         ) /*: SentinelPayload */);
 
-        const payload = phrase.jsfbt.t;
         const runtimeInput = mapLeaves(
-          payload,
+          phrase.jsfbt.t,
           convertJSFBTLeafToRuntimeInputText,
         );
         // $FlowFixMe[prop-missing] replaceWithSourceString's type is not defined yet
@@ -171,49 +212,20 @@ module.exports = function BabelPluginFbtRuntime(babel /*: {
           // Second param 'args' could be omitted sometimes. Use null here
           parentNode.arguments.push(t.nullLiteral());
         }
+
+        // Append hash key to the options argument
+        const optionsNode = parentNode.arguments[2];
         invariant(
-          parentNode.arguments.length === 2 || parentNode.arguments.length === 3,
-          'Expecting options to be the third param',
+          optionsNode == null || isObjectExpression(optionsNode),
+          'Expect options node to be either null or an object expression but got %s (%s)',
+          varDump(optionsNode),
+          typeof optionsNode,
         );
-
-        let shiftedJsfbt;
-        let enumCount = 0;
-        if (reactNativeMode) {
-          ({enumCount, shiftedJsfbt} = shiftEnumsToTop(phrase.jsfbt));
-        }
-
-        if (enumCount > 0) {
-          invariant(
-            shiftedJsfbt != null,
-            'Expecting shiftedJsfbt to be defined',
-          );
-          parentNode.arguments.push(
-            // The expected method name is `objectExpression` but
-            // it already works as-is apparently...
-            // $FlowFixMe[prop-missing] Use objectExpression() instead
-            t.ObjectExpression([
-              t.objectProperty(
-                t.identifier('ehk'), // enumHashKey
-                _buildEnumToHashKeyObjectExpression(
-                  shiftedJsfbt,
-                  enumCount,
-                ),
-              ),
-            ]),
-          );
-        } else {
-          parentNode.arguments.push(
-            // The expected method name is `objectExpression` but
-            // it already works as-is apparently...
-            // $FlowFixMe[prop-missing] Use objectExpression() instead
-            t.ObjectExpression([
-              t.objectProperty(
-                t.identifier('hk'),
-                t.stringLiteral(fbtHashKey(payload)),
-              ),
-            ]),
-          );
-        }
+        parentNode.arguments[2] = _appendHashKeyOption(
+          optionsNode,
+          phrase.jsfbt,
+          reactNativeMode,
+        );
       },
     },
   };

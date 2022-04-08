@@ -13,23 +13,26 @@ const {
 } = require('babel-plugin-fbt/dist/__tests__/FbtTestUtil');
 const {TestUtil} = require('fb-babel-plugin-utils');
 
-function transform(source, pluginOptions) {
+function transform(source, pluginOptions, babelPluginFbtExtraOptions) {
   return babelTransform(source, {
     ast: false,
     plugins: [
       require('@babel/plugin-syntax-jsx'),
       require('@babel/plugin-transform-react-jsx'),
-      [require('babel-plugin-fbt'), pluginOptions],
+      [
+        require('babel-plugin-fbt'),
+        {...pluginOptions, extraOptions: babelPluginFbtExtraOptions},
+      ],
       [require('../index'), pluginOptions],
     ],
     sourceType: 'module',
   }).code;
 }
 
-function runTest(data, isRN) {
+function runTest(data, isRN, babelPluginFbtExtraOptions) {
   TestUtil.assertSourceAstEqual(
     data.output,
-    transform(data.input, {reactNativeMode: isRN}),
+    transform(data.input, {reactNativeMode: isRN}, babelPluginFbtExtraOptions),
   );
 }
 
@@ -276,4 +279,104 @@ describe('Test replacing clear token names with mangled tokens', () => {
   };
   runTest(data, true);
   runTest(data, false);
+});
+
+describe('Test extra options generation', () => {
+  it('should generate extra options for simple string', () => {
+    const data = {
+      input: withFbtRequireStatement(`fbt("Foo", "Bar", {locale: "ar_AR"});`),
+      output: withFbtRequireStatement(`
+        fbt._('Foo', null, {eo: {locale: "ar_AR"}, hk: '3ktBJ2'});
+      `),
+    };
+    const validExtraOptions = {locale: true};
+    runTest(data, true, validExtraOptions);
+    runTest(data, false, validExtraOptions);
+  });
+
+  it('should generate extra options for nested fbts', () => {
+    const data = {
+      input: withFbtRequireStatement(
+        `<fbt desc="d" private="no">
+          <fbt:param
+            name="two
+lines">
+            <b>
+              <fbt desc="test" private="yes">simple</fbt>
+            </b>
+          </fbt:param>
+          test
+        </fbt>;`,
+      ),
+      output: withFbtRequireStatement(
+        `fbt._(
+          '{two lines} test',
+          [
+            fbt._param(
+              'two lines',
+              React.createElement(
+                'b',
+                null,
+                fbt._(
+                  'simple',
+                  null,
+                  {eo: {private: 'yes'}, hk: '2pjKFw'},
+                ),
+              ),
+            ),
+          ],
+          {eo: {private: 'no'}, hk: '2xRGl8'},
+        );`,
+      ),
+    };
+    const validExtraOptions = {private: {yes: true, no: true}};
+    runTest(data, true, validExtraOptions);
+    runTest(data, false, validExtraOptions);
+  });
+
+  it('should generate extra options for nested strings', () => {
+    const data = {
+      input: withFbtRequireStatement(
+        `<fbt desc="d" private="no">
+          I wrote
+          <b>
+            <fbt:plural many="inner strings" count={count} showCount="ifMany">
+              an inner string
+            </fbt:plural>
+          </b>
+        </fbt>;`,
+      ),
+      output: `var fbt_sv_arg_0;
+        const fbt = require("fbt");
+        fbt_sv_arg_0 = fbt._plural(count, "number"),
+        fbt._(
+          {
+            "*": "I wrote {=m1}",
+            "_1": "I wrote {=m1}",
+          },
+          [
+            fbt_sv_arg_0,
+            fbt._implicitParam(
+              "=m1",
+              /*#__PURE__*/React.createElement(
+                "b",
+                null,
+                fbt._(
+                  {
+                    "*": "{number} inner strings",
+                    "_1": "an inner string"
+                  },
+                  [fbt_sv_arg_0],
+                  {eo: {private: 'no'}, hk: "2HM8na"},
+                ),
+              ),
+            ),
+          ],
+          {eo: {private: 'no'}, hk: 'fglLv'},
+        );`,
+    };
+    const validExtraOptions = {private: {yes: true, no: true}};
+    runTest(data, true, validExtraOptions);
+    runTest(data, false, validExtraOptions);
+  });
 });
