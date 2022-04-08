@@ -30,6 +30,7 @@ const JSXFbtProcessor = require('./babel-processors/JSXFbtProcessor');
 const FbtNodeUtil = require('./fbt-nodes/FbtNodeUtil');
 const FbtCommon = require('./FbtCommon');
 const {
+  EXTRA_OPTIONS_KEY,
   JSModuleName: {FBT},
   ValidFbtOptions,
 } = require('./FbtConstants');
@@ -396,5 +397,6 @@ FbtTransform.FbtShiftEnums = FbtShiftEnums;
 FbtTransform.JSFbtUtil = JSFbtUtil;
 FbtTransform.FbtUtil = FbtUtil;
 FbtTransform.FbtNodeUtil = FbtNodeUtil;
+FbtTransform.EXTRA_OPTIONS_KEY = EXTRA_OPTIONS_KEY;
 
 module.exports = FbtTransform;

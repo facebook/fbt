@@ -139,8 +139,11 @@ const ModuleNameRegExp: RegExp = /<[Ff]b[st]\b|fb[st](\.c)?\s*\(/;
 
 const FBT_ENUM_MODULE_SUFFIX = '$FbtEnum';
 
+const EXTRA_OPTIONS_KEY = 'eo';
+
 module.exports = {
   CommonOption,
+  EXTRA_OPTIONS_KEY,
   FBT_ENUM_MODULE_SUFFIX,
   FbtBooleanOptions,
   FbtCallMustHaveAtLeastOneOfTheseAttributes,
