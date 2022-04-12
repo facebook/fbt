@@ -134,7 +134,7 @@ export default class Example extends React.Component<Props, State> {
           <h2>
             {/* For fbt common strings, the description will be sourced from an external manifest.
             See `--fbt-common-path` option from `fbt-collect` and common_strings.json */}
-            <fbt common={true}>Use the form below to see FBT in action.</fbt>
+            <fbt common>Use the form below to see FBT in action.</fbt>
           </h2>
           <form action="" method="get" onSubmit={this.onSubmit}>
             <fieldset>
