@@ -5,18 +5,19 @@
  * LICENSE file in the root directory of this source tree.
  *
  * @emails oncall+i18n_fbt_js
+ * @format
  * @noflow
  */
 
-import React from "react";
-import classnames from "classnames";
-import Layout from "@theme/Layout";
-import Link from "@docusaurus/Link";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import useBaseUrl from "@docusaurus/useBaseUrl";
-import styles from "./styles.module.css";
-import CodeBlock from "../components/CodeBlock";
-import Showcase from "../components/Showcase";
+import CodeBlock from '../components/CodeBlock';
+import Showcase from '../components/Showcase';
+import styles from './styles.module.css';
+import Link from '@docusaurus/Link';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import Layout from '@theme/Layout';
+import classnames from 'classnames';
+import React from 'react';
 
 const features = [
   {
@@ -32,7 +33,7 @@ const features = [
 </button>`}
         />
       </>
-    )
+    ),
   },
   {
     title: <>Seamless text collection</>,
@@ -50,7 +51,7 @@ const features = [
 }`}
         />
       </>
-    )
+    ),
   },
   {
     title: <>Integrated translations</>,
@@ -59,8 +60,8 @@ const features = [
         Easily pull translations into your app
         <CodeBlock code={`<button>Hello, Byd!</button>`} />
       </>
-    )
-  }
+    ),
+  },
 ];
 
 const Features = () =>
@@ -68,11 +69,10 @@ const Features = () =>
     <section className={styles.features}>
       <div className="container">
         <div className="row">
-          {features.map(({ title, description }, idx) => (
+          {features.map(({description, title}, idx) => (
             <div
-              key={idx}
-              className={classnames("col col--4", styles.featureBlock)}
-            >
+              className={classnames('col col--4', styles.featureBlock)}
+              key={idx}>
               <h3>{title}</h3>
               <p>{description}</p>
             </div>
@@ -84,8 +84,8 @@ const Features = () =>
 
 const Description = () => (
   <section className={styles.description}>
-    <div className={classnames("row", styles.row)}>
-      <div className={classnames("col", styles.column)}>
+    <div className={classnames('row', styles.row)}>
+      <div className={classnames('col', styles.column)}>
         <h2>Why FBT?</h2>
         <div>
           FBT is a framework for internationalizing user interfaces in
@@ -95,11 +95,11 @@ const Description = () => (
           you.
         </div>
       </div>
-      <div className={classnames("col", styles.column)}>
+      <div className={classnames('col', styles.column)}>
         <div className="splash_image">
           <img
             className={styles.descriptionImage}
-            src={useBaseUrl("img/fbt.png")}
+            src={useBaseUrl('img/fbt.png')}
           />
         </div>
       </div>
@@ -108,15 +108,14 @@ const Description = () => (
 );
 
 const Index = () => {
-  const { siteConfig = {} } = useDocusaurusContext();
+  const {siteConfig = {}} = useDocusaurusContext();
 
   return (
     <Layout
-      title={`${siteConfig.title} - ${siteConfig.tagline}`}
       description={siteConfig.tagline}
-    >
-      <header className={classnames("hero hero--primary", styles.heroBanner)}>
-        <div className={classnames("container", styles.topContainer)}>
+      title={`${siteConfig.title} - ${siteConfig.tagline}`}>
+      <header className={classnames('hero hero--primary', styles.heroBanner)}>
+        <div className={classnames('container', styles.topContainer)}>
           <div>
             <h1 className="hero__title">{siteConfig.title}</h1>
             <div className={styles.sections}>
@@ -127,11 +126,10 @@ const Index = () => {
                 <div className={styles.buttons}>
                   <Link
                     className={classnames(
-                      "button button--secondary button--lg",
-                      styles.button
+                      'button button--secondary button--lg',
+                      styles.button,
                     )}
-                    to="https://github.com/facebook/fbt"
-                  >
+                    to="https://github.com/facebook/fbt">
                     Try it out
                   </Link>
                 </div>
@@ -141,7 +139,7 @@ const Index = () => {
           <div className="splash_image">
             <img
               className={styles.splashImage}
-              src={useBaseUrl("img/fbt.png")}
+              src={useBaseUrl('img/fbt.png')}
             />
           </div>
         </div>

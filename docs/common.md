@@ -55,7 +55,7 @@ or
 
 ```js
 <button>
-  <fbt common={true}>Photo</fbt>
+  <fbt common>Photo</fbt>
 </button>
 ```
 

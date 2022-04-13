@@ -2,7 +2,7 @@
   "name": "fb-tiger-hash",
   "description": "Native JS implementation of the Tiger hash. Optionally supports flipped byte ordering found in PHP-5.3",
   "private": false,
-  "version": "0.2.0-rc1-beta",
+  "version": "1.0.0",
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "hash"
   ],
   "peerDependencies": {
-    "babel-plugin-fbt": "^0.x.x"
+    "babel-plugin-fbt": "^1.0.0"
   },
   "engines": {
     "node": ">= 10.4.0"

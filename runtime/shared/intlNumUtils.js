@@ -276,7 +276,8 @@ function formatNumberWithLimitedSigFig(
 function _roundNumber(valueParam: number, decimalsParam?: number): string {
   const decimals = decimalsParam == null ? 0 : decimalsParam;
   const pow = Math.pow(10, decimals);
-  let value = valueParam;
+  let value: number | string = valueParam;
+  // $FlowFixMe[unsafe-addition]
   value = Math.round(value * pow) / pow;
   value += '';
   if (!decimals) {
