@@ -62,13 +62,15 @@ function _getRules(locale: ?string): Rules {
 
   // Process the patterns and replacements by applying metaclasses.
   for (let pattern in rewrites.patterns) {
-    let replacement = rewrites.patterns[pattern];
+    let replacement: string | ((match: string) => string) =
+      rewrites.patterns[pattern];
     // "Metaclasses" are shorthand for larger character classes. For example,
     // _C may refer to consonants and _V to vowels for a locale.
     for (const metaclass in rewrites.meta) {
       const metaclassRegexp = new RegExp(metaclass.slice(1, -1), 'g');
       const characterClass = rewrites.meta[metaclass];
       pattern = pattern.replace(metaclassRegexp, characterClass);
+      // $FlowFixMe[prop-missing]
       replacement = replacement.replace(metaclassRegexp, characterClass);
     }
     if (replacement === 'javascript') {
