@@ -1,7 +1,7 @@
 {
   "name": "fb-babel-plugin-utils",
   "//version": "Follow SemVer specs at https://semver.org/",
-  "version": "0.13.0-beta",
+  "version": "0.13.1",
   "description": "Common Babel 7 utils for FB",
   "license": "MIT",
   "dependencies": {

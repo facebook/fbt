@@ -1,7 +1,7 @@
 {
   "name": "gulp-strip-docblock-pragmas",
   "description": "Strip specific pragmas from your file's docblock in Gulp",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "src/index.js",
   "license": "MIT",
   "dependencies": {
