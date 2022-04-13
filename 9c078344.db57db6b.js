@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[24],{84:function(t){t.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Fbt promoted to v1.0.0","permalink":"/fbt/blog/2022/04/12/blog-post"},{"title":"What does FBT mean?","permalink":"/fbt/blog/2018/02/14/blog-post"},{"title":"Release","permalink":"/fbt/blog/2018/01/03/blog-post"}]}')}}]);
