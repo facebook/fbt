@@ -36,6 +36,7 @@ sidebar_label: Enforcing plain-text strings
 * All existing fbt constructs are supported. Just write `fbs` instead of `fbt`.
    * E.g. `<fbt:param>` and `<fbs:param>` work the same way.
    * See [examples in unit tests file](https://github.com/facebook/fbt/blob/09ad3546a2f02c53af4c031113989564872eba34/runtime/shared/__tests__/fbs-test.js)
+   * **IMPORTANT: if you pass a non-stringish value to `<fbs:param>`, we'll end up throwing a JS exception on the client-side.**
 * How to submit translation requests for it?
    * Please follow the same process as for the regular `fbt` strings
 
