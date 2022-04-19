@@ -157,6 +157,7 @@ function fbtCallsite(
     if (typeof pattern !== 'string') {
       // On mobile, table can be accessed at the native layer when fetching
       // translations. If pattern is not a string here, table has not been accessed
+      // $FlowFixMe[incompatible-type]
       pattern = FbtTable.access(pattern, args, 0);
     }
 
