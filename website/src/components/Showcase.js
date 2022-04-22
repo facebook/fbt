@@ -9,16 +9,16 @@
  * @format
  */
 
-import React from "react";
-import classnames from "classnames";
-import Link from "@docusaurus/Link";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import useBaseUrl from "@docusaurus/useBaseUrl";
-import styles from "../pages/styles.module.css";
+import React from 'react';
+import classnames from 'classnames';
+import Link from '@docusaurus/Link';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import styles from '../pages/styles.module.css';
 
-const Showcase = ({ showAll = false }) => {
-  const { siteConfig = {} } = useDocusaurusContext();
-  const { users } = siteConfig.customFields;
+const Showcase = ({showAll = false}) => {
+  const {siteConfig = {}} = useDocusaurusContext();
+  const {users} = siteConfig.customFields;
 
   const showcase = (showAll ? users : users.filter(user => user.pinned)).map(
     (user, i) => {
@@ -27,16 +27,17 @@ const Showcase = ({ showAll = false }) => {
           <img src={useBaseUrl(user.imageUrl)} title={user.caption} />
         </a>
       );
-    }
+    },
   );
 
   return (
     <section
-      className={classnames("text--center margin-top--xl", styles.showcase)}
-    >
+      className={classnames('text--center margin-top--xl', styles.showcase)}>
       <h2
-        className={classnames("showcaseHeading", styles.showcaseHeadingColored)}
-      >
+        className={classnames(
+          'showcaseHeading',
+          styles.showcaseHeadingColored,
+        )}>
         Who's Using This?
       </h2>
       <div className={styles.showcaseLogos}>{showcase}</div>
@@ -45,21 +46,19 @@ const Showcase = ({ showAll = false }) => {
         {showAll ? (
           <Link
             className={classnames(
-              "button button--primary button--outline",
-              styles.button
+              'button button--primary button--outline',
+              styles.button,
             )}
-            href="https://github.com/facebook/fbt/edit/main/website/docusaurus.config.js"
-          >
+            href="https://github.com/facebook/fbt/edit/main/website/docusaurus.config.js">
             Add your company/project
           </Link>
         ) : (
           <Link
             className={classnames(
-              "button button--primary button--outline",
-              styles.button
+              'button button--primary button--outline',
+              styles.button,
             )}
-            to={useBaseUrl("users")}
-          >
+            to={useBaseUrl('users')}>
             More {siteConfig.title} Users
           </Link>
         )}
