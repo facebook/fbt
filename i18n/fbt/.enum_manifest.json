@@ -1,1 +1,9 @@
-{}
+{
+    "RepoSyncHeader": [
+        "(c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.",
+        "This file is generated. Do not modify it manually!",
+        "@codegen-command : phps RepoSync intl_oss_fbt",
+        "@codegen-source : fbsource\/xplat\/intl\/oss-fbt\/rn-demo-app\/i18n\/fbt\/.enum_manifest.json",
+        "@generated SignedSource<<f55dba0251b0e65f9cad00287231479c>>"
+    ]
+}

@@ -1,23 +1,15 @@
 /**
- * @generated SignedSource<<225c12ecb707777645c89377ec74d626>>
- * @codegen-command : phps FBSyncAll
- *
- * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
- * !! This file is synchronized from fbsource. You should not     !!
- * !! modify it directly. Instead:                                !!
- * !!                                                             !!
- * !! 1) Update this file on fbsource and land your change there. !!
- * !! 2) A sync diff should be created and accepted automatically !!
- * !!    within 30 minutes that copies the changes you made on    !!
- * !!    fbsource to www. All that's left is to verify the        !!
- * !!    revision is good land it on www.                         !!
- * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
+ * This file is generated. Do not modify it manually!
+ * @codegen-command : phps RepoSync intl_oss_fbt
+ * @codegen-source : fbsource/xplat/intl/oss-fbt/rn-demo-app/src/App.js
+ * @generated SignedSource<<23f99631284cb422e65d69ee85bff848>>
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
+ * @format
  * @flow strict-local
  * @fbt {"project": "fbt-rn-demo-project"}
  */

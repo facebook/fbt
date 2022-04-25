@@ -1,1 +1,11 @@
-{"3GlGAE":"\"Primer paso\"","4yxSqC":"\"Edita App.js para cambiar esta pantalla y luego verifica tus resultados.\""}
+{
+    "RepoSyncHeader": [
+        "(c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.",
+        "This file is generated. Do not modify it manually!",
+        "@codegen-command : phps RepoSync intl_oss_fbt",
+        "@codegen-source : fbsource\/xplat\/intl\/oss-fbt\/rn-demo-app\/android\/app\/src\/main\/res\/raw-es-rES\/localizable.json",
+        "@generated SignedSource<<b79be52551c1c8629aad854a4ee12667>>"
+    ],
+    "3GlGAE": "\"Primer paso\"",
+    "4yxSqC": "\"Edita App.js para cambiar esta pantalla y luego verifica tus resultados.\""
+}

@@ -1,3 +1,10 @@
+/**
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
+ * This file is generated. Do not modify it manually!
+ * @codegen-command : phps RepoSync intl_oss_fbt
+ * @codegen-source : fbsource/xplat/intl/oss-fbt/rn-demo-app/android/app/src/main/res/values/styles.xml
+ * @generated SignedSource<<9a50407d8ffc6fcbc0e294e634dea599>>
+ */
 <resources>
 
     <!-- Base application theme. -->

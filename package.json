@@ -1,43 +1,50 @@
 {
-  "name": "rn-demo-app",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "manifest": "fbt-manifest --src src/ --enum-manifest i18n/fbt/.enum_manifest.json --src-manifest i18n/fbt/.src_manifest.json",
-    "collect-fbts": "fbt-collect --hash-module 'fb-tiger-hash/src/hashPhrases' --react-native-mode --manifest < i18n/fbt/.src_manifest.json > i18n/fbt/.source_strings.json",
-    "translate-fbts": "fbt-translate --jenkins --source-strings i18n/fbt/.source_strings.json --translations i18n/fbt/translationScriptInput/*.json > i18n/fbt/translatedFbts.json",
-    "generate-android-fbt": "babel-node i18n/scripts/generate-android-localizables-executor.js",
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "start": "react-native start",
-    "test": "jest",
-    "lint": "eslint .",
-    "fbsource-dev": "node scripts/configure-fbsource-dev-deps.js"
-  },
-  "dependencies": {
-    "react": "17.0.2",
-    "react-native": ">=0.66.0 <1.0.x"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.12.9",
-    "@babel/node": "^7.6.3",
-    "@babel/runtime": "^7.12.5",
-    "@fbtjs/default-collection-transform": "^0.0.3",
-    "@react-native-community/eslint-config": "^2.0.0",
-    "babel-jest": "^26.6.3",
-    "babel-plugin-fbt": "^0.20.2",
-    "babel-plugin-fbt-runtime": "^0.9.17",
-    "babel-preset-react-native": "^4.0.1",
-    "eslint": "^7.14.0",
-    "fb-tiger-hash": "^0.1.6",
-    "fbt": "^0.13.0",
-    "jest": "^26.6.3",
-    "metro-react-native-babel-preset": "^0.66.0",
-    "react-native-fbt": ">=0.0.7 <1.0.x",
-    "react-test-renderer": "17.0.2",
-    "shelljs": "^0.8.3"
-  },
-  "jest": {
-    "preset": "react-native"
-  }
+    "RepoSyncHeader": [
+        "(c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.",
+        "This file is generated. Do not modify it manually!",
+        "@codegen-command : phps RepoSync intl_oss_fbt",
+        "@codegen-source : fbsource\/xplat\/intl\/oss-fbt\/rn-demo-app\/package.json",
+        "@generated SignedSource<<152eb96716d145207aec37192885b579>>"
+    ],
+    "name": "rn-demo-app",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "manifest": "fbt-manifest --src src\/ --enum-manifest i18n\/fbt\/.enum_manifest.json --src-manifest i18n\/fbt\/.src_manifest.json",
+        "collect-fbts": "fbt-collect --hash-module 'fb-tiger-hash\/src\/getFbtHash' --react-native-mode --manifest < i18n\/fbt\/.src_manifest.json > i18n\/fbt\/.source_strings.json",
+        "translate-fbts": "fbt-translate --jenkins --source-strings i18n\/fbt\/.source_strings.json --translations i18n\/fbt\/translationScriptInput\/*.json > i18n\/fbt\/translatedFbts.json",
+        "generate-android-fbt": "babel-node i18n\/scripts\/generate-android-localizables-executor.js",
+        "android": "react-native run-android",
+        "ios": "react-native run-ios",
+        "start": "react-native start",
+        "test": "jest",
+        "lint": "eslint .",
+        "fbsource-dev": "node scripts\/configure-fbsource-dev-deps.js"
+    },
+    "dependencies": {
+        "react": "17.0.2",
+        "react-native": ">=0.66.0 <1.0.x"
+    },
+    "devDependencies": {
+        "@babel\/core": "^7.12.9",
+        "@babel\/node": "^7.6.3",
+        "@babel\/runtime": "^7.12.5",
+        "@fbtjs\/default-collection-transform": "1.0.0",
+        "@react-native-community\/eslint-config": "^2.0.0",
+        "babel-jest": "^26.6.3",
+        "babel-plugin-fbt": "1.0.0",
+        "babel-plugin-fbt-runtime": "1.0.0",
+        "babel-preset-react-native": "^4.0.1",
+        "eslint": "^7.14.0",
+        "fb-tiger-hash": "1.0.0",
+        "fbt": "1.0.0",
+        "jest": "^26.6.3",
+        "metro-react-native-babel-preset": "^0.66.0",
+        "react-native-fbt": ">=0.0.7 <1.0.x",
+        "react-test-renderer": "17.0.2",
+        "shelljs": "^0.8.3"
+    },
+    "jest": {
+        "preset": "react-native"
+    }
 }

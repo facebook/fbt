@@ -1,24 +1,16 @@
 /**
- * @generated SignedSource<<7d0f7ede07f1a121c1b64e8ac61e16c5>>
- * @codegen-command : phps FBSyncAll
- *
- * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
- * !! This file is synchronized from fbsource. You should not     !!
- * !! modify it directly. Instead:                                !!
- * !!                                                             !!
- * !! 1) Update this file on fbsource and land your change there. !!
- * !! 2) A sync diff should be created and accepted automatically !!
- * !!    within 30 minutes that copies the changes you made on    !!
- * !!    fbsource to www. All that's left is to verify the        !!
- * !!    revision is good land it on www.                         !!
- * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
+ * This file is generated. Do not modify it manually!
+ * @codegen-command : phps RepoSync intl_oss_fbt
+ * @codegen-source : fbsource/xplat/intl/oss-fbt/rn-demo-app/i18n/scripts/generate-android-localizables.js
+ * @generated SignedSource<<ed6128e5ea1f1b6a639f8ab42381f6ce>>
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
  * @flow strict-local
+ * @format
  */
 
 import type {TranslationScriptOutput} from './translate-fbts';

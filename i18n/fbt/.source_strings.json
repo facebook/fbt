@@ -1,1 +1,54 @@
-{"phrases":[{"hashToText":{"2dcba29d4a842c6be5d76fe996fcd9f4":"Step One"},"filepath":"src/App.js","line_beg":36,"col_beg":16,"line_end":36,"col_end":56,"desc":"Section title","project":"fbt-rn-demo-project","type":"text","jsfbt":"Step One"},{"hashToText":{"e379f5ddf643bc28c3a9db67b8f67155":"Edit App.js to change this screen and then come back to see your edits."},"filepath":"src/App.js","line_beg":39,"col_beg":16,"line_end":42,"col_end":22,"desc":"Section Description","project":"fbt-rn-demo-project","type":"text","jsfbt":"Edit App.js to change this screen and then come back to see your edits."}],"childParentMappings":{}}
+{
+    "RepoSyncHeader": [
+        "(c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.",
+        "This file is generated. Do not modify it manually!",
+        "@codegen-command : phps RepoSync intl_oss_fbt",
+        "@codegen-source : fbsource\/xplat\/intl\/oss-fbt\/rn-demo-app\/i18n\/fbt\/.source_strings.json",
+        "@generated SignedSource<<532046a1d287f9ac202841aeca8b0d2b>>"
+    ],
+    "phrases": [
+        {
+            "hashToLeaf": {
+                "2dcba29d4a842c6be5d76fe996fcd9f4": {
+                    "text": "Step One",
+                    "desc": "Section title"
+                }
+            },
+            "filepath": "src\/App.js",
+            "line_beg": 36,
+            "col_beg": 16,
+            "line_end": 36,
+            "col_end": 56,
+            "project": "fbt-rn-demo-project",
+            "jsfbt": {
+                "t": {
+                    "desc": "Section title",
+                    "text": "Step One"
+                },
+                "m": []
+            }
+        },
+        {
+            "hashToLeaf": {
+                "e379f5ddf643bc28c3a9db67b8f67155": {
+                    "text": "Edit App.js to change this screen and then come back to see your edits.",
+                    "desc": "Section Description"
+                }
+            },
+            "filepath": "src\/App.js",
+            "line_beg": 39,
+            "col_beg": 16,
+            "line_end": 42,
+            "col_end": 22,
+            "project": "fbt-rn-demo-project",
+            "jsfbt": {
+                "t": {
+                    "desc": "Section Description",
+                    "text": "Edit App.js to change this screen and then come back to see your edits."
+                },
+                "m": []
+            }
+        }
+    ],
+    "childParentMappings": {}
+}

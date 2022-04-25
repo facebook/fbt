@@ -1,25 +1,32 @@
 {
-  "fb-locale": "es_ES",
-  "translations": {
-    "2dcba29d4a842c6be5d76fe996fcd9f4": {
-      "tokens": [],
-      "types": [],
-      "translations": [
-        {
-          "translation": "Primer paso",
-          "variations": {}
+    "RepoSyncHeader": [
+        "(c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.",
+        "This file is generated. Do not modify it manually!",
+        "@codegen-command : phps RepoSync intl_oss_fbt",
+        "@codegen-source : fbsource\/xplat\/intl\/oss-fbt\/rn-demo-app\/i18n\/fbt\/translationScriptInput\/es_es.json",
+        "@generated SignedSource<<c7d9202f76edfb725de6f0fe2d38a5f5>>"
+    ],
+    "fb-locale": "es_ES",
+    "translations": {
+        "2dcba29d4a842c6be5d76fe996fcd9f4": {
+            "tokens": [],
+            "types": [],
+            "translations": [
+                {
+                    "translation": "Primer paso",
+                    "variations": {}
+                }
+            ]
+        },
+        "e379f5ddf643bc28c3a9db67b8f67155": {
+            "tokens": [],
+            "types": [],
+            "translations": [
+                {
+                    "translation": "Edita App.js para cambiar esta pantalla y luego verifica tus resultados.",
+                    "variations": {}
+                }
+            ]
         }
-      ]
-    },
-    "e379f5ddf643bc28c3a9db67b8f67155": {
-      "tokens": [],
-      "types": [],
-      "translations": [
-        {
-          "translation": "Edita App.js para cambiar esta pantalla y luego verifica tus resultados.",
-          "variations": {}
-        }
-      ]
     }
-  }
 }

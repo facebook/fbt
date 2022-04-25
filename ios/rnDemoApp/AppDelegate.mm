@@ -1,5 +1,12 @@
+/**
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
+ * This file is generated. Do not modify it manually!
+ * @codegen-command : phps RepoSync intl_oss_fbt
+ * @codegen-source : fbsource/xplat/intl/oss-fbt/rn-demo-app/ios/rnDemoApp/AppDelegate.mm
+ * @generated SignedSource<<ea627f0a64dfc05985740c7ae406a3ec>>
+ */
 /*
- * Copyright (c) Facebook, Inc. and its affiliates.
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -24,7 +31,14 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTCxxBridgeDelegate.h>
+#import <React/RCTDataRequestHandler.h>
+#import <React/RCTFileRequestHandler.h>
+#import <React/RCTGIFImageDecoder.h>
+#import <React/RCTHTTPRequestHandler.h>
+#import <React/RCTImageLoader.h>
 #import <React/RCTJSIExecutorRuntimeInstaller.h>
+#import <React/RCTLocalAssetImageLoader.h>
+#import <React/RCTNetworking.h>
 #import <React/RCTRootView.h>
 
 #import <React/CoreModulesPlugins.h>
@@ -125,12 +139,31 @@
 - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:(const std::string &)name
                                                      initParams:(const facebook::react::ObjCTurboModule::InitParams &)params
 {
-  // TODO: Use FbtModule's getTurboModule:
-  if (name == "FbtModule") {
-    return std::make_shared<facebook::react::NativeFbtModuleSpecJSI>(params);
-  }
-
   return nullptr;
+}
+
+- (id<RCTTurboModule>)getModuleInstanceFromClass:(Class)moduleClass
+{
+  // Set up the default RCTImageLoader and RCTNetworking modules.
+  if (moduleClass == RCTImageLoader.class) {
+    return [[moduleClass alloc] initWithRedirectDelegate:nil
+        loadersProvider:^NSArray<id<RCTImageURLLoader>> *(RCTModuleRegistry * moduleRegistry) {
+          return @ [[RCTLocalAssetImageLoader new]];
+        }
+        decodersProvider:^NSArray<id<RCTImageDataDecoder>> *(RCTModuleRegistry * moduleRegistry) {
+          return @ [[RCTGIFImageDecoder new]];
+        }];
+  } else if (moduleClass == RCTNetworking.class) {
+    return [[moduleClass alloc] initWithHandlersProvider:^NSArray<id<RCTURLRequestHandler>> *(RCTModuleRegistry * moduleRegistry) {
+      return @[
+        [RCTHTTPRequestHandler new],
+        [RCTDataRequestHandler new],
+        [RCTFileRequestHandler new],
+      ];
+    }];
+  }
+  // No custom initializer here.
+  return [moduleClass new];
 }
 
 @end
