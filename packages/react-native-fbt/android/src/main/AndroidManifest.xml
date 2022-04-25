@@ -1,3 +1,10 @@
+/**
+ * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
+ * This file is generated. Do not modify it manually!
+ * @codegen-command : phps RepoSync intl_oss_fbt
+ * @codegen-source : fbsource/xplat/intl/oss-fbt/packages/react-native-fbt/android/src/main/AndroidManifest.xml
+ * @generated SignedSource<<7a8dcf212926b618b363248fab3053ac>>
+ */
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.facebook.react.modules">
 

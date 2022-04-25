@@ -1,38 +1,45 @@
 {
-  "name": "react-native-fbt",
-  "title": "FBT React Native Module",
-  "version": "0.0.8",
-  "description": "Native module to enable the usage of the FBT translation framework in React Native apps.",
-  "main": "js/NativeFbtModule.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/facebook/fbt.git"
-  },
-  "keywords": [
-    "react-native",
-    "android",
-    "ios",
-    "fbt"
-  ],
-  "license": "MIT",
-  "readmeFilename": "README.md",
-  "peerDependencies": {
-    "react": "*",
-    "react-native": "*"
-  },
-  "devDependencies": {
-    "react": "^17.0.2",
-    "react-native": "^0.66.0"
-  },
-  "codegenConfig": {
-    "libraries": [
-      {
-        "name": "ReactNativeFbtSpec",
-        "type": "modules",
-        "ios": {},
-        "android": {},
-        "jsSrcsDir": "js/"
-      }
-    ]
-  }
+    "RepoSyncHeader": [
+        "(c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.",
+        "This file is generated. Do not modify it manually!",
+        "@codegen-command : phps RepoSync intl_oss_fbt",
+        "@codegen-source : fbsource\/xplat\/intl\/oss-fbt\/packages\/react-native-fbt\/package.json",
+        "@generated SignedSource<<a201d927629272fb2f323ae3e8d5f582>>"
+    ],
+    "name": "react-native-fbt",
+    "title": "FBT React Native Module",
+    "version": "0.0.8",
+    "description": "Native module to enable the usage of the FBT translation framework in React Native apps.",
+    "main": "js\/NativeFbtModule.js",
+    "repository": {
+        "type": "git",
+        "url": "https:\/\/github.com\/facebook\/fbt.git"
+    },
+    "keywords": [
+        "react-native",
+        "android",
+        "ios",
+        "fbt"
+    ],
+    "license": "MIT",
+    "readmeFilename": "README.md",
+    "peerDependencies": {
+        "react": "*",
+        "react-native": "*"
+    },
+    "devDependencies": {
+        "react": "^17.0.2",
+        "react-native": "^0.66.0"
+    },
+    "codegenConfig": {
+        "libraries": [
+            {
+                "name": "ReactNativeFbtSpec",
+                "type": "modules",
+                "ios": {},
+                "android": {},
+                "jsSrcsDir": "js\/"
+            }
+        ]
+    }
 }

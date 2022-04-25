@@ -18,7 +18,7 @@ React Native module to enable the use of the [FBT translation framework](https:/
 1. In Xcode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
 2. Go to `node_modules` ➜ `react-native-fbt` and add `Fbt.xcodeproj`
 3. In Xcode, in the project navigator, select your project. Add `libFbt.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
-4. Run your project (`Cmd+R`)<
+4. Run your project (`Cmd+R`)
 
 #### Android
 
