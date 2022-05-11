@@ -2,7 +2,7 @@
  * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
  * @emails oncall+i18n_fbt_js
- * @flow
+ * @flow strict-local
  * @format
  */
 
@@ -27,6 +27,8 @@ const FbtCommon = {
     if (opts.fbtCommonPath != null) {
       let fbtCommonData;
       try {
+        // We have to ignore the linter error caused by Flow Fix me since fbtCommonPath is variable depending on different apps.
+        // eslint-disable-next-line fb-www/no-flowfixme-in-flow-strict
         // $FlowFixMe - dynamic require
         fbtCommonData = require(path.resolve(opts.fbtCommonPath));
       } catch (error) {
