@@ -144,7 +144,7 @@ function fbtCallsite(
   // At this point we assume that table is a hash (possibly nested) that we
   // need to traverse in order to pick the correct string, based on the
   // args that follow.
-  let allSubstitutions = {};
+  let allSubstitutions: {[string]: mixed} = {};
 
   if (pattern.__vcg != null) {
     args = args || [];
@@ -200,6 +200,7 @@ function fbtCallsite(
     const fbtContent = substituteTokens(patternString, allSubstitutions);
     // Use this._wrapContent voluntarily so that it can be overwritten in fbs.js
     const result = (this._wrapContent: typeof wrapContent)(
+      // $FlowFixMe[incompatible-call]
       fbtContent,
       patternString,
       patternHash,
@@ -213,7 +214,7 @@ function fbtCallsite(
 }
 
 function getAllSubstitutions(args) {
-  const allSubstitutions = {};
+  const allSubstitutions: {[string]: mixed} = {};
   args.forEach(arg => {
     const substitution = arg[ARG.SUBSTITUTION];
     if (!substitution) {
