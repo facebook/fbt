@@ -302,6 +302,7 @@ function _roundNumber(valueParam: number, decimalsParam?: number): string {
   for (let i = 0, l = zeros; i < l; i++) {
     value += '0';
   }
+  // $FlowFixMe[incompatible-return]
   return value;
 }
 
