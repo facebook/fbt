@@ -1,9 +1,10 @@
 /**
  * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
- * @format
- * @flow strict
  * @emails oncall+internationalization
+ * @flow strict
+ * @format
+ * @oncall internationalization
  */
 
 'use strict';
