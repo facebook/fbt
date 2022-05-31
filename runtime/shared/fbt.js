@@ -213,7 +213,7 @@ function fbtCallsite(
   }
 }
 
-function getAllSubstitutions(args) {
+function getAllSubstitutions(args: FbtTableArgs | Array<FbtTableArg>) {
   const allSubstitutions: {[string]: mixed} = {};
   args.forEach(arg => {
     const substitution = arg[ARG.SUBSTITUTION];
@@ -239,7 +239,7 @@ function getAllSubstitutions(args) {
  * avoids creating the temporary arrays incurred by calling Object.keys(o)
  * @param {Object} o - Example: "allSubstitutions"
  */
-function _hasKeys(o) {
+function _hasKeys(o: {[string]: mixed}) {
   for (const k in o) {
     return true;
   }
@@ -385,7 +385,7 @@ function fbtPronoun(
 /**
  * Must match implementation from babel-plugin-fbt/src/fbt-nodes/FbtPronounNode.js
  */
-function getPronounGenderKey(usage, gender) {
+function getPronounGenderKey(usage: 0 | 1 | 2 | 3, gender: GenderConstEnum) {
   switch (gender) {
     case GenderConst.NOT_A_PERSON:
       return usage === ValidPronounUsages.object ||

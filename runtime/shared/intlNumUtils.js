@@ -306,7 +306,7 @@ function _roundNumber(valueParam: number, decimalsParam?: number): string {
   return value;
 }
 
-const addZeros = (x, count) => {
+const addZeros = (x: string, count: number) => {
   let result = x;
   for (let i = 0; i < count; i++) {
     result += '0';
