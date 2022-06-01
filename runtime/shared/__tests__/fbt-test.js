@@ -126,7 +126,7 @@ describe('fbt', () => {
     ...
   };
 
-  function _render(value, childA, childB) {
+  function _render(value: string, childA: mixed, childB: mixed) {
     // In theory, different enum values can result in different sentence
     // structures. If that happens, the React components should retain
     // their state even though they change order. We mock out a fake
@@ -177,7 +177,9 @@ describe('fbt', () => {
     ).toEqual('A total amount is 10000');
   });
 
-  function renderAndExtractChildDivs(component) {
+  function renderAndExtractChildDivs(component: React.Node) {
+    // $FlowFixMe[incompatible-call]
+    // $FlowFixMe[incompatible-exact]
     const node = ReactDOM.findDOMNode(ReactDOM.render(component, domContainer));
     // flow thinks ReactDOM.findDOMNode can return a type of Text...
     invariant(node instanceof Element, 'Expected node to be an Element');
@@ -198,7 +200,10 @@ describe('fbt', () => {
     expect(console.warn.mock.calls.length).toBe(0);
   });
 
-  function expectChildSetsToRetainIdentity(setA, setB) {
+  function expectChildSetsToRetainIdentity(
+    setA: React.Element<'div'>,
+    setB: React.Element<'div'>,
+  ) {
     const nodesA = renderAndExtractChildDivs(
       <TestComponent childA={setA} childB={setB} value="A" />,
     );
@@ -388,7 +393,29 @@ describe('fbt', () => {
   });
 
   describe(': given a string with implicit parameters', () => {
-    function getFbt({count, object, ownerGender, viewer}) {
+    function getFbt({
+      count,
+      object,
+      ownerGender,
+      viewer,
+    }: $TEMPORARY$object<{
+      count: number,
+      object: $TEMPORARY$string<'comment'> | $TEMPORARY$string<'photo'>,
+      ownerGender:
+        | 'FEMALE_PLURAL'
+        | 'FEMALE_SINGULAR'
+        | 'FEMALE_SINGULAR_GUESS'
+        | 'MALE_PLURAL'
+        | 'MALE_SINGULAR'
+        | 'MALE_SINGULAR_GUESS'
+        | 'MIXED_UNKNOWN'
+        | 'NEUTER_PLURAL'
+        | 'NEUTER_SINGULAR'
+        | 'NOT_A_PERSON'
+        | 'UNKNOWN_PLURAL'
+        | 'UNKNOWN_SINGULAR',
+      viewer: {gender: IntlVariationsEnum, name: string},
+    }>) {
       return (
         <fbt desc="description">
           <fbt:name gender={viewer.gender} name="name">
