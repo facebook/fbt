@@ -31,6 +31,8 @@ describe('intlNumUtils:', () => {
     });
   }
 
+  /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
+   * LTI update could not be added via codemod */
   function override(config) {
     setup();
     _overrides = config;
