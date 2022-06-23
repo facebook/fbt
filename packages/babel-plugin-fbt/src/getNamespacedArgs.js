@@ -4,6 +4,7 @@
  * Fbt JSX namespaced elements handler.
  *
  * @emails oncall+i18n_fbt_js
+ * @oncall i18n_fbt_js
  * @format
  * Disabling typing since this file will be deprecated by the fbt-autoparam project
  *

@@ -3,6 +3,7 @@
  *
  * @emails oncall+i18n_fbt_js
  * @format
+ * @oncall i18n_fbt_js
  */
 /* eslint-disable fb-www/gender-neutral-language */
 
