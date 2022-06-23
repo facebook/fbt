@@ -4,6 +4,7 @@
  * @emails oncall+i18n_fbt_js
  * @flow strict
  * @format
+ * @oncall i18n_fbt_js
  */
 
 // flowlint ambiguous-object-type:error
