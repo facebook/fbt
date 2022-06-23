@@ -1,9 +1,10 @@
 /**
  * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
- * @format
  * @emails oncall+i18n_fbt_js
  * @flow strict-local
+ * @format
+ * @oncall i18n_fbt_js
  */
 
 'use strict';

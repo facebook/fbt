@@ -12,6 +12,7 @@
  * @emails oncall+i18n_fbt_js
  * @flow
  * @format
+ * @oncall i18n_fbt_js
  */
 
 jest.disableAutomock();

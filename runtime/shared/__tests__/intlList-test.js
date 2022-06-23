@@ -11,6 +11,7 @@
  *
  * @emails oncall+i18n_fbt_js
  * @format
+ * @oncall i18n_fbt_js
  * @typechecks
  */
 
