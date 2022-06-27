@@ -15,6 +15,9 @@
     "react": "^16.10.2",
     "react-dom": "^16.10.2"
   },
+  "resolutions": {
+    "shell-quote": "^1.7.3"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
