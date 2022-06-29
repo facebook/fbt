@@ -7,6 +7,7 @@
  * @fbt {"project": "fbt-live-demo-project"}
  * @noflow
  * @noformat Needed to preserve flow types in comments
+ * @oncall i18n_fbt_js
  */
 
 import './css/Example.css';
