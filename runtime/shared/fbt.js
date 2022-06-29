@@ -16,6 +16,7 @@
  * @emails oncall+i18n_fbt_js
  * @flow strict-local
  * @format
+ * @oncall i18n_fbt_js
  * @typechecks
  */
 

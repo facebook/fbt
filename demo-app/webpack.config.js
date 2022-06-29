@@ -3,6 +3,7 @@
  *
  * @emails oncall+i18n_fbt_js
  * @noflow
+ * @oncall i18n_fbt_js
  */
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');

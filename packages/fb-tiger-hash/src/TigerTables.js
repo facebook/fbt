@@ -1,13 +1,15 @@
 /**
  * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
- * @emails oncall+i18n_fbt_js
  * @lightSyntaxTransform.
  * Flow does not support BigInt yet
- * @noflow
  *
  * The Tiger S-Boxes
  *   https://www.cl.cam.ac.uk/~rja14/Papers/tigersb.pdf
+ *
+ * @emails oncall+i18n_fbt_js
+ * @noflow
+ * @oncall i18n_fbt_js
  */
 
 'use strict';

@@ -4,6 +4,7 @@
  * @emails oncall+i18n_fbt_oss
  * @format
  * @noflow
+ * @oncall i18n_fbt_oss
  */
 
 'use strict';

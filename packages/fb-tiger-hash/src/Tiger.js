@@ -15,10 +15,11 @@
  * Implementation in C:
  *   https://www.cs.technion.ac.il/~biham/Reports/Tiger/tiger/node7.html
  *
- * @emails oncall+i18n_fbt_js
  * Flow does not support BigInt yet
  *
+ * @emails oncall+i18n_fbt_js
  * @noflow
+ * @oncall i18n_fbt_js
  */
 
 /* eslint-disable no-bitwise */

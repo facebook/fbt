@@ -7,6 +7,7 @@
  * @emails oncall+i18n_fbt_js
  * @format
  * @noflow
+ * @oncall i18n_fbt_js
  */
 
 import Highlight, {defaultProps} from 'prism-react-renderer';

@@ -6,6 +6,7 @@
  *
  * @emails oncall+i18n_fbt_js
  * @noflow
+ * @oncall i18n_fbt_js
  */
 /*eslint max-len: ["error", 100]*/
 
