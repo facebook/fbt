@@ -200,6 +200,8 @@ class FbtResultBase implements IFbtResultBase {
 ].forEach(methodName => {
   /* eslint-disable fb-www/should-use-class */
   // $FlowFixMe[prop-missing] index signature
+  /* $FlowFixMe[missing-this-annot] The 'this' type annotation(s) required by
+   * Flow's LTI update could not be added via codemod */
   FbtResultBase.prototype[methodName] = function (...args) {
     this.__errorListener?.onStringMethodUsed?.(methodName);
     // $FlowFixMe[incompatible-type] Mock stringish methods

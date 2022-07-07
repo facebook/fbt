@@ -103,6 +103,8 @@ const cachedFbtResults: {[patternStr: PatternString]: Fbt} = {};
  * contains a structured enums to hash keys map which will later be traversed
  * to look up enum-less translated payload.
  */
+/* $FlowFixMe[missing-this-annot] The 'this' type annotation(s) required by
+ * Flow's LTI update could not be added via codemod */
 function fbtCallsite(
   inputTable: FbtRuntimeInput,
   inputArgs: ?FbtTableArgs,
@@ -325,6 +327,8 @@ function fbtParam(
 /**
  * fbt._implicitParam() behaves like fbt._param()
  */
+/* $FlowFixMe[missing-this-annot] The 'this' type annotation(s) required by
+ * Flow's LTI update could not be added via codemod */
 function fbtImplicitParam(
   label: string,
   value: mixed,
