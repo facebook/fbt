@@ -124,8 +124,7 @@ function fbtCallsite(
 
   // Adapt the input payload to the translated table and arguments we expect
   //
-  // WWW: The payload is ready, as-is, and is pre-translated UNLESS we detect
-  //      the magic BINAST string which needs to be stripped if it exists.
+  // WWW: The payload is ready, as-is, and is pre-translated.
   //
   // RN: we look up our translated table via the hash key (options.hk) and
   //     flattened enum hash key (options.ehk), which partially resolves the
