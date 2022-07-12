@@ -23,13 +23,20 @@ const REACT_ELEMENT_TYPE = ((typeof Symbol === 'function' &&
 let canDefineProperty = false;
 if (__DEV__) {
   try {
-    Object.defineProperty({}, 'x', {
-      // same settings as what we'll use during actual runtime
-      configurable: false,
-      enumerable: false,
-      writable: false,
-      value: 'foo',
-    });
+    Object.defineProperty(
+      {
+        ...null,
+      },
+      // $FlowFixMe[prop-missing]
+      'x',
+      {
+        // same settings as what we'll use during actual runtime
+        configurable: false,
+        enumerable: false,
+        writable: false,
+        value: 'foo',
+      },
+    );
     canDefineProperty = true;
   } catch {
     // IE will fail on defineProperty
