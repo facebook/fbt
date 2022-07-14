@@ -24,9 +24,7 @@ let canDefineProperty = false;
 if (__DEV__) {
   try {
     Object.defineProperty(
-      {
-        ...null,
-      },
+      {},
       // $FlowFixMe[prop-missing]
       'x',
       {
