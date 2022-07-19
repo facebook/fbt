@@ -1,7 +1,6 @@
 /**
  * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
- * @emails oncall+internationalization
  * @flow strict
  * @format
  * @oncall internationalization
