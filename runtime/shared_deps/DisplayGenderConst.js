@@ -5,9 +5,10 @@
  * Keep it in sync with the source location in the "meerkat" folder.
  * See JSEnum: DisplayGenderConst
  *
+ * @emails oncall+i18n_fbt_js
  * @flow strict
  * @nolint
- * @emails oncall+i18n_fbt_js
+ * @oncall i18n_fbt_js
  */
 
 export type DisplayGenderConstType = "UNKNOWN" | "FEMALE" | "MALE" | "NEUTER";

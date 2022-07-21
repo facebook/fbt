@@ -3,6 +3,7 @@
  *
  * @emails oncall+jsinfra
  * @nolint
+ * @oncall jsinfra
  */
 
 jest.autoMockOff();
