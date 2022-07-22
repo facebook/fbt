@@ -84,7 +84,7 @@ class FbtResultBase implements IFbtResultBase {
     return FbtResultBase.flattenToArray(this._contents);
   }
 
-  getContents() {
+  getContents(): $NestedFbtContentItems {
     return this._contents;
   }
 
