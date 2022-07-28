@@ -14,7 +14,6 @@
  * by default prepends a conjunction ("and" or "or") to the final item. This
  * conjunction is optional.
  *
- * @emails oncall+i18n_fbt_js
  * @fbt {"project": "intl-core"}
  * @flow strict-local
  * @format

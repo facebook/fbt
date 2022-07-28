@@ -4,7 +4,6 @@
  * Provides types related to fbt table access and the algorithm for
  * recursively accessing the table entries and returning the leaves
  *
- * @emails oncall+i18n_fbt_js
  * @flow strict-local
  * @format
  * @oncall i18n_fbt_js
