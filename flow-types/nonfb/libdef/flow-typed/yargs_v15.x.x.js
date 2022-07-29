@@ -1,7 +1,6 @@
 /**
  * From https://github.com/flow-typed/flow-typed/blob/master/cli/flow-typed/npm/yargs_v15.0.x.js
  *
- * @emails oncall+i18n_fbt_js
  * @flow strict
  * @oncall i18n_fbt_js
  */

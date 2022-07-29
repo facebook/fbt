@@ -7,7 +7,6 @@
  * but fbt() already uses 'type' as the tag within the fbt table data for the
  * to-be-localized text.
  *
- * @emails oncall+i18n_fbt_js
  * @flow strict-local
  * @format
  * @oncall i18n_fbt_js

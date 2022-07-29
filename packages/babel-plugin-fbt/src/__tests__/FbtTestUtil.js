@@ -3,7 +3,6 @@
  *
  * Utility functions to test the Fbt Babel transform plugin
  *
- * @emails oncall+i18n_fbt_js
  * @format
  * @noflow
  * @oncall i18n_fbt_js

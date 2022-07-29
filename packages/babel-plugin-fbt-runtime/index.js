@@ -5,7 +5,6 @@
  * transform. It extracts jsfbt and strip out extra information from the payload
  * produced by the fbt syntax transform.
  *
- * @emails oncall+i18n_fbt_js
  * @flow
  * @noformat
  * @oncall i18n_fbt_js

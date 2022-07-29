@@ -5,7 +5,6 @@
  *
  * Disabling typing since this file will be deprecated by the fbt-autoparam project
  *
- * @emails oncall+i18n_fbt_js
  * @format
  * @noflow
  * @oncall i18n_fbt_js

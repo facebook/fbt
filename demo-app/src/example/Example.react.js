@@ -1,7 +1,6 @@
 /**
  * Copyright (c) Facebook, Inc. and its affiliates. All rights reserved.
  *
- * @emails oncall+i18n_fbt_js
  * @fbt {"project": "fbt-demo-project"}
  * @format
  * @noflow
