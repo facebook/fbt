@@ -5,7 +5,6 @@
  * Keep it in sync with the source location in the "meerkat" folder.
  * See JSEnum: DisplayGenderConst
  *
- * @emails oncall+i18n_fbt_js
  * @flow strict
  * @nolint
  * @oncall i18n_fbt_js
