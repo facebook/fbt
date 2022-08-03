@@ -3,6 +3,7 @@
  *
  * @flow strict
  * @format
+ * @oncall i18n_fbt_oss
  */
 
 declare class Tiger {

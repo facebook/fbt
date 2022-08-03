@@ -11,6 +11,7 @@
  *
  * @flow strict
  * @format
+ * @oncall i18n_fbt_oss
  */
 
 // flowlint ambiguous-object-type:error
