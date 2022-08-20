@@ -79,7 +79,7 @@ cd auto-param-new-string-helper
 ```
 We group updated source strings by their 'category'. The `categoryToCnt` in
 `.new_strings_by_category.json` maps a category to the number of updated strings
-in this cateogry. The `newStringByCategory` maps a category to the actual strings
+in this category. The `newStringByCategory` maps a category to the actual strings
  that get updated. Each updated string is indexed by its **new** hash.
 
 `.new_strings_by_category.json` should look like this:

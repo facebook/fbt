@@ -118,7 +118,7 @@ const argv = yargs
   .describe(
     args.STDIN,
     'Instead of reading translation files and source file separately, read ' +
-      'from STDIN as a monolothic JSON payload',
+      'from STDIN as a monolithic JSON payload',
   )
   .string(args.SRC)
   .default(args.SRC, '.source_strings.json')

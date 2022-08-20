@@ -36,7 +36,7 @@ const FbtTableAccessor = {
     _numberValue: number,
   ): FbtTableArg {
     // value is ignored here which will be used in alternative implementation
-    // for different platformf
+    // for different platform
     return [variation, substitution];
   },
 
