@@ -1,10 +1,10 @@
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
- * @generated SignedSource<<f3feb9d4258ddabb2b226583b47787f7>>
+ * @generated SignedSource<<9e4021f976a66f8404651be9cef49732>>
  *
  * @flow strict
- * @emails oncall+i18n_fbt_js
+ * @oncall i18n_fbt_js
  * @codegen-command: JSModulesToClientScript
  */
 
