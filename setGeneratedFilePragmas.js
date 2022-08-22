@@ -27,7 +27,7 @@ function setGeneratedFilePragmas(oncallID) {
     const docblock = parseWithComments(docblockStr);
     STRIPPED_PRAGMAS.forEach(key => delete docblock.pragmas[key]);
     Object.assign(docblock.pragmas, {
-      emails: docblock.pragmas.emails || oncallID,
+      oncall: docblock.pragmas.oncall || oncallID,
       generated: '', // remove any "SignedSource" value to avoid lint issues
       noformat: '',
       nogrep: '',
