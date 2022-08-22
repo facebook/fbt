@@ -51,7 +51,7 @@ const paths = {
 };
 
 const COPYRIGHT = 'Copyright (c) Facebook, Inc. and its affiliates.';
-const ONCALL_ID = 'oncall+i18n_fbt_js';
+const ONCALL_ID = 'i18n_fbt_js';
 
 const COPYRIGHT_HEADER = `/**
  * fbt v<%= version %>
@@ -64,7 +64,7 @@ const COPYRIGHT_HEADER = `/**
  * @${'generated'}
  * @${'nolint'}
  * @${'nogrep'}
- * @emails ${ONCALL_ID}
+ * @oncall ${ONCALL_ID}
  */
 `;
 
