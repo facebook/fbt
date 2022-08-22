@@ -1,12 +1,12 @@
 /**
- * Copyright (c) Facebook, Inc. and its affiliates.
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
  * @format
  * @noflow
- * @oncall i18n_fbt_js
+ * @oncall i18n_fbt_oss
  */
 
 'use strict';
@@ -19,7 +19,7 @@ const gulpOnce = require('gulp-once');
 const rename = require('gulp-rename');
 const path = require('path');
 
-const ONCALL_ID = 'i18n_fbt_js';
+const ONCALL_ID = 'i18n_fbt_oss';
 
 const paths = {
   src: {
