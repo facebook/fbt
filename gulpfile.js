@@ -6,7 +6,7 @@
  *
  * @format
  * @noflow
- * @oncall i18n_fbt_js
+ * @oncall i18n_fbt_oss
  */
 
 'use strict';
@@ -51,7 +51,7 @@ const paths = {
 };
 
 const COPYRIGHT = 'Copyright (c) Facebook, Inc. and its affiliates.';
-const ONCALL_ID = 'i18n_fbt_js';
+const ONCALL_ID = 'i18n_fbt_oss';
 
 const COPYRIGHT_HEADER = `/**
  * fbt v<%= version %>

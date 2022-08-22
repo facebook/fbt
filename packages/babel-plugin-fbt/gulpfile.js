@@ -6,7 +6,7 @@
  *
  * @format
  * @noflow
- * @oncall i18n_fbt_js
+ * @oncall i18n_fbt_oss
  */
 
 'use strict';
@@ -19,7 +19,7 @@ const gulpOnce = require('gulp-once');
 const rename = require('gulp-rename');
 const path = require('path');
 
-const ONCALL_ID = 'i18n_fbt_js';
+const ONCALL_ID = 'i18n_fbt_oss';
 
 const paths = {
   src: {
