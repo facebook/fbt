@@ -1,5 +1,5 @@
 /**
- * Copyright (c) Facebook, Inc. and its affiliates.
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -50,7 +50,7 @@ const paths = {
   css: ['runtime/**/*.css'],
 };
 
-const COPYRIGHT = 'Copyright (c) Facebook, Inc. and its affiliates.';
+const COPYRIGHT = 'Copyright (c) Meta Platforms, Inc. and affiliates.';
 const ONCALL_ID = 'i18n_fbt_oss';
 
 const COPYRIGHT_HEADER = `/**
