@@ -4,11 +4,12 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<bae36609aef9e1c56f4051383323bedd>>
+ * @generated SignedSource<<b8a5eb545502f5196972d6d2b0e388af>>
  *
  * Run `phps GenderGenScript` to regenerate this file.
  *
  * @flow strict-local
+ * @oncall i18n_fbt_oss
  */
 
 'use strict';

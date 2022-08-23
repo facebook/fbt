@@ -1,12 +1,12 @@
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
- * @generated SignedSource<<ac8f5b7c60cc4ce79435ae5e8dc4c056>>
+ * @generated SignedSource<<585c149cb12bb49abe7cb55d3245f468>>
  *
  * @codegen-command : phps FBLocToLangScript
  *
  * @flow strict
- * @oncall i18n_fbt_js
+ * @oncall i18n_fbt_oss
  */
 
 const locToLang = {
