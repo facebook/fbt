@@ -62,7 +62,7 @@ suppress_type=$FlowFixMeEmpty
 suppress_type=$FlowExpectedError
 
 experimental.abstract_locations=true
-experimental.enums=true
+enums=true
 
 [strict]
 deprecated-type
@@ -74,4 +74,4 @@ untyped-import
 untyped-type-import
 
 [version]
-^0.158.0
+^0.185.1

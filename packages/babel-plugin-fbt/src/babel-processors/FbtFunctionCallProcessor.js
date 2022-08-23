@@ -306,6 +306,7 @@ class FbtFunctionCallProcessor {
     // Find the first ancestor block statement node or the program root node
     let curPath = this.path;
     while (!isBlockStatement(curPath.node) && !isProgram(curPath.node)) {
+      // $FlowFixMe[incompatible-type-arg]
       curPath = nullthrows(
         curPath.parentPath,
         'curPath can not be null. Otherwise, it means we reached the root' +

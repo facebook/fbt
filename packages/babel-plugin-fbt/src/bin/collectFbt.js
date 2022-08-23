@@ -246,6 +246,7 @@ function processJsonSource(source) {
   Object.keys(json).forEach(function (manifest_path) {
     let manifest = {};
     if (fs.existsSync(manifest_path)) {
+      // $FlowFixMe[unsupported-syntax]
       manifest = require(path.resolve(process.cwd(), manifest_path));
     }
     fbtCollector.collectFromFiles(json[manifest_path], manifest);

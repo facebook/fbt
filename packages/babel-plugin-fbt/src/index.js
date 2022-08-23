@@ -254,6 +254,7 @@ function FbtTransform(babel: {types: BabelTypes}): BabelTransformPlugin {
           return;
         }
 
+        // $FlowFixMe[incompatible-type]
         root = FbtFunctionCallProcessor.create({
           babelTypes: t,
           defaultFbtOptions: defaultOptions,

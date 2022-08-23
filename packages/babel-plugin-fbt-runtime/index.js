@@ -194,6 +194,7 @@ module.exports = function BabelPluginFbtRuntime(babel /*: {
 
         phrase = (JSON.parse(
           phrase.slice(sentinelLength, phrase.length - sentinelLength),
+          // $FlowFixMe[incompatible-type]
         ) /*: SentinelPayload */);
 
         const runtimeInput = mapLeaves(

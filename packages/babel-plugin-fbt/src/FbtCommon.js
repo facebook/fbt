@@ -32,6 +32,7 @@ const FbtCommon = {
         // $FlowFixMe - dynamic require
         fbtCommonData = require(path.resolve(opts.fbtCommonPath));
       } catch (error) {
+        // $FlowFixMe[incompatible-type]
         error.message += `\nopts.fbtCommonPath: ${opts.fbtCommonPath}`;
         error.message += `\nCurrent path: ${process.cwd()}`;
         throw error;

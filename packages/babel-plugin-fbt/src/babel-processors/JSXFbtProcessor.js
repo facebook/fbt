@@ -387,6 +387,7 @@ const jsxFbtConstructToFunctionalFormTransform = {
         args,
       );
       if (isJSXElement(path.parent)) {
+        // $FlowFixMe[incompatible-type]
         fbtConstructCall = jsxExpressionContainer(fbtConstructCall);
       }
       path.replaceWith(fbtConstructCall);

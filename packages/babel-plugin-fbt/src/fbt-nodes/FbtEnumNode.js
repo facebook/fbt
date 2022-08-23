@@ -78,6 +78,7 @@ class FbtEnumNode extends FbtNode<
 
     try {
       let range = {};
+      // $FlowFixMe[incompatible-type]
       rangeNode = enforceBabelNode(rangeNode, '`range`');
       if (isArrayExpression(rangeNode)) {
         invariant(

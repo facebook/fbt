@@ -390,6 +390,7 @@ class FbtElementNode
     if (fbtChildNode == null && isJSXElement(node)) {
       // Later on, we should only allow non-fbt JSX elements here for auto-wrapping.
       // fbt:param, fbt:pronoun, etc... should appear as children of it.
+      // $FlowFixMe[incompatible-type]
       fbtChildNode = FbtImplicitParamNode.fromBabelNode({moduleName, node});
     }
 

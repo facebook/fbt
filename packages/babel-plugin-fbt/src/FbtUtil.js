@@ -273,6 +273,7 @@ function getOptionsFromAttributes(
     options.push(
       t.objectProperty(
         t.stringLiteral(checkOption(option, validOptions, value)),
+        // $FlowFixMe[incompatible-call]
         value,
       ),
     );
@@ -870,6 +871,8 @@ function compactBabelNodeProps(
       if (serializeSourceCode) {
         ret[`__${propName}Code`] = generateFormattedCodeFromAST(propValue);
       }
+      // $FlowFixMe[incompatible-type]
+      // $FlowFixMe[prop-missing]
       ret[propName] = `BabelNode[type=${propValue.type || ''}]`;
     }
   }

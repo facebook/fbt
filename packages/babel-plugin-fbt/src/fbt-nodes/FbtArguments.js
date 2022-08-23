@@ -91,6 +91,7 @@ class FbtArgumentBase<B: ?BabelNode> {
       'Unable to find Babel node object from string variation argument: %s',
       varDump(this),
     );
+    // $FlowFixMe[incompatible-call]
     return getRawSource(code, this.node);
   }
 }

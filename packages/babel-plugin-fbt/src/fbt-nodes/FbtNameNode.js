@@ -67,6 +67,7 @@ class FbtNameNode extends FbtNode<
         moduleName,
         name && name.type,
       );
+      // $FlowFixMe[incompatible-type]
       name = name.value;
 
       value = enforceBabelNodeCallExpressionArg(
