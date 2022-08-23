@@ -13,7 +13,7 @@ const invariant = require('invariant');
 
 /**
  * Adds a leaf value to a given tree-like object, using the given list of keys (i.e. path).
- * If the path doesn't exist yet, we'll create the intermedate objects as needed.
+ * If the path doesn't exist yet, we'll create the intermediate objects as needed.
  *
  * @throws Trying to overwrite an existing tree leaf will throw an error
  *
