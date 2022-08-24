@@ -4032,9 +4032,9 @@ flagged-respawn@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/flagged-respawn/-/flagged-respawn-1.0.1.tgz#e7de6f1279ddd9ca9aac8a5971d618606b3aab41"
 
-flow-bin@^0.158.0:
-  version "0.158.0"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.158.0.tgz#0a09763d41eb8ec7135ced6a3b9f8fa370a393d8"
+flow-bin@^0.185.1:
+  version "0.185.1"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.185.1.tgz#dbd3728405ff5aefd147e6c30a27381e9926ffb1"
 
 flow-enums-runtime@^0.0.4:
   version "0.0.4"
