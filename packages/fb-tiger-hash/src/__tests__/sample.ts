@@ -6,8 +6,8 @@
  *
  * Intended for use with the Facebook FBT framework.
  *
- * @emails oncall+i18n_fbt_js
  * @format
+ * @oncall i18n_fbt_js
  */
 import {Tiger, getFbtHash} from 'fb-tiger-hash';
 
