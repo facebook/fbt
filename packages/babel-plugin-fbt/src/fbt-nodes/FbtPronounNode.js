@@ -255,9 +255,14 @@ function consolidatedPronounGenders(): $ReadOnlyArray<GenderConstEnum> {
 
   for (const genderKey of Object.keys(GENDER_CONST)) {
     for (const usageKey of Object.keys(ValidPronounUsagesKeys)) {
-      set.add(getPronounGenderKey(ValidPronounUsagesKeys[usageKey], GENDER_CONST[genderKey]));
+      set.add(
+        getPronounGenderKey(
+          ValidPronounUsagesKeys[usageKey],
+          GENDER_CONST[genderKey],
+        ),
+      );
     }
-  };
+  }
 
   return Array.from(set).sort((left, right) => left - right);
 }
