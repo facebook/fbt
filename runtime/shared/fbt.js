@@ -492,8 +492,9 @@ fbt.disableJsonExportMode = disableJsonExportMode;
 fbt.enableJsonExportMode = enableJsonExportMode;
 fbt.isFbtInstance = isFbtInstance;
 
-if (__DEV__) {
-  fbt._getCachedFbt = (s: string): Fbt => cachedFbtResults[s];
-}
+fbt._getCachedFbt = __DEV__
+  ? (s: string): Fbt => cachedFbtResults[s]
+  : undefined;
+
 // Use $-FlowFixMe instead of $-FlowExpectedError since fbsource doesn't use the latter
 module.exports = ((fbt: $FlowFixMe): $FbtFunctionAPI);
