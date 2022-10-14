@@ -294,7 +294,7 @@ function fbtParam(
     | [$PropertyType<ParamVariationType, 'number'>, ?number]
     | [$PropertyType<ParamVariationType, 'gender'>, GenderConstEnum],
 ): FbtTableArg {
-  const substitution = {[label]: value};
+  const substitution: {[string]: mixed} = {[label]: value};
   if (variations) {
     if (variations[0] === ParamVariation.number) {
       const number = variations.length > 1 ? variations[1] : value;
