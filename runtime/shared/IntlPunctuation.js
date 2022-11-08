@@ -110,14 +110,14 @@ export function applyPhonologicalRules(text: string): string {
  * Map all equivalencies to the normalized key for the stop category.  These
  * are the entries in the redundancy mapping
  */
-const _normalizedStops = new Map();
+const _normalizedStops = new Map<$FlowFixMe | string, string>();
 for (const norm in IntlRedundantStops.equivalencies) {
   for (const eq of [norm].concat(IntlRedundantStops.equivalencies[norm])) {
     _normalizedStops.set(eq, norm);
   }
 }
 
-const _redundancies = new Map();
+const _redundancies = new Map<?string, Set<?string>>();
 for (const prefix in IntlRedundantStops.redundancies) {
   _redundancies.set(prefix, new Set(IntlRedundantStops.redundancies[prefix]));
 }
