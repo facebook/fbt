@@ -38,7 +38,7 @@ let fbtRuntime;
 describe('fbt', () => {
   beforeEach(() => {
     jest.resetModules();
-    fbtRuntime = jest.requireActual('fbt');
+    fbtRuntime = jest.requireActual<any>('fbt');
     fbt = require('fbt');
     domContainer = document.createElement('div');
   });
