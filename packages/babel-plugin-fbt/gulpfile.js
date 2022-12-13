@@ -6,7 +6,7 @@
  *
  * @format
  * @noflow
- * @oncall i18n_fbt_oss
+ * @oncall i18n_devex
  */
 
 'use strict';
