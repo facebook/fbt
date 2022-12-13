@@ -23,7 +23,7 @@ const GenderConst = require('GenderConst');
 // in jest tests. We might need to move these modules inside beforeEach().
 // These ones can stay here for now since they have a consistent behavior across this test suite.
 const IntlVariations = require('IntlVariations');
-const ReactDOM = require('ReactDOMLegacy_DEPRECATED');
+const ReactDOMLegacy_DEPRECATED = require('ReactDOMLegacy_DEPRECATED');
 
 const invariant = require('invariant');
 const React = require('react');
@@ -178,9 +178,11 @@ describe('fbt', () => {
   });
 
   function renderAndExtractChildDivs(component: React.Node) {
-    // $FlowFixMe[incompatible-call]
-    // $FlowFixMe[incompatible-exact]
-    const node = ReactDOM.findDOMNode(ReactDOM.render(component, domContainer));
+    const node = ReactDOMLegacy_DEPRECATED.findDOMNode(
+      // $FlowFixMe[incompatible-call]
+      // $FlowFixMe[incompatible-exact]
+      ReactDOMLegacy_DEPRECATED.render(component, domContainer),
+    );
     // flow thinks ReactDOM.findDOMNode can return a type of Text...
     invariant(node instanceof Element, 'Expected node to be an Element');
     const resultingElements = node.getElementsByTagName('div');
