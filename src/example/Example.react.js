@@ -1,7 +1,7 @@
 /**
  * (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
  *
- * Copyright (c) Facebook, Inc. and its affiliates. All rights reserved.
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
  * @fbt {"project": "fbt-live-demo-project"}
  * @noflow
