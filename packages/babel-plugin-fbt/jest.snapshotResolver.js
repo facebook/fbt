@@ -1,5 +1,5 @@
 /**
- * Copyright (c) Facebook, Inc. and its affiliates. Confidential and proprietary.
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
  * See https://jestjs.io/docs/en/configuration#snapshotresolver-string
  *

@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-present Facebook. All Rights Reserved.
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
  * This file is shared between www and fbsource and www is the source of truth.
  * When you make change to this file on www, please make sure you test it on

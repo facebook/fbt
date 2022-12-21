@@ -1,5 +1,5 @@
 /**
- * Copyright (c) Facebook, Inc. and its affiliates.
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
  * This is a React Native only transform that runs after the fbt syntax
  * transform. It extracts jsfbt and strip out extra information from the payload

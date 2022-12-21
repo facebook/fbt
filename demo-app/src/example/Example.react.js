@@ -1,5 +1,5 @@
 /**
- * Copyright (c) Facebook, Inc. and its affiliates. All rights reserved.
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
  * @fbt {"project": "fbt-demo-project"}
  * @format

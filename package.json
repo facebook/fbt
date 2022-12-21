@@ -1,6 +1,6 @@
 {
   "private": true,
-  "//": "Copyright (c) Facebook, Inc. and its affiliates. All rights reserved.",
+  "//": "Copyright (c) Meta Platforms, Inc. and affiliates.",
   "name": "fbt-top-level-repo",
   "version": "0.9.0",
   "main": "index.js",

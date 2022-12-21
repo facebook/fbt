@@ -1,5 +1,5 @@
 {
-  "//": "Copyright (c) Facebook, Inc. and its affiliates.",
+  "//": "Copyright (c) Meta Platforms, Inc. and affiliates.",
   "name": "fbt",
   "description": "The fbt i18n framework JS runtime.",
   "//version": "Follow SemVer specs at https://semver.org/",
