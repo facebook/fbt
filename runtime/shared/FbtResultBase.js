@@ -200,7 +200,7 @@ class FbtResultBase implements IFbtResultBase {
   // $FlowFixMe[prop-missing] index signature
   /* $FlowFixMe[missing-this-annot] The 'this' type annotation(s) required by
    * Flow's LTI update could not be added via codemod */
-  FbtResultBase.prototype[methodName] = function (...args) {
+  FbtResultBase.prototype[methodName] = function (...args: Array<mixed>) {
     this.__errorListener?.onStringMethodUsed?.(methodName);
     // $FlowFixMe[incompatible-type] Mock stringish methods
     // $FlowFixMe[prop-missing] Mock stringish methods

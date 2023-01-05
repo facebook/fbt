@@ -131,7 +131,8 @@ function substituteTokens<Arg: mixed>(
   // Zip together the lists of pieces.
   // We skip adding empty strings from stringPieces since they were
   // injected from translation patterns that only contain tokens. See D20453562
-  const pieces = stringPieces[0] !== '' ? [stringPieces[0]] : [];
+  const pieces: Array<string | Arg> =
+    stringPieces[0] !== '' ? [stringPieces[0]] : [];
   for (let i = 0; i < objectPieces.length; i++) {
     pieces.push(markAsSafeForReact(objectPieces[i]));
     if (stringPieces[i + 1] !== '') {
