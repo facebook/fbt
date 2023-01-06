@@ -48,7 +48,7 @@ end
 def frameworks_pre_install(installer)
   static_frameworks = ['FlipperKit', 'Flipper', 'Flipper-Folly',
       'CocoaAsyncSocket', 'ComponentKit', 'Flipper-DoubleConversion',
-      'Flipper-Glog', 'Flipper-PeerTalk', 'Flipper-RSocket',
+      'Flipper-Glog', 'Flipper-PeerTalk',
       'CocoaLibEvent', 'OpenSSL-Universal', 'boost-for-react-native']
 
   Pod::Installer::Xcode::TargetValidator.send(:define_method, :verify_no_static_framework_transitive_dependencies) {}
