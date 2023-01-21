@@ -278,6 +278,7 @@ function _roundNumber(valueParam: number, decimalsParam?: number): string {
   const pow = Math.pow(10, decimals);
   let value: number | string = valueParam;
   // $FlowFixMe[unsafe-addition]
+  // $FlowFixMe[unsafe-arithmetic]
   value = Math.round(value * pow) / pow;
   value += '';
   if (!decimals) {
