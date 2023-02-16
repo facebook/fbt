@@ -276,10 +276,7 @@ function formatNumberWithLimitedSigFig(
 function _roundNumber(valueParam: number, decimalsParam?: number): string {
   const decimals = decimalsParam == null ? 0 : decimalsParam;
   const pow = Math.pow(10, decimals);
-  let value: number | string = valueParam;
-  // $FlowFixMe[unsafe-arithmetic]
-  value = Math.round(value * pow) / pow;
-  value += '';
+  let value = (Math.round(valueParam * pow) / pow).toString();
   if (!decimals) {
     return value;
   }
@@ -293,7 +290,7 @@ function _roundNumber(valueParam: number, decimalsParam?: number): string {
 
   const pos = value.indexOf('.');
   let zeros = 0;
-  if (pos == -1) {
+  if (pos === -1) {
     value += '.';
     zeros = decimals;
   } else {
@@ -302,7 +299,6 @@ function _roundNumber(valueParam: number, decimalsParam?: number): string {
   for (let i = 0, l = zeros; i < l; i++) {
     value += '0';
   }
-  // $FlowFixMe[incompatible-return]
   return value;
 }
 
