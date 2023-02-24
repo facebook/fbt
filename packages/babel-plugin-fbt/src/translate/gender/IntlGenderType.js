@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<b8a5eb545502f5196972d6d2b0e388af>>
+ * @generated SignedSource<<4a8ead7e50387e121c39c1a21ded1f51>>
  *
  * Run `phps GenderGenScript` to regenerate this file.
  *
@@ -22,22 +22,26 @@ export type IntlGenderTypeImpl = typeof IntlMergedUnknownGenderType | typeof Int
 
 const _mergedLocales = {
     "ar_AR": 1,
-    "ht_HT": 1,
     "ks_IN": 1,
     "lv_LV": 1,
+    "ps_AF": 1,
     "qk_DZ": 1,
     "qs_DE": 1,
-    "qv_IT": 1
+    "qv_IT": 1,
+    "sq_AL": 1,
+    "ti_ET": 1
 };
 
 const _mergedLangs = {
     "ar": 1,
-    "ht": 1,
     "ks": 1,
     "lv": 1,
+    "ps": 1,
     "kab": 1,
     "dsb": 1,
-    "vec": 1
+    "vec": 1,
+    "sq": 1,
+    "ti": 1
 };
 
 const IntlGenderType = {
