@@ -61,7 +61,7 @@
     "remove-flow-types-loader": "1.1.0",
     "shelljs": "^0.8.5",
     "style-loader": "0.23.1",
-    "webpack": "^5.4.0",
+    "webpack": "^5.76.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
     "webpack-stream": "^5.2.1"
