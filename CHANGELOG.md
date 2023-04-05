@@ -61,6 +61,9 @@ List of changes for each released npm package version.
 
 </details>
 
+- 1.0.1:
+  - [chore] Make it compatible with React 18 (and any `>=0.12.0`).
+
 - 1.0.0:
   - [feat] Major release to maintain compatibility with `babel-plugin-fbt@1.0.0`
   - [feat] Expose the `fbs` API to output plain-text translatable strings.
