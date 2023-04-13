@@ -82,7 +82,7 @@ export type FbtRuntimeCallInput = {
   ...
 };
 // TODO: T61015960 - getFb[st]Result should return types that are locked down
-export type FbtHookRegistrations = $Shape<{|
+export type FbtHookRegistrations = Partial<{|
   errorListener: ?(context: FbtErrorContext) => IFbtErrorListener,
   getFbsResult: (input: FbtResolvedPayload) => mixed,
   getFbtResult: (input: FbtResolvedPayload) => mixed,

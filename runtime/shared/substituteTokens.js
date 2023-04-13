@@ -38,7 +38,9 @@ const parameterRegexp = new RegExp(
   'g',
 );
 
-type MaybeReactComponent = $Shape<{
+// $FlowFixMe[incompatible-variance]
+// $FlowFixMe[incompatible-type]
+type MaybeReactComponent = Partial<{
   type?: string,
   props?: {...},
   _store?: {

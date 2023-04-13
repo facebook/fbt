@@ -30,11 +30,13 @@ const FbtHooksImpl = {
 
   // TODO: T61015960 - get off `mixed` and onto something more locked down (Fbs)
   getFbsResult(input: FbtResolvedPayload): mixed {
+    // $FlowFixMe[not-a-function]
     return _registrations.getFbsResult(input);
   },
 
   // TODO: T61015960 - get off `mixed` and onto something more locked down (Fbt)
   getFbtResult(input: FbtResolvedPayload): mixed {
+    // $FlowFixMe[not-a-function]
     return _registrations.getFbtResult(input);
   },
 
@@ -43,6 +45,7 @@ const FbtHooksImpl = {
   },
 
   getViewerContext(): IntlViewerContext {
+    // $FlowFixMe[not-a-function]
     return _registrations.getViewerContext();
   },
 
