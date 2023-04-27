@@ -61,7 +61,6 @@ suppress_type=$FlowFixMeState
 suppress_type=$FlowFixMeEmpty
 suppress_type=$FlowExpectedError
 
-experimental.abstract_locations=true
 enums=true
 
 [strict]
