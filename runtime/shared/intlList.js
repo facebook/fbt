@@ -216,4 +216,5 @@ type IntlListExport = {|
   CONJUNCTIONS: typeof CONJUNCTIONS,
 |};
 
+// $FlowFixMe[incompatible-exact]
 module.exports = (intlList: IntlListExport);
