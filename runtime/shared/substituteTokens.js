@@ -136,6 +136,10 @@ function substituteTokens<Arg: mixed>(
   const pieces: Array<string | Arg> =
     stringPieces[0] !== '' ? [stringPieces[0]] : [];
   for (let i = 0; i < objectPieces.length; i++) {
+    /* $FlowFixMe[incompatible-variance] Error revealed after stricter
+     * React.Element typing */
+    /* $FlowFixMe[incompatible-call] Error revealed after stricter
+     * React.Element typing */
     pieces.push(markAsSafeForReact(objectPieces[i]));
     if (stringPieces[i + 1] !== '') {
       pieces.push(stringPieces[i + 1]);
