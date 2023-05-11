@@ -38,8 +38,6 @@ const parameterRegexp = new RegExp(
   'g',
 );
 
-// $FlowFixMe[incompatible-variance]
-// $FlowFixMe[incompatible-type]
 type MaybeReactComponent = Partial<{
   type?: string,
   props?: {...},
