@@ -203,8 +203,8 @@ describe('fbt', () => {
   });
 
   function expectChildSetsToRetainIdentity(
-    setA: React.Element<'div'>,
-    setB: React.Element<'div'>,
+    setA: React.MixedElement,
+    setB: React.MixedElement,
   ) {
     const nodesA = renderAndExtractChildDivs(
       <TestComponent childA={setA} childB={setB} value="A" />,
