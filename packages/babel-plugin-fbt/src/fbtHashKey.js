@@ -18,7 +18,7 @@ const BaseNSymbols =
   '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 // Compute the baseN string for a given unsigned integer.
-function uintToBaseN(numberArg, base) {
+function uintToBaseN(numberArg: number, base: number) {
   let number = numberArg;
   if (base < 2 || base > 62 || number < 0) {
     return '';

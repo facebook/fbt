@@ -23,7 +23,7 @@ export type FbtOptionValues<K> = {|[K]: ?FbtOptionValue|};
 export type FbtOptionConfig<K> = {|[K]: {[optionValue: string]: true} | true|};
 export type FbtExtraOptionConfig = FbtOptionConfig<string>;
 // export type FbtCallSiteOptions = {[$Keys<typeof ValidFbtOptions>]: ?FbtOptionValue};
-export type FbtCallSiteOptions = $Shape<{|
+export type FbtCallSiteOptions = Partial<{|
   author?: ?FbtOptionValue,
   // TODO(T56277500) Refine to expected type: string
   common?: ?FbtOptionValue,
@@ -37,7 +37,6 @@ export type FbtCallSiteOptions = $Shape<{|
 // JS module names without the "React FBT" variant
 export type JSModuleNameType = 'fbt' | 'fbs';
 export type ValidPronounUsagesKey = $Keys<ValidPronounUsagesType>;
-export type FbtTypeValue = $Values<typeof FbtType>;
 
 const SENTINEL = '__FBT__';
 
@@ -52,6 +51,7 @@ const ShowCount = {
 };
 
 const ShowCountKeys: $ObjMapi<typeof ShowCount, <K>(K) => K> =
+  // $FlowFixMe[prop-missing]
   keyMirror(ShowCount);
 
 const PluralOptions = {
@@ -73,7 +73,8 @@ const ValidPronounUsages: ValidPronounUsagesType = {
   subject: 3,
 };
 
-const ValidPronounUsagesKeys: $ObjMapi<typeof ValidPronounUsages, <K>(K) => K> =
+const ValidPronounUsagesKeys: $KeyMirror<ValidPronounUsagesType> =
+  // $FlowFixMe[prop-missing]
   keyMirror(ValidPronounUsages);
 
 const ValidPronounOptions = {
@@ -132,6 +133,8 @@ const JSModuleName = {
   REACT_FBT: 'Fbt',
   FBS: 'fbs',
 };
+
+export type FbtTypeValue = $Values<typeof FbtType>;
 
 // Used to help detect the usage of the JS fbt/fbs API inside a JS file
 // Closely matches the Grep regexp in https://fburl.com/code/y1yt6slg

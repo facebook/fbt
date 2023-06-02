@@ -182,7 +182,7 @@ class FbtNode<
   SVArgument: AnyStringVariationArg | empty = empty,
   CurBabelNode: BabelNode = BabelNode,
   MaybeChildNode: ?FbtChildNode = null,
-  Options: ?{} = null, // See related docs of this.options
+  Options: ?{...} = null, // See related docs of this.options
 > {
   +moduleName: JSModuleNameType;
   +children: Array<MaybeChildNode>;
@@ -338,7 +338,7 @@ class FbtNode<
       }
     }
 
-    const ret: {options?: ?{}, ...} = {
+    const ret: {options?: ?{...}, ...} = {
       ...compactBabelNodeProps(this),
       __stringVariationArgs: stringVariationArgs,
       // Avoid cyclic recursion issues
@@ -443,7 +443,7 @@ class FbtNode<
    */
   throwIfAnyArgumentContainsFunctionCallOrClassInstantiation(
     scope: Scope<BabelNodeCallExpression>,
-  ) {
+  ): void {
     const argsToCheck =
       this.getArgsThatShouldNotContainFunctionCallOrClassInstantiation();
     for (const argumentName in argsToCheck) {

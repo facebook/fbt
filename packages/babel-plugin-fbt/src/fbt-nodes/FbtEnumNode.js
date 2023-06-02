@@ -91,6 +91,7 @@ class FbtEnumNode extends FbtNode<
             'Enum values must be string literals',
           );
           // $FlowFixMe[cannot-write] Force write here to assemble the range object
+          // $FlowFixMe[prop-missing]
           range[item.value] = item.value;
         });
       } else if (isObjectExpression(rangeNode)) {
@@ -108,6 +109,7 @@ class FbtEnumNode extends FbtNode<
           );
           if (isStringLiteral(keyNode) || isNumericLiteral(keyNode)) {
             // $FlowFixMe[cannot-write] Force write here to assemble the range object
+            // $FlowFixMe[prop-missing]
             range[keyNode.value.toString()] = valueNode.value;
           } else {
             invariant(

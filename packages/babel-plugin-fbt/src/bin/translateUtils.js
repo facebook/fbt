@@ -125,6 +125,7 @@ function processGroups(
 
   const localeToHashToFbt = {};
   for (const group of translatedGroups) {
+    // $FlowFixMe[prop-missing]
     const hashToFbt = (localeToHashToFbt[group['fb-locale']] = {});
     phrases.forEach((phrase, idx) => {
       const translatedFbt = group.translatedPhrases[idx];
@@ -133,6 +134,7 @@ function processGroups(
         `Expect every phrase to have 'jsfbt' field. However, 'jsfbt' is missing in the phrase at index ${idx}.`,
       );
       const hash = nullthrows(fbtHash)(jsfbt.t);
+      // $FlowFixMe[prop-missing]
       hashToFbt[hash] = translatedFbt;
     });
   }

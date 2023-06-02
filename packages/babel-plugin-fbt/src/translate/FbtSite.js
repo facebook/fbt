@@ -123,7 +123,7 @@ class FbtSite extends FbtSiteBase<FbtSiteMetaEntry, FbtSiteHashToTextAndDesc> {
       t: FbtSite._hashifyLeaves(jsfbt.t, textAndDescToHash),
       m: jsfbt.m,
     };
-    const hashToTokenAliases = {};
+    const hashToTokenAliases: FbtSiteHashToTokenAliases = {};
     onEachLeaf({jsfbt}, leaf => {
       const hash =
         textAndDescToHash[this._serializeTextAndDesc(leaf.text, leaf.desc)];
@@ -144,6 +144,9 @@ class FbtSite extends FbtSiteBase<FbtSiteMetaEntry, FbtSiteHashToTextAndDesc> {
     entry: $ReadOnly<TableJSFBTTree>,
     textAndDescToHash: $ReadOnly<TextAndDescToHash>,
   ): FbtSiteHashifiedTableJSFBTTree {
+    // $FlowFixMe[incompatible-indexer]
+    // $FlowFixMe[incompatible-variance]
+    // $FlowFixMe[incompatible-call]
     const leaf = coerceToTableJSFBTTreeLeaf(entry);
     return leaf != null
       ? textAndDescToHash[this._serializeTextAndDesc(leaf.text, leaf.desc)]

@@ -52,33 +52,35 @@ declare module '@babel/core' {
 
   declare type NodePathOf<BabelNode> = NodePath<BabelNode>;
 
-  declare type BabelTransform = {
+  declare type BabelTransform = $ReadOnly<{
     CallExpression?: (path: NodePathOf<BabelNodeCallExpression>) => void,
     JSXElement?: (path: NodePathOf<BabelNodeJSXElement>) => void,
     JSXElement?: (path: NodePathOf<BabelNodeJSXElement>) => void,
     StringLiteral?: (path: NodePathOf<BabelNodeStringLiteral>) => void,
-  };
+    ...
+  }>;
 
-  declare type BabelTransformPlugin = {
+  declare type BabelTransformPlugin = $ReadOnly<{
     pre: () => void,
     name: string,
     visitor: BabelTransform,
-  };
+  }>;
 
-  declare type BabelPluginList = Array<
-    string | [string] | [string, {[option: string]: mixed}],
+  declare type BabelPluginList = $ReadOnlyArray<
+    string | [string] | [string, {+[option: string]: mixed}],
   >;
 
   declare type BabelPresetList = BabelPluginList;
 
   declare function transformSync(
     code: string,
-    opts: {
+    opts: $ReadOnly<{
       ast?: boolean,
       code?: boolean,
       filename?: ?string,
       plugins: BabelPluginList,
       sourceType?: string,
-    },
+      ...
+    }>,
   ): void;
 }

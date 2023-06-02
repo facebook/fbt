@@ -241,7 +241,7 @@ const fbtCollector = getFbtCollector(
   argv[args.CUSTOM_COLLECTOR],
 );
 
-function processJsonSource(source) {
+function processJsonSource(source: string) {
   const json = JSON.parse(source);
   Object.keys(json).forEach(function (manifest_path) {
     let manifest = {};
@@ -288,7 +288,7 @@ function writeOutput() {
   }
 }
 
-function processSource(source) {
+function processSource(source: string) {
   if (argv[args.MANIFEST]) {
     processJsonSource(source);
   } else {

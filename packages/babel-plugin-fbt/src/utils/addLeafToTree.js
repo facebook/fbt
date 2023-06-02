@@ -71,7 +71,7 @@ const invariant = require('invariant');
  *   }
  *
  */
-function addLeafToTree<V, T: {}>(
+function addLeafToTree<V, T: {...}>(
   tree: T,
   keys: $ReadOnlyArray<string | number>,
   leaf: V,
@@ -86,6 +86,7 @@ function addLeafToTree<V, T: {}>(
       JSON.stringify(keys),
     );
     if (branch[key] == null) {
+      // $FlowFixMe[prop-missing]
       branch[key] = isLast ? leaf : {};
     }
     branch = branch[key];

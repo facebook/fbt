@@ -6,7 +6,7 @@
  * @oncall i18n_fbt_js
  */
 
-const invariant = require('invariant')
+const invariant = require('invariant');
 
 /**
  * Constructs an enumeration with keys equal to their value.
@@ -26,12 +26,12 @@ const invariant = require('invariant')
  * @param {object} obj
  * @return {object}
  */
- function keyMirror<T: {}>(obj: T): $ObjMapi<T, <K>(K) => K> {
+function keyMirror<T: {}>(obj: T): $KeyMirror<T> {
   const ret = {};
   let key;
   invariant(
     obj instanceof Object && !Array.isArray(obj),
-    "keyMirror(...): Argument must be an object."
+    'keyMirror(...): Argument must be an object.',
   );
   for (key in obj) {
     if (!obj.hasOwnProperty(key)) {
@@ -40,6 +40,6 @@ const invariant = require('invariant')
     ret[key] = key;
   }
   return ret;
-};
+}
 
-module.exports = keyMirror
+module.exports = keyMirror;

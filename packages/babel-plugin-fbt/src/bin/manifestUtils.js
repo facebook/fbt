@@ -75,6 +75,7 @@ function generateManifest(
     glob.sync(path.resolve(cwd, src) + '/**/*' + FILE_EXT, {nodir: true});
 
   const srcFiles = []
+    // $FlowFixMe[incompatible-call]
     .concat(...srcPaths.map(getFiles))
     .filter(filepath =>
       fs

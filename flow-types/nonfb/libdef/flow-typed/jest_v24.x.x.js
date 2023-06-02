@@ -6,7 +6,7 @@
  * @oncall i18n_fbt_js
  */
 
-type JestMockFn<TArguments: $ReadOnlyArray<*>, TReturn> = {
+type JestMockFn<TArguments: $ReadOnlyArray<any>, TReturn> = {
   (...args: TArguments): TReturn,
   /**
    * An object for introspecting mock calls
@@ -39,12 +39,12 @@ type JestMockFn<TArguments: $ReadOnlyArray<*>, TReturn> = {
    * mockFn.mock.instances arrays. Often this is useful when you want to clean
    * up a mock's usage data between two assertions.
    */
-  mockClear(): void,
+  mockClear: () => void,
   /**
    * Resets all information stored in the mock. This is useful when you want to
    * completely restore a mock back to its initial state.
    */
-  mockReset(): void,
+  mockReset: () => void,
   /**
    * Removes the mock and restores the initial implementation. This is useful
    * when you want to mock functions in certain test cases and restore the
@@ -52,59 +52,63 @@ type JestMockFn<TArguments: $ReadOnlyArray<*>, TReturn> = {
    * works when mock was created with jest.spyOn. Thus you have to take care of
    * restoration yourself when manually assigning jest.fn().
    */
-  mockRestore(): void,
+  mockRestore: () => void,
   /**
    * Accepts a function that should be used as the implementation of the mock.
    * The mock itself will still record all calls that go into and instances
    * that come from itself -- the only difference is that the implementation
    * will also be executed when the mock is called.
    */
-  mockImplementation(
+  mockImplementation: (
     fn: (...args: TArguments) => TReturn,
-  ): JestMockFn<TArguments, TReturn>,
+  ) => JestMockFn<TArguments, TReturn>,
   /**
    * Accepts a function that will be used as an implementation of the mock for
    * one call to the mocked function. Can be chained so that multiple function
    * calls produce different results.
    */
-  mockImplementationOnce(
+  mockImplementationOnce: (
     fn: (...args: TArguments) => TReturn,
-  ): JestMockFn<TArguments, TReturn>,
+  ) => JestMockFn<TArguments, TReturn>,
   /**
    * Accepts a string to use in test result output in place of "jest.fn()" to
    * indicate which mock function is being referenced.
    */
-  mockName(name: string): JestMockFn<TArguments, TReturn>,
+  mockName: (name: string) => JestMockFn<TArguments, TReturn>,
   /**
    * Just a simple sugar function for returning `this`
    */
-  mockReturnThis(): void,
+  mockReturnThis: () => void,
   /**
    * Accepts a value that will be returned whenever the mock function is called.
    */
-  mockReturnValue(value: TReturn): JestMockFn<TArguments, TReturn>,
+  mockReturnValue: (value: TReturn) => JestMockFn<TArguments, TReturn>,
   /**
    * Sugar for only returning a value once inside your mock
    */
-  mockReturnValueOnce(value: TReturn): JestMockFn<TArguments, TReturn>,
+  mockReturnValueOnce: (value: TReturn) => JestMockFn<TArguments, TReturn>,
   /**
    * Sugar for jest.fn().mockImplementation(() => Promise.resolve(value))
    */
-  mockResolvedValue(value: TReturn): JestMockFn<TArguments, Promise<TReturn>>,
+  mockResolvedValue: (
+    value: TReturn,
+  ) => JestMockFn<TArguments, Promise<TReturn>>,
   /**
    * Sugar for jest.fn().mockImplementationOnce(() => Promise.resolve(value))
    */
-  mockResolvedValueOnce(
+  mockResolvedValueOnce: (
     value: TReturn,
-  ): JestMockFn<TArguments, Promise<TReturn>>,
+  ) => JestMockFn<TArguments, Promise<TReturn>>,
   /**
    * Sugar for jest.fn().mockImplementation(() => Promise.reject(value))
    */
-  mockRejectedValue(value: TReturn): JestMockFn<TArguments, Promise<any>>,
+  mockRejectedValue: (value: TReturn) => JestMockFn<TArguments, Promise<any>>,
   /**
    * Sugar for jest.fn().mockImplementationOnce(() => Promise.reject(value))
    */
-  mockRejectedValueOnce(value: TReturn): JestMockFn<TArguments, Promise<any>>,
+  mockRejectedValueOnce: (
+    value: TReturn,
+  ) => JestMockFn<TArguments, Promise<any>>,
   ...
 };
 
@@ -112,26 +116,26 @@ type JestAsymmetricEqualityType = {
   /**
    * A custom Jasmine equality tester
    */
-  asymmetricMatch(value: mixed): boolean,
+  asymmetricMatch: (value: mixed) => boolean,
   ...
 };
 
 type JestCallsType = {
-  allArgs(): mixed,
-  all(): mixed,
-  any(): boolean,
-  count(): number,
-  first(): mixed,
-  mostRecent(): mixed,
-  reset(): void,
+  allArgs: () => mixed,
+  all: () => mixed,
+  any: () => boolean,
+  count: () => number,
+  first: () => mixed,
+  mostRecent: () => mixed,
+  reset: () => void,
   ...
 };
 
 type JestClockType = {
-  install(): void,
-  mockDate(date: Date): void,
-  tick(milliseconds?: number): void,
-  uninstall(): void,
+  install: () => void,
+  mockDate: (date: Date) => void,
+  tick: (milliseconds?: number) => void,
+  uninstall: () => void,
   ...
 };
 
@@ -184,11 +188,11 @@ type JestStyledComponentsMatcherOptions = {
 };
 
 type JestStyledComponentsMatchersType = {
-  toHaveStyleRule(
+  toHaveStyleRule: (
     property: string,
     value: JestStyledComponentsMatcherValue,
     options?: JestStyledComponentsMatcherOptions,
-  ): void,
+  ) => void,
   ...
 };
 
@@ -197,37 +201,37 @@ type JestStyledComponentsMatchersType = {
  */
 type EnzymeMatchersType = {
   // 5.x
-  toBeEmpty(): void,
-  toBePresent(): void,
+  toBeEmpty: () => void,
+  toBePresent: () => void,
   // 6.x
-  toBeChecked(): void,
-  toBeDisabled(): void,
-  toBeEmptyRender(): void,
-  toContainMatchingElement(selector: string): void,
-  toContainMatchingElements(n: number, selector: string): void,
-  toContainExactlyOneMatchingElement(selector: string): void,
-  toContainReact(element: React$Element<any>): void,
-  toExist(): void,
-  toHaveClassName(className: string): void,
-  toHaveHTML(html: string): void,
+  toBeChecked: () => void,
+  toBeDisabled: () => void,
+  toBeEmptyRender: () => void,
+  toContainMatchingElement: (selector: string) => void,
+  toContainMatchingElements: (n: number, selector: string) => void,
+  toContainExactlyOneMatchingElement: (selector: string) => void,
+  toContainReact: (element: React$Element<any>) => void,
+  toExist: () => void,
+  toHaveClassName: (className: string) => void,
+  toHaveHTML: (html: string) => void,
   toHaveProp: ((propKey: string, propValue?: any) => void) &
     ((props: {...}) => void),
-  toHaveRef(refName: string): void,
+  toHaveRef: (refName: string) => void,
   toHaveState: ((stateKey: string, stateValue?: any) => void) &
     ((state: {...}) => void),
   toHaveStyle: ((styleKey: string, styleValue?: any) => void) &
     ((style: {...}) => void),
-  toHaveTagName(tagName: string): void,
-  toHaveText(text: string): void,
-  toHaveValue(value: any): void,
-  toIncludeText(text: string): void,
-  toMatchElement(
+  toHaveTagName: (tagName: string) => void,
+  toHaveText: (text: string) => void,
+  toHaveValue: (value: any) => void,
+  toIncludeText: (text: string) => void,
+  toMatchElement: (
     element: React$Element<any>,
     options?: {|ignoreProps?: boolean, verbose?: boolean|},
-  ): void,
-  toMatchSelector(selector: string): void,
+  ) => void,
+  toMatchSelector: (selector: string) => void,
   // 7.x
-  toHaveDisplayName(name: string): void,
+  toHaveDisplayName: (name: string) => void,
   ...
 };
 
@@ -237,54 +241,54 @@ type DomTestingLibraryType = {
   /**
    * @deprecated
    */
-  toBeInTheDOM(container?: HTMLElement): void,
-  toBeInTheDocument(): void,
-  toBeVisible(): void,
-  toBeEmpty(): void,
-  toBeDisabled(): void,
-  toBeEnabled(): void,
-  toBeInvalid(): void,
-  toBeRequired(): void,
-  toBeValid(): void,
-  toContainElement(element: HTMLElement | null): void,
-  toContainHTML(htmlText: string): void,
-  toHaveAttribute(attr: string, value?: any): void,
-  toHaveClass(...classNames: string[]): void,
-  toHaveFocus(): void,
-  toHaveFormValues(expectedValues: {[name: string]: any, ...}): void,
-  toHaveStyle(css: string): void,
-  toHaveTextContent(
+  toBeInTheDOM: (container?: HTMLElement) => void,
+  toBeInTheDocument: () => void,
+  toBeVisible: () => void,
+  toBeEmpty: () => void,
+  toBeDisabled: () => void,
+  toBeEnabled: () => void,
+  toBeInvalid: () => void,
+  toBeRequired: () => void,
+  toBeValid: () => void,
+  toContainElement: (element: HTMLElement | null) => void,
+  toContainHTML: (htmlText: string) => void,
+  toHaveAttribute: (attr: string, value?: any) => void,
+  toHaveClass: (...classNames: Array<string>) => void,
+  toHaveFocus: () => void,
+  toHaveFormValues: (expectedValues: {[name: string]: any, ...}) => void,
+  toHaveStyle: (css: string) => void,
+  toHaveTextContent: (
     text: string | RegExp,
     options?: {normalizeWhitespace: boolean, ...},
-  ): void,
-  toHaveValue(value?: string | string[] | number): void,
+  ) => void,
+  toHaveValue: (value?: string | Array<string> | number) => void,
   ...
 };
 
 // Jest JQuery Matchers: https://github.com/unindented/custom-jquery-matchers
 type JestJQueryMatchersType = {
-  toExist(): void,
-  toHaveLength(len: number): void,
-  toHaveId(id: string): void,
-  toHaveClass(className: string): void,
-  toHaveTag(tag: string): void,
-  toHaveAttr(key: string, val?: any): void,
-  toHaveProp(key: string, val?: any): void,
-  toHaveText(text: string | RegExp): void,
-  toHaveData(key: string, val?: any): void,
-  toHaveValue(val: any): void,
-  toHaveCss(css: {[key: string]: any, ...}): void,
-  toBeChecked(): void,
-  toBeDisabled(): void,
-  toBeEmpty(): void,
-  toBeHidden(): void,
-  toBeSelected(): void,
-  toBeVisible(): void,
-  toBeFocused(): void,
-  toBeInDom(): void,
-  toBeMatchedBy(sel: string): void,
-  toHaveDescendant(sel: string): void,
-  toHaveDescendantWithText(sel: string, text: string | RegExp): void,
+  toExist: () => void,
+  toHaveLength: (len: number) => void,
+  toHaveId: (id: string) => void,
+  toHaveClass: (className: string) => void,
+  toHaveTag: (tag: string) => void,
+  toHaveAttr: (key: string, val?: any) => void,
+  toHaveProp: (key: string, val?: any) => void,
+  toHaveText: (text: string | RegExp) => void,
+  toHaveData: (key: string, val?: any) => void,
+  toHaveValue: (val: any) => void,
+  toHaveCss: (css: {[key: string]: any, ...}) => void,
+  toBeChecked: () => void,
+  toBeDisabled: () => void,
+  toBeEmpty: () => void,
+  toBeHidden: () => void,
+  toBeSelected: () => void,
+  toBeVisible: () => void,
+  toBeFocused: () => void,
+  toBeInDom: () => void,
+  toBeMatchedBy: (sel: string) => void,
+  toHaveDescendant: (sel: string) => void,
+  toHaveDescendantWithText: (sel: string, text: string | RegExp) => void,
   ...
 };
 
@@ -309,65 +313,65 @@ type JestExtendedMatchersType = {
   /**
    * Use .toBeEmpty when checking if a String '', Array [] or Object {} is empty.
    */
-  toBeEmpty(): void,
+  toBeEmpty: () => void,
   /**
    * Use .toBeOneOf when checking if a value is a member of a given Array.
    * @param {Array.<*>} members
    */
-  toBeOneOf(members: any[]): void,
+  toBeOneOf: (members: Array<any>) => void,
   /**
    * Use `.toBeNil` when checking a value is `null` or `undefined`.
    */
-  toBeNil(): void,
+  toBeNil: () => void,
   /**
    * Use `.toSatisfy` when you want to use a custom matcher by supplying a predicate function that returns a `Boolean`.
    * @param {Function} predicate
    */
-  toSatisfy(predicate: (n: any) => boolean): void,
+  toSatisfy: (predicate: (n: any) => boolean) => void,
   /**
    * Use `.toBeArray` when checking if a value is an `Array`.
    */
-  toBeArray(): void,
+  toBeArray: () => void,
   /**
    * Use `.toBeArrayOfSize` when checking if a value is an `Array` of size x.
    * @param {Number} x
    */
-  toBeArrayOfSize(x: number): void,
+  toBeArrayOfSize: (x: number) => void,
   /**
    * Use `.toIncludeAllMembers` when checking if an `Array` contains all of the same members of a given set.
    * @param {Array.<*>} members
    */
-  toIncludeAllMembers(members: any[]): void,
+  toIncludeAllMembers: (members: Array<any>) => void,
   /**
    * Use `.toIncludeAnyMembers` when checking if an `Array` contains any of the members of a given set.
    * @param {Array.<*>} members
    */
-  toIncludeAnyMembers(members: any[]): void,
+  toIncludeAnyMembers: (members: Array<any>) => void,
   /**
    * Use `.toSatisfyAll` when you want to use a custom matcher by supplying a predicate function that returns a `Boolean` for all values in an array.
    * @param {Function} predicate
    */
-  toSatisfyAll(predicate: (n: any) => boolean): void,
+  toSatisfyAll: (predicate: (n: any) => boolean) => void,
   /**
    * Use `.toBeBoolean` when checking if a value is a `Boolean`.
    */
-  toBeBoolean(): void,
+  toBeBoolean: () => void,
   /**
    * Use `.toBeTrue` when checking a value is equal (===) to `true`.
    */
-  toBeTrue(): void,
+  toBeTrue: () => void,
   /**
    * Use `.toBeFalse` when checking a value is equal (===) to `false`.
    */
-  toBeFalse(): void,
+  toBeFalse: () => void,
   /**
    * Use .toBeDate when checking if a value is a Date.
    */
-  toBeDate(): void,
+  toBeDate: () => void,
   /**
    * Use `.toBeFunction` when checking if a value is a `Function`.
    */
-  toBeFunction(): void,
+  toBeFunction: () => void,
   /**
    * Use `.toHaveBeenCalledBefore` when checking if a `Mock` was called before another `Mock`.
    *
@@ -376,171 +380,171 @@ type JestExtendedMatchersType = {
    *
    * @param {Mock} mock
    */
-  toHaveBeenCalledBefore(mock: JestMockFn<any, any>): void,
+  toHaveBeenCalledBefore: (mock: JestMockFn<any, any>) => void,
   /**
    * Use `.toBeNumber` when checking if a value is a `Number`.
    */
-  toBeNumber(): void,
+  toBeNumber: () => void,
   /**
    * Use `.toBeNaN` when checking a value is `NaN`.
    */
-  toBeNaN(): void,
+  toBeNaN: () => void,
   /**
    * Use `.toBeFinite` when checking if a value is a `Number`, not `NaN` or `Infinity`.
    */
-  toBeFinite(): void,
+  toBeFinite: () => void,
   /**
    * Use `.toBePositive` when checking if a value is a positive `Number`.
    */
-  toBePositive(): void,
+  toBePositive: () => void,
   /**
    * Use `.toBeNegative` when checking if a value is a negative `Number`.
    */
-  toBeNegative(): void,
+  toBeNegative: () => void,
   /**
    * Use `.toBeEven` when checking if a value is an even `Number`.
    */
-  toBeEven(): void,
+  toBeEven: () => void,
   /**
    * Use `.toBeOdd` when checking if a value is an odd `Number`.
    */
-  toBeOdd(): void,
+  toBeOdd: () => void,
   /**
    * Use `.toBeWithin` when checking if a number is in between the given bounds of: start (inclusive) and end (exclusive).
    *
    * @param {Number} start
    * @param {Number} end
    */
-  toBeWithin(start: number, end: number): void,
+  toBeWithin: (start: number, end: number) => void,
   /**
    * Use `.toBeObject` when checking if a value is an `Object`.
    */
-  toBeObject(): void,
+  toBeObject: () => void,
   /**
    * Use `.toContainKey` when checking if an object contains the provided key.
    *
    * @param {String} key
    */
-  toContainKey(key: string): void,
+  toContainKey: (key: string) => void,
   /**
    * Use `.toContainKeys` when checking if an object has all of the provided keys.
    *
    * @param {Array.<String>} keys
    */
-  toContainKeys(keys: string[]): void,
+  toContainKeys: (keys: Array<string>) => void,
   /**
    * Use `.toContainAllKeys` when checking if an object only contains all of the provided keys.
    *
    * @param {Array.<String>} keys
    */
-  toContainAllKeys(keys: string[]): void,
+  toContainAllKeys: (keys: Array<string>) => void,
   /**
    * Use `.toContainAnyKeys` when checking if an object contains at least one of the provided keys.
    *
    * @param {Array.<String>} keys
    */
-  toContainAnyKeys(keys: string[]): void,
+  toContainAnyKeys: (keys: Array<string>) => void,
   /**
    * Use `.toContainValue` when checking if an object contains the provided value.
    *
    * @param {*} value
    */
-  toContainValue(value: any): void,
+  toContainValue: (value: any) => void,
   /**
    * Use `.toContainValues` when checking if an object contains all of the provided values.
    *
    * @param {Array.<*>} values
    */
-  toContainValues(values: any[]): void,
+  toContainValues: (values: Array<any>) => void,
   /**
    * Use `.toContainAllValues` when checking if an object only contains all of the provided values.
    *
    * @param {Array.<*>} values
    */
-  toContainAllValues(values: any[]): void,
+  toContainAllValues: (values: Array<any>) => void,
   /**
    * Use `.toContainAnyValues` when checking if an object contains at least one of the provided values.
    *
    * @param {Array.<*>} values
    */
-  toContainAnyValues(values: any[]): void,
+  toContainAnyValues: (values: Array<any>) => void,
   /**
    * Use `.toContainEntry` when checking if an object contains the provided entry.
    *
    * @param {Array.<String, String>} entry
    */
-  toContainEntry(entry: [string, string]): void,
+  toContainEntry: (entry: [string, string]) => void,
   /**
    * Use `.toContainEntries` when checking if an object contains all of the provided entries.
    *
    * @param {Array.<Array.<String, String>>} entries
    */
-  toContainEntries(entries: [string, string][]): void,
+  toContainEntries: (entries: Array<[string, string]>) => void,
   /**
    * Use `.toContainAllEntries` when checking if an object only contains all of the provided entries.
    *
    * @param {Array.<Array.<String, String>>} entries
    */
-  toContainAllEntries(entries: [string, string][]): void,
+  toContainAllEntries: (entries: Array<[string, string]>) => void,
   /**
    * Use `.toContainAnyEntries` when checking if an object contains at least one of the provided entries.
    *
    * @param {Array.<Array.<String, String>>} entries
    */
-  toContainAnyEntries(entries: [string, string][]): void,
+  toContainAnyEntries: (entries: Array<[string, string]>) => void,
   /**
    * Use `.toBeExtensible` when checking if an object is extensible.
    */
-  toBeExtensible(): void,
+  toBeExtensible: () => void,
   /**
    * Use `.toBeFrozen` when checking if an object is frozen.
    */
-  toBeFrozen(): void,
+  toBeFrozen: () => void,
   /**
    * Use `.toBeSealed` when checking if an object is sealed.
    */
-  toBeSealed(): void,
+  toBeSealed: () => void,
   /**
    * Use `.toBeString` when checking if a value is a `String`.
    */
-  toBeString(): void,
+  toBeString: () => void,
   /**
    * Use `.toEqualCaseInsensitive` when checking if a string is equal (===) to another ignoring the casing of both strings.
    *
    * @param {String} string
    */
-  toEqualCaseInsensitive(string: string): void,
+  toEqualCaseInsensitive: (string: string) => void,
   /**
    * Use `.toStartWith` when checking if a `String` starts with a given `String` prefix.
    *
    * @param {String} prefix
    */
-  toStartWith(prefix: string): void,
+  toStartWith: (prefix: string) => void,
   /**
    * Use `.toEndWith` when checking if a `String` ends with a given `String` suffix.
    *
    * @param {String} suffix
    */
-  toEndWith(suffix: string): void,
+  toEndWith: (suffix: string) => void,
   /**
    * Use `.toInclude` when checking if a `String` includes the given `String` substring.
    *
    * @param {String} substring
    */
-  toInclude(substring: string): void,
+  toInclude: (substring: string) => void,
   /**
    * Use `.toIncludeRepeated` when checking if a `String` includes the given `String` substring the correct number of times.
    *
    * @param {String} substring
    * @param {Number} times
    */
-  toIncludeRepeated(substring: string, times: number): void,
+  toIncludeRepeated: (substring: string, times: number) => void,
   /**
    * Use `.toIncludeMultiple` when checking if a `String` includes all of the given substrings.
    *
    * @param {Array.<String>} substring
    */
-  toIncludeMultiple(substring: string[]): void,
+  toIncludeMultiple: (substring: Array<string>) => void,
   ...
 };
 
@@ -600,7 +604,7 @@ interface JestExpectType {
    * Use .toBeInstanceOf(Class) to check that an object is an instance of a
    * class.
    */
-  toBeInstanceOf(cls: Class<*>): void;
+  toBeInstanceOf(cls: Class<any>): void;
   /**
    * .toBeNull() is the same as .toBe(null) but the error messages are a bit
    * nicer.
@@ -742,67 +746,67 @@ type JestObjectType = {
    *  After this method is called, all `require()`s will return the real
    *  versions of each module (rather than a mocked version).
    */
-  disableAutomock(): JestObjectType,
+  disableAutomock: () => JestObjectType,
   /**
    * An un-hoisted version of disableAutomock
    */
-  autoMockOff(): JestObjectType,
+  autoMockOff: () => JestObjectType,
   /**
    * Enables automatic mocking in the module loader.
    */
-  enableAutomock(): JestObjectType,
+  enableAutomock: () => JestObjectType,
   /**
    * An un-hoisted version of enableAutomock
    */
-  autoMockOn(): JestObjectType,
+  autoMockOn: () => JestObjectType,
   /**
    * Clears the mock.calls and mock.instances properties of all mocks.
    * Equivalent to calling .mockClear() on every mocked function.
    */
-  clearAllMocks(): JestObjectType,
+  clearAllMocks: () => JestObjectType,
   /**
    * Resets the state of all mocks. Equivalent to calling .mockReset() on every
    * mocked function.
    */
-  resetAllMocks(): JestObjectType,
+  resetAllMocks: () => JestObjectType,
   /**
    * Restores all mocks back to their original value.
    */
-  restoreAllMocks(): JestObjectType,
+  restoreAllMocks: () => JestObjectType,
   /**
    * Removes any pending timers from the timer system.
    */
-  clearAllTimers(): void,
+  clearAllTimers: () => void,
   /**
    * Returns the number of fake timers still left to run.
    */
-  getTimerCount(): number,
+  getTimerCount: () => number,
   /**
    * The same as `mock` but not moved to the top of the expectation by
    * babel-jest.
    */
-  doMock(moduleName: string, moduleFactory?: any): JestObjectType,
+  doMock: (moduleName: string, moduleFactory?: any) => JestObjectType,
   /**
    * The same as `unmock` but not moved to the top of the expectation by
    * babel-jest.
    */
-  dontMock(moduleName: string): JestObjectType,
+  dontMock: (moduleName: string) => JestObjectType,
   /**
    * Returns a new, unused mock function. Optionally takes a mock
    * implementation.
    */
-  fn<TArguments: $ReadOnlyArray<*>, TReturn>(
+  fn: <TArguments: $ReadOnlyArray<any>, TReturn>(
     implementation?: (...args: TArguments) => TReturn,
-  ): JestMockFn<TArguments, TReturn>,
+  ) => JestMockFn<TArguments, TReturn>,
   /**
    * Determines if the given function is a mocked function.
    */
-  isMockFunction(fn: Function): boolean,
+  isMockFunction: (fn: Function) => boolean,
   /**
    * Given the name of a module, use the automatic mocking system to generate a
    * mocked version of the module for you.
    */
-  genMockFromModule(moduleName: string): any,
+  genMockFromModule: (moduleName: string) => any,
   /**
    * Mocks a module with an auto-mocked version when it is being required.
    *
@@ -812,100 +816,100 @@ type JestObjectType = {
    * The third argument can be used to create virtual mocks -- mocks of modules
    * that don't exist anywhere in the system.
    */
-  mock(
+  mock: (
     moduleName: string,
     moduleFactory?: any,
     options?: Object,
-  ): JestObjectType,
+  ) => JestObjectType,
   /**
    * Returns the actual module instead of a mock, bypassing all checks on
    * whether the module should receive a mock implementation or not.
    */
-  requireActual<T>(m: $Flow$ModuleRef<T> | string): T,
+  requireActual: <T>(m: $Flow$ModuleRef<T> | string) => T,
   /**
    * Returns a mock module instead of the actual module, bypassing all checks
    * on whether the module should be required normally or not.
    */
-  requireMock(moduleName: string): any,
+  requireMock: (moduleName: string) => any,
   /**
    * Resets the module registry - the cache of all required modules. This is
    * useful to isolate modules where local state might conflict between tests.
    */
-  resetModules(): JestObjectType,
+  resetModules: () => JestObjectType,
   /**
    * Creates a sandbox registry for the modules that are loaded inside the
    * callback function. This is useful to isolate specific modules for every
    * test so that local module state doesn't conflict between tests.
    */
-  isolateModules(fn: () => void): JestObjectType,
+  isolateModules: (fn: () => void) => JestObjectType,
   /**
    * Exhausts the micro-task queue (usually interfaced in node via
    * process.nextTick).
    */
-  runAllTicks(): void,
+  runAllTicks: () => void,
   /**
    * Exhausts the macro-task queue (i.e., all tasks queued by setTimeout(),
    * setInterval(), and setImmediate()).
    */
-  runAllTimers(): void,
+  runAllTimers: () => void,
   /**
    * Exhausts all tasks queued by setImmediate().
    */
-  runAllImmediates(): void,
+  runAllImmediates: () => void,
   /**
    * Executes only the macro task queue (i.e. all tasks queued by setTimeout()
    * or setInterval() and setImmediate()).
    */
-  advanceTimersByTime(msToRun: number): void,
+  advanceTimersByTime: (msToRun: number) => void,
   /**
    * Executes only the macro task queue (i.e. all tasks queued by setTimeout()
    * or setInterval() and setImmediate()).
    *
    * Renamed to `advanceTimersByTime`.
    */
-  runTimersToTime(msToRun: number): void,
+  runTimersToTime: (msToRun: number) => void,
   /**
    * Executes only the macro-tasks that are currently pending (i.e., only the
    * tasks that have been queued by setTimeout() or setInterval() up to this
    * point)
    */
-  runOnlyPendingTimers(): void,
+  runOnlyPendingTimers: () => void,
   /**
    * Explicitly supplies the mock object that the module system should return
    * for the specified module. Note: It is recommended to use jest.mock()
    * instead.
    */
-  setMock(moduleName: string, moduleExports: any): JestObjectType,
+  setMock: (moduleName: string, moduleExports: any) => JestObjectType,
   /**
    * Indicates that the module system should never return a mocked version of
    * the specified module from require() (e.g. that it should always return the
    * real module).
    */
-  unmock(moduleName: string): JestObjectType,
+  unmock: (moduleName: string) => JestObjectType,
   /**
    * Instructs Jest to use fake versions of the standard timer functions
    * (setTimeout, setInterval, clearTimeout, clearInterval, nextTick,
    * setImmediate and clearImmediate).
    */
-  useFakeTimers(): JestObjectType,
+  useFakeTimers: () => JestObjectType,
   /**
    * Instructs Jest to use the real versions of the standard timer functions.
    */
-  useRealTimers(): JestObjectType,
+  useRealTimers: () => JestObjectType,
   /**
    * Creates a mock function similar to jest.fn but also tracks calls to
    * object[methodName].
    */
-  spyOn(
+  spyOn: (
     object: Object,
     methodName: string,
     accessType?: 'get' | 'set',
-  ): JestMockFn<any, any>,
+  ) => JestMockFn<any, any>,
   /**
    * Set the default timeout interval for tests and before/after hooks in milliseconds.
    * Note: The default timeout interval is 5 seconds if this method is not called.
    */
-  setTimeout(timeout: number): JestObjectType,
+  setTimeout: (timeout: number) => JestObjectType,
   ...
 };
 

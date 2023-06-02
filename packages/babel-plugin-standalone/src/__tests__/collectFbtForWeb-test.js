@@ -23,6 +23,7 @@ describe('collectFbtForWeb', () => {
     const fbtStandaloneDist /*: FbtStandalone */ = require('../..' +
       /* force dynamic import */ '/dist');
 
+    // $FlowFixMe[missing-local-annot]
     function collect(fbtStandalone, source) {
       return fbtStandalone.collectFbtPayloadFromSource(
         source,

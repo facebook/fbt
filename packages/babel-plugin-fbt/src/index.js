@@ -175,7 +175,7 @@ let allMetaPhrases: Array<{|...MetaPhrase, phrase: Phrase|}>;
  */
 let childToParent: ChildToParentMap;
 
-function FbtTransform(babel: {types: BabelTypes}): BabelTransformPlugin {
+function FbtTransform(babel: {types: BabelTypes, ...}): BabelTransformPlugin {
   const t = babel.types;
 
   return {
@@ -214,7 +214,7 @@ function FbtTransform(babel: {types: BabelTypes}): BabelTransformPlugin {
       /**
        * Register enum imports
        */
-      ImportDeclaration(path) {
+      ImportDeclaration(path: NodePathOf<BabelNodeImportDeclaration>) {
         FbtEnumRegistrar.registerImportIfApplicable(path);
       },
 
@@ -292,6 +292,7 @@ function FbtTransform(babel: {types: BabelTypes}): BabelTransformPlugin {
       },
 
       Program: {
+        // $FlowFixMe[missing-local-annot]
         exit(path) {
           path.traverse({
             CallExpression(path: NodePathOf<BabelNodeCallExpression>) {
@@ -335,10 +336,12 @@ FbtTransform.getFbtElementNodes = (): Array<PlainFbtNode> => {
     .filter(Boolean);
 };
 
+// $FlowFixMe[missing-local-annot]
 function initExtraOptions(state) {
   validFbtExtraOptions = Object.freeze(state.opts.extraOptions || {});
 }
 
+// $FlowFixMe[missing-local-annot]
 function initDefaultOptions(state) {
   defaultOptions = {};
   const comment = state.file.ast.comments[0];
@@ -353,6 +356,7 @@ function initDefaultOptions(state) {
   }
 }
 
+// $FlowFixMe[missing-local-annot]
 function addMetaPhrase(metaPhrase, pluginOptions) {
   const {fbtNode} = metaPhrase;
   allMetaPhrases.push({
@@ -372,10 +376,11 @@ function addMetaPhrase(metaPhrase, pluginOptions) {
   });
 }
 
-function addEnclosingString(childIdx, parentIdx) {
+function addEnclosingString(childIdx: number, parentIdx: number) {
   childToParent[childIdx] = parentIdx;
 }
 
+// $FlowFixMe[missing-local-annot]
 function getEnumManifest(opts): ?EnumManifest {
   const {fbtEnumManifest, fbtEnumPath, fbtEnumToPath} = opts;
   if (fbtEnumManifest != null) {

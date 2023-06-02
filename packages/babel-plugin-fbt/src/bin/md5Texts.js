@@ -14,7 +14,7 @@ const crypto = require('crypto');
  * Takes an fbt text and description and returns the unique identifier as calculated by
  * the MD5 algorithm.
  */
-function md5(text, description) {
+function md5(text: string, description: string): string {
   return crypto
     .createHash('md5')
     .update(text + description)

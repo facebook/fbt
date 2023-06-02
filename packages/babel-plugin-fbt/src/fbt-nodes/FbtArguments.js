@@ -218,7 +218,7 @@ class NumberStringVariationArg extends StringVariationArg<
 
 function assertInstanceOf<C: interface {}>(
   value: mixed,
-  Constructor: Class<C> & {name: string},
+  Constructor: Class<C> & {name: string, ...},
 ): C {
   invariant(
     value instanceof Constructor,

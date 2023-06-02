@@ -15,7 +15,7 @@ declare module "yargs" {
     ...
   };
 
-  declare type Options = $Shape<{
+  declare type Options = Partial<{
     alias: string | Array<string>,
     array: boolean,
     boolean: boolean,

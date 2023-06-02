@@ -211,6 +211,7 @@ class FbtFunctionCallProcessor {
     const argsOutput = JSON.stringify(
       ({
         jsfbt: phrase.jsfbt,
+        // $FlowFixMe[incompatible-cast]
         project: phrase.project,
       }: SentinelPayload),
     );
@@ -219,7 +220,12 @@ class FbtFunctionCallProcessor {
         ? Buffer.from(argsOutput).toString('base64')
         : argsOutput;
     const fbtSentinel = pluginOptions.fbtSentinel ?? SENTINEL;
-    const args = [stringLiteral(fbtSentinel + encodedOutput + fbtSentinel)];
+    const args: Array<
+      | BabelNodeExpression
+      | BabelNodeSpreadElement
+      | BabelNodeJSXNamespacedName
+      | BabelNodeArgumentPlaceholder,
+    > = [stringLiteral(fbtSentinel + encodedOutput + fbtSentinel)];
 
     // 2nd argument - `FbtTableArgs` in the fbt runtime calls
     const fbtRuntimeArgs = this._createFbtRuntimeArgumentsForMetaPhrase(
@@ -650,6 +656,7 @@ class FbtFunctionCallProcessor {
       moduleName,
       fbtCallArgs[0],
     );
+    // $FlowFixMe[cannot-write]
     fbtCallArgs[0] = fbtContentsNode;
 
     const elementNode = FbtElementNode.fromBabelNode({
@@ -791,6 +798,7 @@ class FbtFunctionCallProcessor {
     // delete nullish options
     for (const k in ret) {
       if (ret[k] == null) {
+        // $FlowFixMe[prop-missing]
         delete ret[k];
       }
     }

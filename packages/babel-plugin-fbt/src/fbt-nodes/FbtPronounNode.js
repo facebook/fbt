@@ -162,7 +162,7 @@ class FbtPronounNode extends FbtNode<
 
   getArgsForStringVariationCalc(): $ReadOnlyArray<GenderStringVariationArg> {
     const {options} = this;
-    const candidates = new Set();
+    const candidates = new Set<GenderConstEnum | '*'>();
 
     for (const gender of candidatePronounGenders) {
       if (options.human === true && gender === GENDER_CONST.NOT_A_PERSON) {
@@ -251,7 +251,7 @@ function getPronounGenderKey(
 
 // Prepare the list of genders actually used by the pronoun construct
 function consolidatedPronounGenders(): $ReadOnlyArray<GenderConstEnum> {
-  const set = new Set();
+  const set = new Set<GenderConstEnum>();
 
   for (const genderKey of Object.keys(GENDER_CONST)) {
     for (const usageKey of Object.keys(ValidPronounUsagesKeys)) {

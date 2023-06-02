@@ -117,7 +117,9 @@ class JSXFbtProcessor {
   /**
    * @returns the description of the <fbt> as a BabelNode, or null if it's a common string.
    */
-  _getDescription(texts: BabelNodeArrayExpression) {
+  _getDescription(
+    texts: BabelNodeArrayExpression,
+  ): BabelNodeStringLiteral | BabelNodeExpression {
     const {moduleName, node} = this;
     const commonAttributeValue = this._getCommonAttributeValue();
     let desc;
@@ -159,7 +161,7 @@ class JSXFbtProcessor {
     return desc;
   }
 
-  _getOptions() {
+  _getOptions(): BabelNodeObjectExpression | null {
     // Optional attributes to be passed as options.
     const attrs = this._getOpeningElementAttributes();
     this._assertHasMandatoryAttributes();
@@ -195,7 +197,7 @@ class JSXFbtProcessor {
     return this._openingElementAttributes;
   }
 
-  _assertHasMandatoryAttributes() {
+  _assertHasMandatoryAttributes(): void {
     if (
       this._getOpeningElementAttributes().find(attribute =>
         FbtCallMustHaveAtLeastOneOfTheseAttributes.includes(
@@ -213,7 +215,15 @@ class JSXFbtProcessor {
     }
   }
 
-  _createFbtFunctionCallNode({desc, options, text}) {
+  _createFbtFunctionCallNode({
+    desc,
+    options,
+    text,
+  }: {
+    desc: BabelNodeStringLiteral | BabelNodeExpression,
+    options: BabelNodeObjectExpression | null,
+    text: BabelNodeArrayExpression,
+  }): BabelNodeCallExpression | BabelNodeJSXExpressionContainer {
     const {moduleName, node, path} = this;
     invariant(text != null, 'text cannot be null');
     invariant(desc != null, 'desc cannot be null');
@@ -291,7 +301,7 @@ class JSXFbtProcessor {
     });
   }
 
-  _getDescAttributeValue() {
+  _getDescAttributeValue(): BabelNodeExpression {
     const {moduleName} = this;
     const descAttr = getAttributeByNameOrThrow(
       this._getOpeningElementAttributes(),
@@ -319,7 +329,7 @@ class JSXFbtProcessor {
     );
   }
 
-  _getCommonAttributeValue() {
+  _getCommonAttributeValue(): null | BabelNodeBooleanLiteral {
     const commonAttr = getAttributeByName(
       this._getOpeningElementAttributes(),
       CommonOption,

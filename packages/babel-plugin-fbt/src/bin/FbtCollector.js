@@ -56,10 +56,10 @@ export type PackagerPhrase = {|
   hash_key?: string,
   hashToLeaf?: HashToLeaf,
 |};
-export type TransformOptions = {|
+export type TransformOptions = $ReadOnly<{|
   ...PluginOptions,
   fbtModule: BabelPluginFbt,
-|};
+|}>;
 
 export interface IFbtCollector {
   constructor(
@@ -116,11 +116,13 @@ class FbtCollector implements IFbtCollector {
 
     const externalTransform = this._config.transform;
     if (externalTransform) {
+      // $FlowFixMe[incompatible-exact]
       externalTransform(source, options, filename);
     } else {
       const transform = require('@fbtjs/default-collection-transform');
       transform(
         source,
+        // $FlowFixMe[incompatible-exact]
         options,
         this._config.plugins || [],
         this._config.presets || [],

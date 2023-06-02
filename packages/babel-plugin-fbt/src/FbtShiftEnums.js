@@ -8,7 +8,7 @@
 
 'use strict';
 
-import type {Phrase, TableJSFBT, TableJSFBTTree} from './index';
+import type {JSFBTMetaEntry, Phrase, TableJSFBT, TableJSFBTTree} from './index';
 
 const {coerceToTableJSFBTTreeLeaf} = require('./JSFbtUtil');
 const invariant = require('invariant');
@@ -24,6 +24,9 @@ function extractEnumsAndFlattenPhrases(
     const {jsfbt} = phrase;
     const {enums, metadata} = _extractEnumsFromMetadata(jsfbt.m);
     return _buildTablesWithoutEnums(jsfbt.t, enums, []).map(table => {
+      // $FlowFixMe[incompatible-indexer]
+      // $FlowFixMe[incompatible-variance]
+      // $FlowFixMe[incompatible-call]
       const leaf = coerceToTableJSFBTTreeLeaf(table);
       invariant(
         (metadata.length === 0) === (leaf != null),
@@ -55,13 +58,14 @@ function shiftEnumsToTop(jsfbt: TableJSFBT): {|
   } else {
     const {enums} = _extractEnumsFromMetadata(jsfbt.m);
     return {
+      // $FlowFixMe[incompatible-call]
       shiftedJsfbt: _shiftEnumsToTop(enums, [], jsfbt.t),
       enumCount: enums.length,
     };
   }
 }
 
-function _extractEnumsFromMetadata(metadata) {
+function _extractEnumsFromMetadata(metadata: $ReadOnlyArray<?JSFBTMetaEntry>) {
   const enums: Array<$ReadOnlyArray<string>> = [];
   const metadataWithoutEnums = [];
   metadata.forEach(entry => {
@@ -94,9 +98,9 @@ function _buildTablesWithoutEnums(
 }
 
 function _shiftEnumsToTop(
-  allEnums,
-  currentEnumKeys,
-  table,
+  allEnums: Array<$ReadOnlyArray<string>>,
+  currentEnumKeys: $ReadOnlyArray<string>,
+  table: TableJSFBTTree,
 ): $ReadOnly<TableJSFBTTree> {
   if (allEnums.length === 0) {
     return table;
@@ -109,6 +113,7 @@ function _shiftEnumsToTop(
   }
   const newTable = {};
   for (const enumKey of allEnums[index]) {
+    // $FlowFixMe[prop-missing]
     newTable[enumKey] = _shiftEnumsToTop(
       allEnums,
       currentEnumKeys.concat([enumKey]),
@@ -123,6 +128,9 @@ function _buildTableWithoutEnums(
   enums: $ReadOnlyArray<string>,
   index: number,
 ): TableJSFBTTree {
+  // $FlowFixMe[incompatible-indexer]
+  // $FlowFixMe[incompatible-variance]
+  // $FlowFixMe[incompatible-call]
   const jsfbtTree = coerceToTableJSFBTTreeLeaf(curLevel);
   if (jsfbtTree) {
     return jsfbtTree;
@@ -132,6 +140,7 @@ function _buildTableWithoutEnums(
   }
   const result: TableJSFBTTree = {};
   for (const key in curLevel) {
+    // $FlowFixMe[prop-missing]
     result[key] = _buildTableWithoutEnums(curLevel[key], enums, index);
   }
   return result;

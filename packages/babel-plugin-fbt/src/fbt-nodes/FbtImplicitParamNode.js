@@ -352,7 +352,7 @@ class FbtImplicitParamNode
       varDump(wrapperType),
     );
 
-    const props = {};
+    const props: {[string]: string | number} = {};
     for (const attribute of openingElement.attributes) {
       // Only handling literal attributes. See PlainJSXNode.props flow definition.
       if (isJSXAttribute(attribute) && isJSXIdentifier(attribute.name)) {

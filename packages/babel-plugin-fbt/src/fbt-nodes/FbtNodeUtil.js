@@ -30,7 +30,7 @@ export type FromBabelNodeFunctionArgs = {|
 function createInstanceFromFbtConstructCallsite<N: AnyFbtNode>(
   moduleName: JSModuleNameType,
   node: BabelNode,
-  Constructor: Class<N> & $ReadOnly<{type: FbtNodeType}>,
+  Constructor: Class<N> & $ReadOnly<{type: FbtNodeType, ...}>,
 ): ?N {
   const checker = FbtNodeChecker.forModule(moduleName);
   const constructName = checker.getFbtConstructNameFromFunctionCall(node);
@@ -77,11 +77,11 @@ function toPlainFbtNodeTree(
 ): PlainFbtNode {
   const ret = {
     phraseIndex: phraseToIndexMap.get(fbtNode),
-    children: fbtNode.children
+    children: (fbtNode.children
       .map(child =>
         child != null ? toPlainFbtNodeTree(child, phraseToIndexMap) : null,
       )
-      .filter(Boolean),
+      .filter(Boolean): $ReadOnlyArray<PlainFbtNode> | void),
     ...fbtNode.toPlainFbtNode(),
   };
   if (ret.phraseIndex == null) {
@@ -265,6 +265,7 @@ function buildFbtNodeMapForSameParam(
         varDump(existingFbtNode),
         varDump(child),
       );
+      // $FlowFixMe[prop-missing]
       tokenNameToFbtNode[tokenName] = child;
     }
   });
@@ -278,6 +279,7 @@ function buildFbtNodeMapForSameParam(
         '`name` or `param` construct using the same token name',
       sameParamTokenName,
     );
+    // $FlowFixMe[prop-missing]
     sameParamTokenNameToRealFbtNode[sameParamTokenName] = realFbtNode;
   }
   return sameParamTokenNameToRealFbtNode;

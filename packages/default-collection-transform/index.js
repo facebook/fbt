@@ -39,7 +39,6 @@ function transform(
     code: false,
     filename: options.filename,
     plugins: defaultSyntaxPlugins.concat(plugins, [
-      // $FlowFixMe[incompatible-call]
       [
         (fbtModule /*: BabelPluginFbt */),
         (pluginOptions /*: PluginOptions */)
@@ -48,6 +47,7 @@ function transform(
     presets,
     sourceType: 'unambiguous',
   };
+  // $FlowFixMe[incompatible-call]
   babel.transformSync(code, opts);
 }
 

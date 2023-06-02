@@ -69,7 +69,9 @@ type TokenToMask = {|[token: MetadataToken]: IntlVariationMaskValue|};
  * However, because a TranslationData's `variation` property might be in string
  * format, let's allow a constraint to be string type for now.
  */
-export type TokenConstraintPairs = Array<[MetadataToken, number | string]>;
+export type TokenConstraintPairs = $ReadOnlyArray<
+  [MetadataToken, number | string],
+>;
 
 /** e.g. 'user%2:count%24' => 'this is a translation string' */
 type ConstraintKeyToTranslation = {[constraint: ConstraintKey]: string};
@@ -91,7 +93,7 @@ class TranslationBuilder {
   +_metadata: $ReadOnlyArray<?FbtSiteMetaEntry>;
   +_tableOrHash: FbtSiteHashifiedTableJSFBTTree;
   +_tokenToMask: TokenToMask;
-  +_translations: HashToTranslation;
+  +_translations: $ReadOnly<HashToTranslation>;
 
   /**
    * @param translations Hash of a string to its translation
@@ -100,7 +102,7 @@ class TranslationBuilder {
    * @param inclHash Include hash/identifer in leaf of payloads
    */
   constructor(
-    translations: HashToTranslation,
+    translations: $ReadOnly<HashToTranslation>,
     config: TranslationConfig,
     fbtSite: FbtSite,
     inclHash: boolean,
@@ -214,7 +216,7 @@ class TranslationBuilder {
       return this._getLeafTranslation(hashOrTable, tokenConstraints);
     }
 
-    const table = {};
+    const table: TranslationTree = {};
     for (const key in hashOrTable) {
       const branchOrLeaf = hashOrTable[key];
       let trans: TranslationTree = this._buildRecursive(
@@ -223,6 +225,7 @@ class TranslationBuilder {
         levelIdx + 1,
       );
       if (_shouldStore(trans)) {
+        // $FlowFixMe[incompatible-use]
         table[key] = trans;
       }
 
@@ -267,6 +270,7 @@ class TranslationBuilder {
             levelIdx + 1,
           );
           if (_shouldStore(trans)) {
+            // $FlowFixMe[incompatible-use]
             table[String(variationKey)] = trans;
           }
         });
@@ -362,7 +366,7 @@ class TranslationBuilder {
     constraintMap: ConstraintKeyToTranslation,
     translation: string,
     defaultingLevel: number,
-  ) {
+  ): void {
     const aggregateKey = buildConstraintKey(constraintKeys);
     if (constraintMap[aggregateKey]) {
       const err = new Error(
@@ -382,6 +386,7 @@ class TranslationBuilder {
     for (let ii = defaultingLevel; ii < constraintKeys.length; ii++) {
       const [token, val] = constraintKeys[ii];
       if (val !== '*' && this._config.isDefaultVariation(val)) {
+        // $FlowFixMe[cannot-write]
         constraintKeys[ii] = [token, '*'];
         this._insertConstraint(
           constraintKeys,
@@ -389,6 +394,7 @@ class TranslationBuilder {
           translation,
           ii + 1,
         );
+        // $FlowFixMe[cannot-write]
         constraintKeys[ii] = [token, val]; // return the value back
       }
     }
@@ -455,6 +461,7 @@ function _createMemoizedConstraintMapGetter(
   // TODO: T37795723 - Pull in a lightweight (not bloated) memoization library
   const _mem = {};
 
+  // $FlowFixMe[missing-this-annot]
   return function getConstraintMap(
     hash: PatternHash,
   ): ConstraintKeyToTranslation {
@@ -466,6 +473,7 @@ function _createMemoizedConstraintMapGetter(
     const transData = this._translations[hash];
     if (transData == null || typeof transData === 'string') {
       // No translation? No constraints.
+      // $FlowFixMe[prop-missing]
       return (_mem[hash] = constraintMap);
     }
 
@@ -509,6 +517,7 @@ function _createMemoizedConstraintMapGetter(
         0,
       );
     });
+    // $FlowFixMe[prop-missing]
     return (_mem[hash] = constraintMap);
   }.bind(instance);
 }

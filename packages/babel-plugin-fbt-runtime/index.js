@@ -45,7 +45,7 @@ let fbtHashKey /*: typeof jenkinsHashKey */ = jenkinsHashKey;
 /**
  * Utility function to cast the Babel transform plugin options to the right type
  */
-function getPluginOptions(plugin /*: $Shape<{opts: ?PluginOptions}> */) /*: PluginOptions */ {
+function getPluginOptions(plugin /*: Partial<{opts: ?PluginOptions}> */) /*: PluginOptions */ {
   const {opts} = plugin;
   if (opts == null || typeof opts !== 'object') {
     // eslint-disable-next-line fb-www/no-new-error
@@ -119,6 +119,7 @@ module.exports = function BabelPluginFbtRuntime(babel /*: {
         'Expecting shiftedJsfbt to be defined',
       );
       options.push(
+        // $FlowFixMe[incompatible-call]
         t.objectProperty(
           t.identifier('ehk'), // enumHashKey
           _buildEnumToHashKeyObjectExpression(
@@ -129,6 +130,7 @@ module.exports = function BabelPluginFbtRuntime(babel /*: {
       );
     } else {
       options.push(
+        // $FlowFixMe[incompatible-call]
         t.objectProperty(
           t.identifier('hk'),
           t.stringLiteral(fbtHashKey(jsfbt.t)),
@@ -211,6 +213,7 @@ module.exports = function BabelPluginFbtRuntime(babel /*: {
         // Append runtime options - key for runtime dictionary lookup
         if (parentNode.arguments.length === 1) {
           // Second param 'args' could be omitted sometimes. Use null here
+          // $FlowFixMe[prop-missing]
           parentNode.arguments.push(t.nullLiteral());
         }
 
@@ -222,6 +225,7 @@ module.exports = function BabelPluginFbtRuntime(babel /*: {
           varDump(optionsNode),
           typeof optionsNode,
         );
+        // $FlowFixMe[cannot-write]
         parentNode.arguments[2] = _appendHashKeyOption(
           optionsNode,
           phrase.jsfbt,

@@ -184,10 +184,12 @@ class FbtParamNode extends FbtNode<
 
   getFbtRuntimeArg(): BabelNodeCallExpression {
     const {gender, name, number, value} = this.options;
-    let variationValues;
+    let variationValues: Array<BabelNodeExpression>;
 
     if (number != null) {
-      variationValues = [numericLiteral(ParamVariation.number)];
+      variationValues = ([
+        numericLiteral(ParamVariation.number),
+      ]: Array<BabelNodeExpression>);
       if (number !== true) {
         // For number="true" we don't pass additional value.
         variationValues.push(number);

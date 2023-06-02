@@ -23,6 +23,7 @@ describe('translate-test.js', () => {
       });
     }
 
+    // $FlowFixMe[missing-local-annot]
     function testTranslateNewPhrases(options) {
       it('should not throw on missing translations', () => {
         const result = processJSON(

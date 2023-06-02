@@ -18,8 +18,8 @@ const {FbtVariationType} = require('../translate/IntlVariations');
 
 const extractEnumsAndFlattenPhrasesTestData: Array<{
   name: string,
-  input: Array<$Shape<Phrase>>,
-  output: Array<$Shape<Phrase>>,
+  input: Array<Partial<Phrase>>,
+  output: Array<Partial<Phrase>>,
 }> = [
   {
     name: 'text and table with no enums should stay the same',
@@ -968,6 +968,7 @@ const extractEnumsAndFlattenPhrasesTestData: Array<{
 describe('Test removeEnumsFromPhrases', () => {
   extractEnumsAndFlattenPhrasesTestData.forEach(data =>
     it(data.name, () =>
+      // $FlowFixMe[incompatible-call]
       expect(extractEnumsAndFlattenPhrases(data.input)).toEqual(data.output),
     ),
   );

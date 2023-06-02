@@ -33,15 +33,19 @@ function fbtInit(input: FbtInitInput): void {
   // Hookup default implementations
   const hooks = input.hooks ?? {};
   if (hooks.getFbtResult == null) {
+    // $FlowFixMe[prop-missing]
     hooks.getFbtResult = getFbtResult;
   }
   if (hooks.getFbsResult == null) {
+    // $FlowFixMe[prop-missing]
     hooks.getFbsResult = getFbsResult;
   }
   if (hooks.getTranslatedInput == null) {
+    // $FlowFixMe[prop-missing]
     hooks.getTranslatedInput = FbtTranslations.getTranslatedInput;
   }
   if (hooks.getViewerContext == null) {
+    // $FlowFixMe[prop-missing]
     hooks.getViewerContext = () => IntlViewerContext;
   }
 

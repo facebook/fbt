@@ -29,14 +29,14 @@ describe('fbt', () => {
   beforeEach(() => {
     jest.resetModules();
     jest
-      .requireActual('FbtHooks')
+      .requireActual<$FlowFixMe>('FbtHooks')
       .register({getFbtResult: require('FbtResult').get});
     intlNumUtils = jest.requireActual<intlNumUtilsType>('intlNumUtils');
-    fbtRuntime = jest.requireActual('fbt').fbt;
+    fbtRuntime = jest.requireActual<$FlowFixMe>('fbt').fbt;
   });
 
   it('should handle variated numbers', function () {
-    jest.requireActual('FbtHooks').register({
+    jest.requireActual<$FlowFixMe>('FbtHooks').register({
       // IntlCLDRNumberType31
       getViewerContext: () => ({...IntlViewerContext, locale: 'br_FR'}),
     });
@@ -68,21 +68,21 @@ describe('fbt', () => {
       locale: 'ro_RO', // IntlCLDRNumberType19
     }));
 
-    const table = {
+    const table: $FlowFixMe = {
       __vcg: 1, // viewer-context gender
       '*': {},
     };
-    table['*']['A'] = {'*': 'A,UNKNOWN,OTHER {name} has {num}'};
+    table['*']['A'] = ({'*': 'A,UNKNOWN,OTHER {name} has {num}'}: $FlowFixMe);
     table['*']['A'][ONE] = 'A,UNKNOWN,ONE {name} has {num}';
     table['*']['A'][FEW] = 'A,UNKNOWN,FEW {name} has {num}';
-    table['*']['B'] = {'*': 'B,UNKNOWN,OTHER {name} has {num}'};
+    table['*']['B'] = ({'*': 'B,UNKNOWN,OTHER {name} has {num}'}: $FlowFixMe);
     table['*']['B'][ONE] = 'B,UNKNOWN,ONE {name} has {num}';
     table['*']['B'][FEW] = 'B,UNKNOWN,FEW {name} has {num}';
-    table[MALE] = {A: {'*': 'A,MALE,OTHER {name} has {num}'}};
+    table[MALE] = ({A: {'*': 'A,MALE,OTHER {name} has {num}'}}: $FlowFixMe);
     table[MALE]['A'][ONE] = 'A,MALE,ONE {name} has {num}';
     // table['*'][male]['A'][FEW] = fallback to other ^^^
     // table['*'][male]['B'] = fallback to unknown gender ^^^
-    table[FEMALE] = {B: {'*': 'B,FEMALE,OTHER {name} has {num}'}};
+    table[FEMALE] = ({B: {'*': 'B,FEMALE,OTHER {name} has {num}'}}: $FlowFixMe);
     table[FEMALE]['B'][FEW] = 'B,FEMALE,FEW {name} has {num}';
     // table[female]['B'][ONE] = fallback to other ^^^
     // table[female]['A'] = fallback to unknown gender ^^^
@@ -104,6 +104,7 @@ describe('fbt', () => {
       {arg: [B, one, name], expected: 'B,UNKNOWN,ONE Bob has 1'},
       {arg: [B, other, name], expected: 'B,UNKNOWN,OTHER Bob has 20'},
     ];
+    // $FlowFixMe[missing-local-annot]
     const runTest = function (test) {
       try {
         expect(fbtRuntime._(table, test.arg).toString()).toBe(test.expected);

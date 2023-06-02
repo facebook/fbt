@@ -23,6 +23,7 @@ describe('IntlVariations', () => {
       ClientSideIntlVariations = require('../../../../../runtime/nonfb/IntlVariations');
     });
 
+    // $FlowFixMe[missing-local-annot]
     function getPropsByPrefix(object, prefix) {
       return Object.keys(object).filter(key => key.startsWith(prefix));
     }

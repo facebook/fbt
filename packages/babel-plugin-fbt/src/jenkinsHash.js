@@ -9,11 +9,11 @@
 
 'use strict';
 
-function toUtf8(str) {
-  var result = [];
-  var len = str.length;
-  for (var i = 0; i < len; i++) {
-    var charcode = str.charCodeAt(i);
+function toUtf8(str: string) {
+  const result = [];
+  const len = str.length;
+  for (let i = 0; i < len; i++) {
+    let charcode = str.charCodeAt(i);
     if (charcode < 0x80) {
       result.push(charcode);
     } else if (charcode < 0x800) {
@@ -45,10 +45,10 @@ function jenkinsHash(str: string): number {
     return 0;
   }
 
-  var utf8 = toUtf8(str);
-  var hash = 0;
-  var len = utf8.length;
-  for (var i = 0; i < len; i++) {
+  const utf8 = toUtf8(str);
+  let hash = 0;
+  const len = utf8.length;
+  for (let i = 0; i < len; i++) {
     hash += utf8[i];
     hash = (hash + (hash << 10)) >>> 0;
     hash ^= hash >>> 6;

@@ -165,6 +165,7 @@ class FbtElementNode
       if (validExtraOptions?.[optionName] == null) {
         continue;
       }
+      // $FlowFixMe[prop-missing]
       const extraOptionValue = rawOptions[optionName];
       invariant(
         typeof extraOptionValue === 'string',

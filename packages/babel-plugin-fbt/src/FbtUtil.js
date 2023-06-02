@@ -228,7 +228,7 @@ const SHORT_BOOL_CANDIDATES = {
   preserveWhitespace: 'preserveWhitespace',
 };
 
-function canBeShortBoolAttr(name): %checks {
+function canBeShortBoolAttr(name: string): %checks {
   return name in SHORT_BOOL_CANDIDATES;
 }
 
@@ -633,8 +633,9 @@ function objMap<
   ) {
     throw new Error('Only use on simple objects');
   }
-  const toMap = {};
+  const toMap: {[TKey]: TValueOut} = {};
   for (const k in object) {
+    // $FlowFixMe[incompatible-type]
     toMap[k] = fn(
       object[
         // `k` is normally a `string` but it is inferred to be TKey
@@ -705,7 +706,9 @@ function convertTemplateLiteralToArrayElements(
   BabelNodeStringLiteral | BabelNodeCallExpression | BabelNodeJSXElement,
 > {
   const {expressions, quasis} = node;
-  const nodes = [];
+  const nodes: Array<
+    BabelNodeStringLiteral | BabelNodeCallExpression | BabelNodeJSXElement,
+  > = [];
 
   let index = 0;
   // quasis items are the text literal portion of the template literal
@@ -806,37 +809,40 @@ function convertToStringArrayNodeIfNeeded(
   // We're not making this fully recursive since, from a syntax POV,
   // it wouldn't be elegant to allow developers to nest lots of template literals.
   return arrayExpression(
-    initialElements.reduce((elements, element) => {
-      if (element == null) {
-        return elements;
-      }
-      if (
-        didStartWithArray &&
-        (element.type === 'BinaryExpression' ||
-          (element.type === 'TemplateLiteral' && element.expressions.length))
-      ) {
-        throw errorAt(
-          element,
-          `${moduleName}(array) only supports items that are string literals, ` +
-            `template literals without any expressions, or fbt constructs`,
-        );
-      }
-      switch (element.type) {
-        case 'BinaryExpression': {
-          elements.push(...getBinaryExpressionOperands(moduleName, element));
-          break;
+    initialElements.reduce(
+      (elements, element) => {
+        if (element == null) {
+          return elements;
         }
-        case 'TemplateLiteral': {
-          elements.push(
-            ...convertTemplateLiteralToArrayElements(moduleName, element),
+        if (
+          didStartWithArray &&
+          (element.type === 'BinaryExpression' ||
+            (element.type === 'TemplateLiteral' && element.expressions.length))
+        ) {
+          throw errorAt(
+            element,
+            `${moduleName}(array) only supports items that are string literals, ` +
+              `template literals without any expressions, or fbt constructs`,
           );
-          break;
         }
-        default:
-          elements.push(element);
-      }
-      return elements;
-    }, []),
+        switch (element.type) {
+          case 'BinaryExpression': {
+            elements.push(...getBinaryExpressionOperands(moduleName, element));
+            break;
+          }
+          case 'TemplateLiteral': {
+            elements.push(
+              ...convertTemplateLiteralToArrayElements(moduleName, element),
+            );
+            break;
+          }
+          default:
+            elements.push(element);
+        }
+        return elements;
+      },
+      ([]: Array<null | BabelNodeExpression | BabelNodeSpreadElement>),
+    ),
   );
 }
 
@@ -983,35 +989,41 @@ function nullableTypeCheckerFactory<
   };
 }
 
-enforceBabelNode.orNull = (nullableTypeCheckerFactory(enforceBabelNode): $Call<
-  typeof nullableTypeCheckerFactory,
-  typeof enforceBabelNode,
->);
+const enforceBabelNodeOrNull: (value: mixed, valueDesc: ?string) => ?BabelNode =
+  nullableTypeCheckerFactory(enforceBabelNode);
+enforceBabelNode.orNull = enforceBabelNodeOrNull;
 
-enforceBabelNodeExpression.orNull = (nullableTypeCheckerFactory(
+const enforceBabelNodeExpressionOrNull: (
+  value: mixed,
+  valueDesc: ?string,
+) => ?BabelNodeExpression = nullableTypeCheckerFactory(
   enforceBabelNodeExpression,
-): $Call<typeof nullableTypeCheckerFactory, typeof enforceBabelNodeExpression>);
+);
+enforceBabelNodeExpression.orNull = enforceBabelNodeExpressionOrNull;
 
-enforceBabelNodeCallExpressionArg.orNull = (nullableTypeCheckerFactory(
+const enforceBabelNodeCallExpressionArgOrNull: (
+  value: mixed,
+  valueDesc: ?string,
+) => ?BabelNodeCallExpressionArg = nullableTypeCheckerFactory(
   enforceBabelNodeCallExpressionArg,
-): $Call<
-  typeof nullableTypeCheckerFactory,
-  typeof enforceBabelNodeCallExpressionArg,
->);
+);
+enforceBabelNodeCallExpressionArg.orNull =
+  enforceBabelNodeCallExpressionArgOrNull;
 
-enforceBoolean.orNull = (nullableTypeCheckerFactory(enforceBoolean): $Call<
-  typeof nullableTypeCheckerFactory,
-  typeof enforceBoolean,
->);
+const enforceBooleanOrNull: (value: mixed, valueDesc: ?string) => ?boolean =
+  nullableTypeCheckerFactory(enforceBoolean);
+enforceBoolean.orNull = enforceBooleanOrNull;
 
-enforceString.orNull = (nullableTypeCheckerFactory(enforceString): $Call<
-  typeof nullableTypeCheckerFactory,
-  typeof enforceString,
->);
+const enforceStringOrNull: (value: mixed, valueDesc: ?string) => ?string =
+  nullableTypeCheckerFactory(enforceString);
+enforceString.orNull = enforceStringOrNull;
 
-enforceStringEnum.orNull = (nullableTypeCheckerFactory(
-  enforceStringEnum,
-): $Call<typeof nullableTypeCheckerFactory, typeof enforceStringEnum>);
+const enforceStringEnumOrNull: <K: string>(
+  value: mixed,
+  keys: {[K]: any},
+  valueDesc: ?string,
+) => ?K = nullableTypeCheckerFactory(enforceStringEnum);
+enforceStringEnum.orNull = enforceStringEnumOrNull;
 
 /**
  * Creates an `fbt._<<methodName>>(args)` runtime function call.

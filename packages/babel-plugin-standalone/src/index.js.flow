@@ -108,7 +108,7 @@ declare function collectFbtPayloadFromSource(
     |},
   |}>,
   phrases: Array<{|
-    ...$Shape<{|
+    ...Partial<{|
       author?: ?(string | boolean | BabelNode),
       common?: ?(string | boolean | BabelNode),
       doNotExtract?: ?boolean,

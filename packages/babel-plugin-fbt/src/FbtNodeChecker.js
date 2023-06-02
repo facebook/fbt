@@ -75,6 +75,7 @@ class FbtNodeChecker {
         isMemberExpression(node.callee) &&
         isIdentifier(node.callee.object) &&
         this.isNameOfModule(node.callee.object.name) &&
+        // $FlowFixMe[prop-missing]
         isIdentifier(node.callee.property) &&
         typeof node.callee.property.name === 'string' &&
         FbtNodeType.cast(node.callee.property.name)) ||
@@ -102,6 +103,7 @@ class FbtNodeChecker {
       isMemberExpression(node.callee) &&
       this.isMemberExpression(node.callee) &&
       !node.callee.computed &&
+      // $FlowFixMe[prop-missing]
       node.callee.property.name === FbtNodeChecker.COMMON_STRING_METHOD_NAME
     );
   }
@@ -199,9 +201,13 @@ class FbtNodeChecker {
       (isCallExpression(node) &&
         isMemberExpression(node.callee) &&
         isIdentifier(node.callee.object) &&
+        // $FlowFixMe[prop-missing]
         isIdentifier(node.callee.property) &&
+        // $FlowFixMe[prop-missing]
         [FBT, FBS, REACT_FBT].includes(node.callee.object.name) &&
+        // $FlowFixMe[prop-missing]
         typeof node.callee.property.name === 'string' &&
+        // $FlowFixMe[prop-missing]
         FbtNodeType.cast(node.callee.property.name)) ||
       null
     );
