@@ -28,47 +28,6 @@ class FbtResultBase implements IFbtResultBase {
   // munging will affect this access.
   __errorListener: ?IFbtErrorListener;
 
-  // Declare that we'll implement these methods
-  anchor: $PropertyType<IFbtResultBase, 'anchor'>;
-  big: $PropertyType<IFbtResultBase, 'big'>;
-  blink: $PropertyType<IFbtResultBase, 'blink'>;
-  bold: $PropertyType<IFbtResultBase, 'bold'>;
-  charAt: $PropertyType<IFbtResultBase, 'charAt'>;
-  charCodeAt: $PropertyType<IFbtResultBase, 'charCodeAt'>;
-  codePointAt: $PropertyType<IFbtResultBase, 'codePointAt'>;
-  contains: $PropertyType<IFbtResultBase, 'contains'>;
-  endsWith: $PropertyType<IFbtResultBase, 'endsWith'>;
-  fixed: $PropertyType<IFbtResultBase, 'fixed'>;
-  fontcolor: $PropertyType<IFbtResultBase, 'fontcolor'>;
-  fontsize: $PropertyType<IFbtResultBase, 'fontsize'>;
-  includes: $PropertyType<IFbtResultBase, 'includes'>;
-  indexOf: $PropertyType<IFbtResultBase, 'indexOf'>;
-  italics: $PropertyType<IFbtResultBase, 'italics'>;
-  lastIndexOf: $PropertyType<IFbtResultBase, 'lastIndexOf'>;
-  link: $PropertyType<IFbtResultBase, 'link'>;
-  localeCompare: $PropertyType<IFbtResultBase, 'localeCompare'>;
-  match: $PropertyType<IFbtResultBase, 'match'>;
-  normalize: $PropertyType<IFbtResultBase, 'normalize'>;
-  repeat: $PropertyType<IFbtResultBase, 'repeat'>;
-  replace: $PropertyType<IFbtResultBase, 'replace'>;
-  search: $PropertyType<IFbtResultBase, 'search'>;
-  slice: $PropertyType<IFbtResultBase, 'slice'>;
-  small: $PropertyType<IFbtResultBase, 'small'>;
-  split: $PropertyType<IFbtResultBase, 'split'>;
-  startsWith: $PropertyType<IFbtResultBase, 'startsWith'>;
-  strike: $PropertyType<IFbtResultBase, 'strike'>;
-  sub: $PropertyType<IFbtResultBase, 'sub'>;
-  substr: $PropertyType<IFbtResultBase, 'substr'>;
-  substring: $PropertyType<IFbtResultBase, 'substring'>;
-  sup: $PropertyType<IFbtResultBase, 'sup'>;
-  toLocaleLowerCase: $PropertyType<IFbtResultBase, 'toLocaleLowerCase'>;
-  toLocaleUpperCase: $PropertyType<IFbtResultBase, 'toLocaleUpperCase'>;
-  toLowerCase: $PropertyType<IFbtResultBase, 'toLowerCase'>;
-  toUpperCase: $PropertyType<IFbtResultBase, 'toUpperCase'>;
-  trim: $PropertyType<IFbtResultBase, 'trim'>;
-  trimLeft: $PropertyType<IFbtResultBase, 'trimLeft'>;
-  trimRight: $PropertyType<IFbtResultBase, 'trimRight'>;
-
   constructor(
     contents: $NestedFbtContentItems,
     errorListener: ?IFbtErrorListener,
