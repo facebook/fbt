@@ -3,7 +3,7 @@
  * This file is generated. Do not modify it manually!
  * @codegen-command : phps RepoSync intl_oss_fbt
  * @codegen-source : fbsource/xplat/intl/oss-fbt/rn-demo-app/ios/rnDemoApp/AppDelegate.mm
- * @generated SignedSource<<ea627f0a64dfc05985740c7ae406a3ec>>
+ * @generated SignedSource<<871b4c715a6c3e24327595d05da36789>>
  */
 /*
  * Copyright (c) Meta Platforms, Inc. and affiliates.
@@ -116,9 +116,7 @@
         }
         __typeof(self) strongSelf = weakSelf;
         if (strongSelf) {
-          facebook::react::RuntimeExecutor syncRuntimeExecutor =
-              [&](std::function<void(facebook::jsi::Runtime & runtime_)> &&callback) { callback(runtime); };
-          [strongSelf->_turboModuleManager installJSBindingWithRuntimeExecutor:syncRuntimeExecutor];
+          [strongSelf->_turboModuleManager installJSBindings:runtime];
         }
       }));
 }
