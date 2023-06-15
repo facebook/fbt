@@ -163,6 +163,7 @@ class FbtResultBase implements IFbtResultBase {
     this.__errorListener?.onStringMethodUsed?.(methodName);
     // $FlowFixMe[incompatible-type] Mock stringish methods
     // $FlowFixMe[prop-missing] Mock stringish methods
+    // $FlowFixMe[method-unbinding]
     return String.prototype[methodName].apply(this, args);
   };
   /* eslint-enable fb-www/should-use-class */
