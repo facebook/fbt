@@ -55,7 +55,6 @@ declare module '@babel/core' {
   declare type BabelTransform = $ReadOnly<{
     CallExpression?: (path: NodePathOf<BabelNodeCallExpression>) => void,
     JSXElement?: (path: NodePathOf<BabelNodeJSXElement>) => void,
-    JSXElement?: (path: NodePathOf<BabelNodeJSXElement>) => void,
     StringLiteral?: (path: NodePathOf<BabelNodeStringLiteral>) => void,
     ...
   }>;
