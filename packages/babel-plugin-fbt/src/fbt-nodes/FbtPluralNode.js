@@ -182,14 +182,6 @@ class FbtPluralNode extends FbtNode<
     return callArg0.value;
   }
 
-  _getValueNode(): BabelNode {
-    throw errorAt(this.node, 'not implemented yet');
-  }
-
-  _getCountNode(): BabelNode {
-    throw errorAt(this.node, 'not implemented yet');
-  }
-
   getArgsForStringVariationCalc(): $ReadOnlyArray<NumberStringVariationArg> {
     return [
       new NumberStringVariationArg(this, this.options.count, [

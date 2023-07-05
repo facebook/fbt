@@ -250,23 +250,6 @@ class FbtNode<
    */
   initCheck(): void {}
 
-  _clone(): this {
-    const {constructor: Constructor} = this;
-    return new Constructor({
-      children: this.children,
-      moduleName: this.moduleName,
-      node: this.node,
-      parent: this.parent,
-    });
-  }
-
-  _setStringVariationValues(
-    variationFactorValues: $ReadOnlyArray<SVArgument>,
-  ): this {
-    this._variationFactorValues = variationFactorValues;
-    return this;
-  }
-
   setParent(parent: ?AnyFbtNode): this {
     // $FlowExpectedError[cannot-write] Allow writing this property internally
     this.parent = parent;
