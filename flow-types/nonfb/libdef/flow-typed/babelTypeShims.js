@@ -21,7 +21,7 @@ declare module '@babel/core' {
   }
 
   // See: https://github.com/jamiebuilds/babel-handbook/blob/master/translations/en/plugin-handbook.md#scopes
-  declare class Scope<N: BabelNode = BabelNode> {
+  declare export class Scope<N: BabelNode = BabelNode> {
     path: NodePath<N>;
     block: N;
     parentBlock: ?BabelNode;
@@ -40,17 +40,58 @@ declare module '@babel/core' {
     priorityQueue: Array<mixed>;
   }
 
+  declare class Hub<B: BabelNode = BabelNode> {
+    file: File<B>;
+    getCode(): string;
+    getScope(): Scope<B>;
+    addHelper(): void;
+    buildError<E: Class<SyntaxError> = Class<SyntaxError>>(
+      node: BabelNode,
+      message: string,
+      ErrorClass?: ?E,
+    ): E;
+  }
+
+  declare class File<B: BabelNode = BabelNode> {
+    ast: BabelNode;
+    code: string;
+    declarations: {};
+    hub: Hub<B>;
+    metadata: {};
+    opts: {};
+    path: NodePath<B>;
+    scope: Scope<B>;
+  }
+
   declare class NodePath<B: BabelNode = BabelNode> {
     node: B;
     parent: ?BabelNode;
     parentPath: ?NodePath<>;
+    hub: Hub<B>;
+    container: BabelNode;
+    context: TraversalContext<B>;
+    contexts: [];
+    data: ?[];
+    opts: {};
+    key: string;
+    listKey: ?string;
+    scope: Scope<B>;
+    skipKeys: ?[];
+    type: B['type'];
     replaceWith(replacement: BabelNode): this;
     traverse<State: {...}>(transform: BabelTransform, state?: State): void;
-    context: TraversalContext<B>;
     skip(): void;
+    buildCodeFrameError<E: Class<SyntaxError> = Class<SyntaxError>>(
+      message: string,
+      ErrorClass?: ?E,
+    ): E;
+    unshiftContainer(
+      listKey: string,
+      nodes: BabelNode | $ReadOnlyArray<BabelNode>,
+    ): void;
   }
 
-  declare type NodePathOf<BabelNode> = NodePath<BabelNode>;
+  declare export type NodePathOf<BabelNode> = NodePath<BabelNode>;
 
   declare type BabelTransform = $ReadOnly<{
     CallExpression?: (path: NodePathOf<BabelNodeCallExpression>) => void,
@@ -59,19 +100,19 @@ declare module '@babel/core' {
     ...
   }>;
 
-  declare type BabelTransformPlugin = $ReadOnly<{
+  declare export type BabelTransformPlugin = $ReadOnly<{
     pre: () => void,
     name: string,
     visitor: BabelTransform,
   }>;
 
-  declare type BabelPluginList = $ReadOnlyArray<
+  declare export type BabelPluginList = $ReadOnlyArray<
     string | [string] | [string, {+[option: string]: mixed}],
   >;
 
-  declare type BabelPresetList = BabelPluginList;
+  declare export type BabelPresetList = BabelPluginList;
 
-  declare function transformSync(
+  declare export function transformSync(
     code: string,
     opts: $ReadOnly<{
       ast?: boolean,
