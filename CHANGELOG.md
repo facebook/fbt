@@ -168,6 +168,8 @@ List of changes for each released npm package version.
     <summary>
       Unreleased changes that have landed in main. Click to see more.
     </summary>
+
+    - Add unit tests for fbs.enum() and <fbs:enum>
   </details>
 
 - 1.0.0:

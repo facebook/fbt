@@ -40,6 +40,28 @@ const fbsElem = fbs._(
 
 `;
 
+exports[`Test declarative (jsx) <fbs> syntax translation should handle <fbs:enum> 1`] = `
+const fbs = require("fbs");
+
+let aEnum = require("Test$FbtEnum");
+
+var x = fbs._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        id1: { desc: "enums!", text: "Click to see groups" },
+        id2: { desc: "enums!", text: "Click to see photos" },
+        id3: { desc: "enums!", text: "Click to see videos" },
+      },
+      m: [null],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [fbs._enum(id, aEnum)]
+);
+
+`;
+
 exports[`Test functional fbs() syntax translation should convert a common string 1`] = `
 const fbs = require("fbs");
 
@@ -80,6 +102,28 @@ const fbsCall = fbs._(
     project: "",
   } /* __FBT__ end */,
   [fbs._param("param name", parameter, [1, IntlVariations.GENDER_MALE])]
+);
+
+`;
+
+exports[`Test functional fbs() syntax translation should handle fbs.enum 1`] = `
+const fbs = require("fbs");
+
+let aEnum = require("Test$FbtEnum");
+
+var x = fbs._(
+  /* __FBT__ start */ {
+    jsfbt: {
+      t: {
+        id1: { desc: "enums!", text: "Click to see groups" },
+        id2: { desc: "enums!", text: "Click to see photos" },
+        id3: { desc: "enums!", text: "Click to see videos" },
+      },
+      m: [null],
+    },
+    project: "",
+  } /* __FBT__ end */,
+  [fbs._enum(id, aEnum)]
 );
 
 `;

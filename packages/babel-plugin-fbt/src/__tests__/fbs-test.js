@@ -8,6 +8,8 @@
 
 jest.autoMockOff();
 
+const TestFbtEnumManifest = require('TestFbtEnumManifest');
+
 const {
   jsCodeFbtCallSerializer,
   snapshotTransform,
@@ -88,6 +90,22 @@ describe('Test declarative (jsx) <fbs> syntax translation', () => {
       ),
     ).toThrow(`Don't mix <fbt> and <fbs> JSX namespaces.`);
   });
+  it('should handle <fbs:enum>', () => {
+    expect(
+      snapshotTransform(
+        withFbsRequireStatement(`
+          let aEnum = require('Test$FbtEnum');
+          var x = (
+            <fbs desc="enums!">
+              Click to see
+              <fbs:enum enum-range={aEnum} value={id} />
+            </fbs>
+          );
+        `),
+        {fbtEnumManifest: TestFbtEnumManifest},
+      ),
+    ).toMatchSnapshot();
+  });
 });
 
 describe('Test functional fbs() syntax translation', () => {
@@ -152,5 +170,17 @@ describe('Test functional fbs() syntax translation', () => {
         `const fbsCall = <fbs desc="str_description">basic</fbs>;`,
       ),
     ).toThrow(`fbs is not bound. Did you forget to require('fbs')?`);
+  });
+
+  it('should handle fbs.enum', () => {
+    expect(
+      snapshotTransform(
+        withFbsRequireStatement(`
+          let aEnum = require('Test$FbtEnum');
+          var x = fbs('Click to see ' + fbs.enum(id, aEnum), 'enums!');
+        `),
+        {fbtEnumManifest: TestFbtEnumManifest},
+      ),
+    ).toMatchSnapshot();
   });
 });
