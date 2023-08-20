@@ -59,9 +59,8 @@ module.exports = {
         alt: 'Meta Open Source Logo',
         src: '/img/meta_opensource_logo_negative.svg',
         href: 'https://opensource.fb.com/',
-        maxWidth: 400
       },
-      copyright: 'Copyright (c) Meta Platforms, Inc. and affiliates.',
+      copyright: `Copyright © ${new Date().getFullYear()} Meta Platforms, Inc. and affiliates.`,
       links: [
         {
           title: 'Docs',
