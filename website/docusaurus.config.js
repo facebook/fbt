@@ -56,9 +56,10 @@ module.exports = {
     footer: {
       style: 'dark',
       logo: {
-        alt: 'Facebook Open Source Logo',
-        src: 'img/oss_logo.png',
-        href: 'https://opensource.facebook.com/',
+        alt: 'Meta Open Source Logo',
+        src: '/img/meta_opensource_logo_negative.svg',
+        href: 'https://opensource.fb.com/',
+        maxWidth: 400
       },
       copyright: 'Copyright (c) Meta Platforms, Inc. and affiliates.',
       links: [
