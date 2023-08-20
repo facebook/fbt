@@ -18,6 +18,7 @@
   --ifm-color-primary-light: #7981c2;
   --ifm-color-primary-lighter: #a09cc7;
   --ifm-color-primary-lightest: #c4c2cc;
+  --ifm-footer-logo-max-width: min(30rem,90vw);
 }
 
 /* Announcement banner */
@@ -55,4 +56,10 @@ div[class^="announcementBarContent"] a:hover {
     line-height: 22px;
     padding: 6px 30px;
   }
+}
+
+/* Open Source Logo  */
+
+.footer__logo {
+  max-width: var(--ifm-footer-logo-max-width);
 }
