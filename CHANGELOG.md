@@ -17,6 +17,7 @@ List of changes for each released npm package version.
 - [fbt-rn-android-native versions [Deprecated]](#fbt-rn-android-native-versions-deprecated)
 
 ### Top-level Github
+- [doc] facebook logo change to meta & Added information about the latest supported node version for the website
 - [chore] Strictify modules (Flow)
 - [chore] Inline `keyMirror.js` module to remove `fbjs` package dependency
 - [minor] Identify strings with updated `hash_key` in `categorizeNewStrings.js`
