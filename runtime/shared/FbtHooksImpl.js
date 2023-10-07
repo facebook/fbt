@@ -14,6 +14,10 @@ import type {
 } from 'FbtHooks';
 import typeof IntlViewerContext from 'IntlViewerContext';
 
+import {coinflip} from 'Random';
+
+import qex from 'qex';
+
 const _registrations: FbtHookRegistrations = {};
 const FbtHooksImpl = {
   getErrorListener(context: FbtErrorContext): ?IFbtErrorListener {
@@ -21,6 +25,15 @@ const FbtHooksImpl = {
   },
 
   logImpression(hash: string): void {
+    const coinflipValue = qex.getNumber(
+      'fbt_js_performance_testing',
+      'coinflip_value',
+    );
+
+    if (coinflipValue != null && coinflipValue !== 0) {
+      coinflip(coinflipValue);
+    }
+
     _registrations.logImpression?.(hash);
   },
 

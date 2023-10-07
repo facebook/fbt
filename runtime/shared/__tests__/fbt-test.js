@@ -180,7 +180,6 @@ describe('fbt', () => {
   function renderAndExtractChildDivs(component: React.Node) {
     const node = ReactDOMLegacy_DEPRECATED.findDOMNode(
       // $FlowFixMe[incompatible-call]
-      // $FlowFixMe[incompatible-exact]
       ReactDOMLegacy_DEPRECATED.render(component, domContainer),
     );
     // flow thinks ReactDOM.findDOMNode can return a type of Text...
