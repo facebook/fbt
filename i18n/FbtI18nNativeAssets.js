@@ -3,7 +3,7 @@
  * This file is generated. Do not modify it manually!
  * @codegen-command : phps RepoSync intl_oss_fbt
  * @codegen-source : fbsource/xplat/intl/oss-fbt/rn-demo-app/i18n/FbtI18nNativeAssets.js
- * @generated SignedSource<<3e0ea1fbdaf33302fbb2ae68facdf640>>
+ * @generated SignedSource<<33b15a990e690f912cef4c5a06a86177>>
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
  * This source code is licensed under the MIT license found in the
@@ -25,7 +25,7 @@ export default class FbtI18nNativeAssets {
     if (hashKey in _translationsDictionary) {
       translatedPayload = _translationsDictionary[hashKey];
     } else {
-      if (__DEV__ && !global.nativeExtensions && !global.nativeCallSyncHook) {
+      if (__DEV__ && !global.nativeCallSyncHook) {
         // Chrome debugger does not support synchronous native method.
         // Thus do not use getString in Chrome debugger.
         // **Translations will not work while debugging**
