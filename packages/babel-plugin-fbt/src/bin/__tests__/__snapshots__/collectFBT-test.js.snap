@@ -1095,6 +1095,102 @@ Object {
 }
 `;
 
+exports[`collectFbt should create correct child parent mapping for multiple files 1`] = `
+Object {
+  "childParentMappings": Object {
+    "1": 0,
+    "2": 1,
+    "4": 3,
+  },
+  "phrases": Array [
+    Object {
+      "col_beg": 12,
+      "col_end": 18,
+      "filepath": "example1.react.js",
+      "jsfbt": Object {
+        "m": Array [],
+        "t": Object {
+          "desc": "some desc",
+          "text": "This is a {=bold with italic inside}.",
+          "tokenAliases": Object {
+            "=bold with italic inside": "=m2",
+          },
+        },
+      },
+      "line_beg": 3,
+      "line_end": 8,
+      "project": "",
+    },
+    Object {
+      "col_beg": 14,
+      "col_end": 18,
+      "filepath": "example1.react.js",
+      "jsfbt": Object {
+        "m": Array [],
+        "t": Object {
+          "desc": "In the phrase: \\"This is a {=bold with italic inside}.\\"",
+          "text": "bold with {=italic inside}",
+          "tokenAliases": Object {
+            "=italic inside": "=m1",
+          },
+        },
+      },
+      "line_beg": 5,
+      "line_end": 7,
+      "project": "",
+    },
+    Object {
+      "col_beg": 26,
+      "col_end": 46,
+      "filepath": "example1.react.js",
+      "jsfbt": Object {
+        "m": Array [],
+        "t": Object {
+          "desc": "In the phrase: \\"This is a bold with {=italic inside}.\\"",
+          "text": "italic inside",
+        },
+      },
+      "line_beg": 6,
+      "line_end": 6,
+      "project": "",
+    },
+    Object {
+      "col_beg": 12,
+      "col_end": 18,
+      "filepath": "./example2.react.js.in",
+      "jsfbt": Object {
+        "m": Array [],
+        "t": Object {
+          "desc": "some desc",
+          "text": "Link: {=link}",
+          "tokenAliases": Object {
+            "=link": "=m1",
+          },
+        },
+      },
+      "line_beg": 3,
+      "line_end": 6,
+      "project": "",
+    },
+    Object {
+      "col_beg": 14,
+      "col_end": 57,
+      "filepath": "./example2.react.js.in",
+      "jsfbt": Object {
+        "m": Array [],
+        "t": Object {
+          "desc": "In the phrase: \\"Link: {=link}\\"",
+          "text": "link",
+        },
+      },
+      "line_beg": 5,
+      "line_end": 5,
+      "project": "",
+    },
+  ],
+}
+`;
+
 exports[`collectFbt should dedupe fbt:plurals 1`] = `
 Object {
   "childParentMappings": Object {},

@@ -83,12 +83,14 @@ export interface IFbtCollector {
 
 class FbtCollector implements IFbtCollector {
   _phrases: Array<PackagerPhrase>;
+  _childParentMappings: ChildParentMappings;
   _errors: Errors;
   _extraOptions: FbtExtraOptionConfig;
   _config: CollectorConfig;
 
   constructor(config: CollectorConfig, extraOptions: FbtExtraOptionConfig) {
     this._phrases = [];
+    this._childParentMappings = {};
     this._errors = {};
     this._extraOptions = extraOptions;
     this._config = config;
@@ -134,6 +136,14 @@ class FbtCollector implements IFbtCollector {
       newPhrases = extractEnumsAndFlattenPhrases(newPhrases);
     }
 
+    const newChildParentMappings = fbt.getChildToParentRelationships();
+    const offset = this._phrases.length;
+    Object.entries(newChildParentMappings).forEach(
+      ([childIndex, parentIndex]) => {
+        this._childParentMappings[offset + +childIndex] = offset + parentIndex;
+      },
+    );
+
     // PackagerPhrase is an extended type of Phrase
     // $FlowExpectedError[prop-missing] ignore missing hashToLeaf issue
     this._phrases.push(...(newPhrases: Array<PackagerPhrase>));
@@ -162,7 +172,7 @@ class FbtCollector implements IFbtCollector {
   }
 
   getChildParentMappings(): ChildParentMappings {
-    return fbt.getChildToParentRelationships();
+    return this._childParentMappings;
   }
 
   getErrors(): Errors {

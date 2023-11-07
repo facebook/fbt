@@ -13,6 +13,7 @@ const {
   getFbtCollector,
   getPackagers,
 } = require('../collectFbtUtils');
+const fs = require('graceful-fs');
 const path = require('path');
 const fbtCommonPath = path.resolve(__dirname, 'FbtCommonForTests.json');
 
@@ -32,7 +33,13 @@ describe('collectFbt', () => {
       packager,
       path.join(__dirname, '../md5Texts'),
     );
-    fbtCollector.collectFromOneFile(source);
+    if (options.multipleFiles) {
+      fs.hasOwnProperty = () => Object.hasOwnProperty; // For jest.spyOn
+      jest.spyOn(fs, 'readFileSync').mockImplementation(path => source[path]);
+      fbtCollector.collectFromFiles(Object.keys(source));
+    } else {
+      fbtCollector.collectFromOneFile(source);
+    }
     const output = buildCollectFbtOutput(fbtCollector, packagers, {
       terse: options.terse,
       genFbtNodes: options.genFbtNodes,
@@ -42,17 +49,21 @@ describe('collectFbt', () => {
   }
 
   it('should extract fbt strings', () => {
-    var res = collect('const fbt = require(\'fbt\');<fbt desc="foo">bar</fbt>');
+    const res = collect(
+      'const fbt = require(\'fbt\');<fbt desc="foo">bar</fbt>',
+    );
     expect(res).toMatchSnapshot();
   });
 
   it('should extract fbs strings', () => {
-    var res = collect('const fbs = require(\'fbs\');<fbs desc="foo">bar</fbs>');
+    const res = collect(
+      'const fbs = require(\'fbs\');<fbs desc="foo">bar</fbs>',
+    );
     expect(res).toMatchSnapshot();
   });
 
   it('should extract the author from Docblock', () => {
-    var res = collect(
+    const res = collect(
       [
         '// @fbt {"project": "someproject", "author": "Sponge Bob"}',
         "const fbt = require('fbt');",
@@ -63,7 +74,7 @@ describe('collectFbt', () => {
   });
 
   it('should still extract strings if file-level doNotExtract is set to false', () => {
-    var res = collect(
+    const res = collect(
       [
         '// @fbt {"project": "someproject", "doNotExtract": false}',
         "const fbt = require('fbt');",
@@ -74,7 +85,7 @@ describe('collectFbt', () => {
   });
 
   it('should not extract strings if file-level doNotExtract is set to true', () => {
-    var res = collect(
+    const res = collect(
       [
         '// @fbt {"project": "someproject", "doNotExtract": true}',
         "const fbt = require('fbt');",
@@ -86,7 +97,7 @@ describe('collectFbt', () => {
   });
 
   it('should still extract strings when in-line doNotExtract is set to false despite the file-level has doNotExtract set to true', () => {
-    var res = collect(
+    const res = collect(
       [
         '// @fbt {"project": "someproject", "doNotExtract": true}',
         "const fbt = require('fbt');",
@@ -98,7 +109,7 @@ describe('collectFbt', () => {
   });
 
   it('should still extract strings if in-line doNotExtract is set to false', () => {
-    var res = collect(
+    const res = collect(
       [
         "const fbt = require('fbt');",
         '<fbt desc="foo" doNotExtract="false">bar</fbt>',
@@ -109,7 +120,7 @@ describe('collectFbt', () => {
   });
 
   it('should not extract strings if in-line doNotExtract is set to true', () => {
-    var res = collect(
+    const res = collect(
       [
         "const fbt = require('fbt');",
         '<fbt desc="foo" doNotExtract="true">bar</fbt>',
@@ -120,7 +131,7 @@ describe('collectFbt', () => {
   });
 
   it('should still extract strings if fbt call param doNotExtract is set to false', () => {
-    var res = collect(
+    const res = collect(
       [
         "const fbt = require('fbt');",
         'fbt("bar", "foo", {doNotExtract: false});',
@@ -131,7 +142,7 @@ describe('collectFbt', () => {
   });
 
   it('should not extract strings if fbt call param doNotExtract is set to true', () => {
-    var res = collect(
+    const res = collect(
       [
         "const fbt = require('fbt');",
         'fbt("bar", "foo", {doNotExtract: true});',
@@ -142,7 +153,7 @@ describe('collectFbt', () => {
   });
 
   it('should not throw because of CSX', () => {
-    var res = collect(
+    const res = collect(
       [
         "const fbt = require('fbt');",
         '/**@csx*/',
@@ -155,7 +166,7 @@ describe('collectFbt', () => {
   });
 
   it('should extract common strings from <fbt common={true}>', () => {
-    var res = collect(`
+    const res = collect(`
       const fbt = require('fbt');
       <fbt common={true}>Required</fbt>;
     `);
@@ -164,7 +175,7 @@ describe('collectFbt', () => {
   });
 
   it('should extract fbt.c strings', () => {
-    var res = collect(`
+    const res = collect(`
       const fbt = require('fbt');
       fbt.c('Required');
     `);
@@ -173,7 +184,7 @@ describe('collectFbt', () => {
   });
 
   it('should dedupe fbt:plurals', () => {
-    var res = collect(
+    const res = collect(
       [
         `const fbt = require('fbt');`,
         `<fbt desc="desc...">`,
@@ -280,7 +291,7 @@ describe('collectFbt', () => {
   });
 
   it('should throw on invalid template use', () => {
-    var test = () =>
+    const test = () =>
       collect(
         [
           "const fbt = require('fbt');",
@@ -336,6 +347,32 @@ describe('collectFbt', () => {
           <i>see the world</i>
         </fbt>`,
         {},
+      ),
+    ).toMatchSnapshot();
+  });
+
+  it('should create correct child parent mapping for multiple files', () => {
+    expect(
+      collect(
+        {
+          'example1.react.js': `
+            const fbt = require('fbt');
+            <fbt desc="some desc">
+              This is a{' '}
+              <b>
+                bold with <i>italic inside</i>
+              </b>.
+            </fbt>`,
+          './example2.react.js.in': `
+            const fbt = require('fbt');
+            <fbt desc="some desc">
+              Link:
+              <a href="https://somewhere.random">link</a>
+            </fbt>`,
+        },
+        {
+          multipleFiles: true,
+        },
       ),
     ).toMatchSnapshot();
   });
