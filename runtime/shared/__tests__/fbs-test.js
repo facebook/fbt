@@ -26,9 +26,9 @@ describe('fbs', () => {
     const fbsText: Fbs = <fbs desc="something">blah</fbs>;
 
     // Fbs should be a subtype of Fbt
-    (fbsText: Fbt);
+    fbsText as Fbt;
     // $FlowExpectedError[incompatible-cast] Fbt isn't a a subtype of Fbs
-    (fbtText: Fbs);
+    fbtText as Fbs;
   });
 
   describe('when using plain text contents', () => {

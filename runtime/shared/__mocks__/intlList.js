@@ -35,13 +35,13 @@ const intlList: JestMockFn<
   ) => items.join(conjunction || ','),
 );
 
-const CONJUNCTIONS = ((intlList: any).CONJUNCTIONS = {
+const CONJUNCTIONS = ((intlList as any).CONJUNCTIONS = {
   AND: '&',
   OR: '|',
   NONE: '',
 });
 
-const DELIMITERS = ((intlList: any).DELIMITERS = {
+const DELIMITERS = ((intlList as any).DELIMITERS = {
   COMMA: 'COMMA',
   SEMICOLON: 'SEMICOLON',
 });

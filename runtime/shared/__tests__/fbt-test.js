@@ -327,12 +327,12 @@ describe('fbt', () => {
 
   it('should have a return type compatible with the public Fbt type', () => {
     const fbtFunctionalResult = fbt('test', 'foo');
-    (fbtFunctionalResult: Fbt);
-    (fbtFunctionalResult: FbtWithoutString);
+    fbtFunctionalResult as Fbt;
+    fbtFunctionalResult as FbtWithoutString;
 
     const fbtJSXResult = <fbt desc="blah">test</fbt>;
-    (fbtJSXResult: Fbt);
-    (fbtJSXResult: FbtWithoutString);
+    fbtJSXResult as Fbt;
+    fbtJSXResult as FbtWithoutString;
   });
 
   it('should defer to FbtHooks.getTranslatedInput', () => {
@@ -448,7 +448,7 @@ describe('fbt', () => {
     // console.warn('getFbt = \n----\n%s\n----\n', getFbt + '');
 
     const combinations = {
-      viewers: ([
+      viewers: [
         {
           gender: IntlVariations.GENDER_MALE,
           name: 'Bob',
@@ -461,15 +461,15 @@ describe('fbt', () => {
           gender: IntlVariations.GENDER_UNKNOWN,
           name: 'Kim',
         },
-      ]: Array<{
+      ] as Array<{
         gender: IntlVariationsEnum,
         name: string,
-      }>),
-      ownerGenders: ([
+      }>,
+      ownerGenders: [
         'FEMALE_SINGULAR',
         'MALE_SINGULAR',
         'UNKNOWN_PLURAL',
-      ]: Array<$Keys<typeof GenderConst>>),
+      ] as Array<$Keys<typeof GenderConst>>,
       objects: ['photo', 'comment'],
       counts: [1, 10],
     };

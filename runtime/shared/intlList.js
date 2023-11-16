@@ -217,4 +217,4 @@ type IntlListExport = {|
 |};
 
 // $FlowFixMe[incompatible-exact]
-module.exports = (intlList: IntlListExport);
+module.exports = intlList as IntlListExport;

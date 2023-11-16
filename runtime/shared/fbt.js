@@ -200,7 +200,7 @@ function fbtCallsite(
   } else {
     const fbtContent = substituteTokens(patternString, allSubstitutions);
     // Use this._wrapContent voluntarily so that it can be overwritten in fbs.js
-    const result = (this._wrapContent: typeof wrapContent)(
+    const result = (this._wrapContent as typeof wrapContent)(
       // $FlowFixMe[incompatible-call]
       fbtContent,
       patternString,
@@ -497,4 +497,4 @@ fbt._getCachedFbt = __DEV__
   : undefined;
 
 // Use $-FlowFixMe instead of $-FlowExpectedError since fbsource doesn't use the latter
-module.exports = ((fbt: $FlowFixMe): $FbtFunctionAPI);
+module.exports = fbt as $FlowFixMe as $FbtFunctionAPI;

@@ -41,7 +41,7 @@ export const PUNCT_CHAR_CLASS = ('[.!?' +
   '\u1801' + // Mongolian ellipsis
   '\u0E2F' + // Thai ellipsis
   '\uFF0E' + // Fullwidth full stop
-  ']': string);
+  ']') as string;
 
 type Rules = $ReadOnlyArray<[RegExp, (string => string) | string]>;
 

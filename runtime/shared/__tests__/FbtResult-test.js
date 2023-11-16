@@ -49,11 +49,11 @@ describe('FbtResult', function () {
     obj1 = new FbtResult(['prefix'], errorListener);
 
     // $FlowExpectedError[incompatible-cast]
-    const stringable = ({
+    const stringable = {
       toString() {
         return 'stringable';
       },
-    }: $FbtContentItem);
+    } as $FbtContentItem;
 
     obj3 = new FbtResult([obj1, 'content', stringable], errorListener);
     expect(
