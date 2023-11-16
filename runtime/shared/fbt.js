@@ -201,7 +201,6 @@ function fbtCallsite(
     const fbtContent = substituteTokens(patternString, allSubstitutions);
     // Use this._wrapContent voluntarily so that it can be overwritten in fbs.js
     const result = this._wrapContent(
-      // $FlowFixMe[incompatible-call]
       fbtContent,
       patternString,
       patternHash,
