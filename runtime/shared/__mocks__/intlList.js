@@ -35,13 +35,15 @@ const intlList: JestMockFn<
   ) => items.join(conjunction || ','),
 );
 
-const CONJUNCTIONS = ((intlList as any).CONJUNCTIONS = {
+// $FlowFixMe[prop-missing]
+const CONJUNCTIONS = (intlList.CONJUNCTIONS = {
   AND: '&',
   OR: '|',
   NONE: '',
 });
 
-const DELIMITERS = ((intlList as any).DELIMITERS = {
+// $FlowFixMe[prop-missing]
+const DELIMITERS = (intlList.DELIMITERS = {
   COMMA: 'COMMA',
   SEMICOLON: 'SEMICOLON',
 });

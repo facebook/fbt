@@ -14,10 +14,9 @@
  * @oncall i18n_fbt_js
  */
 
-const REACT_ELEMENT_TYPE = ((typeof Symbol === 'function' &&
-  Symbol.for &&
-  Symbol.for('react.element')) ||
-  0xeac7) as symbol | $TEMPORARY$number<0xeac7>;
+const REACT_ELEMENT_TYPE: symbol | 0xeac7 =
+  (typeof Symbol === 'function' && Symbol.for && Symbol.for('react.element')) ||
+  0xeac7;
 
 let canDefineProperty = false;
 if (__DEV__) {

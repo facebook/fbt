@@ -31,7 +31,8 @@ import IntlRedundantStops from 'IntlRedundantStops';
  * Regular expression snippet containing all the characters that we
  * count as sentence-final punctuation.
  */
-export const PUNCT_CHAR_CLASS = ('[.!?' +
+export const PUNCT_CHAR_CLASS: string =
+  '[.!?' +
   '\u3002' + // Chinese/Japanese period
   '\uFF01' + // Fullwidth exclamation point
   '\uFF1F' + // Fullwidth question mark
@@ -41,7 +42,7 @@ export const PUNCT_CHAR_CLASS = ('[.!?' +
   '\u1801' + // Mongolian ellipsis
   '\u0E2F' + // Thai ellipsis
   '\uFF0E' + // Fullwidth full stop
-  ']') as string;
+  ']';
 
 type Rules = $ReadOnlyArray<[RegExp, (string => string) | string]>;
 

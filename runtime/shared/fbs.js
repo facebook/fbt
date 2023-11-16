@@ -80,5 +80,7 @@ const FbsImpl = {
   },
 };
 
-// Use $-FlowFixMe instead of $-FlowExpectedError since fbsource doesn't use the latter
-module.exports = FbsImpl as $FlowFixMe as $FbsFunctionAPI;
+// $FlowFixMe[incompatible-type]
+// $FlowFixMe[prop-missing]
+const out: $FbsFunctionAPI = FbsImpl;
+module.exports = out;

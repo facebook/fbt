@@ -169,4 +169,6 @@ class FbtResultBase implements IFbtResultBase {
   /* eslint-enable fb-www/should-use-class */
 });
 
-module.exports = FbtResultBase as $FlowFixMe as Class<$FbtResultBase>;
+// $FlowFixMe[incompatible-type]
+const out: Class<$FbtResultBase> = FbtResultBase;
+module.exports = out;

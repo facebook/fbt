@@ -327,12 +327,12 @@ describe('fbt', () => {
 
   it('should have a return type compatible with the public Fbt type', () => {
     const fbtFunctionalResult = fbt('test', 'foo');
-    fbtFunctionalResult as Fbt;
-    fbtFunctionalResult as FbtWithoutString;
+    const test1: Fbt = fbtFunctionalResult;
+    const test2: FbtWithoutString = fbtFunctionalResult;
 
     const fbtJSXResult = <fbt desc="blah">test</fbt>;
-    fbtJSXResult as Fbt;
-    fbtJSXResult as FbtWithoutString;
+    const test3: Fbt = fbtJSXResult;
+    const test4: FbtWithoutString = fbtJSXResult;
   });
 
   it('should defer to FbtHooks.getTranslatedInput', () => {
@@ -447,7 +447,15 @@ describe('fbt', () => {
     // DEBUG: show the babel-plugin-fbt transform output
     // console.warn('getFbt = \n----\n%s\n----\n', getFbt + '');
 
-    const combinations = {
+    const combinations: {
+      viewers: Array<{
+        gender: IntlVariationsEnum,
+        name: string,
+      }>,
+      ownerGenders: Array<$Keys<typeof GenderConst>>,
+      objects: Array<'photo' | 'comment'>,
+      counts: Array<number>,
+    } = {
       viewers: [
         {
           gender: IntlVariations.GENDER_MALE,
@@ -461,15 +469,8 @@ describe('fbt', () => {
           gender: IntlVariations.GENDER_UNKNOWN,
           name: 'Kim',
         },
-      ] as Array<{
-        gender: IntlVariationsEnum,
-        name: string,
-      }>,
-      ownerGenders: [
-        'FEMALE_SINGULAR',
-        'MALE_SINGULAR',
-        'UNKNOWN_PLURAL',
-      ] as Array<$Keys<typeof GenderConst>>,
+      ],
+      ownerGenders: ['FEMALE_SINGULAR', 'MALE_SINGULAR', 'UNKNOWN_PLURAL'],
       objects: ['photo', 'comment'],
       counts: [1, 10],
     };

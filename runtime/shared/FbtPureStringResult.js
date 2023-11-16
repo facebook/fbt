@@ -21,4 +21,5 @@ const FbtResult = require('FbtResult');
 class FbtPureStringResultImpl extends FbtResult {}
 
 // $FlowExpectedError Force exported type to match FbtPureStringResult from the fbt.js libdef
-module.exports = FbtPureStringResultImpl as Class<FbtPureStringResult>;
+const out: Class<FbtPureStringResult> = FbtPureStringResultImpl;
+module.exports = out;
