@@ -23,8 +23,8 @@ const GenderConst = require('GenderConst');
 // in jest tests. We might need to move these modules inside beforeEach().
 // These ones can stay here for now since they have a consistent behavior across this test suite.
 const IntlVariations = require('IntlVariations');
-const ReactDOMLegacy_DEPRECATED = require('ReactDOMLegacy_DEPRECATED');
 
+const {render} = require('@testing-library/react');
 const invariant = require('invariant');
 const React = require('react');
 
@@ -177,24 +177,12 @@ describe('fbt', () => {
     ).toEqual('A total amount is 10000');
   });
 
-  function renderAndExtractChildDivs(component: React.Node) {
-    const node = ReactDOMLegacy_DEPRECATED.findDOMNode(
-      // $FlowFixMe[incompatible-call]
-      ReactDOMLegacy_DEPRECATED.render(component, domContainer),
-    );
-    // flow thinks ReactDOM.findDOMNode can return a type of Text...
-    invariant(node instanceof Element, 'Expected node to be an Element');
-    const resultingElements = node.getElementsByTagName('div');
-    // $FlowFixMe[method-unbinding] added when improving typing for this parameters
-    return Array.prototype.slice.call(resultingElements, 0);
-  }
-
   it('should not warn when unkeyed React components are params', function () {
     jest.spyOn(console, 'warn').mockImplementation(() => {});
-    const nodes = renderAndExtractChildDivs(
+    const {container} = render(
       <TestComponent childA={<div />} childB={<div />} value="A" />,
     );
-    expect(nodes.length).toBe(2);
+    expect(container.children[0].getElementsByTagName('div').length).toBe(2);
     /* $FlowFixMe[prop-missing] (>=0.99.0 site=www) This comment suppresses an
      * error found when Flow v0.99 was deployed. To see the error delete this
      * comment and run Flow. */
@@ -205,19 +193,21 @@ describe('fbt', () => {
     setA: React.MixedElement,
     setB: React.MixedElement,
   ) {
-    const nodesA = renderAndExtractChildDivs(
+    const {container: containerA} = render(
       <TestComponent childA={setA} childB={setB} value="A" />,
     );
-    const nodesB = renderAndExtractChildDivs(
+    const nodeA = containerA.children[0];
+    const {container: containerB} = render(
       <TestComponent childA={setA} childB={setB} value="B" />,
     );
+    const nodeB = containerB.children[0];
 
-    expect(nodesA.length).toBe(2);
-    expect(nodesB.length).toBe(2);
+    expect(nodeA.getElementsByTagName('div').length).toBe(2);
+    expect(nodeB.getElementsByTagName('div').length).toBe(2);
 
     // Expect the child nodes be the same instances as before, only reordered.
-    expect(nodesA[0]).toBe(nodesB[1]);
-    expect(nodesA[1]).toBe(nodesB[0]);
+    expect(nodeA.children[0].innerHTML).toBe(nodeB.children[1].innerHTML);
+    expect(nodeA.children[1].innerHTML).toBe(nodeB.children[0].innerHTML);
   }
 
   it('should retain React identity when sentence order changes', function () {
