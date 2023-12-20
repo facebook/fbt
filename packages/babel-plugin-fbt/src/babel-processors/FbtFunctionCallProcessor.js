@@ -770,6 +770,7 @@ class FbtFunctionCallProcessor {
    * I.e. Options whose value is `false` or nullish will be skipped.
    */
   _getSharedPhraseOptions({options: fbtElementOptions}: FbtElementNode): {|
+    // $FlowFixMe[deprecated-type]
     ...$ObjMap<FbtElementNodeNativeOptions, <T>(T) => ?T>,
     project: string,
   |} {

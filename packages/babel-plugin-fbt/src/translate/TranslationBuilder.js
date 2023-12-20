@@ -522,6 +522,7 @@ function _createMemoizedConstraintMapGetter(
   }.bind(instance);
 }
 
+// $FlowFixMe[deprecated-type]
 function _shouldStore(branch: TranslationTree): boolean %checks {
   return (
     branch != null &&

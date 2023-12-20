@@ -50,6 +50,7 @@ const ShowCount = {
   ifMany: true,
 };
 
+// $FlowFixMe[deprecated-type]
 const ShowCountKeys: $ObjMapi<typeof ShowCount, <K>(K) => K> =
   // $FlowFixMe[prop-missing]
   keyMirror(ShowCount);

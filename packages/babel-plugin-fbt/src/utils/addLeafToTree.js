@@ -81,14 +81,18 @@ function addLeafToTree<V, T: {...}>(
   keys.forEach((key, index) => {
     const isLast = index === keys.length - 1;
     invariant(
+      // $FlowFixMe[invalid-computed-prop]
       !isLast || branch[key] == null,
       'Overwriting an existing tree leaf is not allowed. keys=`%s`',
       JSON.stringify(keys),
     );
+    // $FlowFixMe[invalid-computed-prop]
     if (branch[key] == null) {
       // $FlowFixMe[prop-missing]
+      // $FlowFixMe[invalid-computed-prop]
       branch[key] = isLast ? leaf : {};
     }
+    // $FlowFixMe[invalid-computed-prop]
     branch = branch[key];
   });
 }
