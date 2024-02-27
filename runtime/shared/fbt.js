@@ -471,10 +471,7 @@ function disableJsonExportMode(): void {
   jsonExportMode = false;
 }
 
-// Must define this as a standalone function
-// because Flow doesn't support %check on as a class static method
-// $FlowFixMe[deprecated-type]
-function isFbtInstance(value: mixed): boolean %checks {
+function isFbtInstance(value: mixed): value is FbtResultBase {
   return value instanceof FbtResultBase;
 }
 
