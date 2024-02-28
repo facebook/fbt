@@ -471,7 +471,7 @@ function disableJsonExportMode(): void {
   jsonExportMode = false;
 }
 
-function isFbtInstance(value: mixed): value is FbtResultBase {
+function isFbtInstance(value: mixed): boolean {
   return value instanceof FbtResultBase;
 }
 
