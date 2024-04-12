@@ -256,6 +256,24 @@ describe('fbt', () => {
     });
   });
 
+  describe('when encountering missing params for token substitutions', () => {
+    it('should invoke onMissingParameterError error listener', () => {
+      const onMissingParameterError = jest.fn();
+      const errorListener = jest.fn().mockImplementation(() => ({
+        onMissingParameterError,
+      }));
+      require('FbtHooks').register({
+        errorListener,
+      });
+      const pattern = 'Just a {tokenName}';
+      fbtRuntime._(pattern, []);
+      expect(errorListener).toHaveBeenLastCalledWith({
+        translation: pattern,
+      });
+      expect(onMissingParameterError).toHaveBeenCalledWith([], 'tokenName');
+    });
+  });
+
   it('should replace QuickTranslation strings', function () {
     expect(
       fbtRuntime._(['This is a QT string', '8b0c31a270a324f26d2417a358106611']),

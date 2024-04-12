@@ -79,6 +79,7 @@ function markAsSafeForReact<T: MaybeReactComponent>(object: T): T {
 function substituteTokens<Arg: mixed>(
   template: string,
   args: {[paramName: string]: Arg, ...},
+  errorListener?: ?IFbtErrorListener,
 ): string | Array<string | Arg> {
   if (args == null) {
     return template;
@@ -97,17 +98,12 @@ function substituteTokens<Arg: mixed>(
     .replace(
       parameterRegexp,
       (_match: string, parameter: string, punctuation: string): string => {
-        if (__DEV__) {
-          invariant(
-            hasOwnProperty.call(args, parameter),
-            'Expected fbt parameter names (%s) to also contain `%s`',
-            Object.keys(args)
-              .map(paramName => `\`${paramName}\``)
-              .join(', '),
+        if (!hasOwnProperty.call(args, parameter)) {
+          errorListener?.onMissingParameterError?.(
+            Object.keys(args),
             parameter,
           );
         }
-        // TODO(T106260833) Log error when we cannot resolve all fbt parameters using FbtHooks
 
         const argument = args[parameter];
         if (argument != null && typeof argument === 'object') {

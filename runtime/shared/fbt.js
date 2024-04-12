@@ -198,7 +198,14 @@ function fbtCallsite(
   if (cachedFbt && !hasSubstitutions) {
     return cachedFbt;
   } else {
-    const fbtContent = substituteTokens(patternString, allSubstitutions);
+    const fbtContent = substituteTokens(
+      patternString,
+      allSubstitutions,
+      FbtHooks.getErrorListener?.({
+        translation: patternString,
+        hash: patternHash,
+      }),
+    );
     // Use this._wrapContent voluntarily so that it can be overwritten in fbs.js
     const result = this._wrapContent(
       fbtContent,

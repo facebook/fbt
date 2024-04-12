@@ -130,6 +130,11 @@ declare interface IFbtErrorListener {
    */
   +onStringSerializationError?: (content: $FbtContentItem) => void;
 
+  +onMissingParameterError?: (
+    providedParamNames: Array<string>,
+    missingParamName: string,
+  ) => void;
+
   +onStringMethodUsed?: (method: string) => void;
 }
 
