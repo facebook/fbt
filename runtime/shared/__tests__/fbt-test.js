@@ -118,6 +118,10 @@ describe('fbt', () => {
     expect(fbt(fbt.param('null_value', null), 'test')).toEqual('');
   });
 
+  it('should render empty string for undefined values', function () {
+    expect(fbt(fbt.param('undefined_value', undefined), 'test')).toEqual('');
+  });
+
   // React/fbt integration tests
   type Props = {
     value: string,

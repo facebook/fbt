@@ -111,7 +111,7 @@ function substituteTokens<Arg: mixed>(
           argNames.push(parameter);
           // End of Transmission Block sentinel marker
           return '\x17' + punctuation;
-        } else if (argument === null) {
+        } else if (argument == null) {
           return '';
         }
         return String(argument) + dedupeStops(String(argument), punctuation);
