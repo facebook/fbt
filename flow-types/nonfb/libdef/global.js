@@ -9,15 +9,16 @@
 // eslint-disable-next-line fb-www/check-dev-condition
 declare var __DEV__: boolean;
 
-// Augmented definition from: https://github.com/facebook/flow/blob/master/lib/react.js#L8-L20
+// Augmented definition from: https://github.com/facebook/flow/blob/main/lib/react.js#L15-L23
 declare type React$Node =
+  | void
   | null
   | boolean
   | number
   | string
   | React$Element<any>
   | React$Portal
-  | Iterable<?React$Node>
   | FbtElement
   | FbtString
-  | FbtPureStringResult;
+  | FbtPureStringResult
+  | Iterable<React$Node>;

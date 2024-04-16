@@ -1,5 +1,7 @@
 /**
- * From https://github.com/flow-typed/flow-typed/blob/master/definitions/npm/jest_v24.x.x/flow_v0.104.x-/jest_v24.x.x.js
+ * Modified from https://raw.githubusercontent.com/flow-typed/flow-typed/master/definitions/npm/jest_v24.x.x/flow_v0.201.x-/jest_v24.x.x.js
+ * List of modifications:
+ * - Changed default generics for `jest.fn` from `mixed` to `any`
  *
  * @flow strict
  * @format
@@ -548,13 +550,36 @@ type JestExtendedMatchersType = {
   ...
 };
 
+// Diffing snapshot utility for Jest (snapshot-diff)
+// https://github.com/jest-community/snapshot-diff
+type SnapshotDiffType = {
+  /**
+   * Compare the difference between the actual in the `expect()`
+   * vs the object inside `valueB` with some extra options.
+   */
+  toMatchDiffSnapshot: (
+    valueB: any,
+    options?: {|
+      expand?: boolean,
+      colors?: boolean,
+      contextLines?: number,
+      stablePatchmarks?: boolean,
+      aAnnotation?: string,
+      bAnnotation?: string,
+    |},
+    testName?: string,
+  ) => void,
+  ...
+};
+
 interface JestExpectType {
   not: JestExpectType &
     EnzymeMatchersType &
     DomTestingLibraryType &
     JestJQueryMatchersType &
     JestStyledComponentsMatchersType &
-    JestExtendedMatchersType;
+    JestExtendedMatchersType &
+    SnapshotDiffType;
   /**
    * If you have a mock function, you can use .lastCalledWith to test what
    * arguments it was last called with.
@@ -795,7 +820,7 @@ type JestObjectType = {
    * Returns a new, unused mock function. Optionally takes a mock
    * implementation.
    */
-  fn: <TArguments: $ReadOnlyArray<any>, TReturn>(
+  fn: <TArguments: $ReadOnlyArray<mixed> = $ReadOnlyArray<any>, TReturn = any>(
     implementation?: (...args: TArguments) => TReturn,
   ) => JestMockFn<TArguments, TReturn>,
   /**
@@ -916,7 +941,7 @@ type JestObjectType = {
 type JestSpyType = {calls: JestCallsType, ...};
 
 type JestDoneFn = {|
-  (): void,
+  (error?: Error): void,
   fail: (error: Error) => void,
 |};
 
@@ -1096,7 +1121,10 @@ type JestPrettyFormatColors = {
 };
 
 type JestPrettyFormatIndent = string => string;
+type JestPrettyFormatRefs = Array<any>;
 type JestPrettyFormatPrint = any => string;
+type JestPrettyFormatStringOrNull = string | null;
+
 type JestPrettyFormatOptions = {|
   callToJSON: boolean,
   edgeSpacing: string,
@@ -1142,7 +1170,8 @@ declare var expect: {
     DomTestingLibraryType &
     JestJQueryMatchersType &
     JestStyledComponentsMatchersType &
-    JestExtendedMatchersType,
+    JestExtendedMatchersType &
+    SnapshotDiffType,
   /** Add additional Jasmine matchers to Jest's roster */
   extend(matchers: {[name: string]: JestMatcher, ...}): void,
   /** Add a module that formats application-specific data structures. */
