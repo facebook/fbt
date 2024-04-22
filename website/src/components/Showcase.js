@@ -9,12 +9,12 @@
  * @oncall i18n_fbt_js
  */
 
-import React from 'react';
-import classnames from 'classnames';
-import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from '../pages/styles.module.css';
+import Link from '@docusaurus/Link';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import classnames from 'classnames';
+import React from 'react';
 
 const Showcase = ({showAll = false}) => {
   const {siteConfig = {}} = useDocusaurusContext();

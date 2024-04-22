@@ -9,20 +9,19 @@
  * @oncall i18n_fbt_js
  */
 
-import React from "react";
-import Layout from "@theme/Layout";
-import Link from "@docusaurus/Link";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import useBaseUrl from "@docusaurus/useBaseUrl";
+import Link from '@docusaurus/Link';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import Layout from '@theme/Layout';
+import React from 'react';
 
 const Help = () => {
   const context = useDocusaurusContext();
-  const { siteConfig = {} } = context;
+  const {siteConfig = {}} = context;
   return (
     <Layout
       title={`${siteConfig.title} - ${siteConfig.tagline}`}
-      description={siteConfig.tagline}
-    >
+      description={siteConfig.tagline}>
       <div className="container">
         <div className="row">
           <div className="col col--6 col--offset-3 padding-vert--lg">
@@ -31,24 +30,23 @@ const Help = () => {
 
             <h2>Browse Docs</h2>
             <p>
-              Learn more using the{" "}
-              <Link to={useBaseUrl("docs/getting_started_on_web")}>
+              Learn more using the{' '}
+              <Link to={useBaseUrl('docs/getting_started_on_web')}>
                 documentation on this site.
               </Link>
             </p>
 
             <h2>Join the community</h2>
             <p>
-              Join us in our{" "}
-              <a href={useBaseUrl("https://discord.gg/cQvXZr5")}>
+              Join us in our{' '}
+              <a href={useBaseUrl('https://discord.gg/cQvXZr5')}>
                 Discord channel
-              </a>{" "}
-              and our{" "}
+              </a>{' '}
+              and our{' '}
               <a
                 href={useBaseUrl(
-                  "https://www.facebook.com/groups/498204277369868/"
-                )}
-              >
+                  'https://www.facebook.com/groups/498204277369868/',
+                )}>
                 Facebook group
               </a>
               . Ask questions about the documentation and project
@@ -56,9 +54,9 @@ const Help = () => {
 
             <h2>Stay up to date</h2>
             <p>
-              Find out what's new with this project by following{" "}
-              <a href={useBaseUrl("https://fb.me/sjtbf")}>our page</a> or{" "}
-              <a href={useBaseUrl("https://twitter.com/fbt_js")}>our Twitter</a>
+              Find out what's new with this project by following{' '}
+              <a href={useBaseUrl('https://fb.me/sjtbf')}>our page</a> or{' '}
+              <a href={useBaseUrl('https://twitter.com/fbt_js')}>our Twitter</a>
             </p>
           </div>
         </div>
