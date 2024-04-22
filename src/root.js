@@ -8,9 +8,10 @@
 
 import './css/root.css';
 import Example from './example/Example.react';
-import 'normalize.css';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+
+import 'normalize.css';
 
 const root = document.getElementById('root');
 
