@@ -61,6 +61,10 @@ List of changes for each released npm package version.
 
 </details>
 
+- 1.0.2
+  - [fix] Introduced `onMissingParameterError` error listener for reporting when `substituteTokens` encounters a missing parameter, instead of throwing if `__DEV__` was truthy
+  - [fix] When a parameter value is `undefined`, render empty string instead of the string `"undefiend"` (i.e. match behavior for when parameter value is `null`)
+
 - 1.0.1:
   - [chore] Make it compatible with React 18 (and any `>=0.12.0`).
 

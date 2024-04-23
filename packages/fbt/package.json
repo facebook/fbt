@@ -3,7 +3,7 @@
   "name": "fbt",
   "description": "The fbt i18n framework JS runtime.",
   "//version": "Follow SemVer specs at https://semver.org/",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "keywords": [
     "facebook",
     "fbt",
