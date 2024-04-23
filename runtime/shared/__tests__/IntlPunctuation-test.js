@@ -118,6 +118,7 @@ describe('IntlPunctuation', function () {
       ],
     };
     for (const prefix in expected) {
+      // $FlowFixMe[invalid-computed-prop]
       for (const suffix of expected[prefix]) {
         const result = dedupeStops(prefix, suffix);
         expect({prefix, suffix, result}).toEqual({prefix, suffix, result: ''});

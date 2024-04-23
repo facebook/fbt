@@ -113,6 +113,7 @@ export function applyPhonologicalRules(text: string): string {
  */
 const _normalizedStops = new Map<$FlowFixMe | string, string>();
 for (const norm in IntlRedundantStops.equivalencies) {
+  // $FlowFixMe[invalid-computed-prop]
   for (const eq of [norm].concat(IntlRedundantStops.equivalencies[norm])) {
     _normalizedStops.set(eq, norm);
   }
@@ -120,6 +121,7 @@ for (const norm in IntlRedundantStops.equivalencies) {
 
 const _redundancies = new Map<?string, Set<?string>>();
 for (const prefix in IntlRedundantStops.redundancies) {
+  // $FlowFixMe[invalid-computed-prop]
   _redundancies.set(prefix, new Set(IntlRedundantStops.redundancies[prefix]));
 }
 
