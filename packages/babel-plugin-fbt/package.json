@@ -51,8 +51,5 @@
     "prepack": "gulp --series clean build",
     "publish_to_npm_latest": "yarn publish . && git push --tags && git push",
     "watch": "gulp watch"
-  },
-  "peerDependencies": {
-    "@fbtjs/default-collection-transform": "^1.0.0"
   }
 }
