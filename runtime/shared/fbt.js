@@ -176,7 +176,6 @@ function fbtCallsite(
     // Append '1_' for appid's prepended to our i18n hash
     // (see intl_get_application_id)
     const stringID = '1_' + patternHash;
-    // $FlowFixMe[invalid-computed-prop]
     if (overrides[stringID] != null && overrides[stringID] !== '') {
       patternString = overrides[stringID];
       FbtHooks.onTranslationOverride(patternHash);
