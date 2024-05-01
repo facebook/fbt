@@ -123,12 +123,12 @@ describe('fbt', () => {
   });
 
   // React/fbt integration tests
-  type Props = {
+  type Props = $ReadOnly<{
     value: string,
     childA: mixed,
     childB: mixed,
     ...
-  };
+  }>;
 
   function _render(value: string, childA: mixed, childB: mixed) {
     // In theory, different enum values can result in different sentence
