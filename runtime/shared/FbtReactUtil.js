@@ -15,7 +15,9 @@
  */
 
 const REACT_ELEMENT_TYPE: symbol | 0xeac7 =
-  (typeof Symbol === 'function' && Symbol.for && Symbol.for('react.element')) ||
+  (typeof Symbol === 'function' &&
+    Symbol.for &&
+    Symbol.for('react.transitional.element')) ||
   0xeac7;
 
 let canDefineProperty = false;
