@@ -1,7 +1,7 @@
 # Global build-related files
 
-node_modules # @oss-only
-**/node_modules # @oss-only
+node_modules
+**/node_modules
 
 yarn-error.log
 .flow-results
@@ -33,11 +33,11 @@ live-demo-app/yarn-error.log
 # fbt runtime package
 packages/fbt/lib/**/*.js.flow
 packages/fbt/dist
-packages/fbt/lib # @oss-only
+packages/fbt/lib
 packages/fbt/LICENSE
 packages/fbt/node_modules/.bin/fbt-*
+packages/babel-plugin-fbt/dist/
 
 # documentation build artifacts
 website/build/
-website/node_modules
 website/.docusaurus
