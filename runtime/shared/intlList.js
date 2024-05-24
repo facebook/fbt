@@ -42,10 +42,11 @@ const DELIMITERS = {
 };
 
 const intlList = function <TItem: React.Node>(
-  items: $ReadOnlyArray<TItem>,
+  items_: $ReadOnlyArray<TItem>,
   conjunction: ?$Keys<typeof CONJUNCTIONS>,
   delimiter: ?$Keys<typeof DELIMITERS>,
 ): TItem | Fbt {
+  const items = items_.filter(Boolean);
   if (__DEV__) {
     items.forEach(function (item) {
       invariant(

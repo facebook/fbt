@@ -29,6 +29,9 @@ describe('intlList', () => {
   it('should handle an empty list', () => {
     expect(intlList([])).toBe('');
   });
+  it('should handle a list full of null/undefined items', () => {
+    expect(intlList([null, undefined])).toBe('');
+  });
   it('should handle a single item', () => {
     expect(intlList(['first'])).toBe('first');
   });
@@ -42,6 +45,11 @@ describe('intlList', () => {
   });
   it('should handle a bunch of items', () => {
     const items = ['1', '2', '3', '4', '5', '6', '7', '8'];
+    const result = intlList(items);
+    expect(result).toBe('1, 2, 3, 4, 5, 6, 7 and 8');
+  });
+  it('should handle a bunch of items, some of which are null/undefined', () => {
+    const items = ['1', '2', '3', '4', null, '5', undefined, '6', '7', '8'];
     const result = intlList(items);
     expect(result).toBe('1, 2, 3, 4, 5, 6, 7 and 8');
   });
