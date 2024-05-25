@@ -9,6 +9,7 @@
  * @noflow
  * @oncall i18n_fbt_js
  */
+
 'use strict';
 
 /* eslint fb-www/comma-dangle: "off" */
@@ -49,13 +50,14 @@ const getNamespacedArgs = function (moduleName) {
         RequiredParamOptions,
       );
 
-      let paramChildren = filterEmptyNodes(node.children).filter(function (
-        child,
-      ) {
-        return (
-          child.type === 'JSXExpressionContainer' || child.type === 'JSXElement'
-        );
-      });
+      let paramChildren = filterEmptyNodes(node.children).filter(
+        function (child) {
+          return (
+            child.type === 'JSXExpressionContainer' ||
+            child.type === 'JSXElement'
+          );
+        },
+      );
 
       // <fbt:param> </fbt:param>
       // should be the equivalent of

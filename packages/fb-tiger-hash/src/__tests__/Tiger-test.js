@@ -4,7 +4,9 @@
  * @format
  * @oncall i18n_fbt_js
  */
+
 'use strict';
+
 const Tiger = require('../Tiger');
 
 describe('Tiger hash', () => {
