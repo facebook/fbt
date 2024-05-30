@@ -42,7 +42,7 @@ type MaybeReactComponent = Partial<{
   type?: string,
   props?: {...},
   _store?: {
-    validated: boolean,
+    validated: boolean | number,
     ...
   },
   ...
@@ -63,10 +63,13 @@ function markAsSafeForReact<T: MaybeReactComponent>(object: T): T {
       object.type != '' &&
       typeof object.props === 'object' &&
       store != null &&
-      typeof store === 'object' &&
-      typeof store.validated === 'boolean'
+      typeof store === 'object'
     ) {
-      store.validated = true;
+      if (typeof store.validated === 'number') {
+        store.validated = 1;
+      } else if (typeof store.validated === 'boolean') {
+        store.validated = true;
+      }
     }
   }
   return object;
