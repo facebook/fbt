@@ -20,6 +20,8 @@ const FbtPureStringResult = require('FbtPureStringResult');
 const fbt = require('fbt');
 const invariant = require('invariant');
 
+const cachedFbsResults: {[patternStr: PatternString]: Fbt} = {};
+
 const FbsImpl = {
   ...fbt,
 
@@ -78,6 +80,7 @@ const FbsImpl = {
       patternString: translation,
     });
   },
+  cachedResults: cachedFbsResults,
 };
 
 // $FlowFixMe[incompatible-type]

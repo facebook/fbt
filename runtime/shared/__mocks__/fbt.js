@@ -132,4 +132,6 @@ fbt._.getCallString = index => unwrap(fbt._.mock.calls[index][0]);
   fbt[methodName] = fbtRuntime[methodName];
 });
 
+fbt.cachedResults = fbtRuntime.cachedResults;
+
 module.exports = fbt;

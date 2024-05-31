@@ -192,7 +192,8 @@ function fbtCallsite(
     );
   }
 
-  const cachedFbt = cachedFbtResults[patternString];
+  // eslint-disable-next-line fb-www/avoid-this-outside-classes
+  const cachedFbt = this.cachedResults[patternString];
   const hasSubstitutions = _hasKeys(allSubstitutions);
 
   if (cachedFbt && !hasSubstitutions) {
@@ -214,7 +215,8 @@ function fbtCallsite(
       options?.eo,
     );
     if (!hasSubstitutions) {
-      cachedFbtResults[patternString] = result;
+      // eslint-disable-next-line fb-www/avoid-this-outside-classes
+      this.cachedResults[patternString] = result;
     }
     return result;
   }
@@ -495,9 +497,14 @@ fbt._wrapContent = wrapContent;
 fbt.disableJsonExportMode = disableJsonExportMode;
 fbt.enableJsonExportMode = enableJsonExportMode;
 fbt.isFbtInstance = isFbtInstance;
+fbt.cachedResults = cachedFbtResults;
 
 fbt._getCachedFbt = __DEV__
-  ? (s: string): Fbt => cachedFbtResults[s]
+  ? // $FlowExpectedError[missing-this-annot]
+    function (s: string): Fbt {
+      // eslint-disable-next-line fb-www/avoid-this-outside-classes
+      return this.cachedResults[s];
+    }
   : undefined;
 
 // $FlowFixMe[incompatible-type]
