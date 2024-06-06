@@ -208,7 +208,7 @@ type $GenericFbtFunctionAPI<Input, Output, ParamInput, ParamOutput> = {
   ) => ParamOutput,
   enum: (
     value: string,
-    range: $ReadOnlyArray<string> | {[key: string]: string, ...},
+    range: $ReadOnlyArray<string> | $ReadOnly<{[key: string]: string, ...}>,
   ) => ParamOutput,
   name: (
     tokenName: string,
