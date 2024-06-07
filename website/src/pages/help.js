@@ -20,8 +20,8 @@ const Help = () => {
   const {siteConfig = {}} = context;
   return (
     <Layout
-      title={`${siteConfig.title} - ${siteConfig.tagline}`}
-      description={siteConfig.tagline}>
+      description={siteConfig.tagline}
+      title={`${siteConfig.title} - ${siteConfig.tagline}`}>
       <div className="container">
         <div className="row">
           <div className="col col--6 col--offset-3 padding-vert--lg">

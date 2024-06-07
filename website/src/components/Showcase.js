@@ -23,7 +23,7 @@ const Showcase = ({showAll = false}) => {
   const showcase = (showAll ? users : users.filter(user => user.pinned)).map(
     (user, i) => {
       return (
-        <a key={i} className={styles.showcaseLogo} href={user.infoUrl}>
+        <a className={styles.showcaseLogo} href={user.infoUrl} key={i}>
           <img src={useBaseUrl(user.imageUrl)} title={user.caption} />
         </a>
       );
