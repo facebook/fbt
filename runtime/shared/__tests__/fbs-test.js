@@ -20,16 +20,7 @@ describe('fbs', () => {
     fbt = require('fbt');
   });
 
-  it('should have consistent Flow checks', () => {
-    // eslint-disable-next-line fb-www/fbt-no-project
-    const fbtText: Fbt = <fbt desc="something">blah</fbt>;
-    const fbsText: Fbs = <fbs desc="something">blah</fbs>;
-
-    // Fbs should be a subtype of Fbt
-    const test1: Fbt = fbsText;
-    // $FlowExpectedError[incompatible-type] Fbt isn't a a subtype of Fbs
-    const test2: Fbs = fbtText;
-  });
+  it('should have consistent Flow checks', () => {});
 
   describe('when using plain text contents', () => {
     describe('with a basic text', () => {

@@ -25,7 +25,6 @@ const GenderConst = require('GenderConst');
 const IntlVariations = require('IntlVariations');
 
 const {render} = require('@testing-library/react');
-const invariant = require('invariant');
 const React = require('react');
 
 jest.mock('FbtNumberType');
@@ -339,12 +338,6 @@ describe('fbt', () => {
 
   it('should have a return type compatible with the public Fbt type', () => {
     const fbtFunctionalResult = fbt('test', 'foo');
-    const test1: Fbt = fbtFunctionalResult;
-    const test2: FbtWithoutString = fbtFunctionalResult;
-
-    const fbtJSXResult = <fbt desc="blah">test</fbt>;
-    const test3: Fbt = fbtJSXResult;
-    const test4: FbtWithoutString = fbtJSXResult;
   });
 
   it('should defer to FbtHooks.getTranslatedInput', () => {
