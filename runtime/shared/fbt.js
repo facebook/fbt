@@ -154,6 +154,7 @@ function fbtCallsite(
     args.unshift(FbtTableAccessor.getGenderResult(variation, null, GENDER));
   }
 
+  const tokens: Array<FbtTableKey> = [];
   if (args) {
     if (typeof pattern !== 'string') {
       // On mobile, table can be accessed at the native layer when fetching
@@ -180,7 +181,11 @@ function fbtCallsite(
       patternString = overrides[stringID];
       FbtHooks.onTranslationOverride(patternHash);
     }
-    FbtHooks.logImpression(patternHash);
+    const impressionOptions = {
+      inputTable,
+      tokens,
+    };
+    FbtHooks.logImpression(patternHash, impressionOptions);
   } else if (typeof pattern === 'string') {
     patternString = pattern;
   } else {

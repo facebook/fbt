@@ -8,6 +8,7 @@
 
 import type {
   FbtHookRegistrations,
+  FbtImpressionOptions,
   FbtResolvedPayload,
   FbtRuntimeCallInput,
   FbtTranslatedInput,
@@ -20,8 +21,8 @@ const FbtHooksImpl = {
     return _registrations.errorListener?.(context);
   },
 
-  logImpression(hash: string): void {
-    _registrations.logImpression?.(hash);
+  logImpression(hash: string, options?: FbtImpressionOptions): void {
+    _registrations.logImpression?.(hash, options);
   },
 
   onTranslationOverride(hash: string): void {

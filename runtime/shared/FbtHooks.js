@@ -81,6 +81,10 @@ export type FbtRuntimeCallInput = {
   options: ?FbtInputOpts,
   ...
 };
+export type FbtImpressionOptions = {
+  inputTable: FbtRuntimeInput,
+  tokens: Array<FbtTableKey>,
+};
 // TODO: T61015960 - getFb[st]Result should return types that are locked down
 export type FbtHookRegistrations = Partial<{|
   errorListener: ?(context: FbtErrorContext) => IFbtErrorListener,
@@ -88,7 +92,7 @@ export type FbtHookRegistrations = Partial<{|
   getFbtResult: (input: FbtResolvedPayload) => mixed,
   getTranslatedInput: ?(input: FbtRuntimeCallInput) => ?FbtTranslatedInput,
   getViewerContext: () => IntlViewerContext,
-  logImpression: ?(hash: string) => void,
+  logImpression: ?(hash: string, options?: FbtImpressionOptions) => void,
   onTranslationOverride: ?(hash: string) => void,
 |}>;
 
