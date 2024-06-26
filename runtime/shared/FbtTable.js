@@ -89,11 +89,13 @@ const FbtTable = {
    *
    * @param args      - fbt runtime arguments
    * @param argsIndex - argument index we're currently visiting
+   * @param tokens    - inout param. Array will populate the keys used to access the table
    */
   access(
     table: FbtRuntimeInput,
     args: FbtTableArgs,
     argsIndex: number,
+    tokens: Array<FbtTableKey>,
   ): ?PatternString | [PatternString, PatternHash] {
     if (argsIndex >= args.length) {
       // We've reached the end of our arguments at a valid entry, in which case
@@ -109,7 +111,7 @@ const FbtTable = {
     const tableIndices = arg[FbtTable.ARG.INDEX];
 
     if (tableIndices == null) {
-      return FbtTable.access(table, args, argsIndex + 1);
+      return FbtTable.access(table, args, argsIndex + 1, tokens);
     }
     invariant(
       typeof table !== 'string' && !Array.isArray(table),
@@ -122,7 +124,8 @@ const FbtTable = {
       if (subTable == null) {
         continue;
       }
-      const pattern = FbtTable.access(subTable, args, argsIndex + 1);
+      tokens.push(tableIndices[k]);
+      const pattern = FbtTable.access(subTable, args, argsIndex + 1, tokens);
       if (pattern != null) {
         return pattern;
       }
