@@ -29,7 +29,7 @@ class FbtResult extends FbtResultBase {
     FbtReactUtil.REACT_ELEMENT_TYPE;
   key: ?string = null;
   props: Props;
-  ref: ?React$Ref<React$ElementType> = null;
+  ref: ?React.Ref<React$ElementType> = null;
   type: (props: Props) => mixed = FbtResultComponent;
 
   constructor(

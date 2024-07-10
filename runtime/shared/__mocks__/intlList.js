@@ -15,7 +15,7 @@ const intlList: JestMockFn<
       |}>,
     > &
       any &
-      $ReadOnlyArray<React$Node> &
+      $ReadOnlyArray<React.Node> &
       ?$Keys<$TEMPORARY$object<{|AND: string, NONE: string, OR: string|}>>,
   >,
   string,
@@ -23,13 +23,13 @@ const intlList: JestMockFn<
   $ReadOnlyArray<
     ?$Keys<{COMMA: string, SEMICOLON: string}> &
       any &
-      $ReadOnlyArray<React$Node> &
+      $ReadOnlyArray<React.Node> &
       ?$Keys<{AND: string, NONE: string, OR: string}>,
   >,
   string,
 >(
   (
-    items: $ReadOnlyArray<React$Node>,
+    items: $ReadOnlyArray<React.Node>,
     conjunction: ?$Keys<typeof CONJUNCTIONS>,
     delimiter: ?$Keys<typeof DELIMITERS>,
   ) => items.join(conjunction || ','),
