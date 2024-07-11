@@ -21,8 +21,12 @@ const FbtHooksImpl = {
     return _registrations.errorListener?.(context);
   },
 
-  logImpression(hash: string, options?: FbtImpressionOptions): void {
-    _registrations.logImpression?.(hash, options);
+  logImpression(hash: string): void {
+    _registrations.logImpression?.(hash);
+  },
+
+  logImpressionWithJhashAndTokens(options: FbtImpressionOptions): void {
+    _registrations.logImpressionWithJhashAndTokens?.(options);
   },
 
   onTranslationOverride(hash: string): void {

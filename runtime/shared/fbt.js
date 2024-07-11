@@ -181,13 +181,16 @@ function fbtCallsite(
       patternString = overrides[stringID];
       FbtHooks.onTranslationOverride(patternHash);
     }
+
+    FbtHooks.logImpression(patternHash);
+  } else if (typeof pattern === 'string') {
+    patternString = pattern;
+
     const impressionOptions = {
       inputTable,
       tokens,
     };
-    FbtHooks.logImpression(patternHash, impressionOptions);
-  } else if (typeof pattern === 'string') {
-    patternString = pattern;
+    FbtHooks.logImpressionWithJhashAndTokens(impressionOptions);
   } else {
     throw new Error(
       'Table access did not result in string: ' +

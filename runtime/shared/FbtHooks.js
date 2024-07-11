@@ -92,7 +92,8 @@ export type FbtHookRegistrations = Partial<{|
   getFbtResult: (input: FbtResolvedPayload) => mixed,
   getTranslatedInput: ?(input: FbtRuntimeCallInput) => ?FbtTranslatedInput,
   getViewerContext: () => IntlViewerContext,
-  logImpression: ?(hash: string, options?: FbtImpressionOptions) => void,
+  logImpression: ?(hash: string) => void,
+  logImpressionWithJhashAndTokens: ?(options: FbtImpressionOptions) => void,
   onTranslationOverride: ?(hash: string) => void,
 |}>;
 
