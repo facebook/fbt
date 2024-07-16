@@ -1773,47 +1773,6 @@ type BabelNodeExpression =
   | BabelNodeTSAsExpression
   | BabelNodeTSTypeAssertion
   | BabelNodeTSNonNullExpression;
-type BabelNodeBinary = BabelNodeBinaryExpression | BabelNodeLogicalExpression;
-type BabelNodeScopable =
-  | BabelNodeBlockStatement
-  | BabelNodeCatchClause
-  | BabelNodeDoWhileStatement
-  | BabelNodeForInStatement
-  | BabelNodeForStatement
-  | BabelNodeFunctionDeclaration
-  | BabelNodeFunctionExpression
-  | BabelNodeProgram
-  | BabelNodeObjectMethod
-  | BabelNodeSwitchStatement
-  | BabelNodeWhileStatement
-  | BabelNodeArrowFunctionExpression
-  | BabelNodeClassExpression
-  | BabelNodeClassDeclaration
-  | BabelNodeForOfStatement
-  | BabelNodeClassMethod
-  | BabelNodeClassPrivateMethod
-  | BabelNodeTSModuleBlock;
-type BabelNodeBlockParent =
-  | BabelNodeBlockStatement
-  | BabelNodeCatchClause
-  | BabelNodeDoWhileStatement
-  | BabelNodeForInStatement
-  | BabelNodeForStatement
-  | BabelNodeFunctionDeclaration
-  | BabelNodeFunctionExpression
-  | BabelNodeProgram
-  | BabelNodeObjectMethod
-  | BabelNodeSwitchStatement
-  | BabelNodeWhileStatement
-  | BabelNodeArrowFunctionExpression
-  | BabelNodeForOfStatement
-  | BabelNodeClassMethod
-  | BabelNodeClassPrivateMethod
-  | BabelNodeTSModuleBlock;
-type BabelNodeBlock =
-  | BabelNodeBlockStatement
-  | BabelNodeProgram
-  | BabelNodeTSModuleBlock;
 type BabelNodeStatement =
   | BabelNodeBlockStatement
   | BabelNodeBreakStatement
@@ -1862,37 +1821,6 @@ type BabelNodeStatement =
   | BabelNodeTSImportEqualsDeclaration
   | BabelNodeTSExportAssignment
   | BabelNodeTSNamespaceExportDeclaration;
-type BabelNodeTerminatorless =
-  | BabelNodeBreakStatement
-  | BabelNodeContinueStatement
-  | BabelNodeReturnStatement
-  | BabelNodeThrowStatement
-  | BabelNodeYieldExpression
-  | BabelNodeAwaitExpression;
-type BabelNodeCompletionStatement =
-  | BabelNodeBreakStatement
-  | BabelNodeContinueStatement
-  | BabelNodeReturnStatement
-  | BabelNodeThrowStatement;
-type BabelNodeConditional =
-  | BabelNodeConditionalExpression
-  | BabelNodeIfStatement;
-type BabelNodeLoop =
-  | BabelNodeDoWhileStatement
-  | BabelNodeForInStatement
-  | BabelNodeForStatement
-  | BabelNodeWhileStatement
-  | BabelNodeForOfStatement;
-type BabelNodeWhile = BabelNodeDoWhileStatement | BabelNodeWhileStatement;
-type BabelNodeExpressionWrapper =
-  | BabelNodeExpressionStatement
-  | BabelNodeParenthesizedExpression
-  | BabelNodeTypeCastExpression;
-type BabelNodeFor =
-  | BabelNodeForInStatement
-  | BabelNodeForStatement
-  | BabelNodeForOfStatement;
-type BabelNodeForXStatement = BabelNodeForInStatement | BabelNodeForOfStatement;
 type BabelNodeFunction =
   | BabelNodeFunctionDeclaration
   | BabelNodeFunctionExpression
@@ -1900,50 +1828,6 @@ type BabelNodeFunction =
   | BabelNodeArrowFunctionExpression
   | BabelNodeClassMethod
   | BabelNodeClassPrivateMethod;
-type BabelNodeFunctionParent =
-  | BabelNodeFunctionDeclaration
-  | BabelNodeFunctionExpression
-  | BabelNodeObjectMethod
-  | BabelNodeArrowFunctionExpression
-  | BabelNodeClassMethod
-  | BabelNodeClassPrivateMethod;
-type BabelNodePureish =
-  | BabelNodeFunctionDeclaration
-  | BabelNodeFunctionExpression
-  | BabelNodeStringLiteral
-  | BabelNodeNumericLiteral
-  | BabelNodeNullLiteral
-  | BabelNodeBooleanLiteral
-  | BabelNodeRegExpLiteral
-  | BabelNodeArrowFunctionExpression
-  | BabelNodeBigIntLiteral;
-type BabelNodeDeclaration =
-  | BabelNodeFunctionDeclaration
-  | BabelNodeVariableDeclaration
-  | BabelNodeClassDeclaration
-  | BabelNodeExportAllDeclaration
-  | BabelNodeExportDefaultDeclaration
-  | BabelNodeExportNamedDeclaration
-  | BabelNodeImportDeclaration
-  | BabelNodeDeclareClass
-  | BabelNodeDeclareFunction
-  | BabelNodeDeclareInterface
-  | BabelNodeDeclareModule
-  | BabelNodeDeclareModuleExports
-  | BabelNodeDeclareTypeAlias
-  | BabelNodeDeclareOpaqueType
-  | BabelNodeDeclareVariable
-  | BabelNodeDeclareExportDeclaration
-  | BabelNodeDeclareExportAllDeclaration
-  | BabelNodeInterfaceDeclaration
-  | BabelNodeOpaqueType
-  | BabelNodeTypeAlias
-  | BabelNodeEnumDeclaration
-  | BabelNodeTSDeclareFunction
-  | BabelNodeTSInterfaceDeclaration
-  | BabelNodeTSTypeAliasDeclaration
-  | BabelNodeTSEnumDeclaration
-  | BabelNodeTSModuleDeclaration;
 type BabelNodePatternLike =
   | BabelNodeIdentifier
   | BabelNodeRestElement
@@ -1959,62 +1843,19 @@ type BabelNodeLVal =
   | BabelNodeObjectPattern
   | BabelNodeTSParameterProperty;
 type BabelNodeTSEntityName = BabelNodeIdentifier | BabelNodeTSQualifiedName;
-type BabelNodeLiteral =
-  | BabelNodeStringLiteral
-  | BabelNodeNumericLiteral
-  | BabelNodeNullLiteral
-  | BabelNodeBooleanLiteral
-  | BabelNodeRegExpLiteral
-  | BabelNodeTemplateLiteral
-  | BabelNodeBigIntLiteral;
-type BabelNodeImmutable =
-  | BabelNodeStringLiteral
-  | BabelNodeNumericLiteral
-  | BabelNodeNullLiteral
-  | BabelNodeBooleanLiteral
-  | BabelNodeJSXAttribute
-  | BabelNodeJSXClosingElement
-  | BabelNodeJSXElement
-  | BabelNodeJSXExpressionContainer
-  | BabelNodeJSXSpreadChild
-  | BabelNodeJSXOpeningElement
-  | BabelNodeJSXText
-  | BabelNodeJSXFragment
-  | BabelNodeJSXOpeningFragment
-  | BabelNodeJSXClosingFragment
-  | BabelNodeBigIntLiteral;
-type BabelNodeUserWhitespacable =
-  | BabelNodeObjectMethod
-  | BabelNodeObjectProperty
-  | BabelNodeObjectTypeInternalSlot
-  | BabelNodeObjectTypeCallProperty
-  | BabelNodeObjectTypeIndexer
-  | BabelNodeObjectTypeProperty
-  | BabelNodeObjectTypeSpreadProperty;
 type BabelNodeMethod =
   | BabelNodeObjectMethod
   | BabelNodeClassMethod
   | BabelNodeClassPrivateMethod;
-type BabelNodeObjectMember = BabelNodeObjectMethod | BabelNodeObjectProperty;
 type BabelNodeProperty =
   | BabelNodeObjectProperty
   | BabelNodeClassProperty
   | BabelNodeClassPrivateProperty;
-type BabelNodeUnaryLike = BabelNodeUnaryExpression | BabelNodeSpreadElement;
 type BabelNodePattern =
   | BabelNodeAssignmentPattern
   | BabelNodeArrayPattern
   | BabelNodeObjectPattern;
 type BabelNodeClass = BabelNodeClassExpression | BabelNodeClassDeclaration;
-type BabelNodeModuleDeclaration =
-  | BabelNodeExportAllDeclaration
-  | BabelNodeExportDefaultDeclaration
-  | BabelNodeExportNamedDeclaration
-  | BabelNodeImportDeclaration;
-type BabelNodeExportDeclaration =
-  | BabelNodeExportAllDeclaration
-  | BabelNodeExportDefaultDeclaration
-  | BabelNodeExportNamedDeclaration;
 type BabelNodeModuleSpecifier =
   | BabelNodeExportSpecifier
   | BabelNodeImportDefaultSpecifier
@@ -2102,64 +1943,6 @@ type BabelNodeFlowType =
   | BabelNodeTypeofTypeAnnotation
   | BabelNodeUnionTypeAnnotation
   | BabelNodeVoidTypeAnnotation;
-type BabelNodeFlowBaseAnnotation =
-  | BabelNodeAnyTypeAnnotation
-  | BabelNodeBooleanTypeAnnotation
-  | BabelNodeNullLiteralTypeAnnotation
-  | BabelNodeMixedTypeAnnotation
-  | BabelNodeEmptyTypeAnnotation
-  | BabelNodeNumberTypeAnnotation
-  | BabelNodeStringTypeAnnotation
-  | BabelNodeSymbolTypeAnnotation
-  | BabelNodeThisTypeAnnotation
-  | BabelNodeVoidTypeAnnotation;
-type BabelNodeFlowDeclaration =
-  | BabelNodeDeclareClass
-  | BabelNodeDeclareFunction
-  | BabelNodeDeclareInterface
-  | BabelNodeDeclareModule
-  | BabelNodeDeclareModuleExports
-  | BabelNodeDeclareTypeAlias
-  | BabelNodeDeclareOpaqueType
-  | BabelNodeDeclareVariable
-  | BabelNodeDeclareExportDeclaration
-  | BabelNodeDeclareExportAllDeclaration
-  | BabelNodeInterfaceDeclaration
-  | BabelNodeOpaqueType
-  | BabelNodeTypeAlias;
-type BabelNodeFlowPredicate =
-  | BabelNodeDeclaredPredicate
-  | BabelNodeInferredPredicate;
-type BabelNodeEnumBody =
-  | BabelNodeEnumBooleanBody
-  | BabelNodeEnumNumberBody
-  | BabelNodeEnumStringBody
-  | BabelNodeEnumSymbolBody;
-type BabelNodeEnumMember =
-  | BabelNodeEnumBooleanMember
-  | BabelNodeEnumNumberMember
-  | BabelNodeEnumStringMember
-  | BabelNodeEnumDefaultedMember;
-type BabelNodeJSX =
-  | BabelNodeJSXAttribute
-  | BabelNodeJSXClosingElement
-  | BabelNodeJSXElement
-  | BabelNodeJSXEmptyExpression
-  | BabelNodeJSXExpressionContainer
-  | BabelNodeJSXSpreadChild
-  | BabelNodeJSXIdentifier
-  | BabelNodeJSXMemberExpression
-  | BabelNodeJSXNamespacedName
-  | BabelNodeJSXOpeningElement
-  | BabelNodeJSXSpreadAttribute
-  | BabelNodeJSXText
-  | BabelNodeJSXFragment
-  | BabelNodeJSXOpeningFragment
-  | BabelNodeJSXClosingFragment;
-type BabelNodePrivate =
-  | BabelNodeClassPrivateProperty
-  | BabelNodeClassPrivateMethod
-  | BabelNodePrivateName;
 type BabelNodeTSTypeElement =
   | BabelNodeTSCallSignatureDeclaration
   | BabelNodeTSConstructSignatureDeclaration
@@ -2201,22 +1984,6 @@ type BabelNodeTSType =
   | BabelNodeTSLiteralType
   | BabelNodeTSExpressionWithTypeArguments
   | BabelNodeTSImportType;
-type BabelNodeTSBaseType =
-  | BabelNodeTSAnyKeyword
-  | BabelNodeTSBooleanKeyword
-  | BabelNodeTSBigIntKeyword
-  | BabelNodeTSNeverKeyword
-  | BabelNodeTSNullKeyword
-  | BabelNodeTSNumberKeyword
-  | BabelNodeTSObjectKeyword
-  | BabelNodeTSStringKeyword
-  | BabelNodeTSSymbolKeyword
-  | BabelNodeTSUndefinedKeyword
-  | BabelNodeTSUnknownKeyword
-  | BabelNodeTSVoidKeyword
-  | BabelNodeTSThisType
-  | BabelNodeTSLiteralType;
-
 declare module '@babel/types' {
   declare export function arrayExpression(
     elements?: $ReadOnlyArray<

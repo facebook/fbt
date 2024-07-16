@@ -20,8 +20,9 @@ describe('collectFbtForWeb', () => {
     // It's expected since we only generate `dist/index.js` after running `yarn build`
     // upon publishing this package to npm.
     // $FlowExpectedError[unsupported-syntax]
-    const fbtStandaloneDist /*: FbtStandalone */ = require('../..' +
-      /* force dynamic import */ '/dist');
+    const fbtStandaloneDist: FbtStandalone = require(
+      '../..' + /* force dynamic import */ '/dist',
+    );
 
     // $FlowFixMe[missing-local-annot]
     function collect(fbtStandalone, source) {

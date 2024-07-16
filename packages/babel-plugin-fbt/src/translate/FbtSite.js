@@ -49,13 +49,6 @@ type FbtSiteHashToTokenAliases = {|
   [hash: PatternHash]: ?TokenAliases,
 |};
 
-type SerializedFbtSite = {|
-  h2a: FbtSiteHashToTokenAliases,
-  h2t: FbtSiteHashToTextAndDesc,
-  p: string,
-  _d: {|t: FbtSiteHashifiedTableJSFBTTree, m: $ReadOnlyArray<?JSFBTMetaEntry>|},
-|};
-
 /**
  * Represents an <fbt>'s data source in the format of `SourceDataJSON`.
  *

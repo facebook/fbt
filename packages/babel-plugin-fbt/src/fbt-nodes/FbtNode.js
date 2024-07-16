@@ -200,8 +200,6 @@ class FbtNode<
    */
   +options: Options;
 
-  _variationFactorValues: $ReadOnlyArray<SVArgument> = [];
-
   constructor({
     children,
     moduleName,
