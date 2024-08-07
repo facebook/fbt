@@ -4,7 +4,6 @@
  * @flow
  * @format
  * @oncall i18n_fbt_js
- * @typechecks
  */
 
 /* eslint-disable fb-www/fbt-no-project */

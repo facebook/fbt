@@ -3,7 +3,6 @@
  *
  * @format
  * @oncall i18n_fbt_js
- * @typechecks
  */
 /* eslint "fb-www/require-flow-strict-local": "off" */
 
