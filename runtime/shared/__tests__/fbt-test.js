@@ -405,7 +405,7 @@ describe('fbt', () => {
       viewer,
     }: $TEMPORARY$object<{
       count: number,
-      object: $TEMPORARY$string<'comment'> | $TEMPORARY$string<'photo'>,
+      object: string,
       ownerGender:
         | 'FEMALE_PLURAL'
         | 'FEMALE_SINGULAR'

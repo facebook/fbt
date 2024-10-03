@@ -10,8 +10,8 @@ const intlList: JestMockFn<
   $ReadOnlyArray<
     ?$Keys<
       $TEMPORARY$object<{|
-        COMMA: $TEMPORARY$string<'COMMA'>,
-        SEMICOLON: $TEMPORARY$string<'SEMICOLON'>,
+        COMMA: string,
+        SEMICOLON: string,
       |}>,
     > &
       any &

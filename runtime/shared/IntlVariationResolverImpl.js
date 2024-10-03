@@ -21,9 +21,7 @@ const IntlVariationResolverImpl = {
    * Wrapper around FbtNumberType.getVariation that special cases our EXACTLY_ONE
    * value to accommodate the singular form of fbt:plural
    */
-  getNumberVariations(
-    number: number,
-  ): Array<$FlowFixMe | $TEMPORARY$string<'*'> | $TEMPORARY$string<'_1'>> {
+  getNumberVariations(number: number): Array<$FlowFixMe | string> {
     const numType = IntlNumberType.get(
       FbtHooks.getViewerContext().locale,
     ).getVariation(number);
@@ -40,7 +38,7 @@ const IntlVariationResolverImpl = {
   /**
    * Wrapper to validate gender.
    */
-  getGenderVariations(gender: number): Array<$TEMPORARY$string<'*'> | number> {
+  getGenderVariations(gender: number): Array<string | number> {
     invariant(
       // eslint-disable-next-line no-bitwise
       gender & IntlVariations.BITMASK_GENDER,
