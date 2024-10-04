@@ -25,8 +25,7 @@ const FbtResultComponent = (props: Props): mixed => props.content;
 type Props = $ReadOnly<{content: $NestedFbtContentItems, ...}>;
 
 class FbtResult extends FbtResultBase {
-  $$typeof: symbol | $TEMPORARY$number<0xeac7> =
-    FbtReactUtil.REACT_ELEMENT_TYPE;
+  $$typeof: symbol | number = FbtReactUtil.REACT_ELEMENT_TYPE;
   key: ?string = null;
   props: Props;
   ref: ?React.RefSetter<mixed> = null;
