@@ -114,7 +114,8 @@
     "**/webpack": "^5.76.0",
     "**/tough-cookie": "4.1.3",
     "**/json-schema": "0.4.0",
-    "**/jsprim": "1.4.2"
+    "**/jsprim": "1.4.2",
+    "**/ip": "^2.0.1"
   },
   "workspaces": [
     "demo-app",
