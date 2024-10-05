@@ -403,7 +403,7 @@ describe('fbt', () => {
       object,
       ownerGender,
       viewer,
-    }: $TEMPORARY$object<{
+    }: $ReadOnly<{
       count: number,
       object: string,
       ownerGender:
