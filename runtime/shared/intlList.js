@@ -28,13 +28,17 @@ const fbt = require('fbt');
 const invariant = require('invariant');
 const React = require('react');
 
-const CONJUNCTIONS = {
+const CONJUNCTIONS: $ReadOnly<{|AND: 'AND', NONE: 'NONE', OR: 'OR'|}> = {
   AND: 'AND',
   NONE: 'NONE',
   OR: 'OR',
 };
 
-const DELIMITERS = {
+const DELIMITERS: $ReadOnly<{|
+  BULLET: 'BULLET',
+  COMMA: 'COMMA',
+  SEMICOLON: 'SEMICOLON',
+|}> = {
   BULLET: 'BULLET',
   COMMA: 'COMMA',
   SEMICOLON: 'SEMICOLON',
